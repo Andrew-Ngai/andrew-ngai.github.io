@@ -115,16 +115,17 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 @media (max-width:860px){.receipts{grid-template-columns:repeat(2,minmax(0,1fr))}.receipts li:nth-child(2){border-right:0}.receipts li:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
 
 /* ---------------------------------------------------------------- index (wafer map) */
-.index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow:hidden}
+.index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow-x:clip}
 .index-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
 .index-head p{max-width:34rem;color:var(--dim)}
 .legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:flex-end;max-width:440px}
 @media (max-width:860px){.index-head{grid-template-columns:1fr}.legend{justify-content:flex-start}}
 .index-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
 @media (max-width:900px){.index-grid{grid-template-columns:1fr}}
-.map-col{position:sticky;top:96px;display:grid;gap:14px}
+.index-grid{position:relative}
+.map-col{position:sticky;top:84px;display:grid;gap:14px;z-index:3}
 @media (max-width:900px){.map-col{position:relative;top:0;max-width:520px;margin-inline:auto;width:100%}}
-.wafermap{position:relative}
+.wafermap{position:relative;width:100%;max-width:max(300px,calc(100svh - 300px));justify-self:center}
 .wafermap svg{width:100%;height:auto;display:block;overflow:visible}
 .wm-die{fill:var(--ink-3);transition:fill .2s}
 .wm-hit{cursor:pointer}
@@ -137,7 +138,7 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 #probe{transition:transform .45s var(--ease)}
 #probe line{stroke:var(--amber);stroke-width:1.2}
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}
-.readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:3.2em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+.readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:4.2em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
 .readout b{color:var(--paper);font-weight:700}
 .map-pip{width:92px;flex:0 0 auto;margin-top:-56px}
 
@@ -149,6 +150,32 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .t-item .t-hook{grid-column:2;color:var(--dim);font-size:18px;max-width:34rem}
 .t-item .bin{grid-column:2;margin-top:6px}
 a.t-item:hover .t-title,a.t-item.on .t-title{color:var(--bin)}
+/* probe scan: the item a die points at gets a pass of inspection light and a bin-colored edge */
+.t-item::after{content:"";position:absolute;left:-18px;top:24px;bottom:26px;width:3px;background:var(--bin);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
+.t-item.on::after{transform:scaleY(1)}
+.t-item.scan::before{content:"";position:absolute;inset:0 -12px 0 -18px;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.07) 45%,rgba(255,255,255,.12) 50%,transparent 58%);background-size:220% 100%;background-repeat:no-repeat;animation:scanpass .9s var(--ease) both}
+@keyframes scanpass{from{background-position:120% 0}to{background-position:-60% 0}}
+
+/* die tag: an inspection callout pinned to the hovered die */
+.die-tag{position:absolute;z-index:4;width:max-content;max-width:min(250px,80%);padding:10px 12px 11px;background:rgba(15,12,34,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--bin);box-shadow:0 12px 30px rgba(4,2,14,.55),0 0 18px -6px var(--bin);pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .25s var(--ease)}
+.die-tag.show{opacity:1;transform:none}
+.die-tag::before,.die-tag::after{content:"";position:absolute;width:9px;height:9px;border-color:var(--bin);border-style:solid}
+.die-tag::before{left:-1px;top:-1px;border-width:2px 0 0 2px}
+.die-tag::after{right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+.dt-row{display:flex;align-items:center;gap:12px;font-family:var(--label);font-weight:600;font-size:14px;color:var(--faint);font-variant-numeric:tabular-nums}
+.dt-row .bin{font-size:14px}
+.dt-t{display:block;margin-top:5px;font-family:var(--display);font-weight:700;font-size:19px;line-height:1.02;color:var(--paper)}
+.dt-go{display:block;margin-top:6px;font-family:var(--label);font-size:13px;color:var(--dim)}
+.dt-stem{position:absolute;width:1px;background:var(--bin);opacity:.8}
+
+/* the signal line from a die to its article */
+.link-line{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.link-line path{fill:none;stroke:var(--bin);stroke-linecap:round}
+.link-line .ll-glow{stroke-width:6;stroke-opacity:.14}
+.link-line .ll{stroke-width:1.6;stroke-dasharray:6 8;animation:llflow .7s linear infinite}
+.link-line circle{fill:var(--bin)}
+@keyframes llflow{to{stroke-dashoffset:-14}}
+@media (max-width:900px){.link-line,.die-tag{display:none}}
 .t-item.probe .t-title{color:var(--faint)}
 @media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin{grid-column:1}.t-item .t-die{padding-top:0}}
 
@@ -569,16 +596,17 @@ html.paused .memo{animation:none}
       <div class="index-head">
         <div>
           <h2 class="big" id="theses-h">Theses on the wafer</h2>
-          <p style="margin-top:18px">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a lit die, or pick one from the list. Dashed dies are still in probe.</p>
+          <p style="margin-top:18px">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a lit die and the list finds its article, or hover an article to find its die. Dashed dies are still in probe.</p>
         </div>
         <div class="legend" id="legend"></div>
       </div>
       <div class="index-grid">
         <div class="map-col">
-          <div class="wafermap"><svg id="wmap" viewBox="-310 -310 620 620" role="img" aria-label="Wafer map. Each lit die is a thesis."></svg></div>
+          <div class="wafermap"><svg id="wmap" viewBox="-310 -310 620 620" role="img" aria-label="Wafer map. Each lit die is a thesis."></svg><div class="die-tag" id="dieTag" aria-hidden="true"></div></div>
           <div class="readout"><p id="readout">Probe idle. <b>5 dies binned</b>, 2 in probe.</p><div class="map-pip" data-pip="idle" data-acc="wafer"></div></div>
         </div>
         <ul class="tlist" id="tlist"></ul>
+        <svg class="link-line" id="linkLine" aria-hidden="true"></svg>
       </div>
     </div>
   </section>
@@ -1447,25 +1475,127 @@ function buildMap() {
     <circle cx="0" cy="${R}" r="10" fill="var(--ink)"/><path d="M-10 ${R} A10 10 0 0 1 10 ${R}" fill="none" stroke="var(--rule)" stroke-width="2"/>
     <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>`;
 
-  const probe = $("#probe"), readout = $("#readout");
+  const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap");
+  const grid = $(".index-grid"), col = $(".map-col"), line = $("#linkLine");
   const idle = readout.innerHTML;
-  function activate(id, on) {
-    $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", on && el.dataset.id === id));
-    if (!on) { readout.innerHTML = idle; probe.style.opacity = ".35"; return; }
-    let die, title, bin;
-    if (id.startsWith("probe")) { const p = PROBES[+id.slice(5)]; die = p.die; title = p.title; bin = "In probe, still testing this one"; }
-    else { const t = byId[id]; die = t.die; title = t.title; bin = "Bin: " + BINS[t.stance].label; }
-    probe.style.transform = `translate(${die[0] * ds}px,${-die[1] * ds}px)`;
-    probe.style.opacity = "1";
-    readout.innerHTML = `<b>${title}</b><br>Die ${dieLabel(die)}. ${bin}.`;
+  const desktop = () => getComputedStyle(col).position === "sticky";
+  let active = null, alignTimer = 0, offTimer = 0;
+  const info = id => {
+    const isProbe = id.startsWith("probe");
+    const t = isProbe ? PROBES[+id.slice(5)] : byId[id];
+    return { t, isProbe, css: isProbe ? "var(--faint)" : BINS[t.stance].css, bin: isProbe ? "In probe" : BINS[t.stance].label };
+  };
+  const dieEl = id => $(`#wmap [data-id="${id}"] rect`);
+  const itemEl = id => $(`.t-item[data-id="${id}"]`);
+
+  // callout pinned to the die
+  function showTag(id) {
+    const { t, isProbe, css, bin } = info(id), d = dieEl(id);
+    if (!d) return;
+    tag.style.setProperty("--bin", css);
+    tag.innerHTML = `<span class="dt-row"><span>Die ${dieLabel(t.die)}</span><span class="bin${isProbe ? " probe" : ""}" style="--bin:${css}">${bin}</span></span><b class="dt-t">${t.title}</b><span class="dt-go">${isProbe ? "Still testing this one." : "Click the die to open its three slides."}</span>`;
+    const wr = wm.getBoundingClientRect(), dr = d.getBoundingClientRect();
+    const w = tag.offsetWidth, h = tag.offsetHeight, cx = dr.left + dr.width / 2 - wr.left;
+    const left = Math.max(-8, Math.min(wr.width - w + 8, cx - w / 2));
+    let top = dr.top - wr.top - h - 14;
+    if (top < -20) top = dr.bottom - wr.top + 14;
+    tag.style.left = left + "px";
+    tag.style.top = top + "px";
+    tag.classList.add("show");
   }
-  $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => {
+
+  // signal line from the die to its article
+  function drawLine() {
+    if (!active || !desktop()) { line.innerHTML = ""; return; }
+    const d = dieEl(active), it = itemEl(active);
+    if (!d || !it) { line.innerHTML = ""; return; }
+    const gr = grid.getBoundingClientRect(), dr = d.getBoundingClientRect(), tr = it.querySelector(".t-title").getBoundingClientRect();
+    const x1 = dr.right - gr.left, y1 = dr.top + dr.height / 2 - gr.top;
+    const x2 = it.getBoundingClientRect().left - 17 - gr.left, y2 = tr.top + Math.min(tr.height / 2, 20) - gr.top;
+    const mx = x1 + (x2 - x1) * .55;
+    const path = `M${x1.toFixed(1)} ${y1.toFixed(1)} C${mx.toFixed(1)} ${y1.toFixed(1)} ${mx.toFixed(1)} ${y2.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    line.style.setProperty("--bin", info(active).css);
+    line.innerHTML = `<path class="ll-glow" d="${path}"/><path class="ll" d="${path}"/><circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="3"/><circle cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="4.5"/>`;
+  }
+
+  // slide the list so the article sits level with its die, without unsticking the wafer
+  function align(id) {
+    const it = itemEl(id), d = dieEl(id);
+    if (!it || !d || !desktop()) return;
+    const tr = it.querySelector(".t-title").getBoundingClientRect(), dr = d.getBoundingClientRect();
+    const delta = tr.top + Math.min(tr.height / 2, 20) - (dr.top + dr.height / 2);
+    const stick = parseFloat(getComputedStyle(col).top) || 0, gr = grid.getBoundingClientRect();
+    const minY = scrollY + gr.top - stick, maxY = scrollY + gr.bottom - stick - col.offsetHeight;
+    glide(Math.max(minY, Math.min(maxY, scrollY + delta)));
+  }
+
+  // our own eased scroll, so it starts instantly and stops the moment the reader scrolls
+  let tween = 0, gliding = false;
+  const root = document.documentElement;
+  const stopGlide = () => { if (!gliding) return; gliding = false; cancelAnimationFrame(tween); root.style.scrollBehavior = ""; };
+  ["wheel", "touchstart", "keydown"].forEach(ev => addEventListener(ev, stopGlide, { passive: true }));
+  function glide(target) {
+    stopGlide();
+    const start = scrollY, dist = target - start;
+    if (Math.abs(dist) < 6) return;
+    root.style.scrollBehavior = "auto";
+    if (calm) { window.scrollTo(0, target); root.style.scrollBehavior = ""; return; }
+    const dur = Math.min(720, 300 + Math.abs(dist) * .22), t0 = performance.now();
+    gliding = true;
+    const step = now => {
+      if (!gliding) return;
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      window.scrollTo(0, start + dist * e);
+      if (k < 1) tween = requestAnimationFrame(step); else stopGlide();
+    };
+    tween = requestAnimationFrame(step);
+  }
+
+  function activate(id, on, from) {
+    clearTimeout(alignTimer);
+    if (!on) {
+      clearTimeout(offTimer);
+      offTimer = setTimeout(() => {
+        active = null;
+        $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.remove("on", "scan"));
+        readout.innerHTML = idle; probe.style.opacity = ".35"; tag.classList.remove("show"); line.innerHTML = "";
+      }, 120);
+      return;
+    }
+    clearTimeout(offTimer);
+    const changed = active !== id;
+    active = id;
+    const { t, isProbe, bin } = info(id);
+    $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", el.dataset.id === id));
+    if (changed && from === "die") {
+      const it = itemEl(id);
+      if (it) { it.classList.remove("scan"); void it.offsetWidth; it.classList.add("scan"); }
+    }
+    probe.style.transform = `translate(${t.die[0] * ds}px,${-t.die[1] * ds}px)`;
+    probe.style.opacity = "1";
+    readout.innerHTML = `<b>${t.title}</b><br>${t.hook}`;
+    showTag(id);
+    drawLine();
+    if (from === "die") alignTimer = setTimeout(() => align(id), 160);
+  }
+  $$(".wm-hit, .wm-probe-die").forEach(el => {
     const id = el.dataset.id;
-    el.addEventListener("mouseenter", () => activate(id, true));
+    el.addEventListener("mouseenter", () => activate(id, true, "die"));
     el.addEventListener("mouseleave", () => activate(id, false));
-    el.addEventListener("focus", () => activate(id, true));
+    el.addEventListener("focus", () => activate(id, true, "focus"));
     el.addEventListener("blur", () => activate(id, false));
   });
+  $$(".t-item").forEach(el => {
+    const id = el.dataset.id;
+    el.addEventListener("mouseenter", () => activate(id, true, "list"));
+    el.addEventListener("mouseleave", () => activate(id, false));
+    el.addEventListener("focus", () => activate(id, true, "list"));
+    el.addEventListener("blur", () => activate(id, false));
+  });
+  let raf = 0;
+  const follow = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { if (active) { drawLine(); showTag(active); } }); };
+  addEventListener("scroll", follow, { passive: true });
+  addEventListener("resize", follow);
 }
 
 /* ---------------------------------------------------------------- memo reader */
