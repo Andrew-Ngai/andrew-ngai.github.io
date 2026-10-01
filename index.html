@@ -73,12 +73,21 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .bin.probe::before{background:transparent;border:1.5px dashed var(--faint);box-shadow:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) 14px;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .nav.solid{background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--rule)}
-.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--label);font-weight:800;font-size:21px;letter-spacing:.02em}
+.mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap;font-family:var(--label);font-weight:800;font-size:21px;letter-spacing:.02em}
 .mark svg{width:26px;height:26px}
 .nav-links{display:flex;gap:clamp(14px,2.4vw,30px);font-family:var(--label);font-weight:600;font-size:18px}
 .nav-links a{text-decoration:none;color:var(--dim);transition:color .2s}
 .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--paper)}
 @media (max-width:600px){.nav-links .wide{display:none}}
+.pads{display:inline-flex;align-items:center;gap:8px;margin-left:clamp(0px,1vw,8px);padding-left:clamp(12px,2vw,22px);border-left:1px solid var(--rule)}
+.nav-links a.pad{position:relative;display:grid;place-items:center;width:30px;height:26px;border:1.5px solid rgba(255,178,63,.5);border-radius:3px;background:linear-gradient(160deg,rgba(255,178,63,.2),rgba(255,178,63,.03));font-weight:800;font-size:15px;line-height:1;color:var(--amber);transition:background .2s,color .2s,box-shadow .2s,transform .2s}
+.nav-links a.pad::before{content:"";position:absolute;left:50%;bottom:100%;width:1.5px;height:0;background:var(--amber);box-shadow:0 0 6px var(--amber);transition:height .25s var(--ease)}
+.nav-links a.pad::after{content:attr(data-tip);position:absolute;top:calc(100% + 10px);right:-6px;padding:5px 9px 6px;background:var(--ink-2);border:1px solid var(--rule);border-radius:3px;font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--paper);white-space:nowrap;opacity:0;transform:translateY(-4px);transition:opacity .2s,transform .2s;pointer-events:none}
+.nav-links a.pad:hover,.nav-links a.pad:focus-visible{background:var(--amber);color:var(--ink);box-shadow:0 0 16px rgba(255,178,63,.5);transform:translateY(-1px)}
+.nav-links a.pad:hover::before,.nav-links a.pad:focus-visible::before{height:14px}
+.nav-links a.pad:hover::after,.nav-links a.pad:focus-visible::after{opacity:1;transform:none}
+@media (max-width:480px){.nav{gap:10px}.nav-links{gap:10px;font-size:16px}.pads{margin-left:0;padding-left:8px;gap:5px}.nav-links a.pad{width:25px;height:23px;font-size:14px}.mark{font-size:17px;gap:7px}.mark svg{width:22px;height:22px}}
+@media (max-width:374px){.mark span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:128px 0 0}
 #wafer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;will-change:transform}
 .hero.no-gl::before{content:"";position:absolute;z-index:-1;right:-6vw;top:12%;width:min(70vw,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),transparent 40%),conic-gradient(from 200deg,#4fd2ff,#a08bff,#ff6b80,#ffb23f,#4fd2ff);opacity:.5;transform:perspective(900px) rotateX(55deg) rotateZ(-20deg)}
@@ -194,9 +203,45 @@ html.paused .die-pip.land{animation:none}
 @keyframes beat-run{from{stroke-dashoffset:1640}to{stroke-dashoffset:0}}
 .contact{padding-block:clamp(80px,10vw,128px) 56px}
 .contact-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
-@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}.rules{margin-top:84px}}
 .contact .lede{margin-top:22px}
 .contact .ctas{margin-top:30px}
+.pinout{margin-top:34px;max-width:40rem}
+.pinout-head{display:flex;justify-content:space-between;gap:16px;font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.pinout-head span:first-child{color:var(--amber)}
+.pinout-body{display:grid;grid-template-columns:46px minmax(0,1fr)}
+.pkg{position:relative;margin:12px 0;background:linear-gradient(90deg,#1b1538,var(--ink-3));border:1px solid var(--rule);border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.pkg::before{content:"";position:absolute;left:50%;top:9px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--ink);box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.pkg span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);font-family:var(--label);font-weight:700;font-size:13px;letter-spacing:.2em;color:var(--faint);white-space:nowrap}
+.pins{list-style:none;margin:0;padding:0}
+.pins li+li .pin{border-top:1px solid rgba(49,42,92,.6)}
+.pin{position:relative;display:grid;grid-template-columns:30px 30px 34px minmax(0,11rem) minmax(0,1fr) 22px;align-items:center;gap:0 12px;padding:15px 8px 15px 0;text-decoration:none;color:var(--paper);transition:background .25s}
+.leg{position:relative;height:7px;border-radius:0 2px 2px 0;background:linear-gradient(180deg,#d9d3ee,#8f87b6 55%,#5d567f);overflow:hidden;transition:box-shadow .25s,background .25s}
+.leg::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:40%;background:linear-gradient(90deg,transparent,#fff,transparent);opacity:0}
+.pin-no{font-family:var(--label);font-weight:600;font-size:15px;color:var(--faint);letter-spacing:.06em}
+.pin-tag{display:grid;place-items:center;width:34px;height:30px;border:1.5px solid rgba(255,178,63,.55);border-radius:3px;background:linear-gradient(160deg,rgba(255,178,63,.18),rgba(255,178,63,.04));font-family:var(--label);font-weight:800;font-size:17px;color:var(--amber);transition:background .25s,color .25s,box-shadow .25s}
+.pin-id{display:grid;line-height:1.2}
+.pin-id b{font-family:var(--label);font-weight:800;font-size:22px;letter-spacing:.02em}
+.pin-id span{font-family:var(--label);font-weight:500;font-size:16px;color:var(--dim)}
+.pin-role{font-size:17px;line-height:1.35;color:var(--dim)}
+.pin-go{font-family:var(--label);font-size:20px;color:var(--faint);transition:transform .25s,color .25s}
+.pin:hover,.pin:focus-visible{background:linear-gradient(90deg,rgba(255,178,63,.07),transparent 80%)}
+.pin:hover .leg,.pin:focus-visible .leg{background:linear-gradient(180deg,#ffe0a3,var(--amber) 55%,#b9771a);box-shadow:0 0 12px rgba(255,178,63,.6)}
+.pin:hover .leg::after,.pin:focus-visible .leg::after{animation:pin-signal .7s var(--ease) 1}
+.pin:hover .pin-tag,.pin:focus-visible .pin-tag{background:var(--amber);color:var(--ink);box-shadow:0 0 18px rgba(255,178,63,.45)}
+.pin:hover .pin-id b,.pin:focus-visible .pin-id b{color:var(--amber)}
+.pin:hover .pin-go,.pin:focus-visible .pin-go{color:var(--amber);transform:translateX(3px)}
+@keyframes pin-signal{from{left:-40%;opacity:1}to{left:110%;opacity:1}}
+@media (max-width:640px){
+  .po-extra{display:none}
+  .pinout-body{grid-template-columns:30px minmax(0,1fr)}
+  .pin{grid-template-columns:18px 34px minmax(0,1fr) 18px;gap:4px 12px}
+  .pin-no{display:none}
+  .pin .leg{grid-row:1/3}
+  .pin-tag{grid-row:1/3}
+  .pin-role{grid-column:3;font-size:16px}
+  .pin-go{grid-row:1/3;grid-column:4}
+}
 .rules{border:1px solid var(--rule);background:var(--ink-2);padding:26px 26px 22px;position:relative}
 .rules h3{font-family:var(--label);font-weight:800;font-size:22px;letter-spacing:.02em}
 .rules ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:14px}
@@ -546,6 +591,10 @@ html.paused .memo{animation:none}
     <a href="#scorecard" class="wide">Scorecard</a>
     <a href="#pulse">Pulse</a>
     <a href="#contact" class="wide">Contact</a>
+    <span class="pads">
+      <a class="pad" data-href="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn: andrewrngai" data-tip="in/andrewrngai">in</a>
+      <a class="pad" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram: andrew.ngai_" data-tip="@andrew.ngai_">ig</a>
+    </span>
   </nav>
 </header>
 
@@ -645,7 +694,7 @@ html.paused .memo{animation:none}
         <div>
           <h2 class="big" id="contact-h">Most people send a résumé. I’d rather send a thesis.</h2>
           <p class="lede">If you invest in or build anything on this page, I’d like to compare notes. Tell me where I’m wrong. That’s how these get better.</p>
-          <div class="ctas" id="contactLinks"></div>
+          <div class="pinout" id="contactLinks"></div>
           <p class="mail-note" id="mailNote" hidden></p>
         </div>
         <aside class="rules" aria-label="How I share notes">
@@ -764,7 +813,7 @@ html.paused .memo{animation:none}
       </div>
     </div>
   </section>
-  <footer class="pw-foot"><div class="wrap"><span>Pulse, made in California for people who’d rather be out.</span><span>Built by <span data-name>Andrew Ngai</span>. <a data-href="pulseSite" target="_blank" rel="noopener">pulsefriends.github.io</a></span><button class="motion-btn" type="button" data-motion>Pause motion</button></div></footer>
+  <footer class="pw-foot"><div class="wrap"><span>Pulse, made in California for people who’d rather be out.</span><span>Built by <span data-name>Andrew Ngai</span>. <a data-href="pulseSite" target="_blank" rel="noopener">pulsefriends.github.io</a> · <a data-href="linkedin" target="_blank" rel="noopener">LinkedIn</a> · <a data-href="instagram" target="_blank" rel="noopener">Instagram</a></span><button class="motion-btn" type="button" data-motion>Pause motion</button></div></footer>
 </div>
 
 <div class="memo" id="memo" role="dialog" aria-modal="true" aria-labelledby="memoTitle" hidden></div>
@@ -775,7 +824,8 @@ html.paused .memo{animation:none}
 const CONFIG = {
   name: "Andrew Ngai",
   email: "",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/andrewrngai/",
+  instagram: "https://www.instagram.com/andrew.ngai_/",
   github: "https://github.com/Andrew-Ngai",
   pulseSite: "https://pulsefriends.github.io/pulse-app.github.io/",
   appStore: "https://apps.apple.com/app/id6816788315"
@@ -1448,12 +1498,28 @@ function renderHome() {
     const b = BINS[t.stance];
     return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
-  const links = [];
-  if (CONFIG.email) links.push(`<a class="btn primary" href="mailto:${CONFIG.email}">Email me</a>`);
-  if (CONFIG.linkedin) links.push(`<a class="btn ${CONFIG.email ? "" : "primary"}" href="${CONFIG.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`);
-  if (CONFIG.github) links.push(`<a class="btn" href="${CONFIG.github}" target="_blank" rel="noopener">GitHub</a>`);
-  links.push(`<a class="btn" href="#pulse">Pulse</a>`);
-  $("#contactLinks").innerHTML = links.join("");
+  const pins = [
+    CONFIG.email && { tag: "@", name: "Email", handle: CONFIG.email, role: "The direct line.", href: `mailto:${CONFIG.email}` },
+    CONFIG.linkedin && { tag: "in", name: "LinkedIn", handle: "in/andrewrngai", role: "Work and intros. Start here.", href: CONFIG.linkedin, ext: 1 },
+    CONFIG.instagram && { tag: "ig", name: "Instagram", handle: "@andrew.ngai_", role: "The side channel. Life outside the theses.", href: CONFIG.instagram, ext: 1 },
+    CONFIG.github && { tag: "gh", name: "GitHub", handle: "Andrew-Ngai", role: "Source for this site.", href: CONFIG.github, ext: 1 },
+    { tag: "p", name: "Pulse", handle: "The app", role: "What I’m building.", href: "#pulse" }
+  ].filter(Boolean);
+  $("#contactLinks").innerHTML = `
+    <div class="pinout-head"><span>Pinout</span><span>AN-01 · ${pins.length} I/O<span class="po-extra"> · all pins open</span></span></div>
+    <div class="pinout-body">
+      <div class="pkg" aria-hidden="true"><span>AN-01</span></div>
+      <ol class="pins">${pins.map((p, i) => `
+        <li><a class="pin" href="${p.href}"${p.ext ? ` target="_blank" rel="noopener"` : ""}>
+          <span class="leg" aria-hidden="true"></span>
+          <span class="pin-no">${String(i + 1).padStart(2, "0")}</span>
+          <span class="pin-tag" aria-hidden="true">${p.tag}</span>
+          <span class="pin-id"><b>${p.name}</b><span>${p.handle}</span></span>
+          <span class="pin-role">${p.role}</span>
+          <span class="pin-go" aria-hidden="true">${p.ext ? "↗" : "→"}</span>
+        </a></li>`).join("")}
+      </ol>
+    </div>`;
   if (CONFIG.email) {
     const note = $("#mailNote");
     note.hidden = false;
