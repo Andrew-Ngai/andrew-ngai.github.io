@@ -203,16 +203,17 @@ html.paused .die-pip.land{animation:none}
 @keyframes beat-run{from{stroke-dashoffset:1640}to{stroke-dashoffset:0}}
 .contact{padding-block:clamp(80px,10vw,128px) 56px}
 .contact-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
-@media (max-width:860px){.contact-grid{grid-template-columns:1fr}.rules{margin-top:84px}}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}.contact-io .pinout{max-width:none}.rules{margin-top:84px}.contact-copy{order:1}.contact-io{order:2}.rules{order:3}}
 .contact .lede{margin-top:22px}
 .contact .ctas{margin-top:30px}
 .pinout{margin-top:34px;max-width:40rem}
 .pinout-head{display:flex;justify-content:space-between;gap:16px;font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding-bottom:10px;border-bottom:1px solid var(--rule)}
-.pinout-head span:first-child{color:var(--amber)}
+.pinout-head > span:first-child{color:var(--amber)}
 .pinout-body{display:grid;grid-template-columns:46px minmax(0,1fr)}
 .pkg{position:relative;margin:12px 0;background:linear-gradient(90deg,#1b1538,var(--ink-3));border:1px solid var(--rule);border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
 .pkg::before{content:"";position:absolute;left:50%;top:9px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--ink);box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
-.pkg span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);font-family:var(--label);font-weight:700;font-size:13px;letter-spacing:.2em;color:var(--faint);white-space:nowrap}
+.pkg-name,.pkg-beat,.pkg-pads{display:none}
+.pkg .pkg-id{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);font-family:var(--label);font-weight:700;font-size:13px;letter-spacing:.2em;color:var(--faint);white-space:nowrap}
 .pins{list-style:none;margin:0;padding:0}
 .pins li+li .pin{border-top:1px solid rgba(49,42,92,.6)}
 .pin{position:relative;display:grid;grid-template-columns:30px 30px 34px minmax(0,11rem) minmax(0,1fr) 22px;align-items:center;gap:0 12px;padding:15px 8px 15px 0;text-decoration:none;color:var(--paper);transition:background .25s}
@@ -232,6 +233,41 @@ html.paused .die-pip.land{animation:none}
 .pin:hover .pin-id b,.pin:focus-visible .pin-id b{color:var(--amber)}
 .pin:hover .pin-go,.pin:focus-visible .pin-go{color:var(--amber);transform:translateX(3px)}
 @keyframes pin-signal{from{left:-40%;opacity:1}to{left:110%;opacity:1}}
+@media (min-width:861px){
+  .contact-grid{row-gap:clamp(40px,4vw,64px)}
+  .contact-io{grid-column:1/-1}
+  .pinout{max-width:none;margin-top:0}
+  .pinout-body{--g:clamp(12px,1.4vw,20px);grid-template-columns:minmax(0,1fr)}
+  .pkg{height:76px;margin:18px 0 0;border-radius:6px;background:linear-gradient(180deg,#241d4a,#16112d 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 18px 40px rgba(5,3,18,.45)}
+  .pkg::before{left:-1px;top:50%;width:15px;height:30px;margin:-15px 0 0;border-radius:0 15px 15px 0;background:var(--ink);border:1px solid var(--rule);border-left:0;box-shadow:inset -2px 0 4px rgba(0,0,0,.5)}
+  .pkg::after{content:"";position:absolute;left:30px;top:12px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .pkg .pkg-id{left:52px;transform:translateY(-50%);font-size:15px;letter-spacing:.24em;color:var(--amber)}
+  .pkg-name{display:grid;position:absolute;left:150px;top:50%;transform:translateY(-50%);padding-left:22px;border-left:1px solid var(--rule);font-family:var(--label);font-weight:800;font-size:22px;letter-spacing:.06em;line-height:1.1;text-transform:uppercase;color:var(--paper)}
+  .pkg-name small{font-weight:600;font-size:12px;letter-spacing:.2em;color:var(--faint)}
+  .pkg-beat{display:block;position:absolute;right:28px;top:50%;width:min(46%,560px);height:40px;margin-top:-20px;overflow:visible}
+  .pkg-beat path{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .pkg-beat .base{stroke:var(--rule);stroke-width:1.5}
+  .pkg-beat .run{stroke:var(--beat);opacity:.9;stroke-dasharray:140 560;animation:pkg-beat 2.8s linear infinite;filter:drop-shadow(0 0 5px var(--beat))}
+  .pkg-pads{display:grid;position:absolute;left:-1px;right:-1px;bottom:-1px;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:var(--g)}
+  .pkg-pads i{display:block;width:18px;height:6px;margin-left:23px;border-radius:2px 2px 0 0;background:linear-gradient(180deg,#8f87b6,#d9d3ee);transition:background .25s,box-shadow .25s}
+  .pkg-pads i.hot{background:var(--amber);box-shadow:0 0 12px rgba(255,178,63,.8)}
+  .pins{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:var(--g);margin-top:30px}
+  .pins li{display:flex}
+  .pins li+li .pin{border-top:1px solid var(--rule)}
+  .pin{flex:1;grid-template-columns:34px minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;gap:16px 12px;align-items:start;padding:18px 18px 20px;border:1px solid var(--rule);border-radius:4px;background:var(--ink-2);transition:background .25s,border-color .25s,transform .25s}
+  .pin .leg{position:absolute;left:28px;top:-31px;width:8px;height:30px;border-radius:0 0 2px 2px;background:linear-gradient(90deg,#d9d3ee,#8f87b6 55%,#5d567f)}
+  .pin .leg::after{left:0;top:-50%;width:100%;height:50%;background:linear-gradient(180deg,transparent,#fff,transparent)}
+  .pin:hover .leg::after,.pin:focus-visible .leg::after{animation:pin-signal-v .6s var(--ease) 1}
+  .pin:hover .leg,.pin:focus-visible .leg{background:linear-gradient(90deg,#ffe0a3,var(--amber) 55%,#b9771a)}
+  .pin-tag{grid-column:1;grid-row:1}
+  .pin-no{grid-column:3;grid-row:1;justify-self:end;align-self:center}
+  .pin-id{grid-column:1/-1;grid-row:2}
+  .pin-role{grid-column:1/3;grid-row:3;font-size:17px}
+  .pin-go{grid-column:3;grid-row:3;align-self:end}
+  .pin:hover,.pin:focus-visible{border-color:rgba(255,178,63,.6);background:linear-gradient(180deg,rgba(255,178,63,.1),var(--ink-2) 70%);transform:translateY(-2px)}
+}
+@keyframes pin-signal-v{from{top:-50%;opacity:1}to{top:110%;opacity:1}}
+@keyframes pkg-beat{from{stroke-dashoffset:700}to{stroke-dashoffset:0}}
 @media (max-width:640px){
   .po-extra{display:none}
   .pinout-body{grid-template-columns:30px minmax(0,1fr)}
@@ -691,11 +727,9 @@ html.paused .memo{animation:none}
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="contact-grid">
-        <div>
+        <div class="contact-copy">
           <h2 class="big" id="contact-h">Most people send a résumé. I’d rather send a thesis.</h2>
           <p class="lede">If you invest in or build anything on this page, I’d like to compare notes. Tell me where I’m wrong. That’s how these get better.</p>
-          <div class="pinout" id="contactLinks"></div>
-          <p class="mail-note" id="mailNote" hidden></p>
         </div>
         <aside class="rules" aria-label="How I share notes">
           <div data-pip="swim" data-acc="helmet"></div>
@@ -706,6 +740,10 @@ html.paused .memo{animation:none}
             <li><b>Say how I’d be wrong.</b>A bet without a kill condition is just a mood.</li>
           </ul>
         </aside>
+        <div class="contact-io">
+          <div class="pinout" id="contactLinks"></div>
+          <p class="mail-note" id="mailNote" hidden></p>
+        </div>
       </div>
       <footer class="foot">
         <span>© 2026 <span data-name>Andrew Ngai</span>. Theses updated September 2026.</span>
@@ -1507,8 +1545,13 @@ function renderHome() {
   ].filter(Boolean);
   $("#contactLinks").innerHTML = `
     <div class="pinout-head"><span>Pinout</span><span>AN-01 · ${pins.length} I/O<span class="po-extra"> · all pins open</span></span></div>
-    <div class="pinout-body">
-      <div class="pkg" aria-hidden="true"><span>AN-01</span></div>
+    <div class="pinout-body" style="--n:${pins.length}">
+      <div class="pkg" aria-hidden="true">
+        <span class="pkg-id">AN-01</span>
+        <span class="pkg-name">${CONFIG.name}<small>2640 · Signal grade</small></span>
+        <svg class="pkg-beat" viewBox="0 0 600 40" preserveAspectRatio="none"><path class="base" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/><path class="run" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/></svg>
+        <span class="pkg-pads">${pins.map(() => "<i></i>").join("")}</span>
+      </div>
       <ol class="pins">${pins.map((p, i) => `
         <li><a class="pin" href="${p.href}"${p.ext ? ` target="_blank" rel="noopener"` : ""}>
           <span class="leg" aria-hidden="true"></span>
@@ -1520,6 +1563,12 @@ function renderHome() {
         </a></li>`).join("")}
       </ol>
     </div>`;
+  const pads = $$("#contactLinks .pkg i");
+  $$("#contactLinks .pin").forEach((a, i) => {
+    const on = v => () => pads[i] && pads[i].classList.toggle("hot", v);
+    a.addEventListener("mouseenter", on(true)); a.addEventListener("mouseleave", on(false));
+    a.addEventListener("focus", on(true)); a.addEventListener("blur", on(false));
+  });
   if (CONFIG.email) {
     const note = $("#mailNote");
     note.hidden = false;
