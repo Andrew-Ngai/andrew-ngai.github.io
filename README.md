@@ -30,8 +30,8 @@ In `index.html`, search for `const THESES`. Each thesis is one block with:
 - `die`: its spot on the wafer map, e.g. `[2, -4]` (keep both numbers between −7 and 7 so it lands on the wafer)
 - `stance`: `agree`, `build`, `push` or `original`
 - `title`, `hook`, `ref` (who you're building on, with a link), `signal`, three `takes`, `bet`, `wrong`, `receipts`
-- `viz`: which visual to show (`automate`, `molecules`, `fleet`, `memory`, `screen`)
-- `pip`: Pip's pose (`idle`, `wave`, `cheer`, `run`, `dance`, `swim`, `sleep`) and optional outfit (`hardhat`, `wafer`, `memo`, `helmet`)
+- `viz`: which visual to show (`automate`, `agent`, `ooms`, `molecules`, `fleet`, `builders`, `moat`, `memory`, `heat`, `screen`)
+- `pip`: Pip's outfit for this thesis: a pose (`idle`, `wave`, `cheer`, `run`, `dance`, `swim`, `sleep`, `float`), an outfit (`flask`, `camper`, `rack`, `hardhat`, `captain`, `chute`, `moat`, `hbm`, `thermo`, `hourglass`, `wafer`, `memo`, `helmet`) and a `name`. It appears on the wafer when the thesis is hovered, at the end of the thesis, and in the Pulse page's Pip parade.
 
 The two dashed "in probe" dies live in `const PROBES`. Move one into `THESES` when it's ready.
 
