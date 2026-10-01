@@ -116,14 +116,59 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 
 /* ---------------------------------------------------------------- index (wafer map) */
 .index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow:hidden}
-.index-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
-.index-head p{max-width:34rem;color:var(--dim)}
-.legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:flex-end;max-width:440px}
-@media (max-width:860px){.index-head{grid-template-columns:1fr}.legend{justify-content:flex-start}}
-.index-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
-@media (max-width:900px){.index-grid{grid-template-columns:1fr}}
-.map-col{position:sticky;top:96px;display:grid;gap:14px}
-@media (max-width:900px){.map-col{position:relative;top:0;max-width:520px;margin-inline:auto;width:100%}}
+.index-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:32px 56px;align-items:end}
+.index-lede{margin-top:18px;max-width:34rem;color:var(--dim)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px}
+@media (max-width:860px){.index-head{grid-template-columns:1fr}}
+
+/* Nicole DeTommaso's rule as a stack of three slides */
+.three{position:relative;margin:0;padding-bottom:56px;width:100%}
+.three .sl{border:1px solid var(--rule)}
+.three .sl1{position:relative;z-index:3;background:var(--ink-2);padding:16px 22px 20px;box-shadow:0 18px 40px rgba(4,2,14,.5)}
+.three .sl2{position:absolute;z-index:2;left:12px;right:12px;top:0;bottom:28px;background:#1a1438}
+.three .sl3{position:absolute;z-index:1;left:24px;right:24px;top:0;bottom:0;background:#1f1842}
+.three .sl2 span,.three .sl3 span{position:absolute;left:14px;bottom:4px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--dim)}
+.three b{font-family:var(--display);font-weight:900;color:var(--amber);margin-right:8px}
+.sl-k{font-family:var(--label);font-weight:700;font-size:15px;color:var(--dim)}
+.three blockquote{margin:8px 0 12px;font-family:var(--display);font-weight:800;font-size:clamp(26px,2.3vw,34px);line-height:1;color:var(--paper)}
+.three figcaption{font-size:16px;line-height:1.45;color:var(--dim)}
+.three figcaption a{color:var(--paper);text-decoration-color:var(--amber);text-underline-offset:3px}
+
+/* annotated wafer: every thesis title around the wafer, leader lines to its die */
+.chipmap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,480px) minmax(0,1fr);grid-template-areas:"hl . hr" "l w r" ". ro .";gap:0 clamp(20px,3vw,44px);align-items:center;margin-top:clamp(36px,5vw,60px)}
+.cm-hl{grid-area:hl;text-align:right}
+.cm-hr{grid-area:hr}
+.cm-left{grid-area:l;text-align:right}
+.cm-right{grid-area:r}
+.chipmap .wafermap{grid-area:w}
+.chipmap .readout{grid-area:ro;margin-top:18px}
+.cm-head{font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--faint);padding-bottom:8px;border-bottom:1px solid var(--rule);align-self:end}
+.cm-col{list-style:none;margin:0;padding:4px 0 0;display:flex;flex-direction:column;gap:2px;min-width:0}
+.lbl{display:grid;gap:5px;padding:9px 0;text-decoration:none;color:var(--paper);cursor:pointer;outline-offset:4px}
+.lbl-t{display:block;font-family:var(--display);font-weight:700;font-size:clamp(19px,1.65vw,24px);line-height:1;transition:color .2s}
+.lbl .bin{font-size:14px}
+.cm-left .bin{justify-self:end}
+.lbl:hover .lbl-t,.lbl.on .lbl-t{color:var(--bin)}
+.lbl.probe{cursor:default}
+.lbl.probe .lbl-t{color:var(--faint);font-weight:600}
+.lbl.probe.on .lbl-t{color:var(--dim)}
+.leaders{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.leaders path{fill:none;stroke:var(--bin);stroke-opacity:.32;stroke-width:1;transition:stroke-opacity .2s,stroke-width .2s}
+.leaders path.dash{stroke-dasharray:3 4}
+.leaders circle{fill:var(--bin);fill-opacity:.5}
+.leaders .on{stroke-opacity:1;stroke-width:1.8;fill-opacity:1;filter:drop-shadow(0 0 4px var(--bin))}
+@media (max-width:900px){
+  .chipmap{grid-template-columns:minmax(0,1fr);grid-template-areas:"w" "hl" "l" "hr" "r";gap:0}
+  .chipmap .wafermap{max-width:340px;width:100%;justify-self:center;margin-bottom:24px}
+  .chipmap .readout,.leaders{display:none}
+  .cm-hl{text-align:left}
+  .cm-hr{margin-top:28px}
+  .cm-left{text-align:left}
+  .cm-col{gap:0}
+  .lbl{grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding:13px 0}
+  .lbl-t{font-size:20px}
+  .cm-left .bin{justify-self:end}
+}
 .wafermap{position:relative}
 .wafermap svg{width:100%;height:auto;display:block;overflow:visible}
 .wm-die{fill:var(--ink-3);transition:fill .2s}
@@ -137,20 +182,10 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 #probe{transition:transform .45s var(--ease)}
 #probe line{stroke:var(--amber);stroke-width:1.2}
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}
-.readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:3.2em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+.readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:6.4em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
 .readout b{color:var(--paper);font-weight:700}
+.readout .ro-hook{display:block;margin-top:4px}
 .map-pip{width:92px;flex:0 0 auto;margin-top:-56px}
-
-.tlist{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
-.tlist li{border-bottom:1px solid var(--rule)}
-.t-item{display:grid;grid-template-columns:96px minmax(0,1fr);gap:6px 20px;padding:24px 0 26px;text-decoration:none;position:relative}
-.t-item .t-die{font-family:var(--label);font-weight:600;font-size:16px;color:var(--faint);padding-top:8px;font-variant-numeric:tabular-nums}
-.t-item .t-title{font-family:var(--display);font-weight:700;font-size:clamp(30px,3vw,42px);line-height:.98;transition:color .2s}
-.t-item .t-hook{grid-column:2;color:var(--dim);font-size:18px;max-width:34rem}
-.t-item .bin{grid-column:2;margin-top:6px}
-a.t-item:hover .t-title,a.t-item.on .t-title{color:var(--bin)}
-.t-item.probe .t-title{color:var(--faint)}
-@media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin{grid-column:1}.t-item .t-die{padding-top:0}}
 
 /* ---------------------------------------------------------------- scorecard */
 .score{padding-block:clamp(72px,10vw,120px);background:var(--ink-2);border-block:1px solid var(--rule);position:relative;overflow:hidden}
@@ -569,16 +604,27 @@ html.paused .memo{animation:none}
       <div class="index-head">
         <div>
           <h2 class="big" id="theses-h">Theses on the wafer</h2>
-          <p style="margin-top:18px">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a lit die, or pick one from the list. Dashed dies are still in probe.</p>
+          <p class="index-lede">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a title or a die to probe it, and click to open its three slides. Dashed dies are still in probe.</p>
+          <div class="legend" id="legend"></div>
         </div>
-        <div class="legend" id="legend"></div>
+        <figure class="three">
+          <div class="sl sl3" aria-hidden="true"><span><b>3</b>Short</span></div>
+          <div class="sl sl2" aria-hidden="true"><span><b>2</b>Opinionated</span></div>
+          <div class="sl sl1">
+            <p class="sl-k" aria-hidden="true"><b>1</b>Relevant</p>
+            <blockquote>“VCs don’t want a summary. They want to see HOW you think.”</blockquote>
+            <figcaption><a href="https://www.linkedin.com/in/nicoledetommaso/" target="_blank" rel="noopener">Nicole DeTommaso</a>, on the three-slide memo she sent instead of a thank-you note. Distilled to one word a slide<span class="sr"> (relevant, opinionated, short)</span>, it’s the format every thesis here follows.</figcaption>
+          </div>
+        </figure>
       </div>
-      <div class="index-grid">
-        <div class="map-col">
-          <div class="wafermap"><svg id="wmap" viewBox="-310 -310 620 620" role="img" aria-label="Wafer map. Each lit die is a thesis."></svg></div>
-          <div class="readout"><p id="readout">Probe idle. <b>5 dies binned</b>, 2 in probe.</p><div class="map-pip" data-pip="idle" data-acc="wafer"></div></div>
-        </div>
-        <ul class="tlist" id="tlist"></ul>
+      <div class="chipmap" id="chipmap">
+        <p class="cm-head cm-hl">Labs, capital and people</p>
+        <p class="cm-head cm-hr">Power and silicon</p>
+        <ul class="cm-col cm-left" id="colL"></ul>
+        <div class="wafermap"><svg id="wmap" viewBox="-310 -310 620 620" role="img" aria-label="Wafer map. Each lit die is a thesis."></svg></div>
+        <ul class="cm-col cm-right" id="colR"></ul>
+        <div class="readout"><p id="readout"></p><div class="map-pip" data-pip="idle" data-acc="wafer"></div></div>
+        <svg class="leaders" id="leaders" aria-hidden="true"></svg>
       </div>
     </div>
   </section>
@@ -651,7 +697,7 @@ html.paused .memo{animation:none}
           <div data-pip="swim" data-acc="helmet"></div>
           <h3>House rules</h3>
           <ul>
-            <li><b>Three slides, max.</b>If it doesn’t fit, I don’t understand it yet.</li>
+            <li><b>Three slides, max.</b>Borrowed from Nicole DeTommaso’s three-slide memo. If it doesn’t fit, I don’t understand it yet.</li>
             <li><b>Name the reference design.</b>Every thesis credits who I’m building on or arguing with, and links the receipts.</li>
             <li><b>Say how I’d be wrong.</b>A bet without a kill condition is just a mood.</li>
           </ul>
@@ -835,7 +881,7 @@ const BINS = {
 /* ---------------------------------------------------------------- theses */
 const THESES = [
   {
-    id: "automate", die: [-3, 2], stance: "agree",
+    id: "automate", die: [-2, 7], stance: "agree",
     title: "Automate the researcher, not the economy.",
     short: "Automate the researcher",
     hook: "The fastest path to transformative AI runs through one job. The labs are already on it.",
@@ -853,7 +899,7 @@ const THESES = [
     viz: "automate", pip: { pose: "run" }
   },
   {
-    id: "ooms", die: [-6, 5], stance: "build",
+    id: "ooms", die: [-6, 4], stance: "build",
     title: "The computer is now the building.",
     short: "The computer is the building",
     hook: "Aschenbrenner counts the OOMs to AGI. I count where they physically land, from chip to campus.",
@@ -871,7 +917,7 @@ const THESES = [
     viz: "ooms", pip: { pose: "dance" }
   },
   {
-    id: "molecules", die: [2, 3], stance: "build",
+    id: "molecules", die: [3, 7], stance: "build",
     title: "Molecules are easy. Machines are hard.",
     short: "Molecules are easy",
     hook: "Aschenbrenner was right that power binds. He was early about where it binds.",
@@ -889,7 +935,7 @@ const THESES = [
     viz: "molecules", pip: { pose: "idle", acc: "hardhat" }
   },
   {
-    id: "fleet", die: [4, -1], stance: "push",
+    id: "fleet", die: [7, 4], stance: "push",
     title: "A fleet, not a cluster.",
     short: "A fleet, not a cluster",
     hook: "The trillion-dollar scale is on schedule. The single giant cluster isn’t.",
@@ -907,7 +953,7 @@ const THESES = [
     viz: "fleet", pip: { pose: "swim" }
   },
   {
-    id: "builders", die: [7, 4], stance: "build",
+    id: "builders", die: [-3, -1], stance: "build",
     title: "Back the builders. Survive the bust.",
     short: "Back the builders",
     hook: "Aschenbrenner turned his paper into a fund with the simplest possible thesis. A bust can’t break it. Leverage can.",
@@ -926,7 +972,7 @@ const THESES = [
     viz: "builders", pip: { pose: "idle", acc: "memo" }
   },
   {
-    id: "moat", die: [6, -5], stance: "build",
+    id: "moat", die: [6, -7], stance: "build",
     title: "The slowdown is the moat.",
     short: "The slowdown is the moat",
     hook: "Moore’s law got harder. That’s why so few companies can still play.",
@@ -944,7 +990,7 @@ const THESES = [
     viz: "moat", pip: { pose: "wave" }
   },
   {
-    id: "memory", die: [-1, -3], stance: "original",
+    id: "memory", die: [8, -2], stance: "original",
     title: "The bottleneck moved below the GPU.",
     short: "Below the GPU",
     hook: "The GPU is the brand. Memory is the moat.",
@@ -962,7 +1008,7 @@ const THESES = [
     viz: "memory", pip: { pose: "idle", acc: "wafer" }
   },
   {
-    id: "heat", die: [3, -5], stance: "build",
+    id: "heat", die: [4, -4], stance: "build",
     title: "Going 3D saved Moore’s law. Heat is the bill.",
     short: "Heat is the bill",
     hook: "We beat the slowdown by stacking transistors upward. Moore’s own answer to heat assumed chips stay flat.",
@@ -981,7 +1027,7 @@ const THESES = [
     viz: "heat", pip: { pose: "idle", acc: "thermo" }
   },
   {
-    id: "screentime", die: [-5, -1], stance: "original",
+    id: "screentime", die: [-4, -7], stance: "original",
     title: "The best consumer AI will give you your time back.",
     short: "Give people time back",
     hook: "As AI takes over work, the scarce thing becomes an hour with your people.",
@@ -1002,9 +1048,9 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [1, 6], title: "Weights are the new crown jewels.", hook: "Building on Aschenbrenner’s “Lock Down the Labs”: model security becomes its own infrastructure category." },
-  { die: [6, 2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
-  { die: [-4, -7], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
+  { die: [-8, 1], title: "Weights are the new crown jewels.", hook: "Building on Aschenbrenner’s “Lock Down the Labs”: model security becomes its own infrastructure category." },
+  { die: [5, 1], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
+  { die: [-7, -4], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
 ];
 
 const RECEIPTS = [
@@ -1015,6 +1061,7 @@ const RECEIPTS = [
 ];
 
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
+let ORDER = THESES;
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
 const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
 
@@ -1399,13 +1446,17 @@ function renderHome() {
     return `<li><a href="#${r.id}" style="--bin:${BINS[t.stance].css}"><b>${r.v}</b><span>${r.t}</span></a></li>`;
   }).join("");
 
-  $("#readout").innerHTML = `Probe idle. <b>${THESES.length} dies binned</b>, ${PROBES.length} in probe.`;
   $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
 
-  $("#tlist").innerHTML = THESES.map(t => {
-    const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
-  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
+  // Left half of the wafer (negative x) holds labs, capital and people; right half holds power and silicon.
+  const items = [...THESES.map(t => ({ t, id: t.id, die: t.die, probe: false })), ...PROBES.map((p, i) => ({ t: p, id: "probe" + i, die: p.die, probe: true }))];
+  const col = left => items.filter(it => (it.die[0] < 0) === left).sort((a, b) => b.die[1] - a.die[1]);
+  const lbl = it => it.probe
+    ? `<li><div class="lbl probe" data-id="${it.id}" tabindex="0" style="--bin:var(--faint)"><span class="lbl-t">${it.t.title}</span><span class="bin probe">In probe</span></div></li>`
+    : `<li><a class="lbl" href="#${it.id}" data-id="${it.id}" style="--bin:${BINS[it.t.stance].css}"><span class="lbl-t">${it.t.title}</span><span class="bin">${BINS[it.t.stance].label}</span></a></li>`;
+  $("#colL").innerHTML = col(true).map(lbl).join("");
+  $("#colR").innerHTML = col(false).map(lbl).join("");
+  ORDER = [...col(true), ...col(false)].filter(it => !it.probe).map(it => it.t);
 
   // contact
   const links = [];
@@ -1448,24 +1499,55 @@ function buildMap() {
     <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>`;
 
   const probe = $("#probe"), readout = $("#readout");
-  const idle = readout.innerHTML;
+  const idle = `<b>${THESES.length} dies binned, ${PROBES.length} in probe.</b><span class="ro-hook">Hover a title or a die to probe it. Click to open its three slides.</span>`;
+  readout.innerHTML = idle;
+  const targets = () => $$(".wm-hit, .lbl, .wm-probe-die, #leaders [data-id]");
   function activate(id, on) {
-    $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", on && el.dataset.id === id));
+    targets().forEach(el => el.classList.toggle("on", on && el.dataset.id === id));
     if (!on) { readout.innerHTML = idle; probe.style.opacity = ".35"; return; }
-    let die, title, bin;
-    if (id.startsWith("probe")) { const p = PROBES[+id.slice(5)]; die = p.die; title = p.title; bin = "In probe, still testing this one"; }
-    else { const t = byId[id]; die = t.die; title = t.title; bin = "Bin: " + BINS[t.stance].label; }
-    probe.style.transform = `translate(${die[0] * ds}px,${-die[1] * ds}px)`;
+    const isProbe = id.startsWith("probe");
+    const t = isProbe ? PROBES[+id.slice(5)] : byId[id];
+    probe.style.transform = `translate(${t.die[0] * ds}px,${-t.die[1] * ds}px)`;
     probe.style.opacity = "1";
-    readout.innerHTML = `<b>${title}</b><br>Die ${dieLabel(die)}. ${bin}.`;
+    readout.innerHTML = `<b>${t.title}</b><span class="ro-hook">${t.hook}</span><span class="ro-hook">Die ${dieLabel(t.die)}. ${isProbe ? "In probe, still testing this one." : "Bin: " + BINS[t.stance].label + ". Click to open."}</span>`;
   }
-  $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => {
+  $$(".wm-hit, .lbl, .wm-probe-die").forEach(el => {
     const id = el.dataset.id;
     el.addEventListener("mouseenter", () => activate(id, true));
     el.addEventListener("mouseleave", () => activate(id, false));
     el.addEventListener("focus", () => activate(id, true));
     el.addEventListener("blur", () => activate(id, false));
   });
+
+  // leader lines from each title to its die
+  const map = $("#chipmap"), lead = $("#leaders");
+  const draw = () => {
+    if (home.hidden || getComputedStyle(lead).display === "none") return;
+    const mr = map.getBoundingClientRect();
+    if (!mr.width) return;
+    lead.setAttribute("viewBox", `0 0 ${mr.width.toFixed(1)} ${mr.height.toFixed(1)}`);
+    let out = "";
+    $$(".lbl", map).forEach(l => {
+      const id = l.dataset.id, die = $(`#wmap [data-id="${id}"] rect`);
+      if (!die) return;
+      const left = !!l.closest(".cm-left");
+      const tr = l.querySelector(".lbl-t").getBoundingClientRect(), dr = die.getBoundingClientRect();
+      const ax = (left ? tr.right + 10 : tr.left - 10) - mr.left, ay = tr.top + Math.min(tr.height / 2, 11) - mr.top;
+      const ex = left ? ax + 14 : ax - 14;
+      let dx = dr.left + dr.width / 2 - mr.left, dy = dr.top + dr.height / 2 - mr.top;
+      const vx = ex - dx, vy = ay - dy, len = Math.hypot(vx, vy) || 1, pad = dr.width * .75;
+      dx += vx / len * pad; dy += vy / len * pad;
+      const st = `style="--bin:${l.style.getPropertyValue("--bin")}"`;
+      out += `<path data-id="${id}" ${st} class="${l.classList.contains("probe") ? "dash" : ""}" d="M${ax.toFixed(1)} ${ay.toFixed(1)} H${ex.toFixed(1)} L${dx.toFixed(1)} ${dy.toFixed(1)}"/><circle data-id="${id}" ${st} cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="2.5"/>`;
+    });
+    lead.innerHTML = out;
+  };
+  let pend = 0;
+  const later = () => { cancelAnimationFrame(pend); pend = requestAnimationFrame(draw); };
+  if (window.ResizeObserver) { const ro = new ResizeObserver(later); [map, $("#colL"), $("#colR")].forEach(el => ro.observe(el)); }
+  addEventListener("resize", later);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+  later();
 }
 
 /* ---------------------------------------------------------------- memo reader */
@@ -1474,8 +1556,8 @@ let memoId = null, lastFocus = null, memoKeys = null;
 
 function memoHTML(t) {
   const b = BINS[t.stance];
-  const idx = THESES.indexOf(t);
-  const next = THESES[(idx + 1) % THESES.length];
+  const idx = ORDER.indexOf(t);
+  const next = ORDER[(idx + 1) % ORDER.length];
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
       <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>

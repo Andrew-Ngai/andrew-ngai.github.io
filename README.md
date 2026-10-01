@@ -27,13 +27,13 @@ Leave a field as `""` to hide that button.
 In `index.html`, search for `const THESES`. Each thesis is one block with:
 
 - `id`: the link name (`yoursite/#id` opens it directly)
-- `die`: its spot on the wafer map, e.g. `[2, -4]` (keep both numbers between −7 and 7 so it lands on the wafer)
-- `stance`: `agree`, `build`, `push` or `original`
+- `die`: its spot on the wafer map, e.g. `[2, -4]` (keep both numbers between −8 and 8 so it lands on the wafer). A negative first number puts the title in the left column (labs, capital and people); a positive one puts it on the right (power and silicon). Titles in each column are ordered by the second number, top to bottom.
+- `stance`: `agree`, `build`, `push` or `original` (shown as “My read”)
 - `title`, `hook`, `ref` (who you're building on, with a link), `signal`, three `takes`, `bet`, `wrong`, `receipts`
-- `viz`: which visual to show (`automate`, `molecules`, `fleet`, `memory`, `screen`)
-- `pip`: Pip's pose (`idle`, `wave`, `cheer`, `run`, `dance`, `swim`, `sleep`) and optional outfit (`hardhat`, `wafer`, `memo`, `helmet`)
+- `viz`: which visual to show (`automate`, `ooms`, `molecules`, `fleet`, `builders`, `moat`, `memory`, `heat`, `screen`)
+- `pip`: Pip's pose (`idle`, `wave`, `cheer`, `run`, `dance`, `swim`, `sleep`) and optional outfit (`hardhat`, `wafer`, `memo`, `thermo`, `helmet`)
 
-The two dashed "in probe" dies live in `const PROBES`. Move one into `THESES` when it's ready.
+The dashed "in probe" dies live in `const PROBES`. Move one into `THESES` when it's ready.
 
 ## Notes
 
