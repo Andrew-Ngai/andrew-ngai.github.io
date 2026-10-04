@@ -288,6 +288,75 @@ html.paused .die-pip.land{animation:none}
 .mail-note span{color:var(--paper);user-select:all}
 .foot{border-top:1px solid var(--rule);margin-top:72px;padding-top:22px;display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;font-family:var(--label);font-size:16px;color:var(--faint)}
 .foot a{color:var(--dim)}
+.line{position:relative;padding-top:clamp(56px,7vw,96px);background:linear-gradient(180deg,var(--ink),#120e2b 55%,var(--ink));border-top:1px solid var(--rule)}
+.line-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:28px 56px;align-items:end}
+.line-head > div:first-child p{margin-top:18px;max-width:34rem;color:var(--dim)}
+@media (max-width:860px){.line-head{grid-template-columns:1fr}}
+.line-panel{display:grid;gap:10px}
+.line-readout{min-height:142px;border:1px solid var(--rule);border-left:3px solid var(--amber);background:var(--ink-2);padding:14px 16px 14px;font-family:var(--label);display:grid;align-content:start;gap:4px}
+.lr-k{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.lr-n{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;text-transform:uppercase;color:var(--paper);margin-top:2px}
+.lr-d{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:17px;color:var(--dim)}
+.lr-go{justify-self:start;margin-top:6px;font-weight:700;font-size:17px;color:var(--amber);text-decoration:none;border-bottom:1.5px solid rgba(255,178,63,.4)}
+.lr-go:hover{border-bottom-color:var(--amber)}
+.line-jog{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:var(--label);font-size:16px;color:var(--faint)}
+.line-jog button{background:none;border:1px solid var(--rule);border-radius:3px;padding:6px 12px 7px;font-family:var(--label);font-weight:700;font-size:16px;color:var(--dim);cursor:pointer;transition:border-color .2s,color .2s}
+.line-jog button:hover{border-color:var(--amber);color:var(--amber)}
+.line-stage{--sp:176px;--pipw:104px;--belt-y:236px;position:relative;height:330px;margin-top:clamp(28px,4vw,48px);overflow:clip;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.line-stage.dragging{cursor:grabbing}
+.line-track{position:absolute;left:0;top:0;bottom:0;display:flex;will-change:transform;z-index:2}
+.li-set{display:flex;list-style:none;margin:0;padding:0}
+.li-item{width:var(--sp);flex:none;position:relative;height:330px}
+.li-hit{position:absolute;inset:0;display:block;text-decoration:none;color:inherit;-webkit-user-drag:none}
+.li-pip{position:absolute;left:50%;bottom:calc(330px - var(--belt-y) + 12px);width:var(--pipw);margin-left:calc(var(--pipw) / -2);transition:transform .35s var(--ease)}
+.li-pip .pip{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 14px rgba(5,3,18,.55))}
+.li-pip::after{content:"";position:absolute;left:-14%;right:-14%;top:0;height:3px;border-radius:2px;background:var(--beat);box-shadow:0 0 12px var(--beat),0 0 2px #fff;opacity:0}
+.li-tray{position:absolute;left:50%;top:calc(var(--belt-y) - 14px);width:118px;height:14px;margin-left:-59px;border-radius:3px 3px 1px 1px;background:linear-gradient(180deg,#3a3170,#231c49);border:1px solid #4a3f86;box-shadow:inset 0 2px 0 rgba(255,255,255,.08);transition:background .3s,box-shadow .3s,border-color .3s}
+.li-tray::before{content:"";position:absolute;left:10px;right:10px;top:3px;height:4px;border-radius:2px;background:rgba(5,3,18,.5)}
+.li-tag{position:absolute;left:50%;top:calc(var(--belt-y) + 34px);transform:translateX(-50%);display:grid;justify-items:center;gap:2px;padding:7px 12px 8px;min-width:118px;background:#f2eefb;color:var(--ink);border-radius:2px;box-shadow:0 6px 14px rgba(5,3,18,.5);font-family:var(--label);text-align:center;white-space:nowrap}
+.li-tag::before{content:"";position:absolute;left:50%;top:-14px;width:1.5px;height:14px;background:#6f6799}
+.li-tag b{font-weight:800;font-size:17px;line-height:1.05;letter-spacing:.02em}
+.li-tag .bin{font-size:13px;letter-spacing:.06em;color:#2b2142}
+.li-tag .bin::before{background:var(--bin);box-shadow:none}
+.li-item.is-link .li-tag{box-shadow:0 6px 14px rgba(5,3,18,.5),inset 0 -3px 0 var(--amber)}
+.li-item.is-link .li-hit{cursor:pointer}
+.line-stage.dragging .li-hit{cursor:grabbing}
+.li-item.hot .li-pip,.li-item.focus .li-pip{transform:translateY(-8px)}
+.li-item.hot .li-tray,.li-item.focus .li-tray{border-color:var(--amber);box-shadow:0 0 16px rgba(255,178,63,.45)}
+.li-item.is-link.hot .li-tag,.li-item.is-link.focus .li-tag{background:var(--amber)}
+.li-hit:focus-visible{outline:none}
+.li-item.focus .li-tag{outline:2px solid var(--amber);outline-offset:3px}
+.li-item.under .li-tray{background:linear-gradient(180deg,#2c6f8f,#173b55);border-color:var(--beat);box-shadow:0 0 18px rgba(79,210,255,.5)}
+.li-item.under .li-pip::after{animation:li-scan 1.6s var(--ease) infinite}
+@keyframes li-scan{0%{top:6%;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:92%;opacity:0}}
+.belt{position:absolute;left:0;right:0;top:var(--belt-y);height:22px;z-index:1;background:repeating-linear-gradient(90deg,#1d1740 0 38px,#2c255a 38px 40px);background-position-x:var(--bx,0);border-top:2px solid #4a3f86;border-bottom:1px solid #120e2b;box-shadow:0 14px 26px rgba(5,3,18,.5)}
+.belt::after{content:"";position:absolute;left:0;right:0;top:100%;height:46px;background:linear-gradient(180deg,rgba(15,12,34,.6),transparent)}
+.gantry{position:absolute;left:50%;top:0;width:220px;margin-left:-110px;height:var(--belt-y);z-index:0}
+.g-post{position:absolute;left:0;top:16px;bottom:0;width:12px;background:linear-gradient(90deg,#2a2252,#1a1438);border:1px solid var(--rule);border-bottom:0}
+.g-post.r{left:auto;right:0}
+.g-beam{position:absolute;left:-10px;right:-10px;top:10px;height:28px;display:grid;place-items:center;background:linear-gradient(180deg,#2c2458,#1b1539);border:1px solid #463c80;border-radius:4px;font-family:var(--label);font-weight:800;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);box-shadow:0 10px 24px rgba(5,3,18,.45)}
+.probe{position:absolute;left:50%;top:38px;width:0;height:calc(var(--belt-y) - 38px);z-index:3;pointer-events:none}
+.p-head{position:absolute;left:-15px;top:0;width:30px;height:20px;border-radius:0 0 8px 8px;background:linear-gradient(180deg,#3a3170,#231c49);border:1px solid #5a4fa0;border-top:0}
+.p-head::after{content:"";position:absolute;left:50%;bottom:-4px;width:10px;height:6px;margin-left:-5px;border-radius:0 0 5px 5px;background:var(--beat);box-shadow:0 0 10px var(--beat);opacity:.55;transition:opacity .3s}
+.p-light{position:absolute;left:-74px;width:148px;top:22px;bottom:0;clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(79,210,255,.22),rgba(79,210,255,.05));opacity:.35;transition:opacity .35s}
+.p-light i{position:absolute;left:0;right:0;height:2px;top:0;background:rgba(160,235,255,.9);opacity:0}
+.line-stage.scanning .p-light{opacity:1}
+.line-stage.scanning .p-head::after{opacity:1}
+.line-stage.scanning .p-light i{animation:p-sweep 1.6s var(--ease) infinite}
+@keyframes p-sweep{0%{top:4%;opacity:0}20%{opacity:.9}100%{top:96%;opacity:0}}
+.line .foot{margin-top:28px}
+@media (max-width:700px){
+  .line-stage{--sp:138px;--pipw:84px;--belt-y:200px;height:286px}
+  .li-item{height:286px}
+  .li-pip{bottom:calc(286px - var(--belt-y) + 12px)}
+  .li-tray{width:96px;margin-left:-48px}
+  .li-tag{min-width:100px;padding:6px 9px 7px}
+  .li-tag b{font-size:15px}
+  .gantry{width:170px;margin-left:-85px}
+  .p-light{left:-60px;width:120px}
+  .line-readout{min-height:132px}
+  .lr-n{font-size:26px}
+}
 .memo{position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
@@ -745,6 +814,31 @@ html.paused .memo{animation:none}
           <p class="mail-note" id="mailNote" hidden></p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="line" id="pips" aria-labelledby="line-h">
+    <div class="wrap line-head">
+      <div>
+        <h2 class="big" id="line-h">Final test: every Pip</h2>
+        <p>Pulse’s mascot in every outfit, riding the test line past the probe. Click a thesis Pip to open its thesis, or grab the belt and spin it.</p>
+      </div>
+      <div class="line-panel">
+        <div class="line-readout" id="lineReadout"></div>
+        <div class="line-jog">
+          <button type="button" id="lineBack" aria-label="Previous Pip">‹ Back</button>
+          <span id="lineCount"></span>
+          <button type="button" id="lineNext" aria-label="Next Pip">Next ›</button>
+        </div>
+      </div>
+    </div>
+    <div class="line-stage" id="lineStage">
+      <div class="gantry" aria-hidden="true"><i class="g-post"></i><i class="g-post r"></i><span class="g-beam">Probe</span></div>
+      <div class="belt" aria-hidden="true"></div>
+      <div class="line-track" id="lineTrack"></div>
+      <div class="probe" aria-hidden="true"><span class="p-head"></span><span class="p-light"><i></i></span></div>
+    </div>
+    <div class="wrap">
       <footer class="foot">
         <span>© 2026 <span data-name>Andrew Ngai</span>. Theses updated September 2026.</span>
         <span>Pip appears courtesy of <a href="#pulse">Pulse</a>. Sources are linked inside each thesis.</span>
@@ -1860,20 +1954,10 @@ function buildPulse() {
   };
   $$("#beatBtns button").forEach(b => b.addEventListener("click", () => show(+b.dataset.i)));
   show(0);
-  const CLASSICS = [
-    { pose: "wave", n: "Wave", d: "Hi, I’m Pip!" },
-    { pose: "idle", n: "Idle", d: "Drop your Pulse" },
-    { pose: "swim", n: "Swim", d: "Finding the overlap" },
-    { pose: "sleep", n: "Snooze", d: "Quiet means quiet" },
-    { pose: "cheer", n: "Cheer", d: "It’s a Pulse!" },
-    { pose: "run", n: "Run", d: "Free now" },
-    { pose: "dance", n: "Dance", d: "That happened" }
-  ];
+  const CLASSICS = PIP_CLASSICS;
   const OUTFITS = [
     ...THESES.map(t => ({ ...t.pip, n: t.pip.name, d: `On “${t.short}”`, href: "#" + t.id })),
-    { pose: "idle", acc: "wafer", n: "Wafer", d: "Hosting the theses map" },
-    { pose: "idle", acc: "memo", n: "Analyst", d: "Grading the scorecard" },
-    { pose: "swim", acc: "helmet", n: "Astronaut", d: "For thinking big" }
+    ...PIP_CREW
   ];
   const fig = (p, isNew) => {
     const inner = `${pip(p)}<figcaption>${p.n}<span>${p.d}</span></figcaption>`;
@@ -2178,16 +2262,177 @@ function initWafer() {
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(heroEl);
   return { setScroll(p) { st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
 }
+const PIP_CLASSICS = [
+  { pose: "wave", n: "Wave", d: "Hi, I’m Pip!" },
+  { pose: "idle", n: "Idle", d: "Drop your Pulse" },
+  { pose: "swim", n: "Swim", d: "Finding the overlap" },
+  { pose: "sleep", n: "Snooze", d: "Quiet means quiet" },
+  { pose: "cheer", n: "Cheer", d: "It’s a Pulse!" },
+  { pose: "run", n: "Run", d: "Free now" },
+  { pose: "dance", n: "Dance", d: "That happened" }
+];
+const PIP_CREW = [
+  { pose: "idle", acc: "wafer", n: "Wafer", d: "Hosting the theses map", go: "#theses", goText: "See the wafer map" },
+  { pose: "idle", acc: "memo", n: "Analyst", d: "Grading the scorecard", go: "#scorecard", goText: "See the scorecard" },
+  { pose: "swim", acc: "helmet", n: "Astronaut", d: "For thinking big" }
+];
+function buildLine() {
+  const stage = $("#lineStage"), track = $("#lineTrack"), readout = $("#lineReadout"), count = $("#lineCount");
+  if (!stage) return;
+  const thesis = THESES.map(t => ({ ...t.pip, n: t.pip.name, t }));
+  const classic = PIP_CLASSICS.map(p => ({ ...p, kind: "classic" }));
+  const crew = PIP_CREW.map(p => ({ ...p, kind: "crew" }));
+  const others = [...classic.slice(1), ...crew];
+  const cast = [classic[0]];
+  thesis.forEach((p, i) => { cast.push(p); if (others[i]) cast.push(others[i]); });
+  others.slice(thesis.length).forEach(p => cast.push(p));
+  const N = cast.length;
+  const order = cast.map((_, i) => N - 1 - i);
+  const tag = p => p.t ? `<span class="bin" style="--bin:${BINS[p.t.stance].css}">${BINS[p.t.stance].label}</span>`
+    : p.kind === "classic" ? `<span class="bin" style="--bin:var(--violet)">Pulse app</span>` : `<span class="bin" style="--bin:var(--dim)">Site crew</span>`;
+  const item = (p, k, ghost) => {
+    const inner = `<span class="li-pip">${pip(p)}</span><span class="li-tray"></span><span class="li-tag"><b>${p.n}</b>${tag(p)}</span>`;
+    const hit = p.t
+      ? `<a class="li-hit" href="#${p.t.id}" draggable="false"${ghost ? ` tabindex="-1"` : ""} aria-label="${p.n} Pip: open “${p.t.short}”">${inner}</a>`
+      : `<div class="li-hit">${inner}</div>`;
+    return `<li class="li-item${p.t ? " is-link" : ""}" data-k="${k}">${hit}</li>`;
+  };
+  const set = ghost => `<ol class="li-set"${ghost ? ` aria-hidden="true"` : ` aria-label="Pips on the test line"`}>${order.map(i => item(cast[i], i, ghost)).join("")}</ol>`;
+  track.innerHTML = set(true) + set(false);
+  const byK = k => $$(`.li-item[data-k="${k}"]`, track);
+  const say = (k, how) => {
+    const p = cast[k];
+    const head = `<p class="lr-k">${how} · Unit ${String(k + 1).padStart(2, "0")} of ${N}</p><p class="lr-n">${p.n} Pip</p>`;
+    let body, go = "";
+    if (p.t) {
+      body = `<p class="lr-d">${tag(p)} <span>Die ${dieLabel(p.t.die)} · ${p.t.short}</span></p>`;
+      go = `<a class="lr-go" href="#${p.t.id}">Open the thesis →</a>`;
+    } else if (p.kind === "classic") {
+      body = `<p class="lr-d">${tag(p)} <span>${p.d}</span></p>`;
+      go = `<a class="lr-go" href="#pulse">Meet Pulse →</a>`;
+    } else {
+      body = `<p class="lr-d">${tag(p)} <span>${p.d}</span></p>`;
+      if (p.go) go = `<a class="lr-go" href="${p.go}">${p.goText} →</a>`;
+    }
+    readout.innerHTML = head + body + go;
+    count.textContent = `${k + 1} / ${N}`;
+  };
+  let sp = 0, W = 0, S = 0, x = 0, v = 0, last = 0, raf = 0;
+  let real = false, visible = false, hover = false, focusK = -1, drag = null, glideTo = null, under = -1, shown = -1, suppress = false;
+  const mod = (a, m) => ((a % m) + m) % m;
+  const measure = () => {
+    const first = $(".li-item", track);
+    const w = first ? first.getBoundingClientRect().width : 0;
+    real = w > 0 && stage.clientWidth > 0;
+    sp = w || 170; W = sp * N; S = stage.clientWidth || innerWidth;
+  };
+  const centerOf = k => mod(x + (N - 1 - k) * sp + sp / 2 - S / 2 + W / 2, W) - W / 2 + S / 2;
+  const xFor = k => mod(S / 2 - (N - 1 - k) * sp - sp / 2, W);
+  const apply = () => {
+    track.style.transform = `translate3d(${(mod(x, W) - W).toFixed(1)}px,0,0)`;
+    stage.style.setProperty("--bx", `${mod(x, 40).toFixed(1)}px`);
+  };
+  const probe = () => {
+    let best = -1, bd = Infinity;
+    for (let k = 0; k < N; k++) { const d = Math.abs(centerOf(k) - S / 2); if (d < bd) { bd = d; best = k; } }
+    const k = bd < sp * .3 ? best : -1;
+    if (k !== under) {
+      if (under >= 0) byK(under).forEach(el => el.classList.remove("under"));
+      under = k;
+      if (k >= 0) byK(k).forEach(el => el.classList.add("under"));
+      stage.classList.toggle("scanning", k >= 0);
+      if (k >= 0 && !hover && focusK < 0 && k !== shown) { shown = k; say(k, "Probing"); }
+    }
+  };
+  const still = () => calm || motionPaused;
+  const tick = now => {
+    raf = 0;
+    const dt = Math.min(.1, (now - (last || now)) / 1000); last = now;
+    if (drag) {
+    } else if (glideTo !== null) {
+      const diff = mod(glideTo - x + W / 2, W) - W / 2;
+      x += diff * Math.min(1, dt * 7);
+      if (Math.abs(diff) < .5) { x = glideTo; glideTo = null; v = 0; }
+    } else {
+      const target = still() || hover || focusK >= 0 ? 0 : (S < 700 ? 34 : 46);
+      v += (target - v) * Math.min(1, dt * (Math.abs(v) > Math.abs(target) ? 2.2 : 1.2));
+      x += v * dt;
+    }
+    x = mod(x, W);
+    apply(); probe();
+    if (visible) raf = requestAnimationFrame(tick);
+  };
+  const wake = () => { if (visible && !raf) { last = 0; raf = requestAnimationFrame(tick); } };
+  const goTo = k => { glideTo = xFor(mod(k, N)); shown = -1; wake(); };
+  stage.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") hover = true; });
+  stage.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") { hover = false; shown = -1; } });
+  stage.addEventListener("pointerover", e => {
+    const li = e.target.closest(".li-item");
+    if (li && e.pointerType === "mouse" && !drag) { $$(".li-item.hot", track).forEach(el => el.classList.remove("hot")); byK(li.dataset.k).forEach(el => el.classList.add("hot")); shown = +li.dataset.k; say(+li.dataset.k, "Inspecting"); }
+  });
+  stage.addEventListener("pointerout", e => {
+    const li = e.target.closest(".li-item");
+    if (li && !li.contains(e.relatedTarget)) byK(li.dataset.k).forEach(el => el.classList.remove("hot"));
+  });
+  stage.addEventListener("pointerdown", e => {
+    if (e.button !== 0) return;
+    drag = { x0: e.clientX, from: x, moved: 0, lx: e.clientX, lt: performance.now(), vx: 0, id: e.pointerId };
+    glideTo = null;
+  });
+  addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0;
+    if (!drag.moved && Math.abs(dx) > 6) { drag.moved = 1; stage.classList.add("dragging"); try { stage.setPointerCapture(e.pointerId); } catch (_) {} }
+    if (drag.moved) {
+      const now = performance.now(), dt = Math.max(1, now - drag.lt);
+      drag.vx = drag.vx * .6 + ((e.clientX - drag.lx) / dt * 1000) * .4;
+      drag.lx = e.clientX; drag.lt = now;
+      x = mod(drag.from + dx, W); wake();
+    }
+  });
+  const release = e => {
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    if (drag.moved) { suppress = true; v = Math.max(-1600, Math.min(1600, drag.vx)); setTimeout(() => (suppress = false), 0); }
+    stage.classList.remove("dragging");
+    drag = null; wake();
+  };
+  addEventListener("pointerup", release);
+  addEventListener("pointercancel", release);
+  stage.addEventListener("click", e => { if (suppress) { e.preventDefault(); e.stopPropagation(); suppress = false; } }, true);
+  stage.addEventListener("dragstart", e => e.preventDefault());
+  stage.addEventListener("focusin", e => {
+    const li = e.target.closest(".li-item"); if (!li) return;
+    focusK = +li.dataset.k; byK(focusK).forEach(el => el.classList.add("focus")); say(focusK, "Selected"); goTo(focusK);
+  });
+  stage.addEventListener("focusout", e => {
+    const li = e.target.closest(".li-item"); if (li) byK(li.dataset.k).forEach(el => el.classList.remove("focus"));
+    focusK = -1; shown = -1; wake();
+  });
+  const current = () => under >= 0 ? under : (shown >= 0 ? shown : 0);
+  $("#lineNext").addEventListener("click", () => { const k = mod(current() + 1, N); say(k, "Selected"); shown = k; goTo(k); });
+  $("#lineBack").addEventListener("click", () => { const k = mod(current() - 1, N); say(k, "Selected"); shown = k; goTo(k); });
+  const layout = () => { const k = current(); measure(); x = xFor(k); apply(); probe(); };
+  addEventListener("resize", () => { layout(); wake(); });
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && (!real || stage.clientWidth !== S)) layout();
+    wake();
+  }, { rootMargin: "120px" }).observe(stage);
+  measure(); x = xFor(0); apply(); say(0, "Probing"); shown = 0; probe();
+  buildLine.wake = wake;
+}
 function setMotion(paused, save) {
   motionPaused = paused;
   document.documentElement.classList.toggle("paused", paused);
   $$("[data-motion]").forEach(b => (b.textContent = paused ? "Play motion" : "Pause motion"));
   if (save) { try { localStorage.setItem("motion", paused ? "paused" : "on"); } catch (e) {} }
   if (wafer) wafer.sync();
+  if (buildLine.wake) buildLine.wake();
 }
 renderHome();
 buildMap();
 buildPulse();
+buildLine();
 mountPips();
 wafer = initWafer();
 $$("[data-motion]").forEach(b => b.addEventListener("click", () => setMotion(!motionPaused, true)));
