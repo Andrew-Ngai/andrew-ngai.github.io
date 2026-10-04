@@ -335,7 +335,7 @@ html.paused .die-pip.land{animation:none}
 .g-post{position:absolute;left:0;top:16px;bottom:0;width:12px;background:linear-gradient(90deg,#2a2252,#1a1438);border:1px solid var(--rule);border-bottom:0}
 .g-post.r{left:auto;right:0}
 .g-beam{position:absolute;left:-10px;right:-10px;top:10px;height:28px;display:grid;place-items:center;background:linear-gradient(180deg,#2c2458,#1b1539);border:1px solid #463c80;border-radius:4px;font-family:var(--label);font-weight:800;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);box-shadow:0 10px 24px rgba(5,3,18,.45)}
-.probe{position:absolute;left:50%;top:38px;width:0;height:calc(var(--belt-y) - 38px);z-index:3;pointer-events:none}
+.line-probe{position:absolute;left:50%;top:38px;width:0;height:calc(var(--belt-y) - 38px);z-index:3;pointer-events:none}
 .p-head{position:absolute;left:-15px;top:0;width:30px;height:20px;border-radius:0 0 8px 8px;background:linear-gradient(180deg,#3a3170,#231c49);border:1px solid #5a4fa0;border-top:0}
 .p-head::after{content:"";position:absolute;left:50%;bottom:-4px;width:10px;height:6px;margin-left:-5px;border-radius:0 0 5px 5px;background:var(--beat);box-shadow:0 0 10px var(--beat);opacity:.55;transition:opacity .3s}
 .p-light{position:absolute;left:-74px;width:148px;top:22px;bottom:0;clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(79,210,255,.22),rgba(79,210,255,.05));opacity:.35;transition:opacity .35s}
@@ -836,7 +836,7 @@ html.paused .memo{animation:none}
       <div class="gantry" aria-hidden="true"><i class="g-post"></i><i class="g-post r"></i><span class="g-beam">Probe</span></div>
       <div class="belt" aria-hidden="true"></div>
       <div class="line-track" id="lineTrack"></div>
-      <div class="probe" aria-hidden="true"><span class="p-head"></span><span class="p-light"><i></i></span></div>
+      <div class="line-probe" aria-hidden="true"><span class="p-head"></span><span class="p-light"><i></i></span></div>
     </div>
     <div class="wrap">
       <footer class="foot">
