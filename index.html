@@ -96,14 +96,43 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,11vw,132px);line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 4px 40px rgba(15,12,34,.55)}
 .hero .who{font-family:var(--label);font-weight:600;font-size:20px;color:var(--dim);letter-spacing:.02em}
 .hero .who b{color:var(--paper);font-weight:800}
-.receipts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule);background:linear-gradient(rgba(15,12,34,.4),var(--ink))}
-.receipts li{min-width:0;border-right:1px solid var(--rule)}
-.receipts li:last-child{border-right:0}
-.receipts a{display:grid;gap:4px;padding:20px var(--gutter) 24px;text-decoration:none;height:100%;transition:background .2s}
-.receipts a:hover{background:var(--ink-2)}
-.receipts b{font-family:var(--display);font-weight:800;font-size:clamp(34px,3.4vw,50px);line-height:1;color:var(--bin);font-variant-numeric:tabular-nums}
-.receipts span{font-family:var(--label);font-weight:500;font-size:16px;line-height:1.3;color:var(--dim)}
-@media (max-width:860px){.receipts{grid-template-columns:repeat(2,minmax(0,1fr))}.receipts li:nth-child(2){border-right:0}.receipts li:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+.feat-wrap{position:relative;min-width:0;padding:20px var(--gutter) 30px;border-top:1px solid var(--rule);background:linear-gradient(rgba(15,12,34,.35),var(--ink) 72%)}
+.feat-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px;font-family:var(--label)}
+.feat-head b{font-weight:800;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.feat-head span{font-size:16px;color:var(--dim)}
+.feat-swipe{display:none}
+.feats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.feats li{min-width:0;display:flex}
+.feat{--lead:#5d567f;position:relative;flex:1;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:7px;padding:16px 16px 14px;margin-top:8px;text-decoration:none;color:var(--paper);background:linear-gradient(170deg,#1f1944,#130f2c 72%);border:1px solid var(--rule);border-radius:6px;box-shadow:0 14px 30px rgba(5,3,18,.45);transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.feat::before{content:"";position:absolute;left:18px;right:18px;top:-8px;height:8px;border-radius:2px 2px 0 0;background:repeating-linear-gradient(90deg,var(--lead) 0 7px,transparent 7px 15px);transition:background .3s}
+.feat::after{content:"";position:absolute;left:10px;top:10px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12)}
+.feat-top{display:flex;align-items:center;gap:10px;padding-left:10px;font-family:var(--label);font-size:13px;color:var(--faint);letter-spacing:.03em}
+.feat-top .bin{font-size:13px}
+.feat-new{margin-left:auto;padding:2px 7px 3px;border-radius:2px;background:var(--beat);color:var(--ink);font-weight:800;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.feat-v{font-family:var(--display);font-weight:800;font-size:clamp(34px,3.2vw,48px);line-height:1;color:var(--bin);font-variant-numeric:tabular-nums}
+.feat-t{font-family:var(--label);font-size:15px;line-height:1.3;color:var(--dim)}
+.feat-title{align-self:end;padding-right:58px;font-family:var(--display);font-weight:800;font-size:clamp(18px,1.45vw,22px);line-height:1.08;color:var(--paper)}
+.feat-go{display:inline-flex;align-items:center;gap:6px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--amber)}
+.feat-go i{font-style:normal;transition:transform .25s var(--ease)}
+.feat-pip{position:absolute;right:6px;bottom:6px;width:62px;transition:transform .35s var(--ease)}
+.feat-pip .pip{display:block;width:100%;height:auto}
+.feat-scan{position:absolute;inset:0;border-radius:6px;overflow:hidden;pointer-events:none}
+.feat-scan::after{content:"";position:absolute;top:0;bottom:0;left:-45%;width:40%;background:linear-gradient(90deg,transparent,rgba(79,210,255,.16),transparent);opacity:0}
+.feat.ping{--lead:var(--beat)}
+.feat.ping .feat-scan::after{animation:feat-scan 1.2s var(--ease)}
+@keyframes feat-scan{from{left:-45%;opacity:1}to{left:110%;opacity:1}}
+.feat:hover,.feat:focus-visible{--lead:var(--amber);transform:translateY(-6px);border-color:var(--bin);box-shadow:0 20px 40px rgba(5,3,18,.6),0 0 28px -8px var(--bin)}
+.feat:hover .feat-go i,.feat:focus-visible .feat-go i{transform:translateX(5px)}
+.feat:hover .feat-go,.feat:focus-visible .feat-go{text-decoration:underline;text-underline-offset:4px}
+.feat:hover .feat-pip,.feat:focus-visible .feat-pip{transform:translateY(-12px) rotate(-5deg)}
+@media (max-width:1100px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .feat-hint{display:none}.feat-swipe{display:inline}
+  .feats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scrollbar-width:none}
+  .feats::-webkit-scrollbar{display:none}
+  .feats li{flex:0 0 80%;scroll-snap-align:start}
+  .feat-v{font-size:36px}
+}
 .index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow-x:clip}
 .index-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
 .index-head p{max-width:34rem;color:var(--dim)}
@@ -820,7 +849,10 @@ html.paused .memo{animation:none}
         <a class="btn" href="#pulse">See what I’m building</a>
       </div>
     </div>
-    <ul class="receipts" id="receipts" aria-label="Key numbers behind the theses"></ul>
+    <div class="feat-wrap">
+      <div class="feat-head"><b>Featured theses</b><span class="feat-hint">Fresh off the line. Click a chip to open it.</span><span class="feat-swipe">Swipe for more →</span></div>
+      <ul class="feats" id="receipts" aria-label="Featured theses"></ul>
+    </div>
   </section>
 
   <section class="index" id="theses" aria-labelledby="theses-h">
@@ -1380,10 +1412,10 @@ const PROBES = [
   { die: [-4, -7], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
 ];
 const RECEIPTS = [
-  { v: "116 GW", t: "Gas turbine backlog at GE Vernova. New orders are booking 2031.", id: "molecules" },
-  { v: "3.1 : 1", t: "Agent-workdays per human workday inside OpenAI’s research org.", id: "automate" },
+  { v: "~2 TB", t: "A billion-dollar training run, boiled down to one file.", id: "weights", fresh: 1 },
+  { v: "55 days", t: "Fuel cells to first power at Oracle. A turbine ordered today ships ~2031.", id: "bloom", fresh: 1 },
   { v: "76%", t: "SK hynix operating margin, Q2 2026. Memory is where the margin went.", id: "memory" },
-  { v: "7 sites", t: "Stargate’s footprint. A fleet, not one giant cluster.", id: "fleet" }
+  { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend", fresh: 1 }
 ];
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
@@ -2111,9 +2143,29 @@ function renderHome() {
   $$("[data-name]").forEach(el => (el.textContent = CONFIG.name));
   $$("[data-href]").forEach(el => (el.href = CONFIG[el.dataset.href]));
   $("#receipts").innerHTML = RECEIPTS.map(r => {
-    const t = byId[r.id];
-    return `<li><a href="#${r.id}" style="--bin:${BINS[t.stance].css}"><b>${r.v}</b><span>${r.t}</span></a></li>`;
+    const t = byId[r.id], b = BINS[t.stance];
+    return `<li><a class="feat" href="#${r.id}" style="--bin:${b.css}" aria-label="${t.title} ${r.v}: ${r.t} Open the thesis.">
+      <span class="feat-scan" aria-hidden="true"></span>
+      <span class="feat-top"><span>Die ${dieLabel(t.die)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span>${r.fresh ? `<span class="feat-new">New</span>` : ""}</span>
+      <b class="feat-v">${r.v}</b>
+      <span class="feat-t">${r.t}</span>
+      <span class="feat-title">${t.title}</span>
+      <span class="feat-go">Open thesis <i>→</i></span>
+      <span class="feat-pip" aria-hidden="true">${pip(t.pip)}</span>
+    </a></li>`;
   }).join("");
+  const feats = $$("#receipts .feat");
+  let fi = 0, featHold = false;
+  $("#receipts").addEventListener("pointerenter", () => (featHold = true));
+  $("#receipts").addEventListener("pointerleave", () => (featHold = false));
+  $("#receipts").addEventListener("focusin", () => (featHold = true));
+  $("#receipts").addEventListener("focusout", () => (featHold = false));
+  setInterval(() => {
+    if (featHold || calm || motionPaused || document.hidden || home.hidden) return;
+    feats.forEach(f => f.classList.remove("ping"));
+    void $("#receipts").offsetWidth;
+    feats[fi++ % feats.length].classList.add("ping");
+  }, 2200);
   $("#readout").innerHTML = `Probe idle. <b>${THESES.length} dies binned</b>, ${PROBES.length} in probe.`;
   $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
   $("#tlist").innerHTML = THESES.map(t => {
