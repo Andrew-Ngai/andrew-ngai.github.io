@@ -495,6 +495,111 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .ticket .tk-s{font-size:15px;color:var(--pmuted)}
 .f-pulse{display:grid;place-items:center;align-content:center;grid-template-rows:auto auto;gap:0}
 .f-pulse .pip{width:150px;margin-bottom:-18px;position:relative;z-index:1}
+.nt{display:grid;align-content:center;gap:10px;min-height:0}
+.nt-k{font-family:var(--label);font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--amber);min-height:1.3em}
+.nt-row{display:flex;flex-wrap:wrap;gap:6px;min-height:72px;align-content:flex-start}
+.tok{font-family:var(--label);font-weight:700;font-size:17px;padding:5px 9px 6px;border-radius:4px;background:rgba(160,139,255,.14);border:1px solid rgba(160,139,255,.45);color:var(--paper)}
+.tok.gen{background:rgba(255,178,63,.16);border-color:rgba(255,178,63,.6);color:var(--amber);animation:tok-in .4s var(--ease) both}
+.tok.next{border-style:dashed;color:var(--faint);background:none;animation:tok-blink 1s steps(1) infinite}
+.tok.read{animation:tok-read .5s ease-out both}
+@keyframes tok-read{0%{box-shadow:0 0 0 rgba(79,210,255,0);border-color:inherit}40%{box-shadow:0 0 14px rgba(79,210,255,.7);border-color:var(--beat)}100%{box-shadow:0 0 0 rgba(79,210,255,0)}}
+@keyframes tok-in{from{opacity:0;transform:translateY(-6px)}}
+@keyframes tok-blink{50%{opacity:.35}}
+.nt .nt-net{width:100%;height:auto;max-height:70px;display:block}
+.nt-net line{stroke:var(--rule);stroke-width:1}
+.nt-net rect{fill:var(--violet);opacity:.5}
+.nt-net.hum line{animation:nt-hum .9s ease-out both}
+.nt-net.hum rect{animation:nt-core .9s ease-out both}
+@keyframes nt-hum{40%{stroke:var(--beat)}}
+@keyframes nt-core{40%{opacity:1;fill:var(--beat)}}
+.nt-w{font-family:var(--label);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);text-align:center}
+.nt-cands{list-style:none;margin:0;padding:0;display:grid;gap:5px;min-height:118px}
+.nt-cands li{display:grid;grid-template-columns:76px minmax(0,1fr) 40px;gap:10px;align-items:center;font-family:var(--label);font-size:15px;line-height:1.25;color:var(--dim)}
+.nt-cands .w{font-weight:700;color:var(--paper);text-align:right}
+.nt-cands .bar{height:12px;background:var(--ink-3);border-radius:2px;overflow:hidden}
+.nt-cands .bar i{display:block;height:100%;width:calc(var(--p) * 1%);background:var(--violet);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.nt-cands.show .bar i{transform:none}
+.nt-cands li.win .bar i{background:var(--amber)}
+.nt-cands li.win .w{color:var(--amber)}
+.nt-ctrl{display:flex;gap:8px}
+.nt-ctrl button{background:none;border:1px solid var(--rule);border-radius:3px;padding:6px 12px 7px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--dim);cursor:pointer}
+.nt-ctrl button:hover{border-color:var(--amber);color:var(--amber)}
+#ntStep{border-color:var(--amber);color:var(--amber)}
+.g-bar.v{transform-origin:center bottom}
+.viz[data-step="1"] .f2 .g-bar.grow.v,.viz[data-step="3"] .f2 .g-bar.grow.v{transform:scaleY(.02)}
+.wt-flow{animation:bl-wire 1s linear infinite}
+.wt-ring5{animation:wt-flicker 1.6s steps(2) infinite}
+@keyframes wt-flicker{50%{opacity:.35}}
+.wt-core{filter:drop-shadow(0 0 8px var(--amber))}
+@media (max-width:860px){.nt{gap:6px;align-content:start}.nt-row{min-height:0;gap:4px}.tok{font-size:13px;padding:2px 6px 3px}.nt .nt-net,.nt-w{display:none}.nt-cands{min-height:0;gap:3px}.nt-cands li:nth-child(4){display:none}.nt-cands li{font-size:13px;grid-template-columns:62px minmax(0,1fr) 34px}.nt-cands .bar{height:9px}.nt-ctrl button{font-size:13px;padding:3px 9px 4px}.nt-k{font-size:12px}}
+.bk{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;min-height:0}
+.bk-stage{width:100%;height:100%;min-height:0;display:block;overflow:visible}
+.bk-s{opacity:0;transition:opacity .45s var(--ease)}
+.bk-s.on{opacity:1}
+.bk-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr)) 40px;gap:5px}
+.bk-steps button{display:grid;justify-items:center;gap:1px;padding:6px 2px 7px;background:none;border:1px solid var(--rule);border-radius:3px;font-family:var(--label);font-weight:700;font-size:14px;color:var(--dim);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.bk-steps button b{font-size:12px;color:var(--faint)}
+.bk-steps button[aria-pressed="true"]{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.bk-steps button[aria-pressed="true"] b{color:var(--ink)}
+.bk-steps button:hover{border-color:var(--amber)}
+.bk-steps .bk-play{font-size:12px;letter-spacing:-.05em}
+.bk-d{fill:var(--ink-3)}
+.bk-s.on[data-s="0"] .bk-d{animation:bk-lit .35s var(--ease) both;animation-delay:calc(var(--o) * 13ms)}
+@keyframes bk-lit{to{fill:var(--c);fill-opacity:.7}}
+.bk-probe{animation:bk-probe 1.6s linear both}
+.bk-s:not(.on) .bk-probe,.bk-s:not(.on) .bk-blade{animation:none}
+@keyframes bk-probe{0%{transform:translate(-90px,-90px)}18%{transform:translate(90px,-60px)}36%{transform:translate(-90px,-20px)}54%{transform:translate(90px,20px)}72%{transform:translate(-90px,55px)}88%{transform:translate(80px,80px)}100%{transform:translate(150px,-20px)}}
+.bk-cut{stroke:var(--amber);stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:1}
+.bk-s.on .bk-cut{animation:bk-cut .5s var(--ease) both;animation-delay:calc(var(--k) * 55ms)}
+@keyframes bk-cut{to{stroke-dashoffset:0}}
+.bk-blade{animation:bk-blade 1.4s linear both}
+.bk-blade circle:first-child{transform-box:fill-box;transform-origin:center;animation:pip-spin .5s linear infinite}
+@keyframes bk-blade{0%{transform:translate(-110px,-60px)}25%{transform:translate(110px,-60px)}50%{transform:translate(-110px,0)}75%{transform:translate(110px,60px)}100%{transform:translate(130px,130px);opacity:0}}
+.bk-dies{transform-box:view-box;transform-origin:230px 126px}
+.bk-s.on[data-s="1"] .bk-dies{animation:bk-spread .7s 1.5s var(--ease) both}
+@keyframes bk-spread{to{transform:scale(1.07)}}
+.bk-pick{transform:translate(0,-200px)}
+.bk-s.on .bk-pick.a{animation:bk-pick-a 1.8s .2s var(--ease) both}
+.bk-s.on .bk-pick.b{animation:bk-pick-b 1.8s 1.6s var(--ease) both}
+@keyframes bk-pick-a{0%{transform:translate(114.5px,52.5px)}15%{transform:translate(114.5px,28px)}60%{transform:translate(414px,62px)}75%,100%{transform:translate(414px,86px)}}
+@keyframes bk-pick-b{0%{transform:translate(90.5px,76.5px)}15%{transform:translate(90.5px,50px)}60%{transform:translate(377px,170px)}75%,100%{transform:translate(377px,204.5px)}}
+.bk-hbm.drop{animation:bk-drop .6s var(--ease) both}
+.bk-gpu{transform-box:fill-box;transform-origin:center}
+.bk-gpu.flip{animation:bk-flip 1.5s .5s var(--ease) both}
+.bk-gpu:not(.flip){transform:scaleY(-1)}
+@keyframes bk-drop{from{transform:translateY(-60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bk-flip{0%{transform:translateY(-110px) scaleY(1);opacity:0}15%{opacity:1;transform:translateY(-110px) scaleY(1)}45%{transform:translateY(-110px) scaleY(-1)}100%{transform:translateY(0) scaleY(-1)}}
+.bk-s.on[data-s="3"] .bk-gpu-l{animation:bk-in .4s 2s both}
+.bk-mb{fill:#8f87b6}
+.bk-s.on[data-s="3"] .bk-mb{animation:bk-glow .5s 2s ease-out both}
+.bk-s[data-s="4"] .bk-mb{fill:var(--amber)}
+@keyframes bk-glow{to{fill:var(--amber);filter:drop-shadow(0 0 3px var(--amber))}}
+.bk-s.on .bk-fill{animation:bk-in .6s .2s var(--ease) both}
+.bk-s.on .bk-lid{animation:bk-lid .9s .7s var(--ease) both}
+@keyframes bk-in{from{opacity:0}}
+@keyframes bk-lid{from{transform:translateY(-80px);opacity:0}to{transform:none;opacity:1}}
+.bk-s.on .bk-head{animation:bk-head 2.4s var(--ease) both}
+@keyframes bk-head{0%{transform:translateY(-20px)}30%,80%{transform:translateY(36px)}100%{transform:translateY(-20px)}}
+.bk-pass{fill:var(--beat)!important;opacity:0}
+.bk-s.on .bk-pass{animation:bk-pass 2.4s 1s steps(1) both}
+@keyframes bk-pass{0%{opacity:1}20%{opacity:.25}40%,100%{opacity:1}}
+.bk-loop{animation:pip-spin 8s linear infinite;transform-box:fill-box;transform-origin:center}
+.bk-donut{transition:stroke-dasharray 1.1s var(--ease) .2s}
+.viz[data-step="1"] .bk-donut,.viz[data-step="3"] .bk-donut{stroke-dasharray:2 100}
+@media (max-width:860px){.bk{gap:6px}.bk-steps{gap:3px;grid-template-columns:repeat(6,minmax(0,1fr)) 28px}.bk-steps button{font-size:12px;padding:5px 1px 6px}.bk-steps button b{display:none}.viz .cap{font-size:14px}}
+.bl-dot{fill:var(--beat);filter:drop-shadow(0 0 4px var(--beat))}
+.bl-dot.fade{fill:var(--amber);filter:none;animation:bl-fade 3s linear infinite}
+@keyframes bl-fade{0%{opacity:1}100%{opacity:.15}}
+.bl-ion{fill:var(--beat);animation:bl-ion 2s linear infinite}
+@keyframes bl-ion{0%{transform:translateY(-36px);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(40px);opacity:0}}
+.bl-wire{animation:bl-wire 1s linear infinite}
+@keyframes bl-wire{to{stroke-dashoffset:-22}}
+.blcalc{display:grid;gap:10px;align-content:center;min-height:0}
+.bl-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.bl-grid i{aspect-ratio:2.4/1;border-radius:1.5px;background:var(--ink-3);border:1px solid var(--rule);transition:background .25s,border-color .25s}
+.bl-grid i.on{background:var(--beat);border-color:var(--beat);box-shadow:0 0 6px rgba(79,210,255,.35)}
+.blcalc .oc-o b{color:var(--beat);font-size:1.25em}
+@media (max-width:860px){.blcalc{gap:4px}.blcalc .oc-l{display:none}.bl-grid{gap:2px}.bl-grid i{aspect-ratio:3.4/1}.blcalc .oc-o{font-size:14px;min-height:0}}
 .pip{overflow:visible;display:block}
 .pip *{transform-box:view-box}
 .pip-all{transform-origin:50px 104px}
@@ -968,6 +1073,25 @@ const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let motionPaused = false;
 try { motionPaused = localStorage.getItem("motion") === "paused"; } catch (e) {}
 const SRC = {
+  rand: "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
+  epochCost: "https://arxiv.org/abs/2405.21015",
+  attention: "https://arxiv.org/abs/1706.03762",
+  llamaLeak: "https://www.deeplearning.ai/the-batch/how-metas-llama-nlp-model-leaked",
+  distill: "https://techcrunch.com/2026/02/23/anthropic-accuses-chinese-ai-labs-of-mining-claude-as-us-debates-ai-chip-exports/",
+  distill7: "https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html",
+  exportCtl: "https://www.aljazeera.com/economy/2026/7/1/us-lifts-restrictions-on-powerful-ai-models-fable-mythos-anthropic-says",
+  cowosOut: "https://www.trendforce.com/news/2026/08/05/news-tsmc-reportedly-expands-outsourcing-of-key-cowos-front-end-step-to-osats-amid-rising-nvidia-asic-demand/",
+  tglass: "https://www.tomshardware.com/tech-industry/shortages-of-crucial-chip-packaging-material-threatens-ai-accelerator-supply-chains-nittobos-fukushima-plant-is-tripling-capacity-but-itll-take-years-before-market",
+  bwWafer: "https://www.datacenterdynamics.com/en/news/first-us-made-nvidia-blackwell-wafer-manufactured-at-tsmcs-arizona-fab/",
+  tsmcAp: "https://www.datacenterdynamics.com/en/news/tsmc-updates-roadmap-with-three-new-process-nodes-breaks-ground-on-arizona-packaging-facility/",
+  amkor: "https://azbigmedia.com/business/amkor-increases-investment-in-new-arizona-facility-to-12-billion/",
+  amkorNv: "https://finance.yahoo.com/technology/ai/articles/amkor-jumps-1-5-billion-124203060.html",
+  nv800: "https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/",
+  bloomOracle: "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-and-Oracle-Expand-Strategic-Partnership-to-Deploy-up-to-2-8-GW-to-Accelerate-AI-Infrastructure-Build-Out/default.aspx",
+  bloomQ2: "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+  bloomCap: "https://www.utilitydive.com/news/bloom-energy-says-its-on-track-for-2-gw-annual-production-capacity/804291/",
+  bloomSheet: "https://www.bloomenergy.com/wp-content/uploads/bloom-energy-server-datasheet-feb-2026.pdf",
+  bloomDC: "https://www.bloomenergy.com/news/the-new-rules-of-ai-power-report/",
   saII: "https://situational-awareness.ai/from-agi-to-superintelligence/",
   saIIIa: "https://situational-awareness.ai/racing-to-the-trillion-dollar-cluster/",
   openai: "https://openai.com/index/research-acceleration-view-inside-openai/",
@@ -1048,6 +1172,25 @@ const THESES = [
     viz: "agent", pip: { pose: "run", acc: "camper", name: "Camper" }
   },
   {
+    id: "weights", die: [1, 6], stance: "build",
+    title: "Weights are the new crown jewels.",
+    short: "Weights are the crown jewels",
+    hook: "A frontier model is a billion-dollar training run boiled down to one file. Copy the file and you skip the race.",
+    ref: { label: "RAND, “Securing AI Model Weights” (2024)", href: SRC.rand },
+    signal: `<blockquote class="pull">Achieving SL5 is currently not possible.</blockquote>
+      <p>RAND ranks the security of model weights in five levels. Level 5 is the one that stops “top-priority operations conducted by the world’s most capable nation-states.” AI labs told RAND that reaching it would take at least five years and the support of the national security community.</p>
+      <p>The most valuable file in tech can’t yet be defended against the people most likely to want it.</p>`,
+    takes: [
+      ["Training turns compute into one file.", "A model is billions of numbers called weights. Training nudges them, over trillions of words, until the model gets better at one job: predicting the next token. The cost of the biggest runs has grown about 2.4× a year, on track to reach about $1 billion per run by 2027. What comes out is a file. A trillion weights at 16 bits each is about 2 TB, small enough for a pocket drive."],
+      ["The typing effect is the model working.", "Chatbots stream text because that’s literally how they generate it. The model predicts one token, adds it to everything written so far, and predicts the next one from the whole sequence again. Servers cache the earlier math instead of redoing it, but every word still depends on all the words before it. That loop is all inference is, so whoever holds the weights and enough GPUs holds the capability."],
+      ["The race is already working around the vault.", "Meta’s first LLaMA weights leaked online about a week after release in 2023. In February 2026, Anthropic said DeepSeek, Moonshot and MiniMax used more than 24,000 fake accounts and 16 million exchanges to distill Claude’s skills, and by September it had named seven China-based labs. In June, Washington ordered Anthropic to keep foreign nationals, even its own staff, off its two most powerful models, citing national security, then lifted the order weeks later once Anthropic agreed to security conditions."]
+    ],
+    bet: "Frontier weights get treated like fissile material: a national asset with government-grade protection. Expect SL4 and SL5 data centers built with the national security community, confidential computing down to the GPU, insider-risk programs, and anti-distillation detection as a standard product. Back the companies that make weights hard to steal and capabilities hard to copy.",
+    wrong: "By 2028, open or distilled models match the frontier within months without any stolen weights, so locking down one file stops mattering.",
+    receipts: [["RAND, Securing AI Model Weights (2024)", SRC.rand], ["Epoch AI on training costs (Cottier et al.)", SRC.epochCost], ["Vaswani et al., Attention Is All You Need (2017)", SRC.attention], ["The Batch on the LLaMA leak (2023)", SRC.llamaLeak], ["TechCrunch on distillation (Feb 2026)", SRC.distill], ["The Hacker News on seven labs (Sept 2026)", SRC.distill7], ["Al Jazeera on the export controls (July 2026)", SRC.exportCtl]],
+    viz: "weights", pip: { pose: "idle", acc: "vault", name: "Keeper" }
+  },
+  {
     id: "ooms", die: [-6, 5], stance: "build",
     title: "The computer is now the building.",
     short: "The computer is the building",
@@ -1082,6 +1225,25 @@ const THESES = [
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
     viz: "molecules", pip: { pose: "idle", acc: "hardhat", name: "Hard hat" }
+  },
+  {
+    id: "bloom", die: [4, 6], stance: "build",
+    title: "The power plant that ships like a server.",
+    short: "Power that ships like servers",
+    hook: "Bloom Energy’s fuel cells skip the turbine queue. Nvidia’s move to DC power could let them skip the transformer too.",
+    ref: { label: "NVIDIA, “800 VDC Architecture Will Power the Next Generation of AI Factories” (May 2025)", href: SRC.nv800 },
+    signal: `<blockquote class="pull">Repeated AC/DC transformations… are not energy efficient.</blockquote>
+      <p>That’s Nvidia explaining why its racks move to 800-volt DC with Kyber in 2027. Today, power reaches a data center as AC, gets stepped down and converted several times, and arrives at the chips as DC.</p>
+      <p>A fuel cell makes DC in the first place. Bloom Energy builds them, and it already wins on speed.</p>`,
+    takes: [
+      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue passed $1 billion for the first time in Q2 2026, up 166%."],
+      ["It scales like compute, not like a power plant.", "Each Energy Server is a 325 kW block about 9 meters long, so capacity grows as racks arrive, and Bloom planned to double production capacity to 2 GW a year by the end of 2026. No combustion, almost no NOx, no water in normal operation. The catch: it runs mostly on natural gas, and efficiency fades from 65% to 53% as the cells age."],
+      ["DC is the sleeper.", "A fuel cell can feed DC straight to the row, skipping transformers and switchgear that are themselves backlogged. Bloom says that cuts non-compute capex for a 1 GW site by $3.6 billion, about 27%. That’s the company’s own math, but the direction is right."]
+    ],
+    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back it, and the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
+    wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
+    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
+    viz: "bloom", pip: { pose: "idle", acc: "bloom", name: "Power plant" }
   },
   {
     id: "fleet", die: [4, -1], stance: "push",
@@ -1157,6 +1319,24 @@ const THESES = [
     viz: "memory", pip: { pose: "idle", acc: "hbm", name: "HBM stack" }
   },
   {
+    id: "backend", die: [0, -6], stance: "build",
+    title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
+    short: "The back end is the bottleneck",
+    hook: "A finished wafer isn’t a chip yet. The steps after the fab now decide how many AI chips ship, and where they’re made.",
+    ref: { label: "Chris Miller, Chip War (2022), ch. 10, “Transistor Girls”", href: SRC.chipwar },
+    signal: `<p>In 1963, Fairchild opened an assembly plant in Hong Kong. Assembly meant packaging: wiring each chip into its case, mostly by hand, at about a tenth of American wages. Miller marks it as the start of the industry’s move to Asia. Packaging went first because it was the cheapest step.</p>
+      <p>Sixty years later, it’s the step AI is waiting on.</p>`,
+    takes: [
+      ["The choke point moved downstream.", "Nvidia has reportedly reserved 800,000 to 850,000 wafers of TSMC’s CoWoS packaging for 2026, more than half of it, and demand still runs about 20% ahead of supply, though TrendForce sees the gap narrowing by year-end. TSMC is reportedly outsourcing more of the chip-on-wafer step, where dies are placed on the interposer, to packaging houses such as ASE."],
+      ["Bigger packages, more ways to fail.", "An AI package holds a GPU and its HBM stacks on an interposer, and the GPU silicon alone has roughly doubled, from Hopper’s 814 mm² die to about 1,700 mm² across Blackwell’s two. One bad die scraps the whole package, so testing before assembly decides the yield. Even the substrate’s glass cloth is short: Nittobo makes about 90% of the specialist low-expansion cloth, and new supply lands in mid-2027."],
+      ["A US chip isn’t made in the US until it’s packaged.", "The first US-made Blackwell wafer came off TSMC’s Arizona line in October 2025 and still flew to Taiwan for CoWoS. TSMC has started building an Arizona packaging plant for CoWoS before 2029, and Amkor raised its Arizona campus to about $12 billion, alongside a $1.5 billion multiyear Nvidia deal that includes a prepayment."]
+    ],
+    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. Back the back end: packaging and test houses taking on CoWoS work, substrate materials, and the bonding and inspection tools that make big packages yield. The first US packaging lines at scale are worth more than they look.",
+    wrong: "CoWoS supply catches up with demand in 2027 and stays caught up while AI chip shipments keep growing.",
+    receipts: [["Chip War (2022)", SRC.chipwar], ["TrendForce on CoWoS supply (June 2026)", SRC.trend], ["TrendForce on CoWoS outsourcing (Aug 2026)", SRC.cowosOut], ["Tom’s Hardware on T-glass (Mar 2026)", SRC.tglass], ["DCD on the Arizona Blackwell wafer (Oct 2025)", SRC.bwWafer], ["DCD on TSMC’s Arizona packaging (Apr 2026)", SRC.tsmcAp], ["AZ Big Media on Amkor (Sept 2026)", SRC.amkor], ["Yahoo Finance on Amkor and Nvidia (July 2026)", SRC.amkorNv]],
+    viz: "backend", pip: { pose: "idle", acc: "package", name: "Packager" }
+  },
+  {
     id: "heat", die: [3, -5], stance: "build",
     title: "Going 3D saved Moore’s law. Heat is the bill.",
     short: "Heat is the bill",
@@ -1196,7 +1376,6 @@ const THESES = [
   }
 ];
 const PROBES = [
-  { die: [1, 6], title: "Weights are the new crown jewels.", hook: "Building on Aschenbrenner’s “Lock Down the Labs”: model security becomes its own infrastructure category." },
   { die: [6, 2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
   { die: [-4, -7], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
 ];
@@ -1262,6 +1441,18 @@ function pip({ pose = "idle", acc = null, label = "" } = {}) {
   } else if (acc === "camper") {
     accUnder = `<rect x="-13" y="34" width="24" height="46" rx="7" fill="#2fb87a"/><rect x="-9" y="56" width="16" height="14" rx="3" fill="#249566"/><rect x="-15" y="25" width="28" height="11" rx="5.5" fill="#ffb23f"/><path d="M-7 25 V36 M5 25 V36" stroke="#d98a12" stroke-width="1.4"/>`;
     accIn = `<path d="M13 10 Q50 0 87 10" stroke="#30234d" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle class="pip-lamp" cx="50" cy="4" r="10" fill="#ffd98a"/><circle cx="50" cy="4.5" r="4.4" fill="#ffd98a" stroke="#d98a12"/>`;
+  } else if (acc === "vault") {
+    accIn = `<g transform="translate(90 70) rotate(-28)"><circle r="8.5" fill="none" stroke="#ffc566" stroke-width="4"/><circle r="8.5" fill="none" stroke="#d98a12" stroke-width="1" opacity=".6"/><path d="M8 -1.6 H30 V1.6 H8 Z" fill="#ffc566"/><path d="M22 1.6 V7 H25.5 V1.6 M27 1.6 V5.2 H30 V1.6" fill="#ffc566"/><path class="pip-glint" d="M-4 -4 L2 -6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>`;
+    accExtra = `<g transform="translate(-9 62)"><path d="M-5 -2 V-7 A5 5 0 0 1 5 -7 V-2" fill="none" stroke="#cfc6f5" stroke-width="2.2"/><rect x="-7.5" y="-2.5" width="15" height="13" rx="2.5" fill="#a08bff" stroke="#fff" stroke-opacity=".6"/><circle class="pip-led" cy="3" r="1.8" fill="#4fd2ff"/></g>`;
+  } else if (acc === "package") {
+    const leads = [0, 1, 2, 3, 4].map(i => `<rect x="${-13 + i * 6}" y="-19" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="${-13 + i * 6}" y="14" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="-19" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/><rect x="14" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/>`).join("");
+    accIn = `<g transform="translate(90 68) rotate(-10)">${leads}<rect x="-15" y="-15" width="30" height="30" rx="3" fill="#1b1530" stroke="#4a3f86"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="#cfc6f5"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="url(#${k}p)" opacity=".85"/><path class="pip-glint" d="M-7 4 L4 -7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="-11" cy="-11" r="1.4" fill="#4a3f86"/></g>`;
+    accDefs = `<linearGradient id="${k}p" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd2ff"/><stop offset=".5" stop-color="#a08bff"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
+    accExtra = `<g transform="translate(-8 70)"><rect x="-6" y="-4" width="12" height="8" rx="2" fill="#2fb87a"/><path d="M-3 0 L-1 2 L3 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "bloom") {
+    const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
+    accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M62 2 C56 -1 54 -6 55 -9 C59 -8 62 -5 62 2 Z" fill="#2fb87a"/><g transform="translate(69 -14)">${petals}<circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="pip-lamp" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>`;
+    accExtra = [[100, 44, 0], [104, 28, .6], [-8, 40, 1.2]].map(([x, y, d]) => `<text class="pip-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="10" font-weight="800" fill="#4fd2ff">⚡</text>`).join("");
   } else if (acc === "helmet") {
     accDefs = `<radialGradient id="${k}g" cx="50%" cy="45%" r="55%"><stop offset=".72" stop-color="#bfe9ff" stop-opacity="0"/><stop offset=".95" stop-color="#bfe9ff" stop-opacity=".26"/><stop offset="1" stop-color="#e8f8ff" stop-opacity=".5"/></radialGradient>`;
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="pip-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
@@ -1567,6 +1758,222 @@ const VIZ = {
       </svg><p class="cap">Microsoft, 2025: channels etched into the back of the silicon, shaped like leaf veins.</p></div>
     </div>`;
   },
+  weights() {
+    const yr = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
+    const bars = yr.map((y, i) => { const h = 6 + Math.pow(2.4, i) / Math.pow(2.4, 7) * 128; return `<rect class="g-bar grow v" x="${24 + i * 22}" y="${190 - h}" width="15" height="${h}" fill="var(--amber)" opacity="${(.35 + i * .09).toFixed(2)}"/>`; }).join("");
+    const grid = Array.from({ length: 48 }, (_, i) => `<rect x="${336 + (i % 8) * 11}" y="${84 + Math.floor(i / 8) * 11}" width="9" height="9" rx="1" fill="var(--violet)" opacity="${(.25 + ((i * 37) % 11) / 14).toFixed(2)}"/>`).join("");
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Frontier training costs grow about 2.4 times a year, reaching about a billion dollars per run by 2027. The output is one file: a trillion weights at 16 bits is about 2 terabytes. Capability can leave by theft of the file, by distillation through the API, or through an insider.">
+        <text x="20" y="22" class="t-strong" font-size="15">Training bill per frontier run</text>
+        <text x="20" y="40" font-size="12">~2.4× a year (Epoch AI)</text>
+        ${bars}
+        <line class="ax" x1="18" y1="190" x2="200" y2="190"/>
+        <text x="27" y="206" font-size="11">2020</text><text x="178" y="206" text-anchor="middle" font-size="11">2027</text>
+        <text x="178" y="50" text-anchor="middle" font-size="12" style="fill:var(--amber)" font-weight="700">~$1B</text>
+        <path class="wt-flow" d="M206 120 H318" stroke="var(--paper)" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+        <path d="M310 113 L318 120 L310 127" stroke="var(--paper)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="262" y="108" text-anchor="middle" font-size="12">compressed into</text>
+        <path d="M328 72 H408 L428 92 V160 H328 Z" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.5"/><path d="M408 72 V92 H428" fill="none" stroke="var(--violet)" stroke-width="1.5"/>
+        ${grid}
+        <text x="378" y="182" text-anchor="middle" class="t-strong" font-size="14">weights.bin ≈ 2 TB</text>
+        <text x="378" y="198" text-anchor="middle" font-size="11">1 trillion weights × 2 bytes</text>
+        <line class="ax" x1="20" y1="226" x2="440" y2="226"/>
+        <text x="20" y="248" class="t-strong" font-size="14">Three ways the capability leaves</text>
+        ${[["Copy the file", "theft or a leak", "var(--coral)"], ["Distill it", "16M+ exchanges", "var(--amber)"], ["Walk it out", "an insider", "var(--violet)"]].map(([a, b, c], i) => `<rect x="${20 + i * 142}" y="260" width="132" height="50" rx="5" fill="var(--ink-2)" stroke="${c}"/><text x="${86 + i * 142}" y="281" text-anchor="middle" class="t-strong" font-size="13">${a}</text><text x="${86 + i * 142}" y="299" text-anchor="middle" font-size="11">${b}</text>`).join("")}
+      </svg>`;
+    const LV = [["SL1", "Hobbyist hackers"], ["SL2", "Professional opportunists"], ["SL3", "Crime groups, insiders"], ["SL4", "Standard state operations"], ["SL5", "Top nation-state operations"]];
+    const rings = LV.map(([n], i) => { const r = 128 - i * 22, last = i === 4; return `<circle cx="140" cy="160" r="${r}" fill="none" stroke="${last ? "var(--coral)" : "var(--violet)"}" stroke-width="${last ? 2 : 6}" opacity="${last ? 1 : (.25 + i * .14).toFixed(2)}" ${last ? `stroke-dasharray="4 6" class="wt-ring5"` : ""}/>`; }).join("");
+    const labels = LV.map(([n, d], i) => { const y = 72 + i * 42, last = i === 4, r = 128 - i * 22, a = Math.atan2(y - 10 - 160, 300 - 140); return `<line x1="${(140 + r * Math.cos(a)).toFixed(1)}" y1="${(160 + r * Math.sin(a)).toFixed(1)}" x2="300" y2="${y - 10}" stroke="var(--faint)" stroke-width=".8"/><text x="306" y="${y - 6}" class="t-strong" font-size="13" ${last ? `style="fill:var(--coral)"` : ""}>${n}</text><text x="306" y="${y + 9}" font-size="11">${d}</text>`; }).join("");
+    const F3 = `<svg viewBox="0 0 460 320" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
+        ${rings}
+        <circle cx="140" cy="160" r="26" fill="var(--amber)" opacity=".18"/><circle class="wt-core" cx="140" cy="160" r="16" fill="var(--amber)"/>
+        <text x="140" y="164" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">W</text>
+        <circle r="5" fill="var(--coral)"><animateMotion dur="5s" repeatCount="indefinite" path="M-10 20 L140 160" keyPoints="0;.62;.62;1;1" keyTimes="0;.35;.55;.8;1" calcMode="linear"/></circle>
+        ${labels}
+        <text x="306" y="290" font-size="12" style="fill:var(--coral)" font-weight="700">SL5: “currently not possible”</text>
+        <text x="306" y="306" font-size="11">5+ years, per labs RAND spoke to</text>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><div class="nt">
+        <p class="nt-k" id="ntK">Pass 1</p>
+        <div class="nt-row" id="ntRow" aria-live="off"></div>
+        <svg class="nt-net" viewBox="0 0 460 70" aria-hidden="true">${Array.from({ length: 23 }, (_, i) => `<line x1="${10 + i * 20}" y1="0" x2="${150 + i * 7}" y2="60"/>`).join("")}<rect x="140" y="58" width="180" height="10" rx="3"/></svg>
+        <p class="nt-w">The weights score every possible next token</p>
+        <ol class="nt-cands" id="ntCands"></ol>
+        <div class="nt-ctrl"><button type="button" id="ntStep">Next token</button><button type="button" id="ntPlay" aria-label="Pause">❚❚</button><button type="button" id="ntReset">Start over</button></div>
+      </div><p class="cap">Illustrative probabilities. Real models pick from tens of thousands of tokens on every pass.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Costs: Cottier et al., Epoch AI. File size is arithmetic: 10¹² weights at 2 bytes each.</p></div>
+      <div class="frame f3">${F3}<p class="cap">RAND, “Securing AI Model Weights” (2024). The attacker gets past rings that don’t exist yet.</p></div>
+    </div>`;
+  },
+  backend() {
+    const CX = 230, CY = 126, R = 104, P = 18, S = 15;
+    const dies = [];
+    for (let jy = -5; jy <= 5; jy++) for (let ix = -5; ix <= 5; ix++) {
+      const x = CX + ix * P, y = CY + jy * P, h = S / 2;
+      if (Math.max(Math.hypot(x - h - CX, y - h - CY), Math.hypot(x + h - CX, y - h - CY), Math.hypot(x - h - CX, y + h - CY), Math.hypot(x + h - CX, y + h - CY)) > R - 6) continue;
+      const bad = (ix * 3 + jy * 5 + 40) % 13 === 0;
+      dies.push({ x: x - h, y: y - h, bad, o: (jy + 5) * 11 + (ix + 5) });
+    }
+    const dieRects = lit => dies.map(d => `<rect class="bk-d" x="${d.x}" y="${d.y}" width="${S}" height="${S}" rx="1.5" style="--o:${d.o};--c:${d.bad ? "var(--coral)" : "var(--beat)"}${lit ? `;fill:var(--c);fill-opacity:${d.bad ? .9 : .55}` : ""}"/>`).join("");
+    const wafer = (lit, extra = "") => `<circle cx="${CX}" cy="${CY}" r="${R}" fill="var(--ink-2)" stroke="var(--rule)" stroke-width="1.5"/><path d="M${CX - 10} ${CY + R} A10 10 0 0 1 ${CX + 10} ${CY + R}" fill="var(--ink)" stroke="var(--rule)"/><g class="bk-dies">${dieRects(lit)}</g>${extra}`;
+    const streets = [];
+    for (let i = -6; i <= 5; i++) {
+      const off = (i + .5) * P; if (Math.abs(off) >= R - 4) continue;
+      const half = Math.sqrt(R * R - off * off) - 2;
+      streets.push(`<line class="bk-cut" style="--k:${streets.length}" x1="${CX + off}" y1="${CY - half}" x2="${CX + off}" y2="${CY + half}" pathLength="1"/>`);
+      streets.push(`<line class="bk-cut" style="--k:${streets.length}" x1="${CX - half}" y1="${CY + off}" x2="${CX + half}" y2="${CY + off}" pathLength="1"/>`);
+    }
+    const blade = `<g class="bk-blade"><circle r="16" fill="none" stroke="#cfc6f5" stroke-width="3" stroke-dasharray="2.6 2.6"/><circle r="12" fill="#2b2355" stroke="#8f87b6"/><circle r="3" fill="#cfc6f5"/></g>`;
+    const xsec = (landed) => {
+      const balls = Array.from({ length: 12 }, (_, i) => `<circle cx="${130 + i * 20}" cy="241" r="5" fill="#8f87b6"/>`).join("");
+      const c4 = Array.from({ length: 13 }, (_, i) => `<circle cx="${142 + i * 16}" cy="209" r="2.6" fill="#cfc6f5"/>`).join("");
+      const hbm = x => Array.from({ length: 7 }, (_, k) => `<rect x="${x}" y="${180 - k * 8}" width="40" height="6.4" rx="1" fill="${k % 2 ? "#3d7fa3" : "#2f6688"}"/>`).join("");
+      const mb = xs => xs.map(x => `<circle class="bk-mb" cx="${x}" cy="191.5" r="2.2"/>`).join("");
+      return `<rect x="120" y="214" width="240" height="20" rx="2" fill="#1d5a49" stroke="#2f8a6f"/>${balls}${c4}
+        <rect x="136" y="196" width="208" height="9" rx="1.5" fill="#4a3f86" stroke="var(--violet)"/>
+        <g class="bk-hbm ${landed ? "" : "drop"}">${hbm(144)}${hbm(296)}</g>
+        ${mb([150, 160, 170, 178, 202, 214, 226, 238, 250, 262, 274, 302, 312, 322, 330])}
+        <g class="bk-gpu ${landed ? "" : "flip"}"><rect x="194" y="160" width="92" height="28" rx="2" fill="#231c49" stroke="var(--amber)" stroke-width="1.4"/><rect x="198" y="162" width="84" height="3" rx="1" fill="var(--amber)" opacity=".85"/></g><text class="bk-gpu-l t-strong" x="240" y="178" text-anchor="middle" font-size="11">GPU</text>`;
+    };
+    const lbl = (x, y, s, x2, y2, end) => `<line x1="${x2}" y1="${y2}" x2="${end ? x + 4 : x - 4}" y2="${y - 4}" stroke="var(--faint)"/><text x="${x}" y="${y}" font-size="12" ${end ? `text-anchor="end"` : ""}>${s}</text>`;
+    const S1 = `<g class="bk-s on" data-s="0">${wafer(false, `<g transform="translate(${CX} ${CY})"><g class="bk-probe"><rect x="-3" y="-140" width="6" height="120" fill="#3a3170"/><rect x="-14" y="-26" width="28" height="12" rx="2" fill="#4a3f86" stroke="#8f87b6"/><path d="M-8 -14 L-1 -1 M0 -14 L0 -1 M8 -14 L1 -1" stroke="#cfc6f5" stroke-width="1.2"/><circle r="3.4" fill="var(--amber)"/></g></g>`)}
+      <text x="${CX}" y="258" text-anchor="middle" font-size="13">Green passes, red gets flagged</text></g>`;
+    const S2 = `<g class="bk-s" data-s="1">${wafer(true, `<g class="bk-cuts">${streets.join("")}</g><g transform="translate(${CX} ${CY})">${blade}</g>`)}
+      <text x="${CX}" y="258" text-anchor="middle" font-size="13">The saw runs down the streets between dies</text></g>`;
+    const grid = Array.from({ length: 30 }, (_, i) => { const c = i % 6, r = Math.floor(i / 6), bad = i === 8 || i === 22; return `<rect x="${34 + c * 24}" y="${44 + r * 24}" width="17" height="17" rx="1.5" fill="${bad ? "var(--coral)" : "var(--beat)"}" fill-opacity="${bad ? .9 : .55}"/>`; }).join("");
+    const tray = Array.from({ length: 15 }, (_, i) => { const c = i % 5, r = Math.floor(i / 5); return `<rect x="${300 + c * 26}" y="${50 + r * 26}" width="20" height="20" rx="2" fill="${i < 9 ? "var(--beat)" : "none"}" fill-opacity=".55" stroke="#2c6f8f"/>`; }).join("");
+    const S3 = `<g class="bk-s" data-s="2">${grid}
+      <rect x="290" y="38" width="146" height="94" rx="4" fill="none" stroke="var(--beat)" stroke-width="1.4"/>${tray}
+      <text x="363" y="150" text-anchor="middle" font-size="12" class="t-strong">Known-good dies</text>
+      <rect x="300" y="176" width="126" height="46" rx="4" fill="rgba(255,107,128,.08)" stroke="var(--coral)" stroke-width="1.4"/>
+      <rect x="318" y="196" width="17" height="17" rx="1.5" fill="var(--coral)" opacity=".9"/>
+      <text x="363" y="240" text-anchor="middle" font-size="12" class="t-strong">Failed dies</text>
+      <g class="bk-pick a"><path d="M0 -56 V-12" stroke="#8f87b6" stroke-width="3"/><rect x="-6" y="-14" width="12" height="6" rx="1" fill="#cfc6f5"/><rect x="-8.5" y="-8" width="17" height="17" rx="1.5" fill="var(--beat)" fill-opacity=".75"/></g>
+      <g class="bk-pick b"><path d="M0 -56 V-12" stroke="#8f87b6" stroke-width="3"/><rect x="-6" y="-14" width="12" height="6" rx="1" fill="#cfc6f5"/><rect x="-8.5" y="-8" width="17" height="17" rx="1.5" fill="var(--coral)"/></g>
+      <text x="102" y="200" text-anchor="middle" font-size="13">Diced dies, still on tape</text></g>`;
+    const S4 = `<g class="bk-s" data-s="3">${xsec(false)}
+      ${lbl(372, 146, "HBM stack", 336, 150, false)}${lbl(372, 172, "GPU, face down", 286, 172, false)}
+      ${lbl(112, 202, "Interposer", 136, 200, true)}${lbl(112, 228, "Substrate", 120, 224, true)}
+      <text x="240" y="272" text-anchor="middle" font-size="13" class="t-strong" style="fill:var(--amber)">Chip-on-wafer-on-substrate: CoWoS, the choke point</text></g>`;
+    const S5 = `<g class="bk-s" data-s="4">${xsec(true)}
+      <path class="bk-fill" d="M190 190 H290 L296 196 H184 Z M140 190 H188 L184 196 H138 Z M292 190 H340 L342 196 H296 Z" fill="var(--amber)" opacity=".55"/>
+      <g class="bk-lid"><path d="M124 214 V128 Q124 122 130 122 H350 Q356 122 356 128 V214 H346 V134 H134 V214 Z" fill="#9b93c4" stroke="#cfc6f5"/><rect x="134" y="122" width="212" height="6" fill="#cfc6f5" opacity=".6"/></g>
+      <text x="240" y="110" text-anchor="middle" font-size="12">Lid and heat spreader</text>${lbl(112, 186, "Underfill", 140, 192, true)}
+      <text x="240" y="272" text-anchor="middle" font-size="13">Sealed against moisture, stress and heat</text></g>`;
+    const pins = Array.from({ length: 9 }, (_, i) => `<circle cx="${172 + i * 14.5}" cy="54" r="2.4"/><circle cx="${172 + i * 14.5}" cy="186" r="2.4"/><circle cx="164" cy="${62 + i * 14.5}" r="2.4"/><circle cx="296" cy="${62 + i * 14.5}" r="2.4"/>`).join("");
+    const done = Array.from({ length: 6 }, (_, i) => `<rect x="${352 + (i % 2) * 40}" y="${60 + Math.floor(i / 2) * 40}" width="30" height="30" rx="3" fill="#1b1530" stroke="#4a3f86"/><rect x="${359 + (i % 2) * 40}" y="${67 + Math.floor(i / 2) * 40}" width="16" height="16" rx="2" fill="#9b93c4"/>`).join("");
+    const S6 = `<g class="bk-s" data-s="5">
+      <rect x="150" y="40" width="160" height="160" rx="8" fill="var(--ink-2)" stroke="var(--rule)" stroke-width="1.5"/><g fill="#ffc566" opacity=".7">${pins}</g>
+      <rect x="176" y="66" width="108" height="108" rx="5" fill="#1b1530" stroke="#4a3f86"/><rect x="196" y="86" width="68" height="68" rx="3" fill="#9b93c4"/>
+      <g class="bk-head"><rect x="186" y="-30" width="88" height="60" rx="4" fill="#3a3170" stroke="#8f87b6"/><rect x="222" y="-70" width="16" height="40" fill="#3a3170"/></g>
+      <text class="bk-pass t-strong" x="230" y="226" text-anchor="middle" font-size="18">PASS</text>
+      <rect x="340" y="48" width="96" height="134" rx="4" fill="none" stroke="var(--rule)" stroke-dasharray="4 3"/>${done}
+      <text x="388" y="200" text-anchor="middle" font-size="12">Ready to ship</text>
+      <text x="230" y="258" text-anchor="middle" font-size="13">Runs at full speed in a socket. Now it’s a chip.</text></g>`;
+    const STEPS = ["Probe", "Dice", "Sort", "Bond", "Seal", "Test"];
+    const sq = (mm2, x, y, c, num, name) => { const s = Math.sqrt(mm2) * 2.3; return `<rect x="${x}" y="${y - s}" width="${s}" height="${s}" rx="2" fill="${c}" fill-opacity=".22" stroke="${c}" stroke-width="1.5"/><text x="${x + s / 2}" y="${y + 17}" text-anchor="middle" font-size="13" class="t-strong">${num}</text><text x="${x + s / 2}" y="${y + 32}" text-anchor="middle" font-size="11">${name}</text>`; };
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Nvidia reportedly reserved more than half of TSMC's 2026 CoWoS capacity and demand runs about 20 percent ahead of supply; GPU silicon roughly doubled from Hopper's 814 square millimeters to about 1,700 across Blackwell's two dies; one supplier makes about 90 percent of the specialist glass cloth in substrates.">
+        <text x="20" y="24" class="t-strong" font-size="15">TSMC CoWoS, 2026</text>
+        <text x="20" y="44" font-size="12">Supply</text>
+        <rect class="g-bar grow" x="76" y="32" width="300" height="18" fill="var(--ink-3)" stroke="var(--rule)"/>
+        <rect class="g-bar grow" x="76" y="32" width="160" height="18" fill="var(--amber)"/>
+        <text x="84" y="45" font-size="12" style="fill:var(--ink)" font-weight="700">Nvidia, over half</text>
+        <text x="20" y="74" font-size="12">Demand</text>
+        <rect class="g-bar grow" x="76" y="62" width="300" height="18" fill="var(--paper)" opacity=".18"/>
+        <rect class="g-bar grow" x="376" y="62" width="60" height="18" fill="var(--coral)" opacity=".85"/>
+        <text x="406" y="98" text-anchor="middle" font-size="12" style="fill:var(--coral)" font-weight="700">~20% short</text>
+        <line class="ax" x1="20" y1="122" x2="440" y2="122"/>
+        <text x="20" y="148" class="t-strong" font-size="15">GPU silicon per package</text>
+        ${sq(814, 30, 276, "var(--violet)", "814 mm²", "Hopper")}${sq(1700, 112, 276, "var(--amber)", "~1,700 mm²", "Blackwell, 2 dies")}
+        <text x="300" y="148" class="t-strong" font-size="15">Specialist glass cloth</text>
+        <circle cx="352" cy="226" r="46" fill="none" stroke="var(--ink-3)" stroke-width="18"/>
+        <circle class="bk-donut" cx="352" cy="226" r="46" fill="none" stroke="var(--coral)" stroke-width="18" pathLength="100" stroke-dasharray="90 100" transform="rotate(-90 352 226)"/>
+        <text x="352" y="232" text-anchor="middle" class="t-strong" font-size="20">~90%</text>
+        <text x="352" y="296" text-anchor="middle" font-size="12">from one supplier, Nittobo.</text>
+        <text x="352" y="312" text-anchor="middle" font-size="12">New supply: mid-2027.</text>
+      </svg>`;
+    const lat = [70, 120, 170, 220].map(y => `<path d="M10 ${y} Q230 ${y - 26} 450 ${y}" fill="none" stroke="var(--grid)"/>`).join("") + [60, 140, 230, 320, 400].map(x => `<path d="M${x} 30 Q${x + (x - 230) * .08} 140 ${x} 250" fill="none" stroke="var(--grid)"/>`).join("");
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="A wafer made in Arizona flies to Taiwan for CoWoS packaging and the finished chip flies back. Packaging lines planned in Arizona would close the loop. In 1963, packaging was the first step to move to Hong Kong.">
+        ${lat}
+        <text x="230" y="150" text-anchor="middle" font-size="12" style="fill:var(--faint);letter-spacing:.3em">PACIFIC</text>
+        <path id="bkOut" d="M106 132 Q235 4 362 122" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-dasharray="5 5"/>
+        <path id="bkBack" d="M108 150 Q235 262 362 140" fill="none" stroke="var(--beat)" stroke-width="1.8" stroke-dasharray="5 5"/>
+        <text font-size="12" class="t-strong" dy="-6"><textPath href="#bkOut" startOffset="50%" text-anchor="middle">wafer goes out</textPath></text>
+        <text font-size="12" class="t-strong" dy="16"><textPath href="#bkBack" startOffset="50%" text-anchor="middle">chip comes back</textPath></text>
+        <circle r="5" fill="var(--amber)"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#bkOut"/></animateMotion></circle>
+        <circle r="5" fill="var(--beat)"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#bkBack"/></animateMotion></circle>
+        <circle cx="100" cy="140" r="7" fill="var(--amber)"/>
+        <circle cx="100" cy="140" r="22" fill="none" stroke="var(--paper)" stroke-width="1.4" stroke-dasharray="4 4" class="bk-loop"/>
+        <text x="100" y="186" text-anchor="middle" class="t-strong" font-size="14">Arizona</text>
+        <text x="100" y="203" text-anchor="middle" font-size="12">TSMC fab: wafers</text>
+        <circle cx="368" cy="130" r="7" fill="var(--beat)"/>
+        <text x="404" y="88" text-anchor="middle" class="t-strong" font-size="14">Taiwan</text>
+        <text x="404" y="105" text-anchor="middle" font-size="12">CoWoS packaging</text>
+        <circle cx="318" cy="214" r="5" fill="none" stroke="var(--faint)" stroke-width="1.4"/>
+        <text x="318" y="238" text-anchor="middle" font-size="12" style="fill:var(--faint)">Hong Kong, 1963:</text>
+        <text x="318" y="253" text-anchor="middle" font-size="12" style="fill:var(--faint)">packaging leaves first</text>
+        <text x="16" y="270" class="t-strong" font-size="13">Closing the loop in Arizona:</text>
+        <text x="16" y="288" font-size="12">Amkor phase 1 due 2028. TSMC CoWoS before 2029.</text>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><div class="bk">
+        <svg class="bk-stage" viewBox="0 0 460 280" role="img" aria-label="Animated back-end line, from finished wafer to finished chip, in six steps: probe, dice, sort, bond, seal and test.">${S1}${S2}${S3}${S4}${S5}${S6}</svg>
+        <div class="bk-steps" role="group" aria-label="Back-end steps">${STEPS.map((s, i) => `<button type="button" data-s="${i}" aria-pressed="${i === 0}"><b>${i + 1}</b>${s}</button>`).join("")}<button type="button" class="bk-play" aria-label="Pause the line">❚❚</button></div>
+      </div><p class="cap" id="bkCap">Probe. Needles touch every die on the finished wafer, and bad ones are flagged before anyone pays to package them.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Sources: TrendForce (June and Aug 2026), Tom’s Hardware (Mar 2026). Squares drawn to scale.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Simplified map. The first US-made Blackwell wafer, October 2025, still needed CoWoS in Taiwan.</p></div>
+    </div>`;
+  },
+  bloom() {
+    const box = (x, y, w, t1, t2, c, conv) => `<rect x="${x}" y="${y}" width="${w}" height="48" rx="5" fill="var(--ink-2)" stroke="${c}" stroke-width="1.4"/><text x="${x + w / 2}" y="${y + 21}" text-anchor="middle" font-size="12" class="t-strong">${t1}</text><text x="${x + w / 2}" y="${y + 37}" text-anchor="middle" font-size="11">${t2}</text>${conv ? `<circle cx="${x + w - 2}" cy="${y + 2}" r="8" fill="var(--coral)"/><text x="${x + w - 2}" y="${y + 6}" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">⟳</text>` : ""}`;
+    const AC = [["Grid", "AC", 0], ["Substation", "step down", 1], ["Switchgear", "AC", 0], ["UPS", "AC→DC→AC", 1], ["Rack PSU", "AC→DC", 1]];
+    const top = AC.map(([a, b, c], i) => box(14 + i * 74, 52, 64, a, b, "var(--rule)", c)).join("") + box(388, 52, 60, "GPU", "DC", "var(--beat)", 0);
+    const bot = box(14, 180, 120, "Fuel cell", "makes DC", "var(--beat)", 0) + box(168, 180, 120, "800 V DC bus", "Kyber, 2027", "var(--beat)", 0) + box(322, 180, 126, "Rack → GPU", "DC", "var(--beat)", 0);
+    const flowTop = `<path id="blTop" d="M22 76 H440" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bl-dot fade" r="3.4" style="animation-delay:-${(i * .5).toFixed(1)}s"><animateMotion dur="3s" repeatCount="indefinite" begin="-${(i * .5).toFixed(1)}s"><mpath href="#blTop"/></animateMotion></circle>`).join("")}`;
+    const flowBot = `<path id="blBot" d="M22 204 H440" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bl-dot" r="3.4"><animateMotion dur="2.2s" repeatCount="indefinite" begin="-${(i * .37).toFixed(2)}s"><mpath href="#blBot"/></animateMotion></circle>`).join("")}`;
+    const F1 = `<svg viewBox="0 0 460 280" role="img" aria-label="Today, grid power passes a substation, switchgear, a UPS and a rack power supply, converting between AC and DC several times before reaching the GPU as DC. A fuel cell makes DC and can feed an 800-volt DC bus straight to the rack.">
+        <text x="14" y="30" class="t-strong" font-size="15">Grid power today</text>
+        <text x="446" y="30" text-anchor="end" font-size="12" style="fill:var(--coral)">⟳ = a conversion</text>
+        ${flowTop}${top}
+        <text x="14" y="158" class="t-strong" font-size="15">Fuel cell, 800 V DC</text>
+        ${flowBot}${bot}
+        <text x="230" y="266" text-anchor="middle" font-size="13">Fewer boxes, fewer losses, less backlogged gear.</text>
+      </svg>`;
+    const yrX = y => 120 + (y - 2026) * 62;
+    const ions = Array.from({ length: 7 }, (_, i) => `<circle class="bl-ion" cx="${150 + i * 30}" cy="232" r="3.6" style="animation-delay:${(i * .28).toFixed(2)}s"/>`).join("");
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Time to power: Bloom delivered to Oracle in 55 days, while a gas turbine ordered in 2026 arrives around 2031. Below, a solid oxide cell: oxygen ions cross a ceramic electrolyte and react with fuel without combustion, releasing electrons as DC.">
+        <text x="14" y="24" class="t-strong" font-size="15">Time to power</text>
+        ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="gridl" x1="${yrX(y)}" y1="36" x2="${yrX(y)}" y2="112"/><text x="${yrX(y)}" y="128" text-anchor="middle" font-size="12">${y}</text>`).join("")}
+        <text x="110" y="58" text-anchor="end" font-size="12" class="t-strong">Fuel cells</text>
+        <rect class="g-bar grow" x="120" y="46" width="${(55 / 365 * 62).toFixed(1)}" height="16" fill="var(--beat)"/>
+        <text x="${(132 + 55 / 365 * 62).toFixed(0)}" y="59" font-size="12" style="fill:var(--beat)" font-weight="700">55 days (Oracle)</text>
+        <text x="110" y="94" text-anchor="end" font-size="12" class="t-strong">Gas turbine</text>
+        <rect class="g-bar grow" x="120" y="82" width="${5 * 62}" height="16" fill="var(--coral)" opacity=".8"/>
+        <text x="${120 + 5 * 62 - 6}" y="95" text-anchor="end" font-size="12" style="fill:var(--ink)" font-weight="700">ordered now, ships ~2031</text>
+        <text x="14" y="166" class="t-strong" font-size="15">Inside a solid oxide cell</text>
+        <rect x="120" y="178" width="240" height="30" rx="3" fill="#2a4a6a" stroke="#4fd2ff" stroke-opacity=".5"/><text x="240" y="198" text-anchor="middle" font-size="12" class="t-strong">Air side: oxygen in</text>
+        <rect x="120" y="212" width="240" height="40" fill="#5a4a2a" fill-opacity=".55" stroke="var(--amber)" stroke-opacity=".6"/><text x="372" y="236" font-size="12">ceramic</text>
+        <rect x="120" y="256" width="240" height="30" rx="3" fill="#2a2252" stroke="var(--violet)" stroke-opacity=".6"/><text x="240" y="276" text-anchor="middle" font-size="12" class="t-strong">Fuel side: gas in, no flame</text>
+        ${ions}
+        <text x="110" y="236" text-anchor="end" font-size="12" style="fill:var(--beat)">O²⁻ ions</text>
+        <path class="bl-wire" d="M360 272 H420 V192 H360" fill="none" stroke="var(--amber)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="424" y="236" font-size="12" style="fill:var(--amber)" font-weight="700">DC</text>
+        <text x="240" y="310" text-anchor="middle" font-size="12">Electrons take the outside path: that’s the power.</text>
+      </svg>`;
+    const cells = Array.from({ length: 100 }, (_, i) => `<i style="--i:${i}"></i>`).join("");
+    const F3 = `<div class="blcalc">
+        <label class="oc-l" for="blRange">Power a campus of</label>
+        <output class="oc-x" id="blMW" for="blRange">300 MW</output>
+        <input class="oc-range" type="range" id="blRange" min="10" max="1000" step="10" value="300" aria-describedby="blRead">
+        <div class="bl-grid" id="blGrid" aria-hidden="true">${cells}</div>
+        <p class="oc-o" id="blRead"></p>
+      </div>`;
+    return `<div class="viz bl" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Simplified. Nvidia moves its racks to 800 V DC with Kyber in 2027; today’s chain converts AC and DC several times.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Oracle delivery per Bloom (Apr 2026). Turbine timing per GE Vernova’s reservations, Utility Dive (July 2026).</p></div>
+      <div class="frame f3">${F3}<p class="cap">Each square is 10 MW. 325 kW per Energy Server; output at Bloom’s planned 2 GW a year.</p></div>
+    </div>`;
+  },
   screen() {
     const Y = m => 262 - m * 3.5;
     return `<div class="viz" data-step="1">
@@ -1591,6 +1998,89 @@ const VIZ = {
   }
 };
 const VIZ_INIT = {
+  weights(root) {
+    const row = $("#ntRow", root), cands = $("#ntCands", root), k = $("#ntK", root), viz = $(".viz", root);
+    if (!row) return;
+    const PROMPT = ["The", "most", "valuable", "file", "in", "AI", "is"];
+    const STEPS = [
+      [["the", 41], ["its", 22], ["a", 14], ["not", 6]],
+      [["model’s", 38], ["chip", 17], ["data", 15], ["training", 9]],
+      [["weights", 64], ["code", 11], ["data", 9], ["name", 3]],
+      [[".", 71], [",", 12], ["and", 8], ["file", 2]]
+    ];
+    let n = 0, playing = !(calm || motionPaused), busy = false;
+    const draw = () => {
+      const gen = STEPS.slice(0, n).map(s => s[0][0]);
+      row.innerHTML = PROMPT.map(w => `<span class="tok">${w}</span>`).join("") + gen.map(w => `<span class="tok gen">${w}</span>`).join("") + (n < STEPS.length ? `<span class="tok next">?</span>` : "");
+      const total = PROMPT.length + n;
+      k.textContent = n < STEPS.length ? `Pass ${n + 1}: read all ${total} tokens, then pick token ${total + 1}` : `Done. ${STEPS.length} passes, each one rereading everything before it.`;
+      cands.innerHTML = n < STEPS.length ? STEPS[n].map(([w, p]) => `<li><span class="w">${w}</span><span class="bar"><i style="--p:${p}"></i></span><span class="p">${p}%</span></li>`).join("") : "";
+    };
+    const step = () => {
+      if (busy) return;
+      if (n >= STEPS.length) { n = 0; draw(); return; }
+      busy = true;
+      const toks = $$(".tok:not(.next)", row);
+      toks.forEach((el, i) => { el.classList.remove("read"); void el.offsetWidth; el.style.animationDelay = `${i * 60}ms`; el.classList.add("read"); });
+      root.querySelector(".nt-net").classList.remove("hum"); void root.offsetWidth; root.querySelector(".nt-net").classList.add("hum");
+      const wait = toks.length * 60 + 350;
+      setTimeout(() => { cands.classList.add("show"); cands.firstElementChild && cands.firstElementChild.classList.add("win"); }, wait);
+      setTimeout(() => { n++; cands.classList.remove("show"); draw(); busy = false; }, wait + 1100);
+    };
+    const setPlay = v => { playing = v; $("#ntPlay", root).textContent = v ? "❚❚" : "▶"; $("#ntPlay", root).setAttribute("aria-label", v ? "Pause" : "Play"); };
+    $("#ntStep", root).addEventListener("click", () => { setPlay(false); step(); });
+    $("#ntPlay", root).addEventListener("click", () => setPlay(!playing));
+    $("#ntReset", root).addEventListener("click", () => { n = 0; busy = false; draw(); });
+    setPlay(playing); draw();
+    const timer = setInterval(() => {
+      if (!root.contains(row) || memo.hidden) return clearInterval(timer);
+      if (playing && !motionPaused && viz.dataset.step === "1") step();
+    }, 2600);
+  },
+  backend(root) {
+    const stage = $(".bk-stage", root), cap = $("#bkCap", root), viz = $(".viz", root);
+    if (!stage) return;
+    const CAPS = [
+      "Probe. Needles touch every die on the finished wafer, and bad ones are flagged before anyone pays to package them.",
+      "Dice. A diamond saw or a laser cuts the wafer along the streets between dies.",
+      "Sort. Good dies go on to assembly. In an AI package, one bad die scraps the GPU and every HBM stack beside it.",
+      "Bond. The GPU is flipped face down onto an interposer beside its HBM, then onto a substrate. That’s TSMC’s CoWoS, and it’s the choke point.",
+      "Seal. Underfill, a lid and a heat spreader protect the dies and pull heat out.",
+      "Test. The finished package runs at full speed in a socket. Only then is it a chip."
+    ];
+    const scenes = $$(".bk-s", stage), btns = $$(".bk-steps [data-s]", root), play = $(".bk-play", root);
+    let cur = 0, playing = !(calm || motionPaused);
+    const show = i => {
+      cur = i;
+      scenes.forEach(s => s.classList.remove("on"));
+      void stage.getBoundingClientRect();
+      scenes[i].classList.add("on");
+      btns.forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+      cap.textContent = CAPS[i];
+    };
+    const setPlay = v => { playing = v; play.textContent = v ? "❚❚" : "▶"; play.setAttribute("aria-label", v ? "Pause the line" : "Play the line"); };
+    btns.forEach(b => b.addEventListener("click", () => { setPlay(false); show(+b.dataset.s); }));
+    play.addEventListener("click", () => setPlay(!playing));
+    setPlay(playing);
+    const timer = setInterval(() => {
+      if (!root.contains(stage) || memo.hidden) return clearInterval(timer);
+      if (playing && !motionPaused && viz.dataset.step === "1") show((cur + 1) % scenes.length);
+    }, 3600);
+  },
+  bloom(root) {
+    const r = $("#blRange", root);
+    if (!r) return;
+    const cells = $$("#blGrid i", root);
+    const upd = () => {
+      const mw = +r.value, servers = Math.ceil(mw * 1000 / 325), days = mw / 2000 * 365;
+      const time = days < 45 ? `about ${Math.max(1, Math.round(days))} days` : `about ${Math.round(days / 30.4)} months`;
+      $("#blMW", root).textContent = mw >= 1000 ? "1 GW" : `${mw} MW`;
+      $("#blRead", root).innerHTML = `<b>${servers.toLocaleString("en-US")}</b> Energy Servers, or ${time} of Bloom’s planned factory output.`;
+      cells.forEach((c, i) => c.classList.toggle("on", i < mw / 10));
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
   ooms(root) {
     const r = $("#oomRange", root);
     if (!r) return;
@@ -1865,6 +2355,7 @@ function openMemo(id) {
   memo.innerHTML = memoHTML(t);
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
+  if (calm || motionPaused) $$("svg", memo).forEach(s => s.pauseAnimations && s.pauseAnimations());
   document.documentElement.style.overflow = "hidden";
   if (wafer) wafer.hold(true);
   const slides = $("#slides"), viz = $(".viz", memo), prev = $("#memoPrev"), next = $("#memoNext"), count = $("#memoCount"), prog = $$(".memo-prog i", memo);
@@ -2427,6 +2918,7 @@ function setMotion(paused, save) {
   $$("[data-motion]").forEach(b => (b.textContent = paused ? "Play motion" : "Pause motion"));
   if (save) { try { localStorage.setItem("motion", paused ? "paused" : "on"); } catch (e) {} }
   if (wafer) wafer.sync();
+  $$("svg", memo).forEach(s => s.pauseAnimations && (paused || calm ? s.pauseAnimations() : s.unpauseAnimations()));
   if (buildLine.wake) buildLine.wake();
 }
 renderHome();
