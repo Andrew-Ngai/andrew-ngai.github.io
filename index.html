@@ -541,6 +541,35 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .nc-bill b{font-family:var(--display);font-weight:800;font-size:18px;color:var(--paper);text-align:right;font-variant-numeric:tabular-nums}
 .nc-save{font-family:var(--label);font-size:15px;color:var(--dim);margin-top:2px}
 .nc-save b{color:var(--beat)}
+.sp-line{stroke-dasharray:100;stroke-dashoffset:0}
+.viz[data-step="1"] .sp-line{animation:sp-draw 2.6s var(--ease) both}
+.viz[data-step="1"] .sp-area{animation:sp-fade .8s ease 1.8s both}
+.viz[data-step="1"] .sp-early{animation:sp-fade .5s ease .5s both}
+.viz[data-step="1"] .sp-late{animation:sp-fade .6s ease 2.2s both}
+.sp-stamp{transform-box:fill-box;transform-origin:center}
+.viz[data-step="1"] .sp-stamp{animation:sp-stamp .45s cubic-bezier(.2,1.6,.4,1) 1.2s both}
+.sp-ping{transform-box:fill-box;transform-origin:center;animation:sp-ping 2.2s ease-out infinite}
+@keyframes sp-draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes sp-fade{from{opacity:0}to{opacity:1}}
+@keyframes sp-stamp{from{opacity:0;transform:scale(1.9)}to{opacity:1;transform:scale(1)}}
+@keyframes sp-ping{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(2.8)}}
+html.paused .sp-line,html.paused .sp-area,html.paused .sp-early,html.paused .sp-late,html.paused .sp-stamp{animation:none!important}
+.sp-screen{transform-box:view-box;transform-origin:270px 162px;transition:transform 1s var(--ease) .35s,opacity 1s ease .35s}
+.viz[data-step="2"] .sp-screen{transform:translate(22px,10px) rotate(3deg);opacity:.32}
+.spcalc{display:grid;gap:9px;align-content:center;min-height:0}
+.sp-k{color:var(--coral)}
+.spcalc .oc-l b{color:var(--coral)}
+.sp-range{accent-color:var(--coral)}
+.sp-seats{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.sp-seats i{display:block;aspect-ratio:1.5/1;border-radius:2px;background:var(--violet);opacity:.8;transition:background .3s,opacity .3s}
+.sp-seats i.a{background:var(--coral);opacity:1}
+.sp-leg{font-family:var(--label);font-size:14px;color:var(--dim);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.sp-leg span{display:inline-block;width:12px;height:8px;border-radius:2px;background:var(--violet)}
+.sp-leg span.a{background:var(--coral);margin-left:10px}
+#spRead b{color:var(--amber)}
+#spRead b.c{color:var(--violet)}
+.cap-s{display:none}
+@media (max-width:860px){.spcalc{gap:5px}.spcalc .oc-l{font-size:13px}.sp-leg,#spRead{display:none}.sp-seats{gap:2px}.sp-seats i{aspect-ratio:3.2/1}.cap-l{display:none}.cap-s{display:inline}}
 .nc-donut{transform-box:view-box;transform-origin:140px 150px;transition:transform 1.1s var(--ease),opacity .6s}
 .viz[data-step="1"] .f3 .nc-donut,.viz[data-step="2"] .f3 .nc-donut{transform:rotate(-90deg);opacity:0}
 .nc-bill .sm{display:none}.nc-bill .sm em{font-style:normal;font-weight:500;color:var(--dim);font-size:12px;margin-left:4px}
@@ -1190,7 +1219,18 @@ const SRC = {
   cpulse: "https://openai.com/index/introducing-chatgpt-pulse/",
   ap2: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
   axios: "https://www.axios.com/2025/09/29/openai-shopping-chatgpt",
-  hypo: "https://www.hypotenuse.ai/blog/chatgpts-instant-checkout-the-next-phase-of-agentic-commerce"
+  hypo: "https://www.hypotenuse.ai/blog/chatgpts-instant-checkout-the-next-phase-of-agentic-commerce",
+  saasNadella: "https://cloudwars.com/ai/apps-apocalypse-bill-mcdermott-joins-satya-nadella-in-saying-ai-agents-will-crush-applications/",
+  saasSell: "https://finance.yahoo.com/news/anthropics-ai-tools-deepen-selloff-054551832.html",
+  saasHigh: "https://www.thestar.com.my/tech/tech-news/2026/10/06/us-software-stocks-scale-fresh-2026-highs-as-ai-disruption-worries-fade",
+  klarna: "https://techcrunch.com/2025/03/04/klarna-ceo-doubts-that-other-companies-will-replace-salesforce-with-ai",
+  claudeforce: "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/",
+  crmQ2: "https://www.thestar.com.my/tech/tech-news/2026/08/27/salesforce-raises-annual-revenue-forecasts-on-ai-product-momentum",
+  crmStake: "https://www.nasdaq.com/articles/salesforce-stock-just-soared-thank-anthropic",
+  crmCall: "https://www.fool.com/earnings/call-transcripts/2026/08/31/salesforce-crm-q2-2027-earnings-call-transcript/",
+  nowQ2: "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
+  intercom: "https://www.intercom.com/pricing",
+  gartner26: "https://www.gartner.com/en/newsroom/press-releases/2026-04-22-gartner-forecasts-worldwide-it-spending-to-grow-13-point-5-percent-in-2026-totaling-6-point-31-trillion-dollars"
 };
 const BINS = {
   agree:    { label: "Agree",     css: "var(--beat)",   hex: "#4fd2ff" },
@@ -1326,6 +1366,25 @@ const THESES = [
     wrong: "Someone builds a single 5 GW+ training campus and its models clearly beat fleet-trained rivals.",
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["OpenAI (Sept 2026)", SRC.openai]],
     viz: "fleet", pip: { pose: "swim", acc: "captain", name: "Captain" }
+  },
+  {
+    id: "saas", die: [2, -2], stance: "push",
+    title: "AI eats the seat, not the software.",
+    short: "The seat, not the software",
+    hook: "The SaaSpocalypse priced software like a screen. It’s really a record and a rulebook, and agents need both.",
+    ref: { label: "Satya Nadella on the BG2 podcast (December 2024): business apps are “probably where they’ll all collapse… in the agent era”", href: SRC.saasNadella },
+    signal: `<blockquote class="pull">…business applications… that’s probably where they’ll all collapse, right, in the agent era.</blockquote>
+      <p>Satya Nadella said that in December 2024. In late January 2026, Anthropic released plug-ins that let its Claude Cowork agent do legal, sales and data work, and a sell-off in software stocks deepened. On February 3, Thomson Reuters fell as much as 18% in its worst day on record, and RELX had its biggest drop since 1988. By April, the S&amp;P 500 software and services index was down more than 26% from late January. Wall Street called it the SaaSpocalypse.</p>
+      <p>On October 6, the same index hit its highest level since November 2025.</p>`,
+    takes: [
+      ["The screen collapses. The record doesn’t.", "Nadella is half right. Agents don’t need menus and forms, so software that was mostly a screen gets squeezed. But an agent still has to read and write the record: who the customer is, what was promised, who can approve a discount. Klarna, the poster child for ripping out Salesforce, moved its data into its own in-house system, and its CEO said, “we did not replace SaaS with an LLM.”"],
+      ["Agents need a rulebook, and SaaS holds it.", "A model guesses. A company’s books can’t. On August 26, Salesforce and Anthropic, whose plug-ins had deepened the sell-off, announced Claudeforce: Claude works on Salesforce data, and its actions are routed back through Salesforce “to help ensure business rules are always enforced.” That quarter, Salesforce’s filing showed about $2.7 billion of unrealized gains on its Anthropic stake. The software company owns a piece of the AI lab."],
+      ["The meter moves from seats to work.", "The real risk is that one agent does the work of ten people who each had a license. So vendors are charging for the work. Intercom charges from $0.99 per outcome for its Fin agent. Salesforce sells Agentforce partly by the action, and its Agentforce revenue run rate passed $1.5 billion, up more than 240%. Marc Benioff told investors, “Our seats were supposed to decline,” then said its sales, service and Slack products all grew instead. ServiceNow’s AI annual contract value crossed $1 billion, and Gartner expects software spending to grow about 15% this year. A seat is priced against the IT budget. Finished work is priced against the labor budget, which is far bigger."]
+    ],
+    bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents (CrowdStrike, Fortinet and Palo Alto Networks have all more than doubled this year), and the metering and billing that outcome pricing needs.",
+    wrong: "By 2028, big companies are moving their core records, like CRM, ERP and HR, off SaaS and onto in-house systems built with AI, the way Klarna did, and revenue from existing customers at the big system-of-record vendors starts shrinking.",
+    receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Intercom pricing (Oct 2026)", SRC.intercom], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
+    viz: "saas", pip: { pose: "wave", acc: "seat", name: "Record keeper" }
   },
   {
     id: "neocloud", die: [-4, 3], stance: "build",
@@ -1539,6 +1598,9 @@ function pip({ pose = "idle", acc = null, label = "" } = {}) {
     const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
     accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M62 2 C56 -1 54 -6 55 -9 C59 -8 62 -5 62 2 Z" fill="#2fb87a"/><g transform="translate(69 -14)">${petals}<circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="pip-lamp" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>`;
     accExtra = [[100, 44, 0], [104, 28, .6], [-8, 40, 1.2]].map(([x, y, d]) => `<text class="pip-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="10" font-weight="800" fill="#4fd2ff">⚡</text>`).join("");
+  } else if (acc === "seat") {
+    accIn = `<g transform="translate(91 67) rotate(8)"><path d="M-12 -14 V12 A12 4.2 0 0 0 12 12 V-14 Z" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-12 -5 A12 4.2 0 0 0 12 -5 M-12 4 A12 4.2 0 0 0 12 4" stroke="#ffb23f" stroke-width="1.6" fill="none"/><ellipse cy="-14" rx="12" ry="4.2" fill="#ffd98a" stroke="#d98a12" stroke-width=".8"/><circle class="pip-led" cx="-6" cy="0" r="1.3" fill="#4fd2ff"/><circle class="pip-led" style="animation-delay:.5s" cx="-6" cy="8.6" r="1.3" fill="#4fd2ff"/><g transform="translate(9 12)"><circle r="5.6" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-2.6 0 L-.6 2 L2.8 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>`;
+    accExtra = `<g transform="translate(-8 70)"><mask id="${k}m" maskUnits="userSpaceOnUse" x="-20" y="-34" width="40" height="52"><rect x="-20" y="-34" width="40" height="52" fill="#fff"/><circle cx="8.5" cy="-27" r="4.4" fill="#000"/><circle cx="10.5" cy="-20.5" r="3.8" fill="#000"/><circle cx="3.6" cy="-29.5" r="3.4" fill="#000"/></mask><g mask="url(#${k}m)"><rect x="-8" y="-30" width="16" height="18" rx="4" fill="#ff6b80"/><rect x="-1.4" y="-12" width="2.8" height="5" fill="#c94a5e"/><rect x="-11" y="-7.5" width="22" height="6" rx="3" fill="#ff8a9a"/></g><rect x="-1.3" y="-1.5" width="2.6" height="9" fill="#cfc6f5"/><path d="M-9 10 L0 7.5 L9 10" stroke="#cfc6f5" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle cx="9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle class="pip-bubble" cx="14" cy="-30" r="1.3" fill="#ff8a9a"/><circle class="pip-bubble" style="animation-delay:.8s" cx="17" cy="-24" r="1" fill="#ff8a9a"/></g>`;
   } else if (acc === "helmet") {
     accDefs = `<radialGradient id="${k}g" cx="50%" cy="45%" r="55%"><stop offset=".72" stop-color="#bfe9ff" stop-opacity="0"/><stop offset=".95" stop-color="#bfe9ff" stop-opacity=".26"/><stop offset="1" stop-color="#e8f8ff" stop-opacity=".5"/></radialGradient>`;
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="pip-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
@@ -1891,6 +1953,58 @@ const VIZ = {
       <div class="frame f3">${F3}<p class="cap">Firm commitments only, approximate, from Motley Fool’s read of Nebius filings (Oct 2026).</p></div>
     </div>`;
   },
+  saas() {
+    const X = m => 40 + m * 39, Y = v => 250 - (v - 70) * 4.5, P = (m, v) => `${X(m).toFixed(1)} ${Y(v).toFixed(1)}`;
+    const PTS = [[0, 100], [.4, 101], [.85, 102], [1.1, 92], [1.5, 88], [2, 84], [2.5, 86], [3, 79], [3.4, 75.4], [4, 80], [4.6, 84], [5.05, 82], [5.6, 85], [6, 86], [6.8, 92], [7.85, 97], [8.5, 100], [9, 103], [9.2, 105]];
+    const d = PTS.map(([m, v], i) => `${i ? "L" : "M"}${P(m, v)}`).join(" ");
+    const months = "JFMAMJJASO".split("").map((c, i) => `<text x="${(X(i) + 19.5).toFixed(1)}" y="276" text-anchor="middle" font-size="12">${c}</text>`).join("");
+    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="Schematic of the S&amp;P 500 software and services index in 2026. It fell after Anthropic’s Cowork plug-ins in early February, bottomed in April more than 26% below its late-January level, recovered after Salesforce and Anthropic launched Claudeforce in August, and on October 6 hit its highest level since November 2025.">
+        <defs><linearGradient id="spLine" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="400" y2="0"><stop offset=".55" stop-color="#ff6b80"/><stop offset=".85" stop-color="#4fd2ff"/></linearGradient>
+        <linearGradient id="spFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b80" stop-opacity=".22"/><stop offset="1" stop-color="#ff6b80" stop-opacity="0"/></linearGradient></defs>
+        <path class="sp-area" d="${d} L${X(9.2).toFixed(1)} 256 L40 256 Z" fill="url(#spFill)"/>
+        <line class="ax" x1="40" y1="256" x2="430" y2="256"/>${months}
+        <path class="sp-line" d="${d}" pathLength="100" fill="none" stroke="url(#spLine)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <g class="sp-early"><path d="M${X(1.1).toFixed(1)} 62 V${(Y(92) - 8).toFixed(1)}" stroke="var(--faint)" stroke-dasharray="3 3"/><circle cx="${X(1.1).toFixed(1)}" cy="${Y(92).toFixed(1)}" r="5" fill="#ff6b80"/>
+          <text x="78" y="40" class="t-strong" font-size="13">Feb 3: Cowork plug-ins</text><text x="78" y="56" font-size="12">Thomson Reuters’ worst day</text>
+          <circle cx="${X(3.4).toFixed(1)}" cy="${Y(75.4).toFixed(1)}" r="5" fill="#ff6b80"/><text x="${X(3.4).toFixed(1)}" y="246" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--coral)">April low: −26%+</text></g>
+        <g transform="translate(205 100) rotate(-8)"><g class="sp-stamp"><rect x="-82" y="-17" width="164" height="34" rx="4" fill="rgba(15,12,34,.6)" stroke="#ff6b80" stroke-width="2.4"/><text y="7" text-anchor="middle" font-size="20" font-weight="900" textLength="146" lengthAdjust="spacingAndGlyphs" style="fill:#ff6b80">SAASPOCALYPSE</text></g></g>
+        <g class="sp-late"><path d="M${X(7.85).toFixed(1)} ${(Y(97) + 8).toFixed(1)} V158" stroke="var(--faint)" stroke-dasharray="3 3"/><circle cx="${X(7.85).toFixed(1)}" cy="${Y(97).toFixed(1)}" r="5" fill="#4fd2ff"/>
+          <text x="362" y="174" text-anchor="middle" class="t-strong" font-size="13">Aug 26: Claudeforce</text><text x="362" y="190" text-anchor="middle" font-size="12">Anthropic + Salesforce</text>
+          <circle class="sp-ping" cx="${X(9.2).toFixed(1)}" cy="${Y(105).toFixed(1)}" r="6" fill="none" stroke="#4fd2ff" stroke-width="2"/><circle cx="${X(9.2).toFixed(1)}" cy="${Y(105).toFixed(1)}" r="6" fill="#4fd2ff"/>
+          <text x="440" y="48" text-anchor="end" class="t-strong" font-size="13" style="fill:var(--beat)">Oct 6: highest since Nov 2025</text><text x="440" y="64" text-anchor="end" font-size="12">up 5% on the year</text></g>
+      </svg>`;
+    const slab = (y, h, c, title, sub, tag, tc, extra = "") => `<rect x="100" y="${y}" width="340" height="${h}" rx="6" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5" ${extra}/><text x="116" y="${y + (sub ? 24 : 20)}" class="t-strong" font-size="15">${title}</text>${sub ? `<text x="116" y="${y + 42}" font-size="12">${sub}</text>` : ""}${tag ? `<text x="428" y="${y + (sub ? 24 : 20)}" text-anchor="end" font-size="13" font-weight="800" style="fill:${tc}">${tag}</text>` : ""}`;
+    const dn = "M100 96 H52 V266 H100", upP = "M100 278 H68 V108 H100";
+    const dots = (id, n, dur, fill) => Array.from({ length: n }, (_, i) => `<circle r="3.6" fill="${fill}"><animateMotion dur="${dur}s" begin="-${(i * dur / n).toFixed(2)}s" repeatCount="indefinite"><mpath href="#${id}"/></animateMotion></circle>`).join("");
+    const F2 = `<svg viewBox="0 0 460 312" role="img" aria-label="A stack of layers. The model, the brain, is paid by the token. The agent decides and acts. The screen layer of menus, forms and dashboards falls away, because agents skip it. Agents go straight to the system of record through its rules: permissions, approvals and audit. The system of record is paid by the outcome.">
+        ${slab(8, 52, "var(--violet)", "MODEL: the brain", "Anthropic, OpenAI, Google", "$ per token", "var(--violet)")}
+        ${slab(72, 52, "var(--beat)", "AGENT: decides and acts", "calls tools instead of clicking", "", "")}
+        <g class="sp-screen">${slab(136, 52, "var(--coral)", "SCREEN: menus and forms", "built for people clicking", "", "", `stroke-dasharray="6 5" opacity=".9"`)}<text x="428" y="178" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--coral)">✕ collapses</text></g>
+        ${slab(200, 30, "var(--amber)", "RULES: permissions, approvals, audit", "", "", "")}
+        <rect x="100" y="240" width="340" height="62" rx="6" fill="rgba(255,178,63,.1)" stroke="var(--amber)" stroke-width="1.5"/>
+        <text x="116" y="266" class="t-strong" font-size="16">SYSTEM OF RECORD</text><text x="116" y="286" font-size="12">customers, contracts, who can approve</text>
+        <text x="428" y="266" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--amber)">$ per outcome</text>
+        <path id="spDn" d="${dn}" fill="none" stroke="var(--beat)" stroke-opacity=".45" stroke-dasharray="4 4"/>
+        <path id="spUp" d="${upP}" fill="none" stroke="var(--amber)" stroke-opacity=".45" stroke-dasharray="4 4"/>
+        ${dots("spDn", 3, 2.4, "#4fd2ff")}${dots("spUp", 3, 2.4, "#ffb23f")}
+        <g transform="translate(60 215)"><path d="M-5 -2 V-6 A5 5 0 0 1 5 -6 V-2" fill="none" stroke="var(--amber)" stroke-width="2"/><rect x="-8" y="-3" width="16" height="12" rx="2.5" fill="var(--amber)"/><path d="M-3 3 L-1 5 L3.5 .5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <text x="30" y="185" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 30 185)" style="fill:var(--beat);letter-spacing:.12em">API · MCP</text>
+      </svg>`;
+    const F3 = `<div class="spcalc">
+        <p class="nc-k sp-k">One support team, one month</p>
+        <label class="oc-l" for="spRange">Agents resolve <b id="spPct">40%</b> of 100,000 conversations</label>
+        <input class="oc-range sp-range" type="range" id="spRange" min="0" max="80" step="5" value="40">
+        <div class="sp-seats" id="spSeats" aria-hidden="true">${"<i></i>".repeat(100)}</div>
+        <p class="sp-leg" aria-hidden="true"><span class="p"></span>a person’s seat <span class="a"></span>work done by agents</p>
+        <div class="nc-bills" id="spBills"></div>
+        <p class="nc-save" id="spRead"></p>
+      </div>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Schematic line, anchored to Reuters: down 26%+ from late January to the April low, up 5% on the year by October 6.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Nadella’s half: agents skip the screen. My half: they hit the record and its rules far more often than people ever did.</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: 100 people, 1,000 conversations each, and every conversation an agent resolves billed as one outcome. Intercom list prices: $85 a seat a month (Advanced, billed annually), from $0.99 per Fin outcome.</span><span class="cap-s">Illustrative. Intercom list prices: $85 a seat a month, from $0.99 per outcome.</span></p></div>
+    </div>`;
+  },
   weights() {
     const yr = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
     const bars = yr.map((y, i) => { const h = 6 + Math.pow(2.4, i) / Math.pow(2.4, 7) * 128; return `<rect class="g-bar grow v" x="${24 + i * 22}" y="${190 - h}" width="15" height="${h}" fill="var(--amber)" opacity="${(.35 + i * .09).toFixed(2)}"/>`; }).join("");
@@ -2143,6 +2257,23 @@ const VIZ_INIT = {
       const max = bills[0][1];
       $("#ncBills", root).innerHTML = bills.map(([l, v, c, s, rate]) => `<div class="nc-bill" style="--c:${c};--w:${(v / max * 100).toFixed(1)}%"><span class="l"><span class="lg">${l}</span><span class="sm">${s} <em>$${rate.toFixed(2)}/hr</em></span></span><span class="b"><i></i></span><b>${fmt(v)}</b></div>`).join("") +
         `<p class="nc-save">Nebius saves about <b>${fmt(bills[0][1] - bills[1][1])}</b> a month against AWS list price.</p>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  saas(root) {
+    const r = $("#spRange", root);
+    if (!r) return;
+    const cells = $$("#spSeats i", root);
+    const SEAT = 85, OUTCOME = .99, CONVOS = 100000, MAX = 81000;
+    const fmt = v => `$${(v / 1000).toFixed(1)}K`;
+    const upd = () => {
+      const pct = +r.value, seats = Math.round(100 * (1 - pct / 100));
+      const seatRev = seats * SEAT, both = seatRev + CONVOS * pct / 100 * OUTCOME;
+      $("#spPct", root).textContent = `${pct}%`;
+      cells.forEach((c, i) => c.classList.toggle("a", i >= seats));
+      $("#spBills", root).innerHTML = [["Seats only", seatRev, "var(--violet)"], ["Seats + outcomes", both, "var(--amber)"]].map(([l, v, c]) => `<div class="nc-bill" style="--c:${c};--w:${Math.max(1, v / MAX * 100).toFixed(1)}%"><span class="l">${l}</span><span class="b"><i></i></span><b>${fmt(v)}</b></div>`).join("");
+      $("#spRead", root).innerHTML = pct === 0 ? "Drag the slider to hand conversations to agents." : `Per-seat revenue falls ${pct}% to <b class="c">${fmt(seatRev)}</b>. Charging per outcome takes it to <b>${fmt(both)}</b>.`;
     };
     r.addEventListener("input", upd);
     upd();
@@ -2684,7 +2815,7 @@ function onScroll() {
     el.style.transform = `translate3d(0,${(-c * parseFloat(el.dataset.depth)).toFixed(1)}px,0)`;
   }
 }
-const LIT = Array.from({ length: 12 }, (_, i) => THESES[i] || null);
+const LIT = Array.from({ length: 16 }, (_, i) => THESES[i] || null);
 function waferLayout(w, h) {
   const a = w / h;
   let R, center;
@@ -2699,7 +2830,7 @@ function makeGL(cv, st, force) {
   const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
   const fs = `precision highp float;
 uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uScroll;uniform float uExpose;uniform vec2 uCenter;uniform float uDist;
-uniform vec2 uDies[12];uniform vec3 uBins[12];
+uniform vec2 uDies[16];uniform vec3 uBins[16];
 mat3 rx(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}
 mat3 ry(float a){float c=cos(a),s=sin(a);return mat3(c,0.,-s,0.,1.,0.,s,0.,c);}
 mat3 rz(float a){float c=cos(a),s=sin(a);return mat3(c,s,0.,-s,c,0.,0.,0.,1.);}
@@ -2757,7 +2888,7 @@ void main(){
       float exposed=smoothstep(uExpose,uExpose-.06,sx);
       vec3 surf=mix(si,dieCol,full*inDie*exposed);
       surf+=vec3(1.,.7,.25)*exp(-pow((sx-uExpose)*55.,2.))*step(uExpose,1.05)*.9;
-      for(int i=0;i<12;i++){
+      for(int i=0;i<16;i++){
         float m=step(abs(id.x-uDies[i].x)+abs(id.y-uDies[i].y),.5)*inDie*full;
         surf=mix(surf,uBins[i]*(.78+.22*sin(uTime*2.2+float(i)*1.7))+E*.12,m*.9*exposed);
       }
