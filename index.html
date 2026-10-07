@@ -91,7 +91,8 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .hero{position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:128px 0 0}
 #wafer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;will-change:transform}
 .hero.no-gl::before{content:"";position:absolute;z-index:-1;right:-6vw;top:12%;width:min(70vw,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),transparent 40%),conic-gradient(from 200deg,#4fd2ff,#a08bff,#ff6b80,#ffb23f,#4fd2ff);opacity:.5;transform:perspective(900px) rotateX(55deg) rotateZ(-20deg)}
-.hero-copy{display:grid;gap:26px;padding-bottom:44px}
+.hero-copy{width:100%;display:grid;gap:26px;padding-bottom:44px}
+.hero .lede,.hero .who{text-shadow:0 1px 14px rgba(15,12,34,.95),0 0 2px rgba(15,12,34,.8)}
 @media (max-width:700px){.hero{padding-top:min(86vw,340px);min-height:0}.hero-copy{gap:20px;padding-bottom:36px}}
 .hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,11vw,132px);line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 4px 40px rgba(15,12,34,.55)}
 .hero .who{font-family:var(--label);font-weight:600;font-size:20px;color:var(--dim);letter-spacing:.02em}
@@ -163,7 +164,7 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .tlist li{border-bottom:1px solid var(--rule)}
 .t-item{display:grid;grid-template-columns:96px minmax(0,1fr);gap:6px 20px;padding:24px 0 26px;text-decoration:none;position:relative}
 .t-item .t-die{font-family:var(--label);font-weight:600;font-size:16px;color:var(--faint);padding-top:8px;font-variant-numeric:tabular-nums}
-.t-item .t-title{font-family:var(--display);font-weight:700;font-size:clamp(30px,3vw,42px);line-height:.98;transition:color .2s}
+.t-item .t-title{font-family:var(--display);font-weight:700;font-size:clamp(30px,3vw,42px);line-height:1.02;transition:color .2s;text-wrap:balance}
 .t-item .t-hook{grid-column:2;color:var(--dim);font-size:18px;max-width:34rem}
 .t-item .bin{grid-column:2;margin-top:6px}
 a.t-item:hover .t-title,a.t-item.on .t-title{color:var(--bin)}
@@ -402,14 +403,17 @@ html.paused .die-pip.land{animation:none}
 .slides::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;overflow-y:auto;padding:clamp(28px,6vh,72px) var(--gutter) 40px;display:flex;flex-direction:column;gap:24px}
 .slide-k{font-family:var(--label);font-weight:700;font-size:17px;color:var(--bin);letter-spacing:.03em}
-.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,4.6vw,68px);line-height:.92;max-width:14ch}
+.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.2vw,62px);line-height:1;max-width:22ch;text-wrap:balance}
+.sen{display:inline-block;text-wrap:balance}
 .slide p{max-width:36rem}
 .ref{display:grid;gap:2px;max-width:38rem;padding:14px 18px 16px;background:var(--ink-2);border:1px solid var(--rule);position:relative}
 .ref::before{content:"";position:absolute;left:-1px;top:-1px;width:14px;height:14px;border-left:2px solid var(--bin);border-top:2px solid var(--bin)}
 .ref .ref-k{font-family:var(--label);font-weight:600;font-size:15px;color:var(--dim)}
 .ref a,.ref span.ref-src{font-family:var(--label);font-weight:700;font-size:20px;line-height:1.25;text-decoration:none;color:var(--paper)}
 .ref a:hover{text-decoration:underline;text-decoration-color:var(--bin)}
-blockquote.pull{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(34px,4vw,58px);line-height:.98;max-width:17ch;color:var(--paper)}
+blockquote.pull{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,50px);line-height:1.02;max-width:19ch;color:var(--paper);text-wrap:balance}
+blockquote.pull.q-m{font-size:clamp(26px,2.8vw,40px);max-width:23ch}
+blockquote.pull.q-l{font-size:clamp(23px,2.3vw,34px);line-height:1.06;max-width:28ch}
 blockquote.pull::before{content:"\201C";color:var(--bin)}
 blockquote.pull::after{content:"\201D";color:var(--bin)}
 .takes{list-style:none;margin:0;padding:0;display:grid;gap:22px;counter-reset:t;max-width:38rem}
@@ -446,7 +450,7 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .viz .t-strong{fill:var(--paper);font-weight:700}
 .viz .ax{stroke:var(--rule);stroke-width:1}
 .viz .gridl{stroke:var(--grid);stroke-width:1}
-.claim{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.2vw,46px);line-height:1;max-width:19ch;color:var(--paper)}
+.claim{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.8vw,40px);line-height:1.04;max-width:22ch;color:var(--paper);text-wrap:balance}
 .heat-rise{animation:heat-rise 2.2s ease-in infinite}
 @keyframes heat-rise{0%{opacity:.95;transform:translateY(10px)}100%{opacity:0;transform:translateY(-14px)}}
 .heat-path{animation:heat-path 1s linear infinite}
@@ -568,6 +572,36 @@ html.paused .sp-line,html.paused .sp-area,html.paused .sp-early,html.paused .sp-
 .sp-leg span.a{background:var(--coral);margin-left:10px}
 #spRead b{color:var(--amber)}
 #spRead b.c{color:var(--violet)}
+.gl-draw{stroke-dasharray:100;stroke-dashoffset:0}
+.gl-burry{stroke-dasharray:none}
+.viz[data-step="1"] .gl-draw{animation:sp-draw 1.8s var(--ease) both}
+.viz[data-step="1"] .gl-burry{animation:sp-fade .8s ease .2s both}
+.viz[data-step="1"] .gl-mkt{animation:sp-fade .6s ease 1.6s both}
+html.paused .gl-draw,html.paused .gl-mkt,html.paused .gl-burry{animation:none!important}
+.gm{display:grid;align-content:center;min-height:0}
+.gm-board{position:relative;padding:18px 20px 14px 58px;background:linear-gradient(160deg,#1b1638,#120e27);border:1px solid var(--rule);border-radius:6px;box-shadow:inset 0 0 0 6px rgba(255,255,255,.02),0 10px 30px rgba(0,0,0,.35)}
+.gm-h{font-family:var(--display);font-weight:900;font-size:24px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin:0 0 12px}
+.gm-list{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-family:var(--label)}
+.gm-list li{display:grid;grid-template-columns:auto minmax(12px,1fr) auto;gap:8px;align-items:end;min-height:50px;padding:6px 0;border-bottom:1px dashed rgba(170,162,207,.18)}
+.gm-list .it{color:var(--paper);font-weight:700;font-size:17px;line-height:1.15}
+.gm-list .it small{display:block;font-weight:500;font-size:13px;color:var(--dim);margin-top:2px}
+.gm-list .dots{border-bottom:2px dotted var(--faint);margin-bottom:6px}
+.gm-list .pr{font-family:var(--display);font-weight:900;font-size:22px;color:var(--beat);font-variant-numeric:tabular-nums}
+.gm-list li:nth-child(-n+2) .pr{color:var(--amber);font-size:18px;letter-spacing:.06em}
+.gm-foot{font-family:var(--label);font-size:12px;color:var(--faint);margin:10px 0 0}
+.gm-chip{position:absolute;left:14px;top:60px;width:32px;height:32px;display:grid;place-items:center;border-radius:5px;background:var(--ink-3);border:1.5px solid var(--violet);box-shadow:0 0 14px rgba(160,139,255,.5)}
+.gm-chip i{position:absolute;inset:-5px 6px;border-top:2px dashed var(--amber);border-bottom:2px dashed var(--amber);opacity:.8}
+.gm-chip b{font-family:var(--display);font-size:11px;font-weight:900;color:var(--paper);letter-spacing:.04em}
+.viz[data-step="2"] .gm-chip{animation:gm-walk 8s var(--ease) infinite}
+@keyframes gm-walk{0%,14%{transform:translateY(0)}24%,38%{transform:translateY(54px)}48%,62%{transform:translateY(108px)}72%,92%{transform:translateY(162px)}100%{transform:translateY(0)}}
+html.paused .gm-chip{animation:none!important}
+.gl-k{color:var(--coral)}
+.glcalc .oc-l b{color:var(--coral)}
+.gl-range{accent-color:var(--coral)}
+.glcalc{display:grid;gap:7px;align-content:center;min-height:0}
+.gl-chart{width:100%;height:auto;max-height:170px;overflow:visible}
+.gl-out b{font-size:22px}
+@media (max-width:860px){.gm-board{padding:8px 10px 6px 44px}.gm-h{font-size:15px;margin-bottom:4px}.gm-list{gap:0}.gm-list li{min-height:34px;padding:2px 0}.gm-list .it{font-size:13px}.gm-list .it small{font-size:11px}.gm-list .pr{font-size:16px}.gm-list li:nth-child(-n+2) .pr{font-size:13px}.gm-foot{display:none}.gm-chip{left:8px;top:34px;width:26px;height:26px}.gm-chip b{font-size:9px}@keyframes gm-walk{0%,14%{transform:translateY(0)}24%,38%{transform:translateY(34px)}48%,62%{transform:translateY(68px)}72%,92%{transform:translateY(102px)}100%{transform:translateY(0)}}.glcalc{gap:3px}.glcalc .oc-l{font-size:13px}.gl-chart{max-height:110px}.gl-out b{font-size:16px}}
 .sx-k{color:var(--violet)}
 .gng{display:grid;gap:10px;align-content:center;min-height:0}
 .gng-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-family:var(--label)}
@@ -595,7 +629,7 @@ html.paused .gng-list li{animation:none!important}
 .sx-out{font-family:var(--label);font-size:16px;color:var(--dim);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
 .sx-out b{font-family:var(--display);font-weight:900;font-size:26px;color:var(--paper);font-variant-numeric:tabular-nums}
 .sx-out b.up{color:var(--beat)}.sx-out b.dn{color:var(--coral)}
-.pip-flame{transform-box:fill-box;transform-origin:50% 0;animation:pip-flame .24s ease-in-out infinite alternate}
+.pip .pip-flame{transform-box:fill-box;transform-origin:50% 0;animation:pip-flame .24s ease-in-out infinite alternate}
 @keyframes pip-flame{from{transform:scaleY(.72)}to{transform:scaleY(1.08)}}
 @media (max-width:860px){.gng{gap:4px}.gng-list{gap:3px}.gng-list li{padding:2px 8px;grid-template-columns:minmax(0,1fr) 46px;border-width:1px 1px 1px 3px}.gng-list .ev{display:none}.gng-list .sys{font-size:12.5px;line-height:1.25}.gng-list .st{font-size:11.5px;padding:0}.sx-shelf{display:none}.sxcalc{gap:4px}.sxcalc .oc-l{font-size:13px}.sx-out{font-size:13px}.sx-out b{font-size:20px}.sx-out span{display:none}}
 .cap-s{display:none}
@@ -896,6 +930,8 @@ html.paused .memo{animation:none}
 .motion-btn{background:none;border:0;padding:0;cursor:pointer;font-family:var(--label);font-size:16px;color:var(--dim);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
 .motion-btn:hover{color:var(--paper)}
 .pw-foot .motion-btn{font-family:var(--sans);font-size:14px;color:var(--lilac)}
+.slide p,.takes span,.bet,.wrong,.t-hook,.feat-t{text-wrap:pretty}
+@media (max-width:860px){.memo-meta .m-title{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:17px;line-height:1.08;text-wrap:balance}}
 
 </style>
 </head>
@@ -1275,7 +1311,17 @@ const SRC = {
   pgGillette: "https://www.sec.gov/Archives/edgar/data/41499/000095010305000139/jan2705_ex9901.htm",
   rklbQ2: "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000061/rklb-08102026ex991.htm",
   rklbIrdm: "https://www.manufacturingdive.com/news/rocket-lab-iridium-communications-space-spectrum-network-acquisition/824006/",
-  neutron: "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/"
+  neutron: "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/",
+  burry: "https://www.streetinsider.com/General+News/Michael+Burry+warns+of+%24176+billion+depreciation+understatement+by+tech+giants/25584209.html",
+  burry60s: "https://www.benzinga.com/markets/equities/26/10/62129119/michael-burry-just-pulled-a-1960s-market-bubble-into-nvidias-ai-debate-we-have-all-been-here-before",
+  depDj: "https://www.itiger.com/news/2589331119",
+  rubin: "https://blogs.nvidia.com/blog/vera-rubin/",
+  a100Huang: "https://www.thestreet.com/investing/stocks/jensen-huang-just-answered-michael-burrys-nvidia-bear-case-coreweave",
+  a100Val: "https://www.benzinga.com/markets/prediction-markets/26/09/61668402/nvidia-a100-chips-michael-burry-depreciation",
+  h100Spike: "https://www.silicondata.com/blog/h100-price-spike",
+  semiShort: "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+  nbDep: "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926094844/nbis-20260812xex99d1.htm",
+  dgxH100: "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html"
 };
 const BINS = {
   agree:    { label: "Agree",     css: "var(--beat)",   hex: "#4fd2ff" },
@@ -1411,6 +1457,25 @@ const THESES = [
     wrong: "Someone builds a single 5 GW+ training campus and its models clearly beat fleet-trained rivals.",
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["OpenAI (Sept 2026)", SRC.openai]],
     viz: "fleet", pip: { pose: "swim", acc: "captain", name: "Captain" }
+  },
+  {
+    id: "gpulife", die: [-7, -2], stance: "push",
+    title: "Old GPUs don’t die. They move down the menu.",
+    short: "Old GPUs move down the menu",
+    hook: "Burry is right that the frontier moves every year. The cash doesn’t stop when a GPU leaves it.",
+    ref: { label: "Michael Burry on X (November 2025): hyperscalers will understate depreciation by about $176 billion over 2026–2028", href: SRC.burry },
+    signal: `<blockquote class="pull">Understating depreciation by extending useful life of assets artificially boosts earnings…</blockquote>
+      <p>Michael Burry posted that in November 2025. His case: hyperscalers depreciate GPU servers over five to six years when Nvidia’s chips run on a two- to three-year product cycle, so they will understate 2026–2028 depreciation by about $176 billion. In early October, he compared Nvidia’s defense of long GPU lives to the 1960s computer-leasing bubble: “We have all been here before.”</p>
+      <p>Nvidia keeps making his point for him. It says Vera Rubin, ramping now, gets 10 times the throughput per megawatt of Blackwell. When power is the bottleneck, that sounds like a death sentence for every older chip.</p>`,
+    takes: [
+      ["A GPU has more than one life.", "When the next generation lands, the old one doesn’t go to a landfill. It moves down the menu: from training frontier models, to serving them, to cheaper work like fine-tuning and batch jobs, to a second owner. CoreWeave signed an A100 contract that runs through 2029, nine years after the chip launched, and Silicon Data values six-year-old A100s at about $5,000 each, roughly flat since late 2025."],
+      ["The market priced old GPUs, and the price went up.", "Silicon Data’s H100 rental index rose from $2.00 an hour in December 2025 to $2.82 today, and SemiAnalysis found some H100 contracts being renewed for four years, through 2028. In late 2025, H100 systems in their third year resold for about 45% of the price of a new one. Burry’s reply is that a chip can rent and still depreciate fast. True, but rent above running cost is what pays the capex back."],
+      ["Power is the real clock, and it runs slow.", "Burry’s sharpest point is opportunity cost: a megawatt of old chips could hold ten times the tokens. But Rubin needs liquid-cooled racks that most air-cooled H100 halls can’t take without major upgrades, and this spring, on-demand capacity for every GPU type sold out anyway. So old GPUs keep their power until the building turns over. Electricity for an H100, server and cooling included, runs roughly 15 to 20 cents an hour. The chip rents for $2.82."]
+    ],
+    bet: "Treat a GPU like an airplane, not a phone. Jets fly flagship routes, then regional ones, then cargo, then go to a second airline, and lessors price every stage. GPUs are getting the same ladder. The neoclouds worth owning sign contracts that pay back the chip before the next generation lands, then run it down the menu. Nebius depreciates its servers over five years (four until this year) and signed Microsoft for five, so the contract covers the whole book life. Back the plumbing of a GPU’s second and third lives: rental and residual-value indexes, compute futures, schedulers that send cheap work to old chips, refurbishing and resale, and lenders who underwrite GPUs on contracted cash instead of book value.",
+    wrong: "H100 rental prices fall below $1 an hour by 2028 while the newest chips are still sold out, or neoclouds start selling old GPUs for parts. Then the second life was a shortage, not a market.",
+    receipts: [["StreetInsider on Burry’s $176B estimate (Nov 2025)", SRC.burry], ["Benzinga on Burry’s 1960s comparison (Oct 2026)", SRC.burry60s], ["Dow Jones on GPU useful lives and resale (Dec 2025)", SRC.depDj], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["TheStreet on Huang and CoreWeave’s A100s (Sept 2026)", SRC.a100Huang], ["Benzinga on A100 values (Sept 2026)", SRC.a100Val], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Silicon Data on the H100 spike (Jan 2026)", SRC.h100Spike], ["SemiAnalysis, The Great GPU Shortage (Apr 2026)", SRC.semiShort], ["Nebius H1 2026 results on useful lives (Aug 2026)", SRC.nbDep], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["NVIDIA DGX H100 guide (power)", SRC.dgxH100]],
+    viz: "gpulife", pip: { pose: "idle", acc: "waiter", name: "Maître d’" }
   },
   {
     id: "saas", die: [2, -2], stance: "push",
@@ -1663,8 +1728,11 @@ function pip({ pose = "idle", acc = null, label = "" } = {}) {
     const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
     accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M62 2 C56 -1 54 -6 55 -9 C59 -8 62 -5 62 2 Z" fill="#2fb87a"/><g transform="translate(69 -14)">${petals}<circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="pip-lamp" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>`;
     accExtra = [[100, 44, 0], [104, 28, .6], [-8, 40, 1.2]].map(([x, y, d]) => `<text class="pip-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="10" font-weight="800" fill="#4fd2ff">⚡</text>`).join("");
+  } else if (acc === "waiter") {
+    accIn = `<g transform="translate(50 50)"><path d="M0 0 L-9 -5 V5 Z M0 0 L9 -5 V5 Z" fill="#211a32" stroke="#ff6b80" stroke-width=".8" stroke-linejoin="round"/><circle r="2.2" fill="#ff6b80"/></g>` +
+      `<g transform="translate(99 30)"><path d="M-1 4 L-4 26" stroke="#cfc6f5" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="0" cy="4" rx="19" ry="3.4" fill="#e9e4f7" stroke="#b8a6ff"/><g transform="translate(0 -4)"><rect x="-14" y="-6" width="28" height="11" rx="1.6" fill="#211a32" stroke="#9b83ff"/><circle class="pip-spin" cx="-6.5" cy="-.5" r="3.6" fill="#30234d" stroke="#4fd2ff" stroke-width=".9"/><circle class="pip-spin" cx="6.5" cy="-.5" r="3.6" fill="#30234d" stroke="#4fd2ff" stroke-width=".9"/><path d="M-11 5 V7 M-7 5 V7 M-3 5 V7 M1 5 V7 M5 5 V7" stroke="#ffc566" stroke-width="1.2"/></g><g transform="translate(14 -16) rotate(12)"><rect x="-8" y="-5" width="16" height="10" rx="1.5" fill="#ffb23f"/><text x="0" y="2.6" text-anchor="middle" font-size="6.5" font-weight="900" fill="#211a32">$/hr</text></g></g>`;
   } else if (acc === "jet") {
-    accUnder = `<rect x="-6" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/><rect x="93" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/><path class="pip-flame" d="M-4.5 74 Q.5 96 5.5 74 Z" fill="#ffb23f"/><path class="pip-flame" style="animation-delay:.12s" d="M94.5 74 Q99.5 96 104.5 74 Z" fill="#ffb23f"/><path class="pip-flame" d="M-2 74 Q.5 86 3 74 Z" fill="#fff4d6"/><path class="pip-flame" style="animation-delay:.12s" d="M97 74 Q99.5 86 102 74 Z" fill="#fff4d6"/>`;
+    accUnder = `<path class="pip-flame" d="M-4.5 70 Q.5 106 5.5 70 Z" fill="#ffb23f"/><path class="pip-flame" style="animation-delay:.12s" d="M94.5 70 Q99.5 106 104.5 70 Z" fill="#ffb23f"/><path class="pip-flame" d="M-2 70 Q.5 94 3 70 Z" fill="#fff4d6"/><path class="pip-flame" style="animation-delay:.12s" d="M97 70 Q99.5 94 102 70 Z" fill="#fff4d6"/><rect x="-6" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/><rect x="93" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/>`;
     accIn = `<g transform="translate(86 70) rotate(-12)"><rect x="-15" y="-10.5" width="30" height="21" rx="2" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.3"/><rect x="-12" y="-7.5" width="24" height="15" rx="1" fill="none" stroke="#ffd98a" stroke-width=".8"/><text x="0" y="1.6" text-anchor="middle" font-size="7" font-weight="900" fill="#211a32">SPCX</text><path d="M-6 5 H6" stroke="#cfc6f5" stroke-width="1"/><path d="M11 -15 L15 -21 L19 -15 M15 -21 V-11" stroke="#2fb87a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
     accBack = spark(-10, 4, .5, "#fff", 0) + spark(112, 24, .45, "#fff", .6) + spark(110, 84, .55, "#ffd98a", 1.1);
   } else if (acc === "seat") {
@@ -2069,20 +2137,61 @@ const VIZ = {
         <p class="nc-save" id="spRead"></p>
       </div>`;
     return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Schematic line, anchored to Reuters: down 26%+ from late January to the April low, up 5% on the year by October 6.</p></div>
+      <div class="frame f1">${F1}<p class="cap">Graph: the S&amp;P 500 software and services index in 2026, drawn as a schematic from Reuters figures. Down 26%+ from late January to the April low, up 5% on the year by October 6.</p></div>
       <div class="frame f2">${F2}<p class="cap">Nadella’s half: agents skip the screen. My half: they hit the record and its rules far more often than people ever did.</p></div>
       <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: 100 people, 1,000 conversations each, and every conversation an agent resolves billed as one outcome. Intercom list prices: $85 a seat a month (Advanced, billed annually), from $0.99 per Fin outcome.</span><span class="cap-s">Illustrative. Intercom list prices: $85 a seat a month, from $0.99 per outcome.</span></p></div>
     </div>`;
   },
+  gpulife() {
+    const X = a => 50 + a * 40, Y = v => 236 - v * 1.7, P = (a, v) => `${X(a)} ${Y(v).toFixed(1)}`;
+    const gens = Array.from({ length: 9 }, (_, i) => `<rect x="${X(i + 1) - 5}" y="34" width="10" height="10" rx="2" fill="var(--ink-3)" stroke="var(--violet)"/><path d="M${X(i + 1) - 2} 34 V31 M${X(i + 1) + 2} 34 V31 M${X(i + 1) - 2} 44 V47 M${X(i + 1) + 2} 44 V47" stroke="var(--violet)"/>`).join("");
+    const xt = [0, 3, 6, 9].map(a => `<line class="ax" x1="${X(a)}" y1="236" x2="${X(a)}" y2="241"/><text x="${X(a)}" y="256" text-anchor="middle" font-size="12">${a}</text>`).join("");
+    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="Share of a GPU's original value by age. The books write it down in a straight line over six years. Burry says two to three years. The market: an H100 system in its third year resold for about 45 percent of a new one in late 2025, and one A100 contract runs to age nine, through 2029. Nvidia releases a new flagship every year.">
+        <text x="50" y="22" font-size="12" font-weight="700" style="fill:var(--violet)">A new Nvidia flagship every year</text>${gens}
+        <line class="ax" x1="50" y1="236" x2="420" y2="236"/><line class="ax" x1="50" y1="66" x2="50" y2="236"/>
+        <text x="44" y="${Y(100) + 4}" text-anchor="end" font-size="11">100%</text><text x="44" y="${Y(50) + 4}" text-anchor="end" font-size="11">50%</text><text x="44" y="240" text-anchor="end" font-size="11">0</text>
+        ${xt}<text x="235" y="278" text-anchor="middle" font-size="12">Age of the GPU, years</text>
+        <path class="gl-draw gl-burry" d="M${P(0, 100)} L${P(2, 0)} L${P(3, 0)} Z" pathLength="100" fill="rgba(255,107,128,.16)" stroke="var(--coral)" stroke-width="2" stroke-linejoin="round"/>
+        <text x="56" y="196" font-size="12" font-weight="800" style="fill:var(--coral)">Burry:</text><text x="56" y="212" font-size="12" font-weight="800" style="fill:var(--coral)">2–3 years</text>
+        <path class="gl-draw" d="M${P(0, 100)} L${P(6, 0)}" pathLength="100" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-dasharray="7 5"/>
+        <text x="226" y="165" font-size="13" font-weight="800" style="fill:var(--amber)">Books: 6 years</text>
+        <g class="gl-mkt"><circle class="sp-ping" cx="${X(2.5)}" cy="${Y(45)}" r="7" fill="none" stroke="var(--beat)" stroke-width="2"/><circle cx="${X(2.5)}" cy="${Y(45)}" r="7" fill="var(--beat)"/>
+          <path d="M${X(2.5) + 4} ${Y(45) - 8} L168 118" stroke="var(--beat)" stroke-dasharray="3 3"/><text x="172" y="100" class="t-strong" font-size="13" style="fill:var(--beat)">H100 system, year 3:</text><text x="172" y="116" font-size="12">resold for ~45% of new</text>
+          <path d="M${X(6)} ${Y(14)} H${X(9)}" stroke="var(--beat)" stroke-width="3" stroke-linecap="round"/><path d="M${X(9) - 7} ${Y(14) - 5} L${X(9)} ${Y(14)} L${X(9) - 7} ${Y(14) + 5}" fill="none" stroke="var(--beat)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="${X(7.5)}" y="${Y(14) - 10}" text-anchor="middle" class="t-strong" font-size="12" style="fill:var(--beat)">A100: rented to age 9</text></g>
+      </svg>`;
+    const MENU = [["Frontier training", "Rubin, Blackwell", "MP"], ["Frontier serving", "Blackwell, H200", "MP"], ["Everyday inference, fine-tuning", "H100, age 3–4", "$2.82"], ["Batch jobs, research, second owners", "A100, age 6", "$1.29"]];
+    const F2 = `<div class="gm">
+        <div class="gm-board">
+          <p class="gm-h">Today’s compute menu</p>
+          <ol class="gm-list">${MENU.map(([it, ch, pr], i) => `<li style="--i:${i}"><span class="it">${it}<small>${ch}</small></span><span class="dots" aria-hidden="true"></span><span class="pr">${pr}</span></li>`).join("")}</ol>
+          <span class="gm-chip" aria-hidden="true"><i></i><b>GPU</b></span>
+          <p class="gm-foot">Per GPU-hour, Silicon Data indexes. MP = market price. One A100 contract runs through 2029.</p>
+        </div>
+      </div>`;
+    const F3 = `<div class="glcalc">
+        <p class="nc-k gl-k">One H100, six years</p>
+        <label class="oc-l" for="glRange">Its rental price changes <b id="glG">−25%</b> a year</label>
+        <div class="sx-rw"><input class="oc-range gl-range" type="range" id="glRange" min="-60" max="20" step="5" value="-25">
+          <div class="sx-ticks" aria-hidden="true"><span style="--p:${(10 / 80 * 100).toFixed(1)}%">Burry’s world</span><span class="end" style="--p:${(80 / 80 * 100).toFixed(1)}%">2026: rising</span></div></div>
+        <svg class="gl-chart" id="glChart" viewBox="0 0 460 150" role="img" aria-label="Cash earned each year by one H100 and the running total against its cost."></svg>
+        <p class="sx-out gl-out" id="glOut"></p>
+      </div>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Straight-line book value versus market evidence. Resale from Silicon Data via Dow Jones (Dec 2025); A100 contract from CoreWeave (Aug 2026).</p></div>
+      <div class="frame f2">${F2}<p class="cap">The newest chips sell at whatever the market bears. Older ones move down to cheaper work, and still get paid.</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: $35,000 all-in per H100 (chip plus its share of server and network), starting at today’s $2.82 index rate, 70% utilized, about 40 cents an hour for power and data-center space.</span><span class="cap-s">Illustrative: $35K all-in, $2.82/hr start, 70% utilized.</span></p></div>
+    </div>`;
+  },
   spacex() {
     const cert = (x, y, s = 1, cls = "") => `<g class="${cls}" transform="translate(${x} ${y}) scale(${s})"><rect x="-26" y="-17" width="52" height="34" rx="3" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.6"/><rect x="-21" y="-12" width="42" height="24" rx="2" fill="none" stroke="#ffd98a"/><path d="M-12 5 L-9 -6 L-6 5 Z" fill="#a08bff"/><text x="7" y="1" text-anchor="middle" font-size="9" font-weight="900" style="fill:#211a32">SPCX</text><path d="M-2 6 H16" stroke="#cfc6f5"/></g>`;
-    const flow = Array.from({ length: 4 }, (_, i) => `<g><g transform="scale(.55)">${cert(0, 0)}</g><animateMotion dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite" path="M150 92 C200 60 260 60 312 92"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite"/></g>`).join("");
+    const flow = Array.from({ length: 4 }, (_, i) => `<g opacity="0"><g transform="scale(.55)">${cert(0, 0)}</g><animateMotion dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite" path="M150 92 C200 60 260 60 312 92"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite"/></g>`).join("");
     const TL = [["Apr 21", "option to buy"], ["Jun 12", "IPO at $135"], ["Jun 16", "exercised"], ["Aug 14", "closed"]];
     const tl = TL.map(([d, l], i) => { const x = 60 + i * 113; return `<circle cx="${x}" cy="226" r="${i === 2 ? 8 : 6}" fill="${i === 2 ? "var(--violet)" : "var(--ink-2)"}" stroke="var(--violet)" stroke-width="2"/><text x="${x}" y="254" text-anchor="middle" class="t-strong" font-size="13">${d}</text><text x="${x}" y="271" text-anchor="middle" font-size="12">${l}</text>`; }).join("");
     const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="An exchange counter. SpaceX pays for Cursor with about 389 million new shares worth 60 billion dollars and no cash. Timeline: an option to buy on April 21, the IPO at 135 dollars on June 12, the option exercised four days later on June 16, and the deal closed on August 14, 2026.">
         <text x="230" y="22" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--violet);letter-spacing:.18em">EXCHANGE COUNTER</text>
-        ${cert(70, 104, 1.5)}${cert(64, 96, 1.5)}${cert(58, 88, 1.5)}
-        <text x="64" y="150" text-anchor="middle" class="t-strong" font-size="14">~389M new shares</text><text x="64" y="167" text-anchor="middle" font-size="12">SpaceX Class A</text>
+        ${cert(78, 104, 1.5)}${cert(72, 96, 1.5)}${cert(66, 88, 1.5)}
+        <text x="74" y="150" text-anchor="middle" class="t-strong" font-size="14">~389M new shares</text><text x="74" y="167" text-anchor="middle" font-size="12">SpaceX Class A</text>
         <path d="M150 92 C200 60 260 60 312 92" fill="none" stroke="var(--rule)" stroke-dasharray="4 5"/>
         ${flow}
         <g transform="translate(372 96)"><path d="M-54 -26 L-40 -40 H54 L40 -26 Z" fill="#2b2142" stroke="var(--violet)"/><rect x="-54" y="-26" width="94" height="58" rx="3" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.6"/><path d="M40 -26 L54 -40 V18 L40 32 Z" fill="#211a32" stroke="var(--violet)"/>
@@ -2372,6 +2481,33 @@ const VIZ_INIT = {
       const max = bills[0][1];
       $("#ncBills", root).innerHTML = bills.map(([l, v, c, s, rate]) => `<div class="nc-bill" style="--c:${c};--w:${(v / max * 100).toFixed(1)}%"><span class="l"><span class="lg">${l}</span><span class="sm">${s} <em>$${rate.toFixed(2)}/hr</em></span></span><span class="b"><i></i></span><b>${fmt(v)}</b></div>`).join("") +
         `<p class="nc-save">Nebius saves about <b>${fmt(bills[0][1] - bills[1][1])}</b> a month against AWS list price.</p>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  gpulife(root) {
+    const r = $("#glRange", root), svg = $("#glChart", root);
+    if (!r || !svg) return;
+    const COST = 35000, START = 2.82, RUN = .40, HOURS = .7 * 8760, MAX = 100000;
+    const run = g => { let cum = 0; return Array.from({ length: 6 }, (_, i) => { const net = Math.max(0, START * Math.pow(1 + g, i) - RUN) * HOURS; cum += net; return [net, cum]; }); };
+    let lo = -.9, hi = 0;
+    for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; run(mid)[5][1] >= COST ? (hi = mid) : (lo = mid); }
+    const be = Math.round(hi * 100), beTxt = `${be < 0 ? "−" : ""}${Math.abs(be)}%`;
+    const k$ = v => `$${Math.round(v / 1000)}K`;
+    const yv = v => (128 - Math.min(v, MAX) / MAX * 112).toFixed(1);
+    const upd = () => {
+      const g = +r.value / 100, rows = run(g), pay = rows.findIndex(([, c]) => c >= COST), total = rows[5][1];
+      $("#glG", root).textContent = `${g > 0 ? "+" : g < 0 ? "−" : ""}${Math.abs(Math.round(g * 100))}%`;
+      const bx = i => 46 + i * 68;
+      svg.innerHTML = `<line class="ax" x1="30" y1="128" x2="446" y2="128"/>` +
+        rows.map(([n], i) => `<rect x="${bx(i)}" y="${yv(n)}" width="34" height="${(128 - yv(n)).toFixed(1)}" rx="2" fill="var(--violet)" opacity=".75"/><text x="${bx(i) + 17}" y="144" text-anchor="middle" font-size="11">yr ${i + 1}</text>`).join("") +
+        `<line x1="30" y1="${yv(COST)}" x2="446" y2="${yv(COST)}" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="5 4"/><text x="32" y="${yv(COST) - 5}" font-size="11" font-weight="700" style="fill:var(--coral)">cost $35K</text>` +
+        `<polyline points="${rows.map(([, c], i) => `${bx(i) + 17},${yv(c)}`).join(" ")}" fill="none" stroke="var(--beat)" stroke-width="2.6" stroke-linejoin="round"/>` +
+        rows.map(([, c], i) => `<circle cx="${bx(i) + 17}" cy="${yv(c)}" r="${i === pay ? 6 : 3.4}" fill="${i === pay ? "var(--amber)" : "var(--beat)"}"/>`).join("") +
+        `<text x="${bx(5) + 17}" y="${Math.max(12, +yv(total) - 10)}" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--beat)">${k$(total)}${total > MAX ? " ↑" : ""}</text>`;
+      $("#glOut", root).innerHTML = pay >= 0
+        ? `<b class="up">Pays back in year ${pay + 1}</b><span>and returns ${(total / COST).toFixed(1)}× its cost by year 6. Break-even is about ${beTxt} a year.</span>`
+        : `<b class="dn">Never pays back</b><span>It recovers ${Math.round(total / COST * 100)}% of its cost. Break-even is about ${beTxt} a year.</span>`;
     };
     r.addEventListener("input", upd);
     upd();
@@ -2739,6 +2875,13 @@ function buildMap() {
 }
 const memo = $("#memo");
 let memoId = null, lastFocus = null, memoKeys = null;
+const sentences = txt => txt.split(/(?<=[.!?…])\s+(?=[A-Z“"])/).map(x => `<span class="sen">${x}</span>`).join(" ");
+const tidySignal = html => html
+  .replace(/<blockquote class="pull">([\s\S]*?)<\/blockquote>/g, (m, q) => {
+    const n = q.replace(/<[^>]+>/g, "").length;
+    return `<blockquote class="pull ${n > 80 ? "q-l" : n > 48 ? "q-m" : "q-s"}">${q.replace(/—/g, "\u2060—\u2060")}</blockquote>`;
+  })
+  .replace(/<p class="claim">([\s\S]*?)<\/p>/g, (m, c) => `<p class="claim">${sentences(c)}</p>`);
 function memoHTML(t) {
   const b = BINS[t.stance];
   const idx = THESES.indexOf(t);
@@ -2752,9 +2895,9 @@ function memoHTML(t) {
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
         <section class="slide" aria-label="Slide 1 of 3, the signal">
           <p class="slide-k">The signal</p>
-          <h2>${t.title}</h2>
+          <h2>${sentences(t.title)}</h2>
           <div class="ref"><span class="ref-k">Reference design</span><a href="${t.ref.href}" target="_blank" rel="noopener">${t.ref.label}</a></div>
-          ${t.signal}
+          ${tidySignal(t.signal)}
         </section>
         <section class="slide" aria-label="Slide 2 of 3, my take">
           <p class="slide-k">My take</p>
@@ -2776,6 +2919,17 @@ function memoHTML(t) {
       <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
     </div>`;
 }
+function freezeSvg(s) {
+  if (!s.pauseAnimations) return;
+  s.pauseAnimations();
+  try { s.setCurrentTime(s.getCurrentTime()); } catch (e) {}
+}
+function hideStuckMovers(root) {
+  setTimeout(() => $$("animateMotion", root).forEach(a => {
+    const el = a.parentNode, m = el.getCTM && el.getCTM(), pm = el.parentNode.getCTM && el.parentNode.getCTM();
+    if (m && pm && Math.abs(m.e - pm.e) < .01 && Math.abs(m.f - pm.f) < .01) el.style.visibility = "hidden";
+  }), 700);
+}
 function openMemo(id) {
   const t = byId[id];
   if (!t) return;
@@ -2784,7 +2938,8 @@ function openMemo(id) {
   memo.innerHTML = memoHTML(t);
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
-  if (calm || motionPaused) $$("svg", memo).forEach(s => s.pauseAnimations && s.pauseAnimations());
+  if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
+  hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
   if (wafer) wafer.hold(true);
   const slides = $("#slides"), viz = $(".viz", memo), prev = $("#memoPrev"), next = $("#memoNext"), count = $("#memoCount"), prog = $$(".memo-prog i", memo);
@@ -2944,13 +3099,25 @@ function onScroll() {
     el.style.transform = `translate3d(0,${(-c * parseFloat(el.dataset.depth)).toFixed(1)}px,0)`;
   }
 }
-const LIT = Array.from({ length: 16 }, (_, i) => THESES[i] || null);
+const LIT = Array.from({ length: 20 }, (_, i) => THESES[i] || null);
 function waferLayout(w, h) {
-  const a = w / h;
-  let R, center;
-  if (a > 1.15) { R = Math.min(h * .5, w * .32); center = [Math.min(.24 * a, .6), .08]; }
-  else { R = Math.min(w * .44, 200); const top = (parseFloat(getComputedStyle(heroEl).paddingTop) || 300) * .5; center = [.06 * a, .5 - top / h]; }
-  return { R, center, dist: 1.75 * h / R, cx: w / 2 + center[0] * h, cy: h / 2 - center[1] * h, w, h };
+  const fw = $(".feat-wrap", heroEl), nav = $("#nav");
+  const stageH = Math.max(320, h - (fw ? fw.offsetHeight : 0));
+  const top = nav ? nav.offsetHeight : 72;
+  let R, cx, cy;
+  if (w > 700) {
+    const gutter = parseFloat(getComputedStyle($(".hero-copy", heroEl)).paddingLeft) || 32;
+    const right = Math.min(w, (w + 1240) / 2) - gutter;
+    R = Math.min((stageH - top) * .44, w * .26, 520);
+    cx = Math.min(right - R * .6, w - R * .8);
+    cy = top + (stageH - top) * .45;
+  } else {
+    R = Math.min(w * .44, 200);
+    cx = w * .56;
+    cy = (parseFloat(getComputedStyle(heroEl).paddingTop) || 300) * .5;
+  }
+  const center = [(cx - w / 2) / h, (h / 2 - cy) / h];
+  return { R, center, dist: 1.75 * h / R, cx, cy, w, h };
 }
 function makeGL(cv, st, force) {
   let gl = null;
@@ -2959,7 +3126,7 @@ function makeGL(cv, st, force) {
   const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
   const fs = `precision highp float;
 uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uScroll;uniform float uExpose;uniform vec2 uCenter;uniform float uDist;
-uniform vec2 uDies[16];uniform vec3 uBins[16];
+uniform vec2 uDies[20];uniform vec3 uBins[20];
 mat3 rx(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}
 mat3 ry(float a){float c=cos(a),s=sin(a);return mat3(c,0.,-s,0.,1.,0.,s,0.,c);}
 mat3 rz(float a){float c=cos(a),s=sin(a);return mat3(c,s,0.,-s,c,0.,0.,0.,1.);}
@@ -3017,7 +3184,7 @@ void main(){
       float exposed=smoothstep(uExpose,uExpose-.06,sx);
       vec3 surf=mix(si,dieCol,full*inDie*exposed);
       surf+=vec3(1.,.7,.25)*exp(-pow((sx-uExpose)*55.,2.))*step(uExpose,1.05)*.9;
-      for(int i=0;i<16;i++){
+      for(int i=0;i<20;i++){
         float m=step(abs(id.x-uDies[i].x)+abs(id.y-uDies[i].y),.5)*inDie*full;
         surf=mix(surf,uBins[i]*(.78+.22*sin(uTime*2.2+float(i)*1.7))+E*.12,m*.9*exposed);
       }
@@ -3175,6 +3342,7 @@ function initWafer() {
     raf = requestAnimationFrame(loop);
   }
   addEventListener("resize", () => { if (!r) return; size(); if (!running) frame(performance.now()); });
+  if (window.ResizeObserver) new ResizeObserver(() => { if (!r) return; size(); if (!running) frame(performance.now()); }).observe(heroEl);
   addEventListener("pointermove", e => { st.target[0] = e.clientX / innerWidth * 2 - 1; st.target[1] = -(e.clientY / innerHeight * 2 - 1); }, { passive: true });
   if (r.kind === "gl") canvas.addEventListener("webglcontextlost", e => { e.preventDefault(); fallback(); });
   size();
@@ -3347,7 +3515,7 @@ function setMotion(paused, save) {
   $$("[data-motion]").forEach(b => (b.textContent = paused ? "Play motion" : "Pause motion"));
   if (save) { try { localStorage.setItem("motion", paused ? "paused" : "on"); } catch (e) {} }
   if (wafer) wafer.sync();
-  $$("svg", memo).forEach(s => s.pauseAnimations && (paused || calm ? s.pauseAnimations() : s.unpauseAnimations()));
+  $$("svg", memo).forEach(s => (paused || calm ? freezeSvg(s) : s.unpauseAnimations && s.unpauseAnimations()));
   if (buildLine.wake) buildLine.wake();
 }
 renderHome();
