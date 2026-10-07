@@ -235,6 +235,16 @@ html.paused .die-pip.land{animation:none}
 .contact-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:start}
 @media (max-width:860px){.contact-grid{grid-template-columns:1fr}.contact-io .pinout{max-width:none}.rules{margin-top:84px}.contact-copy{order:1}.contact-io{order:2}.rules{order:3}}
 .contact .lede{margin-top:22px}
+.send-h{line-height:.98}
+.send-h .nw{white-space:nowrap}
+.bcard{display:inline-block;position:relative;vertical-align:.2em;margin:0 .08em 0 .04em;padding:.42em .9em .8em;font-family:var(--serif);font-style:italic;font-weight:500;font-size:.36em;line-height:1;letter-spacing:.01em;color:#2a2440;background:linear-gradient(160deg,#fdfbf6 0%,#f1ece0 100%);border-radius:3px;box-shadow:0 14px 26px -8px rgba(0,0,0,.55),0 2px 4px rgba(0,0,0,.25),inset 0 0 0 1px rgba(120,104,80,.18);transform:rotate(-5deg);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.bcard::before{content:"";position:absolute;left:.9em;right:2.3em;bottom:.42em;height:.1em;border-radius:1px;background:#cfc6b2;box-shadow:0 -.24em 0 #ddd5c3}
+.bcard::after{content:"";position:absolute;right:.7em;bottom:.34em;width:1.1em;height:.5em;border-radius:1px;background:repeating-linear-gradient(90deg,#d8cfbb 0 .08em,transparent .08em .16em)}
+.bcard:hover{transform:rotate(2deg) translateY(-.12em);box-shadow:0 20px 30px -10px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.25),inset 0 0 0 1px rgba(120,104,80,.18)}
+.thesis-w{background:linear-gradient(100deg,var(--beat) 0%,var(--violet) 30%,var(--coral) 58%,var(--amber) 82%,var(--beat) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px rgba(160,139,255,.38));animation:thesis-sheen 7s linear infinite}
+@keyframes thesis-sheen{from{background-position:0 0}to{background-position:220% 0}}
+.die-dot{display:inline-block;width:.17em;height:.17em;margin-left:.07em;border-radius:.02em;color:transparent;overflow:hidden;vertical-align:baseline;background:var(--amber);box-shadow:0 0 0 .035em rgba(255,178,63,.25),0 0 18px rgba(255,178,63,.75);animation:die-blink 2.4s ease-in-out infinite}
+@keyframes die-blink{0%,100%{opacity:1;box-shadow:0 0 0 .035em rgba(255,178,63,.25),0 0 18px rgba(255,178,63,.75)}50%{opacity:.75;box-shadow:0 0 0 .07em rgba(255,178,63,.12),0 0 6px rgba(255,178,63,.4)}}
 .contact .ctas{margin-top:30px}
 .pinout{margin-top:34px;max-width:40rem}
 .pinout-head{display:flex;justify-content:space-between;gap:16px;font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding-bottom:10px;border-bottom:1px solid var(--rule)}
@@ -922,6 +932,7 @@ html.paused .gng-list li{animation:none!important}
 [data-depth]{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .thesis-w,.die-dot{animation:none}
   .memo{animation:memo-fade .3s ease}
 }
 @keyframes memo-fade{from{opacity:0}to{opacity:1}}
@@ -1050,7 +1061,7 @@ html.paused .memo{animation:none}
     <div class="wrap">
       <div class="contact-grid">
         <div class="contact-copy">
-          <h2 class="big" id="contact-h">Most people send a résumé. I’d rather send a thesis.</h2>
+          <h2 class="big send-h" id="contact-h">Some people send&nbsp;a&nbsp;<span class="nw"><span class="bcard"><span class="bcard-t">business card</span></span>.</span><br> I’d rather send a&nbsp;<span class="thesis-w">thesis</span><span class="die-dot">.</span></h2>
           <p class="lede">If you invest in or build anything on this page, I’d like to compare notes. Tell me where I’m wrong. That’s how these get better.</p>
         </div>
         <aside class="rules" aria-label="How I share notes">
