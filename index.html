@@ -135,10 +135,27 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
   .feat-v{font-size:36px}
 }
 .index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow-x:clip}
-.index-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.index-head{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:28px clamp(32px,4vw,64px);align-items:stretch;margin-bottom:clamp(32px,5vw,56px)}
 .index-head p{max-width:34rem;color:var(--dim)}
-.legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:flex-end;max-width:440px}
-@media (max-width:860px){.index-head{grid-template-columns:1fr}.legend{justify-content:flex-start}}
+@media (max-width:860px){.index-head{grid-template-columns:1fr}}
+.bins-card{display:flex;flex-direction:column;gap:14px;padding:18px 18px 16px;border:1px solid var(--rule);border-radius:6px;background:linear-gradient(180deg,rgba(34,27,69,.6),rgba(22,17,49,.6)),radial-gradient(circle at 1px 1px,rgba(160,139,255,.12) 1px,transparent 1.4px) 0 0/14px 14px}
+.bc-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 14px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--dim)}
+.bc-head b{color:var(--paper);font-weight:800;font-size:17px}
+.trays{flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.tray{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:44px;padding:12px 10px 10px;border:1px solid var(--rule);border-radius:4px;background:rgba(15,12,34,.72);color:var(--paper);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,transform .25s var(--ease),background .2s}
+.tray:hover,.tray:focus-visible{border-color:var(--bin);transform:translateY(-2px)}
+.tray[aria-pressed="true"]{border-color:var(--bin);background:rgba(34,27,69,.95);box-shadow:inset 0 -3px 0 var(--bin)}
+.tray-n{font-family:var(--display);font-weight:800;font-size:clamp(34px,3.4vw,48px);line-height:.9;color:var(--bin)}
+.tray.probe .tray-n{color:var(--dim)}
+.tray-l{font-family:var(--label);font-weight:700;font-size:14px;line-height:1.1}
+.tray-dies{flex:1;width:100%;min-height:46px;margin-top:4px;display:flex;flex-wrap:wrap;align-content:flex-end;gap:4px;padding:8px;border-radius:3px;background:rgba(5,4,14,.55);box-shadow:inset 0 1px 4px rgba(0,0,0,.7),inset 0 0 0 1px rgba(160,139,255,.08)}
+.tray-dies i{width:12px;height:12px;border-radius:1.5px;background:var(--bin);box-shadow:0 0 7px var(--bin)}
+.tray.probe .tray-dies i{background:transparent;border:1.4px dashed var(--faint);box-shadow:none}
+.bc-foot{font-family:var(--label);font-weight:600;font-size:14px;color:var(--faint)}
+@media (max-width:520px){.bins-card{padding:14px 12px 12px}.trays{gap:5px}.tray{padding:10px 6px 7px}.tray-l{font-size:12.5px}.tray-dies{min-height:34px;padding:5px;gap:3px}.tray-dies i{width:8px;height:8px}}
+.t-item,.wm-hit rect,.wm-probe-die rect{transition:opacity .3s}
+.index[data-filter] .t-item:not(.match){opacity:.22}
+.index[data-filter] .wm-hit:not(.match) rect,.index[data-filter] .wm-probe-die:not(.match) rect{opacity:.15}
 .index-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
 @media (max-width:900px){.index-grid{grid-template-columns:1fr}}
 .index-grid{position:relative}
@@ -989,7 +1006,7 @@ html.paused .memo{animation:none}
           <h2 class="big" id="theses-h">Theses on the wafer</h2>
           <p style="margin-top:18px">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a lit die and the list finds its article, or hover an article to find its die. Dashed dies are still in probe.</p>
         </div>
-        <div class="legend" id="legend"></div>
+        <div class="bins-card" id="binsCard" role="group" aria-label="Filter the theses by bin"></div>
       </div>
       <div class="index-grid">
         <div class="map-col">
@@ -2691,11 +2708,26 @@ function renderHome() {
     feats[fi++ % feats.length].classList.add("ping");
   }, 2200);
   $("#readout").innerHTML = `Probe idle. <b>${THESES.length} dies binned</b>, ${PROBES.length} in probe.`;
-  $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
+  const trays = [...Object.entries(BINS).map(([k, b]) => ({ k, label: b.label, css: b.css, n: THESES.filter(t => t.stance === k).length })), { k: "probe", label: "In probe", css: "var(--faint)", n: PROBES.length }];
+  const binsCard = $("#binsCard"), indexEl = $("#theses");
+  const footIdle = "Tap a bin to filter the list and the wafer.";
+  binsCard.innerHTML = `<div class="bc-head"><span>Sorted into bins</span><b>${THESES.length + PROBES.length} dies tested</b></div>
+    <div class="trays">${trays.map(t => `<button type="button" class="tray${t.k === "probe" ? " probe" : ""}" data-bin="${t.k}" aria-pressed="false" style="--bin:${t.css}"><span class="tray-n">${t.n}</span><span class="tray-l">${t.label}</span><span class="tray-dies" aria-hidden="true">${"<i></i>".repeat(t.n)}</span></button>`).join("")}</div>
+    <p class="bc-foot" aria-live="polite">${footIdle}</p>`;
+  let binFilter = null;
+  const applyBin = k => {
+    binFilter = binFilter === k ? null : k;
+    if (binFilter) indexEl.dataset.filter = binFilter; else delete indexEl.dataset.filter;
+    $$(".tray", binsCard).forEach(b => b.setAttribute("aria-pressed", b.dataset.bin === binFilter));
+    $$(".t-item, .wm-hit, .wm-probe-die", indexEl).forEach(el => el.classList.toggle("match", !!binFilter && el.dataset.bin === binFilter));
+    const t = trays.find(x => x.k === binFilter);
+    $(".bc-foot", binsCard).textContent = t ? `Showing ${t.n} ${t.n === 1 ? "die" : "dies"} in ${t.label}. Tap it again to show all.` : footIdle;
+  };
+  $$(".tray", binsCard).forEach(b => b.addEventListener("click", () => applyBin(b.dataset.bin)));
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
-  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" data-bin="${t.stance}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" data-bin="probe" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
   const pins = [
     CONFIG.email && { tag: "@", name: "Email", handle: CONFIG.email, role: "The direct line.", href: `mailto:${CONFIG.email}` },
     CONFIG.linkedin && { tag: "in", name: "LinkedIn", handle: "in/andrewrngai", role: "Work and intros. Start here.", href: CONFIG.linkedin, ext: 1 },
@@ -2751,9 +2783,9 @@ function buildMap() {
     if (!k) { base += rect.replace("<rect", `<rect class="wm-die"`); continue; }
     if (k.type === "t") {
       const b = BINS[k.t.stance];
-      hits += `<a class="wm-hit" href="#${k.t.id}" data-id="${k.t.id}" style="--bin:${b.css}" aria-label="Die ${dieLabel(k.t.die)}: ${k.t.title} Bin: ${b.label}.">${rect}</a>`;
+      hits += `<a class="wm-hit" href="#${k.t.id}" data-id="${k.t.id}" data-bin="${k.t.stance}" style="--bin:${b.css}" aria-label="Die ${dieLabel(k.t.die)}: ${k.t.title} Bin: ${b.label}.">${rect}</a>`;
     } else {
-      hits += `<g class="wm-probe-die" data-id="probe${k.i}" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
+      hits += `<g class="wm-probe-die" data-id="probe${k.i}" data-bin="probe" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
     }
   }
   svg.innerHTML = `<circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}${hits}
