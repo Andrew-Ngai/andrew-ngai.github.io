@@ -1,0 +1,1716 @@
+{
+ "meta": {
+  "rev": "A",
+  "updated": "2026-10-09",
+  "next": "After the late-October earnings round. GE Vernova reports October 28.",
+  "history": [
+   {
+    "rev": "A",
+    "d": "2026-10-09",
+    "t": "First release. Five gauges, from 2023 through early October 2026."
+   }
+  ]
+ },
+ "copy": {
+  "money": {
+   "reading": "The four biggest spenders put $171B into capex last quarter, 79% more than a year earlier. Growth is still speeding up: a year before, it was 64%. Their 2026 guidance adds up to roughly $720–745B, against $414B in 2025. Oracle is spending like a fifth hyperscaler, with $28.5B in its June–August quarter alone.",
+   "watch": "A big-four company cuts its 2026 range, or 2027 plans come in flat."
+  },
+  "chips": {
+   "reading": "Nvidia’s data center business brought in $89B last quarter, more than double a year ago, and the growth rate rose from 56% to 117%. Management calls next year’s roughly 70% growth “supply-constrained,” and the CFO named memory as the scarce input, so the bottleneck sits below the GPU. Press estimates have TSMC’s CoWoS packaging capacity more than doubling from 2025 to 2027.",
+   "watch": "Data center growth drops below 50% a year while packaging capacity keeps climbing. Then demand, not supply, is the limit.",
+   "thesis": [
+    "backend",
+    "The bottleneck moved below the GPU."
+   ],
+   "quotes": [
+    {
+     "d": "2026-03-16",
+     "who": "Jensen Huang, Nvidia CEO, at GTC",
+     "q": "I see through 2027, at least $1 trillion.",
+     "note": "TechCrunch reported this as expected Blackwell and Vera Rubin orders through 2027.",
+     "src": "https://techcrunch.com/2026/03/16/jensen-just-put-nvidias-blackwell-and-vera-rubin-sales-projections-into-the-1-trillion-stratosphere/"
+    },
+    {
+     "d": "2026-08-26",
+     "who": "Colette Kress, Nvidia CFO, on the earnings call",
+     "q": "We expect to grow revenue by approximately 70% in fiscal 2028. This is a supply-constrained outlook.",
+     "note": "Fiscal 2028 runs from February 2027 to January 2028.",
+     "src": "https://www.roic.ai/quote/NVDA/transcripts/2027-year/2-quarter"
+    }
+   ]
+  },
+  "buildings": {
+   "reading": "A record 7.5 GW was under construction in CBRE’s primary markets in the first half of 2026, up 43% in a year. Vacancy held at 1.4%, the lowest reading in this series. The biggest single campuses are now measured in gigawatts, and most of them are still being built.",
+   "watch": "Vacancy back above 3%, or construction falling for two halves in a row."
+  },
+  "power": {
+   "reading": "GE Vernova’s gas turbine queue more than doubled in a year, to 116 GW of orders and slot reservations, and it is now selling slots for 2032. Siemens Energy and Mitsubishi are booked years out too. So buyers are also going around the queue: restarting reactors, paying for uprates and buying fuel cells. Most of the new gas plants they back are in the queue themselves.",
+   "watch": "Reservations stop converting to firm orders, or open 2029–30 slots start to pile up.",
+   "thesis": [
+    "bloom",
+    "The power plant that ships like a server."
+   ]
+  },
+  "compute": {
+   "reading": "If the world were overbuilding, rents would be falling. They’re rising. Silicon Data’s H100 index is up about 40% since December and its B200 index is up about a third this year. In April, SemiAnalysis reported on-demand capacity sold out across all GPU types, based on checks with providers.",
+   "watch": "H100 rent back below $2 an hour, the Dec 9 reading, while B200 rents keep rising. That would mean old chips are being dumped, not moving down the menu.",
+   "thesis": [
+    "gpulife",
+    "Old GPUs don’t die. They move down the menu."
+   ]
+  }
+ },
+ "money": {
+  "unit": "USD billions",
+  "quarters": [
+   "2023Q1",
+   "2023Q2",
+   "2023Q3",
+   "2023Q4",
+   "2024Q1",
+   "2024Q2",
+   "2024Q3",
+   "2024Q4",
+   "2025Q1",
+   "2025Q2",
+   "2025Q3",
+   "2025Q4",
+   "2026Q1",
+   "2026Q2"
+  ],
+  "companies": [
+   {
+    "id": "MSFT",
+    "name": "Microsoft",
+    "def": "Headline 'capital expenditures including finance leases' as stated by the CFO in Microsoft's earnings-call remarks (accrual basis; includes finance leases at commencement). Each MSFT point also carries cash 'additions to property and equipment' (cash_ppe) from the 10-Q/10-K. Fiscal year ends June 30: FY Q1=Jul–Sep (CY Q3), Q2=Oct–Dec (CY Q4), Q3=Jan–Mar (CY Q1), Q4=Apr–Jun (CY Q2).",
+    "v": [
+     7.8,
+     10.7,
+     11.2,
+     11.5,
+     14.0,
+     19.0,
+     20.0,
+     22.6,
+     21.4,
+     24.2,
+     34.9,
+     37.5,
+     31.9,
+     41.0
+    ],
+    "src": [
+     "https://www.microsoft.com/en-us/investor/events/fy-2023/earnings-fy-2023-q3",
+     "https://www.microsoft.com/en-us/investor/events/fy-2023/earnings-fy-2023-q4",
+     "https://www.microsoft.com/en-us/investor/events/fy-2024/earnings-fy-2024-q1",
+     "https://www.microsoft.com/en-us/investor/events/fy-2024/earnings-fy-2024-q2",
+     "https://www.microsoft.com/en-us/investor/events/fy-2024/earnings-fy-2024-q3",
+     "https://www.microsoft.com/en-us/investor/events/fy-2024/earnings-fy-2024-q4",
+     "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q1",
+     "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q2",
+     "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q3",
+     "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+     "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q1",
+     "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q2",
+     "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+     "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
+    ]
+   },
+   {
+    "id": "GOOGL",
+    "name": "Alphabet",
+    "def": "Purchases of property and equipment (cash flow statement, 10-Q/10-K). 10-Q cash flows are year-to-date, so Q2–Q4 are derived by differencing YTD totals.",
+    "v": [
+     6.3,
+     6.9,
+     8.1,
+     11.0,
+     12.0,
+     13.2,
+     13.1,
+     14.3,
+     17.2,
+     22.4,
+     24.0,
+     27.9,
+     35.7,
+     44.9
+    ],
+    "src": [
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000045/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000070/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204423000094/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000022/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000053/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000079/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000014/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000048/",
+     "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/"
+    ]
+   },
+   {
+    "id": "AMZN",
+    "name": "Amazon",
+    "def": "Purchases of property and equipment (gross, cash flow statement, XBRL tag PaymentsToAcquireProductiveAssets, 10-Q/10-K). Not net of proceeds from property and equipment sales and incentives, and excludes property acquired under finance leases.",
+    "v": [
+     14.2,
+     11.5,
+     12.5,
+     14.6,
+     14.9,
+     17.6,
+     22.6,
+     27.8,
+     25.0,
+     32.2,
+     35.1,
+     39.5,
+     44.2,
+     54.2
+    ],
+    "src": [
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000008/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000012/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000008/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000083/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000036/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000086/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000123/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/",
+     "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/"
+    ]
+   },
+   {
+    "id": "META",
+    "name": "Meta",
+    "def": "Capital expenditures, including principal payments on finance leases, as stated in Meta's quarterly earnings press release (= purchases of property and equipment, net + principal payments on finance leases).",
+    "v": [
+     7.1,
+     6.4,
+     6.8,
+     7.9,
+     6.7,
+     8.5,
+     9.2,
+     14.8,
+     13.7,
+     17.0,
+     19.4,
+     22.1,
+     19.8,
+     31.1
+    ],
+    "src": [
+     "https://investor.atmeta.com/investor-news/press-release-details/2023/Meta-Reports-First-Quarter-2023-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2023/Meta-Reports-Second-Quarter-2023-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2023/Meta-Reports-Third-Quarter-2023-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results-Initiates-Quarterly-Dividend/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-First-Quarter-2024-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Second-Quarter-2024-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Third-Quarter-2024-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Fourth-Quarter-and-Full-Year-2024-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-First-Quarter-2025-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Second-Quarter-2025-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Third-Quarter-2025-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx",
+     "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/"
+    ]
+   },
+   {
+    "id": "ORCL",
+    "name": "Oracle",
+    "def": "Capital expenditures (cash flow statement, 10-Q/10-K). Fiscal year ends May 31; quarters are mapped to the calendar quarter they mostly overlap: FQ1 Jun–Aug -> CY Q3, FQ2 Sep–Nov -> CY Q4, FQ3 Dec–Feb -> CY Q1, FQ4 Mar–May -> CY Q2. Q2–Q4 derived by differencing YTD totals.",
+    "v": [
+     2.6,
+     1.9,
+     1.3,
+     1.1,
+     1.7,
+     2.8,
+     2.3,
+     4.0,
+     5.9,
+     9.1,
+     8.5,
+     12.0,
+     18.6,
+     16.5
+    ],
+    "src": [
+     "https://www.sec.gov/Archives/edgar/data/1341439/000156459023003413/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017023028914/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017023047713/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017023069682/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017024029904/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017024075605/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017024104905/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017024134973/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017025037143/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000095017025087926/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000119312525200095/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000119312525315925/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000119312526101045/",
+     "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/"
+    ]
+   }
+  ],
+  "oracle_latest": {
+   "label": "Jun–Aug 2026 (fiscal Q1 FY27)",
+   "v": 28.5,
+   "src": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/"
+  },
+  "guidance": [
+   {
+    "id": "MSFT",
+    "name": "Microsoft",
+    "low": 175,
+    "high": 175,
+    "basis": "Calendar 2026, about $175B including finance leases",
+    "date": "2026-07-29",
+    "src": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4"
+   },
+   {
+    "id": "GOOGL",
+    "name": "Alphabet",
+    "low": 195,
+    "high": 205,
+    "basis": "2026, $195–205B",
+    "date": "2026-07-22",
+    "src": "https://news.bloomberglaw.com/artificial-intelligence/alphabets-205-billion-spending-target-fuels-ai-cost-fears-2"
+   },
+   {
+    "id": "AMZN",
+    "name": "Amazon",
+    "low": 220,
+    "high": 220,
+    "basis": "2026, about $220B of cash capex",
+    "date": "2026-07-30",
+    "src": "https://fortune.com/2026/07/30/andy-jassy-amazon-capex-demand-aws-pga-tour/"
+   },
+   {
+    "id": "META",
+    "name": "Meta",
+    "low": 130,
+    "high": 145,
+    "basis": "2026, $130–145B including finance leases",
+    "date": "2026-07-29",
+    "src": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/"
+   }
+  ]
+ },
+ "chips": {
+  "quarters": [
+   {
+    "fq": "FY2024Q1",
+    "end": "2023-04-30",
+    "dc": 4.28,
+    "total": 7.19,
+    "src": "https://www.sec.gov/Archives/edgar/data/1045810/000104581023000087/q1fy24pr.htm"
+   },
+   {
+    "fq": "FY2024Q2",
+    "end": "2023-07-30",
+    "dc": 10.32,
+    "total": 13.51,
+    "src": "https://www.sec.gov/Archives/edgar/data/1045810/000104581023000171/q2fy24pr.htm"
+   },
+   {
+    "fq": "FY2024Q3",
+    "end": "2023-10-29",
+    "dc": 14.51,
+    "total": 18.12,
+    "src": "https://www.sec.gov/Archives/edgar/data/1045810/000104581023000225/q3fy24pr.htm"
+   },
+   {
+    "fq": "FY2024Q4",
+    "end": "2024-01-28",
+    "dc": 18.4,
+    "total": 22.1,
+    "src": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000028/q4fy24cfocommentary.htm"
+   },
+   {
+    "fq": "FY2025Q1",
+    "end": "2024-04-28",
+    "dc": 22.56,
+    "total": 26.04,
+    "src": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000113/q1fy25cfocommentary.htm"
+   },
+   {
+    "fq": "FY2025Q2",
+    "end": "2024-07-28",
+    "dc": 26.27,
+    "total": 30.04,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2025/Q225/Q2FY25-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2025Q3",
+    "end": "2024-10-27",
+    "dc": 30.77,
+    "total": 35.08,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2025/Q325/Q3FY25-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2025Q4",
+    "end": "2025-01-26",
+    "dc": 35.58,
+    "total": 39.33,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2025/Q425/Q4FY25-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2026Q1",
+    "end": "2025-04-27",
+    "dc": 39.11,
+    "total": 44.06,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/Q126/Q1FY26-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2026Q2",
+    "end": "2025-07-27",
+    "dc": 41.1,
+    "total": 46.74,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/Q226/Q2FY26-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2026Q3",
+    "end": "2025-10-26",
+    "dc": 51.22,
+    "total": 57.01,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/Q326/Q3FY26-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2026Q4",
+    "end": "2026-01-25",
+    "dc": 62.31,
+    "total": 68.13,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2026/Q426/Q4FY26-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2027Q1",
+    "end": "2026-04-26",
+    "dc": 75.25,
+    "total": 81.62,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q127/Q1FY27-CFO-Commentary.pdf"
+   },
+   {
+    "fq": "FY2027Q2",
+    "end": "2026-07-26",
+    "dc": 89.02,
+    "total": 96.22,
+    "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q227/Q2FY27-CFO-Commentary.pdf"
+   }
+  ],
+  "outlook": {
+   "fq": "FY2027Q3",
+   "total": 108.0,
+   "pm": 2,
+   "date": "2026-08-26",
+   "src": "https://s201.q4cdn.com/141608511/files/doc_financials/2027/Q227/Q2FY27-CFO-Commentary.pdf"
+  },
+  "visibility": [
+   {
+    "text": "Jensen Huang, GTC 2026 keynote: \"I see through 2027, at least $1 trillion.\" TechCrunch reports this as expected orders for Blackwell and Vera Rubin through 2027, and that earlier in the keynote he cited about $500 billion of demand through 2026.",
+    "date": "2026-03-16",
+    "who": "Jensen Huang (CEO), GTC keynote, San Jose",
+    "src": "https://techcrunch.com/2026/03/16/jensen-just-put-nvidias-blackwell-and-vera-rubin-sales-projections-into-the-1-trillion-stratosphere/",
+    "alt_src": "https://blogs.nvidia.com/blog/gtc-2026-news/",
+    "note": "NVIDIA's own GTC live blog (Mar 16, 11:00 a.m. PT) paraphrases it as: \"Huang said he now sees at least $1 trillion in revenue from 2025 through 2027.\" Not a disclosed bookings/backlog figure; NVIDIA's SEC filings do not report bookings."
+   },
+   {
+    "text": "Colette Kress (CFO), Q2 FY2027 earnings call: \"We expect to grow revenue by approximately 70% in fiscal 2028.\" \"This is a supply-constrained outlook.\" Supply expected \"to remain a bottleneck, at least through the end of fiscal year '28.\" On Vera Rubin: production shipments began in August, \"having already received purchase orders from every major hyperscaler, AI cloud and system OEM\". Jensen Huang: \"Even though our demand is much greater than 70%, our supply allows us to confidently deliver 70%.\"",
+    "date": "2026-08-26",
+    "who": "Colette Kress (CFO) and Jensen Huang (CEO), earnings call",
+    "src": "https://fortune.com/2026/08/26/nvidia-q2-growth-results-jensen-huang/",
+    "alt_src": "https://www.roic.ai/quote/NVDA/transcripts/2027-year/2-quarter",
+    "note": "Kress quotes taken from third-party call transcripts (roic.ai; The Motley Fool transcript hosted on Webull), not an official NVIDIA transcript; 70% figure corroborated by Fortune and Axios (Aug 26, 2026). FY2028 = Feb 2027 to Jan 2028. A growth guide, not a bookings figure. Not in the Q2 FY27 CFO Commentary or press release."
+   }
+  ],
+  "cowos": [
+   {
+    "year": 2025,
+    "wpm": 70000,
+    "wpm_low": 70000,
+    "wpm_high": 70000,
+    "basis": "2025 level (\"approximately 70,000\")",
+    "who": "Media report relayed by TrendForce News",
+    "date": "2026-08-05",
+    "src": "https://www.trendforce.com/news/2026/08/05/news-tsmc-reportedly-expands-outsourcing-of-key-cowos-front-end-step-to-osats-amid-rising-nvidia-asic-demand/",
+    "note": "estimate (press report, not TSMC disclosure)"
+   },
+   {
+    "year": 2025,
+    "wpm": null,
+    "wpm_low": 75000,
+    "wpm_high": 80000,
+    "basis": "late-2025 level (\"today's 75,000–80,000 wafers\")",
+    "who": "Commercial Times citing industry estimates, via TrendForce News",
+    "date": "2025-12-08",
+    "src": "https://www.trendforce.com/news/2025/12/08/news-tsmcs-cowos-l-s-reportedly-fully-booked-osat-partners-step-up-with-ases-cowop-in-focus/",
+    "note": "estimate (range)"
+   },
+   {
+    "year": 2026,
+    "wpm": null,
+    "wpm_low": 120000,
+    "wpm_high": 130000,
+    "basis": "end-2026 target",
+    "who": "Commercial Times citing industry estimates, via TrendForce News",
+    "date": "2025-12-08",
+    "src": "https://www.trendforce.com/news/2025/12/08/news-tsmcs-cowos-l-s-reportedly-fully-booked-osat-partners-step-up-with-ases-cowop-in-focus/",
+    "note": "estimate (range)"
+   },
+   {
+    "year": 2026,
+    "wpm": null,
+    "wpm_low": 115000,
+    "wpm_high": 140000,
+    "basis": "end-2026",
+    "who": "TechNews citing institutional investors, via TrendForce News",
+    "date": "2026-04-16",
+    "src": "https://www.trendforce.com/news/2026/04/16/news-tsmc-says-cowos-offers-industrys-largest-reticle-size-packaging-amid-intel-emib-rivalry-copos-advances/",
+    "note": "estimate (range)"
+   },
+   {
+    "year": 2026,
+    "wpm": null,
+    "wpm_low": 120000,
+    "wpm_high": 140000,
+    "basis": "2026 (record level)",
+    "who": "Economic Daily News citing institutional investors, via TrendForce News",
+    "date": "2026-06-15",
+    "src": "https://www.trendforce.com/news/2026/06/15/news-tsmc-cowos-supply-demand-gap-reportedly-seen-narrowing-from-20-to-10-by-end-2026-as-capacity-expands/",
+    "note": "estimate (range); same report puts OSAT additions at 50,000–60,000 and total industry capacity near 200,000 wpm"
+   },
+   {
+    "year": 2026,
+    "wpm": null,
+    "wpm_low": 130000,
+    "wpm_high": 140000,
+    "basis": "end-2026",
+    "who": "Media report relayed by TrendForce News",
+    "date": "2026-08-05",
+    "src": "https://www.trendforce.com/news/2026/08/05/news-tsmc-reportedly-expands-outsourcing-of-key-cowos-front-end-step-to-osats-amid-rising-nvidia-asic-demand/",
+    "note": "estimate (range)"
+   },
+   {
+    "year": 2026,
+    "wpm": 130000,
+    "wpm_low": 130000,
+    "wpm_high": 130000,
+    "basis": "end-2026 (\"roughly 130,000\")",
+    "who": "Economic Daily News via Wccftech, relayed by TrendForce News",
+    "date": "2026-09-14",
+    "src": "https://www.trendforce.com/news/2026/09/14/news-tsmc-reportedly-targets-22-2nm-16-3nm-capacity-boost-by-mid-2027-cowos-to-double-by-2028/",
+    "note": "estimate"
+   },
+   {
+    "year": 2027,
+    "wpm": 170000,
+    "wpm_low": 170000,
+    "wpm_high": 170000,
+    "basis": "end-2027 forecast (revised up from 155,000)",
+    "who": "KGI Securities (broker research)",
+    "date": "2026-03-09",
+    "src": "https://www.kgi.com.hk/en/-/media/files/kgishk/research-reports/tw-reports/tsmc_2330-tt_09032026e.pdf",
+    "note": "analyst estimate"
+   },
+   {
+    "year": 2027,
+    "wpm": 170000,
+    "wpm_low": 170000,
+    "wpm_high": 170000,
+    "basis": "2027 (\"approximately 170,000\")",
+    "who": "TechNews citing institutional investors, via TrendForce News",
+    "date": "2026-04-16",
+    "src": "https://www.trendforce.com/news/2026/04/16/news-tsmc-says-cowos-offers-industrys-largest-reticle-size-packaging-amid-intel-emib-rivalry-copos-advances/",
+    "note": "estimate"
+   },
+   {
+    "year": 2028,
+    "wpm": 260000,
+    "wpm_low": 260000,
+    "wpm_high": 260000,
+    "basis": "end-2028 (about double end-2026)",
+    "who": "Economic Daily News via Wccftech, relayed by TrendForce News",
+    "date": "2026-09-14",
+    "src": "https://www.trendforce.com/news/2026/09/14/news-tsmc-reportedly-targets-22-2nm-16-3nm-capacity-boost-by-mid-2027-cowos-to-double-by-2028/",
+    "note": "estimate (outside 2025-2027 scope, included for context)"
+   }
+  ]
+ },
+ "buildings": {
+  "halves": [
+   {
+    "p": "H1 2023",
+    "uc": 2287.6,
+    "vac": 3.3,
+    "inv": null,
+    "src": "https://www.cbre.com/insights/reports/north-america-data-center-trends-h1-2023"
+   },
+   {
+    "p": "H2 2023",
+    "uc": 3077.8,
+    "vac": 3.7,
+    "inv": 5174.1,
+    "src": "https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2023"
+   },
+   {
+    "p": "H1 2024",
+    "uc": 3871.8,
+    "vac": 2.8,
+    "inv": null,
+    "src": "https://www.cbre.com/insights/reports/north-america-data-center-trends-h1-2024"
+   },
+   {
+    "p": "H2 2024",
+    "uc": 6350.1,
+    "vac": 1.9,
+    "inv": 6922.6,
+    "src": "https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2024"
+   },
+   {
+    "p": "H1 2025",
+    "uc": 5242.5,
+    "vac": 1.6,
+    "inv": 8155,
+    "src": "https://www.cbre.com/insights/reports/north-america-data-center-trends-h1-2025"
+   },
+   {
+    "p": "H2 2025",
+    "uc": 5994.4,
+    "vac": 1.4,
+    "inv": 9432,
+    "src": "https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025"
+   },
+   {
+    "p": "H1 2026",
+    "uc": 7481.1,
+    "vac": 1.4,
+    "inv": 10903,
+    "src": "https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026"
+   }
+  ],
+  "campuses": [
+   {
+    "name": "Microsoft Fairwater Wisconsin",
+    "owner": "Microsoft",
+    "place": "Mount Pleasant, WI",
+    "lat": 42.7147,
+    "lon": -87.8787,
+    "planned_gw": 2.263,
+    "operating_gw": 0.369,
+    "status": "Operational, expanding (Building 1 operational Apr 2026)",
+    "target": "Q2 2028 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/microsoft-fairwater-wisconsin"
+   },
+   {
+    "name": "Anthropic-Amazon New Carlisle (Project Rainier)",
+    "owner": "Amazon",
+    "place": "New Carlisle, IN",
+    "lat": 41.7034,
+    "lon": -86.5092,
+    "planned_gw": 1.925,
+    "operating_gw": 0.91,
+    "status": "Operational, expanding",
+    "target": "Q1 2028 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/anthropic-amazon-new-carlisle"
+   },
+   {
+    "name": "Meta Hyperion",
+    "owner": "Meta",
+    "place": "Holly Ridge, Richland Parish, LA",
+    "lat": 32.4774,
+    "lon": -91.7551,
+    "planned_gw": 1.632,
+    "operating_gw": 0.0,
+    "status": "Under construction",
+    "target": "Q1 2028 first phase (Epoch projection); Meta claims 5 GW at full build, which Epoch has not confirmed for this site",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/meta-hyperion"
+   },
+   {
+    "name": "Colossus 2",
+    "owner": "SpaceXAI",
+    "place": "Memphis, TN",
+    "lat": 35.0,
+    "lon": -90.03,
+    "planned_gw": 1.531,
+    "operating_gw": 0.946,
+    "status": "Operational, expanding",
+    "target": "Q1 2027 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/colossus-2"
+   },
+   {
+    "name": "OpenAI Stargate Shackelford (Vantage Frontier)",
+    "owner": "Oracle",
+    "place": "Shackelford County, TX",
+    "lat": 32.72,
+    "lon": -99.3,
+    "planned_gw": 1.4,
+    "operating_gw": 0.0,
+    "status": "Under construction",
+    "target": "Q4 2028 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/openai-stargate-shackelford"
+   },
+   {
+    "name": "Meta Prometheus",
+    "owner": "Meta",
+    "place": "New Albany, OH",
+    "lat": 40.0812,
+    "lon": -82.8088,
+    "planned_gw": 1.022,
+    "operating_gw": 0.471,
+    "status": "Operational, expanding",
+    "target": "Q3 2028 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/meta-prometheus"
+   },
+   {
+    "name": "OpenAI Stargate Milam",
+    "owner": "Softbank",
+    "place": "Burlington, Milam County, TX",
+    "lat": 30.8532,
+    "lon": -96.9769,
+    "planned_gw": 0.857,
+    "operating_gw": 0.0,
+    "status": "Under construction",
+    "target": "Q4 2028 (Epoch projection)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/openai-stargate-milam"
+   },
+   {
+    "name": "OpenAI Stargate Abilene",
+    "owner": "Oracle",
+    "place": "Abilene, TX",
+    "lat": 32.4487,
+    "lon": -99.7331,
+    "planned_gw": 0.843,
+    "operating_gw": 0.421,
+    "status": "Operational, expanding",
+    "target": "Q4 2026 (Epoch projects Buildings 5-8 operational Nov 1, 2026)",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/openai-stargate-abilene"
+   },
+   {
+    "name": "Microsoft Fairwater Atlanta",
+    "owner": "Microsoft",
+    "place": "Fayetteville, GA",
+    "lat": 33.4487,
+    "lon": -84.4549,
+    "planned_gw": 0.636,
+    "operating_gw": 0.636,
+    "status": "Operational (Buildings 1-4)",
+    "target": "Reached tracked capacity Jun 2026",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/microsoft-fairwater-atlanta"
+   },
+   {
+    "name": "Google Pryor (North)",
+    "owner": "Google",
+    "place": "Pryor, OK",
+    "lat": 36.3084,
+    "lon": -95.3169,
+    "planned_gw": 0.368,
+    "operating_gw": 0.368,
+    "status": "Operational (Building 2 confirmed Sep 2026)",
+    "target": "Reached tracked capacity Sep 2026",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/google-pryor-north"
+   },
+   {
+    "name": "Colossus 1",
+    "owner": "SpaceXAI",
+    "place": "Memphis, TN",
+    "lat": 35.06,
+    "lon": -90.15,
+    "planned_gw": 0.34,
+    "operating_gw": 0.34,
+    "status": "Operational",
+    "target": "Reached tracked capacity Jul 2025",
+    "src": "https://epoch.ai/data/ai-data-centers/directory/colossus-1"
+   }
+  ],
+  "campus_date": "2026-10-05"
+ },
+ "power": {
+  "gev": [
+   {
+    "q": "2024Q4",
+    "backlog": null,
+    "slots": null,
+    "total": 46,
+    "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_01282026.pdf"
+   },
+   {
+    "q": "2025Q1",
+    "backlog": 29,
+    "slots": 21,
+    "total": 50,
+    "src": "https://www.sec.gov/Archives/edgar/data/1996810/000199681025000072/gevpressrelease1q25.htm"
+   },
+   {
+    "q": "2025Q2",
+    "backlog": 29,
+    "slots": 25,
+    "total": 55,
+    "src": "https://www.sec.gov/Archives/edgar/data/1996810/000199681025000132/gevpressrelease2q25.htm"
+   },
+   {
+    "q": "2025Q3",
+    "backlog": 33,
+    "slots": 29,
+    "total": 62,
+    "src": "https://www.sec.gov/Archives/edgar/data/1996810/000199681025000159/gevpressrelease3q25.htm"
+   },
+   {
+    "q": "2025Q4",
+    "backlog": 40,
+    "slots": 43,
+    "total": 83,
+    "src": "https://s203.q4cdn.com/220048624/files/doc_downloads/2026/GEV-4Q-2025-Form-8-K-01-28-2026.pdf"
+   },
+   {
+    "q": "2026Q1",
+    "backlog": 44,
+    "slots": 56,
+    "total": 100,
+    "src": "https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000063/gevpressrelease1q26.htm"
+   },
+   {
+    "q": "2026Q2",
+    "backlog": 53,
+    "slots": 63,
+    "total": 116,
+    "src": "https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000147/gevpressrelease2q26.htm"
+   }
+  ],
+  "capacity": {
+   "text": "Jul 22, 2026: GE Vernova said it has 'completed actions to deliver 20 GW of annual gas turbine production and on track for 24 GW in '28', and is 'utilizing lean and incremental machinery in existing factory footprint to reach 30 GW in '30'. The CEO said this is 'all funded by customer down payments.' The earlier unit-based target was '70 to 80 heavy-duty gas turbines per year beginning in the second half of 2026, up from 48 this year [2024]' (Jan 22, 2025). The Dec 9, 2025 update tied ~24 GW in 2028 to '90 - 100 heavy-duty gas units'.",
+   "src": "https://www.gevernova.com/sites/default/files/gev_webcast_presentation_07222026.pdf",
+   "date": "2026-07-22",
+   "history": [
+    {
+     "d": "2024-10-23",
+     "text": "CEO: 'we have now secured capacity to deliver between 70 to 80 heavy-duty gas turbines per year starting in 2026'; 'we are adding more capacity for Gas, from the 55 to the 70 to 80 a year'; 'probably on the lower end in '26, the higher end beyond that.'",
+     "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_10232024.pdf"
+    },
+    {
+     "d": "2025-01-22",
+     "text": "CEO: 'expansion plans to produce 70 to 80 heavy-duty gas turbines per year beginning in the second half of 2026, up from 48 this year' and 'ramp to ship approximately 20 gigawatts annually starting in 2027, and expect to remain at that level going forward.'",
+     "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_01222025.pdf"
+    },
+    {
+     "d": "2025-04-23",
+     "text": "CEO: 'reaching 20 GW of annualized deliveries in the second half of 2026 ... sustaining 20 GW per year, starting in 2027.'",
+     "src": "https://www.gevernova.com/sites/default/files/2025-04/gev_webcast_transcript_04232025.pdf"
+    },
+    {
+     "d": "2025-12-09",
+     "text": "Investor update: 'On track to increase annual gas turbine capacity to 20 GW in mid '26'; 'Implementing actions to raise production to ~24 GW in '28, including 90 - 100 heavy-duty gas units.'",
+     "src": "https://www.gevernova.com/sites/default/files/gev_webcast_presentation_12092025.pdf"
+    },
+    {
+     "d": "2026-07-22",
+     "text": "Release: 'we remain on track to deliver 20 GW of annual gas turbine output in the third quarter of 2026, with 24 GW in 2028, and we are implementing actions to produce 30 GW in 2030.' On the call the CEO said GE Vernova had 'now reached our 20-gigawatt annualized run rate.'",
+     "src": "https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000147/gevpressrelease2q26.htm"
+    },
+    {
+     "d": "2026-09-16",
+     "text": "Laguna conference, CEO: 'We will hit the five-gigawatt run rate for the third quarter and the fourth quarter of this year.' He said output steps up to 6 GW per quarter in 2H 2027, possibly stays at 6 GW for a period in 2028, then reaches 7 GW per quarter; 'we've installed over 350 new machines into our gas factories.'",
+     "src": "https://www.gevernova.com/sites/default/files/ge-vernova-morgan-stanley-laguna-conference-2026-transcript.pdf"
+    }
+   ]
+  },
+  "peers": [
+   {
+    "co": "Siemens Energy",
+    "text": "On its fiscal Q3 2026 pre-close call, Siemens Energy said its gas turbine order backlog was 'about 60 GW' at the end of fiscal Q2 (Mar 31, 2026). It expects '90 GW to 100 GW of total commitments' (orders plus reservation agreements) by the end of fiscal 2026 (Sep 30, 2026). It is 'booked out' until fiscal 2028, and 2029 and 2030 slots are 'filling up very quickly'. Fiscal Q2 gas turbine orders were a record EUR 8.9bn. It raised its market outlook to 110-120 GW of gas turbine additions a year.",
+    "date": "2026-06-30",
+    "src": "https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/063026-siemens-energy-lifts-global-gas-turbine-outlook-on-data-center-demand"
+   },
+   {
+    "co": "Siemens Energy",
+    "text": "Q3 FY2026 earnings release (quarter to Jun 30, 2026): 'Growth was driven by a new record order intake at Gas Services.' The full release reports Gas Services orders of EUR 9,967m (+61.9% comparable), a book-to-bill ratio of 2.65 and a Gas Services order backlog of EUR 73bn.",
+    "date": "2026-08-05",
+    "src": "https://www.siemens-energy.com/us/en/home/press-releases/earnings-release-q3-fy-2026.html",
+    "src_alt": "https://www.turbomachinerymag.com/view/siemens-energy-posts-record-backlog-joining-ge-vernova-and-baker-hughes-in-a-record-quarter-for-gas-turbines"
+   },
+   {
+    "co": "Siemens Energy",
+    "text": "On the Q3 FY2026 earnings call, as reported by Utility Dive: Siemens Energy booked 15 GW of gas turbine orders in the quarter and shipped 6 GW, and its gas turbine backlog stood at 69 GW. CFO Maria Ferraro said 'lead times across the company now run three years or more.' It has about 35 units/yr of large gas turbine capacity, with 15 more planned in 2027. Medium gas turbine capacity is 80 units, rising to about 100 by 2028.",
+    "date": "2026-08-10",
+    "src": "https://www.utilitydive.com/news/siemens-gas-turbine-backlog-nears-70-gw-as-company-expands-manufacturing/827390/"
+   },
+   {
+    "co": "Mitsubishi Heavy Industries (Mitsubishi Power)",
+    "text": "FY2025 results (year to Mar 31, 2026). Large-frame gas turbine orders: 35 units (16 GW), up from 25 units (11 GW) in FY2024. Year-end backlog: 74 units (33 GW), up from 48 units (21 GW). Slide: 'Order intake significantly exceeded last year's record high.' GTCC orders were JPY 2,652.6bn. Briefing Q&A: 'We have a line of sight to increase production capacity by 30% by FY2028' and 'Customers continue to provide us with advanced payments in order to secure production slots.'",
+    "date": "2026-05-12",
+    "src": "https://www.mhi.com/finance/library/result/pdf/fy20254q/presentation.pdf",
+    "src_alt": "https://www.mhi.com/finance/library/result/pdf/fy20254q/qa_20254q.pdf"
+   },
+   {
+    "co": "Mitsubishi Heavy Industries (Mitsubishi Power)",
+    "text": "Q1 FY2026 (Apr-Jun 2026), as reported by Utility Dive from the Aug 6 briefing. The large-frame gas turbine backlog reached 35 GW, up from 23 GW a year earlier. MHI booked 10 large-frame orders (4 U.S., 6 Japan), scheduled for delivery between 2028 and 2030. CFO Hiroshi Nishio: 'there has been no change in the strong supply-demand environment.' Utility Dive also says MHI 'still plans to double production capacity relative to 2024 levels'; see caveats.",
+    "date": "2026-08-13",
+    "src": "https://www.utilitydive.com/news/mitsubishi-gas-turbine-backlog-earnings/827761/"
+   }
+  ],
+  "queue": [
+   {
+    "d": "2024-10-23",
+    "sold": null,
+    "sell": [
+     2028,
+     2028
+    ],
+    "t": "Filling slots, mainly for 2028",
+    "q": "we're really going to be focused on filling slots primarily in 2028.",
+    "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_10232024.pdf"
+   },
+   {
+    "d": "2025-04-23",
+    "sold": 2027,
+    "sell": [
+     2028,
+     2029
+    ],
+    "t": "2026–27 largely sold out, orders for 2029",
+    "q": "2026 and 2027 are largely sold out. 2028 is materially sold out, although we still have some slots we are selling, we now have orders for 2029",
+    "src": "https://www.gevernova.com/sites/default/files/2025-04/gev_webcast_transcript_04232025.pdf"
+   },
+   {
+    "d": "2025-12-09",
+    "sold": 2028,
+    "sell": [
+     2029,
+     2029
+    ],
+    "t": "Sold out through 2028",
+    "q": "Now sold out on new equipment through '28 ... less than 10 GW left to sell for '29.",
+    "src": "https://www.gevernova.com/sites/default/files/gev_webcast_presentation_12092025.pdf"
+   },
+   {
+    "d": "2026-04-22",
+    "sold": 2028,
+    "sell": [
+     2029,
+     2031
+    ],
+    "t": "About 3 years' lead time, taking orders for 2031",
+    "q": "we're directionally at about three years lead time today ... we do continue to expect to take on orders for '31 and beyond.",
+    "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_04222026.pdf"
+   },
+   {
+    "d": "2026-07-22",
+    "sold": null,
+    "sell": [
+     2031,
+     2031
+    ],
+    "t": "Agreements signed into 2031",
+    "q": "We had a strong first half and now have agreements signed into '31.",
+    "src": "https://www.gevernova.com/sites/default/files/gev_webcast_transcript_07222026.pdf"
+   },
+   {
+    "d": "2026-09-16",
+    "sold": null,
+    "sell": [
+     2032,
+     2032
+    ],
+    "t": "Slots sold for 2032",
+    "q": "we've secured multiple slots or sold multiple slots for 2032 deliveries since our 2Q earnings call",
+    "src": "https://www.gevernova.com/sites/default/files/ge-vernova-morgan-stanley-laguna-conference-2026-transcript.pdf"
+   }
+  ],
+  "deals": [
+   {
+    "d": "2024-03-04",
+    "buyer": "Amazon (AWS)",
+    "with": "Talen Energy",
+    "tech": "nuclear-existing",
+    "mw": 960,
+    "mw_basis": "contracted",
+    "where": "Salem Township, Pennsylvania (Susquehanna plant)",
+    "t": "Bought Talen's $650M Cumulus data center campus next to the Susquehanna nuclear plant, with up to 960 MW of carbon-free power ramping up in 120 MW steps (AWS can cap it at 480 MW)",
+    "src": "https://ir.talenenergy.com/news-releases/news-release-details/talen-energy-reports-fourth-quarter-and-annual-2023-results-line",
+    "who": "Amazon",
+    "lane": "Existing nuclear",
+    "firm": true,
+    "count": false,
+    "why": "Replaced by the June 2025 Talen deal"
+   },
+   {
+    "d": "2024-05-01",
+    "buyer": "Microsoft",
+    "with": "Brookfield Renewable",
+    "tech": "renewables",
+    "mw": 10500,
+    "mw_basis": "framework-max",
+    "where": "Global",
+    "t": "Framework for Brookfield to deliver more than 10.5 GW of new renewable power capacity for Microsoft",
+    "src": "https://bep.brookfield.com/press-releases/bep/brookfield-and-microsoft-collaborating-deliver-over-105-gw-new-renewable-power",
+    "who": "Microsoft",
+    "lane": "Renewables",
+    "firm": false
+   },
+   {
+    "d": "2024-06-11",
+    "buyer": "Google",
+    "with": "NV Energy / Fervo Energy",
+    "tech": "geothermal",
+    "mw": 115,
+    "mw_basis": "contracted",
+    "where": "Nevada",
+    "t": "Under a new 'Clean Transition Tariff', NV Energy buys 115 MW of enhanced geothermal power from Fervo and supplies it to Google's Nevada data centers",
+    "src": "https://blog.google/outreach-initiatives/sustainability/google-clean-energy-partnership/",
+    "who": "Google",
+    "lane": "Geothermal",
+    "firm": true
+   },
+   {
+    "d": "2024-08-26",
+    "buyer": "Meta",
+    "with": "Sage Geosystems",
+    "tech": "geothermal",
+    "mw": 150,
+    "mw_basis": "contracted",
+    "where": "US, east of the Rockies (site TBD)",
+    "t": "Deal for up to 150 MW of new geothermal power, with the first phase expected online in 2027",
+    "src": "https://www.facilitiesdive.com/news/meta-inks-geothermal-deal-with-sage-geosystems-data-centers-clean-energy/726046/",
+    "who": "Meta",
+    "lane": "Geothermal",
+    "firm": true
+   },
+   {
+    "d": "2024-09-20",
+    "buyer": "Microsoft",
+    "with": "Constellation",
+    "tech": "nuclear-restart",
+    "mw": 835,
+    "mw_basis": "contracted",
+    "where": "Londonderry, Pennsylvania",
+    "t": "20-year PPA to restart Three Mile Island Unit 1 as the Crane Clean Energy Center",
+    "src": "https://www.constellationenergy.com/newsroom/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid",
+    "who": "Microsoft",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2024-10-14",
+    "buyer": "Google",
+    "with": "Kairos Power",
+    "tech": "nuclear-new/SMR",
+    "mw": 500,
+    "mw_basis": "contracted",
+    "where": "US (sites TBD)",
+    "t": "First corporate deal to buy power from a fleet of small modular reactors: seven Kairos reactors, the first by 2030 and the rest by 2035",
+    "src": "https://www.nucnet.org/news/google-signs-world-first-deal-to-buy-power-from-small-modular-reactors-for-data-centres-10-2-2024",
+    "who": "Google",
+    "lane": "New nuclear",
+    "firm": true
+   },
+   {
+    "d": "2024-10-16",
+    "buyer": "Amazon",
+    "with": "X-energy / Energy Northwest",
+    "tech": "nuclear-new/SMR",
+    "mw": 960,
+    "mw_basis": "planned",
+    "where": "Richland, Washington",
+    "t": "Backed an X-energy SMR project with Energy Northwest: four reactors (about 320 MW) in the first phase, with an option to expand to 960 MW",
+    "src": "https://world-nuclear-news.org/articles/amazon-invests-in-x-energy-unveils-smr-project-plans",
+    "who": "Amazon",
+    "lane": "New nuclear",
+    "firm": false
+   },
+   {
+    "d": "2024-11-14",
+    "buyer": "AEP (for data centers)",
+    "with": "Bloom Energy",
+    "tech": "fuel cells",
+    "mw": 1000,
+    "mw_basis": "framework-max",
+    "where": "US (AEP service territory)",
+    "t": "Utility AEP agreed to buy up to 1 GW of Bloom fuel cells for on-site power at AI data centers, starting with a 100 MW order",
+    "src": "https://www.bloomenergy.com/news/bloom-energy-announces-gigawatt-fuel-cell-procurement-agreement-with-aep-to-power-ai-data-centers/",
+    "who": "Developers and utilities",
+    "lane": "Fuel cells",
+    "firm": false
+   },
+   {
+    "d": "2024-12-04",
+    "buyer": "Meta",
+    "with": "Entergy Louisiana",
+    "tech": "gas",
+    "mw": 2260,
+    "mw_basis": "nameplate",
+    "where": "Richland Parish, Louisiana",
+    "t": "Entergy to build three combined-cycle gas plants (about 2.26 GW) for Meta's Hyperion AI campus; Meta also committed to at least 1.5 GW of new renewables",
+    "src": "https://datacenterdynamics.com/en/news/meta-announces-4-million-sq-ft-louisiana-data-center-campus",
+    "who": "Meta",
+    "lane": "Gas",
+    "firm": true
+   },
+   {
+    "d": "2024-12-10",
+    "buyer": "Google",
+    "with": "Intersect Power / TPG Rise Climate",
+    "tech": "renewables",
+    "mw": null,
+    "mw_basis": null,
+    "where": "US (sites not disclosed)",
+    "t": "$20B partnership to build data center parks with their own new solar, storage and other clean power; first project due online in 2026",
+    "src": "https://www.publicpower.org/periodical/article/google-enters-strategic-partnership-meet-power-demand-new-data-centers",
+    "who": "Google",
+    "lane": "Renewables",
+    "firm": false
+   },
+   {
+    "d": "2024-12-18",
+    "buyer": "Switch",
+    "with": "Oklo",
+    "tech": "nuclear-new/SMR",
+    "mw": 12000,
+    "mw_basis": "framework-max",
+    "where": "US (sites TBD)",
+    "t": "Non-binding master power agreement for up to 12 GW of Oklo Aurora reactors through 2044",
+    "src": "https://www.powermag.com/another-big-data-center-win-for-nuclear-oklo-and-switch-sign-historic-12-gw-deal",
+    "who": "Developers and utilities",
+    "lane": "New nuclear",
+    "firm": false
+   },
+   {
+    "d": "2025-01-28",
+    "buyer": "Chevron / Engine No. 1 (for data centers)",
+    "with": "GE Vernova",
+    "tech": "gas",
+    "mw": 4000,
+    "mw_basis": "planned",
+    "where": "US Southeast, Midwest and West",
+    "t": "Partnership to build gas plants for co-located data centers using seven GE Vernova 7HA turbines, first power targeted for end-2027; no data center customer named at launch",
+    "src": "https://engine1.com/wp-content/uploads/2025/01/2025-0127_FINAL-PRESS-RELEASE_EN1_CVX_GE_.pdf",
+    "who": "Developers and utilities",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-01-28",
+    "buyer": "Crusoe (Stargate, Abilene)",
+    "with": "GE Vernova / Solar Turbines (equipment)",
+    "tech": "gas",
+    "mw": 360.5,
+    "mw_basis": "planned",
+    "where": "Abilene, Texas",
+    "t": "Air-permit filings show ten on-site gas turbines (up to 360.5 MW) for the Crusoe-built Stargate AI campus",
+    "src": "https://datacenterdynamics.com/en/news/natural-gas-plant-planned-for-stargate-ai-data-center-campus-report",
+    "who": "Developers and utilities",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-02-26",
+    "buyer": "NRG (for data centers)",
+    "with": "GE Vernova / Kiewit (TIC)",
+    "tech": "gas",
+    "mw": 5400,
+    "mw_basis": "planned",
+    "where": "Texas (ERCOT) and PJM",
+    "t": "Partnership to build up to 5.4 GW of new gas plants aimed at data center demand, the first 1.2 GW unit due in 2029",
+    "src": "https://datacenterdynamics.com/en/news/nrg-partners-with-ge-vernova-to-develop-54gw-of-gas-generation-for-us-data-center-market",
+    "who": "Developers and utilities",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-02-28",
+    "buyer": "Meta",
+    "with": "Williams",
+    "tech": "gas",
+    "mw": 400,
+    "mw_basis": "nameplate",
+    "where": "New Albany, Ohio",
+    "t": "Williams' $1.6B 'Socrates' project: two 200 MW on-site gas plants supplying Meta's New Albany data center campus",
+    "src": "https://www.powermag.com/new-200-mw-gas-fired-plant-in-ohio-will-power-meta-data-center",
+    "who": "Meta",
+    "lane": "Gas",
+    "firm": true
+   },
+   {
+    "d": "2025-03-17",
+    "buyer": "Crusoe",
+    "with": "Engine No. 1 (JV)",
+    "tech": "gas",
+    "mw": 4500,
+    "mw_basis": "planned",
+    "where": "US (sites TBD)",
+    "t": "Joint venture securing up to 4.5 GW from GE Vernova gas turbines to power new AI data center campuses",
+    "src": "https://datacenterdynamics.com/en/news/crusoe-secures-45gw-of-natural-gas-for-ai-data-centers-report",
+    "who": "Developers and utilities",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-04-02",
+    "buyer": "Homer City Redevelopment (data center campus)",
+    "with": "Kiewit / GE Vernova",
+    "tech": "gas",
+    "mw": 4500,
+    "mw_basis": "planned",
+    "where": "Indiana County, Pennsylvania",
+    "t": "Plan to turn a retired coal plant into a data center campus with up to 4.5 GW of gas power from seven GE Vernova 7HA turbines",
+    "src": "https://www.powermag.com/nations-largest-gas-fired-plant-planned-at-former-pennsylvania-coal-plant-site",
+    "who": "Developers and utilities",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-05-07",
+    "buyer": "Google",
+    "with": "Elementl Power",
+    "tech": "nuclear-new/SMR",
+    "mw": 1800,
+    "mw_basis": "planned",
+    "where": "US (three sites TBD)",
+    "t": "Early-stage funding for three advanced nuclear sites of at least 600 MW each, with an option for Google to buy the power",
+    "src": "https://blog.google/feed/google-and-elementl-nuclear-energy-site-development/",
+    "who": "Google",
+    "lane": "New nuclear",
+    "firm": false
+   },
+   {
+    "d": "2025-06-03",
+    "buyer": "Meta",
+    "with": "Constellation",
+    "tech": "nuclear-existing",
+    "mw": 1121,
+    "mw_basis": "contracted",
+    "where": "Clinton, Illinois",
+    "t": "20-year PPA for the Clinton nuclear plant's output from June 2027, plus a 30 MW uprate",
+    "src": "https://investors.constellationenergy.com/news-releases/news-release-details/constellation-meta-sign-20-year-deal-clean-reliable-nuclear",
+    "who": "Meta",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2025-06-11",
+    "buyer": "Amazon",
+    "with": "Talen Energy",
+    "tech": "nuclear-existing",
+    "mw": 1920,
+    "mw_basis": "contracted",
+    "where": "Pennsylvania (Susquehanna plant)",
+    "t": "Expanded PPA for 1.92 GW from Susquehanna through 2042, shifting from co-located to grid-connected supply",
+    "src": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611pressreleasebusin.htm",
+    "who": "Amazon",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2025-06-12",
+    "buyer": "Meta",
+    "with": "XGS Energy",
+    "tech": "geothermal",
+    "mw": 150,
+    "mw_basis": "contracted",
+    "where": "New Mexico",
+    "t": "150 MW of enhanced geothermal power for the PNM grid that serves Meta's New Mexico data centers, in two phases by 2030",
+    "src": "https://www.datacenterdynamics.com/en/news/meta-xgs-ink-150mw-geothermal-deal-in-new-mexico/",
+    "who": "Meta",
+    "lane": "Geothermal",
+    "firm": true
+   },
+   {
+    "d": "2025-06-30",
+    "buyer": "Google",
+    "with": "Commonwealth Fusion Systems",
+    "tech": "other",
+    "mw": 200,
+    "mw_basis": "contracted",
+    "where": "Chesterfield County, Virginia",
+    "t": "Fusion PPA for 200 MW from CFS's first ARC power plant, with power expected in the early 2030s",
+    "src": "https://cfs.energy/news-and-media/google-and-commonwealth-fusion-systems-sign-strategic-partnership/",
+    "who": "Google",
+    "lane": "Other",
+    "firm": true
+   },
+   {
+    "d": "2025-07-02",
+    "buyer": "xAI",
+    "with": "Self-built (Shelby County Health Dept. permit)",
+    "tech": "gas",
+    "mw": 247.2,
+    "mw_basis": "permitted",
+    "where": "Memphis, Tennessee",
+    "t": "Air permit for 15 gas turbines (247.2 MW) at the Colossus supercomputer site, where satellite images had shown more turbines running",
+    "src": "https://www.datacenterdynamics.com/en/news/elon-musk-xai-gas-turbines-memphis/",
+    "who": "xAI",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2025-07-15",
+    "buyer": "Google",
+    "with": "Brookfield Renewable",
+    "tech": "renewables",
+    "mw": 3000,
+    "mw_basis": "framework-max",
+    "where": "Pennsylvania (Holtwood, Safe Harbor); PJM and MISO",
+    "t": "Hydropower framework for up to 3 GW, starting with about 670 MW of 20-year contracts worth more than $3B",
+    "src": "https://www.utilitydive.com/news/google-hydro-power-brookfield-renewables/753039/",
+    "who": "Google",
+    "lane": "Renewables",
+    "firm": false
+   },
+   {
+    "d": "2025-07-24",
+    "buyer": "Oracle",
+    "with": "Bloom Energy",
+    "tech": "fuel cells",
+    "mw": null,
+    "mw_basis": null,
+    "where": "US (select OCI data centers)",
+    "t": "Bloom to deploy on-site fuel cells at select Oracle Cloud data centers (expanded in April 2026)",
+    "src": "https://www.powermag.com/oracle-bloom-energy-have-deal-to-power-data-centers/",
+    "who": "Oracle",
+    "lane": "Fuel cells",
+    "firm": false
+   },
+   {
+    "d": "2025-08-18",
+    "buyer": "Google",
+    "with": "Kairos Power / TVA",
+    "tech": "nuclear-new/SMR",
+    "mw": 50,
+    "mw_basis": "contracted",
+    "where": "Oak Ridge, Tennessee",
+    "t": "TVA to buy up to 50 MW from Kairos's Hermes 2 reactor (from 2030) for Google's Tennessee and Alabama data centers; part of the 500 MW Kairos deal",
+    "src": "https://www.kairospower.com/updates/google-kairos-power-tva-collaborate-to-meet-americas-growing-energy-needs",
+    "who": "Google",
+    "lane": "New nuclear",
+    "firm": true,
+    "count": false,
+    "why": "Part of Google’s 500 MW Kairos deal"
+   },
+   {
+    "d": "2025-09-29",
+    "buyer": "Amazon (AWS)",
+    "with": "Vistra",
+    "tech": "nuclear-existing",
+    "mw": 1200,
+    "mw_basis": "contracted",
+    "where": "Comanche Peak, Texas",
+    "t": "20-year PPA for 1,200 MW from the Comanche Peak nuclear plant, ramping up from Q4 2027 to 2032; buyer first unnamed, later confirmed as AWS",
+    "src": "https://world-nuclear-news.org/articles/ppas-support-extended-operations-at-vistra-plants",
+    "who": "Amazon",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2025-10-13",
+    "buyer": "Brookfield (AI factories)",
+    "with": "Bloom Energy",
+    "tech": "fuel cells",
+    "mw": null,
+    "mw_basis": null,
+    "where": "Global",
+    "t": "Brookfield to invest up to $5B in Bloom fuel cells, making Bloom the preferred on-site power provider for its AI data centers",
+    "src": "https://www.bloomenergy.com/news/brookfield-and-bloom-energy-announce-5-billion-strategic-ai-infrastructure-partnership/",
+    "who": "Developers and utilities",
+    "lane": "Fuel cells",
+    "firm": false
+   },
+   {
+    "d": "2025-10-27",
+    "buyer": "Google",
+    "with": "NextEra Energy",
+    "tech": "nuclear-restart",
+    "mw": 615,
+    "mw_basis": "nameplate",
+    "where": "Palo, Iowa",
+    "t": "25-year PPA to restart the shuttered Duane Arnold nuclear plant, with operation possible by early 2029",
+    "src": "https://www.powermag.com/google-has-deal-with-nextera-to-restart-duane-arnold-nuclear-plant/",
+    "who": "Google",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2025-12-08",
+    "buyer": "Meta",
+    "with": "NextEra Energy Resources",
+    "tech": "renewables",
+    "mw": 2500,
+    "mw_basis": "contracted",
+    "where": "ERCOT, SPP, MISO and New Mexico",
+    "t": "Eleven solar PPAs and two battery storage agreements totalling about 2.5 GW, due online 2026-2028",
+    "src": "https://www.datacenterdynamics.com/en/news/meta-signs-25gw-of-clean-energy-contracts-with-nextera-energy-across-us/",
+    "who": "Meta",
+    "lane": "Renewables",
+    "firm": true
+   },
+   {
+    "d": "2025-12-22",
+    "buyer": "Alphabet (Google)",
+    "with": "Intersect",
+    "tech": "other",
+    "mw": null,
+    "mw_basis": null,
+    "where": "US (first site Haskell County, Texas)",
+    "t": "$4.75B acquisition of Intersect's pipeline of co-located data center and power projects (multiple GW in development)",
+    "src": "https://abc.xyz/investor/news/news-details/2025/Alphabet-Announces-Agreement-to-Acquire-Intersect-to-Advance-U-S--Energy-Innovation-2025-DVIuVDM9wW/",
+    "who": "Google",
+    "lane": "Other",
+    "firm": false
+   },
+   {
+    "d": "2026-01-09",
+    "buyer": "Meta",
+    "with": "Vistra",
+    "tech": "nuclear-existing",
+    "mw": 2609,
+    "mw_basis": "contracted",
+    "where": "Ohio and Pennsylvania (Perry, Davis-Besse, Beaver Valley)",
+    "t": "20-year PPAs for 2,176 MW from the Perry and Davis-Besse plants, plus 433 MW of uprates at three plants",
+    "src": "https://www.sec.gov/Archives/edgar/data/1692819/000119312526008508/d20785d8k.htm",
+    "who": "Meta",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2026-01-09",
+    "buyer": "Meta",
+    "with": "Oklo",
+    "tech": "nuclear-new/SMR",
+    "mw": 1200,
+    "mw_basis": "planned",
+    "where": "Pike County, Ohio",
+    "t": "Meta to prepay for power from a 1.2 GW Oklo advanced reactor campus, with the first phase as early as 2030 and full capacity by 2034",
+    "src": "https://wnn.world-nuclear.org/articles/meta-announces-landmark-agreements-for-new-nuclear",
+    "who": "Meta",
+    "lane": "New nuclear",
+    "firm": false
+   },
+   {
+    "d": "2026-01-09",
+    "buyer": "Meta",
+    "with": "TerraPower",
+    "tech": "nuclear-new/SMR",
+    "mw": 2800,
+    "mw_basis": "framework-max",
+    "where": "US (site TBD)",
+    "t": "Funding for two Natrium reactors (690 MW, as early as 2032) with rights to six more, up to 2.8 GW in all",
+    "src": "https://www.terrapower.com/terrapower-announces-deal-with-meta",
+    "who": "Meta",
+    "lane": "New nuclear",
+    "firm": false
+   },
+   {
+    "d": "2026-03-10",
+    "buyer": "xAI",
+    "with": "Self-built (Mississippi DEQ permit)",
+    "tech": "gas",
+    "mw": 1200,
+    "mw_basis": "permitted",
+    "where": "Southaven, Mississippi",
+    "t": "State approval for 41 gas turbines (1.2 GW) to power the Colossus 2 and planned Colossus 3 data centers",
+    "src": "https://www.datacenterdynamics.com/en/news/musks-xai-gets-go-ahead-for-41-natural-gas-turbines-in-mississippi-to-power-colossus-data-centers",
+    "who": "xAI",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2026-03-27",
+    "buyer": "Meta",
+    "with": "Entergy Louisiana",
+    "tech": "gas",
+    "mw": 5200,
+    "mw_basis": "pending approval",
+    "where": "Richland Parish, Louisiana",
+    "t": "Seven more Meta-funded gas plants (over 5.2 GW) for the Hyperion campus, bringing the total to 10, plus up to 2.5 GW of renewables; still needs regulators' approval",
+    "src": "https://www.enr.com/articles/62766-27b-meta-data-center-pushes-louisiana-toward-massive-power-expansion",
+    "who": "Meta",
+    "lane": "Gas",
+    "firm": false
+   },
+   {
+    "d": "2026-04-13",
+    "buyer": "Oracle",
+    "with": "Bloom Energy",
+    "tech": "fuel cells",
+    "mw": 2800,
+    "mw_basis": "framework-max",
+    "where": "US",
+    "t": "Expanded master agreement for up to 2.8 GW of Bloom fuel cells for Oracle AI data centers; 1.2 GW contracted so far",
+    "src": "https://www.bloomenergy.com/news/bloom-energy-and-oracle-expand-strategic-partnership-to-deploy-up-to-2.8-gw-to-accelerate-ai-infrastructure-build-out/",
+    "who": "Oracle",
+    "lane": "Fuel cells",
+    "firm": false
+   },
+   {
+    "d": "2026-06-22",
+    "buyer": "Microsoft",
+    "with": "Chevron (with Engine No. 1)",
+    "tech": "gas",
+    "mw": 2670,
+    "mw_basis": "contracted",
+    "where": "West Texas",
+    "t": "20-year PPA for a new 2.67 GW gas plant serving a planned Microsoft data center, with power targeted for 2028",
+    "src": "https://news.bloomberglaw.com/texas-brief/microsoft-chevron-sign-20-year-power-deal-for-texas-data-center",
+    "who": "Microsoft",
+    "lane": "Gas",
+    "firm": true
+   },
+   {
+    "d": "2026-09-30",
+    "buyer": "Amazon",
+    "with": "Constellation",
+    "tech": "nuclear-existing",
+    "mw": 690,
+    "mw_basis": "contracted",
+    "where": "Lusby, Maryland (Calvert Cliffs)",
+    "t": "20-year PPA for 690 MW from Calvert Cliffs, including a 190 MW uprate, supporting more than $3B of investment",
+    "src": "https://www.constellationenergy.com/news/2026/09/constellation-and-amazon-announce-20-year-power-purchase-agreement-at-calvert-cliffs.html",
+    "who": "Amazon",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2026-10-02",
+    "buyer": "Oracle",
+    "with": "We Energies (NextEra's Point Beach)",
+    "tech": "nuclear-existing",
+    "mw": 250,
+    "mw_basis": "pending approval",
+    "where": "Two Rivers, Wisconsin",
+    "t": "Oracle to pay for 125-250 MW of Point Beach nuclear output for its Port Washington campus with OpenAI and Vantage; needs regulators' approval",
+    "src": "https://www.wpr.org/news/oracle-deal-we-energies-utility-customers",
+    "who": "Oracle",
+    "lane": "Existing nuclear",
+    "firm": false
+   },
+   {
+    "d": "2026-10-06",
+    "buyer": "Google",
+    "with": "Constellation",
+    "tech": "nuclear-existing",
+    "mw": 890,
+    "mw_basis": "contracted",
+    "where": "Illinois, Pennsylvania and New Jersey",
+    "t": "20-year PPA funding $4.3B of uprates at 11 existing reactors, adding 890 MW to PJM, with the first uprate online in 2028",
+    "src": "https://www.utilitydive.com/news/constellation-google-deal-will-bring-890-mw-of-new-nuclear-to-pjm/832223/",
+    "who": "Google",
+    "lane": "Existing nuclear",
+    "firm": true
+   },
+   {
+    "d": "2026-10-06",
+    "buyer": "Google",
+    "with": "Constellation",
+    "tech": "other",
+    "mw": 2700,
+    "mw_basis": "contracted",
+    "where": "PJM",
+    "t": "Separate 15-year supply agreement for 2,700 MW from Constellation's PJM fleet (generation type not disclosed)",
+    "src": "https://www.utilitydive.com/news/constellation-google-deal-will-bring-890-mw-of-new-nuclear-to-pjm/832223/",
+    "who": "Google",
+    "lane": "Other",
+    "firm": true
+   }
+  ]
+ },
+ "compute": {
+  "h100": [
+   {
+    "d": "2025-12-09",
+    "v": 2.0,
+    "src": "https://www.silicondata.com/blog/h100-price-spike"
+   },
+   {
+    "d": "2026-01-06",
+    "v": 2.2,
+    "src": "https://www.silicondata.com/blog/h100-price-spike"
+   },
+   {
+    "d": "2026-04-01",
+    "v": 2.63,
+    "src": "https://www.silicondata.com/blog/h100-index-may-2026-two-tiers-two-regimes"
+   },
+   {
+    "d": "2026-04-08",
+    "v": 2.47,
+    "src": "https://www.silicondata.com/blog/h100-index-may-2026-two-tiers-two-regimes"
+   },
+   {
+    "d": "2026-04-30",
+    "v": 2.59,
+    "src": "https://www.silicondata.com/blog/h100-index-may-2026-two-tiers-two-regimes"
+   },
+   {
+    "d": "2026-05-04",
+    "v": 2.57,
+    "src": "https://www.silicondata.com/blog/h200-vs-h100-rental-prices-may-july-2026"
+   },
+   {
+    "d": "2026-05-30",
+    "v": 2.76,
+    "src": "https://www.silicondata.com/blog/h100-index-may-2026-two-tiers-two-regimes"
+   },
+   {
+    "d": "2026-05-31",
+    "v": 2.73,
+    "src": "https://www.silicondata.com/blog/h100-index-may-2026-two-tiers-two-regimes"
+   },
+   {
+    "d": "2026-06-05",
+    "v": 2.79,
+    "src": "https://www.silicondata.com/blog/h200-vs-h100-rental-prices-may-july-2026"
+   },
+   {
+    "d": "2026-07-27",
+    "v": 2.75,
+    "src": "https://www.silicondata.com/blog/h200-vs-h100-rental-prices-may-july-2026"
+   },
+   {
+    "d": "2026-09-07",
+    "v": 2.63,
+    "src": "https://www.silicondata.com/blog/compute-provider-guide-arbitrage-reserve-contracts-gpu-futures"
+   },
+   {
+    "d": "2026-10-08",
+    "v": 2.8,
+    "src": "https://www.silicondata.com/products/silicon-index/h100"
+   }
+  ],
+  "b200": [
+   {
+    "d": "2026-01-01",
+    "v": 4.4,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-01-11",
+    "v": 4.29,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-01-31",
+    "v": 4.43,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-02-28",
+    "v": 4.43,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-03-25",
+    "v": 6.11,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-03-28",
+    "v": 6.08,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-03-30",
+    "v": 5.48,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-06-01",
+    "v": 5.42,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-06-30",
+    "v": 5.36,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-07-27",
+    "v": 5.66,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-07-31",
+    "v": 5.67,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-09-01",
+    "v": 5.62,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-09-07",
+    "v": 5.69,
+    "src": "https://www.silicondata.com/blog/b200-rental-price-august-2026-update"
+   },
+   {
+    "d": "2026-10-08",
+    "v": 5.88,
+    "src": "https://www.silicondata.com/products/silicon-index/b200"
+   }
+  ],
+  "a100": [
+   {
+    "d": "2026-10-07",
+    "v": 1.52,
+    "src": "https://www.silicondata.com/products/silicon-index/a100"
+   }
+  ],
+  "h100_march": {
+   "lo": 2.43,
+   "hi": 2.63,
+   "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+  },
+  "term": {
+   "d": "2026-09-07",
+   "term12": 2.3,
+   "term6": 2.52,
+   "spot": 2.63,
+   "src": "https://www.silicondata.com/blog/compute-provider-guide-arbitrage-reserve-contracts-gpu-futures"
+  },
+  "semi": {
+   "d": "2026-04-02",
+   "from": 1.7,
+   "to": 2.35,
+   "src": "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity"
+  },
+  "events": [
+   {
+    "d": "2026-01-06",
+    "t": "H100 index hit $2.20, up 10% in four weeks from $2.00 (Dec 9); Silicon Data cites year-end training deadlines, budget flush and hyperscalers prioritizing reserved capacity",
+    "src": "https://www.silicondata.com/blog/h100-price-spike"
+   },
+   {
+    "d": "2026-03-23",
+    "t": "The week after NVIDIA GTC, the B200 index made its biggest one-day jump (+0.96) above $6, peaking at 6.11 on Mar 25 (+24% in March); Silicon Data cites GTC/Rubin commitments, HBM3e cost pass-through and frontier-model launches",
+    "src": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update"
+   },
+   {
+    "d": "2026-04-02",
+    "t": "SemiAnalysis, 'The Great GPU Shortage': on-demand GPU rental capacity sold out across all GPU types; H100 1-year contract pricing up ~40% from $1.70 (Oct 2025) to $2.35 (Mar 2026)",
+    "src": "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity"
+   },
+   {
+    "d": "2026-08-11",
+    "t": "CME Group and Silicon Data set an Oct 5, 2026 launch, pending regulatory review, for H100 and B200 rental index futures",
+    "src": "https://www.cmegroup.com/media-room/press-releases/2026/8/11/cme_group_and_silicondatatolaunchcomputefuturesonoctober5tounloc.html"
+   }
+  ],
+  "method": [
+   {
+    "d": "2025-12-04",
+    "t": "Silicon Data restated its H100 and A100 index history back to September 2024 under a new method. The chart starts after this date"
+   }
+  ],
+  "method_src": "https://docs.silicondata.com/products/gpu-index-announcements"
+ }
+}
