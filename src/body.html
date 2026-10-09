@@ -1,0 +1,267 @@
+<header class="nav" id="nav">
+  <a class="mark" href="#top" aria-label="Andrew Ngai, home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd2ff"/><stop offset=".5" stop-color="#a08bff"/><stop offset="1" stop-color="#ffb23f"/></linearGradient></defs><circle cx="16" cy="16" r="14" fill="url(#mk)"/><path d="M8 9.5h16M6.5 13.5h19M6 17.5h20M6.6 21.5h18.8M9 25.5h14M10 6v20M14 4.5v23M18 4.5v23M22 6v20" stroke="#0f0c22" stroke-width="1.1" opacity=".55"/><path d="M13.6 29.6a2.4 2.4 0 0 1 4.8 0z" fill="#0f0c22"/></svg>
+    <span data-name>Andrew Ngai</span>
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#theses">Theses</a>
+    <a href="monitor/">Monitor</a>
+    <a href="#scorecard" class="wide">Scorecard</a>
+    <a href="#pulse">Pulse</a>
+    <a href="#contact" class="wide">Contact</a>
+    <span class="pads">
+      <a class="pad" data-href="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn: andrewrngai" data-tip="in/andrewrngai">in</a>
+      <a class="pad" data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram: andrew.ngai_" data-tip="@andrew.ngai_">ig</a>
+    </span>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero" id="top">
+    <canvas id="wafer" aria-hidden="true"></canvas>
+    <div class="wrap hero-copy">
+      <p class="who"><b data-name>Andrew Ngai</b>, founder of Pulse</p>
+      <h1>Intelligence is now heavy industry.</h1>
+      <p class="lede">I share short, sourced notes on the power, chips and labs behind AI, and compare where I land with the people shaping it. Some build on Leopold Aschenbrenner’s <cite>Situational Awareness</cite> or Chris Miller’s <cite>Chip War</cite>. Some push back. Each one fits on three slides and says how I’d be wrong.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#theses">Read the theses</a>
+        <a class="btn" href="#pulse">See what I’m building</a>
+      </div>
+    </div>
+    <div class="feat-wrap">
+      <div class="feat-head"><b>Featured theses</b><span class="feat-hint">Fresh off the line. Click a chip to open it.</span><span class="feat-swipe">Swipe for more →</span></div>
+      <ul class="feats" id="receipts" aria-label="Featured theses"></ul>
+    </div>
+  </section>
+
+  <section class="index" id="theses" aria-labelledby="theses-h">
+    <div class="wrap">
+      <div class="index-head">
+        <div>
+          <h2 class="big" id="theses-h">Theses on the wafer</h2>
+          <p style="margin-top:18px">Every thesis is a die on this wafer, binned by how my take compares with its source. Hover a lit die and the list finds its article, or hover an article to find its die. Dashed dies are still in probe.</p>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="index-grid">
+        <div class="map-col">
+          <div class="wafermap"><svg id="wmap" viewBox="-310 -310 620 620" role="img" aria-label="Wafer map. Each lit die is a thesis."></svg><div class="die-pip" id="diePip" aria-hidden="true"></div><div class="die-tag" id="dieTag" aria-hidden="true"></div></div>
+          <div class="readout"><p id="readout">Probe idle. <b>5 dies binned</b>, 2 in probe.</p><div class="map-pip" data-pip="idle" data-acc="wafer"></div></div>
+        </div>
+        <ul class="tlist" id="tlist"></ul>
+        <svg class="link-line" id="linkLine" aria-hidden="true"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="score" id="scorecard" aria-labelledby="score-h">
+    <div class="wrap">
+      <div class="score-head">
+        <div>
+          <h2 class="big" id="score-h">Situational Awareness, graded two years in</h2>
+          <p>In June 2024 Leopold Aschenbrenner published <a href="https://situational-awareness.ai/" target="_blank" rel="noopener"><cite>Situational Awareness: The Decade Ahead</cite></a>. I agree with more of it than most people I talk to. Here are my notes comparing five of its calls with September 2026, and where I’d grade it differently than its fans or its critics.</p>
+        </div>
+        <div class="score-pip" data-pip="idle" data-acc="memo"></div>
+      </div>
+      <div class="ledger" role="table" aria-label="Situational Awareness predictions versus 2026 reality">
+        <div class="l-row l-headrow" role="row"><span role="columnheader">The call (2024)</span><span role="columnheader">What happened</span><span role="columnheader">My grade</span></div>
+        <div class="l-row" role="row" style="--bin:var(--beat)">
+          <p class="l-call" role="cell">Power becomes the binding constraint.</p>
+          <p class="l-real" role="cell">GE Vernova’s gas turbine backlog reached 116 GW in Q2 2026, and it’s already taking reservations for 2031 deliveries.<small><a href="https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/" target="_blank" rel="noopener">Utility Dive, July 2026</a></small></p>
+          <div role="cell"><span class="stamp">Confirmed</span></div>
+        </div>
+        <div class="l-row" role="row" style="--bin:var(--beat)">
+          <p class="l-call" role="cell">About $1T a year of AI investment by 2027.</p>
+          <p class="l-real" role="cell">Amazon, Alphabet, Microsoft and Meta planned more than $700B of 2026 capex. Alphabet then raised its own guide to as much as $205B in July.<small><a href="https://sherwood.news/tech/alphabet-amazon-microsoft-meta-plan-more-than-700-billion-on-capex-this-year/" target="_blank" rel="noopener">Sherwood News</a>, <a href="https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/" target="_blank" rel="noopener">W.Media</a></small></p>
+          <div role="cell"><span class="stamp">On pace</span></div>
+        </div>
+        <div class="l-row" role="row" style="--bin:var(--beat)">
+          <p class="l-call" role="cell">Automate AI research first.</p>
+          <p class="l-real" role="cell">OpenAI says it hit its goal of an automated research intern in September 2026, and is aiming for an automated AI researcher by March 2028.<small><a href="https://openai.com/index/research-acceleration-view-inside-openai/" target="_blank" rel="noopener">OpenAI, September 2026</a></small></p>
+          <div role="cell"><span class="stamp">Adopted</span><a class="stamp-link" href="#automate">My take</a></div>
+        </div>
+        <div class="l-row" role="row" style="--bin:var(--amber)">
+          <p class="l-call" role="cell">A ~1 GW training cluster around 2026.</p>
+          <p class="l-real" role="cell">Stargate Abilene was running about 0.3 GW in April 2026, building toward 1.2 GW.<small><a href="https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand" target="_blank" rel="noopener">Epoch AI, April 2026</a></small></p>
+          <div role="cell"><span class="stamp">Arriving in stages</span></div>
+        </div>
+        <div class="l-row" role="row" style="--bin:var(--coral)">
+          <p class="l-call" role="cell">One giant cluster at the top of the ladder.</p>
+          <p class="l-real" role="cell">Stargate is seven US sites aiming for 9+ GW by 2029, and Abilene’s planned expansion went to other sites instead.<small><a href="https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand" target="_blank" rel="noopener">Epoch AI, April 2026</a></small></p>
+          <div role="cell"><span class="stamp">Wrong shape</span><a class="stamp-link" href="#fleet">My take</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="band-h">
+    <svg class="beatline" viewBox="0 0 1400 120" preserveAspectRatio="none" aria-hidden="true" data-depth="0.15"><path d="M0 60 H520 L548 60 L566 20 L590 104 L614 8 L636 84 L652 60 H1400"/></svg>
+    <div class="wrap band-grid">
+      <div>
+        <h2 id="band-h">Meanwhile, I’m building Pulse.</h2>
+        <p>Pulse turns “I’d be down” into real plans with your friends. No feed, and nobody has to go first. It counts plans that happened, not time in the app.</p>
+        <div class="ctas"><a class="btn pulse" href="#pulse">Read the Pulse mission</a></div>
+      </div>
+      <div class="band-stage" data-depth="0.25">
+        <div class="bubble">Hi, I’m Pip! 👋</div>
+        <div data-pip="wave" data-label="Pip, the Pulse shark, waving hello"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <h2 class="big send-h" id="contact-h">Some people send&nbsp;a&nbsp;<span class="nw"><span class="bcard"><span class="bcard-t">business card</span></span>.</span><br> I’d rather send a&nbsp;<span class="thesis-w">thesis</span><span class="die-dot">.</span></h2>
+          <p class="lede">If you invest in or build anything on this page, I’d like to compare notes. Tell me where I’m wrong. That’s how these get better.</p>
+        </div>
+        <aside class="rules" aria-label="How I share notes">
+          <div data-pip="swim" data-acc="helmet"></div>
+          <h3>House rules</h3>
+          <ul>
+            <li><b>Three slides, max.</b>If it doesn’t fit, I don’t understand it yet.</li>
+            <li><b>Name the reference design.</b>Every thesis credits who I’m building on or arguing with, and links the receipts.</li>
+            <li><b>Say how I’d be wrong.</b>A bet without a kill condition is just a mood.</li>
+          </ul>
+        </aside>
+        <div class="contact-io">
+          <div class="pinout" id="contactLinks"></div>
+          <p class="mail-note" id="mailNote" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="line" id="pips" aria-labelledby="line-h">
+    <div class="wrap line-head">
+      <div>
+        <h2 class="big" id="line-h">Final test: every Pip</h2>
+        <p>Pulse’s mascot in every outfit, riding the test line past the probe. Click a thesis Pip to open its thesis, or grab the belt and spin it.</p>
+      </div>
+      <div class="line-panel">
+        <div class="line-readout" id="lineReadout"></div>
+        <div class="line-jog">
+          <button type="button" id="lineBack" aria-label="Previous Pip">‹ Back</button>
+          <span id="lineCount"></span>
+          <button type="button" id="lineNext" aria-label="Next Pip">Next ›</button>
+        </div>
+      </div>
+    </div>
+    <div class="line-stage" id="lineStage">
+      <div class="gantry" aria-hidden="true"><i class="g-post"></i><i class="g-post r"></i><span class="g-beam">Probe</span></div>
+      <div class="belt" aria-hidden="true"></div>
+      <div class="line-track" id="lineTrack"></div>
+      <div class="line-probe" aria-hidden="true"><span class="p-head"></span><span class="p-light"><i></i></span></div>
+    </div>
+    <div class="wrap">
+      <footer class="foot">
+        <span>© 2026 <span data-name>Andrew Ngai</span>. Theses updated September 2026. The <a href="monitor/">Buildout Monitor</a> updates monthly.</span>
+        <span>Pip appears courtesy of <a href="#pulse">Pulse</a>. Sources are linked inside each thesis.</span>
+        <button class="motion-btn" type="button" data-motion>Pause motion</button>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<div id="pulseView" class="pulse-world" hidden>
+  <section class="pw-hero">
+    <a class="pw-back" href="#theses">Back to the theses</a>
+    <div class="wrap pw-hero-grid">
+      <div>
+        <p class="pw-word">PULSE</p>
+        <h1>Keep the signal light. <span class="pw-grad">Keep the people close.</span></h1>
+        <p class="pw-lede">Pulse turns “I’d be down” into real plans with your friends. Say what you’re up for this week. Pulse finds who else is down, checks everyone’s still in, and opens a room only when it’s real.</p>
+        <div class="ctas">
+          <a class="btn pulse" data-href="pulseSite" target="_blank" rel="noopener">Visit the Pulse site</a>
+          <a class="btn pulse-ghost" data-href="appStore" target="_blank" rel="noopener">Get Pulse for iPhone</a>
+        </div>
+      </div>
+      <div class="pw-stage" id="pwStage">
+        <div class="chip c-c"><b>Eat</b><span>Today, after 5</span></div>
+        <div class="chip c-a"><b>Go out</b><span>Friday, really trying</span></div>
+        <div class="chip c-b"><b>Maya’s down too</b><span>Food, 5–7 PM</span></div>
+        <div class="phone"><img src="img/pulse-home.webp" alt="Pulse home screen: hold the circle to set your Pulse, with friends who are down lining up around it" width="786" height="1610"></div>
+        <div class="bubble">Hi, I’m Pip! 👋</div>
+        <div data-pip="wave" data-label="Pip waving hello"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-sec pw-mission">
+    <div class="wrap">
+      <div class="mission-grid">
+        <div>
+          <h2>Pulse exists so people who like each other actually see each other.</h2>
+          <p class="pw-body">Most plans die in the group chat. Everyone’s a little bit down, nobody wants to go first, and the thread goes quiet. The friendships are fine. The plans just never happen. Pulse lives in the moment before a plan exists, the “I’d be down” you’d never say out loud, then gets out of the way so you can go do the thing.</p>
+        </div>
+        <div class="stat">
+          <b>60 → 20</b>
+          <span>Minutes a day Americans spent with friends in person, 2003 versus 2020. U.S. Surgeon General’s advisory on loneliness, 2023.</span>
+        </div>
+      </div>
+      <p class="not-list" aria-label="What Pulse is not"><s>a feed</s><s>a calendar</s><s>a map of your friends</s><s>another group chat</s><span class="yes">the nudge between “I’d be down” and “see you there.”</span></p>
+    </div>
+  </section>
+
+  <section class="pw-sec pw-loop">
+    <div class="wrap">
+      <div class="loop-head">
+        <h2>From “I’d be down” to “we’re actually doing this.”</h2>
+        <p>Six moments. Pulse does the awkward parts in between. Tap a beat.</p>
+      </div>
+      <div class="beats">
+        <svg viewBox="0 0 1200 64" preserveAspectRatio="none" aria-hidden="true"><path id="beatBase" d=""/><path id="beatLit" class="lit" d=""/></svg>
+        <ol class="beat-btns" id="beatBtns"></ol>
+      </div>
+      <div class="loop-detail">
+        <div class="phone"><img id="loopImg" src="img/pulse-week.webp" alt="" width="786" height="1610"></div>
+        <div class="loop-text" id="loopText" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-sec" style="background:var(--night)">
+    <div class="wrap">
+      <h2>Four rules the product doesn’t break</h2>
+      <div class="pr-grid">
+        <article><h3>Intent before logistics</h3><p>Start with what you’d be down for, not a calendar invite. Times stay loose until there’s actually a plan.</p></article>
+        <article><h3>Nobody has to go first</h3><p>“Still down?” is private. Nobody ever sees a no, so saying yes costs nothing.</p></article>
+        <article><h3>Built to get you out</h3><p>No feed to scroll, no likes to chase. Pulse counts plans that happened, not time in the app.</p></article>
+        <article><h3>Private by design</h3><p>Friends you add and clubs you join, never strangers. Rooms clear two weeks after. No ads, never sold.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-sec why">
+    <div class="wrap">
+      <h2>Why this gets big</h2>
+      <div class="why-grid">
+        <article><p class="tag">WEDGE</p><h3>It works with one friend group</h3><p>Two yeses make a plan. Pulse is useful to six friends on day one, so it doesn’t need a million users to feel alive.</p></article>
+        <article><p class="tag">EXPANSION</p><h3>Clubs turn acquaintances into friends</h3><p>Pulse Pods give a run club, class or team its own signals. Pair Pulse schedules coffee chats around times both people are already free.</p></article>
+        <article><p class="tag">TAILWIND</p><h3>AI is about to hand people hours back</h3><p>When work gets automated, coordination becomes the bottleneck to seeing each other. It’s one of the notes I share on the main page. <a href="#screentime">Read it</a></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-sec parade-sec">
+    <div class="wrap">
+      <h2>Meet Pip</h2>
+      <p style="margin-top:14px;max-width:36rem">Pulse’s mascot, and a regular on this site. The classics from the app, plus an outfit for every thesis. Tap one to open it.</p>
+      <div class="parade" id="parade"></div>
+    </div>
+  </section>
+
+  <section class="pw-sec pw-end">
+    <div class="wrap">
+      <h2>What’s the move? Set your Pulse this week.</h2>
+      <div class="ctas">
+        <a class="btn pulse" data-href="appStore" target="_blank" rel="noopener">Get Pulse for iPhone</a>
+        <a class="btn pulse-ghost" href="#theses">Back to the theses</a>
+      </div>
+    </div>
+  </section>
+  <footer class="pw-foot"><div class="wrap"><span>Pulse, made in California for people who’d rather be out.</span><span>Built by <span data-name>Andrew Ngai</span>. <a data-href="pulseSite" target="_blank" rel="noopener">pulsefriends.github.io</a> · <a data-href="linkedin" target="_blank" rel="noopener">LinkedIn</a> · <a data-href="instagram" target="_blank" rel="noopener">Instagram</a></span><button class="motion-btn" type="button" data-motion>Pause motion</button></div></footer>
+</div>
+
+<div class="memo" id="memo" role="dialog" aria-modal="true" aria-labelledby="memoTitle" hidden></div>

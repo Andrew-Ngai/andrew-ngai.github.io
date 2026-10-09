@@ -1,0 +1,2494 @@
+(() => {
+"use strict";
+
+const CONFIG = {
+  name: "Andrew Ngai",
+  email: "",
+  linkedin: "https://www.linkedin.com/in/andrewrngai/",
+  instagram: "https://www.instagram.com/andrew.ngai_/",
+  github: "https://github.com/Andrew-Ngai",
+  pulseSite: "https://pulsefriends.github.io/pulse-app.github.io/",
+  appStore: "https://apps.apple.com/app/id6816788315"
+};
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+// An OS "reduce motion" setting (common on managed work laptops) keeps gentle loops but drops
+// parallax, scroll-linked motion and the load sweep. The footer button pauses everything.
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let motionPaused = false;
+try { motionPaused = localStorage.getItem("motion") === "paused"; } catch (e) {}
+
+/* ---------------------------------------------------------------- sources */
+const SRC = {
+  nbMo: "https://datacenterdynamics.com/en/news/nebius-breaks-ground-on-400-acre-data-center-campus-in-independence-missouri/",
+  awsPrice: "https://aws.amazon.com/ec2/pricing/on-demand/",
+  nbMsft: "https://www.datacenterdynamics.com/en/news/microsoft-to-use-nebius-gpu-data-centers-in-deal-worth-174bn-over-five-years/",
+  nbMeta: "https://www.investing.com/analysis/nebius-27-billion-meta-deal-rewrites-its-revenue-outlook-200676725",
+  nbDcd: "https://www.datacenterdynamics.com/en/analysis/becoming-nebius/",
+  nbQ2: "https://finance.yahoo.com/technology/ai/articles/nebius-group-nv-nbis-q2-010716755.html",
+  nbConc: "https://www.fool.com/investing/2026/10/05/nebius-has-usd40-billion-of-customer-commitments-most-of-it-comes-from-2-customers/",
+  nbPrice: "https://www.fool.com/investing/2026/09/27/nebius-is-raising-the-price-of-its-ai-compute-on-oct-1-here-s-what-that-says-about-the-shortage/",
+  msftNeo: "https://finance.yahoo.com/news/microsoft-inks-33-billion-deals-191655037.html",
+  awsCut: "https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/",
+  h100idx: "https://www.silicondata.com/products/silicon-index/h100",
+  rand: "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
+  epochCost: "https://arxiv.org/abs/2405.21015",
+  attention: "https://arxiv.org/abs/1706.03762",
+  llamaLeak: "https://www.deeplearning.ai/the-batch/how-metas-llama-nlp-model-leaked",
+  distill: "https://techcrunch.com/2026/02/23/anthropic-accuses-chinese-ai-labs-of-mining-claude-as-us-debates-ai-chip-exports/",
+  distill7: "https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html",
+  exportCtl: "https://www.aljazeera.com/economy/2026/7/1/us-lifts-restrictions-on-powerful-ai-models-fable-mythos-anthropic-says",
+  cowosOut: "https://www.trendforce.com/news/2026/08/05/news-tsmc-reportedly-expands-outsourcing-of-key-cowos-front-end-step-to-osats-amid-rising-nvidia-asic-demand/",
+  tglass: "https://www.tomshardware.com/tech-industry/shortages-of-crucial-chip-packaging-material-threatens-ai-accelerator-supply-chains-nittobos-fukushima-plant-is-tripling-capacity-but-itll-take-years-before-market",
+  bwWafer: "https://www.datacenterdynamics.com/en/news/first-us-made-nvidia-blackwell-wafer-manufactured-at-tsmcs-arizona-fab/",
+  tsmcAp: "https://www.datacenterdynamics.com/en/news/tsmc-updates-roadmap-with-three-new-process-nodes-breaks-ground-on-arizona-packaging-facility/",
+  amkor: "https://azbigmedia.com/business/amkor-increases-investment-in-new-arizona-facility-to-12-billion/",
+  amkorNv: "https://finance.yahoo.com/technology/ai/articles/amkor-jumps-1-5-billion-124203060.html",
+  nv800: "https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/",
+  bloomOracle: "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-and-Oracle-Expand-Strategic-Partnership-to-Deploy-up-to-2-8-GW-to-Accelerate-AI-Infrastructure-Build-Out/default.aspx",
+  bloomQ2: "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+  bloomCap: "https://www.utilitydive.com/news/bloom-energy-says-its-on-track-for-2-gw-annual-production-capacity/804291/",
+  bloomSheet: "https://www.bloomenergy.com/wp-content/uploads/bloom-energy-server-datasheet-feb-2026.pdf",
+  bloomDC: "https://www.bloomenergy.com/news/the-new-rules-of-ai-power-report/",
+  saII: "https://situational-awareness.ai/from-agi-to-superintelligence/",
+  saIIIa: "https://situational-awareness.ai/racing-to-the-trillion-dollar-cluster/",
+  openai: "https://openai.com/index/research-acceleration-view-inside-openai/",
+  utility: "https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/",
+  nadella: "https://www.tomshardware.com/tech-industry/artificial-intelligence/microsoft-ceo-says-the-company-doesnt-have-enough-electricity-to-install-all-the-ai-gpus-in-its-inventory-you-may-actually-have-a-bunch-of-chips-sitting-in-inventory-that-i-cant-plug-in",
+  epoch: "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+  sherwood: "https://sherwood.news/tech/alphabet-amazon-microsoft-meta-plan-more-than-700-billion-on-capex-this-year/",
+  wmedia: "https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/",
+  skh: "https://news.skhynix.com/en/q2-2026-business-results/",
+  trend: "https://www.trendforce.com/news/2026/06/15/news-tsmc-cowos-supply-demand-gap-reportedly-seen-narrowing-from-20-to-10-by-end-2026-as-capacity-expands/",
+  sg: "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+  stat: "https://www.statnews.com/2023/05/02/loneliness-surgeon-general/",
+  moore: "https://www.cs.utexas.edu/~fussell/courses/cs352h/papers/moore.pdf",
+  n2: "https://www.techspot.com/news/110755-tsmc-2nm-n2-process-officially-enters-volume-production.html",
+  a16: "https://www.trendforce.com/news/2026/04/23/news-tsmc-unveils-latest-roadmap-a12-a13-set-for-2029-without-high-na-euv-a16-volume-production-delayed-to-2027/",
+  dcd: "https://www.datacenterdynamics.com/en/analysis/nvidia-gtc-jensen-huang-data-center-rack-density/",
+  msft: "https://news.microsoft.com/source/features/innovation/microfluidics-liquid-cooling-ai-chips/",
+  saI: "https://situational-awareness.ai/from-gpt-4-to-agi/",
+  dgx: "https://www.pny.com/en-eu/nvidia/dgx/b200",
+  anthTpu: "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropic-signs-deal-with-google-cloud-to-expand-tpu-chip-capacity-ai-company-expects-to-have-over-1gw-of-processing-power-in-2026",
+  metaTpu: "https://siliconangle.com/2026/02/26/google-meta-reportedly-strike-new-multibillion-dollar-ai-chip-deal/",
+  chipwar: "https://en.wikipedia.org/wiki/Chip_War",
+  video: "https://youtu.be/o9g49L-MmeE",
+  epochTrend: "https://epoch.ai/blog/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year",
+  highna: "https://www.techtimes.com/articles/327533/20260915/tsmc-joins-all-four-chipmakers-asml-high-na-euv-eindhoven-campus-breaks-ground.htm",
+  n3: "https://en.wikipedia.org/wiki/3_nm_process",
+  f13: "https://13f.info/manager/0002045724-situational-awareness-lp",
+  scrivner: "https://www.danielscrivner.com/leopold-aschenbrenner-trades-and-holdings-q2-2026/",
+  telecom: "https://en.wikipedia.org/wiki/Telecoms_crash",
+  bea: "https://www.anthropic.com/engineering/building-effective-agents",
+  harness: "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+  cpulse: "https://openai.com/index/introducing-chatgpt-pulse/",
+  ap2: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol",
+  axios: "https://www.axios.com/2025/09/29/openai-shopping-chatgpt",
+  hypo: "https://www.hypotenuse.ai/blog/chatgpts-instant-checkout-the-next-phase-of-agentic-commerce",
+  saasNadella: "https://cloudwars.com/ai/apps-apocalypse-bill-mcdermott-joins-satya-nadella-in-saying-ai-agents-will-crush-applications/",
+  saasSell: "https://finance.yahoo.com/news/anthropics-ai-tools-deepen-selloff-054551832.html",
+  saasHigh: "https://www.thestar.com.my/tech/tech-news/2026/10/06/us-software-stocks-scale-fresh-2026-highs-as-ai-disruption-worries-fade",
+  klarna: "https://techcrunch.com/2025/03/04/klarna-ceo-doubts-that-other-companies-will-replace-salesforce-with-ai",
+  claudeforce: "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/",
+  crmQ2: "https://www.thestar.com.my/tech/tech-news/2026/08/27/salesforce-raises-annual-revenue-forecasts-on-ai-product-momentum",
+  crmStake: "https://www.nasdaq.com/articles/salesforce-stock-just-soared-thank-anthropic",
+  crmCall: "https://www.fool.com/earnings/call-transcripts/2026/08/31/salesforce-crm-q2-2027-earnings-call-transcript/",
+  nowQ2: "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
+  intercom: "https://www.intercom.com/pricing",
+  gartner26: "https://www.gartner.com/en/newsroom/press-releases/2026-04-22-gartner-forecasts-worldwide-it-spending-to-grow-13-point-5-percent-in-2026-totaling-6-point-31-trillion-dollars",
+  spxIpo: "https://www.businessday.co.za/world/international-companies/2026-06-11-spacex-raises-75bn-in-blockbuster-ipo/",
+  spxCursor: "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026056945/spcx-20260814.htm",
+  spxExercise: "https://www.capitalbrief.com/briefing/spacex-exercises-option-to-buy-cursor-for-usd60b-9f3721c7-1276-4772-9451-e3bf32acbab9/",
+  cursor4b: "https://dealroom.co/news/134107-cursor-tops-4b-annualized-revenue/",
+  spxFin: "https://www.satellitetoday.com/finance/2026/05/20/spacexs-ipo-filing-gives-first-look-into-companys-financials/",
+  spxQ2: "https://abc7.com/post/elon-musk-face-tough-questions-during-spacexs-first-earnings-call-public-company/19623672/",
+  spxLeaseTc: "https://techcrunch.com/2026/05/28/how-long-is-anthropics-lease-with-spacex-opinions-vary/",
+  cursorCo: "https://en.wikipedia.org/wiki/Cursor_(company)",
+  spxCap: "https://stockanalysis.com/stocks/spcx/statistics/",
+  spxF14: "https://aiaa.org/2026/09/28/starship-reaches-orbit-for-first-time-on-flight-14/",
+  spxF14b: "https://www.satellitetoday.com/launch/2026/09/28/spacexs-starship-reaches-orbit-cuts-10-hour-mission-short-after-engine-issue/",
+  pgGillette: "https://www.sec.gov/Archives/edgar/data/41499/000095010305000139/jan2705_ex9901.htm",
+  rklbQ2: "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000061/rklb-08102026ex991.htm",
+  rklbIrdm: "https://www.manufacturingdive.com/news/rocket-lab-iridium-communications-space-spectrum-network-acquisition/824006/",
+  neutron: "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/",
+  burry: "https://www.streetinsider.com/General+News/Michael+Burry+warns+of+%24176+billion+depreciation+understatement+by+tech+giants/25584209.html",
+  burry60s: "https://www.benzinga.com/markets/equities/26/10/62129119/michael-burry-just-pulled-a-1960s-market-bubble-into-nvidias-ai-debate-we-have-all-been-here-before",
+  depDj: "https://www.itiger.com/news/2589331119",
+  rubin: "https://blogs.nvidia.com/blog/vera-rubin/",
+  a100Huang: "https://www.thestreet.com/investing/stocks/jensen-huang-just-answered-michael-burrys-nvidia-bear-case-coreweave",
+  a100Val: "https://www.benzinga.com/markets/prediction-markets/26/09/61668402/nvidia-a100-chips-michael-burry-depreciation",
+  h100Spike: "https://www.silicondata.com/blog/h100-price-spike",
+  semiShort: "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+  nbDep: "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926094844/nbis-20260812xex99d1.htm",
+  dgxH100: "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html"
+};
+
+const BINS = {
+  agree:    { label: "Agree",     css: "var(--beat)",   hex: "#4fd2ff" },
+  build:    { label: "Build on",  css: "var(--amber)",  hex: "#ffb23f" },
+  push:     { label: "Push back", css: "var(--coral)",  hex: "#ff6b80" },
+  original: { label: "My read",   css: "var(--violet)", hex: "#a08bff" }
+};
+
+/* ---------------------------------------------------------------- theses */
+const THESES = [
+  {
+    id: "automate", die: [0, -5], stance: "agree",
+    title: "Automate the researcher, not the economy.",
+    short: "Automate the researcher",
+    hook: "The fastest path to transformative AI runs through one job. The labs are already on it.",
+    ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. II, “From AGI to Superintelligence” (June 2024)", href: SRC.saII },
+    signal: `<blockquote class="pull">We don’t need to automate everything—just AI research.</blockquote>
+      <p>In 2024 that read like science fiction. On September 6, 2026, OpenAI said it had reached its goal of an “automated research intern” on schedule, and that its research org now logs 3.1 agent-workdays for every human workday.</p>`,
+    takes: [
+      ["The loop is closing at the intern level.", "Agents already run multi-day, well-scoped research tasks. Getting from intern to researcher is a judgment problem, not a labor problem."],
+      ["Experiment compute sets the speed limit.", "Aschenbrenner calls limited compute for experiments probably the most important bottleneck, then argues the loop runs anyway. I think it sets the pace. When agent labor is nearly free, every idea gets tried, and the GPU queue becomes the research queue."],
+      ["Taste becomes the scarcest input.", "OpenAI says humans still set priorities and judge results. One researcher with great taste, supervising a hundred agents, is the new unit of a frontier lab."]
+    ],
+    bet: "Back the tooling for automated research: experiment schedulers, evals that agents can’t game, and verification that lets one person trust a hundred agents’ results.",
+    wrong: "Agent-workdays grow 10x and the pace of frontier releases doesn’t change. Then labor was never the bottleneck.",
+    receipts: [["Situational Awareness, ch. II", SRC.saII], ["OpenAI, Research acceleration (Sept 2026)", SRC.openai]],
+    viz: "automate", pip: { pose: "idle", acc: "flask", name: "Researcher" }
+  },
+  {
+    id: "agent", die: [3, 1], stance: "build",
+    title: "An agent is a brain with a body.",
+    short: "A brain with a body",
+    hook: "The model already knows what you need for the camping trip. The harness decides whether it can go buy it.",
+    ref: { label: "Anthropic, “Building effective agents” (December 2024), and its guide to harnesses for long-running agents (November 2025)", href: SRC.bea },
+    signal: `<blockquote class="pull">…systems where LLMs dynamically direct their own processes and tool usage.</blockquote>
+      <p>That’s Anthropic’s definition of an agent, and it has two halves: a model that decides, and everything around it that lets the decision happen. The model is the brain. The harness, with its tools, memory, permissions and payments, is the body.</p>`,
+    takes: [
+      ["The brain is ahead of the body.", "Ask any frontier model what to pack for a camping trip and you’ll get a good list. Buying it is the hard part: OpenAI launched in-chat checkout in September 2025 and retired it in March 2026. Even Anthropic’s guide to long-running agents is mostly about the body: progress notes, git and a checklist so each session knows what the last one did."],
+      ["The body grows in three steps: ask, anticipate, act.", "Ask works today: say “camping next weekend” and it plans. Anticipate is arriving: ChatGPT Pulse can read a connected calendar overnight and suggest what to do before an upcoming trip. Act is next: it buys, and you approve."],
+      ["The confirm button closes the loop.", "Google’s AP2 turns approval into a signed “mandate”: you approve the exact cart, or set rules ahead of time, like buying tickets the moment they go on sale under a price limit. That’s the full circle. The model decides, the harness acts, and you only say yes."]
+    ],
+    bet: "Back the body. The next wave of agent value is in the harness: permissions and identity for agents, payment mandates, connectors to calendars and stores, and memory that survives between sessions. A better brain makes every body more useful, but only a better body lets it act.",
+    wrong: "By 2028, most people still won’t let an agent check out for them, even with a confirm button.",
+    receipts: [["Anthropic, Building effective agents (Dec 2024)", SRC.bea], ["Anthropic, Effective harnesses for long-running agents (Nov 2025)", SRC.harness], ["OpenAI, Introducing ChatGPT Pulse (Sept 2025)", SRC.cpulse], ["Google Cloud, Announcing AP2 (Sept 2025)", SRC.ap2], ["Axios on Instant Checkout (Sept 2025)", SRC.axios], ["Hypotenuse on its retirement (2026)", SRC.hypo]],
+    viz: "agent", pip: { pose: "run", acc: "camper", name: "Camper" }
+  },
+  {
+    id: "weights", die: [-1, 5], stance: "agree",
+    title: "Weights are the new crown jewels.",
+    short: "Weights are the crown jewels",
+    hook: "A frontier model is a billion-dollar training run boiled down to one file. Copy the file and you skip the race.",
+    ref: { label: "RAND, “Securing AI Model Weights” (2024)", href: SRC.rand },
+    signal: `<blockquote class="pull">Achieving SL5 is currently not possible.</blockquote>
+      <p>RAND ranks the security of model weights in five levels. Level 5 is the one that stops “top-priority operations conducted by the world’s most capable nation-states.” AI labs told RAND that reaching it would take at least five years and the support of the national security community.</p>
+      <p>The most valuable file in tech can’t yet be defended against the people most likely to want it.</p>`,
+    takes: [
+      ["Training turns compute into one file.", "A model is billions of numbers called weights. Training nudges them, over trillions of words, until the model gets better at one job: predicting the next token. The cost of the biggest runs has grown about 2.4× a year, on track to reach about $1 billion per run by 2027. What comes out is a file. A trillion weights at 16 bits each is about 2 TB, small enough for a pocket drive."],
+      ["The typing effect is the model working.", "Chatbots stream text because that’s literally how they generate it. The model predicts one token, adds it to everything written so far, and predicts the next one from the whole sequence again. Servers cache the earlier math instead of redoing it, but every word still depends on all the words before it. That loop is all inference is, so whoever holds the weights and enough GPUs holds the capability."],
+      ["The race is already working around the vault.", "Meta’s first LLaMA weights leaked online about a week after release in 2023. In February 2026, Anthropic said DeepSeek, Moonshot and MiniMax used more than 24,000 fake accounts and 16 million exchanges to distill Claude’s skills, and by September it had named seven China-based labs. In June, Washington ordered Anthropic to keep foreign nationals, even its own staff, off its two most powerful models, citing national security, then lifted the order weeks later once Anthropic agreed to security conditions."]
+    ],
+    bet: "Frontier weights get treated like fissile material: a national asset with government-grade protection. Expect SL4 and SL5 data centers built with the national security community, confidential computing down to the GPU, insider-risk programs, and anti-distillation detection as a standard product. Back the companies that make weights hard to steal and capabilities hard to copy.",
+    wrong: "By 2028, open or distilled models match the frontier within months without any stolen weights, so locking down one file stops mattering.",
+    receipts: [["RAND, Securing AI Model Weights (2024)", SRC.rand], ["Epoch AI on training costs (Cottier et al.)", SRC.epochCost], ["Vaswani et al., Attention Is All You Need (2017)", SRC.attention], ["The Batch on the LLaMA leak (2023)", SRC.llamaLeak], ["TechCrunch on distillation (Feb 2026)", SRC.distill], ["The Hacker News on seven labs (Sept 2026)", SRC.distill7], ["Al Jazeera on the export controls (July 2026)", SRC.exportCtl]],
+    viz: "weights", pip: { pose: "idle", acc: "vault", name: "Keeper" }
+  },
+  {
+    id: "ooms", die: [2, 7], stance: "build",
+    title: "The computer is now the building.",
+    short: "The computer is the building",
+    hook: "Aschenbrenner counts the OOMs to AGI. I count where they physically land, from chip to campus.",
+    ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. I, “From GPT-4 to AGI: Counting the OOMs” (June 2024)", href: SRC.saI },
+    signal: `<blockquote class="pull">AGI by 2027 is strikingly plausible.</blockquote>
+      <p>His method is to count orders of magnitude (OOMs) of effective compute. GPT-2 (2019) was a preschooler and GPT-4 (2023) a smart high schooler, about 4.5 to 6 OOMs apart. He expects another jump that size by 2027, and treats AGI as the starting line, not the finish line.</p>`,
+    takes: [
+      ["Every OOM has to live somewhere.", "Compute comes in five nested levels: a chip (about 1 kW), a server (14.3 kW for eight Blackwell GPUs), a rack (about 120 kW for Nvidia’s GB200 NVL72), a cluster, and a campus (Stargate Abilene is planned for 1.2 GW). Chip to campus is about six OOMs of power."],
+      ["The product keeps climbing a level.", "Nvidia’s flagship is now a 72-GPU rack, not a chip. The next unit of competition is the building, where networking and power decide how much of the compute is usable."],
+      ["The vertical stacks are opening up.", "Google designs its TPUs from chip to datacenter, and now rents them to outside labs at scale: Anthropic signed for up to a million in 2025, and Meta signed a multibillion-dollar deal in 2026. Nvidia sells the general-purpose version to everyone."]
+    ],
+    bet: "Back the glue between levels: networking and optical interconnect, power delivery inside the building, and software that keeps a whole campus busy. I expect each new OOM to make the glue a bigger share of the bill.",
+    wrong: "A single rack can train a frontier model by 2028, so the frontier stops climbing levels.",
+    receipts: [["Situational Awareness, ch. I", SRC.saI], ["DGX B200 specs", SRC.dgx], ["DCD on rack density (Mar 2025)", SRC.dcd], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu], ["SiliconANGLE on Meta’s TPUs (Feb 2026)", SRC.metaTpu]],
+    viz: "ooms", pip: { pose: "idle", acc: "rack", name: "Rack" }
+  },
+  {
+    id: "molecules", die: [-6, 6], stance: "build",
+    title: "Molecules are easy. Machines are hard.",
+    short: "Molecules are easy",
+    hook: "Aschenbrenner was right that power binds. He was early about where it binds.",
+    ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. IIIa, “Racing to the Trillion-Dollar Cluster” (June 2024)", href: SRC.saIIIa },
+    signal: `<p>Aschenbrenner called power the binding constraint on AI, and showed the fuel exists: roughly 1,200 new wells in the Marcellus and Utica shale could power 100 GW, in under a year of drilling.</p>
+      <p>He was right about power. The gas was never the hard part.</p>`,
+    takes: [
+      ["The fuel isn’t the constraint. The conversion is.", "Gas in the ground does nothing until a turbine, a transformer and a substation turn it into power at the rack."],
+      ["The queue is measured in years.", "GE Vernova’s gas turbine backlog reached 116 GW in Q2 2026, and it’s taking reservations for 2031 deliveries. A well takes months. A turbine slot takes about five years."],
+      ["Chips are already waiting on power.", "In late 2025, Satya Nadella said Microsoft’s problem had shifted from getting enough chips to having chips it couldn’t plug in."]
+    ],
+    bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
+    wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
+    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
+    viz: "molecules", pip: { pose: "idle", acc: "hardhat", name: "Hard hat" }
+  },
+  {
+    id: "bloom", die: [-9, -1], stance: "build",
+    title: "The power plant that ships like a server.",
+    short: "Power that ships like servers",
+    hook: "Bloom Energy’s fuel cells skip the turbine queue. Nvidia’s move to DC power could let them skip the transformer too.",
+    ref: { label: "NVIDIA, “800 VDC Architecture Will Power the Next Generation of AI Factories” (May 2025)", href: SRC.nv800 },
+    signal: `<blockquote class="pull">Repeated AC/DC transformations… are not energy efficient.</blockquote>
+      <p>That’s Nvidia explaining why its racks move to 800-volt DC with Kyber in 2027. Today, power reaches a data center as AC, gets stepped down and converted several times, and arrives at the chips as DC.</p>
+      <p>A fuel cell makes DC in the first place. Bloom Energy builds them, and it already wins on speed.</p>`,
+    takes: [
+      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue passed $1 billion for the first time in Q2 2026, up 166%."],
+      ["It scales like compute, not like a power plant.", "Each Energy Server is a 325 kW block about 9 meters long, so capacity grows as racks arrive, and Bloom planned to double production capacity to 2 GW a year by the end of 2026. No combustion, almost no NOx, no water in normal operation. The catch: it runs mostly on natural gas, and efficiency fades from 65% to 53% as the cells age."],
+      ["DC is the sleeper.", "A fuel cell can feed DC straight to the row, skipping transformers and switchgear that are themselves backlogged. Bloom says that cuts non-compute capex for a 1 GW site by $3.6 billion, about 27%. That’s the company’s own math, but the direction is right."]
+    ],
+    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back it, and the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
+    wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
+    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
+    viz: "bloom", pip: { pose: "idle", acc: "bloom", name: "Power plant" }
+  },
+  {
+    id: "fleet", die: [-8, 3], stance: "push",
+    title: "A fleet, not a cluster.",
+    short: "A fleet, not a cluster",
+    hook: "The trillion-dollar scale is on schedule. The single giant cluster isn’t.",
+    ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. IIIa, the trillion-dollar cluster ladder (June 2024)", href: SRC.saIIIa },
+    signal: `<p>Aschenbrenner’s ladder puts one cluster on each rung, ten times bigger every two years: about 1 GW around 2026, 10 GW around 2028, and 100 GW around 2030, more than a fifth of US electricity.</p>
+      <p>Two years in, the spending is tracking that curve. The shape of what’s getting built isn’t.</p>`,
+    takes: [
+      ["The money is on pace.", "Amazon, Alphabet, Microsoft and Meta planned more than $700B of 2026 capex, and Alphabet raised its own guide to as much as $205B in July. A trillion a year by 2027 no longer sounds crazy."],
+      ["The sites are splitting.", "Stargate is seven US sites aiming for 9+ GW by 2029. OpenAI moved Abilene’s planned expansion to other sites instead of making one campus bigger. Compute goes where power is."],
+      ["Inference eats training.", "Every agent-workday is inference. When one lab runs 3.1 agent-workdays per human workday, demand shifts toward serving models, and serving doesn’t need one building."]
+    ],
+    bet: "The next winners run fleets: software that places training and inference across sites by power price and availability, long-haul links between datacenters, and training methods that tolerate distance.",
+    wrong: "Someone builds a single 5 GW+ training campus and its models clearly beat fleet-trained rivals.",
+    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["OpenAI (Sept 2026)", SRC.openai]],
+    viz: "fleet", pip: { pose: "swim", acc: "captain", name: "Captain" }
+  },
+  {
+    id: "gpulife", die: [1, -9], stance: "push",
+    title: "Old GPUs don’t die. They move down the menu.",
+    short: "Old GPUs move down the menu",
+    hook: "Burry is right that the frontier moves every year. The cash doesn’t stop when a GPU leaves it.",
+    ref: { label: "Michael Burry on X (November 2025): hyperscalers will understate depreciation by about $176 billion over 2026–2028", href: SRC.burry },
+    signal: `<blockquote class="pull">Understating depreciation by extending useful life of assets artificially boosts earnings…</blockquote>
+      <p>Michael Burry posted that in November 2025. His case: hyperscalers depreciate GPU servers over five to six years when Nvidia’s chips run on a two- to three-year product cycle, so they will understate 2026–2028 depreciation by about $176 billion. In early October, he compared Nvidia’s defense of long GPU lives to the 1960s computer-leasing bubble: “We have all been here before.”</p>
+      <p>Nvidia keeps making his point for him. It says Vera Rubin, ramping now, gets 10 times the throughput per megawatt of Blackwell. When power is the bottleneck, that sounds like a death sentence for every older chip.</p>`,
+    takes: [
+      ["A GPU has more than one life.", "When the next generation lands, the old one doesn’t go to a landfill. It moves down the menu: from training frontier models, to serving them, to cheaper work like fine-tuning and batch jobs, to a second owner. CoreWeave signed an A100 contract that runs through 2029, nine years after the chip launched, and Silicon Data values six-year-old A100s at about $5,000 each, roughly flat since late 2025."],
+      ["The market priced old GPUs, and the price went up.", "Silicon Data’s H100 rental index rose from $2.00 an hour in December 2025 to $2.82 today, and SemiAnalysis found some H100 contracts being renewed for four years, through 2028. In late 2025, H100 systems in their third year resold for about 45% of the price of a new one. Burry’s reply is that a chip can rent and still depreciate fast. True, but rent above running cost is what pays the capex back."],
+      ["Power is the real clock, and it runs slow.", "Burry’s sharpest point is opportunity cost: a megawatt of old chips could hold ten times the tokens. But Rubin needs liquid-cooled racks that most air-cooled H100 halls can’t take without major upgrades, and this spring, on-demand capacity for every GPU type sold out anyway. So old GPUs keep their power until the building turns over. Electricity for an H100, server and cooling included, runs roughly 15 to 20 cents an hour. The chip rents for $2.82."]
+    ],
+    bet: "Treat a GPU like an airplane, not a phone. Jets fly flagship routes, then regional ones, then cargo, then go to a second airline, and lessors price every stage. GPUs are getting the same ladder. The neoclouds worth owning sign contracts that pay back the chip before the next generation lands, then run it down the menu. Nebius depreciates its servers over five years (four until this year) and signed Microsoft for five, so the contract covers the whole book life. Back the plumbing of a GPU’s second and third lives: rental and residual-value indexes, compute futures, schedulers that send cheap work to old chips, refurbishing and resale, and lenders who underwrite GPUs on contracted cash instead of book value.",
+    wrong: "H100 rental prices fall below $1 an hour by 2028 while the newest chips are still sold out, or neoclouds start selling old GPUs for parts. Then the second life was a shortage, not a market.",
+    receipts: [["StreetInsider on Burry’s $176B estimate (Nov 2025)", SRC.burry], ["Benzinga on Burry’s 1960s comparison (Oct 2026)", SRC.burry60s], ["Dow Jones on GPU useful lives and resale (Dec 2025)", SRC.depDj], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["TheStreet on Huang and CoreWeave’s A100s (Sept 2026)", SRC.a100Huang], ["Benzinga on A100 values (Sept 2026)", SRC.a100Val], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Silicon Data on the H100 spike (Jan 2026)", SRC.h100Spike], ["SemiAnalysis, The Great GPU Shortage (Apr 2026)", SRC.semiShort], ["Nebius H1 2026 results on useful lives (Aug 2026)", SRC.nbDep], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["NVIDIA DGX H100 guide (power)", SRC.dgxH100]],
+    viz: "gpulife", pip: { pose: "idle", acc: "waiter", name: "Maître d’" }
+  },
+  {
+    id: "saas", die: [6, 4], stance: "push",
+    title: "AI eats the seat, not the software.",
+    short: "The seat, not the software",
+    hook: "The SaaSpocalypse priced software like a screen. It’s really a record and a rulebook, and agents need both.",
+    ref: { label: "Satya Nadella on the BG2 podcast (December 2024): business apps are “probably where they’ll all collapse… in the agent era”", href: SRC.saasNadella },
+    signal: `<blockquote class="pull">…business applications… that’s probably where they’ll all collapse, right, in the agent era.</blockquote>
+      <p>Satya Nadella said that in December 2024. In late January 2026, Anthropic released plug-ins that let its Claude Cowork agent do legal, sales and data work, and a sell-off in software stocks deepened. On February 3, Thomson Reuters fell as much as 18% in its worst day on record, and RELX had its biggest drop since 1988. By April, the S&amp;P 500 software and services index was down more than 26% from late January. Wall Street called it the SaaSpocalypse.</p>
+      <p>On October 6, the same index hit its highest level since November 2025.</p>`,
+    takes: [
+      ["The screen collapses. The record doesn’t.", "Nadella is half right. Agents don’t need menus and forms, so software that was mostly a screen gets squeezed. But an agent still has to read and write the record: who the customer is, what was promised, who can approve a discount. Klarna, the poster child for ripping out Salesforce, moved its data into its own in-house system, and its CEO said, “we did not replace SaaS with an LLM.”"],
+      ["Agents need a rulebook, and SaaS holds it.", "A model guesses. A company’s books can’t. On August 26, Salesforce and Anthropic, whose plug-ins had deepened the sell-off, announced Claudeforce: Claude works on Salesforce data, and its actions are routed back through Salesforce “to help ensure business rules are always enforced.” That quarter, Salesforce’s filing showed about $2.7 billion of unrealized gains on its Anthropic stake. The software company owns a piece of the AI lab."],
+      ["The meter moves from seats to work.", "The real risk is that one agent does the work of ten people who each had a license. So vendors are charging for the work. Intercom charges from $0.99 per outcome for its Fin agent. Salesforce sells Agentforce partly by the action, and its Agentforce revenue run rate passed $1.5 billion, up more than 240%. Marc Benioff told investors, “Our seats were supposed to decline,” then said its sales, service and Slack products all grew instead. ServiceNow’s AI annual contract value crossed $1 billion, and Gartner expects software spending to grow about 15% this year. A seat is priced against the IT budget. Finished work is priced against the labor budget, which is far bigger."]
+    ],
+    bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents (CrowdStrike, Fortinet and Palo Alto Networks have all more than doubled this year), and the metering and billing that outcome pricing needs.",
+    wrong: "By 2028, big companies are moving their core records, like CRM, ERP and HR, off SaaS and onto in-house systems built with AI, the way Klarna did, and revenue from existing customers at the big system-of-record vendors starts shrinking.",
+    receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Intercom pricing (Oct 2026)", SRC.intercom], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
+    viz: "saas", pip: { pose: "wave", acc: "seat", name: "Record keeper" }
+  },
+  {
+    id: "neocloud", die: [-2, -8], stance: "build",
+    title: "The clouds are renting from the neoclouds.",
+    short: "Clouds renting from neoclouds",
+    hook: "Nebius rents out GPU-hours for less than the big clouds charge, and the big clouds are its biggest customers.",
+    ref: { label: "Microsoft’s $17.4 billion, five-year GPU contract with Nebius (September 2025)", href: SRC.nbMsft },
+    signal: `<p>In September 2025, Microsoft, which runs the world’s second-largest cloud, agreed to pay Nebius $17.4 billion over five years, up to $19.4 billion, for dedicated GPU capacity at a new data center in Vineland, New Jersey. In March 2026, Meta signed with Nebius for up to $27 billion.</p>
+      <p>The hyperscalers aren’t only competing with the neoclouds. They’re buying from them.</p>`,
+    takes: [
+      ["A neocloud sells one thing: the GPU-hour.", "It builds or leases data center space and power, fills it with Nvidia GPUs and the networking and software to run them, and rents the result by the hour. Nebius, which grew out of Yandex’s international business in 2024, owns its Finnish site, is building its own campus in Missouri, and leases space elsewhere. Revenue grew 454% to $582 million in Q2 2026, and its annualized run rate hit $3 billion by the end of June."],
+      ["Cheaper than the big clouds, even in a shortage.", "AWS lists an H100 at about $6.88 an hour on demand. Silicon Data’s index of what neoclouds actually charge sits near $2.82 (October 2026), less than half. Nebius runs at the premium end: $2.95 in early May 2026, then $4.50 from October as demand outran supply, still about a third below AWS. A cloud built only for GPUs carries less overhead into the price."],
+      ["The hyperscalers are customers, not just rivals.", "Microsoft and Meta account for about $32 billion of Nebius’s $40 billion-plus in contracted revenue, and Microsoft pays whether or not it uses the capacity. Renting lets a hyperscaler add GPUs faster than it can build them. By October 2025, Microsoft had reportedly signed $33 billion of neocloud deals, using that capacity for its own AI teams while selling its own data centers’ capacity to customers."]
+    ],
+    bet: "Neoclouds become the wholesale layer of AI compute. Hyperscalers keep the customers and the software; neoclouds build and run GPU capacity fastest and sell it to anyone, hyperscalers included. Back the ones with take-or-pay contracts from investment-grade buyers and their own power pipeline. Nebius is targeting 5 GW of contracted power by the end of 2026.",
+    wrong: "When the shortage ends, the hyperscalers stop renewing, pull their workloads back in-house, and GPU-hour prices fall below what the neoclouds’ GPU-backed debt needs.",
+    receipts: [["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["Investing.com on the Meta deal (Mar 2026)", SRC.nbMeta], ["DCD, “Becoming Nebius” (May 2025)", SRC.nbDcd], ["DCD on Nebius in Missouri (May 2026)", SRC.nbMo], ["Nebius Q2 2026 call (Aug 2026)", SRC.nbQ2], ["Motley Fool on Nebius pricing (Sept 2026)", SRC.nbPrice], ["AWS EC2 on-demand pricing", SRC.awsPrice], ["AWS on its P5 price cut (June 2025)", SRC.awsCut], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Motley Fool on customer concentration (Oct 2026)", SRC.nbConc], ["Yahoo Finance on Microsoft’s neocloud deals (Oct 2025)", SRC.msftNeo]],
+    viz: "neocloud", pip: { pose: "float", acc: "cloud", name: "Neocloud" }
+  },
+  {
+    id: "builders", die: [-7, -6], stance: "build",
+    title: "Back the builders. Survive the bust.",
+    short: "Back the builders",
+    hook: "Aschenbrenner turned his paper into a fund with the simplest possible thesis. A bust can’t break it. Leverage can.",
+    ref: { label: "Situational Awareness LP, Leopold Aschenbrenner’s fund, as disclosed in its 13F filings (2025–2026)", href: SRC.f13 },
+    signal: `<p class="claim">If AI keeps scaling, someone has to build it. Sometimes the simple thesis is the best one.</p>
+      <p>That’s the trade Aschenbrenner’s fund makes in public. Its disclosed US positions went from $255 million in its first filing to about $20 billion in August 2026, led by memory makers SanDisk and Micron, with builders like Bloom Energy, CoreWeave and IREN across its 2026 filings. By August, its large semiconductor hedges were gone.</p>`,
+    takes: [
+      ["You don’t have to pick the winning lab.", "Every lab’s scaling plan buys the same four things: chips, memory, datacenters and power. Owning the builders is a bet on scaling itself."],
+      ["Bankruptcies don’t break it.", "The 1990s telecom boom put over $500 billion, mostly debt, into fiber and networks. WorldCom and Global Crossing collapsed and bondholders got back about 20 cents on the dollar. The fiber stayed in the ground and carried the internet’s next decade."],
+      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software. Adobe is the example I watch."]
+    ],
+    bet: "For venture, I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
+    wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
+    note: "Not investment advice.",
+    receipts: [["13F filing history", SRC.f13], ["Daniel Scrivner on the Q2 2026 13F", SRC.scrivner], ["Wikipedia, Telecoms crash", SRC.telecom]],
+    viz: "builders", pip: { pose: "float", acc: "chute", name: "Parachute" }
+  },
+  {
+    id: "moat", die: [9, 0], stance: "build",
+    title: "The slowdown is the moat.",
+    short: "The slowdown is the moat",
+    hook: "Moore’s law got harder. That’s why so few companies can still play.",
+    ref: { label: "Chris Miller, Chip War: The Fight for the World’s Most Critical Technology (2022)", href: SRC.chipwar },
+    signal: `<p>Moore’s law said the transistors on a chip double about every two years. It held for decades, then slowed as features neared the scale of atoms. “3 nm” is now a product name, not a measurement: the gates on TSMC’s N3 sit about 45 nm apart.</p>
+      <p>Chris Miller’s <cite>Chip War</cite> tells the other half: every step got harder, and every step left fewer companies able to take it.</p>`,
+    takes: [
+      ["AI compute never slowed down.", "Epoch AI finds frontier training compute grew 4 to 5× a year from 2010 to 2024, about 0.65 OOMs a year. Moore’s pace is about 0.15. More chips, bigger clusters and 3D stacking paid for the gap."],
+      ["Each harder step removes competitors.", "ASML is the only company selling EUV machines for the most advanced chips. Its newest High-NA model costs roughly $380 to $400 million, and the four chipmakers committed to it are TSMC, Samsung, SK hynix and Intel."],
+      ["The slope is the moat.", "A slower, harder Moore’s law doesn’t weaken the leaders. It raises the price of keeping up, so the field keeps shrinking while demand for compute keeps compounding."]
+    ],
+    bet: "Back the next chokepoint before it’s obvious: the steps only one or two companies can do as chips go 3D, like hybrid bonding, advanced packaging and inspecting layers you can’t see from the top.",
+    wrong: "A chipmaker reaches leading-edge volume production without ASML’s EUV machines.",
+    receipts: [["Chip War (Wikipedia)", SRC.chipwar], ["The video behind this note", SRC.video], ["Epoch AI on training compute (May 2024)", SRC.epochTrend], ["TechTimes on High-NA EUV (Sept 2026)", SRC.highna], ["Wikipedia, 3 nm process", SRC.n3]],
+    viz: "moat", pip: { pose: "wave", acc: "moat", name: "Moat keeper" }
+  },
+  {
+    id: "memory", die: [-5, -3], stance: "original",
+    title: "The bottleneck moved below the GPU.",
+    short: "Below the GPU",
+    hook: "The GPU is the brand. Memory is the moat.",
+    ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q2 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
+    signal: `<p>Everyone tracks who makes the best GPU. 2026’s numbers say the choke points sit beside and beneath it: the HBM memory stacked next to the die, and the packaging that joins them.</p>
+      <p>The GPU is the brand. Memory is the moat.</p>`,
+    takes: [
+      ["Memory is where the margin went.", "SK hynix posted a 76% operating margin in Q2 2026 and has long-term agreements with about ten major customers. Buyers are paying for guaranteed supply."],
+      ["Packaging is loosening first.", "TrendForce expects TSMC’s CoWoS shortfall to narrow from about 20% to about 10% by the end of 2026. That bottleneck has a visible end. Memory’s doesn’t yet."],
+      ["Agents are memory-bound.", "Long-running agents hold long contexts, and the KV cache grows with every token they keep in mind. SK hynix itself says agentic AI is widening demand for every kind of memory."]
+    ],
+    bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
+    wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
+    receipts: [["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
+    viz: "memory", pip: { pose: "idle", acc: "hbm", name: "HBM stack" }
+  },
+  {
+    id: "backend", die: [5, -7], stance: "build",
+    title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
+    short: "The back end is the bottleneck",
+    hook: "A finished wafer isn’t a chip yet. The steps after the fab now decide how many AI chips ship, and where they’re made.",
+    ref: { label: "Chris Miller, Chip War (2022), ch. 10, “Transistor Girls”", href: SRC.chipwar },
+    signal: `<p>In 1963, Fairchild opened an assembly plant in Hong Kong. Assembly meant packaging: wiring each chip into its case, mostly by hand, at about a tenth of American wages. Miller marks it as the start of the industry’s move to Asia. Packaging went first because it was the cheapest step.</p>
+      <p>Sixty years later, it’s the step AI is waiting on.</p>`,
+    takes: [
+      ["The choke point moved downstream.", "Nvidia has reportedly reserved 800,000 to 850,000 wafers of TSMC’s CoWoS packaging for 2026, more than half of it, and demand still runs about 20% ahead of supply, though TrendForce sees the gap narrowing by year-end. TSMC is reportedly outsourcing more of the chip-on-wafer step, where dies are placed on the interposer, to packaging houses such as ASE."],
+      ["Bigger packages, more ways to fail.", "An AI package holds a GPU and its HBM stacks on an interposer, and the GPU silicon alone has roughly doubled, from Hopper’s 814 mm² die to about 1,700 mm² across Blackwell’s two. One bad die scraps the whole package, so testing before assembly decides the yield. Even the substrate’s glass cloth is short: Nittobo makes about 90% of the specialist low-expansion cloth, and new supply lands in mid-2027."],
+      ["A US chip isn’t made in the US until it’s packaged.", "The first US-made Blackwell wafer came off TSMC’s Arizona line in October 2025 and still flew to Taiwan for CoWoS. TSMC has started building an Arizona packaging plant for CoWoS before 2029, and Amkor raised its Arizona campus to about $12 billion, alongside a $1.5 billion multiyear Nvidia deal that includes a prepayment."]
+    ],
+    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. Back the back end: packaging and test houses taking on CoWoS work, substrate materials, and the bonding and inspection tools that make big packages yield. The first US packaging lines at scale are worth more than they look.",
+    wrong: "CoWoS supply catches up with demand in 2027 and stays caught up while AI chip shipments keep growing.",
+    receipts: [["Chip War (2022)", SRC.chipwar], ["TrendForce on CoWoS supply (June 2026)", SRC.trend], ["TrendForce on CoWoS outsourcing (Aug 2026)", SRC.cowosOut], ["Tom’s Hardware on T-glass (Mar 2026)", SRC.tglass], ["DCD on the Arizona Blackwell wafer (Oct 2025)", SRC.bwWafer], ["DCD on TSMC’s Arizona packaging (Apr 2026)", SRC.tsmcAp], ["AZ Big Media on Amkor (Sept 2026)", SRC.amkor], ["Yahoo Finance on Amkor and Nvidia (July 2026)", SRC.amkorNv]],
+    viz: "backend", pip: { pose: "idle", acc: "package", name: "Packager" }
+  },
+  {
+    id: "heat", die: [-1, -2], stance: "build",
+    title: "Going 3D saved Moore’s law. Heat is the bill.",
+    short: "Heat is the bill",
+    hook: "We beat the slowdown by stacking transistors upward. Moore’s own answer to heat assumed chips stay flat.",
+    ref: { label: "Gordon Moore, “Cramming more components onto integrated circuits,” Electronics (1965), the section on heat", href: SRC.moore },
+    signal: `<blockquote class="pull">…a surface available for cooling close to each center of heat generation.</blockquote>
+      <p>That was Moore’s 1965 answer to whether chips could shed their heat: they’re flat, so every hot spot sits right under a surface. For decades it held. Then shrinking stopped paying for itself, and the industry went vertical.</p>
+      <p>Every layer we stack takes away the surface Moore was counting on.</p>`,
+    takes: [
+      ["3D is how Moore’s law survives.", "TSMC moved to nanosheet (gate-all-around) transistors at N2 in late 2025, with backside power next on A16, now slated for 2027. Memory went vertical years ago with stacked HBM, chiplets get bonded face to face, and CFET, further out on the roadmaps, stacks the two transistor types on top of each other."],
+      ["Every layer traps heat.", "A buried layer’s heat has to cross everything above it to escape. Racks show the result: Nvidia’s GB200 NVL72 draws about 120 kW, and its Kyber rack design targets about 600 kW, cooled entirely by liquid with no fans."],
+      ["Cooling moves inside the chip.", "Microsoft etched coolant channels into the back of the silicon and reported heat removal up to three times better than cold plates. It also warned that cold plates could become the limit within five years."]
+    ],
+    bet: "The next decade of compute gains will be gated by thermals, not lithography. Back thermal-first infrastructure: in-chip and two-phase liquid cooling, thermal-aware chip design tools, high-conductivity bonding and packaging materials, and retrofits that bring liquid to existing datacenters.",
+    wrong: "Logic-on-logic 3D chips ship at scale before 2030 using ordinary cold plates alone.",
+    receipts: [["Moore, Electronics (1965)", SRC.moore], ["TechSpot on TSMC N2 (Dec 2025)", SRC.n2], ["TrendForce on TSMC A16 (Apr 2026)", SRC.a16], ["DCD on Nvidia rack density (Mar 2025)", SRC.dcd], ["Microsoft on microfluidics (Sept 2025)", SRC.msft]],
+    viz: "heat", pip: { pose: "idle", acc: "thermo", name: "Thermometer" }
+  },
+  {
+    id: "screentime", die: [-3, 8], stance: "original",
+    title: "The best consumer AI will give you your time back.",
+    short: "Give people time back",
+    hook: "As AI takes over work, the scarce thing becomes an hour with your people.",
+    ref: { label: "U.S. Surgeon General, “Our Epidemic of Loneliness and Isolation” (2023)", href: SRC.sg },
+    signal: `<p>Americans’ in-person time with friends fell from about 60 minutes a day in 2003 to 20 in 2020. For 15 to 24 year olds, the drop was about 70%.</p>
+      <p>If the other theses on this page are right, AI is about to hand people a lot of hours back. The question is where those hours go.</p>`,
+    takes: [
+      ["Feeds will try to take the hours.", "Engagement-optimized products will treat freed-up time as inventory to fill."],
+      ["Count the opposite metric.", "A product that gets people together should count plans that happened, not minutes in the app."],
+      ["AI should do the awkward part.", "The hard part of hanging out is coordination and the fear of asking first. Software can absorb both privately, so nobody has to go first."]
+    ],
+    bet: "I’m making this bet with my own time. Pulse turns “I’d be down” into real plans, and its north star is plans that happened.",
+    wrong: "People say they want more time together but won’t spend 20 seconds a week to get it.",
+    extraCta: `<a class="btn primary" href="#pulse">See Pulse</a>`,
+    receipts: [["Surgeon General advisory (2023)", SRC.sg], ["STAT News coverage", SRC.stat]],
+    viz: "screen", pip: { pose: "idle", acc: "hourglass", name: "Hourglass" }
+  },
+  {
+    id: "spacex", die: [8, -4], stance: "original",
+    title: "SpaceX’s strongest engine is its stock.",
+    short: "The stock is the engine",
+    hook: "SpaceX sells launches, internet and AI. Its most useful product might be the shares it pays with.",
+    ref: { label: "My own read of SpaceX’s IPO and its $60 billion all-stock purchase of Cursor (June 2026)", href: SRC.spxCursor },
+    signal: `<p class="claim">Four days after its IPO, SpaceX agreed to buy an AI company with its own stock.</p>
+      <p>SpaceX listed on Nasdaq on June 12, 2026, at $135 a share, a $1.77 trillion valuation. On June 16, it exercised its option to buy Cursor, the AI coding startup, for $60 billion, paid in about 389 million new SpaceX shares rather than cash. The deal closed August 14.</p>
+      <p>SpaceX lost $4.9 billion last year, so it has no P/E to speak of. At the IPO price it was valued at about 95 times its 2025 revenue, and still more than 50 times its current run rate. Cursor cost 15 to 20 times its reported run rate. That gap is a business model.</p>`,
+    takes: [
+      ["The rockets still have to work.", "The space bet rests on Starship making orbit cheap. On September 28, it reached orbit for the first time and deployed 26 Starlink V3 satellites, though an engine shut down early and the flight was cut short. Starlink is the cash engine: $11.4 billion of SpaceX’s $18.7 billion in 2025 revenue. The AI side is less certain. Anthropic’s $1.25 billion a month for compute runs through May 2029 on paper, but either side can walk away on 90 days’ notice."],
+      ["The stock is a currency.", "When your shares trade at 50 to 95 times revenue and the company you’re buying sells for 15 to 20, paying in stock adds more revenue per share than it gives away. Cursor cost SpaceX about 3% more shares and brought $3 billion to $4 billion of run-rate revenue, a sixth to a fifth of SpaceX’s 2025 revenue. P&G built its house of brands with stock too, paying for Gillette in 2005 with about $57 billion of its own shares, but it leaned on cost savings, not a rich multiple. SpaceX’s edge is the multiple itself. Musk holds about 82% of the votes, so no one can block the next deal."],
+      ["Rocket Lab is running it smaller.", "Rocket Lab has spent years buying satellite suppliers, most recently Mynaric and Motiv, and on June 28 agreed to buy Iridium for about $8 billion in cash and stock. “If you want to do big things in space, you need spectrum,” Peter Beck said. Its backlog hit a record $2.36 billion. But its bigger rocket, Neutron, slipped after a fuel tank ruptured in testing in January, and it’s now aiming for the pad by the end of 2026."]
+    ],
+    bet: "SpaceX becomes the P&G of AI and space: a house of brands held together by Starlink’s reach, xAI’s compute and one very expensive stock. As long as its shares trade far above what it pays, every stock deal adds revenue per share, and the deals can keep getting bigger. That changes the exit map for founders and VCs. The likeliest buyer for a fast-growing AI or space startup may be a stock swap with SpaceX, not an IPO. Build what plugs into Starlink, xAI or Cursor, and know the window lasts only as long as the multiple.",
+    wrong: "SpaceX’s stock falls to roughly what it paid for Cursor, 15 to 20 times revenue, so stock deals stop adding revenue per share. Or Starship misses routine reuse through 2028 and the core business needs the cash.",
+    note: "Not investment advice.",
+    receipts: [["SpaceX 8-K closing the Cursor deal (Aug 2026)", SRC.spxCursor], ["Capital Brief on the option exercise (June 2026)", SRC.spxExercise], ["Dealroom on Cursor’s $4B run rate (June 2026)", SRC.cursor4b], ["Wikipedia, Cursor (company)", SRC.cursorCo], ["Reuters on the IPO (June 2026)", SRC.spxIpo], ["Via Satellite on SpaceX’s 2025 financials (May 2026)", SRC.spxFin], ["AP on SpaceX’s Q2 (2026)", SRC.spxQ2], ["Stock Analysis, SPCX statistics (Oct 2026)", SRC.spxCap], ["AIAA on Starship Flight 14 (Sept 2026)", SRC.spxF14], ["Via Satellite on Flight 14 (Sept 2026)", SRC.spxF14b], ["TechCrunch on the Anthropic lease (May 2026)", SRC.spxLeaseTc], ["P&G and Gillette merger release (Jan 2005)", SRC.pgGillette], ["Rocket Lab Q2 2026 results (Aug 2026)", SRC.rklbQ2], ["Manufacturing Dive on Rocket Lab and Iridium (June 2026)", SRC.rklbIrdm], ["Spaceflight Now on Neutron (Aug 2026)", SRC.neutron]],
+    viz: "spacex", pip: { pose: "float", acc: "jet", name: "Dealmaker" }
+  }
+];
+
+const PROBES = [
+  { die: [4, -2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
+  { die: [-4, 2], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
+];
+
+// featured theses in the hero: one number each, drawn as chips fresh off the line
+const RECEIPTS = [
+  { v: "~2 TB", t: "A billion-dollar training run, boiled down to one file.", id: "weights", fresh: 1 },
+  { v: "55 days", t: "Fuel cells to first power at Oracle. A turbine ordered today ships ~2031.", id: "bloom", fresh: 1 },
+  { v: "76%", t: "SK hynix operating margin, Q2 2026. Memory is where the margin went.", id: "memory" },
+  { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend", fresh: 1 }
+];
+
+const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
+const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
+const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
+
+/* ---------------------------------------------------------------- Pip */
+let pipN = 0;
+const FIN_DOWN_L = "M11 33 C4 37 -0.5 52 0 66 C0.5 79 4 87.5 9 88.5 C14 89.5 16 84 16 72 C16 56 16.5 40 11 33 Z";
+const FIN_DOWN_R = "M89 33 C96 37 100.5 52 100 66 C99.5 79 96 87.5 91 88.5 C86 89.5 84 84 84 72 C84 56 83.5 40 89 33 Z";
+const FIN_UP_L = "M2 44 C-1 30 0 14 4.5 4.5 C7 -1 12.5 -1 14 4.5 C17 14 17.5 30 16 44 Z";
+const FIN_UP_R = "M98 44 C101 30 100 14 95.5 4.5 C93 -1 87.5 -1 86 4.5 C83 14 82.5 30 84 44 Z";
+const BEAT = d => `<g class="pip-beat"><path d="${d}" stroke="#4fd2ff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".2"/><path d="${d}" stroke="#4fd2ff" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+const VISOR_AWAKE = `<path d="M34 10.8 Q50 8.51 66 10.8 C78.16 11.21 82 17.95 82 28.25 C82 37.84 78.16 46 66 46 L34 46 C21.84 46 18 37.84 18 28.25 C18 17.95 21.84 11.21 34 10.8 Z" fill="#261c3d"/>` +
+  BEAT("M28.88 28.04 H40.53 L42.96 24.84 L46.16 31.23 L49.62 23.42 L52.56 30.03 L54.61 28.04 H71.12") +
+  `<path d="M26.96 15.47 C26.96 13.28 28.96 12.25 31.96 12.1 Q50 10.89 68.04 12.1 C71.04 12.25 73.04 13.28 73.04 15.47 C73.04 18.35 70.74 19.3 67.28 19.3 C63.82 19.3 62.32 18.74 61.52 17.03 C60.72 18.74 59.22 19.3 55.76 19.3 C52.3 19.3 50.8 18.74 50 17.03 C49.2 18.74 47.7 19.3 44.24 19.3 C40.78 19.3 39.28 18.74 38.48 17.03 C37.68 18.74 36.18 19.3 32.72 19.3 C29.26 19.3 26.96 18.35 26.96 15.47 Z" fill="#fff"/><path d="M26.96 41.03 C26.96 43.22 28.96 44.25 31.96 44.4 Q50 45.61 68.04 44.4 C71.04 44.25 73.04 43.22 73.04 41.03 C73.04 38.15 70.74 37.2 67.28 37.2 C63.82 37.2 62.32 37.76 61.52 39.47 C60.72 37.76 59.22 37.2 55.76 37.2 C52.3 37.2 50.8 37.76 50 39.47 C49.2 37.76 47.7 37.2 44.24 37.2 C40.78 37.2 39.28 37.76 38.48 39.47 C37.68 37.76 36.18 37.2 32.72 37.2 C29.26 37.2 26.96 38.15 26.96 41.03 Z" fill="#fff"/>`;
+const VISOR_SLEEP = `<path d="M37.5 20.13 Q50 19.1 62.5 20.13 C72 20.32 75 23.36 75 28 C75 32.32 72 36 62.5 36 L37.5 36 C28 36 25 32.32 25 28 C25 23.36 28 20.32 37.5 20.13 Z" fill="#261c3d"/>` +
+  BEAT("M33.5 27.9 H42.6 L44.5 26.46 L47 29.34 L49.7 25.82 L52 28.8 L53.6 27.9 H66.5") +
+  `<path d="M32 22.24 C32 21.25 34 20.87 37 20.72 Q50 20.18 63 20.72 C66 20.87 68 21.25 68 22.24 C68 23.54 66.2 23.97 63.5 23.97 C60.8 23.97 59.8 23.71 59 22.94 C58.2 23.71 57.2 23.97 54.5 23.97 C51.8 23.97 50.8 23.71 50 22.94 C49.2 23.71 48.2 23.97 45.5 23.97 C42.8 23.97 41.8 23.71 41 22.94 C40.2 23.71 39.2 23.97 36.5 23.97 C33.8 23.97 32 23.54 32 22.24 Z" fill="#fff"/><path d="M32 33.76 C32 34.75 34 35.13 37 35.28 Q50 35.82 63 35.28 C66 35.13 68 34.75 68 33.76 C68 32.46 66.2 32.03 63.5 32.03 C60.8 32.03 59.8 32.29 59 33.06 C58.2 32.29 57.2 32.03 54.5 32.03 C51.8 32.03 50.8 32.29 50 33.06 C49.2 32.29 48.2 32.03 45.5 32.03 C42.8 32.03 41.8 32.29 41 33.06 C40.2 32.29 39.2 32.03 36.5 32.03 C33.8 32.03 32 32.46 32 33.76 Z" fill="#fff"/>`;
+const EYES_OPEN = `<circle cx="11.6" cy="18.5" r="2.6" fill="#1b1530"/><circle cx="12.3" cy="17.7" r=".85" fill="#fff"/><circle cx="88.4" cy="18.5" r="2.6" fill="#1b1530"/><circle cx="89.1" cy="17.7" r=".85" fill="#fff"/>`;
+const EYES_SHUT = `<path d="M8.9 18.8 Q11.6 21.2 14.3 18.8 M85.7 18.8 Q88.4 21.2 91.1 18.8" stroke="#1b1530" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
+const spark = (x, y, s, c, d) => `<g transform="translate(${x} ${y}) scale(${s})"><path class="pip-spark" style="animation-delay:${d}s" d="M0 -5 C.7 -.7 .7 -.7 5 0 C.7 .7 .7 .7 0 5 C-.7 .7 -.7 .7 -5 0 C-.7 -.7 -.7 -.7 0 -5 Z" fill="${c}"/></g>`;
+
+function pip({ pose = "idle", acc = null, label = "" } = {}) {
+  const k = "pq" + (++pipN);
+  const up = pose === "wave" || pose === "cheer";
+  const finL = up ? FIN_UP_L : FIN_DOWN_L;
+  const finR = pose === "cheer" ? FIN_UP_R : FIN_DOWN_R;
+  const sleep = pose === "sleep";
+  let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "";
+  if (acc === "hardhat") {
+    accDefs = `<linearGradient id="${k}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
+    accIn = `<path d="M17 4 C17 -17 83 -17 83 4 Z" fill="url(#${k}h)"/><path d="M50 -13.6 V3" stroke="#d98a12" stroke-width="3" stroke-linecap="round"/><rect x="8" y="1.5" width="84" height="7" rx="3.5" fill="#f2a12a"/><path d="M27 -5 Q31 -11 39 -12.6" stroke="#fff" stroke-opacity=".6" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+    accExtra = `<g transform="translate(-6 64)"><path d="M0 2 V26" stroke="#cfc6f5" stroke-width="2" stroke-linecap="round"/><g transform="scale(.8)"><path class="pip-spin" d="M0 0 C-2 -8 2 -12 4 -13 C3 -7 2 -3 0 0 Z M0 0 C8 -2 12 2 13 4 C7 3 3 2 0 0 Z M0 0 C2 8 -2 12 -4 13 C-3 7 -2 3 0 0 Z M0 0 C-8 2 -12 -2 -13 -4 C-7 -3 -3 -2 0 0 Z" fill="#ffd98a" stroke="#d98a12" stroke-width=".6"/></g><circle r="2.2" fill="#f2a12a"/></g>`;
+  } else if (acc === "wafer") {
+    accDefs = `<linearGradient id="${k}i" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd2ff"/><stop offset=".35" stop-color="#a08bff"/><stop offset=".68" stop-color="#ff6b80"/><stop offset="1" stop-color="#ffb23f"/></linearGradient><clipPath id="${k}c"><circle r="21"/></clipPath>`;
+    accIn = `<g transform="translate(84 70) rotate(-16)"><circle r="23" fill="url(#${k}i)" stroke="#ece7ff" stroke-width="1.3"/><g clip-path="url(#${k}c)" stroke="#0f0c22" stroke-opacity=".38" stroke-width=".7"><path d="M-23 -15 H23 M-23 -9 H23 M-23 -3 H23 M-23 3 H23 M-23 9 H23 M-23 15 H23 M-15 -23 V23 M-9 -23 V23 M-3 -23 V23 M3 -23 V23 M9 -23 V23 M15 -23 V23"/></g><circle cy="23" r="2.4" fill="#0f0c22"/><ellipse class="pip-glint" cx="-8" cy="-10" rx="7" ry="2.6" fill="#fff" transform="rotate(-32 -8 -10)"/></g>`;
+  } else if (acc === "memo") {
+    accIn = `<g transform="rotate(-7 50 74)"><rect x="26" y="52" width="48" height="42" rx="3" fill="#fbfaff" stroke="#cfc6f5"/><text x="31" y="67" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="14" font-weight="900" fill="#2b2142">SA</text><text x="51" y="67" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="700" fill="#7b5cfa">2024</text><path d="M31 74 H68 M31 79 H63 M31 84 H66 M31 89 H56" stroke="#b8a6ff" stroke-width="1.7" stroke-linecap="round"/><path d="M58 86 l3.5 3.5 l7 -8" stroke="#2fb87a" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "thermo") {
+    accIn = `<path d="M86 1 C86 1 81.5 6.5 81.5 9.2 A4.5 4.5 0 0 0 90.5 9.2 C90.5 6.5 86 1 86 1 Z" fill="#a6e9ff" stroke="#fff" stroke-width=".8"/><g transform="translate(90 62) rotate(16)"><rect x="-4.5" y="-28" width="9" height="36" rx="4.5" fill="#fff" stroke="#cfc6f5"/><rect class="pip-merc" x="-1.8" y="-18" width="3.6" height="24" rx="1.8" fill="#ff6b80"/><circle cy="10" r="7" fill="#ff6b80" stroke="#fff" stroke-width="1.6"/><path d="M4.5 -22 h3 M4.5 -15 h3 M4.5 -8 h3" stroke="#cfc6f5" stroke-width="1.1"/></g>`;
+  } else if (acc === "flask") {
+    accIn = `<g transform="translate(93 70) rotate(10)"><path d="M-4 -18 H4 V-10 L13 5 Q14 8 11 8 H-11 Q-14 8 -13 5 L-4 -10 Z" fill="#f2fbff" fill-opacity=".92" stroke="#bfe9ff"/><path class="pip-glint" d="M-8.8 -2 H8.8 L13 5 Q14 8 11 8 H-11 Q-14 8 -13 5 Z" fill="#4fd2ff"/><rect x="-5.5" y="-21" width="11" height="3.4" rx="1.2" fill="#bfe9ff"/></g>`;
+    accExtra = [[96, 44, 2.6, 0], [100, 32, 2, .7], [94, 22, 1.6, 1.4]].map(([x, y, r, d]) => `<circle class="pip-bubble" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="${r}" fill="#4fd2ff" fill-opacity=".45" stroke="#a6e9ff" stroke-width=".6"/>`).join("");
+  } else if (acc === "rack") {
+    accIn = `<g transform="translate(86 52)"><rect width="22" height="42" rx="2.5" fill="#211a32" stroke="#9b83ff"/>${[0, 1, 2, 3].map(i => `<rect x="3" y="${4 + i * 9.5}" width="16" height="6.5" rx="1" fill="#30234d"/><circle class="pip-led" style="animation-delay:${(i * .27).toFixed(2)}s" cx="7" cy="${(7.2 + i * 9.5).toFixed(1)}" r="1.4" fill="#4fd2ff"/><circle class="pip-led" style="animation-delay:${(i * .27 + .5).toFixed(2)}s" cx="11.5" cy="${(7.2 + i * 9.5).toFixed(1)}" r="1.4" fill="#ffb23f"/>`).join("")}</g>`;
+  } else if (acc === "captain") {
+    accIn = `<path d="M22 8 C22 -10 78 -10 78 8 Z" fill="#f8f6ff" stroke="#cfc6f5"/><rect x="20" y="2" width="60" height="7" rx="2" fill="#211a32"/><path d="M16 8 Q50 17 84 8 L82 11.5 Q50 21 18 11.5 Z" fill="#1b1530"/><g transform="translate(50 -3)" fill="none" stroke="#ffb23f" stroke-width="1.6" stroke-linecap="round"><path d="M0 -3 V5 M-4 2 Q0 7 4 2 M-3 -1 H3"/><circle cy="-4.6" r="1.4"/></g>`;
+  } else if (acc === "chute") {
+    accDefs = `<linearGradient id="${k}c" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"><stop offset=".25" stop-color="#ffb23f"/><stop offset=".25" stop-color="#f8f6ff"/><stop offset=".5" stop-color="#f8f6ff"/><stop offset=".5" stop-color="#ffb23f"/><stop offset=".75" stop-color="#ffb23f"/><stop offset=".75" stop-color="#f8f6ff"/></linearGradient>`;
+    accIn = `<path d="M2 -4 L14 32 M26 -4 L24 3 M74 -4 L76 3 M98 -4 L86 32" stroke="#cfc6f5" stroke-width=".8" fill="none"/><path d="M0 -4 C8 -24 92 -24 100 -4 Q87.5 -10 75 -4 Q62.5 -10 50 -4 Q37.5 -10 25 -4 Q12.5 -10 0 -4 Z" fill="url(#${k}c)" stroke="#d98a12" stroke-width=".8"/>`;
+  } else if (acc === "moat") {
+    accIn = `<path d="M26 7 V-9 H33 V-3 H40 V-9 H47 V-3 H53 V-9 H60 V-3 H67 V-9 H74 V7 Z" fill="#b8a6ff" stroke="#7b5cfa"/><path d="M45 7 V2 A5 5 0 0 1 55 2 V7 Z" fill="#2b2142"/>`;
+    accExtra = `<ellipse cx="50" cy="107" rx="56" ry="7" fill="#4fd2ff" fill-opacity=".2"/><path class="pip-water" d="M-6 107 q6 -4 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#4fd2ff" stroke-width="1.6" stroke-linecap="round"/>`;
+  } else if (acc === "hbm") {
+    accIn = `<rect x="34" y="-1.2" width="32" height="2.6" rx="1" fill="#4fd2ff"/>` + [0, 1, 2, 3].map(i => `<rect class="pip-stack" style="animation-delay:${(i * .12).toFixed(2)}s" x="30" y="${(-5.6 - i * 4.8).toFixed(1)}" width="40" height="4" rx="1" fill="${i % 2 ? "#ffc566" : "#ffb23f"}" stroke="#d98a12" stroke-width=".6"/>`).join("");
+  } else if (acc === "hourglass") {
+    accIn = `<g transform="translate(94 68)"><g class="pip-flip"><path d="M-8 -14 H8 M-8 14 H8" stroke="#b8a6ff" stroke-width="2.4" stroke-linecap="round"/><path d="M-6.5 -12 H6.5 C6.5 -5 1.5 -2 1.2 0 C1.5 2 6.5 5 6.5 12 H-6.5 C-6.5 5 -1.5 2 -1.2 0 C-1.5 -2 -6.5 -5 -6.5 -12 Z" fill="#f2fbff" fill-opacity=".88" stroke="#cfc6f5" stroke-width=".8"/><path d="M-5.5 -10 H5.5 C5 -6 2 -4 0 -1.5 C-2 -4 -5 -6 -5.5 -10 Z" fill="#ffb23f"/><path d="M-4.5 11 H4.5 C4 8 2 7 0 6.5 C-2 7 -4 8 -4.5 11 Z" fill="#ffb23f"/></g></g>`;
+  } else if (acc === "camper") {
+    accUnder = `<rect x="-13" y="34" width="24" height="46" rx="7" fill="#2fb87a"/><rect x="-9" y="56" width="16" height="14" rx="3" fill="#249566"/><rect x="-15" y="25" width="28" height="11" rx="5.5" fill="#ffb23f"/><path d="M-7 25 V36 M5 25 V36" stroke="#d98a12" stroke-width="1.4"/>`;
+    accIn = `<path d="M13 10 Q50 0 87 10" stroke="#30234d" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle class="pip-lamp" cx="50" cy="4" r="10" fill="#ffd98a"/><circle cx="50" cy="4.5" r="4.4" fill="#ffd98a" stroke="#d98a12"/>`;
+  } else if (acc === "cloud") {
+    // Pip floats on a small cloud with a price tag: GPU-hours by the hour
+    accUnder = `<g transform="translate(50 104)"><path d="M-44 6 C-50 -6 -36 -14 -26 -8 C-22 -20 -4 -22 2 -12 C8 -22 28 -20 30 -6 C42 -10 52 2 44 10 C46 18 36 20 30 16 H-36 C-48 18 -54 10 -44 6 Z" fill="#f2eefb" stroke="#cfc6f5"/><path d="M-30 10 H30" stroke="#cfc6f5" stroke-width="1.2" opacity=".7"/></g>`;
+    accIn = `<g transform="translate(92 60) rotate(14)"><path d="M0 -10 V-2" stroke="#cfc6f5" stroke-width="1.2"/><path d="M-11 -2 H11 L14 4 L11 18 H-11 Z" fill="#ffb23f" stroke="#d98a12"/><circle cx="0" cy="2" r="1.6" fill="#211a32"/><text x="0" y="14.5" text-anchor="middle" font-size="7.5" font-weight="900" fill="#211a32">$/hr</text></g>`;
+    accExtra = [[-14, 30, 0], [108, 24, .5], [-10, 74, 1]].map(([x, y, d]) => `<rect class="pip-led" style="animation-delay:${d}s" x="${x}" y="${y}" width="9" height="5" rx="1.2" fill="#4fd2ff"/>`).join("");
+  } else if (acc === "vault") {
+    accIn = `<g transform="translate(90 70) rotate(-28)"><circle r="8.5" fill="none" stroke="#ffc566" stroke-width="4"/><circle r="8.5" fill="none" stroke="#d98a12" stroke-width="1" opacity=".6"/><path d="M8 -1.6 H30 V1.6 H8 Z" fill="#ffc566"/><path d="M22 1.6 V7 H25.5 V1.6 M27 1.6 V5.2 H30 V1.6" fill="#ffc566"/><path class="pip-glint" d="M-4 -4 L2 -6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>`;
+    accExtra = `<g transform="translate(-9 62)"><path d="M-5 -2 V-7 A5 5 0 0 1 5 -7 V-2" fill="none" stroke="#cfc6f5" stroke-width="2.2"/><rect x="-7.5" y="-2.5" width="15" height="13" rx="2.5" fill="#a08bff" stroke="#fff" stroke-opacity=".6"/><circle class="pip-led" cy="3" r="1.8" fill="#4fd2ff"/></g>`;
+  } else if (acc === "package") {
+    // a finished chip: black mold body, gold leads, metal lid with a die glint
+    const leads = [0, 1, 2, 3, 4].map(i => `<rect x="${-13 + i * 6}" y="-19" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="${-13 + i * 6}" y="14" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="-19" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/><rect x="14" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/>`).join("");
+    accIn = `<g transform="translate(90 68) rotate(-10)">${leads}<rect x="-15" y="-15" width="30" height="30" rx="3" fill="#1b1530" stroke="#4a3f86"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="#cfc6f5"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="url(#${k}p)" opacity=".85"/><path class="pip-glint" d="M-7 4 L4 -7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="-11" cy="-11" r="1.4" fill="#4a3f86"/></g>`;
+    accDefs = `<linearGradient id="${k}p" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd2ff"/><stop offset=".5" stop-color="#a08bff"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
+    accExtra = `<g transform="translate(-8 70)"><rect x="-6" y="-4" width="12" height="8" rx="2" fill="#2fb87a"/><path d="M-3 0 L-1 2 L3 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "bloom") {
+    // a flower on Pip's head whose center is a fuel cell: petals around a glowing bolt
+    const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
+    accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M62 2 C56 -1 54 -6 55 -9 C59 -8 62 -5 62 2 Z" fill="#2fb87a"/><g transform="translate(69 -14)">${petals}<circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="pip-lamp" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>`;
+    accExtra = [[100, 44, 0], [104, 28, .6], [-8, 40, 1.2]].map(([x, y, d]) => `<text class="pip-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="10" font-weight="800" fill="#4fd2ff">⚡</text>`).join("");
+  } else if (acc === "waiter") {
+    // a maître d' with a bow tie, serving a GPU on a tray: today's special, or tomorrow's value menu
+    accIn = `<g transform="translate(50 50)"><path d="M0 0 L-9 -5 V5 Z M0 0 L9 -5 V5 Z" fill="#211a32" stroke="#ff6b80" stroke-width=".8" stroke-linejoin="round"/><circle r="2.2" fill="#ff6b80"/></g>` +
+      `<g transform="translate(99 30)"><path d="M-1 4 L-4 26" stroke="#cfc6f5" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="0" cy="4" rx="19" ry="3.4" fill="#e9e4f7" stroke="#b8a6ff"/><g transform="translate(0 -4)"><rect x="-14" y="-6" width="28" height="11" rx="1.6" fill="#211a32" stroke="#9b83ff"/><circle class="pip-spin" cx="-6.5" cy="-.5" r="3.6" fill="#30234d" stroke="#4fd2ff" stroke-width=".9"/><circle class="pip-spin" cx="6.5" cy="-.5" r="3.6" fill="#30234d" stroke="#4fd2ff" stroke-width=".9"/><path d="M-11 5 V7 M-7 5 V7 M-3 5 V7 M1 5 V7 M5 5 V7" stroke="#ffc566" stroke-width="1.2"/></g><g transform="translate(14 -16) rotate(12)"><rect x="-8" y="-5" width="16" height="10" rx="1.5" fill="#ffb23f"/><text x="0" y="2.6" text-anchor="middle" font-size="6.5" font-weight="900" fill="#211a32">$/hr</text></g></g>`;
+  } else if (acc === "jet") {
+    // a jetpack for orbit and a share certificate for the next deal
+    accUnder = `<path class="pip-flame" d="M-4.5 70 Q.5 106 5.5 70 Z" fill="#ffb23f"/><path class="pip-flame" style="animation-delay:.12s" d="M94.5 70 Q99.5 106 104.5 70 Z" fill="#ffb23f"/><path class="pip-flame" d="M-2 70 Q.5 94 3 70 Z" fill="#fff4d6"/><path class="pip-flame" style="animation-delay:.12s" d="M97 70 Q99.5 94 102 70 Z" fill="#fff4d6"/><rect x="-6" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/><rect x="93" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/>`;
+    accIn = `<g transform="translate(86 70) rotate(-12)"><rect x="-15" y="-10.5" width="30" height="21" rx="2" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.3"/><rect x="-12" y="-7.5" width="24" height="15" rx="1" fill="none" stroke="#ffd98a" stroke-width=".8"/><text x="0" y="1.6" text-anchor="middle" font-size="7" font-weight="900" fill="#211a32">SPCX</text><path d="M-6 5 H6" stroke="#cfc6f5" stroke-width="1"/><path d="M11 -15 L15 -21 L19 -15 M15 -21 V-11" stroke="#2fb87a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+    accBack = spark(-10, 4, .5, "#fff", 0) + spark(112, 24, .45, "#fff", .6) + spark(110, 84, .55, "#ffd98a", 1.1);
+  } else if (acc === "seat") {
+    // Pip keeps the record (a database with a rules check) while an office chair beside it has a bite taken out
+    accIn = `<g transform="translate(91 67) rotate(8)"><path d="M-12 -14 V12 A12 4.2 0 0 0 12 12 V-14 Z" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-12 -5 A12 4.2 0 0 0 12 -5 M-12 4 A12 4.2 0 0 0 12 4" stroke="#ffb23f" stroke-width="1.6" fill="none"/><ellipse cy="-14" rx="12" ry="4.2" fill="#ffd98a" stroke="#d98a12" stroke-width=".8"/><circle class="pip-led" cx="-6" cy="0" r="1.3" fill="#4fd2ff"/><circle class="pip-led" style="animation-delay:.5s" cx="-6" cy="8.6" r="1.3" fill="#4fd2ff"/><g transform="translate(9 12)"><circle r="5.6" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-2.6 0 L-.6 2 L2.8 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>`;
+    accExtra = `<g transform="translate(-8 70)"><mask id="${k}m" maskUnits="userSpaceOnUse" x="-20" y="-34" width="40" height="52"><rect x="-20" y="-34" width="40" height="52" fill="#fff"/><circle cx="8.5" cy="-27" r="4.4" fill="#000"/><circle cx="10.5" cy="-20.5" r="3.8" fill="#000"/><circle cx="3.6" cy="-29.5" r="3.4" fill="#000"/></mask><g mask="url(#${k}m)"><rect x="-8" y="-30" width="16" height="18" rx="4" fill="#ff6b80"/><rect x="-1.4" y="-12" width="2.8" height="5" fill="#c94a5e"/><rect x="-11" y="-7.5" width="22" height="6" rx="3" fill="#ff8a9a"/></g><rect x="-1.3" y="-1.5" width="2.6" height="9" fill="#cfc6f5"/><path d="M-9 10 L0 7.5 L9 10" stroke="#cfc6f5" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle cx="9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle class="pip-bubble" cx="14" cy="-30" r="1.3" fill="#ff8a9a"/><circle class="pip-bubble" style="animation-delay:.8s" cx="17" cy="-24" r="1" fill="#ff8a9a"/></g>`;
+  } else if (acc === "helmet") {
+    accDefs = `<radialGradient id="${k}g" cx="50%" cy="45%" r="55%"><stop offset=".72" stop-color="#bfe9ff" stop-opacity="0"/><stop offset=".95" stop-color="#bfe9ff" stop-opacity=".26"/><stop offset="1" stop-color="#e8f8ff" stop-opacity=".5"/></radialGradient>`;
+    accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="pip-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
+    accBack = spark(-12, -12, .8, "#ffb23f", 0) + spark(112, 4, .6, "#fff", .4) + spark(118, 70, .7, "#4fd2ff", .8);
+  }
+  let extras = "";
+  if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
+  if (pose === "run" && acc !== "camper") extras = `<rect class="pip-speed" x="-22" y="44" width="16" height="2.6" rx="1.3" fill="#4fd2ff"/><rect class="pip-speed" style="animation-delay:.12s" x="-19" y="60" width="13" height="2.6" rx="1.3" fill="#4fd2ff"/><rect class="pip-speed" style="animation-delay:.24s" x="-16" y="76" width="10" height="2.6" rx="1.3" fill="#4fd2ff"/>`;
+  if (pose === "dance") extras = `<text class="pip-note" x="100" y="10" font-size="14" fill="#4fd2ff">♪</text><text class="pip-note" style="animation-delay:.5s" x="-14" y="22" font-size="12" fill="#b8a6ff">♫</text>`;
+  if (pose === "swim" && acc !== "helmet") extras = `<circle class="pip-bubble" cx="94" cy="30" r="3" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="pip-bubble" style="animation-delay:.6s" cx="100" cy="12" r="2" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="pip-bubble" style="animation-delay:1.2s" cx="90" cy="0" r="1.6" fill="none" stroke="#a6e9ff" stroke-width=".9"/>`;
+  if (sleep) extras = `<text class="pip-z" x="92" y="6" font-size="11" font-weight="800" fill="#b8a6ff">z</text><text class="pip-z" style="animation-delay:1.1s" x="100" y="-6" font-size="8" font-weight="800" fill="#b8a6ff">z</text>`;
+  const a11y = label ? `role="img" aria-label="${label}"` : `aria-hidden="true" focusable="false"`;
+  return `<svg class="pip pip-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}<ellipse class="pip-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/><g class="pip-all">${accUnder}<path class="pip-fin-l" d="${finL}" fill="url(#${k}n)"/><path class="pip-fin-r" d="${finR}" fill="url(#${k}n)"/><path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/><ellipse class="pip-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="pip-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="pip-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
+}
+
+function mountPips(root = document) {
+  $$("[data-pip]", root).forEach(el => {
+    const tpl = document.createElement("template");
+    tpl.innerHTML = pip({ pose: el.dataset.pip, acc: el.dataset.acc || null, label: el.dataset.label || "" }).trim();
+    const svg = tpl.content.firstElementChild;
+    el.classList.forEach(c => svg.classList.add(c));
+    el.replaceWith(svg);
+  });
+}
+
+/* ---------------------------------------------------------------- visuals */
+const VIZ = {
+  automate() {
+    const nodes = [[200, 72, "Agents"], [311, 264, "AI research"], [89, 264, "Better models"]];
+    const tx = t => 40 + (t - 2024.2) * (320 / 4.2);
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 400 400" role="img" aria-label="A loop: agents run AI research, which produces better models, which become better agents.">
+        <circle class="v-ring" cx="200" cy="200" r="130"/>
+        <circle class="v-run" cx="200" cy="200" r="130" transform="rotate(-90 200 200)"/>
+        ${nodes.map(([x, y, l]) => `<g class="v-node"><circle cx="${x}" cy="${y}" r="56"/><text x="${x}" y="${y + 6}">${l}</text></g>`).join("")}
+        <text x="200" y="196" text-anchor="middle" class="t-strong" font-size="22">Automate</text>
+        <text x="200" y="222" text-anchor="middle" font-size="17">one job</text>
+      </svg><p class="cap">Aschenbrenner’s shortcut: automate the one job whose output improves every other job.</p></div>
+      <div class="frame f2"><div class="ratio" role="img" aria-label="3.1 agent-workdays for every human workday">
+        <div class="r-row"><span class="r-l">Human workdays</span><div class="r-blocks"><i class="h">8h</i></div></div>
+        <div class="r-row"><span class="r-l">Agent workdays</span><div class="r-blocks"><i>8h</i><i>8h</i><i>8h</i><i class="sliver"></i></div></div>
+        <p class="r-big">3.1 : 1</p>
+      </div><p class="cap">OpenAI’s research org, mid-August 2026. Each block is an eight-hour workday; agent days are machine runtime.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 400 270" role="img" aria-label="Timeline from Situational Awareness in June 2024 to an automated research intern in September 2026 to a targeted automated AI researcher in March 2028.">
+        <line class="ax" x1="30" y1="135" x2="372" y2="135"/>
+        ${[2025, 2026, 2027, 2028].map(y => `<line class="ax" x1="${tx(y)}" y1="130" x2="${tx(y)}" y2="140"/><text x="${tx(y)}" y="158" text-anchor="middle" font-size="13">${y}</text>`).join("")}
+        <circle cx="${tx(2024.42)}" cy="135" r="7" fill="var(--paper)"/>
+        <text x="40" y="96" class="t-strong" font-size="17">Jun 2024</text><text x="40" y="116" font-size="15">Situational Awareness</text>
+        <circle cx="${tx(2026.67)}" cy="135" r="10" fill="var(--beat)" style="filter:drop-shadow(0 0 8px var(--beat))"/>
+        <text x="${tx(2026.67)}" y="196" text-anchor="middle" class="t-strong" font-size="17">Sep 2026</text><text x="${tx(2026.67)}" y="216" text-anchor="middle" font-size="15">Automated research intern</text><text x="${tx(2026.67)}" y="236" text-anchor="middle" font-size="15" style="fill:var(--beat)">Reached</text>
+        <circle cx="${tx(2028.17)}" cy="135" r="10" fill="var(--ink)" stroke="var(--beat)" stroke-width="2" stroke-dasharray="4 3"/>
+        <text x="372" y="76" text-anchor="end" class="t-strong" font-size="17">Mar 2028</text><text x="372" y="96" text-anchor="end" font-size="15">Automated AI researcher</text><text x="372" y="116" text-anchor="end" font-size="15" style="fill:var(--beat)">Target</text>
+      </svg><p class="cap">OpenAI’s stated milestones, September 6, 2026.</p></div>
+    </div>`;
+  },
+
+  molecules() {
+    const X = t => 70 + (t - 2026.5) * 80;
+    const axis = `<line class="ax" x1="70" y1="240" x2="500" y2="240"/>${[2027, 2028, 2029, 2030, 2031].map(y => `<line class="gridl" x1="${X(y)}" y1="44" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="262" text-anchor="middle" font-size="14">${y}</text>`).join("")}<line x1="${X(2026.75)}" y1="40" x2="${X(2026.75)}" y2="240" stroke="var(--paper)" stroke-dasharray="3 4" stroke-width="1.2"/><text x="${X(2026.75)}" y="32" text-anchor="middle" class="t-strong" font-size="14">Now</text>`;
+    const wells = `<text x="${X(2026.75) + 2}" y="76" class="t-strong" font-size="16">Drill the gas: ~1,200 wells</text><rect x="${X(2026.75)}" y="86" width="${(0.9 * 80).toFixed(1)}" height="28" fill="var(--amber)"/><text x="${X(2026.75) + 80}" y="106" font-size="15">under a year</text>`;
+    const turb = grow => `<text x="${X(2026.75) + 2}" y="160" class="t-strong" font-size="16">Gas turbine delivery slot</text><rect class="g-bar ${grow ? "grow" : ""}" x="${X(2026.75)}" y="170" width="${(4.75 * 80).toFixed(1)}" height="28" fill="var(--coral)"/><text x="${X(2031.5) - 8}" y="190" text-anchor="end" font-size="15" style="fill:var(--ink);font-weight:700">booking 2031</text>`;
+    const nodes = [[50, "Gas well", "amber"], [155, "Turbine", "coral"], [260, "Transformer", "coral"], [365, "Substation", "coral"], [470, "Rack", "beat"]];
+    const icon = i => [
+      `<path d="M-11 14 L0 -14 L11 14 M-7 3 H7 M-4 -5 H4"/>`,
+      `<circle r="12"/><path d="M0 0 L0 -11 M0 0 L9.5 5.5 M0 0 L-9.5 5.5"/>`,
+      `<circle cx="-5" r="8"/><circle cx="5" r="8"/>`,
+      `<path d="M-12 13 V-6 M12 13 V-6 M-12 -6 H12 M-12 4 H12 M-6 -13 V-6 M6 -13 V-6"/>`,
+      `<rect x="-10" y="-14" width="20" height="28"/><path d="M-6 -7 H6 M-6 0 H6 M-6 7 H6"/>`
+    ][i];
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 520 280" role="img" aria-label="Drilling about 1,200 wells takes under a year.">${axis}${wells}</svg><p class="cap">Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).</p></div>
+      <div class="frame f2"><svg viewBox="0 0 520 280" role="img" aria-label="A gas turbine ordered now delivers around 2031, about five years out.">${axis}${wells}${turb(true)}</svg><p class="cap">Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 520 240" role="img" aria-label="Chain from gas well to turbine, transformer, substation and rack. The queue sits in the middle three.">
+        <path d="M110 58 V46 H410 V58" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="260" y="36" text-anchor="middle" font-size="16" style="fill:var(--coral);font-weight:700">the queue lives here</text>
+        <line class="ax" x1="50" y1="120" x2="470" y2="120"/>
+        ${nodes.map(([x, l, c], i) => `<g transform="translate(${x} 120)"><circle r="36" fill="var(--ink-2)" stroke="var(--${c})" stroke-width="2"/><g fill="none" stroke="var(--${c})" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon(i)}</g></g><text x="${x}" y="182" text-anchor="middle" font-size="16" class="t-strong">${l}</text>`).join("")}
+        ${[0, .5, 1, 1.5].map(d => `<circle class="flow-dot" cx="86" cy="120" r="5" style="--to:24px;animation-delay:${d}s"/>`).join("")}
+      </svg><p class="cap">Where the queue lives: between the molecule and the rack.</p></div>
+    </div>`;
+  },
+
+  fleet() {
+    const Y = L => 300 - (L - 1) * 62, X = yr => 96 + (yr - 2022) * 42;
+    const ladder = [[2022, 1], [2024, 2], [2026, 3], [2028, 4], [2030, 5]];
+    const labels = ["10 MW", "100 MW", "1 GW", "10 GW", "100 GW"];
+    const sites = [[150, 118], [262, 88], [338, 166], [212, 206], [118, 232], [312, 262], [228, 140]];
+    const links = [[0, 6], [6, 1], [1, 2], [6, 3], [3, 4], [0, 4], [3, 5], [2, 5], [6, 2]];
+    const live = Math.log10(300), plan = Math.log10(1200);
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 396" role="img" aria-label="Log-scale ladder of cluster power from 10 megawatts in 2022 to 100 gigawatts in 2030, with Stargate Abilene at 0.3 gigawatts live and 1.2 planned in April 2026.">
+        ${labels.map((l, i) => `<line class="gridl" x1="88" y1="${Y(i + 1)}" x2="450" y2="${Y(i + 1)}"/><text x="80" y="${Y(i + 1) + 5}" text-anchor="end" font-size="14">${l}</text>`).join("")}
+        <polyline points="${ladder.map(([y, L]) => `${X(y)},${Y(L)}`).join(" ")}" fill="none" stroke="var(--paper)" stroke-width="1.5" stroke-dasharray="5 5" opacity=".7"/>
+        ${ladder.map(([y, L]) => `<circle cx="${X(y)}" cy="${Y(L)}" r="6" fill="var(--paper)"/><text x="${X(y)}" y="330" text-anchor="middle" font-size="14">${y}</text>`).join("")}
+        <text x="${X(2030) - 14}" y="${Y(5) + 5}" text-anchor="end" font-size="14">more than 20% of US power</text>
+        <line x1="${X(2026.29)}" y1="${Y(live)}" x2="${X(2026.29)}" y2="${Y(plan)}" stroke="var(--beat)" stroke-width="1.5"/>
+        <circle cx="${X(2026.29)}" cy="${Y(live)}" r="7" fill="var(--beat)"/>
+        <circle cx="${X(2026.29)}" cy="${Y(plan)}" r="7" fill="var(--ink)" stroke="var(--beat)" stroke-width="2" stroke-dasharray="3 3"/>
+        <text x="${X(2026.29) + 14}" y="${Y(live) + 5}" font-size="14" style="fill:var(--beat)">Abilene live, Apr 2026: 0.3 GW</text>
+        <text x="${X(2026.29) + 14}" y="${Y(plan) + 18}" font-size="14" style="fill:var(--beat)">planned: 1.2 GW</text>
+        <g transform="translate(96 360)"><line x1="0" y1="0" x2="22" y2="0" stroke="var(--paper)" stroke-dasharray="5 4"/><text x="30" y="5" font-size="14">Aschenbrenner’s ladder (2024)</text><circle cx="11" cy="22" r="5" fill="var(--beat)"/><text x="30" y="27" font-size="14">Stargate Abilene (Epoch AI)</text></g>
+      </svg><p class="cap">One cluster per rung, ten times bigger every two years (dashed). Abilene in April 2026, per Epoch AI (cyan).</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 340" role="img" aria-label="One imagined giant cluster resolves into seven separate sites.">
+        <circle class="big-c" cx="228" cy="176" r="148"/><text x="228" y="18" text-anchor="middle" font-size="15">one 100 GW campus?</text>
+        ${sites.map(([x, y], i) => `<circle class="site" cx="${x}" cy="${y}" r="20" style="transition-delay:${i * 0.08}s"/>`).join("")}
+      </svg><p class="cap">Stargate today: seven US sites, 9+ GW planned by 2029. OpenAI moved Abilene’s extra 2.1 GW to other sites.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 340" role="img" aria-label="Seven sites linked by network lines into a fleet.">
+        ${links.map(([a, b]) => `<line class="link" x1="${sites[a][0]}" y1="${sites[a][1]}" x2="${sites[b][0]}" y2="${sites[b][1]}"/>`).join("")}
+        ${sites.map(([x, y]) => `<circle class="site" cx="${x}" cy="${y}" r="20"/>`).join("")}
+      </svg><p class="cap">The fleet: placed by power, linked by fiber, scheduled by software.</p></div>
+    </div>`;
+  },
+
+  memory() {
+    const stacks = [[30, 36], [30, 112], [170, 36], [170, 112]];
+    return `<div class="viz" data-step="1"><div class="pkg-wrap">
+      <div class="pkg" id="pkg" role="img" aria-label="An AI accelerator package: substrate, silicon interposer, logic die and four HBM memory stacks.">
+        <div class="pkg-rot" id="pkgRot">
+          <div class="ly l-sub"></div>
+          <div class="ly l-int"></div>
+          <div class="ly l-die"></div>
+          ${stacks.map(([x, y]) => `<div class="hbm" style="left:${x}px;top:${y}px">${Array.from({ length: 8 }, (_, i) => `<div class="hb" style="--i:${i}"></div>`).join("")}</div>`).join("")}
+        </div>
+      </div>
+      <div>
+        <div class="pkg-legend"><span><i style="background:var(--amber)"></i>HBM stacks</span><span><i style="background:var(--beat)"></i>Logic die</span><span><i style="background:var(--violet)"></i>Interposer (CoWoS)</span><span><i style="background:#4b4282"></i>Substrate</span></div>
+        <div class="cap-set" style="margin-top:8px"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran a 76% operating margin in Q2 2026.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
+      </div>
+    </div></div>`;
+  },
+
+  agent() {
+    const ports = [["Tools", 230, 44], ["Permissions", 356, 146], ["Payments", 230, 248], ["Memory", 104, 146]];
+    const cards = [
+      ["Ask", "Today", "var(--beat)", `<rect x="10" y="26" width="110" height="62" rx="12" fill="var(--ink-3)"/><text x="20" y="48" font-size="13" class="t-strong">Camping next</text><text x="20" y="64" font-size="13" class="t-strong">weekend. What</text><text x="20" y="80" font-size="13" class="t-strong">do I need?</text><text x="10" y="116" font-size="12">It plans a gear list.</text>`],
+      ["Anticipate", "Arriving", "var(--amber)", `<rect x="10" y="26" width="110" height="44" rx="6" fill="var(--ink-3)" stroke="var(--amber)" stroke-opacity=".6"/><rect x="10" y="26" width="110" height="12" rx="6" fill="var(--amber)" fill-opacity=".8"/><text x="20" y="57" font-size="13" class="t-strong">Sat, Oct 17</text><text x="10" y="88" font-size="12">Yosemite trip on</text><text x="10" y="104" font-size="12">your calendar. Gear</text><text x="10" y="120" font-size="12">list drafted early.</text>`],
+      ["Act", "Next", "var(--coral)", `<text x="10" y="40" font-size="12">Tent stakes</text><text x="10" y="56" font-size="12">Headlamp</text><text x="10" y="72" font-size="12">Stove fuel</text><line x1="10" y1="80" x2="120" y2="80" class="ax"/><rect x="6" y="90" width="118" height="28" rx="14" fill="var(--amber)"/><text x="65" y="108.5" text-anchor="middle" font-size="12" style="fill:var(--ink);font-weight:700">Confirm purchase</text><text x="10" y="140" font-size="12">You tap once.</text>`]
+    ];
+    const nodes = [["You", "“camping trip”", 230, 52, "var(--paper)"], ["Model", "plans the list", 340, 158, "var(--violet)"], ["Harness", "carts the gear", 230, 264, "var(--beat)"], ["You", "tap confirm", 120, 158, "var(--amber)"]];
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 300" role="img" aria-label="An agent drawn as a brain inside a body: the model at the center, connected to the harness’s tools, permissions, payments and memory.">
+        <rect x="104" y="44" width="252" height="204" rx="48" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="6 6"/>
+        ${ports.map(([n, x, y]) => `<line class="link" x1="230" y1="146" x2="${x}" y2="${y}" style="stroke:var(--amber)"/>`).join("")}
+        <circle cx="230" cy="146" r="52" fill="var(--violet)" fill-opacity=".22" stroke="var(--violet)" stroke-width="2"/>
+        <circle cx="230" cy="146" r="64" fill="none" stroke="var(--violet)" stroke-opacity=".3" class="brain-pulse"/>
+        <text x="230" y="142" text-anchor="middle" class="t-strong" font-size="19">Model</text>
+        <text x="230" y="162" text-anchor="middle" font-size="14">the brain</text>
+        ${ports.map(([n, x, y]) => `<rect x="${x - 50}" y="${y - 15}" width="100" height="30" rx="15" fill="var(--ink-2)" stroke="var(--amber)"/><text x="${x}" y="${y + 5}" text-anchor="middle" class="t-strong" font-size="14">${n}</text>`).join("")}
+        <text x="230" y="290" text-anchor="middle" font-size="14" style="fill:var(--amber)">Harness: the body</text>
+      </svg><p class="cap">The model decides. The harness is how it reaches the world.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 300" role="img" aria-label="Three steps toward buying camping gear: ask, anticipate from your calendar, then act with a confirm purchase button.">
+        ${cards.map(([n, st, c, body], i) => { const x = 14 + i * 150; return `<g transform="translate(${x} 40)"><text x="0" y="0" class="t-strong" font-size="16"><tspan style="fill:var(--amber)">${i + 1}</tspan> ${n}</text><rect x="0" y="12" width="130" height="200" rx="8" fill="var(--ink-2)" stroke="var(--rule)"/><g transform="translate(0 0)">${body}</g><text x="10" y="200" font-size="12" style="fill:${c};font-weight:700">${st}</text></g>${i < 2 ? `<path d="M${x + 134} 150 h10 m-5 -5 l5 5 l-5 5" fill="none" stroke="var(--faint)" stroke-width="1.6"/>` : ""}`; }).join("")}
+      </svg><p class="cap">My camping-trip example. Ask works today, ChatGPT Pulse shows anticipate arriving, and act is still being built.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 320" role="img" aria-label="A loop: you mention camping, the model plans, the harness finds and carts the gear, and you tap confirm.">
+        <circle class="v-ring" cx="230" cy="158" r="106"/>
+        <circle class="v-run2" cx="230" cy="158" r="106" transform="rotate(-90 230 158)"/>
+        <text x="230" y="143" text-anchor="middle" font-size="14">agent =</text>
+        <text x="230" y="162" text-anchor="middle" class="t-strong" font-size="15">model +</text>
+        <text x="230" y="180" text-anchor="middle" class="t-strong" font-size="15">harness</text>
+        ${nodes.map(([a, b, x, y, c]) => `<g><circle cx="${x}" cy="${y}" r="46" fill="var(--ink-2)" stroke="${c}" stroke-width="${c === "var(--amber)" ? 2.5 : 1.5}"/><text x="${x}" y="${y - 3}" text-anchor="middle" class="t-strong" font-size="15">${a}</text><text x="${x}" y="${y + 15}" text-anchor="middle" font-size="11.5">${b}</text></g>`).join("")}
+      </svg><p class="cap">Full circle: the model decides, the harness acts, and you only say yes.</p></div>
+    </div>`;
+  },
+
+  ooms() {
+    const Y = o => 280 - o * 20, X = { 2019: 100, 2023: 250, 2027: 400 };
+    const LV = [["Chip", "1 GPU", 3, "~1 kW"], ["Server", "8 GPUs", Math.log10(14300), "14.3 kW"], ["Rack", "72 GPUs", Math.log10(1.2e5), "~120 kW"], ["Cluster", "~100k GPUs", Math.log10(1.2e8), "~120 MW"], ["Campus", "Abilene, planned", Math.log10(1.2e9), "1.2 GW"]];
+    const LX = lg => 130 + (lg - 2) * 38;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 320" role="img" aria-label="Effective compute in OOMs above GPT-2: GPT-4 about 4.5 to 6 OOMs higher in 2023, and Aschenbrenner’s 2027 projection about 7.5 to 12.">
+        ${[0, 2, 4, 6, 8, 10, 12].map(o => `<line class="gridl" x1="56" y1="${Y(o)}" x2="440" y2="${Y(o)}"/><text x="48" y="${Y(o) + 5}" text-anchor="end" font-size="13">${o}</text>`).join("")}
+        <text x="16" y="${Y(6)}" font-size="13" transform="rotate(-90 16 ${Y(6)})" text-anchor="middle">OOMs above GPT-2</text>
+        <text x="64" y="26" class="t-strong" font-size="15">AGI is the starting line, not the finish line.</text>
+        <line x1="${X[2019]}" y1="${Y(0)}" x2="${X[2023]}" y2="${Y(5.25)}" stroke="var(--paper)" stroke-width="1.5"/>
+        <line x1="${X[2023]}" y1="${Y(5.25)}" x2="${X[2027]}" y2="${Y(10.25)}" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <circle cx="${X[2019]}" cy="${Y(0)}" r="7" fill="var(--paper)"/>
+        <text x="${X[2019]}" y="244" text-anchor="middle" class="t-strong" font-size="16">GPT-2</text>
+        <text x="${X[2019]}" y="262" text-anchor="middle" font-size="14">preschooler</text>
+        <rect x="${X[2023] - 6}" y="${Y(6)}" width="12" height="${Y(4.5) - Y(6)}" fill="var(--paper)" opacity=".3"/>
+        <circle cx="${X[2023]}" cy="${Y(5.25)}" r="7" fill="var(--paper)"/>
+        <text x="${X[2023] + 14}" y="${Y(5.25) - 4}" class="t-strong" font-size="16">GPT-4</text>
+        <text x="${X[2023] + 14}" y="${Y(5.25) + 14}" font-size="14">smart high schooler</text>
+        <rect x="${X[2027] - 6}" y="${Y(12)}" width="12" height="${Y(7.5) - Y(12)}" fill="none" stroke="var(--amber)" stroke-dasharray="4 3"/>
+        <circle cx="${X[2027]}" cy="${Y(10.25)}" r="8" fill="var(--ink)" stroke="var(--amber)" stroke-width="2"/>
+        <text x="${X[2027] + 14}" y="${Y(10.25) + 5}" class="t-strong" font-size="16" style="fill:var(--amber)">AGI?</text>
+        ${[2019, 2023, 2027].map(y => `<text x="${X[y]}" y="304" text-anchor="middle" font-size="14">${y}</text>`).join("")}
+      </svg><p class="cap">Aschenbrenner’s count of effective compute. Bars are his ranges; 2027 is his projection.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 310" role="img" aria-label="Power per level on a log scale: chip about 1 kW, server 14.3 kW, rack about 120 kW, cluster about 120 MW, campus 1.2 GW.">
+        <path d="M${LX(3)} 32 V24 H${LX(LV[4][2])} V32" fill="none" stroke="var(--amber)" stroke-width="1.5"/>
+        <text x="${(LX(3) + LX(LV[4][2])) / 2}" y="16" text-anchor="middle" class="t-strong" font-size="14">about six OOMs, chip to campus</text>
+        ${LV.map(([n, sub, lg, v], i) => { const y = 64 + i * 50; return `<text x="118" y="${y - 1}" text-anchor="end" class="t-strong" font-size="16">${n}</text><text x="118" y="${y + 16}" text-anchor="end" font-size="12">${sub}</text><rect x="130" y="${y - 12}" width="${(LX(lg) - 130).toFixed(1)}" height="24" fill="var(--amber)" opacity="${(0.4 + i * 0.13).toFixed(2)}"/><text x="${(LX(lg) + 8).toFixed(1)}" y="${y + 5}" class="t-strong" font-size="14">${v}</text>`; }).join("")}
+        <line class="ax" x1="130" y1="292" x2="440" y2="292"/>
+        ${[[3, "1 kW"], [6, "1 MW"], [9, "1 GW"]].map(([lg, l]) => `<line class="ax" x1="${LX(lg)}" y1="288" x2="${LX(lg)}" y2="296"/><text x="${LX(lg)}" y="309" text-anchor="middle" font-size="12">${l}</text>`).join("")}
+      </svg><p class="cap">Power per level, log scale. The cluster is my estimate, scaled from Epoch AI’s Abilene figures.</p></div>
+      <div class="frame f3"><div class="oomcalc">
+        <label class="oc-l" for="oomRange">Multiply one GPU’s power (about 1 kW) by</label>
+        <output class="oc-x" id="oomX" for="oomRange">×1,000</output>
+        <input class="oc-range" type="range" id="oomRange" min="0" max="6" step="0.5" value="3" aria-describedby="oomRead">
+        <p class="oc-o" id="oomRead">3 OOMs. About 1 MW, between a rack and a cluster.</p>
+        <ol class="oc-levels">${LV.map(l => `<li>${l[0]}</li>`).join("")}</ol>
+      </div><p class="cap">OOMs = log₁₀ of the multiple. 10× is one OOM, 3× about half of one, 30× about one and a half.</p></div>
+    </div>`;
+  },
+
+  builders() {
+    const D = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2]];
+    const Y = v => 270 - v * 10;
+    const S = [["Chips", "TSMC"], ["Memory", "Micron, SanDisk"], ["Datacenters", "CoreWeave, IREN, Nebius"], ["Power", "Bloom Energy"]];
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 310" role="img" aria-label="Situational Awareness LP’s disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026.">
+        ${[0, 5, 10, 15, 20].map(v => `<line class="gridl" x1="56" y1="${Y(v)}" x2="440" y2="${Y(v)}"/><text x="48" y="${Y(v) + 5}" text-anchor="end" font-size="13">${v ? "$" + v + "B" : "$0"}</text>`).join("")}
+        <line class="ax" x1="56" y1="${Y(0)}" x2="440" y2="${Y(0)}"/>
+        ${D.map(([l, v], i) => { const x = 66 + i * 54; return `<rect x="${x}" y="${Y(v)}" width="38" height="${(v * 10).toFixed(1)}" fill="var(--amber)" opacity="${(0.5 + i * 0.08).toFixed(2)}"/><text x="${x + 19}" y="${Y(v) - 8}" text-anchor="middle" class="t-strong" font-size="13">${v < 1 ? "$0.25B" : "$" + v.toFixed(1) + "B"}</text><text x="${x + 19}" y="292" text-anchor="middle" font-size="12">${l}</text>`; }).join("")}
+      </svg><p class="cap">US positions disclosed in each 13F filing, by filing date. Not total assets; shorts and non-US holdings aren’t shown.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 290" role="img" aria-label="Four layers every scaling plan buys: chips, memory, datacenters and power, with example companies from the fund’s filings.">
+        <text x="230" y="24" text-anchor="middle" class="t-strong" font-size="15">Every scaling plan buys all four</text>
+        ${S.map(([n, ex], i) => { const y = 42 + i * 58; return `<rect x="40" y="${y}" width="380" height="48" rx="3" fill="var(--ink-2)" stroke="var(--amber)" stroke-opacity="${(0.35 + i * 0.2).toFixed(2)}" stroke-width="1.5"/><text x="58" y="${y + 31}" class="t-strong" font-size="19">${n}</text><text x="404" y="${y + 30}" text-anchor="end" font-size="14">${ex}</text>`; }).join("")}
+      </svg><p class="cap">Examples from the fund’s 2026 filings, by the layer they build. Not investment advice.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 290" role="img" aria-label="In the 1990s telecom bust, bondholders got back about 20 cents per dollar, but the fiber stayed in the ground.">
+        <text x="230" y="26" text-anchor="middle" class="t-strong" font-size="15">The 1990s telecom boom</text>
+        <text x="40" y="66" font-size="14">Every $1 of bonds</text>
+        <rect x="40" y="76" width="380" height="26" fill="var(--faint)"/>
+        <text x="410" y="94" text-anchor="end" class="t-strong" font-size="14" style="fill:var(--ink)">$1.00</text>
+        <text x="40" y="134" font-size="14">Paid back after the bust</text>
+        <rect x="40" y="144" width="76" height="26" fill="var(--coral)"/>
+        <text x="126" y="162" class="t-strong" font-size="14">about 20¢</text>
+        <path d="M20 222 C120 202 200 242 300 222 S420 212 440 222" fill="none" stroke="var(--beat)" stroke-width="6" opacity=".18" stroke-linecap="round"/>
+        <path class="fiber" d="M20 222 C120 202 200 242 300 222 S420 212 440 222" fill="none" stroke="var(--beat)" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="230" y="270" text-anchor="middle" class="t-strong" font-size="15">The fiber stayed in the ground.</text>
+      </svg><p class="cap">Telecoms crash, 2001: $500B+ invested, mostly debt. WorldCom and Global Crossing went bankrupt.</p></div>
+    </div>`;
+  },
+
+  moat() {
+    const X = y => 70 + (y - 2010) * 25, Y = o => 270 - o * 22;
+    const yr = 14, lo = yr * Math.log10(4), hi = yr * Math.log10(5), mid = yr * Math.log10(4.5), moore = yr * Math.log10(Math.SQRT2);
+    const mk = [["TSMC", 70], ["Samsung", 176], ["SK hynix", 284], ["Intel", 390]];
+    const layer = (y, c, o) => `<polygon points="40,${y} 150,${y - 36} 260,${y} 150,${y + 36}" fill="${c}" fill-opacity="${o}" stroke="var(--paper)" stroke-opacity=".35"/>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 310" role="img" aria-label="Growth since 2010 in OOMs: frontier AI training compute at 4 to 5 times a year reaches about 9 OOMs by 2024, while Moore’s pace reaches about 2.">
+        ${[0, 2, 4, 6, 8, 10].map(o => `<line class="gridl" x1="62" y1="${Y(o)}" x2="424" y2="${Y(o)}"/><text x="54" y="${Y(o) + 5}" text-anchor="end" font-size="13">${o}</text>`).join("")}
+        <text x="16" y="${Y(5)}" font-size="13" transform="rotate(-90 16 ${Y(5)})" text-anchor="middle">OOMs since 2010</text>
+        <polygon points="${X(2010)},${Y(0)} ${X(2024)},${Y(lo).toFixed(1)} ${X(2024)},${Y(hi).toFixed(1)}" fill="var(--beat)" fill-opacity=".22"/>
+        <line x1="${X(2010)}" y1="${Y(0)}" x2="${X(2024)}" y2="${Y(mid).toFixed(1)}" stroke="var(--beat)" stroke-width="2.5"/>
+        <line x1="${X(2010)}" y1="${Y(0)}" x2="${X(2024)}" y2="${Y(moore).toFixed(1)}" stroke="var(--paper)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="412" y="28" text-anchor="end" class="t-strong" font-size="15" style="fill:var(--beat)">Frontier AI training compute, 4–5× a year</text>
+        <text x="412" y="46" text-anchor="end" font-size="14">about 9 OOMs since 2010</text>
+        <text x="412" y="212" text-anchor="end" class="t-strong" font-size="14">Moore’s pace: about 2 OOMs</text>
+        ${[2010, 2015, 2020, 2024].map(y => `<text x="${X(y)}" y="292" text-anchor="middle" font-size="13">${y}</text>`).join("")}
+      </svg><p class="cap">Growth rates, not model-by-model data: Epoch AI’s 4–5× a year vs. a doubling every two years, 2010–2024.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 310" role="img" aria-label="Four chipmakers, TSMC, Samsung, SK hynix and Intel, all depend on one supplier, ASML, for the newest EUV machines.">
+        <text x="230" y="24" text-anchor="middle" font-size="14">Committed to ASML’s newest EUV machine</text>
+        ${mk.map(([n, x]) => `<line class="link" x1="${x}" y1="76" x2="230" y2="190"/>`).join("")}
+        ${mk.map(([n, x]) => `<rect x="${x - 44}" y="44" width="88" height="32" rx="16" fill="var(--ink-2)" stroke="var(--beat)"/><text x="${x}" y="65" text-anchor="middle" class="t-strong" font-size="14">${n}</text>`).join("")}
+        <circle cx="230" cy="214" r="38" fill="var(--amber)"/>
+        <text x="230" y="220" text-anchor="middle" font-size="18" style="fill:var(--ink);font-weight:800">ASML</text>
+        <text x="280" y="214" font-size="14" class="t-strong" style="fill:var(--amber)">~$380–400M each</text>
+        <text x="230" y="278" text-anchor="middle" class="t-strong" font-size="15">The only seller of EUV machines</text>
+        <text x="230" y="297" text-anchor="middle" font-size="14">for the most advanced chips</text>
+      </svg><p class="cap">TechTimes, September 2026.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 290" role="img" aria-label="A stack of chip layers with three possible new chokepoints: hybrid bonding, advanced packaging and inspection.">
+        <text x="230" y="24" text-anchor="middle" class="t-strong" font-size="15">Where the next chokepoints could form</text>
+        ${layer(210, "var(--coral)", .7)}${layer(180, "var(--amber)", .7)}${layer(150, "var(--beat)", .65)}${layer(120, "var(--violet)", .75)}
+        <path d="M236 132 L276 104" stroke="var(--paper)" stroke-width="1"/><text x="282" y="100" class="t-strong" font-size="15">Hybrid bonding</text><text x="282" y="118" font-size="14">fuses stacked layers</text>
+        <path d="M260 180 L276 176" stroke="var(--paper)" stroke-width="1"/><text x="282" y="172" class="t-strong" font-size="15">Advanced packaging</text><text x="282" y="190" font-size="14">joins chips in one package</text>
+        <path d="M222 226 L276 246" stroke="var(--paper)" stroke-width="1"/><text x="282" y="244" class="t-strong" font-size="15">Inspection</text><text x="282" y="262" font-size="14">finds buried flaws</text>
+      </svg><p class="cap">My read of where one-or-two-company steps could form as chips go 3D.</p></div>
+    </div>`;
+  },
+
+  heat() {
+    const fins = (x0, n, y, h) => Array.from({ length: n }, (_, i) => `<rect x="${x0 + i * 22}" y="${y}" width="10" height="${h}" rx="2" fill="var(--ink-3)" stroke="var(--rule)"/>`).join("");
+    const up = (x, d) => `<path class="heat-rise" style="animation-delay:${d}s" d="M${x} 64 V24 M${x - 5} 31 L${x} 24 L${x + 5} 31" fill="none" stroke="var(--coral)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const vein = "M100 140 H360 M150 140 C170 120 182 96 196 62 M150 140 C170 160 182 184 196 218 M215 140 C236 116 250 92 262 58 M215 140 C236 164 250 188 262 222 M280 140 C298 120 310 100 322 70 M280 140 C298 160 310 180 322 210 M182 104 C200 96 214 92 230 92 M182 176 C200 184 214 188 230 188 M250 100 C266 96 280 96 292 98 M250 180 C266 184 280 184 292 182";
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 460 260" role="img" aria-label="A flat chip under a heat sink: heat from its single layer of transistors has a short path straight up.">
+        ${Array.from({ length: 9 }, (_, i) => up(126 + i * 26, i * .22)).join("")}
+        ${fins(96, 13, 70, 56)}
+        <rect x="86" y="124" width="288" height="14" rx="2" fill="var(--ink-3)" stroke="var(--rule)"/>
+        <rect x="120" y="142" width="220" height="12" fill="var(--violet)"/>
+        <rect x="96" y="156" width="268" height="18" fill="#2b2355" stroke="#4b4282"/>
+        ${Array.from({ length: 12 }, (_, i) => `<circle cx="${109 + i * 22}" cy="181" r="4" fill="#6a5fa8"/>`).join("")}
+        <text x="230" y="216" text-anchor="middle" class="t-strong" font-size="17">One flat layer of transistors</text>
+        <text x="230" y="238" text-anchor="middle" font-size="15">Every hot spot sits right under the heat sink.</text>
+      </svg><p class="cap">Moore, 1965: flat chips keep a cooling surface close to every source of heat.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 300" role="img" aria-label="A stacked chip whose bottom layer’s heat must cross every layer above it, next to rack power rising from about 120 kW to about 600 kW.">
+        ${fins(42, 8, 30, 30)}
+        <rect x="34" y="60" width="184" height="10" rx="2" fill="var(--ink-3)" stroke="var(--rule)"/>
+        ${["var(--violet)", "var(--beat)", "var(--amber)", "var(--coral)"].map((c, i) => `<rect x="44" y="${78 + i * 30}" width="164" height="20" fill="${c}" opacity="${(0.5 + i * 0.16).toFixed(2)}"/>`).join("")}
+        <path class="heat-path" d="M126 168 V86" stroke="var(--paper)" stroke-width="2.4" stroke-dasharray="5 5"/>
+        <path d="M120 93 L126 86 L132 93" fill="none" stroke="var(--paper)" stroke-width="2.4" stroke-linecap="round"/>
+        <text x="126" y="214" text-anchor="middle" class="t-strong" font-size="16">Stacked chip</text>
+        <text x="126" y="234" text-anchor="middle" font-size="14">The bottom layer’s heat</text>
+        <text x="126" y="252" text-anchor="middle" font-size="14">crosses every layer above it.</text>
+        <text x="355" y="30" text-anchor="middle" class="t-strong" font-size="16">Power per rack</text>
+        <line class="ax" x1="270" y1="250" x2="440" y2="250"/>
+        <rect x="276" y="216" width="50" height="34" fill="var(--amber)"/>
+        <rect x="380" y="80" width="50" height="170" fill="var(--coral)"/>
+        <text x="301" y="206" text-anchor="middle" class="t-strong" font-size="15">~120 kW</text>
+        <text x="405" y="70" text-anchor="middle" class="t-strong" font-size="15">~600 kW</text>
+        <text x="301" y="270" text-anchor="middle" font-size="12">GB200 NVL72</text>
+        <text x="405" y="270" text-anchor="middle" font-size="12">Kyber design</text>
+        <text x="405" y="288" text-anchor="middle" font-size="12" style="fill:var(--coral)">liquid only</text>
+      </svg><p class="cap">Left: why stacking traps heat. Right: Nvidia rack power, per DCD (March 2025).</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 290" role="img" aria-label="Top view of a chip with branching coolant channels, shaped like leaf veins, etched into the back of the silicon and flowing past hot spots.">
+        <rect x="100" y="40" width="260" height="200" rx="6" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.5"/>
+        <circle cx="200" cy="100" r="30" fill="var(--coral)" opacity=".22"/><circle cx="276" cy="186" r="34" fill="var(--coral)" opacity=".2"/><circle cx="160" cy="196" r="22" fill="var(--coral)" opacity=".18"/>
+        <path d="${vein}" fill="none" stroke="var(--beat)" stroke-width="6" stroke-linecap="round" opacity=".18"/>
+        <path class="coolant" d="${vein}" fill="none" stroke="var(--beat)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M40 140 H92 M84 133 L92 140 L84 147" fill="none" stroke="var(--beat)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M368 140 H420 M412 133 L420 140 L412 147" fill="none" stroke="var(--beat)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="40" y="126" font-size="14">coolant in</text>
+        <text x="420" y="126" text-anchor="end" font-size="14">out</text>
+        <text x="230" y="272" text-anchor="middle" class="t-strong" font-size="16">Up to 3× better heat removal than cold plates</text>
+      </svg><p class="cap">Microsoft, 2025: channels etched into the back of the silicon, shaped like leaf veins.</p></div>
+    </div>`;
+  },
+
+  neocloud() {
+    // ---- frame 1: who rents from whom, as a building cross-section
+    const racks = Array.from({ length: 8 }, (_, i) => `<rect x="${92 + i * 36}" y="128" width="26" height="54" rx="2" fill="#231c49" stroke="var(--violet)"/>${[0, 1, 2, 3].map(k => `<rect class="nc-led" style="animation-delay:${((i * 4 + k) * .13 % 1.6).toFixed(2)}s" x="${96 + i * 36}" y="${134 + k * 12}" width="18" height="5" rx="1" fill="var(--beat)"/>`).join("")}`).join("");
+    const tenants = [["AI labs", 70], ["Startups", 168], ["Microsoft", 266], ["Meta", 364]];
+    const roof = tenants.map(([n, x], i) => `<rect x="${x - 40}" y="22" width="80" height="34" rx="5" fill="var(--ink-2)" stroke="${i > 1 ? "var(--amber)" : "var(--rule)"}" stroke-width="${i > 1 ? 1.6 : 1}"/><text x="${x}" y="44" text-anchor="middle" font-size="13" class="t-strong" ${i > 1 ? `style="fill:var(--amber)"` : ""}>${n}</text>`).join("");
+    const up = tenants.map(([, x], i) => `<path id="ncUp${i}" d="M${x} 118 V60" fill="none"/><circle r="3.6" fill="var(--beat)"><animateMotion dur="1.8s" begin="-${(i * .45).toFixed(2)}s" repeatCount="indefinite"><mpath href="#ncUp${i}"/></animateMotion></circle>`).join("");
+    const down = tenants.map(([, x], i) => `<path id="ncDn${i}" d="M${x + 14} 60 V118" fill="none"/><text font-size="12" font-weight="800" style="fill:var(--amber)" text-anchor="middle">$<animateMotion dur="1.8s" begin="-${(i * .45 + .9).toFixed(2)}s" repeatCount="indefinite"><mpath href="#ncDn${i}"/></animateMotion></text>`).join("");
+    const F1 = `<svg viewBox="0 -8 460 308" role="img" aria-label="A building cross-section. On the bottom floor, a landlord supplies the shell and power. On the middle floor, the neocloud runs racks of GPUs. On the roof, tenants rent GPU-hours: AI labs, startups, and the hyperscalers Microsoft and Meta. GPU-hours flow up and dollars flow down.">
+        ${roof}
+        <path d="M228 14 V8 H402 V14" fill="none" stroke="var(--amber)" stroke-width="1.2"/><text x="315" y="4" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--amber);letter-spacing:.12em">HYPERSCALERS, RENTING</text>
+        ${up}${down}
+        <rect x="70" y="118" width="320" height="86" rx="4" fill="none" stroke="var(--violet)" stroke-width="1.4"/>
+        ${racks}
+        <text x="230" y="198" text-anchor="middle" font-size="12" class="t-strong" style="fill:var(--violet)">NEOCLOUD: GPUs, network, software</text>
+        <rect x="50" y="208" width="360" height="54" rx="3" fill="var(--ink-2)" stroke="var(--rule)"/>
+        <path d="M70 262 V226 H130 V262" fill="none" stroke="var(--rule)"/>
+        <path class="nc-bolt" d="M362 216 L348 238 H360 L352 256 L374 230 H362 L370 216 Z" fill="var(--amber)"/>
+        <text x="230" y="234" text-anchor="middle" font-size="12" class="t-strong">LANDLORD: land, shell, power</text>
+        <text x="230" y="250" text-anchor="middle" font-size="11">owned or leased</text>
+        <line class="ax" x1="20" y1="262" x2="440" y2="262"/>
+        <text x="230" y="288" text-anchor="middle" font-size="13"><tspan style="fill:var(--beat)" font-weight="700">● GPU-hours</tspan> go up. <tspan style="fill:var(--amber)" font-weight="700">$</tspan> comes down.</text>
+      </svg>`;
+
+    // ---- frame 2: the price board and a cluster bill calculator
+    const ROWS = [["AWS, on demand", 6.88, "var(--coral)"], ["Nebius, Oct 2026", 4.50, "var(--violet)"], ["Nebius, May 2026", 2.95, "var(--violet)"], ["Neocloud average", 2.82, "var(--beat)"]];
+    const board = ROWS.map(([n, v, c], i) => `<li style="--w:${(v / 6.88 * 100).toFixed(1)}%;--c:${c}"><span class="n">${n}</span><span class="b"><i></i></span><span class="v">$${v.toFixed(2)}</span></li>`).join("");
+    const F2 = `<div class="nccalc">
+        <p class="nc-k">One H100, one hour</p>
+        <ol class="nc-board">${board}</ol>
+        <label class="oc-l" for="ncRange">Rent <b id="ncN">1,000</b> H100s for 30 days</label>
+        <input class="oc-range" type="range" id="ncRange" min="100" max="10000" step="100" value="1000">
+        <div class="nc-bills" id="ncBills"></div>
+      </div>`;
+
+    // ---- frame 3: whose money, and on what terms
+    const arc = (from, to, r, c, w) => { const a0 = (from / 100) * 2 * Math.PI - Math.PI / 2, a1 = (to / 100) * 2 * Math.PI - Math.PI / 2; const p = a => [140 + r * Math.cos(a), 150 + r * Math.sin(a)]; const [x0, y0] = p(a0), [x1, y1] = p(a1); return `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${to - from > 50 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${c}" stroke-width="${w}"/>`; };
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Nebius has more than 40 billion dollars of contracted revenue; about 32 billion, roughly four fifths, comes from Microsoft and Meta. Microsoft pays whether or not it uses the capacity. Nebius targets 5 gigawatts of contracted power by the end of 2026.">
+        <text x="20" y="26" class="t-strong" font-size="15">Nebius contracted revenue: $40B+</text>
+        <circle cx="140" cy="150" r="86" fill="none" stroke="var(--ink-3)" stroke-width="30"/>
+        <g class="nc-donut">${arc(0, 48, 86, "var(--amber)", 30)}${arc(48.6, 79.4, 86, "var(--coral)", 30)}${arc(80, 99.4, 86, "var(--beat)", 30)}</g>
+        <text x="140" y="146" text-anchor="middle" class="t-strong" font-size="24">~80%</text>
+        <text x="140" y="166" text-anchor="middle" font-size="12">from two buyers</text>
+        ${[["Microsoft", "$17.4B–19.4B, 5 yrs", "var(--amber)"], ["Meta", "$3B, then $12B firm (up to $27B)", "var(--coral)"], ["Everyone else", "the remaining ~20%", "var(--beat)"]].map(([a, b, c], i) => `<rect x="262" y="${78 + i * 46}" width="12" height="12" rx="2" fill="${c}"/><text x="282" y="${88 + i * 46}" class="t-strong" font-size="14">${a}</text><text x="282" y="${105 + i * 46}" font-size="12">${b}</text>`).join("")}
+        <text x="20" y="272" font-size="13"><tspan class="t-strong" style="fill:var(--amber)">Take-or-pay:</tspan> Microsoft pays whether or not it uses the GPUs.</text>
+        <text x="20" y="292" font-size="13"><tspan class="t-strong" style="fill:var(--beat)">Next:</tspan> 5 GW of contracted power targeted by end of 2026.</text>
+      </svg>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">How a neocloud stacks up. Microsoft and Meta are on the roof as tenants, not landlords.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Per H100-hour. AWS and Nebius list prices; neocloud average from Silicon Data. Contracts get discounts.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Firm commitments only, approximate, from Motley Fool’s read of Nebius filings (Oct 2026).</p></div>
+    </div>`;
+  },
+
+  saas() {
+    // ---- frame 1: the sell-off and the round trip, drawn as a schematic index line
+    const X = m => 40 + m * 39, Y = v => 250 - (v - 70) * 4.5, P = (m, v) => `${X(m).toFixed(1)} ${Y(v).toFixed(1)}`;
+    const PTS = [[0, 100], [.4, 101], [.85, 102], [1.1, 92], [1.5, 88], [2, 84], [2.5, 86], [3, 79], [3.4, 75.4], [4, 80], [4.6, 84], [5.05, 82], [5.6, 85], [6, 86], [6.8, 92], [7.85, 97], [8.5, 100], [9, 103], [9.2, 105]];
+    const d = PTS.map(([m, v], i) => `${i ? "L" : "M"}${P(m, v)}`).join(" ");
+    const months = "JFMAMJJASO".split("").map((c, i) => `<text x="${(X(i) + 19.5).toFixed(1)}" y="276" text-anchor="middle" font-size="12">${c}</text>`).join("");
+    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="Schematic of the S&amp;P 500 software and services index in 2026. It fell after Anthropic’s Cowork plug-ins in early February, bottomed in April more than 26% below its late-January level, recovered after Salesforce and Anthropic launched Claudeforce in August, and on October 6 hit its highest level since November 2025.">
+        <defs><linearGradient id="spLine" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="400" y2="0"><stop offset=".55" stop-color="#ff6b80"/><stop offset=".85" stop-color="#4fd2ff"/></linearGradient>
+        <linearGradient id="spFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6b80" stop-opacity=".22"/><stop offset="1" stop-color="#ff6b80" stop-opacity="0"/></linearGradient></defs>
+        <path class="sp-area" d="${d} L${X(9.2).toFixed(1)} 256 L40 256 Z" fill="url(#spFill)"/>
+        <line class="ax" x1="40" y1="256" x2="430" y2="256"/>${months}
+        <path class="sp-line" d="${d}" pathLength="100" fill="none" stroke="url(#spLine)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <g class="sp-early"><path d="M${X(1.1).toFixed(1)} 62 V${(Y(92) - 8).toFixed(1)}" stroke="var(--faint)" stroke-dasharray="3 3"/><circle cx="${X(1.1).toFixed(1)}" cy="${Y(92).toFixed(1)}" r="5" fill="#ff6b80"/>
+          <text x="78" y="40" class="t-strong" font-size="13">Feb 3: Cowork plug-ins</text><text x="78" y="56" font-size="12">Thomson Reuters’ worst day</text>
+          <circle cx="${X(3.4).toFixed(1)}" cy="${Y(75.4).toFixed(1)}" r="5" fill="#ff6b80"/><text x="${X(3.4).toFixed(1)}" y="246" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--coral)">April low: −26%+</text></g>
+        <g transform="translate(205 100) rotate(-8)"><g class="sp-stamp"><rect x="-82" y="-17" width="164" height="34" rx="4" fill="rgba(15,12,34,.6)" stroke="#ff6b80" stroke-width="2.4"/><text y="7" text-anchor="middle" font-size="20" font-weight="900" textLength="146" lengthAdjust="spacingAndGlyphs" style="fill:#ff6b80">SAASPOCALYPSE</text></g></g>
+        <g class="sp-late"><path d="M${X(7.85).toFixed(1)} ${(Y(97) + 8).toFixed(1)} V158" stroke="var(--faint)" stroke-dasharray="3 3"/><circle cx="${X(7.85).toFixed(1)}" cy="${Y(97).toFixed(1)}" r="5" fill="#4fd2ff"/>
+          <text x="362" y="174" text-anchor="middle" class="t-strong" font-size="13">Aug 26: Claudeforce</text><text x="362" y="190" text-anchor="middle" font-size="12">Anthropic + Salesforce</text>
+          <circle class="sp-ping" cx="${X(9.2).toFixed(1)}" cy="${Y(105).toFixed(1)}" r="6" fill="none" stroke="#4fd2ff" stroke-width="2"/><circle cx="${X(9.2).toFixed(1)}" cy="${Y(105).toFixed(1)}" r="6" fill="#4fd2ff"/>
+          <text x="440" y="48" text-anchor="end" class="t-strong" font-size="13" style="fill:var(--beat)">Oct 6: highest since Nov 2025</text><text x="440" y="64" text-anchor="end" font-size="12">up 5% on the year</text></g>
+      </svg>`;
+
+    // ---- frame 2: the stack. Agents skip the screen and go straight to the record, through its rules
+    const slab = (y, h, c, title, sub, tag, tc, extra = "") => `<rect x="100" y="${y}" width="340" height="${h}" rx="6" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5" ${extra}/><text x="116" y="${y + (sub ? 24 : 20)}" class="t-strong" font-size="15">${title}</text>${sub ? `<text x="116" y="${y + 42}" font-size="12">${sub}</text>` : ""}${tag ? `<text x="428" y="${y + (sub ? 24 : 20)}" text-anchor="end" font-size="13" font-weight="800" style="fill:${tc}">${tag}</text>` : ""}`;
+    const dn = "M100 96 H52 V266 H100", upP = "M100 278 H68 V108 H100";
+    const dots = (id, n, dur, fill) => Array.from({ length: n }, (_, i) => `<circle r="3.6" fill="${fill}"><animateMotion dur="${dur}s" begin="-${(i * dur / n).toFixed(2)}s" repeatCount="indefinite"><mpath href="#${id}"/></animateMotion></circle>`).join("");
+    const F2 = `<svg viewBox="0 0 460 312" role="img" aria-label="A stack of layers. The model, the brain, is paid by the token. The agent decides and acts. The screen layer of menus, forms and dashboards falls away, because agents skip it. Agents go straight to the system of record through its rules: permissions, approvals and audit. The system of record is paid by the outcome.">
+        ${slab(8, 52, "var(--violet)", "MODEL: the brain", "Anthropic, OpenAI, Google", "$ per token", "var(--violet)")}
+        ${slab(72, 52, "var(--beat)", "AGENT: decides and acts", "calls tools instead of clicking", "", "")}
+        <g class="sp-screen">${slab(136, 52, "var(--coral)", "SCREEN: menus and forms", "built for people clicking", "", "", `stroke-dasharray="6 5" opacity=".9"`)}<text x="428" y="178" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--coral)">✕ collapses</text></g>
+        ${slab(200, 30, "var(--amber)", "RULES: permissions, approvals, audit", "", "", "")}
+        <rect x="100" y="240" width="340" height="62" rx="6" fill="rgba(255,178,63,.1)" stroke="var(--amber)" stroke-width="1.5"/>
+        <text x="116" y="266" class="t-strong" font-size="16">SYSTEM OF RECORD</text><text x="116" y="286" font-size="12">customers, contracts, who can approve</text>
+        <text x="428" y="266" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--amber)">$ per outcome</text>
+        <path id="spDn" d="${dn}" fill="none" stroke="var(--beat)" stroke-opacity=".45" stroke-dasharray="4 4"/>
+        <path id="spUp" d="${upP}" fill="none" stroke="var(--amber)" stroke-opacity=".45" stroke-dasharray="4 4"/>
+        ${dots("spDn", 3, 2.4, "#4fd2ff")}${dots("spUp", 3, 2.4, "#ffb23f")}
+        <g transform="translate(60 215)"><path d="M-5 -2 V-6 A5 5 0 0 1 5 -6 V-2" fill="none" stroke="var(--amber)" stroke-width="2"/><rect x="-8" y="-3" width="16" height="12" rx="2.5" fill="var(--amber)"/><path d="M-3 3 L-1 5 L3.5 .5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <text x="30" y="185" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 30 185)" style="fill:var(--beat);letter-spacing:.12em">API · MCP</text>
+      </svg>`;
+
+    // ---- frame 3: the meter. Hand work to agents and watch seat revenue shrink while outcome revenue grows
+    const F3 = `<div class="spcalc">
+        <p class="nc-k sp-k">One support team, one month</p>
+        <label class="oc-l" for="spRange">Agents resolve <b id="spPct">40%</b> of 100,000 conversations</label>
+        <input class="oc-range sp-range" type="range" id="spRange" min="0" max="80" step="5" value="40">
+        <div class="sp-seats" id="spSeats" aria-hidden="true">${"<i></i>".repeat(100)}</div>
+        <p class="sp-leg" aria-hidden="true"><span class="p"></span>a person’s seat <span class="a"></span>work done by agents</p>
+        <div class="nc-bills" id="spBills"></div>
+        <p class="nc-save" id="spRead"></p>
+      </div>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Graph: the S&amp;P 500 software and services index in 2026, drawn as a schematic from Reuters figures. Down 26%+ from late January to the April low, up 5% on the year by October 6.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Nadella’s half: agents skip the screen. My half: they hit the record and its rules far more often than people ever did.</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: 100 people, 1,000 conversations each, and every conversation an agent resolves billed as one outcome. Intercom list prices: $85 a seat a month (Advanced, billed annually), from $0.99 per Fin outcome.</span><span class="cap-s">Illustrative. Intercom list prices: $85 a seat a month, from $0.99 per outcome.</span></p></div>
+    </div>`;
+  },
+
+  gpulife() {
+    // ---- frame 1: two clocks. The books' straight line, Burry's 2–3 year band, and what the market actually paid
+    const X = a => 50 + a * 40, Y = v => 236 - v * 1.7, P = (a, v) => `${X(a)} ${Y(v).toFixed(1)}`;
+    const gens = Array.from({ length: 9 }, (_, i) => `<rect x="${X(i + 1) - 5}" y="34" width="10" height="10" rx="2" fill="var(--ink-3)" stroke="var(--violet)"/><path d="M${X(i + 1) - 2} 34 V31 M${X(i + 1) + 2} 34 V31 M${X(i + 1) - 2} 44 V47 M${X(i + 1) + 2} 44 V47" stroke="var(--violet)"/>`).join("");
+    const xt = [0, 3, 6, 9].map(a => `<line class="ax" x1="${X(a)}" y1="236" x2="${X(a)}" y2="241"/><text x="${X(a)}" y="256" text-anchor="middle" font-size="12">${a}</text>`).join("");
+    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="Share of a GPU's original value by age. The books write it down in a straight line over six years. Burry says two to three years. The market: an H100 system in its third year resold for about 45 percent of a new one in late 2025, and one A100 contract runs to age nine, through 2029. Nvidia releases a new flagship every year.">
+        <text x="50" y="22" font-size="12" font-weight="700" style="fill:var(--violet)">A new Nvidia flagship every year</text>${gens}
+        <line class="ax" x1="50" y1="236" x2="420" y2="236"/><line class="ax" x1="50" y1="66" x2="50" y2="236"/>
+        <text x="44" y="${Y(100) + 4}" text-anchor="end" font-size="11">100%</text><text x="44" y="${Y(50) + 4}" text-anchor="end" font-size="11">50%</text><text x="44" y="240" text-anchor="end" font-size="11">0</text>
+        ${xt}<text x="235" y="278" text-anchor="middle" font-size="12">Age of the GPU, years</text>
+        <path class="gl-draw gl-burry" d="M${P(0, 100)} L${P(2, 0)} L${P(3, 0)} Z" pathLength="100" fill="rgba(255,107,128,.16)" stroke="var(--coral)" stroke-width="2" stroke-linejoin="round"/>
+        <text x="56" y="196" font-size="12" font-weight="800" style="fill:var(--coral)">Burry:</text><text x="56" y="212" font-size="12" font-weight="800" style="fill:var(--coral)">2–3 years</text>
+        <path class="gl-draw" d="M${P(0, 100)} L${P(6, 0)}" pathLength="100" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-dasharray="7 5"/>
+        <text x="226" y="165" font-size="13" font-weight="800" style="fill:var(--amber)">Books: 6 years</text>
+        <g class="gl-mkt"><circle class="sp-ping" cx="${X(2.5)}" cy="${Y(45)}" r="7" fill="none" stroke="var(--beat)" stroke-width="2"/><circle cx="${X(2.5)}" cy="${Y(45)}" r="7" fill="var(--beat)"/>
+          <path d="M${X(2.5) + 4} ${Y(45) - 8} L168 118" stroke="var(--beat)" stroke-dasharray="3 3"/><text x="172" y="100" class="t-strong" font-size="13" style="fill:var(--beat)">H100 system, year 3:</text><text x="172" y="116" font-size="12">resold for ~45% of new</text>
+          <path d="M${X(6)} ${Y(14)} H${X(9)}" stroke="var(--beat)" stroke-width="3" stroke-linecap="round"/><path d="M${X(9) - 7} ${Y(14) - 5} L${X(9)} ${Y(14)} L${X(9) - 7} ${Y(14) + 5}" fill="none" stroke="var(--beat)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="${X(7.5)}" y="${Y(14) - 10}" text-anchor="middle" class="t-strong" font-size="12" style="fill:var(--beat)">A100: rented to age 9</text></g>
+      </svg>`;
+
+    // ---- frame 2: the compute menu. A chip works its way down from the specials to the value menu
+    const MENU = [["Frontier training", "Rubin, Blackwell", "MP"], ["Frontier serving", "Blackwell, H200", "MP"], ["Everyday inference, fine-tuning", "H100, age 3–4", "$2.82"], ["Batch jobs, research, second owners", "A100, age 6", "$1.29"]];
+    const F2 = `<div class="gm">
+        <div class="gm-board">
+          <p class="gm-h">Today’s compute menu</p>
+          <ol class="gm-list">${MENU.map(([it, ch, pr], i) => `<li style="--i:${i}"><span class="it">${it}<small>${ch}</small></span><span class="dots" aria-hidden="true"></span><span class="pr">${pr}</span></li>`).join("")}</ol>
+          <span class="gm-chip" aria-hidden="true"><i></i><b>GPU</b></span>
+          <p class="gm-foot">Per GPU-hour, Silicon Data indexes. MP = market price. One A100 contract runs through 2029.</p>
+        </div>
+      </div>`;
+
+    // ---- frame 3: does one H100 pay for itself? Drag the yearly price change
+    const F3 = `<div class="glcalc">
+        <p class="nc-k gl-k">One H100, six years</p>
+        <label class="oc-l" for="glRange">Its rental price changes <b id="glG">−25%</b> a year</label>
+        <div class="sx-rw"><input class="oc-range gl-range" type="range" id="glRange" min="-60" max="20" step="5" value="-25">
+          <div class="sx-ticks" aria-hidden="true"><span style="--p:${(10 / 80 * 100).toFixed(1)}%">Burry’s world</span><span class="end" style="--p:${(80 / 80 * 100).toFixed(1)}%">2026: rising</span></div></div>
+        <svg class="gl-chart" id="glChart" viewBox="0 0 460 150" role="img" aria-label="Cash earned each year by one H100 and the running total against its cost."></svg>
+        <p class="sx-out gl-out" id="glOut"></p>
+      </div>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Straight-line book value versus market evidence. Resale from Silicon Data via Dow Jones (Dec 2025); A100 contract from CoreWeave (Aug 2026).</p></div>
+      <div class="frame f2">${F2}<p class="cap">The newest chips sell at whatever the market bears. Older ones move down to cheaper work, and still get paid.</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: $35,000 all-in per H100 (chip plus its share of server and network), starting at today’s $2.82 index rate, 70% utilized, about 40 cents an hour for power and data-center space.</span><span class="cap-s">Illustrative: $35K all-in, $2.82/hr start, 70% utilized.</span></p></div>
+    </div>`;
+  },
+
+  spacex() {
+    // ---- frame 1: the exchange counter. Share certificates slide across; no cash changes hands
+    const cert = (x, y, s = 1, cls = "") => `<g class="${cls}" transform="translate(${x} ${y}) scale(${s})"><rect x="-26" y="-17" width="52" height="34" rx="3" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.6"/><rect x="-21" y="-12" width="42" height="24" rx="2" fill="none" stroke="#ffd98a"/><path d="M-12 5 L-9 -6 L-6 5 Z" fill="#a08bff"/><text x="7" y="1" text-anchor="middle" font-size="9" font-weight="900" style="fill:#211a32">SPCX</text><path d="M-2 6 H16" stroke="#cfc6f5"/></g>`;
+    const flow = Array.from({ length: 4 }, (_, i) => `<g opacity="0"><g transform="scale(.55)">${cert(0, 0)}</g><animateMotion dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite" path="M150 92 C200 60 260 60 312 92"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite"/></g>`).join("");
+    const TL = [["Apr 21", "option to buy"], ["Jun 12", "IPO at $135"], ["Jun 16", "exercised"], ["Aug 14", "closed"]];
+    const tl = TL.map(([d, l], i) => { const x = 60 + i * 113; return `<circle cx="${x}" cy="226" r="${i === 2 ? 8 : 6}" fill="${i === 2 ? "var(--violet)" : "var(--ink-2)"}" stroke="var(--violet)" stroke-width="2"/><text x="${x}" y="254" text-anchor="middle" class="t-strong" font-size="13">${d}</text><text x="${x}" y="271" text-anchor="middle" font-size="12">${l}</text>`; }).join("");
+    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="An exchange counter. SpaceX pays for Cursor with about 389 million new shares worth 60 billion dollars and no cash. Timeline: an option to buy on April 21, the IPO at 135 dollars on June 12, the option exercised four days later on June 16, and the deal closed on August 14, 2026.">
+        <text x="230" y="22" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--violet);letter-spacing:.18em">EXCHANGE COUNTER</text>
+        ${cert(78, 104, 1.5)}${cert(72, 96, 1.5)}${cert(66, 88, 1.5)}
+        <text x="74" y="150" text-anchor="middle" class="t-strong" font-size="14">~389M new shares</text><text x="74" y="167" text-anchor="middle" font-size="12">SpaceX Class A</text>
+        <path d="M150 92 C200 60 260 60 312 92" fill="none" stroke="var(--rule)" stroke-dasharray="4 5"/>
+        ${flow}
+        <g transform="translate(372 96)"><path d="M-54 -26 L-40 -40 H54 L40 -26 Z" fill="#2b2142" stroke="var(--violet)"/><rect x="-54" y="-26" width="94" height="58" rx="3" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.6"/><path d="M40 -26 L54 -40 V18 L40 32 Z" fill="#211a32" stroke="var(--violet)"/>
+          <text x="-7" y="2" text-anchor="middle" class="t-strong" font-size="16">CURSOR</text><text x="-7" y="20" text-anchor="middle" font-size="12">AI coding</text></g>
+        <text x="372" y="150" text-anchor="middle" class="t-strong" font-size="14" style="fill:var(--amber)">$60B, all stock</text><text x="372" y="167" text-anchor="middle" font-size="12">cash paid: $0</text>
+        <line class="ax" x1="40" y1="226" x2="420" y2="226"/>
+        <path d="M173 204 V198 H286 V204" fill="none" stroke="var(--violet)"/><text x="230" y="192" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--violet)">+4 days</text>
+        ${tl}
+      </svg>`;
+
+    // ---- frame 2: mission control's go / no-go poll for the whole bet
+    const POLL = [["go", "Starship reaches orbit", "Sept 28, Flight 14"], ["next", "Ship caught by the tower", "maybe Flight 15"], ["go", "Starlink pays the bills", "$11.4B in 2025"], ["hold", "AI compute renters stay", "90-day outs"], ["hold", "The stock stays expensive", "more lock-ups end Oct–Dec"], ["next", "Neutron reaches the pad", "target: end of 2026"], ["next", "Rocket Lab closes Iridium", "expected mid-2027"]];
+    const WORD = { go: "GO", hold: "HOLD", next: "NEXT" };
+    const F2 = `<div class="gng">
+        <p class="nc-k sx-k">Go / no-go: what the space bet needs</p>
+        <ol class="gng-list">${POLL.map(([st, sys, ev], i) => `<li class="${st}" style="--i:${i}"><span class="sys">${sys}</span><span class="ev">${ev}</span><span class="st">${WORD[st]}</span></li>`).join("")}</ol>
+      </div>`;
+
+    // ---- frame 3: the house of brands, and the exchange rate that funds it
+    const BRANDS = [["Launch", 46], ["Starlink", 62], ["xAI", 52], ["X", 40], ["Cursor", 56]];
+    let bx = 100;
+    const shelf = BRANDS.map(([n, h], i) => { const w = Math.max(30, n.length * 7 + 18), x = bx; bx += w + 6; const isNew = n === "Cursor"; return `<g class="${isNew ? "sx-new" : ""}"><rect x="${x}" y="${84 - h}" width="${w}" height="${h}" rx="3" fill="${isNew ? "rgba(255,178,63,.16)" : "var(--ink-2)"}" stroke="${isNew ? "var(--amber)" : "var(--violet)"}" stroke-width="1.4"/><text x="${x + w / 2}" y="${80 - h / 2 + 4}" text-anchor="middle" class="t-strong" font-size="13">${n}</text>${isNew ? `<text x="${x + w / 2}" y="${76 - h}" text-anchor="middle" font-size="10" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">NEW</text>` : ""}</g>`; }).join("") +
+      `<g class="sx-next"><rect x="${bx}" y="34" width="50" height="50" rx="3" fill="none" stroke="var(--faint)" stroke-dasharray="5 4"/><text x="${bx + 25}" y="64" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--faint)">next?</text></g>`;
+    const F3 = `<div class="sxcalc">
+        <svg class="sx-shelf" viewBox="0 0 460 110" role="img" aria-label="A store shelf labeled SpaceX and Co. holding Launch, Starlink, xAI, X and the newest product, Cursor, with an empty slot marked next.">
+          <text x="14" y="52" class="t-strong" font-size="14">SPACEX</text><text x="14" y="70" font-size="12">&amp; Co.</text>
+          ${shelf}
+          <rect x="92" y="84" width="358" height="7" rx="2" fill="var(--violet)" opacity=".7"/><path d="M110 91 V104 M432 91 V104" stroke="var(--violet)" stroke-width="3" opacity=".5"/>
+        </svg>
+        <label class="oc-l" for="sxRange">SpaceX trades at <b id="sxM">95×</b> its 2025 revenue</label>
+        <div class="sx-rw"><input class="oc-range sx-range" type="range" id="sxRange" min="10" max="130" step="5" value="95">
+          <div class="sx-ticks" aria-hidden="true"><span style="--p:${(10 / 120 * 100).toFixed(1)}%">Cursor 20×</span><span style="--p:${(85 / 120 * 100).toFixed(1)}%">IPO 95×</span><span class="end" style="--p:${(115 / 120 * 100).toFixed(1)}%">Oct 6 ~125×</span></div></div>
+        <div class="nc-bills" id="sxBills"></div>
+        <p class="sx-out" id="sxOut"></p>
+      </div>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">The Cursor deal, as SpaceX paid for it. New shares based on SpaceX’s volume-weighted average price.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Status as of October 6, 2026.</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Simplified: SpaceX’s 2025 revenue ($18.7B) as the base; Cursor at $60B with $3B of run-rate revenue (later reports said $4B, which flatters the deal). Revenue, not profit. Ignores costs, debt and synergies.</span><span class="cap-s">Simplified: SpaceX’s 2025 revenue as the base; Cursor at $60B and ~$3B run rate.</span></p></div>
+    </div>`;
+  },
+
+  weights() {
+    // ---- frame 2: compute in, one file out, three ways out
+    const yr = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
+    const bars = yr.map((y, i) => { const h = 6 + Math.pow(2.4, i) / Math.pow(2.4, 7) * 128; return `<rect class="g-bar grow v" x="${24 + i * 22}" y="${190 - h}" width="15" height="${h}" fill="var(--amber)" opacity="${(.35 + i * .09).toFixed(2)}"/>`; }).join("");
+    const grid = Array.from({ length: 48 }, (_, i) => `<rect x="${336 + (i % 8) * 11}" y="${84 + Math.floor(i / 8) * 11}" width="9" height="9" rx="1" fill="var(--violet)" opacity="${(.25 + ((i * 37) % 11) / 14).toFixed(2)}"/>`).join("");
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Frontier training costs grow about 2.4 times a year, reaching about a billion dollars per run by 2027. The output is one file: a trillion weights at 16 bits is about 2 terabytes. Capability can leave by theft of the file, by distillation through the API, or through an insider.">
+        <text x="20" y="22" class="t-strong" font-size="15">Training bill per frontier run</text>
+        <text x="20" y="40" font-size="12">~2.4× a year (Epoch AI)</text>
+        ${bars}
+        <line class="ax" x1="18" y1="190" x2="200" y2="190"/>
+        <text x="27" y="206" font-size="11">2020</text><text x="178" y="206" text-anchor="middle" font-size="11">2027</text>
+        <text x="178" y="50" text-anchor="middle" font-size="12" style="fill:var(--amber)" font-weight="700">~$1B</text>
+        <path class="wt-flow" d="M206 120 H318" stroke="var(--paper)" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+        <path d="M310 113 L318 120 L310 127" stroke="var(--paper)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="262" y="108" text-anchor="middle" font-size="12">compressed into</text>
+        <path d="M328 72 H408 L428 92 V160 H328 Z" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.5"/><path d="M408 72 V92 H428" fill="none" stroke="var(--violet)" stroke-width="1.5"/>
+        ${grid}
+        <text x="378" y="182" text-anchor="middle" class="t-strong" font-size="14">weights.bin ≈ 2 TB</text>
+        <text x="378" y="198" text-anchor="middle" font-size="11">1 trillion weights × 2 bytes</text>
+        <line class="ax" x1="20" y1="226" x2="440" y2="226"/>
+        <text x="20" y="248" class="t-strong" font-size="14">Three ways the capability leaves</text>
+        ${[["Copy the file", "theft or a leak", "var(--coral)"], ["Distill it", "16M+ exchanges", "var(--amber)"], ["Walk it out", "an insider", "var(--violet)"]].map(([a, b, c], i) => `<rect x="${20 + i * 142}" y="260" width="132" height="50" rx="5" fill="var(--ink-2)" stroke="${c}"/><text x="${86 + i * 142}" y="281" text-anchor="middle" class="t-strong" font-size="13">${a}</text><text x="${86 + i * 142}" y="299" text-anchor="middle" font-size="11">${b}</text>`).join("")}
+      </svg>`;
+
+    // ---- frame 3: RAND's five levels as vault rings around the weights
+    const LV = [["SL1", "Hobbyist hackers"], ["SL2", "Professional opportunists"], ["SL3", "Crime groups, insiders"], ["SL4", "Standard state operations"], ["SL5", "Top nation-state operations"]];
+    const rings = LV.map(([n], i) => { const r = 128 - i * 22, last = i === 4; return `<circle cx="140" cy="160" r="${r}" fill="none" stroke="${last ? "var(--coral)" : "var(--violet)"}" stroke-width="${last ? 2 : 6}" opacity="${last ? 1 : (.25 + i * .14).toFixed(2)}" ${last ? `stroke-dasharray="4 6" class="wt-ring5"` : ""}/>`; }).join("");
+    const labels = LV.map(([n, d], i) => { const y = 72 + i * 42, last = i === 4, r = 128 - i * 22, a = Math.atan2(y - 10 - 160, 300 - 140); return `<line x1="${(140 + r * Math.cos(a)).toFixed(1)}" y1="${(160 + r * Math.sin(a)).toFixed(1)}" x2="300" y2="${y - 10}" stroke="var(--faint)" stroke-width=".8"/><text x="306" y="${y - 6}" class="t-strong" font-size="13" ${last ? `style="fill:var(--coral)"` : ""}>${n}</text><text x="306" y="${y + 9}" font-size="11">${d}</text>`; }).join("");
+    const F3 = `<svg viewBox="0 0 460 320" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
+        ${rings}
+        <circle cx="140" cy="160" r="26" fill="var(--amber)" opacity=".18"/><circle class="wt-core" cx="140" cy="160" r="16" fill="var(--amber)"/>
+        <text x="140" y="164" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">W</text>
+        <circle r="5" fill="var(--coral)"><animateMotion dur="5s" repeatCount="indefinite" path="M-10 20 L140 160" keyPoints="0;.62;.62;1;1" keyTimes="0;.35;.55;.8;1" calcMode="linear"/></circle>
+        ${labels}
+        <text x="306" y="290" font-size="12" style="fill:var(--coral)" font-weight="700">SL5: “currently not possible”</text>
+        <text x="306" y="306" font-size="11">5+ years, per labs RAND spoke to</text>
+      </svg>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><div class="nt">
+        <p class="nt-k" id="ntK">Pass 1</p>
+        <div class="nt-row" id="ntRow" aria-live="off"></div>
+        <svg class="nt-net" viewBox="0 0 460 70" aria-hidden="true">${Array.from({ length: 23 }, (_, i) => `<line x1="${10 + i * 20}" y1="0" x2="${150 + i * 7}" y2="60"/>`).join("")}<rect x="140" y="58" width="180" height="10" rx="3"/></svg>
+        <p class="nt-w">The weights score every possible next token</p>
+        <ol class="nt-cands" id="ntCands"></ol>
+        <div class="nt-ctrl"><button type="button" id="ntStep">Next token</button><button type="button" id="ntPlay" aria-label="Pause">❚❚</button><button type="button" id="ntReset">Start over</button></div>
+      </div><p class="cap">Illustrative probabilities. Real models pick from tens of thousands of tokens on every pass.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Costs: Cottier et al., Epoch AI. File size is arithmetic: 10¹² weights at 2 bytes each.</p></div>
+      <div class="frame f3">${F3}<p class="cap">RAND, “Securing AI Model Weights” (2024). The attacker gets past rings that don’t exist yet.</p></div>
+    </div>`;
+  },
+
+  backend() {
+    // ---- shared wafer for probe and dice
+    const CX = 230, CY = 126, R = 104, P = 18, S = 15;
+    const dies = [];
+    for (let jy = -5; jy <= 5; jy++) for (let ix = -5; ix <= 5; ix++) {
+      const x = CX + ix * P, y = CY + jy * P, h = S / 2;
+      if (Math.max(Math.hypot(x - h - CX, y - h - CY), Math.hypot(x + h - CX, y - h - CY), Math.hypot(x - h - CX, y + h - CY), Math.hypot(x + h - CX, y + h - CY)) > R - 6) continue;
+      const bad = (ix * 3 + jy * 5 + 40) % 13 === 0;
+      dies.push({ x: x - h, y: y - h, bad, o: (jy + 5) * 11 + (ix + 5) });
+    }
+    const dieRects = lit => dies.map(d => `<rect class="bk-d" x="${d.x}" y="${d.y}" width="${S}" height="${S}" rx="1.5" style="--o:${d.o};--c:${d.bad ? "var(--coral)" : "var(--beat)"}${lit ? `;fill:var(--c);fill-opacity:${d.bad ? .9 : .55}` : ""}"/>`).join("");
+    const wafer = (lit, extra = "") => `<circle cx="${CX}" cy="${CY}" r="${R}" fill="var(--ink-2)" stroke="var(--rule)" stroke-width="1.5"/><path d="M${CX - 10} ${CY + R} A10 10 0 0 1 ${CX + 10} ${CY + R}" fill="var(--ink)" stroke="var(--rule)"/><g class="bk-dies">${dieRects(lit)}</g>${extra}`;
+    // saw streets
+    const streets = [];
+    for (let i = -6; i <= 5; i++) {
+      const off = (i + .5) * P; if (Math.abs(off) >= R - 4) continue;
+      const half = Math.sqrt(R * R - off * off) - 2;
+      streets.push(`<line class="bk-cut" style="--k:${streets.length}" x1="${CX + off}" y1="${CY - half}" x2="${CX + off}" y2="${CY + half}" pathLength="1"/>`);
+      streets.push(`<line class="bk-cut" style="--k:${streets.length}" x1="${CX - half}" y1="${CY + off}" x2="${CX + half}" y2="${CY + off}" pathLength="1"/>`);
+    }
+    const blade = `<g class="bk-blade"><circle r="16" fill="none" stroke="#cfc6f5" stroke-width="3" stroke-dasharray="2.6 2.6"/><circle r="12" fill="#2b2355" stroke="#8f87b6"/><circle r="3" fill="#cfc6f5"/></g>`;
+    // ---- shared cross-section for bond and seal
+    const xsec = (landed) => {
+      const balls = Array.from({ length: 12 }, (_, i) => `<circle cx="${130 + i * 20}" cy="241" r="5" fill="#8f87b6"/>`).join("");
+      const c4 = Array.from({ length: 13 }, (_, i) => `<circle cx="${142 + i * 16}" cy="209" r="2.6" fill="#cfc6f5"/>`).join("");
+      const hbm = x => Array.from({ length: 7 }, (_, k) => `<rect x="${x}" y="${180 - k * 8}" width="40" height="6.4" rx="1" fill="${k % 2 ? "#3d7fa3" : "#2f6688"}"/>`).join("");
+      const mb = xs => xs.map(x => `<circle class="bk-mb" cx="${x}" cy="191.5" r="2.2"/>`).join("");
+      return `<rect x="120" y="214" width="240" height="20" rx="2" fill="#1d5a49" stroke="#2f8a6f"/>${balls}${c4}
+        <rect x="136" y="196" width="208" height="9" rx="1.5" fill="#4a3f86" stroke="var(--violet)"/>
+        <g class="bk-hbm ${landed ? "" : "drop"}">${hbm(144)}${hbm(296)}</g>
+        ${mb([150, 160, 170, 178, 202, 214, 226, 238, 250, 262, 274, 302, 312, 322, 330])}
+        <g class="bk-gpu ${landed ? "" : "flip"}"><rect x="194" y="160" width="92" height="28" rx="2" fill="#231c49" stroke="var(--amber)" stroke-width="1.4"/><rect x="198" y="162" width="84" height="3" rx="1" fill="var(--amber)" opacity=".85"/></g><text class="bk-gpu-l t-strong" x="240" y="178" text-anchor="middle" font-size="11">GPU</text>`;
+    };
+    const lbl = (x, y, s, x2, y2, end) => `<line x1="${x2}" y1="${y2}" x2="${end ? x + 4 : x - 4}" y2="${y - 4}" stroke="var(--faint)"/><text x="${x}" y="${y}" font-size="12" ${end ? `text-anchor="end"` : ""}>${s}</text>`;
+
+    const S1 = `<g class="bk-s on" data-s="0">${wafer(false, `<g transform="translate(${CX} ${CY})"><g class="bk-probe"><rect x="-3" y="-140" width="6" height="120" fill="#3a3170"/><rect x="-14" y="-26" width="28" height="12" rx="2" fill="#4a3f86" stroke="#8f87b6"/><path d="M-8 -14 L-1 -1 M0 -14 L0 -1 M8 -14 L1 -1" stroke="#cfc6f5" stroke-width="1.2"/><circle r="3.4" fill="var(--amber)"/></g></g>`)}
+      <text x="${CX}" y="258" text-anchor="middle" font-size="13">Green passes, red gets flagged</text></g>`;
+    const S2 = `<g class="bk-s" data-s="1">${wafer(true, `<g class="bk-cuts">${streets.join("")}</g><g transform="translate(${CX} ${CY})">${blade}</g>`)}
+      <text x="${CX}" y="258" text-anchor="middle" font-size="13">The saw runs down the streets between dies</text></g>`;
+    const grid = Array.from({ length: 30 }, (_, i) => { const c = i % 6, r = Math.floor(i / 6), bad = i === 8 || i === 22; return `<rect x="${34 + c * 24}" y="${44 + r * 24}" width="17" height="17" rx="1.5" fill="${bad ? "var(--coral)" : "var(--beat)"}" fill-opacity="${bad ? .9 : .55}"/>`; }).join("");
+    const tray = Array.from({ length: 15 }, (_, i) => { const c = i % 5, r = Math.floor(i / 5); return `<rect x="${300 + c * 26}" y="${50 + r * 26}" width="20" height="20" rx="2" fill="${i < 9 ? "var(--beat)" : "none"}" fill-opacity=".55" stroke="#2c6f8f"/>`; }).join("");
+    const S3 = `<g class="bk-s" data-s="2">${grid}
+      <rect x="290" y="38" width="146" height="94" rx="4" fill="none" stroke="var(--beat)" stroke-width="1.4"/>${tray}
+      <text x="363" y="150" text-anchor="middle" font-size="12" class="t-strong">Known-good dies</text>
+      <rect x="300" y="176" width="126" height="46" rx="4" fill="rgba(255,107,128,.08)" stroke="var(--coral)" stroke-width="1.4"/>
+      <rect x="318" y="196" width="17" height="17" rx="1.5" fill="var(--coral)" opacity=".9"/>
+      <text x="363" y="240" text-anchor="middle" font-size="12" class="t-strong">Failed dies</text>
+      <g class="bk-pick a"><path d="M0 -56 V-12" stroke="#8f87b6" stroke-width="3"/><rect x="-6" y="-14" width="12" height="6" rx="1" fill="#cfc6f5"/><rect x="-8.5" y="-8" width="17" height="17" rx="1.5" fill="var(--beat)" fill-opacity=".75"/></g>
+      <g class="bk-pick b"><path d="M0 -56 V-12" stroke="#8f87b6" stroke-width="3"/><rect x="-6" y="-14" width="12" height="6" rx="1" fill="#cfc6f5"/><rect x="-8.5" y="-8" width="17" height="17" rx="1.5" fill="var(--coral)"/></g>
+      <text x="102" y="200" text-anchor="middle" font-size="13">Diced dies, still on tape</text></g>`;
+    const S4 = `<g class="bk-s" data-s="3">${xsec(false)}
+      ${lbl(372, 146, "HBM stack", 336, 150, false)}${lbl(372, 172, "GPU, face down", 286, 172, false)}
+      ${lbl(112, 202, "Interposer", 136, 200, true)}${lbl(112, 228, "Substrate", 120, 224, true)}
+      <text x="240" y="272" text-anchor="middle" font-size="13" class="t-strong" style="fill:var(--amber)">Chip-on-wafer-on-substrate: CoWoS, the choke point</text></g>`;
+    const S5 = `<g class="bk-s" data-s="4">${xsec(true)}
+      <path class="bk-fill" d="M190 190 H290 L296 196 H184 Z M140 190 H188 L184 196 H138 Z M292 190 H340 L342 196 H296 Z" fill="var(--amber)" opacity=".55"/>
+      <g class="bk-lid"><path d="M124 214 V128 Q124 122 130 122 H350 Q356 122 356 128 V214 H346 V134 H134 V214 Z" fill="#9b93c4" stroke="#cfc6f5"/><rect x="134" y="122" width="212" height="6" fill="#cfc6f5" opacity=".6"/></g>
+      <text x="240" y="110" text-anchor="middle" font-size="12">Lid and heat spreader</text>${lbl(112, 186, "Underfill", 140, 192, true)}
+      <text x="240" y="272" text-anchor="middle" font-size="13">Sealed against moisture, stress and heat</text></g>`;
+    const pins = Array.from({ length: 9 }, (_, i) => `<circle cx="${172 + i * 14.5}" cy="54" r="2.4"/><circle cx="${172 + i * 14.5}" cy="186" r="2.4"/><circle cx="164" cy="${62 + i * 14.5}" r="2.4"/><circle cx="296" cy="${62 + i * 14.5}" r="2.4"/>`).join("");
+    const done = Array.from({ length: 6 }, (_, i) => `<rect x="${352 + (i % 2) * 40}" y="${60 + Math.floor(i / 2) * 40}" width="30" height="30" rx="3" fill="#1b1530" stroke="#4a3f86"/><rect x="${359 + (i % 2) * 40}" y="${67 + Math.floor(i / 2) * 40}" width="16" height="16" rx="2" fill="#9b93c4"/>`).join("");
+    const S6 = `<g class="bk-s" data-s="5">
+      <rect x="150" y="40" width="160" height="160" rx="8" fill="var(--ink-2)" stroke="var(--rule)" stroke-width="1.5"/><g fill="#ffc566" opacity=".7">${pins}</g>
+      <rect x="176" y="66" width="108" height="108" rx="5" fill="#1b1530" stroke="#4a3f86"/><rect x="196" y="86" width="68" height="68" rx="3" fill="#9b93c4"/>
+      <g class="bk-head"><rect x="186" y="-30" width="88" height="60" rx="4" fill="#3a3170" stroke="#8f87b6"/><rect x="222" y="-70" width="16" height="40" fill="#3a3170"/></g>
+      <text class="bk-pass t-strong" x="230" y="226" text-anchor="middle" font-size="18">PASS</text>
+      <rect x="340" y="48" width="96" height="134" rx="4" fill="none" stroke="var(--rule)" stroke-dasharray="4 3"/>${done}
+      <text x="388" y="200" text-anchor="middle" font-size="12">Ready to ship</text>
+      <text x="230" y="258" text-anchor="middle" font-size="13">Runs at full speed in a socket. Now it’s a chip.</text></g>`;
+    const STEPS = ["Probe", "Dice", "Sort", "Bond", "Seal", "Test"];
+
+    // ---- frame 2: the choke point in numbers
+    const sq = (mm2, x, y, c, num, name) => { const s = Math.sqrt(mm2) * 2.3; return `<rect x="${x}" y="${y - s}" width="${s}" height="${s}" rx="2" fill="${c}" fill-opacity=".22" stroke="${c}" stroke-width="1.5"/><text x="${x + s / 2}" y="${y + 17}" text-anchor="middle" font-size="13" class="t-strong">${num}</text><text x="${x + s / 2}" y="${y + 32}" text-anchor="middle" font-size="11">${name}</text>`; };
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Nvidia reportedly reserved more than half of TSMC's 2026 CoWoS capacity and demand runs about 20 percent ahead of supply; GPU silicon roughly doubled from Hopper's 814 square millimeters to about 1,700 across Blackwell's two dies; one supplier makes about 90 percent of the specialist glass cloth in substrates.">
+        <text x="20" y="24" class="t-strong" font-size="15">TSMC CoWoS, 2026</text>
+        <text x="20" y="44" font-size="12">Supply</text>
+        <rect class="g-bar grow" x="76" y="32" width="300" height="18" fill="var(--ink-3)" stroke="var(--rule)"/>
+        <rect class="g-bar grow" x="76" y="32" width="160" height="18" fill="var(--amber)"/>
+        <text x="84" y="45" font-size="12" style="fill:var(--ink)" font-weight="700">Nvidia, over half</text>
+        <text x="20" y="74" font-size="12">Demand</text>
+        <rect class="g-bar grow" x="76" y="62" width="300" height="18" fill="var(--paper)" opacity=".18"/>
+        <rect class="g-bar grow" x="376" y="62" width="60" height="18" fill="var(--coral)" opacity=".85"/>
+        <text x="406" y="98" text-anchor="middle" font-size="12" style="fill:var(--coral)" font-weight="700">~20% short</text>
+        <line class="ax" x1="20" y1="122" x2="440" y2="122"/>
+        <text x="20" y="148" class="t-strong" font-size="15">GPU silicon per package</text>
+        ${sq(814, 30, 276, "var(--violet)", "814 mm²", "Hopper")}${sq(1700, 112, 276, "var(--amber)", "~1,700 mm²", "Blackwell, 2 dies")}
+        
+        <text x="300" y="148" class="t-strong" font-size="15">Specialist glass cloth</text>
+        <circle cx="352" cy="226" r="46" fill="none" stroke="var(--ink-3)" stroke-width="18"/>
+        <circle class="bk-donut" cx="352" cy="226" r="46" fill="none" stroke="var(--coral)" stroke-width="18" pathLength="100" stroke-dasharray="90 100" transform="rotate(-90 352 226)"/>
+        <text x="352" y="232" text-anchor="middle" class="t-strong" font-size="20">~90%</text>
+        <text x="352" y="296" text-anchor="middle" font-size="12">from one supplier, Nittobo.</text>
+        <text x="352" y="312" text-anchor="middle" font-size="12">New supply: mid-2027.</text>
+      </svg>`;
+
+    // ---- frame 3: the round trip
+    const lat = [70, 120, 170, 220].map(y => `<path d="M10 ${y} Q230 ${y - 26} 450 ${y}" fill="none" stroke="var(--grid)"/>`).join("") + [60, 140, 230, 320, 400].map(x => `<path d="M${x} 30 Q${x + (x - 230) * .08} 140 ${x} 250" fill="none" stroke="var(--grid)"/>`).join("");
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="A wafer made in Arizona flies to Taiwan for CoWoS packaging and the finished chip flies back. Packaging lines planned in Arizona would close the loop. In 1963, packaging was the first step to move to Hong Kong.">
+        ${lat}
+        <text x="230" y="150" text-anchor="middle" font-size="12" style="fill:var(--faint);letter-spacing:.3em">PACIFIC</text>
+        <path id="bkOut" d="M106 132 Q235 4 362 122" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-dasharray="5 5"/>
+        <path id="bkBack" d="M108 150 Q235 262 362 140" fill="none" stroke="var(--beat)" stroke-width="1.8" stroke-dasharray="5 5"/>
+        <text font-size="12" class="t-strong" dy="-6"><textPath href="#bkOut" startOffset="50%" text-anchor="middle">wafer goes out</textPath></text>
+        <text font-size="12" class="t-strong" dy="16"><textPath href="#bkBack" startOffset="50%" text-anchor="middle">chip comes back</textPath></text>
+        <circle r="5" fill="var(--amber)"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#bkOut"/></animateMotion></circle>
+        <circle r="5" fill="var(--beat)"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#bkBack"/></animateMotion></circle>
+        <circle cx="100" cy="140" r="7" fill="var(--amber)"/>
+        <circle cx="100" cy="140" r="22" fill="none" stroke="var(--paper)" stroke-width="1.4" stroke-dasharray="4 4" class="bk-loop"/>
+        <text x="100" y="186" text-anchor="middle" class="t-strong" font-size="14">Arizona</text>
+        <text x="100" y="203" text-anchor="middle" font-size="12">TSMC fab: wafers</text>
+        <circle cx="368" cy="130" r="7" fill="var(--beat)"/>
+        <text x="404" y="88" text-anchor="middle" class="t-strong" font-size="14">Taiwan</text>
+        <text x="404" y="105" text-anchor="middle" font-size="12">CoWoS packaging</text>
+        <circle cx="318" cy="214" r="5" fill="none" stroke="var(--faint)" stroke-width="1.4"/>
+        <text x="318" y="238" text-anchor="middle" font-size="12" style="fill:var(--faint)">Hong Kong, 1963:</text>
+        <text x="318" y="253" text-anchor="middle" font-size="12" style="fill:var(--faint)">packaging leaves first</text>
+        <text x="16" y="270" class="t-strong" font-size="13">Closing the loop in Arizona:</text>
+        <text x="16" y="288" font-size="12">Amkor phase 1 due 2028. TSMC CoWoS before 2029.</text>
+      </svg>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><div class="bk">
+        <svg class="bk-stage" viewBox="0 0 460 280" role="img" aria-label="Animated back-end line, from finished wafer to finished chip, in six steps: probe, dice, sort, bond, seal and test.">${S1}${S2}${S3}${S4}${S5}${S6}</svg>
+        <div class="bk-steps" role="group" aria-label="Back-end steps">${STEPS.map((s, i) => `<button type="button" data-s="${i}" aria-pressed="${i === 0}"><b>${i + 1}</b>${s}</button>`).join("")}<button type="button" class="bk-play" aria-label="Pause the line">❚❚</button></div>
+      </div><p class="cap" id="bkCap">Probe. Needles touch every die on the finished wafer, and bad ones are flagged before anyone pays to package them.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Sources: TrendForce (June and Aug 2026), Tom’s Hardware (Mar 2026). Squares drawn to scale.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Simplified map. The first US-made Blackwell wafer, October 2025, still needed CoWoS in Taiwan.</p></div>
+    </div>`;
+  },
+
+  bloom() {
+    // ---- frame 1: two power paths into a GPU
+    const box = (x, y, w, t1, t2, c, conv) => `<rect x="${x}" y="${y}" width="${w}" height="48" rx="5" fill="var(--ink-2)" stroke="${c}" stroke-width="1.4"/><text x="${x + w / 2}" y="${y + 21}" text-anchor="middle" font-size="12" class="t-strong">${t1}</text><text x="${x + w / 2}" y="${y + 37}" text-anchor="middle" font-size="11">${t2}</text>${conv ? `<circle cx="${x + w - 2}" cy="${y + 2}" r="8" fill="var(--coral)"/><text x="${x + w - 2}" y="${y + 6}" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">⟳</text>` : ""}`;
+    const AC = [["Grid", "AC", 0], ["Substation", "step down", 1], ["Switchgear", "AC", 0], ["UPS", "AC→DC→AC", 1], ["Rack PSU", "AC→DC", 1]];
+    const top = AC.map(([a, b, c], i) => box(14 + i * 74, 52, 64, a, b, "var(--rule)", c)).join("") + box(388, 52, 60, "GPU", "DC", "var(--beat)", 0);
+    const bot = box(14, 180, 120, "Fuel cell", "makes DC", "var(--beat)", 0) + box(168, 180, 120, "800 V DC bus", "Kyber, 2027", "var(--beat)", 0) + box(322, 180, 126, "Rack → GPU", "DC", "var(--beat)", 0);
+    const flowTop = `<path id="blTop" d="M22 76 H440" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bl-dot fade" r="3.4" style="animation-delay:-${(i * .5).toFixed(1)}s"><animateMotion dur="3s" repeatCount="indefinite" begin="-${(i * .5).toFixed(1)}s"><mpath href="#blTop"/></animateMotion></circle>`).join("")}`;
+    const flowBot = `<path id="blBot" d="M22 204 H440" fill="none"/>${[0, 1, 2, 3, 4, 5].map(i => `<circle class="bl-dot" r="3.4"><animateMotion dur="2.2s" repeatCount="indefinite" begin="-${(i * .37).toFixed(2)}s"><mpath href="#blBot"/></animateMotion></circle>`).join("")}`;
+    const F1 = `<svg viewBox="0 0 460 280" role="img" aria-label="Today, grid power passes a substation, switchgear, a UPS and a rack power supply, converting between AC and DC several times before reaching the GPU as DC. A fuel cell makes DC and can feed an 800-volt DC bus straight to the rack.">
+        <text x="14" y="30" class="t-strong" font-size="15">Grid power today</text>
+        <text x="446" y="30" text-anchor="end" font-size="12" style="fill:var(--coral)">⟳ = a conversion</text>
+        ${flowTop}${top}
+        <text x="14" y="158" class="t-strong" font-size="15">Fuel cell, 800 V DC</text>
+        ${flowBot}${bot}
+        <text x="230" y="266" text-anchor="middle" font-size="13">Fewer boxes, fewer losses, less backlogged gear.</text>
+      </svg>`;
+
+    // ---- frame 2: the race to power, and what happens inside the cell
+    const yrX = y => 120 + (y - 2026) * 62;
+    const ions = Array.from({ length: 7 }, (_, i) => `<circle class="bl-ion" cx="${150 + i * 30}" cy="232" r="3.6" style="animation-delay:${(i * .28).toFixed(2)}s"/>`).join("");
+    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Time to power: Bloom delivered to Oracle in 55 days, while a gas turbine ordered in 2026 arrives around 2031. Below, a solid oxide cell: oxygen ions cross a ceramic electrolyte and react with fuel without combustion, releasing electrons as DC.">
+        <text x="14" y="24" class="t-strong" font-size="15">Time to power</text>
+        ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="gridl" x1="${yrX(y)}" y1="36" x2="${yrX(y)}" y2="112"/><text x="${yrX(y)}" y="128" text-anchor="middle" font-size="12">${y}</text>`).join("")}
+        <text x="110" y="58" text-anchor="end" font-size="12" class="t-strong">Fuel cells</text>
+        <rect class="g-bar grow" x="120" y="46" width="${(55 / 365 * 62).toFixed(1)}" height="16" fill="var(--beat)"/>
+        <text x="${(132 + 55 / 365 * 62).toFixed(0)}" y="59" font-size="12" style="fill:var(--beat)" font-weight="700">55 days (Oracle)</text>
+        <text x="110" y="94" text-anchor="end" font-size="12" class="t-strong">Gas turbine</text>
+        <rect class="g-bar grow" x="120" y="82" width="${5 * 62}" height="16" fill="var(--coral)" opacity=".8"/>
+        <text x="${120 + 5 * 62 - 6}" y="95" text-anchor="end" font-size="12" style="fill:var(--ink)" font-weight="700">ordered now, ships ~2031</text>
+        <text x="14" y="166" class="t-strong" font-size="15">Inside a solid oxide cell</text>
+        <rect x="120" y="178" width="240" height="30" rx="3" fill="#2a4a6a" stroke="#4fd2ff" stroke-opacity=".5"/><text x="240" y="198" text-anchor="middle" font-size="12" class="t-strong">Air side: oxygen in</text>
+        <rect x="120" y="212" width="240" height="40" fill="#5a4a2a" fill-opacity=".55" stroke="var(--amber)" stroke-opacity=".6"/><text x="372" y="236" font-size="12">ceramic</text>
+        <rect x="120" y="256" width="240" height="30" rx="3" fill="#2a2252" stroke="var(--violet)" stroke-opacity=".6"/><text x="240" y="276" text-anchor="middle" font-size="12" class="t-strong">Fuel side: gas in, no flame</text>
+        ${ions}
+        <text x="110" y="236" text-anchor="end" font-size="12" style="fill:var(--beat)">O²⁻ ions</text>
+        <path class="bl-wire" d="M360 272 H420 V192 H360" fill="none" stroke="var(--amber)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="424" y="236" font-size="12" style="fill:var(--amber)" font-weight="700">DC</text>
+        <text x="240" y="310" text-anchor="middle" font-size="12">Electrons take the outside path: that’s the power.</text>
+      </svg>`;
+
+    // ---- frame 3: size a campus
+    const cells = Array.from({ length: 100 }, (_, i) => `<i style="--i:${i}"></i>`).join("");
+    const F3 = `<div class="blcalc">
+        <label class="oc-l" for="blRange">Power a campus of</label>
+        <output class="oc-x" id="blMW" for="blRange">300 MW</output>
+        <input class="oc-range" type="range" id="blRange" min="10" max="1000" step="10" value="300" aria-describedby="blRead">
+        <div class="bl-grid" id="blGrid" aria-hidden="true">${cells}</div>
+        <p class="oc-o" id="blRead"></p>
+      </div>`;
+
+    return `<div class="viz bl" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Simplified. Nvidia moves its racks to 800 V DC with Kyber in 2027; today’s chain converts AC and DC several times.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Oracle delivery per Bloom (Apr 2026). Turbine timing per GE Vernova’s reservations, Utility Dive (July 2026).</p></div>
+      <div class="frame f3">${F3}<p class="cap">Each square is 10 MW. 325 kW per Energy Server; output at Bloom’s planned 2 GW a year.</p></div>
+    </div>`;
+  },
+
+  screen() {
+    const Y = m => 262 - m * 3.5;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1"><svg viewBox="0 0 420 320" role="img" aria-label="Average daily in-person time with friends fell from 60 minutes in 2003 to 20 minutes in 2020.">
+        ${[0, 20, 40, 60].map(m => `<line class="gridl" x1="60" y1="${Y(m)}" x2="400" y2="${Y(m)}"/><text x="50" y="${Y(m) + 5}" text-anchor="end" font-size="14">${m}</text>`).join("")}
+        <line class="ax" x1="60" y1="${Y(0)}" x2="400" y2="${Y(0)}"/>
+        <rect x="110" y="${Y(60)}" width="96" height="${(60 * 3.5).toFixed(1)}" fill="var(--violet)" opacity=".55"/>
+        <rect x="254" y="${Y(20)}" width="96" height="${(20 * 3.5).toFixed(1)}" fill="var(--coral)"/>
+        <text x="158" y="${Y(60) - 10}" text-anchor="middle" class="t-strong" font-size="18">60 min</text>
+        <text x="302" y="${Y(20) - 10}" text-anchor="middle" class="t-strong" font-size="18">20 min</text>
+        <text x="158" y="${Y(0) + 24}" text-anchor="middle" font-size="15">2003</text>
+        <text x="302" y="${Y(0) + 24}" text-anchor="middle" font-size="15">2020</text>
+        <text x="400" y="${Y(42)}" text-anchor="end" font-size="15" style="fill:var(--coral)">Ages 15 to 24:</text><text x="400" y="${Y(42) + 19}" text-anchor="end" font-size="15" style="fill:var(--coral)">down about 70%</text>
+        <text x="14" y="${Y(30)}" font-size="13" transform="rotate(-90 14 ${Y(30)})" text-anchor="middle">minutes per day</text>
+      </svg><p class="cap">Average daily time with friends in person, U.S. (Surgeon General’s advisory, 2023).</p></div>
+      <div class="frame f2"><div class="meter" role="img" aria-label="Illustration: time in the app shrinks while plans that happened grow.">
+        <div class="m-row"><span>Minutes in the app</span><div class="m-track"><div class="m-fill" style="--from:82%;--to:20%;background:var(--faint)"></div></div></div>
+        <div class="m-row"><span>Plans that actually happened</span><div class="m-track"><div class="m-fill" style="--from:12%;--to:80%;background:var(--beat)"></div></div></div>
+      </div><p class="cap">Illustration, not data: the scoreboard Pulse keeps is the second bar.</p></div>
+      <div class="frame f3 f-pulse">${pip({ pose: "cheer" })}<div class="ticket"><span class="tk-k">IT’S A PULSE</span><span class="tk-h">Thursday, 6–8 PM</span><span class="tk-s">You, Maya and Ryan are in for food.</span></div></div>
+    </div>`;
+  }
+};
+
+/* interactive bits inside a memo's visual */
+const VIZ_INIT = {
+  neocloud(root) {
+    const r = $("#ncRange", root);
+    if (!r) return;
+    const RATES = [["AWS, on demand", 6.88, "var(--coral)", "AWS"], ["Nebius, Oct 2026", 4.50, "var(--violet)", "Nebius"], ["Neocloud average", 2.82, "var(--beat)", "Neoclouds"]];
+    const fmt = v => v >= 1e6 ? `$${(v / 1e6).toFixed(v >= 1e7 ? 0 : 1)}M` : `$${Math.round(v / 1e3)}K`;
+    const upd = () => {
+      const n = +r.value, hours = n * 24 * 30;
+      $("#ncN", root).textContent = n.toLocaleString("en-US");
+      const bills = RATES.map(([l, rate, c, s]) => [l, rate * hours, c, s, rate]);
+      const max = bills[0][1];
+      $("#ncBills", root).innerHTML = bills.map(([l, v, c, s, rate]) => `<div class="nc-bill" style="--c:${c};--w:${(v / max * 100).toFixed(1)}%"><span class="l"><span class="lg">${l}</span><span class="sm">${s} <em>$${rate.toFixed(2)}/hr</em></span></span><span class="b"><i></i></span><b>${fmt(v)}</b></div>`).join("") +
+        `<p class="nc-save">Nebius saves about <b>${fmt(bills[0][1] - bills[1][1])}</b> a month against AWS list price.</p>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  gpulife(root) {
+    const r = $("#glRange", root), svg = $("#glChart", root);
+    if (!r || !svg) return;
+    const COST = 35000, START = 2.82, RUN = .40, HOURS = .7 * 8760, MAX = 100000;
+    const run = g => { let cum = 0; return Array.from({ length: 6 }, (_, i) => { const net = Math.max(0, START * Math.pow(1 + g, i) - RUN) * HOURS; cum += net; return [net, cum]; }); };
+    let lo = -.9, hi = 0;
+    for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; run(mid)[5][1] >= COST ? (hi = mid) : (lo = mid); }
+    const be = Math.round(hi * 100), beTxt = `${be < 0 ? "−" : ""}${Math.abs(be)}%`;
+    const k$ = v => `$${Math.round(v / 1000)}K`;
+    const yv = v => (128 - Math.min(v, MAX) / MAX * 112).toFixed(1);
+    const upd = () => {
+      const g = +r.value / 100, rows = run(g), pay = rows.findIndex(([, c]) => c >= COST), total = rows[5][1];
+      $("#glG", root).textContent = `${g > 0 ? "+" : g < 0 ? "−" : ""}${Math.abs(Math.round(g * 100))}%`;
+      const bx = i => 46 + i * 68;
+      svg.innerHTML = `<line class="ax" x1="30" y1="128" x2="446" y2="128"/>` +
+        rows.map(([n], i) => `<rect x="${bx(i)}" y="${yv(n)}" width="34" height="${(128 - yv(n)).toFixed(1)}" rx="2" fill="var(--violet)" opacity=".75"/><text x="${bx(i) + 17}" y="144" text-anchor="middle" font-size="11">yr ${i + 1}</text>`).join("") +
+        `<line x1="30" y1="${yv(COST)}" x2="446" y2="${yv(COST)}" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="5 4"/><text x="32" y="${yv(COST) - 5}" font-size="11" font-weight="700" style="fill:var(--coral)">cost $35K</text>` +
+        `<polyline points="${rows.map(([, c], i) => `${bx(i) + 17},${yv(c)}`).join(" ")}" fill="none" stroke="var(--beat)" stroke-width="2.6" stroke-linejoin="round"/>` +
+        rows.map(([, c], i) => `<circle cx="${bx(i) + 17}" cy="${yv(c)}" r="${i === pay ? 6 : 3.4}" fill="${i === pay ? "var(--amber)" : "var(--beat)"}"/>`).join("") +
+        `<text x="${bx(5) + 17}" y="${Math.max(12, +yv(total) - 10)}" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--beat)">${k$(total)}${total > MAX ? " ↑" : ""}</text>`;
+      $("#glOut", root).innerHTML = pay >= 0
+        ? `<b class="up">Pays back in year ${pay + 1}</b><span>and returns ${(total / COST).toFixed(1)}× its cost by year 6. Break-even is about ${beTxt} a year.</span>`
+        : `<b class="dn">Never pays back</b><span>It recovers ${Math.round(total / COST * 100)}% of its cost. Break-even is about ${beTxt} a year.</span>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  spacex(root) {
+    const r = $("#sxRange", root);
+    if (!r) return;
+    const REV = 18.7, PRICE = 60, ADD = 3, SCALE = 35;
+    const upd = () => {
+      const m = +r.value, f = PRICE / (m * REV), add = ADD / REV, rps = (1 + add) / (1 + f) - 1;
+      $("#sxM", root).textContent = `${m}×`;
+      $("#sxBills", root).innerHTML = [["New shares", f, "var(--coral)"], ["Revenue added", add, "var(--beat)"]].map(([l, v, c]) => `<div class="nc-bill" style="--c:${c};--w:${Math.min(100, v * 100 / SCALE * 100).toFixed(1)}%"><span class="l">${l}</span><span class="b"><i></i></span><b>+${(v * 100).toFixed(1)}%</b></div>`).join("");
+      const pct = (rps * 100).toFixed(1).replace("-0.0", "0.0");
+      $("#sxOut", root).innerHTML = `Revenue per share: <b class="${rps > .0005 ? "up" : rps < -.0005 ? "dn" : ""}">${rps > .0005 ? "+" : ""}${pct.replace("-", "−")}%</b><span>${rps > .0005 ? "The deal pays for itself in stock." : rps < -.0005 ? "Below 20×, buying Cursor in stock shrinks each share’s slice." : "At 20×, the trade is even."}</span>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  saas(root) {
+    const r = $("#spRange", root);
+    if (!r) return;
+    const cells = $$("#spSeats i", root);
+    const SEAT = 85, OUTCOME = .99, CONVOS = 100000, MAX = 81000;
+    const fmt = v => `$${(v / 1000).toFixed(1)}K`;
+    const upd = () => {
+      const pct = +r.value, seats = Math.round(100 * (1 - pct / 100));
+      const seatRev = seats * SEAT, both = seatRev + CONVOS * pct / 100 * OUTCOME;
+      $("#spPct", root).textContent = `${pct}%`;
+      cells.forEach((c, i) => c.classList.toggle("a", i >= seats));
+      $("#spBills", root).innerHTML = [["Seats only", seatRev, "var(--violet)"], ["Seats + outcomes", both, "var(--amber)"]].map(([l, v, c]) => `<div class="nc-bill" style="--c:${c};--w:${Math.max(1, v / MAX * 100).toFixed(1)}%"><span class="l">${l}</span><span class="b"><i></i></span><b>${fmt(v)}</b></div>`).join("");
+      $("#spRead", root).innerHTML = pct === 0 ? "Drag the slider to hand conversations to agents." : `Per-seat revenue falls ${pct}% to <b class="c">${fmt(seatRev)}</b>. Charging per outcome takes it to <b>${fmt(both)}</b>.`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  weights(root) {
+    const row = $("#ntRow", root), cands = $("#ntCands", root), k = $("#ntK", root), viz = $(".viz", root);
+    if (!row) return;
+    const PROMPT = ["The", "most", "valuable", "file", "in", "AI", "is"];
+    const STEPS = [
+      [["the", 41], ["its", 22], ["a", 14], ["not", 6]],
+      [["model’s", 38], ["chip", 17], ["data", 15], ["training", 9]],
+      [["weights", 64], ["code", 11], ["data", 9], ["name", 3]],
+      [[".", 71], [",", 12], ["and", 8], ["file", 2]]
+    ];
+    let n = 0, playing = !(calm || motionPaused), busy = false;
+    const draw = () => {
+      const gen = STEPS.slice(0, n).map(s => s[0][0]);
+      row.innerHTML = PROMPT.map(w => `<span class="tok">${w}</span>`).join("") + gen.map(w => `<span class="tok gen">${w}</span>`).join("") + (n < STEPS.length ? `<span class="tok next">?</span>` : "");
+      const total = PROMPT.length + n;
+      k.textContent = n < STEPS.length ? `Pass ${n + 1}: read all ${total} tokens, then pick token ${total + 1}` : `Done. ${STEPS.length} passes, each one rereading everything before it.`;
+      cands.innerHTML = n < STEPS.length ? STEPS[n].map(([w, p]) => `<li><span class="w">${w}</span><span class="bar"><i style="--p:${p}"></i></span><span class="p">${p}%</span></li>`).join("") : "";
+    };
+    const step = () => {
+      if (busy) return;
+      if (n >= STEPS.length) { n = 0; draw(); return; }
+      busy = true;
+      const toks = $$(".tok:not(.next)", row);
+      toks.forEach((el, i) => { el.classList.remove("read"); void el.offsetWidth; el.style.animationDelay = `${i * 60}ms`; el.classList.add("read"); });
+      root.querySelector(".nt-net").classList.remove("hum"); void root.offsetWidth; root.querySelector(".nt-net").classList.add("hum");
+      const wait = toks.length * 60 + 350;
+      setTimeout(() => { cands.classList.add("show"); cands.firstElementChild && cands.firstElementChild.classList.add("win"); }, wait);
+      setTimeout(() => { n++; cands.classList.remove("show"); draw(); busy = false; }, wait + 1100);
+    };
+    const setPlay = v => { playing = v; $("#ntPlay", root).textContent = v ? "❚❚" : "▶"; $("#ntPlay", root).setAttribute("aria-label", v ? "Pause" : "Play"); };
+    $("#ntStep", root).addEventListener("click", () => { setPlay(false); step(); });
+    $("#ntPlay", root).addEventListener("click", () => setPlay(!playing));
+    $("#ntReset", root).addEventListener("click", () => { n = 0; busy = false; draw(); });
+    setPlay(playing); draw();
+    const timer = setInterval(() => {
+      if (!root.contains(row) || memo.hidden) return clearInterval(timer);
+      if (playing && !motionPaused && viz.dataset.step === "1") step();
+    }, 2600);
+  },
+  backend(root) {
+    const stage = $(".bk-stage", root), cap = $("#bkCap", root), viz = $(".viz", root);
+    if (!stage) return;
+    const CAPS = [
+      "Probe. Needles touch every die on the finished wafer, and bad ones are flagged before anyone pays to package them.",
+      "Dice. A diamond saw or a laser cuts the wafer along the streets between dies.",
+      "Sort. Good dies go on to assembly. In an AI package, one bad die scraps the GPU and every HBM stack beside it.",
+      "Bond. The GPU is flipped face down onto an interposer beside its HBM, then onto a substrate. That’s TSMC’s CoWoS, and it’s the choke point.",
+      "Seal. Underfill, a lid and a heat spreader protect the dies and pull heat out.",
+      "Test. The finished package runs at full speed in a socket. Only then is it a chip."
+    ];
+    const scenes = $$(".bk-s", stage), btns = $$(".bk-steps [data-s]", root), play = $(".bk-play", root);
+    let cur = 0, playing = !(calm || motionPaused);
+    const show = i => {
+      cur = i;
+      scenes.forEach(s => s.classList.remove("on"));
+      void stage.getBoundingClientRect();
+      scenes[i].classList.add("on");
+      btns.forEach((b, k) => b.setAttribute("aria-pressed", String(k === i)));
+      cap.textContent = CAPS[i];
+    };
+    const setPlay = v => { playing = v; play.textContent = v ? "❚❚" : "▶"; play.setAttribute("aria-label", v ? "Pause the line" : "Play the line"); };
+    btns.forEach(b => b.addEventListener("click", () => { setPlay(false); show(+b.dataset.s); }));
+    play.addEventListener("click", () => setPlay(!playing));
+    setPlay(playing);
+    const timer = setInterval(() => {
+      if (!root.contains(stage) || memo.hidden) return clearInterval(timer);
+      if (playing && !motionPaused && viz.dataset.step === "1") show((cur + 1) % scenes.length);
+    }, 3600);
+  },
+  bloom(root) {
+    const r = $("#blRange", root);
+    if (!r) return;
+    const cells = $$("#blGrid i", root);
+    const upd = () => {
+      const mw = +r.value, servers = Math.ceil(mw * 1000 / 325), days = mw / 2000 * 365;
+      const time = days < 45 ? `about ${Math.max(1, Math.round(days))} days` : `about ${Math.round(days / 30.4)} months`;
+      $("#blMW", root).textContent = mw >= 1000 ? "1 GW" : `${mw} MW`;
+      $("#blRead", root).innerHTML = `<b>${servers.toLocaleString("en-US")}</b> Energy Servers, or ${time} of Bloom’s planned factory output.`;
+      cells.forEach((c, i) => c.classList.toggle("on", i < mw / 10));
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  ooms(root) {
+    const r = $("#oomRange", root);
+    if (!r) return;
+    const LV = [["chip", 3], ["server", Math.log10(14300)], ["rack", Math.log10(1.2e5)], ["cluster", Math.log10(1.2e8)], ["campus", Math.log10(1.2e9)]];
+    const items = $$(".oc-levels li", root);
+    const fmtX = s => (Number.isInteger(s) ? "×" : "×≈") + Math.round(Number(Math.pow(10, s).toPrecision(1))).toLocaleString("en-US");
+    const fmtW = lg => {
+      const w = Math.pow(10, lg);
+      const [d, u] = w >= 1e9 ? [1e9, "GW"] : w >= 1e6 ? [1e6, "MW"] : [1e3, "kW"];
+      return `${Number((w / d).toPrecision(1))} ${u}`;
+    };
+    const upd = () => {
+      const s = +r.value, lg = 3 + s;
+      let best = 0;
+      LV.forEach((l, i) => { if (Math.abs(l[1] - lg) < Math.abs(LV[best][1] - lg)) best = i; });
+      const near = Math.abs(LV[best][1] - lg) <= .3;
+      const above = LV.findIndex(l => l[1] > lg);
+      const where = near ? `roughly a ${LV[best][0]}` : `between a ${LV[above - 1][0]} and a ${LV[above][0]}`;
+      $("#oomX", root).textContent = fmtX(s);
+      $("#oomRead", root).textContent = `${s === 1 ? "1 OOM" : s + " OOMs"}. About ${fmtW(lg)}, ${where}.`;
+      items.forEach((li, i) => li.classList.toggle("on", near && i === best));
+    };
+    r.addEventListener("input", upd);
+    upd();
+  }
+};
+
+/* ---------------------------------------------------------------- render: home */
+function renderHome() {
+  $$("[data-name]").forEach(el => (el.textContent = CONFIG.name));
+  $$("[data-href]").forEach(el => (el.href = CONFIG[el.dataset.href]));
+
+  $("#receipts").innerHTML = RECEIPTS.map(r => {
+    const t = byId[r.id], b = BINS[t.stance];
+    return `<li><a class="feat" href="#${r.id}" style="--bin:${b.css}" aria-label="${t.title} ${r.v}: ${r.t} Open the thesis.">
+      <span class="feat-scan" aria-hidden="true"></span>
+      <span class="feat-top"><span>Die ${dieLabel(t.die)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span>${r.fresh ? `<span class="feat-new">New</span>` : ""}</span>
+      <b class="feat-v">${r.v}</b>
+      <span class="feat-t">${r.t}</span>
+      <span class="feat-title">${t.title}</span>
+      <span class="feat-go">Open thesis <i>→</i></span>
+      <span class="feat-pip" aria-hidden="true">${pip(t.pip)}</span>
+    </a></li>`;
+  }).join("");
+  // a probe light visits each featured chip in turn, until someone is reading them
+  const feats = $$("#receipts .feat");
+  let fi = 0, featHold = false;
+  $("#receipts").addEventListener("pointerenter", () => (featHold = true));
+  $("#receipts").addEventListener("pointerleave", () => (featHold = false));
+  $("#receipts").addEventListener("focusin", () => (featHold = true));
+  $("#receipts").addEventListener("focusout", () => (featHold = false));
+  setInterval(() => {
+    if (featHold || calm || motionPaused || document.hidden || home.hidden) return;
+    feats.forEach(f => f.classList.remove("ping"));
+    void $("#receipts").offsetWidth;
+    feats[fi++ % feats.length].classList.add("ping");
+  }, 2200);
+
+  $("#readout").innerHTML = `Probe idle. <b>${THESES.length} dies binned</b>, ${PROBES.length} in probe.`;
+  $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
+
+  $("#tlist").innerHTML = THESES.map(t => {
+    const b = BINS[t.stance];
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
+
+  // contact
+  // a datasheet pinout: each way to reach me is an I/O pin on the package
+  const pins = [
+    CONFIG.email && { tag: "@", name: "Email", handle: CONFIG.email, role: "The direct line.", href: `mailto:${CONFIG.email}` },
+    CONFIG.linkedin && { tag: "in", name: "LinkedIn", handle: "in/andrewrngai", role: "Work and intros. Start here.", href: CONFIG.linkedin, ext: 1 },
+    CONFIG.instagram && { tag: "ig", name: "Instagram", handle: "@andrew.ngai_", role: "The side channel. Life outside the theses.", href: CONFIG.instagram, ext: 1 },
+    CONFIG.github && { tag: "gh", name: "GitHub", handle: "Andrew-Ngai", role: "Source for this site.", href: CONFIG.github, ext: 1 },
+    { tag: "p", name: "Pulse", handle: "The app", role: "What I’m building.", href: "#pulse" }
+  ].filter(Boolean);
+  $("#contactLinks").innerHTML = `
+    <div class="pinout-head"><span>Pinout</span><span>AN-01 · ${pins.length} I/O<span class="po-extra"> · all pins open</span></span></div>
+    <div class="pinout-body" style="--n:${pins.length}">
+      <div class="pkg" aria-hidden="true">
+        <span class="pkg-id">AN-01</span>
+        <span class="pkg-name">${CONFIG.name}<small>2640 · Signal grade</small></span>
+        <svg class="pkg-beat" viewBox="0 0 600 40" preserveAspectRatio="none"><path class="base" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/><path class="run" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/></svg>
+        <span class="pkg-pads">${pins.map(() => "<i></i>").join("")}</span>
+      </div>
+      <ol class="pins">${pins.map((p, i) => `
+        <li><a class="pin" href="${p.href}"${p.ext ? ` target="_blank" rel="noopener"` : ""}>
+          <span class="leg" aria-hidden="true"></span>
+          <span class="pin-no">${String(i + 1).padStart(2, "0")}</span>
+          <span class="pin-tag" aria-hidden="true">${p.tag}</span>
+          <span class="pin-id"><b>${p.name}</b><span>${p.handle}</span></span>
+          <span class="pin-role">${p.role}</span>
+          <span class="pin-go" aria-hidden="true">${p.ext ? "↗" : "→"}</span>
+        </a></li>`).join("")}
+      </ol>
+    </div>`;
+  // light the matching bond pad on the package while a pin is hovered or focused
+  const pads = $$("#contactLinks .pkg i");
+  $$("#contactLinks .pin").forEach((a, i) => {
+    const on = v => () => pads[i] && pads[i].classList.toggle("hot", v);
+    a.addEventListener("mouseenter", on(true)); a.addEventListener("mouseleave", on(false));
+    a.addEventListener("focus", on(true)); a.addEventListener("blur", on(false));
+  });
+  if (CONFIG.email) {
+    const note = $("#mailNote");
+    note.hidden = false;
+    note.innerHTML = `Or copy it: <span>${CONFIG.email}</span>`;
+  }
+}
+
+/* ---------------------------------------------------------------- wafer map */
+function buildMap() {
+  const svg = $("#wmap");
+  const ds = 24, R = 11.63 * ds, lim = R * 0.955, N = 13;
+  const taken = new Map();
+  THESES.forEach(t => taken.set(t.die.join(","), { type: "t", t }));
+  PROBES.forEach((p, i) => taken.set(p.die.join(","), { type: "p", p, i }));
+  let base = "", hits = "";
+  for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+    const x0 = (i - .5) * ds, x1 = (i + .5) * ds, y0 = (j - .5) * ds, y1 = (j + .5) * ds;
+    const mr = Math.max(Math.hypot(x0, y0), Math.hypot(x1, y0), Math.hypot(x0, y1), Math.hypot(x1, y1));
+    if (mr > lim) continue;
+    const rect = `<rect x="${x0 + 1.5}" y="${-y1 + 1.5}" width="${ds - 3}" height="${ds - 3}" rx="1.5"/>`;
+    const k = taken.get(i + "," + j);
+    if (!k) { base += rect.replace("<rect", `<rect class="wm-die"`); continue; }
+    if (k.type === "t") {
+      const b = BINS[k.t.stance];
+      hits += `<a class="wm-hit" href="#${k.t.id}" data-id="${k.t.id}" style="--bin:${b.css}" aria-label="Die ${dieLabel(k.t.die)}: ${k.t.title} Bin: ${b.label}.">${rect}</a>`;
+    } else {
+      hits += `<g class="wm-probe-die" data-id="probe${k.i}" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
+    }
+  }
+  svg.innerHTML = `<circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}${hits}
+    <circle cx="0" cy="${R}" r="10" fill="var(--ink)"/><path d="M-10 ${R} A10 10 0 0 1 10 ${R}" fill="none" stroke="var(--rule)" stroke-width="2"/>
+    <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>`;
+
+  const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap"), dpip = $("#diePip");
+  const grid = $(".index-grid"), col = $(".map-col"), line = $("#linkLine");
+  const idle = readout.innerHTML;
+  const desktop = () => getComputedStyle(col).position === "sticky";
+  let active = null, alignTimer = 0, offTimer = 0;
+  const info = id => {
+    const isProbe = id.startsWith("probe");
+    const t = isProbe ? PROBES[+id.slice(5)] : byId[id];
+    return { t, isProbe, css: isProbe ? "var(--faint)" : BINS[t.stance].css, bin: isProbe ? "In probe" : BINS[t.stance].label, spec: isProbe ? { pose: "sleep", name: "Snoozing" } : t.pip };
+  };
+  const dieEl = id => $(`#wmap [data-id="${id}"] rect`);
+  const itemEl = id => $(`.t-item[data-id="${id}"]`);
+
+  // callout pinned to the die
+  let pipFor = null;
+  function showTag(id) {
+    const { t, isProbe, css, bin, spec } = info(id), d = dieEl(id);
+    if (!d) return;
+    const wr = wm.getBoundingClientRect(), dr = d.getBoundingClientRect(), cx = dr.left + dr.width / 2 - wr.left;
+    // mini Pip in this thesis's outfit, standing on its die
+    if (pipFor !== id) {
+      pipFor = id;
+      dpip.innerHTML = pip(spec);
+      dpip.classList.remove("land"); void dpip.offsetWidth; dpip.classList.add("land");
+    }
+    const pw = dpip.offsetWidth, ph = pw * 138 / 132;
+    const pTop = dr.top - wr.top + dr.height * .35 - ph * .96;
+    dpip.style.left = (cx - pw / 2) + "px";
+    dpip.style.top = pTop + "px";
+    dpip.classList.add("show");
+    tag.style.setProperty("--bin", css);
+    tag.innerHTML = `<span class="dt-row"><span>Die ${dieLabel(t.die)}</span><span class="bin${isProbe ? " probe" : ""}" style="--bin:${css}">${bin}</span></span><b class="dt-t">${t.title}</b><span class="dt-go">${isProbe ? "Still testing this one." : `${spec.name} Pip is on it. Click the die to open.`}</span>`;
+    const w = tag.offsetWidth, h = tag.offsetHeight;
+    const left = Math.max(-8, Math.min(wr.width - w + 8, cx - w / 2));
+    let top = pTop - h - 4;
+    if (top < -24) top = dr.bottom - wr.top + 12;
+    tag.style.left = left + "px";
+    tag.style.top = top + "px";
+    tag.classList.add("show");
+  }
+
+  // signal line from the die to its article
+  function drawLine() {
+    if (!active || !desktop()) { line.innerHTML = ""; return; }
+    const d = dieEl(active), it = itemEl(active);
+    if (!d || !it) { line.innerHTML = ""; return; }
+    const gr = grid.getBoundingClientRect(), dr = d.getBoundingClientRect(), tr = it.querySelector(".t-title").getBoundingClientRect();
+    const x1 = dr.right - gr.left, y1 = dr.top + dr.height / 2 - gr.top;
+    const x2 = it.getBoundingClientRect().left - 17 - gr.left, y2 = tr.top + Math.min(tr.height / 2, 20) - gr.top;
+    const mx = x1 + (x2 - x1) * .55;
+    const path = `M${x1.toFixed(1)} ${y1.toFixed(1)} C${mx.toFixed(1)} ${y1.toFixed(1)} ${mx.toFixed(1)} ${y2.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    line.style.setProperty("--bin", info(active).css);
+    line.innerHTML = `<path class="ll-glow" d="${path}"/><path class="ll" d="${path}"/><circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="3"/><circle cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="4.5"/>`;
+  }
+
+  // slide the list so the article sits level with its die, without unsticking the wafer
+  function align(id) {
+    const it = itemEl(id), d = dieEl(id);
+    if (!it || !d || !desktop()) return;
+    const tr = it.querySelector(".t-title").getBoundingClientRect(), dr = d.getBoundingClientRect();
+    const delta = tr.top + Math.min(tr.height / 2, 20) - (dr.top + dr.height / 2);
+    const stick = parseFloat(getComputedStyle(col).top) || 0, gr = grid.getBoundingClientRect();
+    const minY = scrollY + gr.top - stick, maxY = scrollY + gr.bottom - stick - col.offsetHeight;
+    glide(Math.max(minY, Math.min(maxY, scrollY + delta)));
+  }
+
+  // our own eased scroll, so it starts instantly and stops the moment the reader scrolls
+  let tween = 0, gliding = false;
+  const root = document.documentElement;
+  const stopGlide = () => { if (!gliding) return; gliding = false; cancelAnimationFrame(tween); root.style.scrollBehavior = ""; };
+  ["wheel", "touchstart", "keydown"].forEach(ev => addEventListener(ev, stopGlide, { passive: true }));
+  function glide(target) {
+    stopGlide();
+    const start = scrollY, dist = target - start;
+    if (Math.abs(dist) < 6) return;
+    root.style.scrollBehavior = "auto";
+    if (calm) { window.scrollTo(0, target); root.style.scrollBehavior = ""; return; }
+    const dur = Math.min(720, 300 + Math.abs(dist) * .22), t0 = performance.now();
+    gliding = true;
+    const step = now => {
+      if (!gliding) return;
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      window.scrollTo(0, start + dist * e);
+      if (k < 1) tween = requestAnimationFrame(step); else stopGlide();
+    };
+    tween = requestAnimationFrame(step);
+  }
+
+  function activate(id, on, from) {
+    clearTimeout(alignTimer);
+    if (!on) {
+      clearTimeout(offTimer);
+      offTimer = setTimeout(() => {
+        active = null;
+        $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.remove("on", "scan"));
+        readout.innerHTML = idle; probe.style.opacity = ".35"; tag.classList.remove("show"); line.innerHTML = "";
+        dpip.classList.remove("show"); pipFor = null;
+      }, 120);
+      return;
+    }
+    clearTimeout(offTimer);
+    const changed = active !== id;
+    active = id;
+    const { t, isProbe, bin } = info(id);
+    $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", el.dataset.id === id));
+    if (changed && from === "die") {
+      const it = itemEl(id);
+      if (it) { it.classList.remove("scan"); void it.offsetWidth; it.classList.add("scan"); }
+    }
+    probe.style.transform = `translate(${t.die[0] * ds}px,${-t.die[1] * ds}px)`;
+    probe.style.opacity = "1";
+    readout.innerHTML = `<b>${t.title}</b><br>${t.hook}`;
+    showTag(id);
+    drawLine();
+    if (from === "die") alignTimer = setTimeout(() => align(id), 160);
+  }
+  $$(".wm-hit, .wm-probe-die").forEach(el => {
+    const id = el.dataset.id;
+    el.addEventListener("mouseenter", () => activate(id, true, "die"));
+    el.addEventListener("mouseleave", () => activate(id, false));
+    el.addEventListener("focus", () => activate(id, true, "focus"));
+    el.addEventListener("blur", () => activate(id, false));
+  });
+  $$(".t-item").forEach(el => {
+    const id = el.dataset.id;
+    el.addEventListener("mouseenter", () => activate(id, true, "list"));
+    el.addEventListener("mouseleave", () => activate(id, false));
+    el.addEventListener("focus", () => activate(id, true, "list"));
+    el.addEventListener("blur", () => activate(id, false));
+  });
+  let raf = 0;
+  const follow = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { if (active) { drawLine(); showTag(active); } }); };
+  addEventListener("scroll", follow, { passive: true });
+  addEventListener("resize", follow);
+}
+
+/* ---------------------------------------------------------------- memo reader */
+const memo = $("#memo");
+let memoId = null, lastFocus = null, memoKeys = null;
+
+// Line-break helpers: keep each sentence of a title or claim together where it fits, and size pull quotes by length.
+const sentences = txt => txt.split(/(?<=[.!?…])\s+(?=[A-Z“"])/).map(x => `<span class="sen">${x}</span>`).join(" ");
+const tidySignal = html => html
+  .replace(/<blockquote class="pull">([\s\S]*?)<\/blockquote>/g, (m, q) => {
+    const n = q.replace(/<[^>]+>/g, "").length;
+    return `<blockquote class="pull ${n > 80 ? "q-l" : n > 48 ? "q-m" : "q-s"}">${q.replace(/—/g, "\u2060—\u2060")}</blockquote>`;
+  })
+  .replace(/<p class="claim">([\s\S]*?)<\/p>/g, (m, c) => `<p class="claim">${sentences(c)}</p>`);
+
+function memoHTML(t) {
+  const b = BINS[t.stance];
+  const idx = THESES.indexOf(t);
+  const next = THESES[(idx + 1) % THESES.length];
+  return `<div class="memo-head" style="--bin:${b.css}">
+      <button class="btn memo-close" id="memoClose" type="button">Close</button>
+      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>
+      <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="memo-body" style="--bin:${b.css}">
+      <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
+        <section class="slide" aria-label="Slide 1 of 3, the signal">
+          <p class="slide-k">The signal</p>
+          <h2>${sentences(t.title)}</h2>
+          <div class="ref"><span class="ref-k">Reference design</span><a href="${t.ref.href}" target="_blank" rel="noopener">${t.ref.label}</a></div>
+          ${tidySignal(t.signal)}
+        </section>
+        <section class="slide" aria-label="Slide 2 of 3, my take">
+          <p class="slide-k">My take</p>
+          <ol class="takes">${t.takes.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join("")}</ol>
+        </section>
+        <section class="slide" aria-label="Slide 3 of 3, the bet">
+          <p class="slide-k">The bet</p>
+          <p class="bet">${t.bet}</p>
+          <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
+          <div class="bet-row"><figure class="bet-pip">${pip(t.pip)}<figcaption>${t.pip.name} Pip</figcaption></figure><div class="ctas">${t.extraCta || ""}<a class="btn" href="#contact">Tell me I’m wrong</a></div></div>
+          <p class="receipt-links"><span>Receipts:</span>${t.receipts.map(([l, h]) => `<a href="${h}" target="_blank" rel="noopener">${l}</a>`).join("")}${t.note ? `<span>${t.note}</span>` : ""}</p>
+        </section>
+      </div>
+      <div class="viz-pane">${VIZ[t.viz]()}</div>
+    </div>
+    <div class="memo-foot">
+      <button class="btn" id="memoPrev" type="button">Back</button>
+      <span class="count" id="memoCount">1 of 3</span>
+      <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
+    </div>`;
+}
+
+// Pausing a fresh SVG before its first frame leaves SMIL unsampled, so movers sit at the origin. Seek to force a frame.
+function freezeSvg(s) {
+  if (!s.pauseAnimations) return;
+  s.pauseAnimations();
+  try { s.setCurrentTime(s.getCurrentTime()); } catch (e) {}
+}
+
+// A mover whose motion path never got applied sits at the SVG origin. Hide it rather than leave it in the corner.
+function hideStuckMovers(root) {
+  setTimeout(() => $$("animateMotion", root).forEach(a => {
+    const el = a.parentNode, m = el.getCTM && el.getCTM(), pm = el.parentNode.getCTM && el.parentNode.getCTM();
+    if (m && pm && Math.abs(m.e - pm.e) < .01 && Math.abs(m.f - pm.f) < .01) el.style.visibility = "hidden";
+  }), 700);
+}
+
+function openMemo(id) {
+  const t = byId[id];
+  if (!t) return;
+  if (memo.hidden) lastFocus = document.activeElement;
+  memoId = id;
+  memo.innerHTML = memoHTML(t);
+  memo.hidden = false;
+  if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
+  if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
+  hideStuckMovers(memo);
+  document.documentElement.style.overflow = "hidden";
+  if (wafer) wafer.hold(true);
+
+  const slides = $("#slides"), viz = $(".viz", memo), prev = $("#memoPrev"), next = $("#memoNext"), count = $("#memoCount"), prog = $$(".memo-prog i", memo);
+  const nextT = byId[next.dataset.next];
+  let step = 0;
+  const set = s => {
+    if (s === step) return;
+    step = s;
+    if (viz) viz.dataset.step = s;
+    prog.forEach((p, i) => p.classList.toggle("on", i < s));
+    count.textContent = `${s} of 3`;
+    prev.disabled = s === 1;
+    next.textContent = s === 3 ? (innerWidth < 600 ? "Next thesis" : `Next thesis: ${nextT.short}`) : "Next";
+  };
+  set(1);
+  const go = s => slides.scrollTo({ left: (s - 1) * slides.clientWidth, behavior: calm ? "auto" : "smooth" });
+  slides.addEventListener("scroll", () => set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))), { passive: true });
+  prev.addEventListener("click", () => step > 1 && go(step - 1));
+  next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
+  $("#memoClose").addEventListener("click", () => closeMemo(true));
+
+  if (memoKeys) document.removeEventListener("keydown", memoKeys);
+  memoKeys = e => {
+    if (memo.hidden) return;
+    if (e.key === "Escape") closeMemo(true);
+    else if (e.key === "ArrowRight" && !e.target.matches("input,textarea")) { e.preventDefault(); step < 3 ? go(step + 1) : null; }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); step > 1 && go(step - 1); }
+  };
+  document.addEventListener("keydown", memoKeys);
+
+  // 3D package follows the pointer
+  const rot = $("#pkgRot", memo);
+  if (rot) {
+    $(".viz-pane", memo).addEventListener("pointermove", e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+      rot.style.setProperty("--rz", `${-38 + px * 40}deg`);
+      rot.style.setProperty("--rx", `${58 - py * 24}deg`);
+    });
+  }
+  $("#memoClose").focus({ preventScroll: true });
+}
+
+function closeMemo(updateUrl) {
+  if (memo.hidden) return;
+  memo.hidden = true;
+  memo.innerHTML = "";
+  memoId = null;
+  document.documentElement.style.overflow = "";
+  if (wafer) wafer.hold(false);
+  if (updateUrl) {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  }
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+}
+
+/* ---------------------------------------------------------------- Pulse view */
+const STEPS = [
+  { k: "Signal", h: "Set your Pulse", q: "“I’d be down.”", p: "Pick a vibe (eat, move, go out, chill, study, anything) and roughly when. Keep it open to friends, or quiet until someone matches.", img: "img/pulse-week.webp", alt: "Set your Pulse: pick a vibe and loose times for the week", pose: "wave" },
+  { k: "Overlap", h: "Pulse finds the overlap", q: "“There might be something here.”", p: "Pulse quietly spots when friends want the same kind of thing at the same time. No polls, no calendar grids.", img: "img/pulse-home.webp", alt: "Pulse home screen with friends who are down lining up", pose: "swim" },
+  { k: "Check", h: "Still down?", q: "“Still down?”", p: "Close to the time, Pulse privately asks each person if they’re still in. Nobody sees a no, and nobody has to go first.", img: "img/pulse-still-down.webp", alt: "The Pulses tab asking Still down? for lunch", pose: "idle" },
+  { k: "Match", h: "It’s a Pulse", q: "“We’re actually in.”", p: "Two yeses and it’s on. Everyone who’s in finds out at the same moment, and it lands on your week like a ticket.", img: "img/pulse-its-a-pulse.webp", alt: "The It’s a Pulse moment when everyone’s in", pose: "cheer" },
+  { k: "Room", h: "Make it happen", q: "“See you there.”", p: "A short-lived room opens just for the people who are in. Pick a spot and go. It clears itself two weeks later.", img: "img/pulse-room.webp", alt: "A Pulse room where friends pick a ramen spot", pose: "run" },
+  { k: "Memory", h: "That happened", q: "“That happened.”", p: "Afterwards, one tap: did it happen? That’s how Pulse knows it’s working. Not by how long you scrolled, but by the plans you actually made.", img: "img/pulse-feedback.webp", alt: "Did it happen? after a Pulse", pose: "dance" }
+];
+
+function buildPulse() {
+  // heartbeat line across six beats
+  const W = 1200, base = 40;
+  let d = `M0 ${base}`;
+  const ends = [];
+  STEPS.forEach((_, i) => {
+    const cx = (i + .5) * (W / 6), sx = cx - 46;
+    d += ` H${sx - 14} L${sx - 7} 14 L${sx} 60 L${sx + 7} 22 L${sx + 13} ${base} H${cx}`;
+    ends.push(d);
+  });
+  d += ` H${W}`;
+  const baseP = $("#beatBase"), lit = $("#beatLit");
+  baseP.setAttribute("d", d);
+  lit.setAttribute("d", d);
+  const tmp = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  baseP.parentNode.appendChild(tmp);
+  const total = baseP.getTotalLength ? baseP.getTotalLength() : 1600;
+  const lens = ends.map(e => { tmp.setAttribute("d", e); return tmp.getTotalLength ? tmp.getTotalLength() : 0; });
+  tmp.remove();
+  lit.style.setProperty("--len", total);
+
+  $("#beatBtns").innerHTML = STEPS.map((s, i) => `<li><button type="button" aria-pressed="${i === 0}" data-i="${i}"><span class="dot"></span><span class="n">${i + 1}</span>${s.k}</button></li>`).join("");
+  const img = $("#loopImg"), text = $("#loopText");
+  const show = i => {
+    const s = STEPS[i];
+    $$("#beatBtns button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+    lit.style.setProperty("--off", total - lens[i]);
+    img.src = s.img; img.alt = s.alt;
+    text.innerHTML = `<p class="k">STEP ${i + 1} OF 6: ${s.k.toUpperCase()}</p><p class="q">${s.q}</p><h3>${s.h}</h3><p>${s.p}</p>${pip({ pose: s.pose })}`;
+  };
+  $$("#beatBtns button").forEach(b => b.addEventListener("click", () => show(+b.dataset.i)));
+  show(0);
+
+  const CLASSICS = PIP_CLASSICS;
+  const OUTFITS = [
+    ...THESES.map(t => ({ ...t.pip, n: t.pip.name, d: `On “${t.short}”`, href: "#" + t.id })),
+    ...PIP_CREW
+  ];
+  const fig = (p, isNew) => {
+    const inner = `${pip(p)}<figcaption>${p.n}<span>${p.d}</span></figcaption>`;
+    return `<figure class="${isNew ? "new" : ""}">${p.href ? `<a class="parade-link" href="${p.href}" aria-label="${p.n} Pip: open “${p.d.slice(4, -1)}”">${inner}</a>` : inner}</figure>`;
+  };
+  $("#parade").innerHTML = CLASSICS.map(p => fig(p, false)).join("") + OUTFITS.map(p => fig(p, true)).join("");
+
+  // phone tilt follows the pointer
+  const stage = $("#pwStage"), phone = $(".phone", stage);
+  stage.addEventListener("pointermove", e => {
+    const r = stage.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+    phone.style.transform = `rotateY(${-14 + px * 16}deg) rotateX(${6 - py * 10}deg) rotateZ(2deg)`;
+  });
+}
+
+/* ---------------------------------------------------------------- router */
+const home = $("#home"), pulseView = $("#pulseView"), nav = $("#nav");
+const instantTop = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+function setView(v) {
+  const toPulse = v === "pulse";
+  const changed = toPulse === home.hidden ? false : true;
+  home.hidden = toPulse;
+  pulseView.hidden = !toPulse;
+  $$(".nav-links a").forEach(a => a.removeAttribute("aria-current"));
+  if (toPulse) $('.nav-links a[href="#pulse"]').setAttribute("aria-current", "page");
+  document.title = toPulse ? `Pulse, by ${CONFIG.name}` : CONFIG.name;
+  return changed;
+}
+
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (byId[h]) {
+    if (pulseView.hidden === false && !memo.hidden) { /* stay */ }
+    openMemo(h);
+    return;
+  }
+  closeMemo(false);
+  if (h === "pulse") {
+    if (setView("pulse")) instantTop(); else instantTop();
+    onScroll();
+    return;
+  }
+  const changed = setView("home");
+  if (changed) dispatchEvent(new Event("resize"));
+  const el = h && document.getElementById(h);
+  if (changed) {
+    if (el) el.scrollIntoView({ behavior: "instant", block: "start" }); else instantTop();
+  }
+  onScroll();
+}
+
+/* ---------------------------------------------------------------- scroll: nav, parallax, wafer tilt */
+let wafer = null;
+const depthEls = $$("[data-depth]");
+const heroEl = $(".hero");
+let canvas = $("#wafer");
+function onScroll() {
+  const y = window.scrollY;
+  nav.classList.toggle("solid", y > 40 || !pulseView.hidden);
+  if (calm || motionPaused || home.hidden) return;
+  const hh = heroEl.offsetHeight;
+  if (y < hh * 1.2) {
+    canvas.style.transform = `translate3d(0,${(y * 0.38).toFixed(1)}px,0)`;
+    if (wafer) wafer.setScroll(Math.min(1, y / hh));
+  }
+  for (const el of depthEls) {
+    const r = el.parentElement.getBoundingClientRect();
+    if (r.bottom < -200 || r.top > innerHeight + 200) continue;
+    const c = r.top + r.height / 2 - innerHeight / 2;
+    el.style.transform = `translate3d(0,${(-c * parseFloat(el.dataset.depth)).toFixed(1)}px,0)`;
+  }
+}
+
+/* ---------------------------------------------------------------- hero wafer
+   WebGL first. If WebGL is blocked, software-only, lost, or too slow (common on managed
+   work laptops with graphics acceleration off), it falls back to a Canvas 2D wafer. */
+const LIT = Array.from({ length: 20 }, (_, i) => THESES[i] || null);
+// Place the wafer in pixels inside the hero's stage (the part above the featured chips), then convert
+// to the shader's units (offset from canvas center and camera distance, both in canvas heights).
+function waferLayout(w, h) {
+  const fw = $(".feat-wrap", heroEl), nav = $("#nav");
+  const stageH = Math.max(320, h - (fw ? fw.offsetHeight : 0));
+  const top = nav ? nav.offsetHeight : 72;
+  let R, cx, cy;
+  if (w > 700) {
+    const gutter = parseFloat(getComputedStyle($(".hero-copy", heroEl)).paddingLeft) || 32;
+    const right = Math.min(w, (w + 1240) / 2) - gutter;
+    R = Math.min((stageH - top) * .44, w * .26, 520);
+    cx = Math.min(right - R * .6, w - R * .8);
+    cy = top + (stageH - top) * .45;
+  } else {
+    R = Math.min(w * .44, 200);
+    cx = w * .56;
+    cy = (parseFloat(getComputedStyle(heroEl).paddingTop) || 300) * .5;
+  }
+  const center = [(cx - w / 2) / h, (h / 2 - cy) / h];
+  return { R, center, dist: 1.75 * h / R, cx, cy, w, h };
+}
+
+function makeGL(cv, st, force) {
+  let gl = null;
+  try { gl = cv.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance", failIfMajorPerformanceCaveat: !force }); } catch (e) {}
+  if (!gl) return null;
+  const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+  const fs = `precision highp float;
+uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uScroll;uniform float uExpose;uniform vec2 uCenter;uniform float uDist;
+uniform vec2 uDies[20];uniform vec3 uBins[20];
+mat3 rx(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}
+mat3 ry(float a){float c=cos(a),s=sin(a);return mat3(c,0.,-s,0.,1.,0.,s,0.,c);}
+mat3 rz(float a){float c=cos(a),s=sin(a);return mat3(c,s,0.,-s,c,0.,0.,0.,1.);}
+float h21(vec2 p){p=fract(p*vec2(233.34,851.73));p+=dot(p,p+23.45);return fract(p.x*p.y);}
+vec3 env(vec3 r){
+  vec3 b=mix(vec3(.035,.03,.09),vec3(.24,.19,.45),smoothstep(-.3,.9,r.y));
+  float lamp=pow(max(dot(r,normalize(vec3(-.55,.65,.55))),0.),40.);
+  float cool=pow(max(dot(r,normalize(vec3(.75,.15,.65))),0.),20.);
+  return b+vec3(1.,.66,.22)*lamp*1.7+vec3(.3,.8,1.)*cool*.6;
+}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-.5*uRes)/uRes.y-uCenter;
+  vec3 ro=vec3(0.,0.,uDist);
+  vec3 rd=normalize(vec3(uv,-1.75));
+  float tilt=mix(1.0,.3,uScroll)+uMouse.y*.14;
+  float yaw=-.38+uMouse.x*.22;
+  mat3 R=ry(yaw)*rx(-tilt)*rz(uTime*.03);
+  vec3 ex=R*vec3(1.,0.,0.),ey=R*vec3(0.,1.,0.),n=R*vec3(0.,0.,1.);
+  float d=length(uv);
+  vec3 col=vec3(.059,.047,.133);
+  col+=vec3(.17,.10,.38)*exp(-d*d*2.)*.85;
+  col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6);
+  vec2 gp=gl_FragCoord.xy/uRes.y*30.;
+  col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1);
+  float dn=dot(rd,n);
+  if(abs(dn)>1e-4){
+    float tt=-dot(ro,n)/dn;
+    float tb=(-.024-dot(ro,n))/dn;
+    vec3 pt=ro+rd*tt;vec2 qt=vec2(dot(pt,ex),dot(pt,ey));
+    vec3 pb=ro+rd*tb;vec2 qb=vec2(dot(pb,ex),dot(pb,ey));
+    bool hitT=tt>0.&&length(qt)<1.&&length(qt-vec2(0.,-1.))>.03;
+    bool hitB=tb>0.&&length(qb)<1.&&length(qb-vec2(0.,-1.))>.03;
+    if(hitT){
+      float r=length(qt);
+      float c=abs(dn);
+      vec3 E=env(reflect(rd,n));
+      float fres=pow(1.-c,4.);
+      vec3 si=vec3(.05,.045,.09)+E*.5;
+      float ds=.086;
+      vec2 g=qt/ds+.5;
+      vec2 id=floor(g);vec2 f=fract(g);
+      vec2 c0=(id-.5)*ds,c1=(id+.5)*ds;
+      float mr=max(max(length(c0),length(vec2(c1.x,c0.y))),max(length(vec2(c0.x,c1.y)),length(c1)));
+      float full=step(mr,.955);
+      float inDie=step(.06,f.x)*step(f.x,.94)*step(.06,f.y)*step(f.y,.94);
+      vec2 bid=floor(f*vec2(3.,4.));
+      float hb=h21(bid+id*1.37);
+      vec3 Lr=reflect(rd,n);
+      float hue=dot(Lr,normalize(vec3(-.4,.6,.7)))*2.1+qt.x*.5-qt.y*.22+.05*hb+.03*h21(id);
+      vec3 rb=.5+.5*cos(6.28318*(hue+vec3(0.,.33,.67)));
+      float arr=step(.2,f.x)*step(f.x,.8)*step(.18,f.y)*step(f.y,.82);
+      float lines=1.-.22*arr*step(.5,fract(f.y*28.));
+      vec3 dieCol=mix(vec3(.14,.13,.21),rb,.58)*(.62+.3*hb)*lines+E*.3;
+      float sx=(qt.x+qt.y*.35+1.25)/2.5;
+      float exposed=smoothstep(uExpose,uExpose-.06,sx);
+      vec3 surf=mix(si,dieCol,full*inDie*exposed);
+      surf+=vec3(1.,.7,.25)*exp(-pow((sx-uExpose)*55.,2.))*step(uExpose,1.05)*.9;
+      for(int i=0;i<20;i++){
+        float m=step(abs(id.x-uDies[i].x)+abs(id.y-uDies[i].y),.5)*inDie*full;
+        surf=mix(surf,uBins[i]*(.78+.22*sin(uTime*2.2+float(i)*1.7))+E*.12,m*.9*exposed);
+      }
+      surf+=smoothstep(.975,1.,r)*.3;
+      surf+=E*fres*.8;
+      col=surf;
+    } else if(hitB){
+      vec3 E=env(reflect(rd,n));
+      col=vec3(.32,.3,.46)*(.45+.55*E.b);
+    }
+  }
+  col*=1.-.3*smoothstep(.7,1.6,length(uv+uCenter));
+  gl_FragColor=vec4(pow(col,vec3(.93)),1.);
+}`;
+  const sh = (type, src) => { const x = gl.createShader(type); gl.shaderSource(x, src); gl.compileShader(x); return gl.getShaderParameter(x, gl.COMPILE_STATUS) ? x : null; };
+  const v = sh(gl.VERTEX_SHADER, vs), f = sh(gl.FRAGMENT_SHADER, fs);
+  if (!v || !f) return null;
+  const pr = gl.createProgram();
+  gl.attachShader(pr, v); gl.attachShader(pr, f); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return null;
+  gl.useProgram(pr);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pr, "p");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const U = name => gl.getUniformLocation(pr, name);
+  const u = { res: U("uRes"), time: U("uTime"), mouse: U("uMouse"), scroll: U("uScroll"), expose: U("uExpose"), center: U("uCenter"), dist: U("uDist") };
+  const hex3 = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+  gl.uniform2fv(U("uDies"), new Float32Array(LIT.flatMap(t => (t ? t.die : [99, 99]))));
+  gl.uniform3fv(U("uBins"), new Float32Array(LIT.flatMap(t => (t ? hex3(BINS[t.stance].hex) : [0, 0, 0]))));
+  let W = 1, H = 1, L = null;
+  return {
+    kind: "gl",
+    resize(w, h, sc) { W = Math.max(1, Math.round(w * sc)); H = Math.max(1, Math.round(h * sc)); cv.width = W; cv.height = H; gl.viewport(0, 0, W, H); L = waferLayout(w, h); },
+    draw(t) {
+      gl.uniform2f(u.res, W, H);
+      gl.uniform1f(u.time, t);
+      gl.uniform2f(u.mouse, st.mouse[0], st.mouse[1]);
+      gl.uniform1f(u.scroll, calm ? 0 : st.scroll);
+      gl.uniform1f(u.expose, calm ? 1.3 : Math.min(1.3, 0.05 + t / 2.6));
+      gl.uniform2f(u.center, L.center[0], L.center[1]);
+      gl.uniform1f(u.dist, L.dist);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+  };
+}
+
+function make2D(cv, st) {
+  let ctx = null;
+  try { ctx = cv.getContext("2d", { alpha: false }); } catch (e) {}
+  if (!ctx) return null;
+  const ds = 1 / 11.63, N = 12, dies = [];
+  for (let i = -N; i <= N; i++) for (let j = -N; j <= N; j++) {
+    const x0 = (i - .5) * ds, x1 = (i + .5) * ds, y0 = (j - .5) * ds, y1 = (j + .5) * ds;
+    if (Math.max(Math.hypot(x0, y0), Math.hypot(x1, y0), Math.hypot(x0, y1), Math.hypot(x1, y1)) > .955) continue;
+    const k = LIT.findIndex(t => t && t.die[0] === i && t.die[1] === j);
+    const hs = Math.abs(Math.sin(i * 127.1 + j * 311.7) * 43758.5453) % 1;
+    dies.push({ x: i * ds, y: -j * ds, sx: (i * ds + j * ds * .35 + 1.25) / 2.5, h: hs, lit: k >= 0 ? BINS[LIT[k].stance].hex : null, k });
+  }
+  const TAU = Math.PI * 2, sz = ds * .88;
+  let sc = 1, L = null;
+  const disc = () => { ctx.beginPath(); ctx.arc(0, 0, 1, 0, TAU); };
+  return {
+    kind: "2d",
+    resize(w, h, s) { sc = s; cv.width = Math.max(1, Math.round(w * s)); cv.height = Math.max(1, Math.round(h * s)); L = waferLayout(w, h); },
+    draw(t) {
+      const { cx, cy, R, w, h } = L;
+      ctx.setTransform(sc, 0, 0, sc, 0, 0);
+      ctx.fillStyle = "#0f0c22";
+      ctx.fillRect(0, 0, w, h);
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.9);
+      glow.addColorStop(0, "rgba(74,46,160,.55)");
+      glow.addColorStop(1, "rgba(15,12,34,0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, w, h);
+      const tilt = (1.0 - .7 * (calm ? 0 : st.scroll)) + st.mouse[1] * .14;
+      const yaw = -.38 + st.mouse[0] * .22, sq = Math.max(.12, Math.cos(tilt)), spin = t * .03;
+      const expose = calm ? 2 : Math.min(2, .05 + t / 2.6);
+      const base = (dy = 0) => { ctx.setTransform(sc, 0, 0, sc, 0, 0); ctx.translate(cx, cy + dy); ctx.rotate(yaw * .5); ctx.scale(R, R * sq); };
+      base(R * .05 * Math.sin(tilt)); disc(); ctx.fillStyle = "#2c2650"; ctx.fill();
+      base();
+      const surf = ctx.createLinearGradient(-1, -1, 1, 1);
+      surf.addColorStop(0, "#3a3170"); surf.addColorStop(.5, "#1b1638"); surf.addColorStop(1, "#2a2350");
+      disc(); ctx.fillStyle = surf; ctx.fill();
+      ctx.rotate(spin);
+      const cs = Math.cos(spin), sn = Math.sin(spin), m = st.mouse[0];
+      for (const d of dies) {
+        if (d.sx > expose) continue;
+        if (d.lit) { ctx.globalAlpha = .82 + .18 * Math.sin(t * 2.2 + d.k * 1.7); ctx.fillStyle = d.lit; }
+        else {
+          const wx = d.x * cs - d.y * sn, wy = d.x * sn + d.y * cs;
+          const hue = ((250 + 150 * Math.sin(wx * 2.1 - wy * 1.3 + m * .8 + d.h * .5) + 60 * wy) % 360 + 360) % 360;
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = `hsl(${hue.toFixed(0)},62%,${(40 + 16 * d.h).toFixed(0)}%)`;
+        }
+        ctx.fillRect(d.x - sz / 2, d.y - sz / 2, sz, sz);
+      }
+      ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(0, 1, .035, 0, TAU); ctx.fillStyle = "#0f0c22"; ctx.fill();
+      base();
+      ctx.lineWidth = .012; ctx.strokeStyle = "rgba(222,211,255,.55)"; disc(); ctx.stroke();
+      const sheen = ctx.createLinearGradient(-1, -.5, .7, .6);
+      sheen.addColorStop(0, "rgba(255,255,255,0)"); sheen.addColorStop(.45, "rgba(255,255,255,.1)"); sheen.addColorStop(.62, "rgba(255,255,255,0)");
+      disc(); ctx.fillStyle = sheen; ctx.fill();
+    }
+  };
+}
+
+function initWafer() {
+  const st = { mouse: [0, 0], target: [0, 0], scroll: 0 };
+  const t0 = performance.now();
+  const q = location.search;
+  const fresh = () => { const c = canvas.cloneNode(false); canvas.replaceWith(c); canvas = c; return c; };
+  let r = /[?&]gl=0\b/.test(q) ? null : makeGL(canvas, st, /[?&]gl=1\b/.test(q));
+  if (!r) r = make2D(fresh(), st);
+  if (!r) { heroEl.classList.add("no-gl"); return null; }
+  heroEl.dataset.renderer = r.kind;
+  let running = false, raf = 0, visible = false, held = false, last = 0, frames = 0, slow = 0;
+  const size = () => {
+    const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
+    let s = Math.min(window.devicePixelRatio || 1, r.kind === "gl" ? 1.5 : 2);
+    const cap = r.kind === "gl" ? 1.6e6 : 4e6;
+    if (w * h * s * s > cap) s = Math.sqrt(cap / (w * h));
+    r.resize(w, h, s);
+  };
+  const frame = now => {
+    st.mouse[0] += (st.target[0] - st.mouse[0]) * .05;
+    st.mouse[1] += (st.target[1] - st.mouse[1]) * .05;
+    r.draw((now - t0) / 1000);
+  };
+  const sync = () => {
+    if (!r) return;
+    const want = visible && !held && !motionPaused;
+    if (want && !running) { running = true; last = 0; raf = requestAnimationFrame(loop); }
+    else if (!want && running) { running = false; cancelAnimationFrame(raf); }
+    if (!running) frame(performance.now());
+  };
+  const fallback = () => {
+    running = false;
+    cancelAnimationFrame(raf);
+    r = make2D(fresh(), st);
+    if (!r) { heroEl.classList.add("no-gl"); return; }
+    heroEl.dataset.renderer = "2d";
+    size();
+    sync();
+  };
+  function loop(now) {
+    if (!running || !r) return;
+    if (r.kind === "gl" && last) {
+      frames++;
+      if (frames > 10 && now - last > 50) slow++;
+      if (frames === 70 && slow > 30) { fallback(); return; }
+    }
+    last = now;
+    frame(now);
+    raf = requestAnimationFrame(loop);
+  }
+  addEventListener("resize", () => { if (!r) return; size(); if (!running) frame(performance.now()); });
+  if (window.ResizeObserver) new ResizeObserver(() => { if (!r) return; size(); if (!running) frame(performance.now()); }).observe(heroEl);
+  addEventListener("pointermove", e => { st.target[0] = e.clientX / innerWidth * 2 - 1; st.target[1] = -(e.clientY / innerHeight * 2 - 1); }, { passive: true });
+  if (r.kind === "gl") canvas.addEventListener("webglcontextlost", e => { e.preventDefault(); fallback(); });
+  size();
+  frame(performance.now());
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(heroEl);
+  return { setScroll(p) { st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
+}
+
+/* ---------------------------------------------------------------- Pip test line */
+const PIP_CLASSICS = [
+  { pose: "wave", n: "Wave", d: "Hi, I’m Pip!" },
+  { pose: "idle", n: "Idle", d: "Drop your Pulse" },
+  { pose: "swim", n: "Swim", d: "Finding the overlap" },
+  { pose: "sleep", n: "Snooze", d: "Quiet means quiet" },
+  { pose: "cheer", n: "Cheer", d: "It’s a Pulse!" },
+  { pose: "run", n: "Run", d: "Free now" },
+  { pose: "dance", n: "Dance", d: "That happened" }
+];
+const PIP_CREW = [
+  { pose: "idle", acc: "wafer", n: "Wafer", d: "Hosting the theses map", go: "#theses", goText: "See the wafer map" },
+  { pose: "idle", acc: "memo", n: "Analyst", d: "Grading the scorecard", go: "#scorecard", goText: "See the scorecard" },
+  { pose: "swim", acc: "helmet", n: "Astronaut", d: "For thinking big" }
+];
+
+function buildLine() {
+  const stage = $("#lineStage"), track = $("#lineTrack"), readout = $("#lineReadout"), count = $("#lineCount");
+  if (!stage) return;
+
+  // arrival order: Wave says hi, then thesis Pips alternate with the classics and the site crew
+  const thesis = THESES.map(t => ({ ...t.pip, n: t.pip.name, t }));
+  const classic = PIP_CLASSICS.map(p => ({ ...p, kind: "classic" }));
+  const crew = PIP_CREW.map(p => ({ ...p, kind: "crew" }));
+  const others = [...classic.slice(1), ...crew];
+  const cast = [classic[0]];
+  thesis.forEach((p, i) => { cast.push(p); if (others[i]) cast.push(others[i]); });
+  others.slice(thesis.length).forEach(p => cast.push(p));
+  const N = cast.length;
+
+  // the belt runs left to right, so the DOM is in reverse arrival order
+  const order = cast.map((_, i) => N - 1 - i);
+  const tag = p => p.t ? `<span class="bin" style="--bin:${BINS[p.t.stance].css}">${BINS[p.t.stance].label}</span>`
+    : p.kind === "classic" ? `<span class="bin" style="--bin:var(--violet)">Pulse app</span>` : `<span class="bin" style="--bin:var(--dim)">Site crew</span>`;
+  const item = (p, k, ghost) => {
+    const inner = `<span class="li-pip">${pip(p)}</span><span class="li-tray"></span><span class="li-tag"><b>${p.n}</b>${tag(p)}</span>`;
+    const hit = p.t
+      ? `<a class="li-hit" href="#${p.t.id}" draggable="false"${ghost ? ` tabindex="-1"` : ""} aria-label="${p.n} Pip: open “${p.t.short}”">${inner}</a>`
+      : `<div class="li-hit">${inner}</div>`;
+    return `<li class="li-item${p.t ? " is-link" : ""}" data-k="${k}">${hit}</li>`;
+  };
+  const set = ghost => `<ol class="li-set"${ghost ? ` aria-hidden="true"` : ` aria-label="Pips on the test line"`}>${order.map(i => item(cast[i], i, ghost)).join("")}</ol>`;
+  track.innerHTML = set(true) + set(false);
+  const byK = k => $$(`.li-item[data-k="${k}"]`, track);
+
+  const say = (k, how) => {
+    const p = cast[k];
+    const head = `<p class="lr-k">${how} · Unit ${String(k + 1).padStart(2, "0")} of ${N}</p><p class="lr-n">${p.n} Pip</p>`;
+    let body, go = "";
+    if (p.t) {
+      body = `<p class="lr-d">${tag(p)} <span>Die ${dieLabel(p.t.die)} · ${p.t.short}</span></p>`;
+      go = `<a class="lr-go" href="#${p.t.id}">Open the thesis →</a>`;
+    } else if (p.kind === "classic") {
+      body = `<p class="lr-d">${tag(p)} <span>${p.d}</span></p>`;
+      go = `<a class="lr-go" href="#pulse">Meet Pulse →</a>`;
+    } else {
+      body = `<p class="lr-d">${tag(p)} <span>${p.d}</span></p>`;
+      if (p.go) go = `<a class="lr-go" href="${p.go}">${p.goText} →</a>`;
+    }
+    readout.innerHTML = head + body + go;
+    count.textContent = `${k + 1} / ${N}`;
+  };
+
+  let sp = 0, W = 0, S = 0, x = 0, v = 0, last = 0, raf = 0;
+  let real = false, visible = false, hover = false, focusK = -1, drag = null, glideTo = null, under = -1, shown = -1, suppress = false;
+  const mod = (a, m) => ((a % m) + m) % m;
+  const measure = () => {
+    const first = $(".li-item", track);
+    const w = first ? first.getBoundingClientRect().width : 0;
+    real = w > 0 && stage.clientWidth > 0;
+    sp = w || 170; W = sp * N; S = stage.clientWidth || innerWidth;
+  };
+  // x places the arriving set; the DOM index of arrival k is N-1-k
+  const centerOf = k => mod(x + (N - 1 - k) * sp + sp / 2 - S / 2 + W / 2, W) - W / 2 + S / 2;
+  const xFor = k => mod(S / 2 - (N - 1 - k) * sp - sp / 2, W);
+  const apply = () => {
+    track.style.transform = `translate3d(${(mod(x, W) - W).toFixed(1)}px,0,0)`;
+    stage.style.setProperty("--bx", `${mod(x, 40).toFixed(1)}px`);
+  };
+  const probe = () => {
+    let best = -1, bd = Infinity;
+    for (let k = 0; k < N; k++) { const d = Math.abs(centerOf(k) - S / 2); if (d < bd) { bd = d; best = k; } }
+    const k = bd < sp * .3 ? best : -1;
+    if (k !== under) {
+      if (under >= 0) byK(under).forEach(el => el.classList.remove("under"));
+      under = k;
+      if (k >= 0) byK(k).forEach(el => el.classList.add("under"));
+      stage.classList.toggle("scanning", k >= 0);
+      if (k >= 0 && !hover && focusK < 0 && k !== shown) { shown = k; say(k, "Probing"); }
+    }
+  };
+  const still = () => calm || motionPaused;
+  const tick = now => {
+    raf = 0;
+    const dt = Math.min(.1, (now - (last || now)) / 1000); last = now;
+    if (drag) {
+      // position is set directly by the pointer
+    } else if (glideTo !== null) {
+      const diff = mod(glideTo - x + W / 2, W) - W / 2;
+      x += diff * Math.min(1, dt * 7);
+      if (Math.abs(diff) < .5) { x = glideTo; glideTo = null; v = 0; }
+    } else {
+      const target = still() || hover || focusK >= 0 ? 0 : (S < 700 ? 34 : 46);
+      v += (target - v) * Math.min(1, dt * (Math.abs(v) > Math.abs(target) ? 2.2 : 1.2));
+      x += v * dt;
+    }
+    x = mod(x, W);
+    apply(); probe();
+    if (visible) raf = requestAnimationFrame(tick);
+  };
+  const wake = () => { if (visible && !raf) { last = 0; raf = requestAnimationFrame(tick); } };
+  const goTo = k => { glideTo = xFor(mod(k, N)); shown = -1; wake(); };
+
+  // pointer: hover pauses, drag scrubs, a flick keeps rolling
+  stage.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") hover = true; });
+  stage.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") { hover = false; shown = -1; } });
+  stage.addEventListener("pointerover", e => {
+    const li = e.target.closest(".li-item");
+    if (li && e.pointerType === "mouse" && !drag) { $$(".li-item.hot", track).forEach(el => el.classList.remove("hot")); byK(li.dataset.k).forEach(el => el.classList.add("hot")); shown = +li.dataset.k; say(+li.dataset.k, "Inspecting"); }
+  });
+  stage.addEventListener("pointerout", e => {
+    const li = e.target.closest(".li-item");
+    if (li && !li.contains(e.relatedTarget)) byK(li.dataset.k).forEach(el => el.classList.remove("hot"));
+  });
+  stage.addEventListener("pointerdown", e => {
+    if (e.button !== 0) return;
+    drag = { x0: e.clientX, from: x, moved: 0, lx: e.clientX, lt: performance.now(), vx: 0, id: e.pointerId };
+    glideTo = null;
+  });
+  addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x0;
+    if (!drag.moved && Math.abs(dx) > 6) { drag.moved = 1; stage.classList.add("dragging"); try { stage.setPointerCapture(e.pointerId); } catch (_) {} }
+    if (drag.moved) {
+      const now = performance.now(), dt = Math.max(1, now - drag.lt);
+      drag.vx = drag.vx * .6 + ((e.clientX - drag.lx) / dt * 1000) * .4;
+      drag.lx = e.clientX; drag.lt = now;
+      x = mod(drag.from + dx, W); wake();
+    }
+  });
+  const release = e => {
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    if (drag.moved) { suppress = true; v = Math.max(-1600, Math.min(1600, drag.vx)); setTimeout(() => (suppress = false), 0); }
+    stage.classList.remove("dragging");
+    drag = null; wake();
+  };
+  addEventListener("pointerup", release);
+  addEventListener("pointercancel", release);
+  stage.addEventListener("click", e => { if (suppress) { e.preventDefault(); e.stopPropagation(); suppress = false; } }, true);
+  stage.addEventListener("dragstart", e => e.preventDefault());
+
+  // keyboard: focusing a thesis Pip parks it under the probe
+  stage.addEventListener("focusin", e => {
+    const li = e.target.closest(".li-item"); if (!li) return;
+    focusK = +li.dataset.k; byK(focusK).forEach(el => el.classList.add("focus")); say(focusK, "Selected"); goTo(focusK);
+  });
+  stage.addEventListener("focusout", e => {
+    const li = e.target.closest(".li-item"); if (li) byK(li.dataset.k).forEach(el => el.classList.remove("focus"));
+    focusK = -1; shown = -1; wake();
+  });
+  const current = () => under >= 0 ? under : (shown >= 0 ? shown : 0);
+  $("#lineNext").addEventListener("click", () => { const k = mod(current() + 1, N); say(k, "Selected"); shown = k; goTo(k); });
+  $("#lineBack").addEventListener("click", () => { const k = mod(current() - 1, N); say(k, "Selected"); shown = k; goTo(k); });
+
+  const layout = () => { const k = current(); measure(); x = xFor(k); apply(); probe(); };
+  addEventListener("resize", () => { layout(); wake(); });
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && (!real || stage.clientWidth !== S)) layout();
+    wake();
+  }, { rootMargin: "120px" }).observe(stage);
+  measure(); x = xFor(0); apply(); say(0, "Probing"); shown = 0; probe();
+  buildLine.wake = wake;
+}
+
+/* ---------------------------------------------------------------- motion toggle */
+function setMotion(paused, save) {
+  motionPaused = paused;
+  document.documentElement.classList.toggle("paused", paused);
+  $$("[data-motion]").forEach(b => (b.textContent = paused ? "Play motion" : "Pause motion"));
+  if (save) { try { localStorage.setItem("motion", paused ? "paused" : "on"); } catch (e) {} }
+  if (wafer) wafer.sync();
+  $$("svg", memo).forEach(s => (paused || calm ? freezeSvg(s) : s.unpauseAnimations && s.unpauseAnimations()));
+  if (buildLine.wake) buildLine.wake();
+}
+
+/* ---------------------------------------------------------------- boot */
+renderHome();
+buildMap();
+buildPulse();
+buildLine();
+mountPips();
+wafer = initWafer();
+$$("[data-motion]").forEach(b => b.addEventListener("click", () => setMotion(!motionPaused, true)));
+setMotion(motionPaused, false);
+addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
+addEventListener("hashchange", route);
+route();
+})();
