@@ -3158,7 +3158,8 @@ void main(){
   vec3 ex=R*vec3(1.,0.,0.),ey=R*vec3(0.,1.,0.),n=R*vec3(0.,0.,1.);
   float d=length(uv);
   vec3 col=vec3(.059,.047,.133);
-  col+=vec3(.17,.10,.38)*exp(-d*d*2.)*.85;
+  float dw=d*uDist/1.75;
+  col+=vec3(.17,.10,.38)*exp(-dw*dw*.162)*mix(.42,.85,smoothstep(.55,1.,uRes.x/uRes.y));
   col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6);
   vec2 gp=gl_FragCoord.xy/uRes.y*30.;
   col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1);
