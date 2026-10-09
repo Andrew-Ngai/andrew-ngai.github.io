@@ -143,10 +143,41 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .span-t{display:inline-block}
 .span-dies{position:absolute;z-index:-1;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .span-dies i{position:absolute;border-radius:1.5px;background:var(--bin);opacity:.42;box-shadow:0 0 14px var(--bin)}
-.index-sub{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 48px;align-items:end;margin-top:clamp(20px,2.4vw,30px)}
-.index-sub p{max-width:38rem;color:var(--dim)}
-.legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:flex-end;max-width:440px}
-@media (max-width:860px){.index-sub{grid-template-columns:1fr}.legend{justify-content:flex-start}}
+/* Pips hanging around on the lettering; placed against the real glyph edges in app.js */
+.sc{position:absolute;z-index:1;display:none;pointer-events:none}
+.sc.on{display:block}
+.sc .pip{width:100%;height:auto;filter:drop-shadow(0 3px 5px rgba(6,4,18,.55))}
+.sc-peek{z-index:-1}
+.sc-peek .pip{filter:none}
+.sc-gripl svg,.sc-gripr svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 1px 2px rgba(6,4,18,.6))}
+.sc-nap{transform:rotate(11deg)}
+.sc-z{position:absolute;font-family:var(--label);font-weight:800;font-style:normal;line-height:1;color:#b8a6ff;text-shadow:0 0 10px rgba(160,139,255,.7);opacity:0;animation:sc-z 3.6s ease-in-out infinite}
+.sc-z:nth-of-type(2){animation-delay:1.2s}
+.sc-z:nth-of-type(3){animation-delay:2.4s}
+@keyframes sc-z{0%{opacity:0;transform:translate(0,0) scale(.7)}25%,60%{opacity:.9}100%{opacity:0;transform:translate(.7em,-1.6em) scale(1.1)}}
+.sc-jet{animation:sc-hover 2.6s ease-in-out infinite}
+.sc .sc-flames{position:absolute;left:0;top:0;filter:drop-shadow(0 0 6px rgba(255,178,63,.8))}
+@keyframes sc-hover{0%,100%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(-7%) rotate(7deg)}}
+.sc-burn{border-radius:50%;background:radial-gradient(closest-side,rgba(255,217,138,.75),rgba(255,178,63,.35) 55%,transparent);mix-blend-mode:screen;animation:sc-burn 2.6s ease-in-out infinite}
+@keyframes sc-burn{0%,100%{opacity:1;transform:scaleX(1)}50%{opacity:.55;transform:scaleX(.8)}}
+
+/* the subtitle hangs off the heading in three columns, each starting under a word: Theses / on the / wafer */
+.index-sub{display:grid;grid-template-columns:var(--c1,36.6%) var(--c2,33.9%) minmax(0,1fr)}
+.sub-c{position:relative;margin:0;padding:clamp(20px,2.2vw,28px) clamp(16px,2.4vw,32px) 0 0;color:var(--dim);font-size:clamp(16px,1.35vw,18.5px);line-height:1.5;text-wrap:pretty}
+.sub-c::before{content:"";position:absolute;left:0;top:0;width:1px;height:clamp(12px,1.4vw,18px);background:linear-gradient(var(--tick),transparent)}
+.sub-c::after{content:"";position:absolute;left:-2.5px;top:-3px;width:6px;height:6px;border-radius:1px;background:var(--tick);box-shadow:0 0 10px var(--tick)}
+.sub-c:nth-child(1){--tick:var(--amber)}
+.sub-c:nth-child(2){--tick:var(--violet)}
+.sub-c:nth-child(3){--tick:var(--beat);padding-right:0}
+.sub-k{display:block;margin-bottom:6px;font-family:var(--label);font-weight:700;font-size:13px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:2px}
+@media (max-width:760px){
+  .index-sub{grid-template-columns:1fr;gap:0}
+  .sub-c{padding:16px 0 0 18px}
+  .sub-c::before{top:0;height:100%;background:linear-gradient(var(--tick),transparent 85%)}
+  .sub-c::after{top:16px;left:-2.5px}
+  .sub-c:first-child::after{top:16px}
+}
 .index-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:start}
 @media (max-width:900px){.index-grid{grid-template-columns:1fr}}
 .index-grid{position:relative}
@@ -910,6 +941,16 @@ html.paused .gng-list li{animation:none!important}
 .pip-float .pip-fin-r{animation:pip-sway-r 3.4s ease-in-out infinite}
 @keyframes pip-float{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-3px)}}
 @keyframes pip-glint{0%,60%,100%{opacity:.35}75%{opacity:.9}}
+/* sitting on a ledge: legs swing out of step; dozing: legs still, slow breaths */
+.pip-sit .pip-all{animation:pip-bob 3.4s ease-in-out infinite}
+.pip-sit .pip-fin-l{animation:pip-sway-l 3.4s ease-in-out infinite}
+.pip-sit .pip-fin-r{animation:pip-sway-r 3.4s ease-in-out infinite}
+.pip-sit .pip-foot-l{transform-origin:31px 93px;animation:pip-kick 1.7s ease-in-out infinite}
+.pip-sit .pip-foot-r{transform-origin:69px 93px;animation:pip-kick 1.7s ease-in-out infinite -.85s}
+.pip-doze .pip-all{animation:pip-breathe 3.2s ease-in-out infinite}
+.pip-doze .pip-eyes{animation:none}
+.pip-doze .pip-beat{animation:pip-beat-slow 3.2s infinite}
+@keyframes pip-kick{0%,100%{transform:none}50%{transform:translateY(-3px) scaleY(.78)}}
 
 /* ---------------------------------------------------------------- Pulse view */
 .pulse-world{background:var(--night);color:var(--pwhite);font-family:var(--sans);font-size:17px;line-height:1.55}

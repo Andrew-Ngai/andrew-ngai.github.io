@@ -484,12 +484,14 @@ const EYES_OPEN = `<circle cx="11.6" cy="18.5" r="2.6" fill="#1b1530"/><circle c
 const EYES_SHUT = `<path d="M8.9 18.8 Q11.6 21.2 14.3 18.8 M85.7 18.8 Q88.4 21.2 91.1 18.8" stroke="#1b1530" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
 const spark = (x, y, s, c, d) => `<g transform="translate(${x} ${y}) scale(${s})"><path class="pip-spark" style="animation-delay:${d}s" d="M0 -5 C.7 -.7 .7 -.7 5 0 C.7 .7 .7 .7 0 5 C-.7 .7 -.7 .7 -5 0 C-.7 -.7 -.7 -.7 0 -5 Z" fill="${c}"/></g>`;
 
-function pip({ pose = "idle", acc = null, label = "" } = {}) {
+function pip({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const k = "pq" + (++pipN);
   const up = pose === "wave" || pose === "cheer";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
   const finR = pose === "cheer" ? FIN_UP_R : FIN_DOWN_R;
-  const sleep = pose === "sleep";
+  // sitting or dozing on a ledge: no floor, so no shadow, and the feet dangle over the edge
+  const dangle = pose === "sit" || pose === "doze";
+  const sleep = pose === "sleep" || pose === "doze";
   let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "";
   if (acc === "hardhat") {
     accDefs = `<linearGradient id="${k}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
@@ -565,8 +567,9 @@ function pip({ pose = "idle", acc = null, label = "" } = {}) {
   if (pose === "dance") extras = `<text class="pip-note" x="100" y="10" font-size="14" fill="#4fd2ff">♪</text><text class="pip-note" style="animation-delay:.5s" x="-14" y="22" font-size="12" fill="#b8a6ff">♫</text>`;
   if (pose === "swim" && acc !== "helmet") extras = `<circle class="pip-bubble" cx="94" cy="30" r="3" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="pip-bubble" style="animation-delay:.6s" cx="100" cy="12" r="2" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="pip-bubble" style="animation-delay:1.2s" cx="90" cy="0" r="1.6" fill="none" stroke="#a6e9ff" stroke-width=".9"/>`;
   if (sleep) extras = `<text class="pip-z" x="92" y="6" font-size="11" font-weight="800" fill="#b8a6ff">z</text><text class="pip-z" style="animation-delay:1.1s" x="100" y="-6" font-size="8" font-weight="800" fill="#b8a6ff">z</text>`;
+  if (bare) { accExtra = ""; extras = ""; }
   const a11y = label ? `role="img" aria-label="${label}"` : `aria-hidden="true" focusable="false"`;
-  return `<svg class="pip pip-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}<ellipse class="pip-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/><g class="pip-all">${accUnder}<path class="pip-fin-l" d="${finL}" fill="url(#${k}n)"/><path class="pip-fin-r" d="${finR}" fill="url(#${k}n)"/><path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/><ellipse class="pip-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="pip-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="pip-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
+  return `<svg class="pip pip-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}${dangle || bare ? "" : `<ellipse class="pip-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/>`}<g class="pip-all">${accUnder}<path class="pip-fin-l" d="${finL}" fill="url(#${k}n)"/><path class="pip-fin-r" d="${finR}" fill="url(#${k}n)"/><path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>${dangle ? `<ellipse class="pip-foot-l" cx="31" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/><ellipse class="pip-foot-r" cx="69" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/>` : `<ellipse class="pip-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="pip-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/>`}<path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="pip-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
 }
 
 function mountPips(root = document) {
@@ -1569,11 +1572,108 @@ function renderHome() {
   $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
 
   // size "Theses on the wafer" to the full width, then light a few dies on the strip behind it in each bin color
-  const spanH = $("#theses-h"), spanT = $(".span-t", spanH);
+  const spanH = $("#theses-h"), spanT = $(".span-t", spanH), indexSub = $("#index-sub");
   const spanDies = document.createElement("span");
   spanDies.className = "span-dies"; spanDies.setAttribute("aria-hidden", "true");
   spanH.appendChild(spanDies);
   const LIT_DIES = [[.13, 1, "beat"], [.27, 3, "amber"], [.41, 0, "coral"], [.55, 2, "amber"], [.68, 4, "violet"], [.8, 1, "amber"], [.9, 3, "beat"]];
+
+  // Pips hanging around on the letters: Hard hat sits on the T like a steel beam, Captain squeezes into the gap
+  // between "on" and "the", a probe Pip dozes against the "f", and Dealmaker lifts off the end of the "r" on its jetpack
+  const cast = {};
+  const castEl = (name, html) => {
+    const el = document.createElement("span");
+    el.className = "sc sc-" + name; el.setAttribute("aria-hidden", "true"); el.innerHTML = html;
+    spanH.appendChild(el); return (cast[name] = el);
+  };
+  const FIN_TIP = `<svg viewBox="0 0 10 12"><ellipse cx="5" cy="6" rx="4.6" ry="5.6" fill="#7d63f7" stroke="#d6c9ff" stroke-opacity=".6" stroke-width=".7"/><ellipse cx="3.6" cy="4.2" rx="1.6" ry="2.2" fill="#b7a6ff" opacity=".7"/></svg>`;
+  castEl("sit", pip({ pose: "sit", acc: "hardhat", bare: true }));
+  castEl("peek", pip({ pose: "idle", acc: "captain", bare: true }));
+  castEl("gripl", FIN_TIP);
+  castEl("gripr", FIN_TIP);
+  castEl("nap", pip({ pose: "doze", bare: true }) + `<i class="sc-z">z</i><i class="sc-z">z</i><i class="sc-z">z</i>`);
+  castEl("burn", "");
+  // longer exhaust than the stock jetpack, so the flames reach the letter it is lifting off
+  const JET_FLAMES = [0.5, 99.5].map((x, i) => `<path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 7} 72 Q${x} 168 ${x + 7} 72 Z" fill="#ffb23f" opacity=".9"/><path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 3.4} 72 Q${x} 142 ${x + 3.4} 72 Z" fill="#fff4d6"/>`).join("");
+  castEl("jet", `<svg class="pip sc-flames" viewBox="-16 -22 132 138" aria-hidden="true">${JET_FLAMES}</svg>` + pip({ pose: "float", acc: "jet", bare: true }));
+
+  // read a glyph's ink edges at any height above the baseline by drawing it once on a canvas
+  const gctx = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+  const glyph = (ch, font, fs) => {
+    const W = Math.ceil(fs * 1.4), H = Math.ceil(fs * 1.3), ox = Math.round(fs * .2), by = Math.round(fs * 1.05);
+    gctx.canvas.width = W; gctx.canvas.height = H;
+    gctx.font = font; gctx.fillStyle = "#000"; gctx.fillText(ch, ox, by);
+    const d = gctx.getImageData(0, 0, W, H).data;
+    return h => {
+      const y = Math.min(H - 1, Math.max(0, Math.round(by - h)));
+      let l = -1, r = -1;
+      for (let x = 0; x < W; x++) if (d[(y * W + x) * 4 + 3] > 110) { if (l < 0) l = x; r = x + 1; }
+      return l < 0 ? null : [l - ox, r - ox];
+    };
+  };
+  const place = (el, x, y, w, h) => {
+    el.style.left = x.toFixed(1) + "px"; el.style.top = y.toFixed(1) + "px";
+    el.style.width = w.toFixed(1) + "px"; el.style.height = h.toFixed(1) + "px";
+    el.classList.add("on");
+  };
+  const placeCast = fs => {
+    Object.values(cast).forEach(el => el.classList.remove("on"));
+    const tn = spanT.firstChild, txt = tn && tn.data;
+    if (!txt || txt !== "Theses on the wafer") return;
+    const cs = getComputedStyle(spanH), font = `${cs.fontWeight} ${fs}px ${cs.fontFamily}`;
+    gctx.font = font;
+    const hr = spanH.getBoundingClientRect();
+    const at = i => { const r = document.createRange(); r.setStart(tn, i); r.setEnd(tn, i + 1); const b = r.getBoundingClientRect(); return { x: b.left - hr.left, top: b.top - hr.top, h: b.height }; };
+    const m0 = gctx.measureText("x"), a0 = at(0);
+    const baseline = a0.top + (m0.fontBoundingBoxAscent || a0.h * .82);
+    const xh = m0.actualBoundingBoxAscent;
+    const g = {}, G = (i, ch) => (g[i] = g[i] || glyph(ch, font, fs));
+    const edge = (i, h) => { const e = G(i, txt[i])(h); const x = at(i).x; return e ? [x + e[0], x + e[1]] : null; };
+    const topOf = i => baseline - gctx.measureText(txt[i]).actualBoundingBoxAscent;
+    const box = 132 / 138;
+
+    // 1. Hard hat sits on the crossbar of the T like a steel beam, legs over the edge
+    {
+      const W = Math.max(32, fs * .44), u = W / 132, tTop = topOf(0), bar = edge(0, baseline - tTop - fs * .02);
+      if (bar) place(cast.sit, (bar[0] + bar[1]) / 2 + W * .06 - 66 * u, tTop + 1 - 117 * u, W, W / box);
+    }
+    // 2. Captain squeezes into the gap between "on" and "the", sides tucked behind both letters, fins on the edges
+    if (fs >= 84) {
+      const nR = edge(8, xh * .4), tL = edge(10, xh * .4);
+      if (nR && tL) {
+        const gap = tL[0] - nR[1], cx = (nR[1] + tL[0]) / 2, u = gap * 1.2 / 88, W = 132 * u, top = baseline + fs * .01 - 132.5 * u;
+        place(cast.peek, cx - 66 * u, top, W, W / box);
+        const fw = Math.max(6, W * .1), fy = top + 70 * u;
+        place(cast.gripl, nR[1] - fw * .5, fy, fw, fw * 1.2);
+        place(cast.gripr, tL[0] - fw * .5, fy + 6 * u, fw, fw * 1.2);
+      }
+    }
+    // 3. a probe Pip dozes on top of "wa", slumped against the f
+    {
+      const W = Math.max(30, fs * .42), u = W / 132, fL = edge(16, xh * .55), ledge = Math.min(topOf(14), topOf(15));
+      if (fL) {
+        cast.nap.style.transformOrigin = `${(66 * u).toFixed(1)}px ${(117 * u).toFixed(1)}px`;
+        place(cast.nap, fL[0] - 110 * u - 15 * u, ledge + 1 - 117 * u, W, W / box);
+        $$(".sc-z", cast.nap).forEach((z, i) => {
+          z.style.fontSize = Math.max(12, fs * (.1 + i * .028)).toFixed(1) + "px";
+          z.style.left = (92 * u + i * 12 * u).toFixed(1) + "px"; z.style.top = (4 * u - i * 22 * u).toFixed(1) + "px";
+        });
+      }
+    }
+    // 4. Dealmaker lifts off the arm of the last "r" on its jetpack, off the end of the line
+    {
+      const W = Math.max(30, fs * .4), u = W / 132, rTop = topOf(18), arm = edge(18, xh - fs * .03);
+      const room = document.documentElement.clientWidth - hr.right;
+      const rL = edge(18, xh * .5);
+      if (arm && rL && room > arm[1] - hr.width + 50 * u + 8) {
+        // one jet over the r's stem, the other over its arm
+        const cx = (rL[0] + arm[1]) / 2 + 3 * u;
+        place(cast.jet, cx - 66 * u, rTop - fs * .03 - 132.5 * u, W, W / box);
+        place(cast.burn, rL[0] - 16 * u, rTop - 8 * u, arm[1] - rL[0] + 32 * u, 18 * u);
+      }
+    }
+  };
+
   const fitSpan = () => {
     spanH.style.fontSize = "";
     const base = parseFloat(getComputedStyle(spanH).fontSize), w = spanH.clientWidth, tw = spanT.getBoundingClientRect().width;
@@ -1583,6 +1683,15 @@ function renderHome() {
     const pitch = Math.max(10, Math.round(fs * .2)), rows = Math.max(1, Math.floor(spanH.offsetHeight / pitch)), cols = Math.floor(w / pitch);
     spanH.style.setProperty("--pitch", pitch + "px");
     spanDies.innerHTML = LIT_DIES.map(([x, r, c]) => `<i style="--bin:var(--${c});left:${Math.round(x * cols) * pitch + 3}px;top:${Math.min(r, rows - 1) * pitch + 3}px;width:${pitch - 3}px;height:${pitch - 3}px"></i>`).join("");
+    try { placeCast(fs); } catch (e) {}
+    // line the subtitle columns up under "on" and "wafer"
+    const tn = spanT.firstChild, hr = spanH.getBoundingClientRect();
+    if (tn && tn.data.indexOf(" wafer") > 0) {
+      const inkL = i => { const r = document.createRange(); r.setStart(tn, i); r.setEnd(tn, i + 1); gctx.font = `${getComputedStyle(spanH).fontWeight} ${fs}px ${getComputedStyle(spanH).fontFamily}`; return r.getBoundingClientRect().left - hr.left - gctx.measureText(tn.data[i]).actualBoundingBoxLeft; };
+      const c1 = inkL(tn.data.indexOf(" on ") + 1), c2 = inkL(tn.data.indexOf(" wafer") + 1);
+      indexSub.style.setProperty("--c1", c1.toFixed(1) + "px");
+      indexSub.style.setProperty("--c2", (c2 - c1).toFixed(1) + "px");
+    }
   };
   fitSpan();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSpan);
