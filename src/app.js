@@ -1566,28 +1566,33 @@ function renderHome() {
   }, 2200);
 
   $("#readout").innerHTML = `Probe idle. <b>${THESES.length} dies binned</b>, ${PROBES.length} in probe.`;
-  // the bin report: like a wafer tester, every die gets sorted into a bin. Tap a bin to filter the list and the map.
-  const trays = [...Object.entries(BINS).map(([k, b]) => ({ k, label: b.label, css: b.css, n: THESES.filter(t => t.stance === k).length })), { k: "probe", label: "In probe", css: "var(--faint)", n: PROBES.length }];
-  const binsCard = $("#binsCard"), indexEl = $("#theses");
-  const footIdle = "Tap a bin to filter the list and the wafer.";
-  binsCard.innerHTML = `<div class="bc-head"><span>Sorted into bins</span><b>${THESES.length + PROBES.length} dies tested</b></div>
-    <div class="trays">${trays.map(t => `<button type="button" class="tray${t.k === "probe" ? " probe" : ""}" data-bin="${t.k}" aria-pressed="false" style="--bin:${t.css}"><span class="tray-n">${t.n}</span><span class="tray-l">${t.label}</span><span class="tray-dies" aria-hidden="true">${"<i></i>".repeat(t.n)}</span></button>`).join("")}</div>
-    <p class="bc-foot" aria-live="polite">${footIdle}</p>`;
-  let binFilter = null;
-  const applyBin = k => {
-    binFilter = binFilter === k ? null : k;
-    if (binFilter) indexEl.dataset.filter = binFilter; else delete indexEl.dataset.filter;
-    $$(".tray", binsCard).forEach(b => b.setAttribute("aria-pressed", b.dataset.bin === binFilter));
-    $$(".t-item, .wm-hit, .wm-probe-die", indexEl).forEach(el => el.classList.toggle("match", !!binFilter && el.dataset.bin === binFilter));
-    const t = trays.find(x => x.k === binFilter);
-    $(".bc-foot", binsCard).textContent = t ? `Showing ${t.n} ${t.n === 1 ? "die" : "dies"} in ${t.label}. Tap it again to show all.` : footIdle;
+  $("#legend").innerHTML = Object.values(BINS).map(b => `<span class="bin" style="--bin:${b.css}">${b.label}</span>`).join("") + `<span class="bin probe">In probe</span>`;
+
+  // size "Theses on the wafer" to the full width, then light a few dies on the strip behind it in each bin color
+  const spanH = $("#theses-h"), spanT = $(".span-t", spanH);
+  const spanDies = document.createElement("span");
+  spanDies.className = "span-dies"; spanDies.setAttribute("aria-hidden", "true");
+  spanH.appendChild(spanDies);
+  const LIT_DIES = [[.13, 1, "beat"], [.27, 3, "amber"], [.41, 0, "coral"], [.55, 2, "amber"], [.68, 4, "violet"], [.8, 1, "amber"], [.9, 3, "beat"]];
+  const fitSpan = () => {
+    spanH.style.fontSize = "";
+    const base = parseFloat(getComputedStyle(spanH).fontSize), w = spanH.clientWidth, tw = spanT.getBoundingClientRect().width;
+    if (!w || !tw) return;
+    const fs = Math.min(240, base * w / tw * .998);
+    spanH.style.fontSize = fs.toFixed(2) + "px";
+    const pitch = Math.max(10, Math.round(fs * .2)), rows = Math.max(1, Math.floor(spanH.offsetHeight / pitch)), cols = Math.floor(w / pitch);
+    spanH.style.setProperty("--pitch", pitch + "px");
+    spanDies.innerHTML = LIT_DIES.map(([x, r, c]) => `<i style="--bin:var(--${c});left:${Math.round(x * cols) * pitch + 3}px;top:${Math.min(r, rows - 1) * pitch + 3}px;width:${pitch - 3}px;height:${pitch - 3}px"></i>`).join("");
   };
-  $$(".tray", binsCard).forEach(b => b.addEventListener("click", () => applyBin(b.dataset.bin)));
+  fitSpan();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSpan);
+  let spanRaf = 0;
+  addEventListener("resize", () => { cancelAnimationFrame(spanRaf); spanRaf = requestAnimationFrame(fitSpan); });
 
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" data-bin="${t.stance}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
-  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" data-bin="probe" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
   // a datasheet pinout: each way to reach me is an I/O pin on the package
@@ -1649,9 +1654,9 @@ function buildMap() {
     if (!k) { base += rect.replace("<rect", `<rect class="wm-die"`); continue; }
     if (k.type === "t") {
       const b = BINS[k.t.stance];
-      hits += `<a class="wm-hit" href="#${k.t.id}" data-id="${k.t.id}" data-bin="${k.t.stance}" style="--bin:${b.css}" aria-label="Die ${dieLabel(k.t.die)}: ${k.t.title} Bin: ${b.label}.">${rect}</a>`;
+      hits += `<a class="wm-hit" href="#${k.t.id}" data-id="${k.t.id}" style="--bin:${b.css}" aria-label="Die ${dieLabel(k.t.die)}: ${k.t.title} Bin: ${b.label}.">${rect}</a>`;
     } else {
-      hits += `<g class="wm-probe-die" data-id="probe${k.i}" data-bin="probe" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
+      hits += `<g class="wm-probe-die" data-id="probe${k.i}" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
     }
   }
   svg.innerHTML = `<circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}${hits}
