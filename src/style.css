@@ -134,8 +134,10 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 }
 
 /* ---------------------------------------------------------------- index (wafer map) */
-.index{position:relative;padding-block:clamp(72px,10vw,128px) 64px;overflow-x:clip}
-.index-head{margin-bottom:clamp(32px,5vw,56px)}
+/* the same gap above the heading (from the featured chips, whose strip ends in 30px of padding) as below the subtitle,
+   plus room for the Pips that sit on top of the letters */
+.index{--sec-gap:clamp(56px,7vw,100px);position:relative;padding-block:calc(var(--sec-gap) - 30px + clamp(14px,2.9vw,40px)) 64px;overflow-x:clip}
+.index-head{margin-bottom:var(--sec-gap)}
 /* the heading is sized to span the full width, set on a strip of dies like a row cut from the wafer */
 .span-h{position:relative;isolation:isolate;margin:0;white-space:nowrap;font-size:clamp(46px,12vw,210px);line-height:.84;letter-spacing:-.01em;padding:.09em 0 .07em;text-shadow:0 0 28px rgba(15,12,34,.95)}
 .span-h::before{content:"";position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,var(--ink) 0 3px,transparent 3px) 0 0/var(--pitch,30px) var(--pitch,30px),linear-gradient(180deg,var(--ink) 0 3px,transparent 3px) 0 0/var(--pitch,30px) var(--pitch,30px),var(--ink-3);opacity:.6;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
@@ -147,10 +149,7 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .sc{position:absolute;z-index:1;display:none;pointer-events:none}
 .sc.on{display:block}
 .sc .pip{width:100%;height:auto;filter:drop-shadow(0 3px 5px rgba(6,4,18,.55))}
-.sc-peek{z-index:-1}
-.sc-peek .pip{filter:none}
-.sc-gripl svg,.sc-gripr svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 1px 2px rgba(6,4,18,.6))}
-.sc-nap{transform:rotate(11deg)}
+.sc-bed{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 5px rgba(6,4,18,.55))}
 .sc-z{position:absolute;font-family:var(--label);font-weight:800;font-style:normal;line-height:1;color:#b8a6ff;text-shadow:0 0 10px rgba(160,139,255,.7);opacity:0;animation:sc-z 3.6s ease-in-out infinite}
 .sc-z:nth-of-type(2){animation-delay:1.2s}
 .sc-z:nth-of-type(3){animation-delay:2.4s}
@@ -163,15 +162,16 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 
 /* the subtitle hangs off the heading in three columns, each starting under a word: Theses / on the / wafer */
 .index-sub{display:grid;grid-template-columns:var(--c1,36.6%) var(--c2,33.9%) minmax(0,1fr)}
-.sub-c{position:relative;margin:0;padding:clamp(20px,2.2vw,28px) clamp(16px,2.4vw,32px) 0 0;color:var(--dim);font-size:clamp(16px,1.35vw,18.5px);line-height:1.5;text-wrap:pretty}
+.sub-c{position:relative;margin:0;padding:clamp(20px,2.2vw,28px) clamp(16px,2.4vw,32px) 0 0;color:var(--dim);font-size:clamp(16px,1.3vw,18.5px);line-height:1.5;text-wrap:balance}
 .sub-c::before{content:"";position:absolute;left:0;top:0;width:1px;height:clamp(12px,1.4vw,18px);background:linear-gradient(var(--tick),transparent)}
 .sub-c::after{content:"";position:absolute;left:-2.5px;top:-3px;width:6px;height:6px;border-radius:1px;background:var(--tick);box-shadow:0 0 10px var(--tick)}
 .sub-c:nth-child(1){--tick:var(--amber)}
 .sub-c:nth-child(2){--tick:var(--violet)}
 .sub-c:nth-child(3){--tick:var(--beat);padding-right:0}
 .sub-k{display:block;margin-bottom:6px;font-family:var(--label);font-weight:700;font-size:13px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
-.legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding-top:2px}
-@media (max-width:760px){
+.legend{display:grid;grid-template-columns:repeat(3,max-content);gap:4px 18px;padding-top:2px}
+.legend .bin{line-height:1.5}
+@media (max-width:959px){
   .index-sub{grid-template-columns:1fr;gap:0}
   .sub-c{padding:16px 0 0 18px}
   .sub-c::before{top:0;height:100%;background:linear-gradient(var(--tick),transparent 85%)}

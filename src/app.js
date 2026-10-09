@@ -1578,20 +1578,21 @@ function renderHome() {
   spanH.appendChild(spanDies);
   const LIT_DIES = [[.13, 1, "beat"], [.27, 3, "amber"], [.41, 0, "coral"], [.55, 2, "amber"], [.68, 4, "violet"], [.8, 1, "amber"], [.9, 3, "beat"]];
 
-  // Pips hanging around on the letters: Hard hat sits on the T like a steel beam, Captain squeezes into the gap
-  // between "on" and "the", a probe Pip dozes against the "f", and Dealmaker lifts off the end of the "r" on its jetpack
+  // Pips hanging around on the letters: Hard hat sits on the T like a steel beam, a probe Pip sleeps on its back
+  // on the floor in front of "on the", and Dealmaker lifts off the end of the "r" on its jetpack
   const cast = {};
   const castEl = (name, html) => {
     const el = document.createElement("span");
     el.className = "sc sc-" + name; el.setAttribute("aria-hidden", "true"); el.innerHTML = html;
     spanH.appendChild(el); return (cast[name] = el);
   };
-  const FIN_TIP = `<svg viewBox="0 0 10 12"><ellipse cx="5" cy="6" rx="4.6" ry="5.6" fill="#7d63f7" stroke="#d6c9ff" stroke-opacity=".6" stroke-width=".7"/><ellipse cx="3.6" cy="4.2" rx="1.6" ry="2.2" fill="#b7a6ff" opacity=".7"/></svg>`;
   castEl("sit", pip({ pose: "sit", acc: "hardhat", bare: true }));
-  castEl("peek", pip({ pose: "idle", acc: "captain", bare: true }));
-  castEl("gripl", FIN_TIP);
-  castEl("gripr", FIN_TIP);
-  castEl("nap", pip({ pose: "doze", bare: true }) + `<i class="sc-z">z</i><i class="sc-z">z</i><i class="sc-z">z</i>`);
+  // the sleeper: lying back on a pillow on the floor line, asleep
+  const sleeper = pip({ pose: "sleep", bare: true }).replace('<svg class="pip ', '<svg x="-66" y="-69" width="132" height="138" overflow="visible" class="sc-pip ');
+  castEl("nap", `<svg class="sc-bed" viewBox="-80 -70 150 120" aria-hidden="true">
+    <g transform="rotate(-14 -52 24)"><path d="M-75 6 Q-52 13 -29 6 Q-23 24 -29 42 Q-52 35 -75 42 Q-81 24 -75 6 Z" fill="#cfc6f5" stroke="#9b83ff" stroke-width="1.4" stroke-linejoin="round"/><path d="M-70 12 Q-52 17 -34 12" stroke="#fff" stroke-opacity=".75" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M-52 16 V34" stroke="#9b83ff" stroke-opacity=".5" stroke-width="1" stroke-dasharray="2 2.4"/></g>
+    <g transform="translate(6 -4) rotate(-72)">${sleeper}</g>
+  </svg><i class="sc-z">z</i><i class="sc-z">z</i><i class="sc-z">z</i>`);
   castEl("burn", "");
   // longer exhaust than the stock jetpack, so the flames reach the letter it is lifting off
   const JET_FLAMES = [0.5, 99.5].map((x, i) => `<path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 7} 72 Q${x} 168 ${x + 7} 72 Z" fill="#ffb23f" opacity=".9"/><path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 3.4} 72 Q${x} 142 ${x + 3.4} 72 Z" fill="#fff4d6"/>`).join("");
@@ -1637,30 +1638,19 @@ function renderHome() {
       const W = Math.max(32, fs * .44), u = W / 132, tTop = topOf(0), bar = edge(0, baseline - tTop - fs * .02);
       if (bar) place(cast.sit, (bar[0] + bar[1]) / 2 + W * .06 - 66 * u, tTop + 1 - 117 * u, W, W / box);
     }
-    // 2. Captain squeezes into the gap between "on" and "the", sides tucked behind both letters, fins on the edges
-    if (fs >= 84) {
-      const nR = edge(8, xh * .4), tL = edge(10, xh * .4);
-      if (nR && tL) {
-        const gap = tL[0] - nR[1], cx = (nR[1] + tL[0]) / 2, u = gap * 1.2 / 88, W = 132 * u, top = baseline + fs * .01 - 132.5 * u;
-        place(cast.peek, cx - 66 * u, top, W, W / box);
-        const fw = Math.max(6, W * .1), fy = top + 70 * u;
-        place(cast.gripl, nR[1] - fw * .5, fy, fw, fw * 1.2);
-        place(cast.gripr, tL[0] - fw * .5, fy + 6 * u, fw, fw * 1.2);
-      }
-    }
-    // 3. a probe Pip dozes on top of "wa", slumped against the f
+    // 2. the probe Pip lies back on a pillow on the floor line in front of "on the", head under the gap so its z's rise between the words
     {
-      const W = Math.max(30, fs * .42), u = W / 132, fL = edge(16, xh * .55), ledge = Math.min(topOf(14), topOf(15));
-      if (fL) {
-        cast.nap.style.transformOrigin = `${(66 * u).toFixed(1)}px ${(117 * u).toFixed(1)}px`;
-        place(cast.nap, fL[0] - 110 * u - 15 * u, ledge + 1 - 117 * u, W, W / box);
+      const u = Math.max(.23, fs * .0036), nR = edge(8, xh * .4), tL = edge(10, xh * .4);
+      if (nR && tL) {
+        const gapX = (nR[1] + tL[0]) / 2, floor = spanH.offsetHeight - 1;
+        place(cast.nap, gapX - 56 * u, floor - 120 * u, 150 * u, 120 * u);
         $$(".sc-z", cast.nap).forEach((z, i) => {
-          z.style.fontSize = Math.max(12, fs * (.1 + i * .028)).toFixed(1) + "px";
-          z.style.left = (92 * u + i * 12 * u).toFixed(1) + "px"; z.style.top = (4 * u - i * 22 * u).toFixed(1) + "px";
+          z.style.fontSize = Math.max(11, fs * (.09 + i * .03)).toFixed(1) + "px";
+          z.style.left = ((28 + i * 8) * u).toFixed(1) + "px"; z.style.top = ((-6 - i * 22) * u).toFixed(1) + "px";
         });
       }
     }
-    // 4. Dealmaker lifts off the arm of the last "r" on its jetpack, off the end of the line
+    // 3. Dealmaker lifts off the arm of the last "r" on its jetpack, off the end of the line
     {
       const W = Math.max(30, fs * .4), u = W / 132, rTop = topOf(18), arm = edge(18, xh - fs * .03);
       const room = document.documentElement.clientWidth - hr.right;
