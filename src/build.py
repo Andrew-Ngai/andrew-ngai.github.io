@@ -1,7 +1,6 @@
-"""Build index.html and monitor/index.html from the files in src/.
+"""Build index.html from the files in src/.
 
-Run from anywhere: python3 src/build.py
-The Buildout Monitor reads monitor/data.json when the page loads, so data updates need no build."""
+Run from anywhere: python3 src/build.py"""
 import pathlib, re
 
 SRC = pathlib.Path(__file__).resolve().parent
@@ -46,14 +45,3 @@ head_tail = (SRC / "head-tail.html").read_text()
 index = f"{head}<style>\n{css}\n</style>{head_tail}{body}\n<script>\n{js}\n</script>\n</body>\n</html>\n"
 (OUT / "index.html").write_text(index)
 print("built", (OUT / "index.html").stat().st_size, "bytes")
-
-# Buildout Monitor page (its numbers live in monitor/data.json)
-MON = SRC / "monitor"
-mout = OUT / "monitor"
-mout.mkdir(exist_ok=True)
-us = (MON / "us.json").read_text().strip()
-mjs = strip_js((MON / "monitor.js").read_text()).replace("/*__US__*/null", us)
-mcss = strip_css((MON / "monitor.css").read_text())
-page = (MON / "page.html").read_text().replace("/*__CSS__*/", mcss).replace("/*__JS__*/", mjs)
-(mout / "index.html").write_text(page)
-print("built monitor", (mout / "index.html").stat().st_size, "bytes")
