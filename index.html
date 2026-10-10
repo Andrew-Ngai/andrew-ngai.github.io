@@ -49,7 +49,7 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;overflow-x:clip;background:var(--ink)}
+html{scroll-behavior:smooth;overflow-x:clip;background:var(--ink);-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:19px;line-height:1.58;-webkit-font-smoothing:antialiased;overflow-x:clip;font-optical-sizing:auto}
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -487,7 +487,9 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .frame{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .6s var(--ease);pointer-events:none}
 .viz[data-step="1"] .f1,.viz[data-step="2"] .f2,.viz[data-step="3"] .f3{opacity:1;transform:none;pointer-events:auto}
 .frame svg{width:100%;height:100%;overflow:visible;display:block;min-height:0}
-.cap{font-family:var(--label);font-size:16px;line-height:1.3;color:var(--dim);margin:0}
+.cap{position:relative;z-index:2;font-family:var(--label);font-size:16px;line-height:1.3;color:var(--dim);margin:0}
+.pkg-wrap > div:last-child{position:relative;z-index:2}
+@media (max-width:860px){.viz .cap{background:var(--ink);box-shadow:0 -6px 6px -2px var(--ink)}}
 .viz text{font-family:var(--label);fill:var(--dim)}
 .viz .t-strong{fill:var(--paper);font-weight:700}
 .viz .ax{stroke:var(--rule);stroke-width:1}
@@ -3134,6 +3136,7 @@ function openMemo(id) {
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
   fitViz(memo);
+  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => !memo.hidden && fitViz(memo));
   if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
   hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
@@ -3145,6 +3148,7 @@ function openMemo(id) {
     if (s === step) return;
     step = s;
     if (viz) viz.dataset.step = s;
+    setTimeout(() => !memo.hidden && fitViz(memo), 650);
     prog.forEach((p, i) => p.classList.toggle("on", i < s));
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
@@ -3344,7 +3348,8 @@ void main(){
   float d=length(uv);
   vec3 col=vec3(.059,.047,.133);
   float dw=d*uDist/1.75;
-  col+=vec3(.17,.10,.38)*exp(-dw*dw*.162)*mix(.42,.85,smoothstep(.55,1.,uRes.x/uRes.y));
+  float land=smoothstep(.55,1.,uRes.x/uRes.y),glow=exp(-dw*dw*.162);
+  col+=vec3(.17,.10,.38)*glow*mix(.2,.85,land)+vec3(.035,.018,0.)*glow*(1.-land);
   col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6);
   vec2 gp=gl_FragCoord.xy/uRes.y*30.;
   col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1);

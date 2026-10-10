@@ -2018,6 +2018,7 @@ function openMemo(id) {
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
   fitViz(memo);
+  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => !memo.hidden && fitViz(memo));
   if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
   hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
@@ -2030,6 +2031,8 @@ function openMemo(id) {
     if (s === step) return;
     step = s;
     if (viz) viz.dataset.step = s;
+    // the caption (and anything a step adds) can change height with the step, so refit once it lands
+    setTimeout(() => !memo.hidden && fitViz(memo), 650);
     prog.forEach((p, i) => p.classList.toggle("on", i < s));
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
@@ -2254,7 +2257,8 @@ void main(){
   float d=length(uv);
   vec3 col=vec3(.059,.047,.133);
   float dw=d*uDist/1.75;
-  col+=vec3(.17,.10,.38)*exp(-dw*dw*.162)*mix(.42,.85,smoothstep(.55,1.,uRes.x/uRes.y));
+  float land=smoothstep(.55,1.,uRes.x/uRes.y),glow=exp(-dw*dw*.162);
+  col+=vec3(.17,.10,.38)*glow*mix(.2,.85,land)+vec3(.035,.018,0.)*glow*(1.-land);
   col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6);
   vec2 gp=gl_FragCoord.xy/uRes.y*30.;
   col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1);
