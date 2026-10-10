@@ -2255,13 +2255,15 @@ void main(){
   mat3 R=ry(yaw)*rx(-tilt)*rz(uTime*.03);
   vec3 ex=R*vec3(1.,0.,0.),ey=R*vec3(0.,1.,0.),n=R*vec3(0.,0.,1.);
   float d=length(uv);
-  vec3 col=vec3(.059,.047,.133);
   float dw=d*uDist/1.75;
   float land=smoothstep(.55,1.,uRes.x/uRes.y),glow=exp(-dw*dw*.162);
-  col+=vec3(.17,.10,.38)*glow*mix(.2,.85,land)+vec3(.035,.018,0.)*glow*(1.-land);
-  col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6);
+  // phones: a near-black backdrop behind the wafer, easing into the page ink lower down; wide screens keep the purple glow
+  vec3 phoneBg=mix(vec3(.0476,.0373,.1145),vec3(.026,.025,.034),smoothstep(.4,.72,gl_FragCoord.y/uRes.y));
+  vec3 col=mix(phoneBg,vec3(.059,.047,.133),land);
+  col+=vec3(.17,.10,.38)*glow*.85*land;
+  col+=vec3(.9,.55,.15)*.06*exp(-length(uv+uCenter-vec2(-.9,.55))*1.6)*land;
   vec2 gp=gl_FragCoord.xy/uRes.y*30.;
-  col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1);
+  col+=vec3(.6,.55,1.)*smoothstep(.08,0.,length(fract(gp)-.5))*.05*exp(-d*1.1)*mix(.35,1.,land);
   float dn=dot(rd,n);
   if(abs(dn)>1e-4){
     float tt=-dot(ro,n)/dn;
