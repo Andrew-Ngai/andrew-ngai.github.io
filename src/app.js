@@ -1596,7 +1596,8 @@ function renderHome() {
   castEl("burn", "");
   // longer exhaust than the stock jetpack, so the flames reach the letter it is lifting off
   const JET_FLAMES = [0.5, 99.5].map((x, i) => `<path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 7} 72 Q${x} 168 ${x + 7} 72 Z" fill="#ffb23f" opacity=".9"/><path class="pip-flame" style="animation-delay:${i * .12}s" d="M${x - 3.4} 72 Q${x} 142 ${x + 3.4} 72 Z" fill="#fff4d6"/>`).join("");
-  castEl("jet", `<svg class="pip sc-flames" viewBox="-16 -22 132 138" aria-hidden="true">${JET_FLAMES}</svg>` + pip({ pose: "float", acc: "jet", bare: true }));
+  // the flames go inside Pip's own body group so they swing with it
+  castEl("jet", pip({ pose: "float", acc: "jet", bare: true }).replace('<g class="pip-all">', `<g class="pip-all"><g class="sc-flames">${JET_FLAMES}</g>`));
 
   // read a glyph's ink edges at any height above the baseline by drawing it once on a canvas
   const gctx = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
@@ -1655,9 +1656,9 @@ function renderHome() {
       const W = Math.max(30, fs * .4), u = W / 132, rTop = topOf(18), arm = edge(18, xh - fs * .03);
       const room = document.documentElement.clientWidth - hr.right;
       const rL = edge(18, xh * .5);
-      if (arm && rL && room > arm[1] - hr.width + 50 * u + 8) {
-        // one jet over the r's stem, the other over its arm
-        const cx = (rL[0] + arm[1]) / 2 + 3 * u;
+      // one jet over the r's stem, the other over its arm; the jetpack's right edge is 56 units right of center
+      const cx = arm && rL ? (rL[0] + arm[1]) / 2 + 3 * u : 0;
+      if (arm && rL && cx + 60 * u - hr.width < room - 2) {
         place(cast.jet, cx - 66 * u, rTop - fs * .03 - 132.5 * u, W, W / box);
         place(cast.burn, rL[0] - 16 * u, rTop - 8 * u, arm[1] - rL[0] + 32 * u, 18 * u);
       }
@@ -1705,7 +1706,7 @@ function renderHome() {
   $("#contactLinks").innerHTML = `
     <div class="pinout-head"><span>Pinout</span><span>AN-01 · ${pins.length} I/O<span class="po-extra"> · all pins open</span></span></div>
     <div class="pinout-body" style="--n:${pins.length}">
-      <div class="pkg" aria-hidden="true">
+      <div class="io-pkg" aria-hidden="true">
         <span class="pkg-id">AN-01</span>
         <span class="pkg-name">${CONFIG.name}<small>2640 · Signal grade</small></span>
         <svg class="pkg-beat" viewBox="0 0 600 40" preserveAspectRatio="none"><path class="base" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/><path class="run" d="M0 20H210l12-12 10 26 12-30 12 26 8-10H600"/></svg>
@@ -1964,6 +1965,50 @@ function hideStuckMovers(root) {
   }), 700);
 }
 
+// On a short screen, a frame built from HTML rather than SVG can be taller than its slot and spill onto its caption.
+// Shrink it to fit, the way an SVG chart already does: lay it out a little wider, then scale it down to the slot.
+function fitFrames(root) {
+  $$(".viz .frame", root).forEach(fr => {
+    const body = fr.firstElementChild;
+    if (!body || body.matches("svg, .cap")) return;
+    ["transform", "transform-origin", "width", "height", "align-self"].forEach(k => body.style.removeProperty(k));
+    const slot = body.getBoundingClientRect().height;
+    const natural = () => {
+      body.style.height = "auto"; body.style.alignSelf = "start";
+      const h = body.getBoundingClientRect().height;
+      body.style.removeProperty("height"); body.style.removeProperty("align-self");
+      return h;
+    };
+    let need = natural();
+    if (!slot || need <= slot + 1) return;
+    let s = 1;
+    for (let k = 0; k < 4; k++) {
+      s = Math.max(.5, Math.min(1, slot / need));
+      body.style.width = (100 / s).toFixed(3) + "%";
+      need = natural();
+    }
+    s = Math.max(.5, Math.min(1, slot / need));
+    body.style.width = (100 / s).toFixed(3) + "%";
+    body.style.height = (slot / s).toFixed(1) + "px";
+    body.style.transformOrigin = "0 0";
+    body.style.transform = `scale(${s.toFixed(4)})`;
+  });
+}
+// The 3D package (memory thesis) on a phone: scale it so the whole thing, stacks fully risen, fits above its key and caption.
+// At scale 1 the tilted package spans 312px across, 192px above its center (risen stacks) and 81px below.
+function fitPkg(root) {
+  const pkg = $(".pkg", root), rot = $(".pkg-rot", root);
+  if (!pkg || !rot) return;
+  pkg.style.removeProperty("padding-top"); rot.style.removeProperty("--ps");
+  if (innerWidth > 860) return;
+  const ps = Math.max(.3, Math.min(.62, pkg.clientWidth / 312 * .92, pkg.clientHeight / 273 * .88));
+  rot.style.setProperty("--ps", ps.toFixed(3));
+  pkg.style.paddingTop = (111 * ps).toFixed(1) + "px";
+}
+const fitViz = root => { fitFrames(root); fitPkg(root); };
+let fitRaf = 0;
+addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => fitViz(memo)); });
+
 function openMemo(id) {
   const t = byId[id];
   if (!t) return;
@@ -1972,6 +2017,7 @@ function openMemo(id) {
   memo.innerHTML = memoHTML(t);
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
+  fitViz(memo);
   if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
   hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
