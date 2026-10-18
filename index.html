@@ -431,7 +431,7 @@ html.paused .die-echo.land{animation:none}
 .slides::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;overflow-y:auto;padding:clamp(28px,6vh,72px) var(--gutter) 40px;display:flex;flex-direction:column;gap:24px}
 .slide-k{font-family:var(--label);font-weight:700;font-size:17px;color:var(--bin);letter-spacing:.03em}
-.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.2vw,62px);line-height:1;max-width:22ch;text-wrap:balance}
+.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.2vw,62px);line-height:1;max-width:min(100%,26ch);text-wrap:balance}
 .sen{display:inline-block;text-wrap:balance}
 .slide p{max-width:36rem}
 .ref{display:grid;gap:2px;max-width:38rem;padding:14px 18px 16px;background:var(--ink-2);border:1px solid var(--rule);position:relative}
@@ -439,11 +439,14 @@ html.paused .die-echo.land{animation:none}
 .ref .ref-k{font-family:var(--label);font-weight:600;font-size:15px;color:var(--dim)}
 .ref a,.ref span.ref-src{font-family:var(--label);font-weight:700;font-size:20px;line-height:1.25;text-decoration:none;color:var(--paper)}
 .ref a:hover{text-decoration:underline;text-decoration-color:var(--bin)}
-blockquote.pull{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,50px);line-height:1.02;max-width:19ch;color:var(--paper);text-wrap:balance}
-blockquote.pull.q-m{font-size:clamp(26px,2.8vw,40px);max-width:23ch}
-blockquote.pull.q-l{font-size:clamp(23px,2.3vw,34px);line-height:1.06;max-width:28ch}
-blockquote.pull::before{content:"\201C";color:var(--bin)}
-blockquote.pull::after{content:"\201D";color:var(--bin)}
+.ph{display:inline-block;max-width:100%}
+.ln{white-space:nowrap}
+.ln.wide{white-space:normal}
+blockquote.pull{position:relative;margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,50px);line-height:1.02;max-width:min(100%,40rem);color:var(--paper);text-wrap:balance}
+blockquote.pull.q-m{font-size:clamp(26px,2.8vw,40px)}
+blockquote.pull.q-l{font-size:clamp(23px,2.3vw,34px);line-height:1.06}
+blockquote.pull .qo{position:absolute;right:100%;margin-right:.04em;color:var(--bin)}
+blockquote.pull .qc{color:var(--bin)}
 .takes{list-style:none;margin:0;padding:0;display:grid;gap:22px;counter-reset:t;max-width:38rem}
 .takes li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:2px 14px;font-size:18px;color:var(--dim)}
 .takes li::before{counter-increment:t;content:counter(t);font-family:var(--display);font-weight:900;font-size:42px;line-height:.85;color:var(--bin);grid-row:span 2}
@@ -467,6 +470,7 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
   .viz-pane{order:-1;border-left:0;border-bottom:1px solid var(--rule);padding:14px var(--gutter)}
   .memo-prog{display:none}
   .slide{padding-top:24px}
+  .slide h2{font-size:clamp(30px,8.9vw,44px)}
 }
 .viz{position:relative;width:100%;height:100%;max-width:560px;max-height:600px}
 .frame{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .6s var(--ease);pointer-events:none}
@@ -479,7 +483,7 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .viz .t-strong{fill:var(--paper);font-weight:700}
 .viz .ax{stroke:var(--rule);stroke-width:1}
 .viz .gridl{stroke:var(--grid);stroke-width:1}
-.claim{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.8vw,40px);line-height:1.04;max-width:22ch;color:var(--paper);text-wrap:balance}
+.claim{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.8vw,40px);line-height:1.04;max-width:min(100%,40rem);color:var(--paper);text-wrap:balance}
 .heat-rise{animation:heat-rise 2.2s ease-in infinite}
 @keyframes heat-rise{0%{opacity:.95;transform:translateY(10px)}100%{opacity:0;transform:translateY(-14px)}}
 .heat-path{animation:heat-path 1s linear infinite}
@@ -1228,10 +1232,11 @@ const THESES = [
   {
     id: "automate", die: [0, -5], stance: "agree",
     title: "Automate the researcher, not the economy.",
+    h2: "Automate the researcher, | not the economy.",
     short: "Automate the researcher",
     hook: "The fastest path to transformative AI runs through one job. The labs are already on it.",
     ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. II, “From AGI to Superintelligence” (June 2024)", href: SRC.saII },
-    signal: `<blockquote class="pull">We don’t need to automate everything—just AI research.</blockquote>
+    signal: `<blockquote class="pull">We don’t need | to automate everything—|just AI research.</blockquote>
       <p>In 2024 that read like science fiction. On September 6, 2026, OpenAI said it had reached its goal of an “automated research intern” on schedule, and that its research org now logs 3.1 agent-workdays for every human workday.</p>`,
     takes: [
       ["The loop is closing at the intern level.", "Agents already run multi-day, well-scoped research tasks. Getting from intern to researcher is a judgment problem, not a labor problem."],
@@ -1246,10 +1251,11 @@ const THESES = [
   {
     id: "agent", die: [3, 1], stance: "build",
     title: "An agent is a brain with a body.",
+    h2: "An agent is | a brain with a body.",
     short: "A brain with a body",
     hook: "The model already knows what you need for the camping trip. The harness decides whether it can go buy it.",
     ref: { label: "Anthropic, “Building effective agents” (December 2024), and its guide to harnesses for long-running agents (November 2025)", href: SRC.bea },
-    signal: `<blockquote class="pull">…systems where LLMs dynamically direct their own processes and tool usage.</blockquote>
+    signal: `<blockquote class="pull">…systems where LLMs | dynamically direct | their own processes | and tool usage.</blockquote>
       <p>That’s Anthropic’s definition of an agent, and it has two halves: a model that decides, and everything around it that lets the decision happen. The model is the brain. The harness, with its tools, memory, permissions and payments, is the body.</p>`,
     takes: [
       ["The brain is ahead of the body.", "Ask any frontier model what to pack for a camping trip and you’ll get a good list. Buying it is the hard part: OpenAI launched in-chat checkout in September 2025 and retired it in March 2026. Even Anthropic’s guide to long-running agents is mostly about the body: progress notes, git and a checklist so each session knows what the last one did."],
@@ -1264,10 +1270,11 @@ const THESES = [
   {
     id: "weights", die: [-1, 5], stance: "agree",
     title: "Weights are the new crown jewels.",
+    h2: "Weights are | the new crown jewels.",
     short: "Weights are the crown jewels",
     hook: "A frontier model is a billion-dollar training run boiled down to one file. Copy the file and you skip the race.",
     ref: { label: "RAND, “Securing AI Model Weights” (2024)", href: SRC.rand },
-    signal: `<blockquote class="pull">Achieving SL5 is currently not possible.</blockquote>
+    signal: `<blockquote class="pull">Achieving SL5 | is currently not possible.</blockquote>
       <p>RAND ranks the security of model weights in five levels. Level 5 is the one that stops “top-priority operations conducted by the world’s most capable nation-states.” AI labs told RAND that reaching it would take at least five years and the support of the national security community.</p>
       <p>The most valuable file in tech can’t yet be defended against the people most likely to want it.</p>`,
     takes: [
@@ -1283,10 +1290,11 @@ const THESES = [
   {
     id: "ooms", die: [2, 7], stance: "build",
     title: "The computer is now the building.",
+    h2: "The computer is | now the building.",
     short: "The computer is the building",
     hook: "Aschenbrenner counts the OOMs to AGI. I count where they physically land, from chip to campus.",
     ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. I, “From GPT-4 to AGI: Counting the OOMs” (June 2024)", href: SRC.saI },
-    signal: `<blockquote class="pull">AGI by 2027 is strikingly plausible.</blockquote>
+    signal: `<blockquote class="pull">AGI by 2027 | is strikingly plausible.</blockquote>
       <p>His method is to count orders of magnitude (OOMs) of effective compute. GPT-2 (2019) was a preschooler and GPT-4 (2023) a smart high schooler, about 4.5 to 6 OOMs apart. He expects another jump that size by 2027, and treats AGI as the starting line, not the finish line.</p>`,
     takes: [
       ["Every OOM has to live somewhere.", "Compute comes in five nested levels: a chip (about 1 kW), a server (14.3 kW for eight Blackwell GPUs), a rack (about 120 kW for Nvidia’s GB200 NVL72), a cluster, and a campus (Stargate Abilene is planned for 1.2 GW). Chip to campus is about six OOMs of power."],
@@ -1301,6 +1309,7 @@ const THESES = [
   {
     id: "molecules", die: [-6, 6], stance: "build",
     title: "Molecules are easy. Machines are hard.",
+    h2: "Molecules are easy. Machines are hard.",
     short: "Molecules are easy",
     hook: "Aschenbrenner was right that power binds. He was early about where it binds.",
     ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. IIIa, “Racing to the Trillion-Dollar Cluster” (June 2024)", href: SRC.saIIIa },
@@ -1319,10 +1328,11 @@ const THESES = [
   {
     id: "bloom", die: [-9, -1], stance: "build",
     title: "The power plant that ships like a server.",
+    h2: "The power plant | that ships like a server.",
     short: "Power that ships like servers",
     hook: "Bloom Energy’s fuel cells skip the turbine queue. Nvidia’s move to DC power could let them skip the transformer too.",
     ref: { label: "NVIDIA, “800 VDC Architecture Will Power the Next Generation of AI Factories” (May 2025)", href: SRC.nv800 },
-    signal: `<blockquote class="pull">Repeated AC/DC transformations… are not energy efficient.</blockquote>
+    signal: `<blockquote class="pull">Repeated AC/DC | transformations… | are not energy efficient.</blockquote>
       <p>That’s Nvidia explaining why its racks move to 800-volt DC with Kyber in 2027. Today, power reaches a data center as AC, gets stepped down and converted several times, and arrives at the chips as DC.</p>
       <p>A fuel cell makes DC in the first place. Bloom Energy builds them, and it already wins on speed.</p>`,
     takes: [
@@ -1338,6 +1348,7 @@ const THESES = [
   {
     id: "fleet", die: [-8, 3], stance: "push",
     title: "A fleet, not a cluster.",
+    h2: "A fleet, | not a cluster.",
     short: "A fleet, not a cluster",
     hook: "The trillion-dollar scale is on schedule. The single giant cluster isn’t.",
     ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. IIIa, the trillion-dollar cluster ladder (June 2024)", href: SRC.saIIIa },
@@ -1356,10 +1367,11 @@ const THESES = [
   {
     id: "gpulife", die: [1, -9], stance: "push",
     title: "Old GPUs don’t die. They move down the menu.",
+    h2: "Old GPUs don’t die. They move | down the menu.",
     short: "Old GPUs move down the menu",
     hook: "Burry is right that the frontier moves every year. The cash doesn’t stop when a GPU leaves it.",
     ref: { label: "Michael Burry on X (November 2025): hyperscalers will understate depreciation by about $176 billion over 2026–2028", href: SRC.burry },
-    signal: `<blockquote class="pull">Understating depreciation by extending useful life of assets artificially boosts earnings…</blockquote>
+    signal: `<blockquote class="pull">Understating depreciation | by extending | useful life of assets | artificially boosts earnings…</blockquote>
       <p>Michael Burry posted that in November 2025. His case: hyperscalers depreciate GPU servers over five to six years when Nvidia’s chips run on a two- to three-year product cycle, so they will understate 2026–2028 depreciation by about $176 billion. In early October, he compared Nvidia’s defense of long GPU lives to the 1960s computer-leasing bubble: “We have all been here before.”</p>
       <p>Nvidia keeps making his point for him. It says Vera Rubin, ramping now, gets 10 times the throughput per megawatt of Blackwell. When power is the bottleneck, that sounds like a death sentence for every older chip.</p>`,
     takes: [
@@ -1375,10 +1387,11 @@ const THESES = [
   {
     id: "saas", die: [6, 4], stance: "push",
     title: "AI eats the seat, not the software.",
+    h2: "AI eats the seat, | not the software.",
     short: "The seat, not the software",
     hook: "The SaaSpocalypse priced software like a screen. It’s really a record and a rulebook, and agents need both.",
     ref: { label: "Satya Nadella on the BG2 podcast (December 2024): business apps are “probably where they’ll all collapse… in the agent era”", href: SRC.saasNadella },
-    signal: `<blockquote class="pull">…business applications… that’s probably where they’ll all collapse, right, in the agent era.</blockquote>
+    signal: `<blockquote class="pull">…business applications… | that’s probably where | they’ll all collapse, | right, in the agent era.</blockquote>
       <p>Satya Nadella said that in December 2024. In late January 2026, Anthropic released plug-ins that let its Claude Cowork agent do legal, sales and data work, and a sell-off in software stocks deepened. On February 3, Thomson Reuters fell as much as 18% in its worst day on record, and RELX had its biggest drop since 1988. By April, the S&amp;P 500 software and services index was down more than 26% from late January. Wall Street called it the SaaSpocalypse.</p>
       <p>On October 6, the same index hit its highest level since November 2025.</p>`,
     takes: [
@@ -1394,6 +1407,7 @@ const THESES = [
   {
     id: "neocloud", die: [-2, -8], stance: "build",
     title: "The clouds are renting from the neoclouds.",
+    h2: "The clouds are renting | from the neoclouds.",
     short: "Clouds renting from neoclouds",
     hook: "Nebius rents out GPU-hours for less than the big clouds charge, and the big clouds are its biggest customers.",
     ref: { label: "Microsoft’s $17.4 billion, five-year GPU contract with Nebius (September 2025)", href: SRC.nbMsft },
@@ -1412,10 +1426,11 @@ const THESES = [
   {
     id: "builders", die: [-7, -6], stance: "build",
     title: "Back the builders. Survive the bust.",
+    h2: "Back the builders. Survive the bust.",
     short: "Back the builders",
     hook: "Aschenbrenner turned his paper into a fund with the simplest possible thesis. A bust can’t break it. Leverage can.",
     ref: { label: "Situational Awareness LP, Leopold Aschenbrenner’s fund, as disclosed in its 13F filings (2025–2026)", href: SRC.f13 },
-    signal: `<p class="claim">If AI keeps scaling, someone has to build it. Sometimes the simple thesis is the best one.</p>
+    signal: `<p class="claim">If AI keeps scaling, | someone has to build it. Sometimes the simple thesis | is the best one.</p>
       <p>That’s the trade Aschenbrenner’s fund makes in public. Its disclosed US positions went from $255 million in its first filing to about $20 billion in August 2026, led by memory makers SanDisk and Micron, with builders like Bloom Energy, CoreWeave and IREN across its 2026 filings. By August, its large semiconductor hedges were gone.</p>`,
     takes: [
       ["You don’t have to pick the winning lab.", "Every lab’s scaling plan buys the same four things: chips, memory, datacenters and power. Owning the builders is a bet on scaling itself."],
@@ -1431,6 +1446,7 @@ const THESES = [
   {
     id: "moat", die: [9, 0], stance: "build",
     title: "The slowdown is the moat.",
+    h2: "The slowdown | is the moat.",
     short: "The slowdown is the moat",
     hook: "Moore’s law got harder. That’s why so few companies can still play.",
     ref: { label: "Chris Miller, Chip War: The Fight for the World’s Most Critical Technology (2022)", href: SRC.chipwar },
@@ -1449,6 +1465,7 @@ const THESES = [
   {
     id: "memory", die: [-5, -3], stance: "original",
     title: "The bottleneck moved below the GPU.",
+    h2: "The bottleneck moved | below the GPU.",
     short: "Below the GPU",
     hook: "The GPU is the brand. Memory is the moat.",
     ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q2 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
@@ -1467,6 +1484,7 @@ const THESES = [
   {
     id: "backend", die: [5, -7], stance: "build",
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
+    h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
     short: "The back end is the bottleneck",
     hook: "A finished wafer isn’t a chip yet. The steps after the fab now decide how many AI chips ship, and where they’re made.",
     ref: { label: "Chris Miller, Chip War (2022), ch. 10, “Transistor Girls”", href: SRC.chipwar },
@@ -1485,10 +1503,11 @@ const THESES = [
   {
     id: "heat", die: [-1, -2], stance: "build",
     title: "Going 3D saved Moore’s law. Heat is the bill.",
+    h2: "Going 3D | saved Moore’s law. Heat is the bill.",
     short: "Heat is the bill",
     hook: "We beat the slowdown by stacking transistors upward. Moore’s own answer to heat assumed chips stay flat.",
     ref: { label: "Gordon Moore, “Cramming more components onto integrated circuits,” Electronics (1965), the section on heat", href: SRC.moore },
-    signal: `<blockquote class="pull">…a surface available for cooling close to each center of heat generation.</blockquote>
+    signal: `<blockquote class="pull">…a surface available for cooling | close to each center | of heat generation.</blockquote>
       <p>That was Moore’s 1965 answer to whether chips could shed their heat: they’re flat, so every hot spot sits right under a surface. For decades it held. Then shrinking stopped paying for itself, and the industry went vertical.</p>
       <p>Every layer we stack takes away the surface Moore was counting on.</p>`,
     takes: [
@@ -1504,6 +1523,7 @@ const THESES = [
   {
     id: "screentime", die: [-3, 8], stance: "original",
     title: "The best consumer AI will give you your time back.",
+    h2: "The best consumer AI | will give you | your time back.",
     short: "Give people time back",
     hook: "As AI takes over work, the scarce thing becomes an hour with your people.",
     ref: { label: "U.S. Surgeon General, “Our Epidemic of Loneliness and Isolation” (2023)", href: SRC.sg },
@@ -1523,10 +1543,11 @@ const THESES = [
   {
     id: "spacex", die: [8, -4], stance: "original",
     title: "SpaceX’s strongest engine is its stock.",
+    h2: "SpaceX’s | strongest engine | is its stock.",
     short: "The stock is the engine",
     hook: "SpaceX sells launches, internet and AI. Its most useful product might be the shares it pays with.",
     ref: { label: "My own read of SpaceX’s IPO and its $60 billion all-stock purchase of Cursor (June 2026)", href: SRC.spxCursor },
-    signal: `<p class="claim">Four days after its IPO, SpaceX agreed to buy an AI company with its own stock.</p>
+    signal: `<p class="claim">Four days after its IPO, | SpaceX agreed | to buy an AI company | with its own stock.</p>
       <p>SpaceX listed on Nasdaq on June 12, 2026, at $135 a share, a $1.77 trillion valuation. On June 16, it exercised its option to buy Cursor, the AI coding startup, for $60 billion, paid in about 389 million new SpaceX shares rather than cash. The deal closed August 14.</p>
       <p>SpaceX lost $4.9 billion last year, so it has no P/E to speak of. At the IPO price it was valued at about 95 times its 2025 revenue, and still more than 50 times its current run rate. Cursor cost 15 to 20 times its reported run rate. That gap is a business model.</p>`,
     takes: [
@@ -2873,13 +2894,74 @@ function buildMap() {
 }
 const memo = $("#memo");
 let memoId = null, lastFocus = null, memoKeys = null;
-const sentences = txt => txt.split(/(?<=[.!?…])\s+(?=[A-Z“"])/).map(x => `<span class="sen">${x}</span>`).join(" ");
+const plain = s => s.replace(/<[^>]+>/g, "").replace(/\s*\|\s*/g, " ");
+const phrases = (txt, tail = "") => {
+  const bits = txt.replace(/—(?!\|)/g, "⁠—⁠").split("|");
+  return bits.map((b, i) => {
+    const joint = i === 0 ? "" : /\s$/.test(bits[i - 1]) || /^\s/.test(b) ? " " : "<wbr>";
+    return `${joint}<span class="ph">${b.trim()}${i === bits.length - 1 ? tail : ""}</span>`;
+  }).join("");
+};
+const sentences = (txt, tail = "") => {
+  const ss = txt.split(/(?<=[.!?…])\s+(?=[A-Z“"])/);
+  return ss.map((x, i) => `<span class="sen">${phrases(x, i === ss.length - 1 ? tail : "")}</span>`).join(" ");
+};
 const tidySignal = html => html
   .replace(/<blockquote class="pull">([\s\S]*?)<\/blockquote>/g, (m, q) => {
-    const n = q.replace(/<[^>]+>/g, "").length;
-    return `<blockquote class="pull ${n > 80 ? "q-l" : n > 48 ? "q-m" : "q-s"}">${q.replace(/—/g, "\u2060—\u2060")}</blockquote>`;
+    const n = plain(q).length;
+    return `<blockquote class="pull ${n > 80 ? "q-l" : n > 48 ? "q-m" : "q-s"}"><span class="qo" aria-hidden="true">“</span>${phrases(q, '<span class="qc" aria-hidden="true">”</span>')}</blockquote>`;
   })
   .replace(/<p class="claim">([\s\S]*?)<\/p>/g, (m, c) => `<p class="claim">${sentences(c)}</p>`);
+const typeSrc = new WeakMap();
+function setType(root) {
+  $$(".slide h2, blockquote.pull, p.claim", root).forEach(el => {
+    if (!typeSrc.has(el)) typeSrc.set(el, el.innerHTML);
+    el.innerHTML = typeSrc.get(el);
+    const ph = $$(".ph", el), n = ph.length;
+    if (n < 2 || n > 12) return;
+    const cs = getComputedStyle(el);
+    const W = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (!(W > 0)) return;
+    const probe = document.createElement("span");
+    probe.style.cssText = "white-space:pre;display:inline-block";
+    probe.textContent = " ";
+    el.appendChild(probe);
+    const sp = probe.getBoundingClientRect().width;
+    probe.remove();
+    const w = ph.map(p => p.getBoundingClientRect().width);
+    const gap = ph.map((p, i) => (i && p.previousSibling && p.previousSibling.nodeName === "WBR" ? 0 : sp));
+    const senStart = ph.map((p, i) => i > 0 && p.parentNode.classList.contains("sen") && p === p.parentNode.querySelector(".ph"));
+    let best = null;
+    for (let mask = 0; mask < 1 << (n - 1); mask++) {
+      const lines = [];
+      let cur = [0];
+      for (let i = 1; i < n; i++) {
+        if (mask & (1 << (i - 1))) { lines.push(cur); cur = [i]; } else cur.push(i);
+      }
+      lines.push(cur);
+      let ok = true, cost = 0;
+      const lw = lines.map(l => {
+        const x = l.reduce((s, i, k) => s + w[i] + (k ? gap[i] : 0), 0);
+        if (l.length > 1 && x > W + .5) ok = false;
+        l.slice(1).forEach(i => { if (senStart[i]) cost += .1; });
+        return Math.min(x, W);
+      });
+      if (!ok) continue;
+      const top = Math.max(...lw);
+      lw.forEach((x, k) => {
+        const s = (top - x) / W;
+        cost += (k === lw.length - 1 ? .5 : 1) * s * s;
+      });
+      cost += .08 * lines.length + (1 - top / W) ** 2;
+      if (!best || cost < best.cost - 1e-9) best = { cost, lines, lw };
+    }
+    if (!best || best.lines.length < 2 && best.lw[0] < W) return;
+    const qo = $(".qo", el);
+    el.innerHTML = (qo ? qo.outerHTML : "") + best.lines.map((l, k) =>
+      `<span class="ln${l.length === 1 && best.lw[k] >= W ? " wide" : ""}">${l.map((i, j) => (j ? (gap[i] ? " " : "") : "") + ph[i].innerHTML).join("")}</span>`
+    ).join("<br>");
+  });
+}
 function memoHTML(t) {
   const b = BINS[t.stance];
   const idx = THESES.indexOf(t);
@@ -2893,7 +2975,7 @@ function memoHTML(t) {
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
         <section class="slide" aria-label="Slide 1 of 3, the signal">
           <p class="slide-k">The signal</p>
-          <h2>${sentences(t.title)}</h2>
+          <h2>${sentences(t.h2 || t.title)}</h2>
           <div class="ref"><span class="ref-k">Reference design</span><a href="${t.ref.href}" target="_blank" rel="noopener">${t.ref.label}</a></div>
           ${tidySignal(t.signal)}
         </section>
@@ -2964,7 +3046,7 @@ function fitPkg(root) {
   rot.style.setProperty("--ps", ps.toFixed(3));
   pkg.style.paddingTop = (111 * ps).toFixed(1) + "px";
 }
-const fitViz = root => { fitFrames(root); fitPkg(root); };
+const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); };
 let fitRaf = 0;
 addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => fitViz(memo)); });
 function openMemo(id) {

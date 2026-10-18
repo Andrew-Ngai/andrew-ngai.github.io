@@ -460,7 +460,7 @@ html.paused .die-echo.land{animation:none}
 .slides::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;min-width:0;scroll-snap-align:start;overflow-y:auto;padding:clamp(28px,6vh,72px) var(--gutter) 40px;display:flex;flex-direction:column;gap:24px}
 .slide-k{font-family:var(--label);font-weight:700;font-size:17px;color:var(--bin);letter-spacing:.03em}
-.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.2vw,62px);line-height:1;max-width:22ch;text-wrap:balance}
+.slide h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.2vw,62px);line-height:1;max-width:min(100%,26ch);text-wrap:balance}
 .sen{display:inline-block;text-wrap:balance}
 .slide p{max-width:36rem}
 .ref{display:grid;gap:2px;max-width:38rem;padding:14px 18px 16px;background:var(--ink-2);border:1px solid var(--rule);position:relative}
@@ -468,11 +468,15 @@ html.paused .die-echo.land{animation:none}
 .ref .ref-k{font-family:var(--label);font-weight:600;font-size:15px;color:var(--dim)}
 .ref a,.ref span.ref-src{font-family:var(--label);font-weight:700;font-size:20px;line-height:1.25;text-decoration:none;color:var(--paper)}
 .ref a:hover{text-decoration:underline;text-decoration-color:var(--bin)}
-blockquote.pull{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,50px);line-height:1.02;max-width:19ch;color:var(--paper);text-wrap:balance}
-blockquote.pull.q-m{font-size:clamp(26px,2.8vw,40px);max-width:23ch}
-blockquote.pull.q-l{font-size:clamp(23px,2.3vw,34px);line-height:1.06;max-width:28ch}
-blockquote.pull::before{content:"\201C";color:var(--bin)}
-blockquote.pull::after{content:"\201D";color:var(--bin)}
+/* Slide-1 type breaks between phrases (see phrases() in app.js). The open quote hangs in the margin so every line starts flush. */
+.ph{display:inline-block;max-width:100%}
+.ln{white-space:nowrap}
+.ln.wide{white-space:normal}
+blockquote.pull{position:relative;margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.4vw,50px);line-height:1.02;max-width:min(100%,40rem);color:var(--paper);text-wrap:balance}
+blockquote.pull.q-m{font-size:clamp(26px,2.8vw,40px)}
+blockquote.pull.q-l{font-size:clamp(23px,2.3vw,34px);line-height:1.06}
+blockquote.pull .qo{position:absolute;right:100%;margin-right:.04em;color:var(--bin)}
+blockquote.pull .qc{color:var(--bin)}
 .takes{list-style:none;margin:0;padding:0;display:grid;gap:22px;counter-reset:t;max-width:38rem}
 .takes li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:2px 14px;font-size:18px;color:var(--dim)}
 .takes li::before{counter-increment:t;content:counter(t);font-family:var(--display);font-weight:900;font-size:42px;line-height:.85;color:var(--bin);grid-row:span 2}
@@ -496,6 +500,7 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
   .viz-pane{order:-1;border-left:0;border-bottom:1px solid var(--rule);padding:14px var(--gutter)}
   .memo-prog{display:none}
   .slide{padding-top:24px}
+  .slide h2{font-size:clamp(30px,8.9vw,44px)}
 }
 
 /* viz frames */
@@ -511,7 +516,7 @@ blockquote.pull::after{content:"\201D";color:var(--bin)}
 .viz .ax{stroke:var(--rule);stroke-width:1}
 .viz .gridl{stroke:var(--grid);stroke-width:1}
 
-.claim{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.8vw,40px);line-height:1.04;max-width:22ch;color:var(--paper);text-wrap:balance}
+.claim{font-family:var(--display);font-weight:800;font-size:clamp(26px,2.8vw,40px);line-height:1.04;max-width:min(100%,40rem);color:var(--paper);text-wrap:balance}
 
 /* heat */
 .heat-rise{animation:heat-rise 2.2s ease-in infinite}
