@@ -25,9 +25,8 @@
   --serif:"Newsreader","Iowan Old Style",Georgia,serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
 
-  /* ticket card in the screen-time memo */
-  --night:#061321; --plum:#12253b; --pline:#22405c;
-  --lilac:#9cc3f0; --pmuted:#9fb3c4; --pwhite:#f4f8fb;
+  /* EchoTempo band */
+  --night:#061321; --plum:#12253b; --pmuted:#9fb3c4;
 
   --gutter:clamp(16px,4vw,48px);
   --wrap:1240px;
@@ -525,8 +524,6 @@ blockquote.pull .qc{color:var(--bin)}
 @keyframes heat-path{to{stroke-dashoffset:-20}}
 .coolant{stroke-dasharray:8 10;animation:coolant 1.2s linear infinite}
 @keyframes coolant{to{stroke-dashoffset:-36}}
-.fiber{stroke-dasharray:60 300;animation:fiber 2.4s linear infinite}
-@keyframes fiber{from{stroke-dashoffset:360}to{stroke-dashoffset:0}}
 
 /* OOM calculator */
 .oomcalc{display:grid;gap:12px;align-content:center;min-height:0}
@@ -569,12 +566,122 @@ blockquote.pull .qc{color:var(--bin)}
 .flow-dot{fill:var(--amber);animation:flow 2.6s var(--ease) infinite}
 @keyframes flow{0%{transform:translateX(0);opacity:0}10%{opacity:1}70%{transform:translateX(var(--to));opacity:1}100%{transform:translateX(var(--to));opacity:0}}
 
+/* molecules: a well field that fills in a year, and the turbine line */
+.ml-pat circle{fill:var(--amber)}
+.ml-ghost{opacity:.12}
+.ml-reveal{transform-box:fill-box;transform-origin:left center}
+.viz[data-step="1"] .f1 .ml-reveal{animation:ml-reveal 2.6s cubic-bezier(.4,0,.3,1) .3s both}
+@keyframes ml-reveal{from{transform:scaleX(0)}}
+.ml-ground{stroke:var(--rule);stroke-width:2}
+.ml-frame{fill:none;stroke:var(--faint);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ml-rod{fill:var(--ink-3);stroke:var(--faint);stroke-width:2}
+.ml-beam{fill:var(--amber);animation:ml-nod 2.4s ease-in-out infinite}
+.ml-pin{fill:var(--ink)}
+.ml-crank{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.5;animation:ml-crank 2.4s linear infinite}
+@keyframes ml-nod{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@keyframes ml-crank{to{transform:rotate(360deg)}}
+.ml-big{font-family:var(--display);font-weight:900;font-size:50px;fill:var(--amber)}
+.viz text.ml-big{fill:var(--amber)}
+.ml-track{stroke:var(--ink-3);stroke-width:8;stroke-linecap:round}
+.ml-fill{stroke:var(--amber);stroke-width:8;stroke-linecap:round;transform-box:fill-box;transform-origin:left center}
+.viz[data-step="1"] .f1 .ml-fill{animation:ml-reveal 2.6s cubic-bezier(.4,0,.3,1) .3s both}
+.viz .ml-under{fill:var(--amber)}
+.ml-fuel rect{fill:var(--ink-2);stroke:var(--amber);stroke-opacity:.7}
+.viz .ml-wait{fill:var(--coral)}
+.ml-belt{fill:var(--ink-3);stroke:var(--rule)}
+.ml-roll{stroke:var(--faint);stroke-width:3;stroke-dasharray:2 10;stroke-linecap:round;animation:ml-roll 3s linear infinite}
+@keyframes ml-roll{to{stroke-dashoffset:24}}
+.ml-dock{stroke:var(--paper);stroke-opacity:.5;stroke-width:1.5;stroke-dasharray:3 4}
+.viz .ml-now{fill:var(--paper)}
+.ml-tb{fill:var(--ink-2);stroke:var(--coral);stroke-opacity:.75;stroke-width:1.4;stroke-linejoin:round;animation:ml-idle 3s ease-in-out var(--d) infinite}
+.ml-tb .ml-fan{fill:none;stroke-width:1;stroke-opacity:.6}
+.ml-tb.me{fill:var(--coral);fill-opacity:.9;stroke:var(--coral);stroke-opacity:1;filter:drop-shadow(0 0 6px rgba(244,151,122,.6))}
+.ml-tb.me .ml-fan{stroke:var(--ink)}
+@keyframes ml-idle{50%{transform:translateY(-1.5px)}}
+.ml-ticket path{fill:var(--paper);stroke:var(--coral);stroke-width:1.2}
+.ml-ticket{animation:ml-tick 2.4s ease-in-out infinite}
+@keyframes ml-tick{50%{transform:translateY(-3px)}}
+.viz .ml-tk-k{fill:var(--ink);font-weight:700;letter-spacing:.1em}
+.viz .ml-tk-v{fill:var(--coral);font-family:var(--display);font-weight:900}
+html.paused .ml-reveal,html.paused .ml-fill{animation:none!important}
+
+/* builders: the stack every lab buys, and the telecom bust */
+.bd-lab{fill:var(--ink-2);stroke:var(--violet);stroke-opacity:.5}
+.bd-crown path{fill:#ffd98a}
+.viz .bd-q{fill:var(--ink);font-weight:900}
+.bd-flow{fill:none;stroke:var(--amber);stroke-opacity:.55;stroke-width:1.4;stroke-dasharray:3 5;animation:dash 1.4s linear infinite}
+.bd-cash{fill:#ffd98a;filter:drop-shadow(0 0 3px rgba(255,217,138,.8))}
+.bd-slab .t{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.3;stroke-linejoin:round}
+.bd-slab .l{fill:var(--c);fill-opacity:.1;stroke:var(--c);stroke-opacity:.6;stroke-linejoin:round}
+.bd-slab .r{fill:var(--c);fill-opacity:.16;stroke:var(--c);stroke-opacity:.6;stroke-linejoin:round}
+.bd-slab .ic{fill:var(--c);fill-opacity:.55}
+.viz[data-step="2"] .f2 .bd-slab{animation:bd-drop .6s cubic-bezier(.2,1.2,.4,1) var(--d) both}
+@keyframes bd-drop{from{transform:translateY(-24px);opacity:0}}
+.viz[data-step="2"] .f2 .bd-lbl{animation:sp-fade .5s ease var(--d) both}
+.viz .bd-all{fill:var(--amber)}
+.bd-bond rect{fill:#e9f0f6;stroke:var(--faint)}
+.bd-bond rect.in{fill:none;stroke:#8aa0b4;stroke-dasharray:2 2}
+.viz .bd-bk{fill:#3b4f63;font-weight:700;letter-spacing:.14em}
+.viz .bd-bv{fill:#0c1a2b;font-family:var(--display);font-weight:900;font-size:30px}
+.bd-bond{transform-box:fill-box;transform-origin:center}
+.viz[data-step="3"] .f3 .bd-bond{animation:bd-shrink 1s var(--ease) .3s both}
+@keyframes bd-shrink{from{transform:scale(1.08)}}
+.bd-arrow{fill:none;stroke:var(--faint);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bd-coin circle{fill:var(--coral);stroke:#ffd0bf;stroke-width:2}
+.viz .bd-cv{fill:var(--ink);font-family:var(--display);font-weight:900;font-size:19px}
+.bd-coin{transform-box:fill-box;transform-origin:center}
+.viz[data-step="3"] .f3 .bd-coin{animation:bd-pop .5s cubic-bezier(.2,1.6,.4,1) .9s both}
+@keyframes bd-pop{from{transform:scale(0)}}
+.bd-bldg rect{fill:var(--ink-2);stroke:var(--faint)}
+.bd-bldg rect.w{fill:var(--ink-3);stroke:none}
+.bd-bldg rect.w.lit{fill:#ffd98a;fill-opacity:.35}
+.bd-stamp rect{fill:var(--ink);fill-opacity:.85;stroke:var(--coral);stroke-width:2}
+.bd-stamp text{fill:var(--coral)!important;font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.06em}
+.bd-stamp{transform-box:view-box}
+.viz[data-step="3"] .f3 .bd-stamp{animation:bd-stamp .4s cubic-bezier(.2,1.6,.4,1) var(--d) both}
+@keyframes bd-stamp{from{transform:scale(1.8);opacity:0}}
+.bd-ground{stroke:var(--faint);stroke-width:2}
+.bd-strata{stroke:var(--rule);stroke-dasharray:2 6}
+.bd-pipe{fill:var(--ink);stroke:var(--rule);stroke-width:1.5}
+.bd-fiber{stroke:var(--beat);stroke-width:2;opacity:.6;filter:drop-shadow(0 0 4px var(--beat))}
+.bd-light{stroke:#e8f4ff;stroke-width:3;stroke-linecap:round;stroke-dasharray:18 70;animation:bd-light 2.2s linear infinite;filter:drop-shadow(0 0 5px var(--beat))}
+@keyframes bd-light{to{stroke-dashoffset:-88}}
+html.paused .bd-slab,html.paused .bd-lbl,html.paused .bd-bond,html.paused .bd-coin,html.paused .bd-stamp{animation:none!important}
+
 /* fleet */
-.big-c{fill:none;stroke:var(--faint);stroke-width:1.5;stroke-dasharray:5 6}
-.site{fill:var(--amber);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .7s var(--ease)}
-.viz[data-step="2"] .f2 .site,.viz[data-step="3"] .f3 .site{transform:scale(1)}
 .link{stroke:var(--beat);stroke-width:1.4;stroke-dasharray:4 7;animation:dash 1.4s linear infinite;opacity:.8}
 @keyframes dash{to{stroke-dashoffset:-22}}
+.fl-land{fill:var(--ink-2);fill-opacity:.7;stroke:var(--rule);stroke-width:1.3}
+.fl-pat circle{fill:var(--paper);fill-opacity:.15}
+.fl-halo{fill:var(--amber);fill-opacity:.16;stroke:var(--amber);stroke-opacity:.75;stroke-width:1}
+.fl-core{fill:var(--amber);stroke:var(--ink);stroke-width:1}
+.fl-core.live{fill:var(--beat)}
+.fl-site{transform-box:fill-box;transform-origin:center}
+.viz[data-step="2"] .f2 .fl-site.pop{animation:fl-pop .55s cubic-bezier(.2,1.5,.4,1) var(--d) both}
+@keyframes fl-pop{from{transform:scale(0);opacity:0}}
+.fl-site.glow .fl-halo{animation:fl-glow 2.4s ease-in-out infinite}
+@keyframes fl-glow{50%{fill-opacity:.34;stroke-opacity:1}}
+.fl-lab text{paint-order:stroke;stroke:var(--ink);stroke-width:3.5px;stroke-linejoin:round}
+.viz .fl-lab .fl-gw{fill:var(--amber)}
+.viz[data-step="2"] .f2 .fl-lab{animation:sp-fade .5s ease var(--d) both}
+.fl-ghost{opacity:0;transform-box:view-box}
+.fl-ghost circle{fill:var(--amber);fill-opacity:.05;stroke:var(--paper);stroke-opacity:.5;stroke-width:1.5;stroke-dasharray:5 6}
+.viz[data-step="2"] .f2 .fl-ghost{animation:fl-ghost 1.2s var(--ease) .1s both}
+@keyframes fl-ghost{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.04)}}
+.fl-seg{fill:var(--amber);fill-opacity:.6}
+.fl-fiber{fill:none;stroke:var(--beat);stroke-opacity:.3;stroke-width:1.3}
+.fl-fiber-glow{fill:none;stroke:var(--beat);stroke-width:1.6;stroke-dasharray:2 10;stroke-linecap:round;animation:dash 1.6s linear infinite}
+.fl-pkt{fill:var(--amber);filter:drop-shadow(0 0 3px var(--amber))}
+.fl-pkt.s{fill:var(--beat);filter:drop-shadow(0 0 3px var(--beat))}
+.fl-card{fill:var(--ink);fill-opacity:.94;stroke:var(--rule)}
+.viz .fl-k{fill:var(--faint);letter-spacing:.14em;font-weight:700}
+.fl-tag{font-weight:800;letter-spacing:.06em}
+.viz .fl-tag.train{fill:var(--amber)}.viz .fl-tag.serve{fill:var(--beat)}.viz .fl-tag.sync{fill:var(--violet)}
+.fl-hl{fill:var(--paper);fill-opacity:.08;animation:fl-hl 4.5s steps(1) infinite}
+@keyframes fl-hl{0%{transform:translateY(0)}33.3%{transform:translateY(13px)}66.6%{transform:translateY(26px)}}
+.fl-chip rect{fill:var(--ink-2);stroke:var(--rule);animation:fl-chip 4.5s ease-in-out var(--cd) infinite}
+@keyframes fl-chip{0%,45%,100%{stroke:var(--rule)}15%{stroke:var(--amber)}}
+html.paused .fl-site.pop,html.paused .fl-lab,html.paused .fl-ghost{animation:none!important}
 
 /* memory: 3D package */
 .pkg-wrap{position:relative;width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px}
@@ -598,19 +705,63 @@ blockquote.pull .qc{color:var(--bin)}
 .pkg-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--label);font-size:15px;color:var(--dim)}
 .pkg-legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:0}
 
-/* screen time */
-.meter{display:grid;gap:22px;align-content:center;min-height:0}
-.m-row{display:grid;gap:8px}
-.m-row span{font-family:var(--label);font-weight:600;font-size:17px;color:var(--dim)}
-.m-track{height:28px;background:var(--ink-3);position:relative;overflow:hidden}
-.m-fill{position:absolute;inset:0 auto 0 0;width:var(--from);transition:width 1.4s var(--ease) .2s}
-.viz[data-step="2"] .m-fill{width:var(--to)}
-.ticket{align-self:center;justify-self:center;display:grid;gap:6px;background:linear-gradient(160deg,var(--plum),var(--night));border:1px solid var(--pline);border-radius:22px;padding:22px 26px;font-family:var(--sans);color:var(--pwhite);max-width:300px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
-.ticket .tk-k{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--lilac)}
-.ticket .tk-h{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
-.ticket .tk-s{font-size:15px;color:var(--pmuted)}
-.f-ticket{display:grid;place-items:center;align-content:center;grid-template-rows:auto auto;gap:0}
-.f-ticket .echo{width:150px;margin-bottom:-18px;position:relative;z-index:1}
+/* screen time: clock, fork, and the group-chat-to-tempo poster */
+.st-ring{fill:none;stroke:var(--violet);stroke-opacity:.45;stroke-width:6}
+.st-face{fill:var(--ink-2);stroke:var(--rule)}
+.st-tk{stroke:var(--faint);stroke-width:1}
+.st-tk5{stroke:var(--paper);stroke-opacity:.7;stroke-width:1.6}
+.st-wedge{fill:none;stroke:var(--coral);stroke-width:92}
+.st-lost{fill:none;stroke-width:92}
+.st-hand line{stroke:var(--coral);stroke-width:4;stroke-linecap:round}
+.st-hand{transform:rotate(120deg)}
+.viz .st-in{fill:var(--ink);font-weight:800}
+.viz .st-out{fill:var(--coral);paint-order:stroke;stroke:var(--ink-2);stroke-width:4px;stroke-linejoin:round}
+.st-big{font-family:var(--display);font-weight:900;font-size:50px}
+.st-big .a{fill:var(--violet)}.st-big .ar{fill:var(--faint);font-weight:600}.st-big .b{fill:var(--coral)}
+.viz[data-step="1"] .f1 .st-wedge{animation:st-sweep 1.8s var(--ease) .35s both}
+.viz[data-step="1"] .f1 .st-hand{animation:st-wind 1.8s var(--ease) .35s both}
+.viz[data-step="1"] .f1 .st-lost,.viz[data-step="1"] .f1 .st-after{animation:sp-fade .6s ease 1.9s both}
+@keyframes st-sweep{from{stroke-dasharray:var(--c) 0}}
+@keyframes st-wind{from{transform:rotate(360deg)}}
+.st-tok rect{fill:var(--ink-2);stroke:var(--violet);stroke-opacity:.7}
+.viz[data-step="2"] .st-tok{animation:st-tok 3s ease-in-out var(--d) infinite}
+@keyframes st-tok{50%{transform:translateX(4px)}}
+.st-ch{fill:none;stroke-width:16;stroke-linecap:round;opacity:.14}
+.st-core{fill:none;stroke-width:1.5}
+.st-ch.feed,.st-core.feed{stroke:var(--coral)}.st-ch.ppl,.st-core.ppl{stroke:var(--amber)}
+.st-dot.feed{fill:var(--coral)}.st-dot.ppl{fill:var(--amber);filter:drop-shadow(0 0 3px var(--amber))}
+.st-phone{fill:var(--ink-2);stroke:var(--coral);stroke-width:1.5}
+.st-post{fill:var(--coral);fill-opacity:.28}
+.st-scroll{animation:st-scroll 2.4s linear infinite}
+@keyframes st-scroll{to{transform:translateY(-38px)}}
+.st-table{fill:var(--ink-3);stroke:var(--amber);stroke-opacity:.6}
+.st-av{animation:st-av 2.6s ease-in-out infinite}
+.st-av:nth-of-type(2){animation-delay:.3s}.st-av:nth-of-type(3){animation-delay:.6s}
+@keyframes st-av{50%{transform:translateY(-2px)}}
+.viz .st-ppl-t{fill:var(--amber)}
+.st-up{font-size:11px}.st-up.feed{fill:var(--coral)}.st-up.ppl{fill:var(--amber)}
+.st-b text{font-family:var(--sans);font-size:12px;font-weight:500}
+.st-b.me rect{fill:var(--beat)}.st-b.me text{fill:#fff}
+.st-b.them rect{fill:#22364d}.st-b.them text{fill:var(--paper)}
+.st-b{opacity:var(--o,1)}
+.viz .st-seen{fill:var(--faint)}
+.viz[data-step="3"] .st-chat{animation:st-die 4s ease-in-out infinite}
+@keyframes st-die{0%,25%{opacity:1}75%,100%{opacity:.72}}
+.st-flat{fill:none;stroke:var(--faint);stroke-width:2.5;stroke-linecap:round}
+.viz .st-fl-l{fill:var(--faint);font-style:italic}
+.st-beat{fill:none;stroke:var(--amber);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1}
+.st-beat-glow{fill:none;stroke:var(--amber);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.16}
+.viz[data-step="3"] .st-beat{animation:st-draw 1.2s var(--ease) .3s both}
+@keyframes st-draw{from{stroke-dashoffset:1}}
+.st-bezel{fill:#0a1220;stroke:#2c4a6a;stroke-width:2;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+.st-pill{transform-box:fill-box;transform-origin:center;transform:rotate(-5deg);filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.viz .st-pill-t{font-family:var(--sans);font-weight:800;font-size:15px;fill:#fff;letter-spacing:-.01em}
+.viz[data-step="3"] .st-pill{animation:st-pop .6s cubic-bezier(.2,1.6,.4,1) 1.2s both}
+@keyframes st-pop{from{transform:rotate(-5deg) scale(.2);opacity:0}}
+.st-conf{transform-box:fill-box;transform-origin:center;animation:st-conf 2.6s ease-in infinite}
+@keyframes st-conf{0%{transform:translateY(-8px) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(34px) rotate(240deg);opacity:0}}
+.st-north rect{fill:var(--ink-2);stroke:var(--amber);stroke-opacity:.7}
+html.paused .st-wedge,html.paused .st-hand,html.paused .st-lost,html.paused .st-after,html.paused .st-beat,html.paused .st-pill{animation:none!important}
 
 /* neocloud: building, price board, concentration */
 .nc-led{animation:echo-led 1.6s ease-in-out infinite}

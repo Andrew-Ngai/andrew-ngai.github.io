@@ -40,8 +40,7 @@
   --label:"Big Shoulders Text","Arial Narrow","DejaVu Sans Condensed",sans-serif;
   --serif:"Newsreader","Iowan Old Style",Georgia,serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-  --night:#061321; --plum:#12253b; --pline:#22405c;
-  --lilac:#9cc3f0; --pmuted:#9fb3c4; --pwhite:#f4f8fb;
+  --night:#061321; --plum:#12253b; --pmuted:#9fb3c4;
   --gutter:clamp(16px,4vw,48px);
   --wrap:1240px;
   --ease:cubic-bezier(.2,.8,.2,1);
@@ -490,8 +489,6 @@ blockquote.pull .qc{color:var(--bin)}
 @keyframes heat-path{to{stroke-dashoffset:-20}}
 .coolant{stroke-dasharray:8 10;animation:coolant 1.2s linear infinite}
 @keyframes coolant{to{stroke-dashoffset:-36}}
-.fiber{stroke-dasharray:60 300;animation:fiber 2.4s linear infinite}
-@keyframes fiber{from{stroke-dashoffset:360}to{stroke-dashoffset:0}}
 .oomcalc{display:grid;gap:12px;align-content:center;min-height:0}
 .oc-l{font-family:var(--label);font-weight:600;font-size:16px;color:var(--dim)}
 .oc-x{display:block;font-family:var(--display);font-weight:900;font-size:clamp(52px,7vw,92px);line-height:.9;color:var(--amber);font-variant-numeric:tabular-nums}
@@ -524,11 +521,117 @@ blockquote.pull .qc{color:var(--bin)}
 .viz[data-step="1"] .f2 .g-bar.grow,.viz[data-step="3"] .f2 .g-bar.grow{transform:scaleX(.02)}
 .flow-dot{fill:var(--amber);animation:flow 2.6s var(--ease) infinite}
 @keyframes flow{0%{transform:translateX(0);opacity:0}10%{opacity:1}70%{transform:translateX(var(--to));opacity:1}100%{transform:translateX(var(--to));opacity:0}}
-.big-c{fill:none;stroke:var(--faint);stroke-width:1.5;stroke-dasharray:5 6}
-.site{fill:var(--amber);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .7s var(--ease)}
-.viz[data-step="2"] .f2 .site,.viz[data-step="3"] .f3 .site{transform:scale(1)}
+.ml-pat circle{fill:var(--amber)}
+.ml-ghost{opacity:.12}
+.ml-reveal{transform-box:fill-box;transform-origin:left center}
+.viz[data-step="1"] .f1 .ml-reveal{animation:ml-reveal 2.6s cubic-bezier(.4,0,.3,1) .3s both}
+@keyframes ml-reveal{from{transform:scaleX(0)}}
+.ml-ground{stroke:var(--rule);stroke-width:2}
+.ml-frame{fill:none;stroke:var(--faint);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ml-rod{fill:var(--ink-3);stroke:var(--faint);stroke-width:2}
+.ml-beam{fill:var(--amber);animation:ml-nod 2.4s ease-in-out infinite}
+.ml-pin{fill:var(--ink)}
+.ml-crank{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.5;animation:ml-crank 2.4s linear infinite}
+@keyframes ml-nod{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+@keyframes ml-crank{to{transform:rotate(360deg)}}
+.ml-big{font-family:var(--display);font-weight:900;font-size:50px;fill:var(--amber)}
+.viz text.ml-big{fill:var(--amber)}
+.ml-track{stroke:var(--ink-3);stroke-width:8;stroke-linecap:round}
+.ml-fill{stroke:var(--amber);stroke-width:8;stroke-linecap:round;transform-box:fill-box;transform-origin:left center}
+.viz[data-step="1"] .f1 .ml-fill{animation:ml-reveal 2.6s cubic-bezier(.4,0,.3,1) .3s both}
+.viz .ml-under{fill:var(--amber)}
+.ml-fuel rect{fill:var(--ink-2);stroke:var(--amber);stroke-opacity:.7}
+.viz .ml-wait{fill:var(--coral)}
+.ml-belt{fill:var(--ink-3);stroke:var(--rule)}
+.ml-roll{stroke:var(--faint);stroke-width:3;stroke-dasharray:2 10;stroke-linecap:round;animation:ml-roll 3s linear infinite}
+@keyframes ml-roll{to{stroke-dashoffset:24}}
+.ml-dock{stroke:var(--paper);stroke-opacity:.5;stroke-width:1.5;stroke-dasharray:3 4}
+.viz .ml-now{fill:var(--paper)}
+.ml-tb{fill:var(--ink-2);stroke:var(--coral);stroke-opacity:.75;stroke-width:1.4;stroke-linejoin:round;animation:ml-idle 3s ease-in-out var(--d) infinite}
+.ml-tb .ml-fan{fill:none;stroke-width:1;stroke-opacity:.6}
+.ml-tb.me{fill:var(--coral);fill-opacity:.9;stroke:var(--coral);stroke-opacity:1;filter:drop-shadow(0 0 6px rgba(244,151,122,.6))}
+.ml-tb.me .ml-fan{stroke:var(--ink)}
+@keyframes ml-idle{50%{transform:translateY(-1.5px)}}
+.ml-ticket path{fill:var(--paper);stroke:var(--coral);stroke-width:1.2}
+.ml-ticket{animation:ml-tick 2.4s ease-in-out infinite}
+@keyframes ml-tick{50%{transform:translateY(-3px)}}
+.viz .ml-tk-k{fill:var(--ink);font-weight:700;letter-spacing:.1em}
+.viz .ml-tk-v{fill:var(--coral);font-family:var(--display);font-weight:900}
+html.paused .ml-reveal,html.paused .ml-fill{animation:none!important}
+.bd-lab{fill:var(--ink-2);stroke:var(--violet);stroke-opacity:.5}
+.bd-crown path{fill:#ffd98a}
+.viz .bd-q{fill:var(--ink);font-weight:900}
+.bd-flow{fill:none;stroke:var(--amber);stroke-opacity:.55;stroke-width:1.4;stroke-dasharray:3 5;animation:dash 1.4s linear infinite}
+.bd-cash{fill:#ffd98a;filter:drop-shadow(0 0 3px rgba(255,217,138,.8))}
+.bd-slab .t{fill:var(--c);fill-opacity:.2;stroke:var(--c);stroke-width:1.3;stroke-linejoin:round}
+.bd-slab .l{fill:var(--c);fill-opacity:.1;stroke:var(--c);stroke-opacity:.6;stroke-linejoin:round}
+.bd-slab .r{fill:var(--c);fill-opacity:.16;stroke:var(--c);stroke-opacity:.6;stroke-linejoin:round}
+.bd-slab .ic{fill:var(--c);fill-opacity:.55}
+.viz[data-step="2"] .f2 .bd-slab{animation:bd-drop .6s cubic-bezier(.2,1.2,.4,1) var(--d) both}
+@keyframes bd-drop{from{transform:translateY(-24px);opacity:0}}
+.viz[data-step="2"] .f2 .bd-lbl{animation:sp-fade .5s ease var(--d) both}
+.viz .bd-all{fill:var(--amber)}
+.bd-bond rect{fill:#e9f0f6;stroke:var(--faint)}
+.bd-bond rect.in{fill:none;stroke:#8aa0b4;stroke-dasharray:2 2}
+.viz .bd-bk{fill:#3b4f63;font-weight:700;letter-spacing:.14em}
+.viz .bd-bv{fill:#0c1a2b;font-family:var(--display);font-weight:900;font-size:30px}
+.bd-bond{transform-box:fill-box;transform-origin:center}
+.viz[data-step="3"] .f3 .bd-bond{animation:bd-shrink 1s var(--ease) .3s both}
+@keyframes bd-shrink{from{transform:scale(1.08)}}
+.bd-arrow{fill:none;stroke:var(--faint);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bd-coin circle{fill:var(--coral);stroke:#ffd0bf;stroke-width:2}
+.viz .bd-cv{fill:var(--ink);font-family:var(--display);font-weight:900;font-size:19px}
+.bd-coin{transform-box:fill-box;transform-origin:center}
+.viz[data-step="3"] .f3 .bd-coin{animation:bd-pop .5s cubic-bezier(.2,1.6,.4,1) .9s both}
+@keyframes bd-pop{from{transform:scale(0)}}
+.bd-bldg rect{fill:var(--ink-2);stroke:var(--faint)}
+.bd-bldg rect.w{fill:var(--ink-3);stroke:none}
+.bd-bldg rect.w.lit{fill:#ffd98a;fill-opacity:.35}
+.bd-stamp rect{fill:var(--ink);fill-opacity:.85;stroke:var(--coral);stroke-width:2}
+.bd-stamp text{fill:var(--coral)!important;font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.06em}
+.bd-stamp{transform-box:view-box}
+.viz[data-step="3"] .f3 .bd-stamp{animation:bd-stamp .4s cubic-bezier(.2,1.6,.4,1) var(--d) both}
+@keyframes bd-stamp{from{transform:scale(1.8);opacity:0}}
+.bd-ground{stroke:var(--faint);stroke-width:2}
+.bd-strata{stroke:var(--rule);stroke-dasharray:2 6}
+.bd-pipe{fill:var(--ink);stroke:var(--rule);stroke-width:1.5}
+.bd-fiber{stroke:var(--beat);stroke-width:2;opacity:.6;filter:drop-shadow(0 0 4px var(--beat))}
+.bd-light{stroke:#e8f4ff;stroke-width:3;stroke-linecap:round;stroke-dasharray:18 70;animation:bd-light 2.2s linear infinite;filter:drop-shadow(0 0 5px var(--beat))}
+@keyframes bd-light{to{stroke-dashoffset:-88}}
+html.paused .bd-slab,html.paused .bd-lbl,html.paused .bd-bond,html.paused .bd-coin,html.paused .bd-stamp{animation:none!important}
 .link{stroke:var(--beat);stroke-width:1.4;stroke-dasharray:4 7;animation:dash 1.4s linear infinite;opacity:.8}
 @keyframes dash{to{stroke-dashoffset:-22}}
+.fl-land{fill:var(--ink-2);fill-opacity:.7;stroke:var(--rule);stroke-width:1.3}
+.fl-pat circle{fill:var(--paper);fill-opacity:.15}
+.fl-halo{fill:var(--amber);fill-opacity:.16;stroke:var(--amber);stroke-opacity:.75;stroke-width:1}
+.fl-core{fill:var(--amber);stroke:var(--ink);stroke-width:1}
+.fl-core.live{fill:var(--beat)}
+.fl-site{transform-box:fill-box;transform-origin:center}
+.viz[data-step="2"] .f2 .fl-site.pop{animation:fl-pop .55s cubic-bezier(.2,1.5,.4,1) var(--d) both}
+@keyframes fl-pop{from{transform:scale(0);opacity:0}}
+.fl-site.glow .fl-halo{animation:fl-glow 2.4s ease-in-out infinite}
+@keyframes fl-glow{50%{fill-opacity:.34;stroke-opacity:1}}
+.fl-lab text{paint-order:stroke;stroke:var(--ink);stroke-width:3.5px;stroke-linejoin:round}
+.viz .fl-lab .fl-gw{fill:var(--amber)}
+.viz[data-step="2"] .f2 .fl-lab{animation:sp-fade .5s ease var(--d) both}
+.fl-ghost{opacity:0;transform-box:view-box}
+.fl-ghost circle{fill:var(--amber);fill-opacity:.05;stroke:var(--paper);stroke-opacity:.5;stroke-width:1.5;stroke-dasharray:5 6}
+.viz[data-step="2"] .f2 .fl-ghost{animation:fl-ghost 1.2s var(--ease) .1s both}
+@keyframes fl-ghost{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.04)}}
+.fl-seg{fill:var(--amber);fill-opacity:.6}
+.fl-fiber{fill:none;stroke:var(--beat);stroke-opacity:.3;stroke-width:1.3}
+.fl-fiber-glow{fill:none;stroke:var(--beat);stroke-width:1.6;stroke-dasharray:2 10;stroke-linecap:round;animation:dash 1.6s linear infinite}
+.fl-pkt{fill:var(--amber);filter:drop-shadow(0 0 3px var(--amber))}
+.fl-pkt.s{fill:var(--beat);filter:drop-shadow(0 0 3px var(--beat))}
+.fl-card{fill:var(--ink);fill-opacity:.94;stroke:var(--rule)}
+.viz .fl-k{fill:var(--faint);letter-spacing:.14em;font-weight:700}
+.fl-tag{font-weight:800;letter-spacing:.06em}
+.viz .fl-tag.train{fill:var(--amber)}.viz .fl-tag.serve{fill:var(--beat)}.viz .fl-tag.sync{fill:var(--violet)}
+.fl-hl{fill:var(--paper);fill-opacity:.08;animation:fl-hl 4.5s steps(1) infinite}
+@keyframes fl-hl{0%{transform:translateY(0)}33.3%{transform:translateY(13px)}66.6%{transform:translateY(26px)}}
+.fl-chip rect{fill:var(--ink-2);stroke:var(--rule);animation:fl-chip 4.5s ease-in-out var(--cd) infinite}
+@keyframes fl-chip{0%,45%,100%{stroke:var(--rule)}15%{stroke:var(--amber)}}
+html.paused .fl-site.pop,html.paused .fl-lab,html.paused .fl-ghost{animation:none!important}
 .pkg-wrap{position:relative;width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px}
 .pkg{position:relative;display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;perspective:1100px;min-height:0;padding-top:90px}
 .pkg-rot{position:relative;width:240px;height:200px;transform-style:preserve-3d;transform:scale(var(--ps,1.1)) rotateX(var(--rx,58deg)) rotateZ(var(--rz,-38deg));transition:transform .6s var(--ease)}
@@ -549,18 +652,62 @@ blockquote.pull .qc{color:var(--bin)}
 .viz[data-step="3"] .l-int{background:rgba(212,227,240,.42);box-shadow:0 0 30px rgba(212,227,240,.7)}
 .pkg-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--label);font-size:15px;color:var(--dim)}
 .pkg-legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:0}
-.meter{display:grid;gap:22px;align-content:center;min-height:0}
-.m-row{display:grid;gap:8px}
-.m-row span{font-family:var(--label);font-weight:600;font-size:17px;color:var(--dim)}
-.m-track{height:28px;background:var(--ink-3);position:relative;overflow:hidden}
-.m-fill{position:absolute;inset:0 auto 0 0;width:var(--from);transition:width 1.4s var(--ease) .2s}
-.viz[data-step="2"] .m-fill{width:var(--to)}
-.ticket{align-self:center;justify-self:center;display:grid;gap:6px;background:linear-gradient(160deg,var(--plum),var(--night));border:1px solid var(--pline);border-radius:22px;padding:22px 26px;font-family:var(--sans);color:var(--pwhite);max-width:300px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
-.ticket .tk-k{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--lilac)}
-.ticket .tk-h{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
-.ticket .tk-s{font-size:15px;color:var(--pmuted)}
-.f-ticket{display:grid;place-items:center;align-content:center;grid-template-rows:auto auto;gap:0}
-.f-ticket .echo{width:150px;margin-bottom:-18px;position:relative;z-index:1}
+.st-ring{fill:none;stroke:var(--violet);stroke-opacity:.45;stroke-width:6}
+.st-face{fill:var(--ink-2);stroke:var(--rule)}
+.st-tk{stroke:var(--faint);stroke-width:1}
+.st-tk5{stroke:var(--paper);stroke-opacity:.7;stroke-width:1.6}
+.st-wedge{fill:none;stroke:var(--coral);stroke-width:92}
+.st-lost{fill:none;stroke-width:92}
+.st-hand line{stroke:var(--coral);stroke-width:4;stroke-linecap:round}
+.st-hand{transform:rotate(120deg)}
+.viz .st-in{fill:var(--ink);font-weight:800}
+.viz .st-out{fill:var(--coral);paint-order:stroke;stroke:var(--ink-2);stroke-width:4px;stroke-linejoin:round}
+.st-big{font-family:var(--display);font-weight:900;font-size:50px}
+.st-big .a{fill:var(--violet)}.st-big .ar{fill:var(--faint);font-weight:600}.st-big .b{fill:var(--coral)}
+.viz[data-step="1"] .f1 .st-wedge{animation:st-sweep 1.8s var(--ease) .35s both}
+.viz[data-step="1"] .f1 .st-hand{animation:st-wind 1.8s var(--ease) .35s both}
+.viz[data-step="1"] .f1 .st-lost,.viz[data-step="1"] .f1 .st-after{animation:sp-fade .6s ease 1.9s both}
+@keyframes st-sweep{from{stroke-dasharray:var(--c) 0}}
+@keyframes st-wind{from{transform:rotate(360deg)}}
+.st-tok rect{fill:var(--ink-2);stroke:var(--violet);stroke-opacity:.7}
+.viz[data-step="2"] .st-tok{animation:st-tok 3s ease-in-out var(--d) infinite}
+@keyframes st-tok{50%{transform:translateX(4px)}}
+.st-ch{fill:none;stroke-width:16;stroke-linecap:round;opacity:.14}
+.st-core{fill:none;stroke-width:1.5}
+.st-ch.feed,.st-core.feed{stroke:var(--coral)}.st-ch.ppl,.st-core.ppl{stroke:var(--amber)}
+.st-dot.feed{fill:var(--coral)}.st-dot.ppl{fill:var(--amber);filter:drop-shadow(0 0 3px var(--amber))}
+.st-phone{fill:var(--ink-2);stroke:var(--coral);stroke-width:1.5}
+.st-post{fill:var(--coral);fill-opacity:.28}
+.st-scroll{animation:st-scroll 2.4s linear infinite}
+@keyframes st-scroll{to{transform:translateY(-38px)}}
+.st-table{fill:var(--ink-3);stroke:var(--amber);stroke-opacity:.6}
+.st-av{animation:st-av 2.6s ease-in-out infinite}
+.st-av:nth-of-type(2){animation-delay:.3s}.st-av:nth-of-type(3){animation-delay:.6s}
+@keyframes st-av{50%{transform:translateY(-2px)}}
+.viz .st-ppl-t{fill:var(--amber)}
+.st-up{font-size:11px}.st-up.feed{fill:var(--coral)}.st-up.ppl{fill:var(--amber)}
+.st-b text{font-family:var(--sans);font-size:12px;font-weight:500}
+.st-b.me rect{fill:var(--beat)}.st-b.me text{fill:#fff}
+.st-b.them rect{fill:#22364d}.st-b.them text{fill:var(--paper)}
+.st-b{opacity:var(--o,1)}
+.viz .st-seen{fill:var(--faint)}
+.viz[data-step="3"] .st-chat{animation:st-die 4s ease-in-out infinite}
+@keyframes st-die{0%,25%{opacity:1}75%,100%{opacity:.72}}
+.st-flat{fill:none;stroke:var(--faint);stroke-width:2.5;stroke-linecap:round}
+.viz .st-fl-l{fill:var(--faint);font-style:italic}
+.st-beat{fill:none;stroke:var(--amber);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1}
+.st-beat-glow{fill:none;stroke:var(--amber);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.16}
+.viz[data-step="3"] .st-beat{animation:st-draw 1.2s var(--ease) .3s both}
+@keyframes st-draw{from{stroke-dashoffset:1}}
+.st-bezel{fill:#0a1220;stroke:#2c4a6a;stroke-width:2;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+.st-pill{transform-box:fill-box;transform-origin:center;transform:rotate(-5deg);filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.viz .st-pill-t{font-family:var(--sans);font-weight:800;font-size:15px;fill:#fff;letter-spacing:-.01em}
+.viz[data-step="3"] .st-pill{animation:st-pop .6s cubic-bezier(.2,1.6,.4,1) 1.2s both}
+@keyframes st-pop{from{transform:rotate(-5deg) scale(.2);opacity:0}}
+.st-conf{transform-box:fill-box;transform-origin:center;animation:st-conf 2.6s ease-in infinite}
+@keyframes st-conf{0%{transform:translateY(-8px) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(34px) rotate(240deg);opacity:0}}
+.st-north rect{fill:var(--ink-2);stroke:var(--amber);stroke-opacity:.7}
+html.paused .st-wedge,html.paused .st-hand,html.paused .st-lost,html.paused .st-after,html.paused .st-beat,html.paused .st-pill{animation:none!important}
 .nc-led{animation:echo-led 1.6s ease-in-out infinite}
 .nc-bolt{filter:drop-shadow(0 0 6px var(--amber));animation:echo-led 2.2s ease-in-out infinite}
 .nccalc{display:grid;gap:10px;align-content:center;min-height:0}
@@ -1679,6 +1826,16 @@ function mountEchoes(root = document) {
     el.replaceWith(svg);
   });
 }
+const US48 = "M383 51 407 45 407 42 411 41 413 34 413 25 416 16 419 18 423 15 427 16 431 30 434 31 435 34 438 34 440 38 434 44 430 44 431 47 428 47 428 44 427 50 424 53 423 52 423 54 421 54 420 56 418 66 420 68 418 72 420 72 424 77 427 75 425 73 428 76 423 79 422 78 419 81 418 78 416 78 417 83 406 86 399 94 398 89 399 92 398 97 400 98 401 104 400 102 397 114 396 115 396 112 390 110 390 107 392 104 389 108 396 120 392 135 393 126 391 126 390 122 389 124 387 122 386 121 388 120 385 120 386 118 385 117 385 114 387 110 386 110 384 114 382 114 386 123 383 122 387 126 381 123 379 124 379 119 378 122 379 125 388 128 386 131 380 127 389 133 388 135 385 133 389 136 389 138 386 136 381 136 386 136 388 139 392 138 398 149 393 140 395 146 392 145 393 146 389 148 387 146 388 149 394 148 394 151 395 148 396 149 394 155 386 154 391 156 390 159 387 158 388 159 393 159 393 160 386 164 385 163 386 165 382 172 381 170 382 173 375 176 373 182 372 180 372 183 367 188 367 189 361 192 363 192 362 194 360 193 361 195 358 199 357 205 356 211 360 221 369 234 371 240 368 234 368 236 366 232 367 235 377 251 378 261 376 267 370 270 369 268 371 268 366 263 361 260 359 257 360 255 358 256 358 252 355 253 350 247 353 243 350 242 351 245 349 244 349 233 338 223 332 222 332 224 323 227 319 223 320 221 318 223 312 221 315 221 314 220 305 222 307 220 305 222 298 224 300 223 298 219 297 223 290 223 284 226 279 224 277 225 276 227 278 228 282 226 282 228 283 229 285 227 286 229 283 232 290 236 286 238 286 236 279 233 280 235 279 238 277 236 274 238 268 236 270 236 269 233 266 233 263 231 259 234 251 232 245 232 245 230 244 233 236 236 238 234 236 234 236 232 234 233 235 236 231 241 223 246 225 244 219 243 221 246 214 249 215 251 211 253 213 254 211 258 208 256 211 259 211 267 214 272 211 273 203 271 195 267 192 260 191 255 175 231 166 229 157 238 147 231 143 220 131 206 115 204 114 208 89 205 58 186 59 184 38 182 37 173 32 167 30 166 29 163 13 153 14 147 8 132 10 127 6 122 6 118 7 116 9 120 9 114 15 115 9 112 7 115 3 112 5 110 1 101 2 92 0 85 6 74 6 59 12 51 21 26 26 28 21 25 23 21 22 19 24 18 22 18 23 2 27 6 35 9 35 12 31 16 32 16 32 15 36 11 34 18 33 18 33 17 31 18 33 19 36 17 39 11 37 9 38 8 37 6 39 4 38 0 91 13 148 22 220 27 231 27 231 23 232 23 234 29 241 31 246 30 250 34 253 33 257 36 261 34 271 35 262 40 253 49 254 50 262 47 262 51 266 51 278 43 280 47 281 46 285 46 288 50 293 50 297 47 305 45 305 48 310 48 314 53 309 53 308 55 302 53 297 55 294 59 295 56 292 58 291 56 285 70 285 71 288 68 290 68 287 85 289 96 293 102 298 99 300 94 300 87 297 75 299 66 303 62 303 67 304 61 307 60 306 58 306 56 312 57 319 61 321 69 317 76 319 77 324 72 326 73 329 86 328 88 327 87 323 97 330 99 327 100 331 100 337 98 353 86 357 80 355 76 361 73 371 73 375 69 374 65 376 64 373 63 380 53Z";
+const STARGATE = [
+  ["Abilene, TX", 191.4, 202.8, 1.2, -10, -18, "end", "1.2 GW · 0.3 live"],
+  ["Shackelford Co., TX", 195.3, 199.9, 2.0, 12, -22, "start"],
+  ["Milam Co., TX", 215.6, 222.6, 1.2, 13, 14, "start"],
+  ["Doña Ana Co., NM", 129.2, 204.4, 2.2, 0, 24, "middle"],
+  ["Port Washington, WI", 287.1, 83.3, 1.3, -12, -4, "end"],
+  ["Saline Twp., MI", 320.2, 92.9, 1.4, 4, -24, "start"],
+  ["Lordstown, OH", 344.5, 100.2, 0.3, 12, 12, "start", "under 0.3 GW"]
+];
 const VIZ = {
   automate() {
     const nodes = [[200, 72, "Agents"], [311, 264, "AI research"], [89, 264, "Better models"]];
@@ -1709,10 +1866,7 @@ const VIZ = {
     </div>`;
   },
   molecules() {
-    const X = t => 70 + (t - 2026.5) * 80;
-    const axis = `<line class="ax" x1="70" y1="240" x2="500" y2="240"/>${[2027, 2028, 2029, 2030, 2031].map(y => `<line class="gridl" x1="${X(y)}" y1="44" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="262" text-anchor="middle" font-size="14">${y}</text>`).join("")}<line x1="${X(2026.75)}" y1="40" x2="${X(2026.75)}" y2="240" stroke="var(--paper)" stroke-dasharray="3 4" stroke-width="1.2"/><text x="${X(2026.75)}" y="32" text-anchor="middle" class="t-strong" font-size="14">Now</text>`;
-    const wells = `<text x="${X(2026.75) + 2}" y="76" class="t-strong" font-size="16">Drill the gas: ~1,200 wells</text><rect x="${X(2026.75)}" y="86" width="${(0.9 * 80).toFixed(1)}" height="28" fill="var(--amber)"/><text x="${X(2026.75) + 80}" y="106" font-size="15">under a year</text>`;
-    const turb = grow => `<text x="${X(2026.75) + 2}" y="160" class="t-strong" font-size="16">Gas turbine delivery slot</text><rect class="g-bar ${grow ? "grow" : ""}" x="${X(2026.75)}" y="170" width="${(4.75 * 80).toFixed(1)}" height="28" fill="var(--coral)"/><text x="${X(2031.5) - 8}" y="190" text-anchor="end" font-size="15" style="fill:var(--ink);font-weight:700">booking 2031</text>`;
+    const X = t => 60 + (t - 2026) * 86;
     const nodes = [[50, "Gas well", "amber"], [155, "Turbine", "coral"], [260, "Transformer", "coral"], [365, "Substation", "coral"], [470, "Rack", "beat"]];
     const icon = i => [
       `<path d="M-11 14 L0 -14 L11 14 M-7 3 H7 M-4 -5 H4"/>`,
@@ -1722,8 +1876,40 @@ const VIZ = {
       `<rect x="-10" y="-14" width="20" height="28"/><path d="M-6 -7 H6 M-6 0 H6 M-6 7 H6"/>`
     ][i];
     return `<div class="viz" data-step="1">
-      <div class="frame f1"><svg viewBox="0 0 520 280" role="img" aria-label="Drilling about 1,200 wells takes under a year.">${axis}${wells}</svg><p class="cap">Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).</p></div>
-      <div class="frame f2"><svg viewBox="0 0 520 280" role="img" aria-label="A gas turbine ordered now delivers around 2031, about five years out.">${axis}${wells}${turb(true)}</svg><p class="cap">Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.</p></div>
+      <div class="frame f1"><svg viewBox="0 0 520 280" role="img" aria-label="A field of 1,200 dots, one per well, fills in under a year of drilling, next to a nodding pump jack.">
+        <defs><pattern class="ml-pat" id="mlWell" x="24" y="70" width="6.4" height="6.4" patternUnits="userSpaceOnUse"><circle cx="3.2" cy="3.2" r="2"/></pattern><clipPath id="mlClip"><rect class="ml-reveal" x="24" y="70" width="256" height="192"/></clipPath></defs>
+        <text x="24" y="32" class="t-strong" font-size="17">Drill the gas: ~1,200 wells</text>
+        <text x="24" y="52" font-size="13">One dot per well</text>
+        <rect x="24" y="70" width="256" height="192" fill="url(#mlWell)" class="ml-ghost"/>
+        <rect x="24" y="70" width="256" height="192" fill="url(#mlWell)" class="ml-done" clip-path="url(#mlClip)"/>
+        <g class="ml-jack" transform="translate(402 150)">
+          <line x1="-58" y1="0" x2="58" y2="0" class="ml-ground"/>
+          <path d="M-16 0 L0 -58 L16 0 M-9 -26 H9" class="ml-frame"/>
+          <path d="M-64 -46 V0 M-70 0 H-58 V-8 H-70 Z" class="ml-rod"/>
+          <g class="ml-beam" style="transform-origin:0px -58px"><rect x="-56" y="-62" width="104" height="8" rx="2"/><path d="M-56 -66 C-72 -60 -72 -42 -62 -38 L-56 -46 C-60 -50 -60 -56 -54 -58 Z"/><circle cx="0" cy="-58" r="3.5" class="ml-pin"/></g>
+          <line x1="44" y1="-54" x2="40" y2="-22" class="ml-frame"/>
+          <g class="ml-crank" style="transform-origin:40px -22px"><circle cx="40" cy="-22" r="11"/><rect x="36" y="-38" width="8" height="16" rx="2"/></g>
+        </g>
+        <text x="312" y="204" class="ml-big">1,200</text><text x="430" y="204" font-size="15" class="t-strong">wells</text>
+        <line x1="312" y1="232" x2="500" y2="232" class="ml-track"/>
+        <line x1="312" y1="232" x2="${(312 + 188 * 11 / 12).toFixed(1)}" y2="232" class="ml-fill"/>
+        <text x="312" y="252" font-size="12">0</text><text x="500" y="252" text-anchor="end" font-size="12">12 months</text>
+        <text x="${(312 + 188 * 11 / 12).toFixed(1)}" y="222" text-anchor="end" font-size="13" class="ml-under">under a year</text>
+      </svg><p class="cap">Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).</p></div>
+      <div class="frame f2"><svg viewBox="0 0 520 280" role="img" aria-label="A conveyor line of gas turbines waiting their turn. An order placed now gets a slot around 2031, while the fuel is drilled in under a year.">
+        <text x="24" y="32" class="t-strong" font-size="17">Gas turbine delivery slot</text>
+        <text x="24" y="52" font-size="13">GE Vernova’s backlog: 116 GW</text>
+        <g transform="translate(318 18)" class="ml-fuel"><rect width="182" height="28" rx="14"/><path d="M14 14 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="18.5" font-size="12.5" class="t-strong">Fuel: drilled in under a year</text></g>
+        <path d="M${X(2026.75)} 104 V96 H${X(2031) + 2} V104" fill="none" stroke="var(--coral)" stroke-width="1.5"/>
+        <text x="${(X(2026.75) + X(2031)) / 2}" y="88" text-anchor="middle" font-size="14" class="t-strong ml-wait">about five years in line</text>
+        <rect x="40" y="186" width="466" height="16" rx="8" class="ml-belt"/>
+        <line x1="48" y1="194" x2="498" y2="194" class="ml-roll"/>
+        <line x1="40" y1="112" x2="40" y2="230" class="ml-dock"/><text x="46" y="122" font-size="12" class="ml-now">now</text><text x="46" y="136" font-size="12" class="ml-now">shipping</text>
+        ${Array.from({ length: 11 }, (_, i) => { const x = 86 + i * 39.4, me = i === 10; return `<g transform="translate(${x.toFixed(1)} 172)"><g class="ml-tb${me ? " me" : ""}" style="--d:${(i * .12).toFixed(2)}s"><path d="M-13 -6 L8 -8.5 L15 -4.5 V4.5 L8 8.5 L-13 6 Z"/><ellipse cx="-13" cy="0" rx="3.2" ry="8"/><path d="M-4 -7 V7 M3 -8 V8" class="ml-fan"/><rect x="-11" y="9" width="22" height="4" rx="1"/></g></g>`; }).join("")}
+        <g transform="translate(${(86 + 10 * 39.4 - 30).toFixed(1)} 118)"><g class="ml-ticket"><path d="M0 0 H60 V12 a4 4 0 0 0 0 8 V32 H0 V20 a4 4 0 0 0 0 -8 Z"/><text x="30" y="13" text-anchor="middle" font-size="9" class="ml-tk-k">YOUR SLOT</text><text x="30" y="27" text-anchor="middle" font-size="13" class="ml-tk-v">2031</text></g></g>
+        <line class="ax" x1="60" y1="236" x2="500" y2="236"/>
+        ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="ax" x1="${X(y)}" y1="232" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="258" text-anchor="middle" font-size="13">${y}</text>`).join("")}
+      </svg><p class="cap">Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.</p></div>
       <div class="frame f3"><svg viewBox="0 0 520 240" role="img" aria-label="Chain from gas well to turbine, transformer, substation and rack. The queue sits in the middle three.">
         <path d="M110 58 V46 H410 V58" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="260" y="36" text-anchor="middle" font-size="16" style="fill:var(--coral);font-weight:700">the queue lives here</text>
         <line class="ax" x1="50" y1="120" x2="470" y2="120"/>
@@ -1736,9 +1922,22 @@ const VIZ = {
     const Y = L => 300 - (L - 1) * 62, X = yr => 96 + (yr - 2022) * 42;
     const ladder = [[2022, 1], [2024, 2], [2026, 3], [2028, 4], [2030, 5]];
     const labels = ["10 MW", "100 MW", "1 GW", "10 GW", "100 GW"];
-    const sites = [[150, 118], [262, 88], [338, 166], [212, 206], [118, 232], [312, 262], [228, 140]];
-    const links = [[0, 6], [6, 1], [1, 2], [6, 3], [3, 4], [0, 4], [3, 5], [2, 5], [6, 2]];
     const live = Math.log10(300), plan = Math.log10(1200);
+    const MS = .92, MX = 28, MY = 40;
+    const S = STARGATE.map(([name, x, y, gw, dx, dy, anchor, note]) => ({ name, gw, dx, dy, anchor, note, x: MX + x * MS, y: MY + y * MS }));
+    const usMap = id => `<defs><pattern class="fl-pat" id="${id}d" width="8" height="13.86" patternUnits="userSpaceOnUse"><circle cx="4" cy="3.46" r="1.3"/><circle cx="0" cy="10.39" r="1.3"/><circle cx="8" cy="10.39" r="1.3"/></pattern><clipPath id="${id}c"><path d="${US48}" transform="translate(${MX} ${MY}) scale(${MS})"/></clipPath></defs>
+        <path class="fl-land" d="${US48}" transform="translate(${MX} ${MY}) scale(${MS})"/>
+        <rect class="fl-dots" x="${MX - 4}" y="${MY - 4}" width="412" height="262" fill="url(#${id}d)" clip-path="url(#${id}c)"/>`;
+    const siteMark = (s, i, cls) => `<g transform="translate(${s.x.toFixed(1)} ${s.y.toFixed(1)})"><g class="fl-site ${cls}" style="--d:${(0.55 + i * 0.12).toFixed(2)}s"><circle class="fl-halo" r="${(6.5 * Math.sqrt(s.gw)).toFixed(1)}"/><circle class="fl-core${i === 0 ? " live" : ""}" r="3.4"/></g></g>`;
+    const siteLabel = (s, i) => { const x = s.x + s.dx, y = s.y + s.dy; return `<g class="fl-lab" style="--d:${(0.9 + i * 0.12).toFixed(2)}s"><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${s.anchor}" class="t-strong" font-size="11.5">${s.name}</text><text x="${x.toFixed(1)}" y="${(y + 12).toFixed(1)}" text-anchor="${s.anchor}" font-size="11" class="fl-gw">${s.note || s.gw.toFixed(1) + " GW"}</text></g>`; };
+    const total = S.reduce((a, s) => a + s.gw, 0);
+    let bx = 20;
+    const strip = [...S].sort((a, b) => b.gw - a.gw).map(s => { const w = s.gw / total * 420, x = bx; bx += w; return `<rect x="${(x + .6).toFixed(1)}" y="314" width="${(w - 1.2).toFixed(1)}" height="9" rx="1.5" class="fl-seg"/>${s.name.startsWith("Abilene") ? `<rect x="${(x + .6).toFixed(1)}" y="314" width="${(.3 / total * 420).toFixed(1)}" height="9" rx="1.5" fill="var(--beat)"/>` : ""}`; }).join("");
+    const curve = (a, b, k) => { const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2; return `M${a.x.toFixed(1)} ${a.y.toFixed(1)} Q${(mx + (b.y - a.y) * k).toFixed(1)} ${(my - (b.x - a.x) * k).toFixed(1)} ${b.x.toFixed(1)} ${b.y.toFixed(1)}`; };
+    const LINKS = [[3, 0, .3], [0, 2, .3], [1, 4, .14], [2, 5, .16], [4, 5, .4], [5, 6, .5], [2, 6, .12], [3, 4, .12]].map(([a, b, k]) => curve(S[a], S[b], k));
+    const PKT = [[0, 2.6, 0, "t"], [2, 3.4, -1.1, "t"], [3, 3.2, -2.2, "s"], [5, 1.8, -.6, "s"], [6, 3.6, -1.7, "t"], [7, 4.2, -3, "s"], [1, 2.2, -1.4, "s"]];
+    const chips = [["Placed by power", `<path d="M2 -6 L-3 1 H1 L-1 6 L4 -1 H0 Z" fill="var(--amber)"/>`], ["Linked by fiber", `<path d="M-6 0 Q-3 -5 0 0 T6 0" fill="none" stroke="var(--beat)" stroke-width="1.8" stroke-linecap="round"/>`], ["Scheduled by software", `<rect x="-5" y="-5" width="10" height="10" rx="2" fill="none" stroke="var(--paper)" stroke-width="1.5"/><path d="M-2 -7.5 V-5 M2 -7.5 V-5 M-2 5 V7.5 M2 5 V7.5 M-7.5 -2 H-5 M-7.5 2 H-5 M5 -2 H7.5 M5 2 H7.5" stroke="var(--paper)" stroke-width="1.2"/>`]];
+    const jobs = [["TRAIN", "shard 14 → Doña Ana, NM"], ["SERVE", "agents → Saline Twp., MI"], ["SYNC", "weights → Port Washington"]];
     return `<div class="viz" data-step="1">
       <div class="frame f1"><svg viewBox="0 0 460 396" role="img" aria-label="Log-scale ladder of cluster power from 10 megawatts in 2022 to 100 gigawatts in 2030, with Stargate Abilene at 0.3 gigawatts live and 1.2 planned in April 2026.">
         ${labels.map((l, i) => `<line class="gridl" x1="88" y1="${Y(i + 1)}" x2="450" y2="${Y(i + 1)}"/><text x="80" y="${Y(i + 1) + 5}" text-anchor="end" font-size="14">${l}</text>`).join("")}
@@ -1752,14 +1951,25 @@ const VIZ = {
         <text x="${X(2026.29) + 14}" y="${Y(plan) + 18}" font-size="14" style="fill:var(--beat)">planned: 1.2 GW</text>
         <g transform="translate(96 360)"><line x1="0" y1="0" x2="22" y2="0" stroke="var(--paper)" stroke-dasharray="5 4"/><text x="30" y="5" font-size="14">Aschenbrenner’s ladder (2024)</text><circle cx="11" cy="22" r="5" fill="var(--beat)"/><text x="30" y="27" font-size="14">Stargate Abilene (Epoch AI)</text></g>
       </svg><p class="cap">One cluster per rung, ten times bigger every two years (dashed). Abilene in April 2026, per Epoch AI (blue).</p></div>
-      <div class="frame f2"><svg viewBox="0 0 460 340" role="img" aria-label="One imagined giant cluster resolves into seven separate sites.">
-        <circle class="big-c" cx="228" cy="176" r="148"/><text x="228" y="18" text-anchor="middle" font-size="15">one 100 GW campus?</text>
-        ${sites.map(([x, y], i) => `<circle class="site" cx="${x}" cy="${y}" r="20" style="transition-delay:${i * 0.08}s"/>`).join("")}
-      </svg><p class="cap">Stargate today: seven US sites, 9+ GW planned by 2029. OpenAI moved Abilene’s extra 2.1 GW to other sites.</p></div>
-      <div class="frame f3"><svg viewBox="0 0 460 340" role="img" aria-label="Seven sites linked by network lines into a fleet.">
-        ${links.map(([a, b]) => `<line class="link" x1="${sites[a][0]}" y1="${sites[a][1]}" x2="${sites[b][0]}" y2="${sites[b][1]}"/>`).join("")}
-        ${sites.map(([x, y]) => `<circle class="site" cx="${x}" cy="${y}" r="20"/>`).join("")}
-      </svg><p class="cap">The fleet: placed by power, linked by fiber, scheduled by software.</p></div>
+      <div class="frame f2"><svg viewBox="0 0 460 336" role="img" aria-label="Map of Stargate’s seven US sites: Abilene, Shackelford County and Milam County in Texas, Doña Ana County in New Mexico, Port Washington in Wisconsin, Saline Township in Michigan and Lordstown in Ohio, with over 9 GW planned in total.">
+        ${usMap("fl2")}
+        <text x="20" y="22" class="t-strong" font-size="17">Not one 100 GW campus. Seven sites.</text>
+        <g class="fl-ghost" style="transform-origin:${S[0].x.toFixed(1)}px ${S[0].y.toFixed(1)}px"><circle cx="${S[0].x.toFixed(1)}" cy="${S[0].y.toFixed(1)}" r="150"/></g>
+        ${S.map((s, i) => siteMark(s, i, "pop")).join("")}
+        ${S.map(siteLabel).join("")}
+        <text x="20" y="306" class="t-strong" font-size="12">9+ GW planned across the seven</text>
+        <g transform="translate(440 302)"><circle cx="-128" cy="0" r="3.4" fill="var(--beat)"/><text x="-120" y="4" font-size="11.5">live today</text><circle cx="-56" cy="0" r="3.4" fill="var(--amber)"/><text x="-48" y="4" font-size="11.5">planned</text></g>
+        ${strip}
+      </svg><p class="cap">Stargate today, per Epoch AI (Apr 2026): seven US sites, 9+ GW planned by 2029. OpenAI moved Abilene’s extra 2.1 GW to other sites.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 346" role="img" aria-label="The same seven sites linked by long-haul fiber, with training and inference jobs flowing between them and a scheduler routing work by power.">
+        ${usMap("fl3")}
+        <text x="20" y="22" class="t-strong" font-size="17">One fleet, scheduled like one computer</text>
+        ${LINKS.map((d, i) => `<path class="fl-fiber" d="${d}"/><path class="fl-fiber-glow" d="${d}" style="animation-delay:${(i * -.35).toFixed(2)}s"/>`).join("")}
+        ${S.map((s, i) => siteMark(s, i, "glow")).join("")}
+        ${PKT.map(([l, dur, begin, kind]) => `<circle r="2.8" class="fl-pkt ${kind}"><animateMotion dur="${dur}s" begin="${begin}s" repeatCount="indefinite" path="${LINKS[l]}"/></circle>`).join("")}
+        <g transform="translate(12 252)"><rect width="164" height="62" rx="6" class="fl-card"/><text x="10" y="15" font-size="9.5" class="fl-k">FLEET SCHEDULER</text><rect class="fl-hl" x="5" y="20" width="154" height="13" rx="3"/>${jobs.map(([k, v], i) => `<text x="10" y="${30 + i * 13}" font-size="9.5" class="fl-tag ${k.toLowerCase()}">${k}</text><text x="44" y="${30 + i * 13}" font-size="10" class="t-strong">${v}</text>`).join("")}</g>
+        ${chips.map(([l, ic], i) => `<g class="fl-chip" style="--cd:${i * 1.5}s" transform="translate(${12 + i * 147} 322)"><rect width="141" height="22" rx="11"/><g transform="translate(15 11)">${ic}</g><text x="28" y="15" font-size="12" class="t-strong">${l}</text></g>`).join("")}
+      </svg><p class="cap">The fleet: placed by power, linked by fiber, scheduled by software. Links and jobs are illustrative.</p></div>
     </div>`;
   },
   memory() {
@@ -1853,28 +2063,52 @@ const VIZ = {
   builders() {
     const D = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2]];
     const Y = v => 270 - v * 10;
-    const S = [["Chips", "TSMC"], ["Memory", "Micron, SanDisk"], ["Datacenters", "CoreWeave, IREN, Nebius"], ["Power", "Bloom Energy"]];
+    const SW = 176, SH = 62, ST = 16, CX = 168, CY = [108, 154, 200, 246];
+    const STACK = [
+      ["Chips", "TSMC", "#6aa8ff", [0, 1, 2].map(i => [0, 1, 2].map(j => `<rect x="${18 + i * 24}" y="${18 + j * 24}" width="16" height="16" rx="2"/>`).join("")).join("")],
+      ["Memory", "Micron, SanDisk", "#3fd6c8", [0, 1, 2, 3].map(k => `<rect x="12" y="${14 + k * 19}" width="76" height="12" rx="2"/>`).join("")],
+      ["Datacenters", "CoreWeave, IREN, Nebius", "#d4e3f0", [0, 1, 2, 3, 4].map(k => `<rect x="${10 + k * 17}" y="14" width="12" height="72" rx="2"/>`).join("")],
+      ["Power", "Bloom Energy", "#ffd98a", `<path d="M58 8 L26 56 H48 L40 92 L74 40 H52 Z"/>`]
+    ];
+    const slab = (cy, i, c, ic) => {
+      const t = `${CX},${cy - SH / 2} ${CX + SW / 2},${cy} ${CX},${cy + SH / 2} ${CX - SW / 2},${cy}`;
+      const l = `${CX - SW / 2},${cy} ${CX},${cy + SH / 2} ${CX},${cy + SH / 2 + ST} ${CX - SW / 2},${cy + ST}`;
+      const r = `${CX},${cy + SH / 2} ${CX + SW / 2},${cy} ${CX + SW / 2},${cy + ST} ${CX},${cy + SH / 2 + ST}`;
+      return `<g class="bd-slab" style="--c:${c};--d:${(.1 + (3 - i) * .15).toFixed(2)}s"><polygon points="${l}" class="l"/><polygon points="${r}" class="r"/><polygon points="${t}" class="t"/><g transform="matrix(${SW / 200} ${SH / 200} ${-SW / 200} ${SH / 200} ${CX} ${cy - SH / 2})" class="ic">${ic}</g></g>`;
+    };
+    const LABS = ["Lab A", "Lab B", "Lab C"];
+    const FLOWS = [`M98 58 Q100 70 ${CX - 22} ${CY[0] - SH / 2 + 12}`, `M${CX} 58 V${CY[0] - SH / 2 + 2}`, `M238 58 Q236 70 ${CX + 22} ${CY[0] - SH / 2 + 12}`];
     return `<div class="viz" data-step="1">
       <div class="frame f1"><svg viewBox="0 0 460 310" role="img" aria-label="Situational Awareness LP’s disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026.">
         ${[0, 5, 10, 15, 20].map(v => `<line class="gridl" x1="56" y1="${Y(v)}" x2="440" y2="${Y(v)}"/><text x="48" y="${Y(v) + 5}" text-anchor="end" font-size="13">${v ? "$" + v + "B" : "$0"}</text>`).join("")}
         <line class="ax" x1="56" y1="${Y(0)}" x2="440" y2="${Y(0)}"/>
         ${D.map(([l, v], i) => { const x = 66 + i * 54; return `<rect x="${x}" y="${Y(v)}" width="38" height="${(v * 10).toFixed(1)}" fill="var(--amber)" opacity="${(0.5 + i * 0.08).toFixed(2)}"/><text x="${x + 19}" y="${Y(v) - 8}" text-anchor="middle" class="t-strong" font-size="13">${v < 1 ? "$0.25B" : "$" + v.toFixed(1) + "B"}</text><text x="${x + 19}" y="292" text-anchor="middle" font-size="12">${l}</text>`; }).join("")}
       </svg><p class="cap">US positions disclosed in each 13F filing, by filing date. Not total assets; shorts and non-US holdings aren’t shown.</p></div>
-      <div class="frame f2"><svg viewBox="0 0 460 290" role="img" aria-label="Four layers every scaling plan buys: chips, memory, datacenters and power, with example companies from the fund’s filings.">
-        <text x="230" y="24" text-anchor="middle" class="t-strong" font-size="15">Every scaling plan buys all four</text>
-        ${S.map(([n, ex], i) => { const y = 42 + i * 58; return `<rect x="40" y="${y}" width="380" height="48" rx="3" fill="var(--ink-2)" stroke="var(--amber)" stroke-opacity="${(0.35 + i * 0.2).toFixed(2)}" stroke-width="1.5"/><text x="58" y="${y + 31}" class="t-strong" font-size="19">${n}</text><text x="404" y="${y + 30}" text-anchor="end" font-size="14">${ex}</text>`; }).join("")}
+      <div class="frame f2"><svg viewBox="0 0 460 300" role="img" aria-label="Three rival labs all feed into the same four-layer stack: chips, memory, datacenters and power, with example companies from the fund’s filings.">
+        <text x="16" y="17" class="t-strong" font-size="15">Whoever wins the lab race…</text>
+        ${LABS.map((l, i) => `<g transform="translate(${70 + i * 70} 36)"><rect width="56" height="22" rx="11" class="bd-lab"/><text x="28" y="15.5" text-anchor="middle" font-size="12" class="t-strong">${l}</text></g>`).join("")}
+        <g transform="translate(168 28)" class="bd-crown"><path d="M-9 4 L-9 -4 L-4.5 0 L0 -6 L4.5 0 L9 -4 L9 4 Z"/><text x="0" y="3" text-anchor="middle" font-size="7" class="bd-q">?</text></g>
+        ${FLOWS.map(d => `<path d="${d}" class="bd-flow"/>`).join("")}
+        ${FLOWS.map((d, i) => `<circle r="2.6" class="bd-cash"><animateMotion dur="1.8s" begin="${(-i * .6).toFixed(1)}s" repeatCount="indefinite" path="${d}"/></circle>`).join("")}
+        ${[...STACK].reverse().map(([n, ex, c, ic], k) => slab(CY[3 - k], 3 - k, c, ic)).join("")}
+        ${STACK.map(([n, ex, c], i) => `<g class="bd-lbl" style="--d:${(.5 + i * .15).toFixed(2)}s"><line x1="${CX + SW / 2 + 4}" y1="${CY[i] + 8}" x2="${CX + SW / 2 + 16}" y2="${CY[i] + 8}" stroke="${c}"/><text x="${CX + SW / 2 + 22}" y="${CY[i] + 6}" class="t-strong" font-size="16">${n}</text><text x="${CX + SW / 2 + 22}" y="${CY[i] + 22}" font-size="12.5">${ex}</text></g>`).join("")}
+        <text x="${CX + SW / 2 + 22}" y="292" class="t-strong bd-all" font-size="15">…buys all four.</text>
       </svg><p class="cap">Examples from the fund’s 2026 filings, by the layer they build. Not investment advice.</p></div>
-      <div class="frame f3"><svg viewBox="0 0 460 290" role="img" aria-label="In the 1990s telecom bust, bondholders got back about 20 cents per dollar, but the fiber stayed in the ground.">
-        <text x="230" y="26" text-anchor="middle" class="t-strong" font-size="15">The 1990s telecom boom</text>
-        <text x="40" y="66" font-size="14">Every $1 of bonds</text>
-        <rect x="40" y="76" width="380" height="26" fill="var(--faint)"/>
-        <text x="410" y="94" text-anchor="end" class="t-strong" font-size="14" style="fill:var(--ink)">$1.00</text>
-        <text x="40" y="134" font-size="14">Paid back after the bust</text>
-        <rect x="40" y="144" width="76" height="26" fill="var(--coral)"/>
-        <text x="126" y="162" class="t-strong" font-size="14">about 20¢</text>
-        <path d="M20 222 C120 202 200 242 300 222 S420 212 440 222" fill="none" stroke="var(--beat)" stroke-width="6" opacity=".18" stroke-linecap="round"/>
-        <path class="fiber" d="M20 222 C120 202 200 242 300 222 S420 212 440 222" fill="none" stroke="var(--beat)" stroke-width="2.5" stroke-linecap="round"/>
-        <text x="230" y="270" text-anchor="middle" class="t-strong" font-size="15">The fiber stayed in the ground.</text>
+      <div class="frame f3"><svg viewBox="0 0 460 300" role="img" aria-label="In the 1990s telecom bust, every dollar of bonds paid back about 20 cents and WorldCom and Global Crossing went bankrupt, but the fiber stayed in the ground, still lit.">
+        <defs><linearGradient id="bdSoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14283f" stop-opacity=".9"/><stop offset="1" stop-color="#07101d" stop-opacity="0"/></linearGradient></defs>
+        <text x="16" y="22" class="t-strong" font-size="16">The 1990s telecom boom</text>
+        <g transform="translate(18 40)"><g class="bd-bond"><rect width="128" height="74" rx="3"/><rect x="5" y="5" width="118" height="64" rx="2" class="in"/><text x="64" y="22" text-anchor="middle" font-size="10" class="bd-bk">TELECOM BOND</text><text x="64" y="52" text-anchor="middle" class="bd-bv">$1.00</text></g></g>
+        <path d="M152 77 H196 m-7 -6 l7 6 l-7 6" class="bd-arrow"/>
+        <g class="bd-coin"><circle cx="228" cy="77" r="26"/><text x="228" y="83" text-anchor="middle" class="bd-cv">20¢</text></g>
+        <text x="228" y="122" text-anchor="middle" font-size="12.5">paid back after the bust</text>
+        ${[["WorldCom", 300, 66, 44, 104], ["Global Crossing", 370, 86, 64, 84]].map(([n, x, y, w, h], i) => `<g class="bd-bldg"><rect x="${x}" y="${y}" width="${w}" height="${h}"/>${Array.from({ length: Math.floor((h - 12) / 12) * Math.floor((w - 8) / 10) }, (_, k) => { const cols = Math.floor((w - 8) / 10), cx = x + 6 + (k % cols) * 10, cy = y + 8 + Math.floor(k / cols) * 12; return `<rect x="${cx}" y="${cy}" width="5" height="6" class="${(k * 7 + i) % 5 ? "w" : "w lit"}"/>`; }).join("")}<text x="${x + w / 2}" y="186" text-anchor="middle" font-size="12" class="t-strong">${n}</text></g><g class="bd-stamp" style="--d:${(.6 + i * .35).toFixed(2)}s;transform-origin:${x + w / 2}px ${y + h / 2}px"><rect x="${x + w / 2 - 38}" y="${y + h / 2 - 11}" width="76" height="22" rx="3" transform="rotate(-14 ${x + w / 2} ${y + h / 2})"/><text x="${x + w / 2}" y="${y + h / 2 + 5}" text-anchor="middle" transform="rotate(-14 ${x + w / 2} ${y + h / 2})">BANKRUPT</text></g>`).join("")}
+        <rect x="0" y="170" width="460" height="130" fill="url(#bdSoil)"/>
+        <line x1="0" y1="170" x2="460" y2="170" class="bd-ground"/>
+        <path d="M0 206 H460 M0 262 H460" class="bd-strata"/>
+        <rect x="-6" y="222" width="472" height="16" rx="8" class="bd-pipe"/>
+        <line x1="0" y1="230" x2="460" y2="230" class="bd-fiber"/>
+        <line x1="0" y1="230" x2="460" y2="230" class="bd-light"/>
+        <text x="230" y="288" text-anchor="middle" class="t-strong" font-size="16">The fiber stayed in the ground.</text>
       </svg><p class="cap">Telecoms crash, 2001: $500B+ invested, mostly debt. WorldCom and Global Crossing went bankrupt.</p></div>
     </div>`;
   },
@@ -2364,25 +2598,72 @@ const VIZ = {
     </div>`;
   },
   screen() {
-    const Y = m => 262 - m * 3.5;
+    const cx = 136, cy = 166, C = 2 * Math.PI * 46;
+    const pt = (m, r) => { const a = (m / 60 * 360 - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+    const ticks = Array.from({ length: 60 }, (_, m) => { const [x1, y1] = pt(m, m % 5 ? 95 : 89), [x2, y2] = pt(m, 100); return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${m % 5 ? "st-tk" : "st-tk5"}"/>`; }).join("");
+    const nums = [[0, "0"], [15, "15"], [30, "30"], [45, "45"]].map(([m, l]) => { const [x, y] = pt(m, 124); return `<text x="${x.toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="middle" font-size="12">${l}</text>`; }).join("");
+    const [lx, ly] = pt(40, 60), [wx, wy] = pt(10, 58);
+    const top = "M84 160 C150 160 150 92 226 92", bot = "M84 160 C150 160 150 228 226 228";
+    const dots = (d, cls) => [0, -.7, -1.4, -2.1].map(b => `<circle r="3.2" class="${cls}"><animateMotion dur="2.8s" begin="${b}s" repeatCount="indefinite" path="${d}"/></circle>`).join("");
+    const av = [[232, 219, "#8fb7e6", "MC"], [254, 209, "#f4977a", "RP"], [276, 219, "#ffd98a", "AN"]];
+    const confetti = [[214, 70, "var(--amber)", 0], [244, 18, "var(--beat)", .4], [300, 8, "#ffd98a", .9], [356, 14, "var(--coral)", .2], [420, 24, "var(--amber)", 1.2], [446, 70, "var(--violet)", .6], [204, 120, "#ffd98a", 1.5], [440, 130, "var(--beat)", 1], [190, 250, "var(--coral)", .3], [300, 224, "var(--amber)", 1.7], [176, 198, "var(--violet)", .8], [452, 196, "#ffd98a", 1.9]];
+    const nest = (svg, x, y, w, h) => svg.replace("<svg ", `<svg x="${x}" y="${y}" width="${w}" height="${h}" style="width:${w}px;height:${h}px" `);
     return `<div class="viz" data-step="1">
-      <div class="frame f1"><svg viewBox="0 0 420 320" role="img" aria-label="Average daily in-person time with friends fell from 60 minutes in 2003 to 20 minutes in 2020.">
-        ${[0, 20, 40, 60].map(m => `<line class="gridl" x1="60" y1="${Y(m)}" x2="400" y2="${Y(m)}"/><text x="50" y="${Y(m) + 5}" text-anchor="end" font-size="14">${m}</text>`).join("")}
-        <line class="ax" x1="60" y1="${Y(0)}" x2="400" y2="${Y(0)}"/>
-        <rect x="110" y="${Y(60)}" width="96" height="${(60 * 3.5).toFixed(1)}" fill="var(--violet)" opacity=".55"/>
-        <rect x="254" y="${Y(20)}" width="96" height="${(20 * 3.5).toFixed(1)}" fill="var(--coral)"/>
-        <text x="158" y="${Y(60) - 10}" text-anchor="middle" class="t-strong" font-size="18">60 min</text>
-        <text x="302" y="${Y(20) - 10}" text-anchor="middle" class="t-strong" font-size="18">20 min</text>
-        <text x="158" y="${Y(0) + 24}" text-anchor="middle" font-size="15">2003</text>
-        <text x="302" y="${Y(0) + 24}" text-anchor="middle" font-size="15">2020</text>
-        <text x="400" y="${Y(42)}" text-anchor="end" font-size="15" style="fill:var(--coral)">Ages 15 to 24:</text><text x="400" y="${Y(42) + 19}" text-anchor="end" font-size="15" style="fill:var(--coral)">down about 70%</text>
-        <text x="14" y="${Y(30)}" font-size="13" transform="rotate(-90 14 ${Y(30)})" text-anchor="middle">minutes per day</text>
+      <div class="frame f1"><svg viewBox="0 0 440 320" role="img" aria-label="A clock of daily in-person time with friends: a full 60 minutes in 2003, wound back to 20 minutes in 2020. Ages 15 to 24 are down about 70 percent.">
+        <defs><pattern id="stHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--ink-2)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--coral)" stroke-opacity=".45" stroke-width="2"/></pattern></defs>
+        <circle cx="${cx}" cy="${cy}" r="110" class="st-ring"/>
+        <circle cx="${cx}" cy="${cy}" r="100" class="st-face"/>
+        <circle cx="${cx}" cy="${cy}" r="46" class="st-lost" stroke="url(#stHatch)" stroke-dasharray="${(C * 2 / 3).toFixed(2)} ${C.toFixed(2)}" stroke-dashoffset="${(-C / 3).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>
+        <circle cx="${cx}" cy="${cy}" r="46" class="st-wedge" style="--c:${C.toFixed(2)}" stroke-dasharray="${(C / 3).toFixed(2)} ${C.toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>
+        ${ticks}${nums}
+        <g class="st-hand" style="transform-origin:${cx}px ${cy}px"><line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy - 86}"/></g>
+        <circle cx="${cx}" cy="${cy}" r="6" fill="var(--paper)"/>
+        <g class="st-after"><text x="${wx.toFixed(1)}" y="${(wy + 5).toFixed(1)}" text-anchor="middle" font-size="15" class="st-in">20 min</text><text x="${lx.toFixed(1)}" y="${(ly + 5).toFixed(1)}" text-anchor="middle" font-size="15" class="t-strong st-out">−40 min</text></g>
+        <text x="276" y="80" class="st-big"><tspan class="a">60</tspan><tspan class="ar"> → </tspan><tspan class="b">20</tspan></text>
+        <text x="276" y="104" font-size="14">minutes a day with friends,</text>
+        <text x="276" y="121" font-size="14">in person, 2003 → 2020</text>
+        <g transform="translate(276 150)" font-size="13"><rect y="-8" width="16" height="6" rx="3" fill="var(--violet)" opacity=".5"/><text x="24" y="-1">2003: a full hour</text><rect y="12" width="16" height="10" rx="2" fill="var(--coral)"/><text x="24" y="21">2020: 20 minutes</text><rect y="34" width="16" height="10" rx="2" fill="url(#stHatch)" stroke="var(--coral)" stroke-opacity=".5"/><text x="24" y="43">the 40 minutes that went</text></g>
+        <text x="276" y="240" class="t-strong" font-size="15" style="fill:var(--coral)">Ages 15 to 24:</text><text x="276" y="258" font-size="15" style="fill:var(--coral)">down about 70%</text>
       </svg><p class="cap">Average daily time with friends in person, U.S. (Surgeon General’s advisory, 2023).</p></div>
-      <div class="frame f2"><div class="meter" role="img" aria-label="Illustration: time on screen shrinks while time with friends grows.">
-        <div class="m-row"><span>Time on screen</span><div class="m-track"><div class="m-fill" style="--from:82%;--to:20%;background:var(--faint)"></div></div></div>
-        <div class="m-row"><span>Time with friends, in person</span><div class="m-track"><div class="m-fill" style="--from:12%;--to:80%;background:var(--beat)"></div></div></div>
-      </div><p class="cap">Illustration, not data: the second bar is the scoreboard EchoTempo keeps.</p></div>
-      <div class="frame f3 f-ticket">${echo({ pose: "cheer" })}<div class="ticket"><span class="tk-k">IT’S A TEMPO</span><span class="tk-h">Thursday, 6–8 PM</span><span class="tk-s">You, Maya and Ryan are in for food.</span></div></div>
+      <div class="frame f2"><svg viewBox="0 0 460 320" role="img" aria-label="Illustration: hours that AI hands back can flow to a feed, which counts minutes on screen, or to your people, which counts hours spent together.">
+        <text x="16" y="24" class="t-strong" font-size="17">Where do the hours go?</text>
+        ${[0, 1, 2].map(i => `<g transform="translate(30 ${120 + i * 28})"><g class="st-tok" style="--d:${(i * .25).toFixed(2)}s"><rect width="46" height="24" rx="6"/><text x="23" y="16.5" text-anchor="middle" font-size="13" class="t-strong">1h</text></g></g>`).join("")}
+        <text x="53" y="222" text-anchor="middle" font-size="13">Hours AI</text><text x="53" y="238" text-anchor="middle" font-size="13">hands back</text>
+        <path d="${top}" class="st-ch feed"/><path d="${bot}" class="st-ch ppl"/>
+        <path d="${top}" class="st-core feed"/><path d="${bot}" class="st-core ppl"/>
+        ${dots(top, "st-dot feed")}${dots(bot, "st-dot ppl")}
+        <g transform="translate(232 56)"><rect width="44" height="74" rx="9" class="st-phone"/><clipPath id="stFeedClip"><rect x="4" y="9" width="36" height="56" rx="3"/></clipPath><g clip-path="url(#stFeedClip)"><g class="st-scroll">${[0, 1, 2, 3, 4, 5].map(i => `<rect x="7" y="${11 + i * 19}" width="30" height="15" rx="2" class="st-post"/>`).join("")}</g></g><rect x="16" y="4" width="12" height="2.4" rx="1.2" fill="var(--rule)"/></g>
+        <text x="290" y="82" class="t-strong" font-size="17">The feed</text>
+        <text x="290" y="101" font-size="13.5">counts minutes</text><text x="290" y="117" font-size="13.5">on screen <tspan class="st-up feed">▲</tspan></text>
+        <ellipse cx="254" cy="238" rx="27" ry="9" class="st-table"/>
+        ${av.map(([x, y, c, t]) => `<g class="st-av"><circle cx="${x}" cy="${y}" r="10" fill="${c}"/><text x="${x}" y="${y + 3.2}" text-anchor="middle" font-size="8.5" style="fill:#0c1a2b;font-weight:800;font-family:var(--sans)">${t}</text></g>`).join("")}
+        <text x="292" y="220" class="t-strong st-ppl-t" font-size="17">Your people</text>
+        <text x="292" y="239" font-size="13.5">counts hours spent</text><text x="292" y="255" font-size="13.5">together <tspan class="st-up ppl">▲</tspan></text>
+        <text x="16" y="302" font-size="14" class="t-strong">Same hour, two scoreboards. <tspan style="fill:var(--amber)">EchoTempo keeps the second.</tspan></text>
+      </svg><p class="cap">Illustration, not data. A feed counts minutes on screen; EchoTempo counts hours friends spend together.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 356" role="img" aria-label="A group chat fades out: we should hang this week, when, idk lmk. Its line goes flat while Echo dozes on it, then spikes into a heartbeat that runs into EchoTempo’s It’s a tempo screen, with Echo cheering and confetti.">
+        <defs><clipPath id="stScr"><rect x="283" y="31" width="142" height="310" rx="21"/></clipPath><linearGradient id="stPill" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fd6c8"/><stop offset="1" stop-color="#6aa8ff"/></linearGradient></defs>
+        <text x="16" y="26" class="t-strong" font-size="17">Most plans die in the group chat.</text>
+        <text x="16" y="47" class="t-strong" font-size="17" style="fill:var(--amber)">EchoTempo brings them back.</text>
+        <g class="st-chat">
+          <g class="st-b me"><rect x="44" y="74" width="170" height="26" rx="13"/><text x="129" y="91.5" text-anchor="middle">we should hang this week!!</text></g>
+          <g class="st-b them" style="--o:.78"><rect x="16" y="108" width="58" height="26" rx="13"/><text x="45" y="125.5" text-anchor="middle">when?</text></g>
+          <g class="st-b them" style="--o:.56"><rect x="16" y="142" width="66" height="26" rx="13"/><text x="49" y="159.5" text-anchor="middle">idk lmk</text></g>
+          <text x="214" y="114" text-anchor="end" font-size="10.5" class="st-seen">Seen Tue</text>
+        </g>
+        ${nest(echo({ pose: "doze" }), 56, 158, 50, 52)}
+        <path class="st-flat" d="M16 206 H170"/>
+        <text x="16" y="226" font-size="12" class="st-fl-l">flatline</text>
+        <path class="st-beat-glow" d="M170 206 H180 L190 178 L202 236 L214 156 L226 224 L236 206 H284"/>
+        <path class="st-beat" pathLength="1" d="M170 206 H180 L190 178 L202 236 L214 156 L226 224 L236 206 H284"/>
+        <rect x="276" y="24" width="156" height="324" rx="27" class="st-bezel"/>
+        <image href="img/echotempo-tempo.webp" x="283" y="31" width="142" height="310" preserveAspectRatio="xMidYMid slice" clip-path="url(#stScr)"/>
+        <rect x="333" y="37" width="42" height="11" rx="5.5" fill="#05080f"/>
+        <g class="st-pill"><rect x="240" y="116" width="122" height="30" rx="15" fill="url(#stPill)"/><text x="301" y="136.5" text-anchor="middle" class="st-pill-t">It’s a tempo!</text></g>
+        ${confetti.map(([x, y, c, d], i) => `<rect class="st-conf" x="${x}" y="${y}" width="${i % 3 ? 5 : 7}" height="${i % 3 ? 9 : 4}" rx="1" fill="${c}" style="animation-delay:${d}s"/>`).join("")}
+        ${nest(echo({ pose: "cheer" }), 200, 236, 104, 109)}
+        <g transform="translate(16 296)" class="st-north"><rect width="182" height="30" rx="15"/><path d="M15 15 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="36" y="19.5" font-size="12.5" class="t-strong">North star: plans that happened</text></g>
+      </svg><p class="cap">EchoTempo’s “It’s a tempo!” screen, when friends’ echoes line up. Echo appears courtesy of EchoTempo.</p></div>
     </div>`;
   }
 };
