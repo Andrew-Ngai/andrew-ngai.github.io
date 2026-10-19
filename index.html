@@ -2662,7 +2662,7 @@ const VIZ = {
         <g class="st-pill"><rect x="240" y="116" width="122" height="30" rx="15" fill="url(#stPill)"/><text x="301" y="136.5" text-anchor="middle" class="st-pill-t">It’s a tempo!</text></g>
         ${confetti.map(([x, y, c, d], i) => `<rect class="st-conf" x="${x}" y="${y}" width="${i % 3 ? 5 : 7}" height="${i % 3 ? 9 : 4}" rx="1" fill="${c}" style="animation-delay:${d}s"/>`).join("")}
         ${nest(echo({ pose: "cheer" }), 200, 236, 104, 109)}
-        <g transform="translate(16 296)" class="st-north"><rect width="182" height="30" rx="15"/><path d="M15 15 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="36" y="19.5" font-size="12.5" class="t-strong">North star: plans that happened</text></g>
+        <g transform="translate(16 296)" class="st-north hug" data-max="196"><rect width="196" height="30" rx="15"/><path d="M15 15 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="35" y="19.5" font-size="12" class="t-strong">North star: plans that happened</text></g>
       </svg><p class="cap">EchoTempo’s “It’s a tempo!” screen, when friends’ echoes line up. Echo appears courtesy of EchoTempo.</p></div>
     </div>`;
   }
@@ -3327,7 +3327,15 @@ function fitPkg(root) {
   rot.style.setProperty("--ps", ps.toFixed(3));
   pkg.style.paddingTop = (111 * ps).toFixed(1) + "px";
 }
-const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); };
+const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
+  const t = g.querySelector("text"), r = g.querySelector("rect"), x = +t.getAttribute("x"), pad = 15, max = +g.dataset.max || Infinity;
+  t.removeAttribute("textLength"); t.removeAttribute("lengthAdjust");
+  const w = t.getComputedTextLength();
+  if (!w) return;
+  if (x + w + pad > max) { t.setAttribute("textLength", max - x - pad); t.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
+  r.setAttribute("width", Math.ceil(Math.min(x + w + pad, max)));
+});
+const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
 addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => fitViz(memo)); });
 function openMemo(id) {
