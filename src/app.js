@@ -16,6 +16,9 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 // An OS "reduce motion" setting (common on managed work laptops) keeps gentle loops but drops
 // parallax, scroll-linked motion and the load sweep. The footer button pauses everything.
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// The page's scale: CSS px per design px (1 on phones, up to 1.5 on desktop; see the top of style.css).
+// Fixed sizes in this file are design px, so multiply them by zoom() before comparing with measured ones.
+const zoom = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--u")) || 1;
 let motionPaused = false;
 try { motionPaused = localStorage.getItem("motion") === "paused"; } catch (e) {}
 
@@ -768,7 +771,7 @@ const VIZ = {
       </div>
       <div>
         <div class="pkg-legend"><span><i style="background:var(--amber)"></i>HBM stacks</span><span><i style="background:var(--beat)"></i>Logic die</span><span><i style="background:var(--violet)"></i>Interposer (CoWoS)</span><span><i style="background:#2a4d70"></i>Substrate</span></div>
-        <div class="cap-set" style="margin-top:8px"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran a 76% operating margin in Q2 2026.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
+        <div class="cap-set" style="margin-top:calc(8 * var(--u))"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran a 76% operating margin in Q2 2026.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
       </div>
     </div></div>`;
   },
@@ -1793,28 +1796,28 @@ function renderHome() {
     const g = {}, G = (i, ch) => (g[i] = g[i] || glyph(ch, font, fs));
     const edge = (i, h) => { const e = G(i, txt[i])(h); const x = at(i).x; return e ? [x + e[0], x + e[1]] : null; };
     const topOf = i => baseline - gctx.measureText(txt[i]).actualBoundingBoxAscent;
-    const box = 132 / 138;
+    const box = 132 / 138, zm = zoom();
 
     // 1. Hard hat sits on the crossbar of the T like a steel beam, legs over the edge
     {
-      const W = Math.max(32, fs * .44), u = W / 132, tTop = topOf(0), bar = edge(0, baseline - tTop - fs * .02);
+      const W = Math.max(32 * zm, fs * .44), u = W / 132, tTop = topOf(0), bar = edge(0, baseline - tTop - fs * .02);
       if (bar) place(cast.sit, (bar[0] + bar[1]) / 2 + W * .06 - 66 * u, tTop + 1 - 117 * u, W, W / box);
     }
     // 2. the probe Echo lies back on a pillow on the floor line in front of "on the", head under the gap so its z's rise between the words
     {
-      const u = Math.max(.23, fs * .0036), nR = edge(8, xh * .4), tL = edge(10, xh * .4);
+      const u = Math.max(.23 * zm, fs * .0036), nR = edge(8, xh * .4), tL = edge(10, xh * .4);
       if (nR && tL) {
         const gapX = (nR[1] + tL[0]) / 2, floor = spanH.offsetHeight - 1;
         place(cast.nap, gapX - 56 * u, floor - 120 * u, 150 * u, 120 * u);
         $$(".sc-z", cast.nap).forEach((z, i) => {
-          z.style.fontSize = Math.max(11, fs * (.09 + i * .03)).toFixed(1) + "px";
+          z.style.fontSize = Math.max(11 * zm, fs * (.09 + i * .03)).toFixed(1) + "px";
           z.style.left = ((28 + i * 8) * u).toFixed(1) + "px"; z.style.top = ((-6 - i * 22) * u).toFixed(1) + "px";
         });
       }
     }
     // 3. Dealmaker lifts off the arm of the last "r" on its jetpack, off the end of the line
     {
-      const W = Math.max(30, fs * .4), u = W / 132, rTop = topOf(18), arm = edge(18, xh - fs * .03);
+      const W = Math.max(30 * zm, fs * .4), u = W / 132, rTop = topOf(18), arm = edge(18, xh - fs * .03);
       const room = document.documentElement.clientWidth - hr.right;
       const rL = edge(18, xh * .5);
       // one jet over the r's stem, the other over its arm; the jetpack's right edge is 56 units right of center
@@ -1830,11 +1833,12 @@ function renderHome() {
     spanH.style.fontSize = "";
     const base = parseFloat(getComputedStyle(spanH).fontSize), w = spanH.clientWidth, tw = spanT.getBoundingClientRect().width;
     if (!w || !tw) return;
-    const fs = Math.min(240, base * w / tw * .998);
+    const zm = zoom(), fs = Math.min(240 * zm, base * w / tw * .998);
     spanH.style.fontSize = fs.toFixed(2) + "px";
-    const pitch = Math.max(10, Math.round(fs * .2)), rows = Math.max(1, Math.floor(spanH.offsetHeight / pitch)), cols = Math.floor(w / pitch);
+    const pitch = Math.max(Math.round(10 * zm), Math.round(fs * .2)), rows = Math.max(1, Math.floor(spanH.offsetHeight / pitch)), cols = Math.floor(w / pitch);
     spanH.style.setProperty("--pitch", pitch + "px");
-    spanDies.innerHTML = LIT_DIES.map(([x, r, c]) => `<i style="--bin:var(--${c});left:${Math.round(x * cols) * pitch + 3}px;top:${Math.min(r, rows - 1) * pitch + 3}px;width:${pitch - 3}px;height:${pitch - 3}px"></i>`).join("");
+    const gap = 3 * zm;
+    spanDies.innerHTML = LIT_DIES.map(([x, r, c]) => `<i style="--bin:var(--${c});left:${Math.round(x * cols) * pitch + gap}px;top:${Math.min(r, rows - 1) * pitch + gap}px;width:${pitch - gap}px;height:${pitch - gap}px"></i>`).join("");
     try { placeCast(fs); } catch (e) {}
     // line the subtitle columns up under "on" and "wafer"
     const tn = spanT.firstChild, hr = spanH.getBoundingClientRect();
@@ -1972,7 +1976,7 @@ function buildMap() {
     if (!d || !it) { line.innerHTML = ""; return; }
     const gr = grid.getBoundingClientRect(), dr = d.getBoundingClientRect(), tr = it.querySelector(".t-title").getBoundingClientRect();
     const x1 = dr.right - gr.left, y1 = dr.top + dr.height / 2 - gr.top;
-    const x2 = it.getBoundingClientRect().left - 17 - gr.left, y2 = tr.top + Math.min(tr.height / 2, 20) - gr.top;
+    const zm = zoom(), x2 = it.getBoundingClientRect().left - 17 * zm - gr.left, y2 = tr.top + Math.min(tr.height / 2, 20 * zm) - gr.top;
     const mx = x1 + (x2 - x1) * .55;
     const path = `M${x1.toFixed(1)} ${y1.toFixed(1)} C${mx.toFixed(1)} ${y1.toFixed(1)} ${mx.toFixed(1)} ${y2.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
     line.style.setProperty("--bin", info(active).css);
@@ -1984,7 +1988,7 @@ function buildMap() {
     const it = itemEl(id), d = dieEl(id);
     if (!it || !d || !desktop()) return;
     const tr = it.querySelector(".t-title").getBoundingClientRect(), dr = d.getBoundingClientRect();
-    const delta = tr.top + Math.min(tr.height / 2, 20) - (dr.top + dr.height / 2);
+    const delta = tr.top + Math.min(tr.height / 2, 20 * zoom()) - (dr.top + dr.height / 2);
     const stick = parseFloat(getComputedStyle(col).top) || 0, gr = grid.getBoundingClientRect();
     const minY = scrollY + gr.top - stick, maxY = scrollY + gr.bottom - stick - col.offsetHeight;
     glide(Math.max(minY, Math.min(maxY, scrollY + delta)));
@@ -2363,18 +2367,18 @@ const LIT = Array.from({ length: 20 }, (_, i) => THESES[i] || null);
 // Place the wafer in pixels inside the hero's stage (the part above the featured chips), then convert
 // to the shader's units (offset from canvas center and camera distance, both in canvas heights).
 function waferLayout(w, h) {
-  const fw = $(".feat-wrap", heroEl), nav = $("#nav");
-  const stageH = Math.max(320, h - (fw ? fw.offsetHeight : 0));
-  const top = nav ? nav.offsetHeight : 72;
+  const fw = $(".feat-wrap", heroEl), nav = $("#nav"), zm = zoom();
+  const stageH = Math.max(320 * zm, h - (fw ? fw.offsetHeight : 0));
+  const top = nav ? nav.offsetHeight : 72 * zm;
   let R, cx, cy;
   if (w > 700) {
-    const gutter = parseFloat(getComputedStyle($(".hero-copy", heroEl)).paddingLeft) || 32;
-    const right = Math.min(w, (w + 1240) / 2) - gutter;
-    R = Math.min((stageH - top) * .44, w * .26, 520);
+    const gutter = parseFloat(getComputedStyle($(".hero-copy", heroEl)).paddingLeft) || 32 * zm;
+    const right = Math.min(w, (w + 1240 * zm) / 2) - gutter;
+    R = Math.min((stageH - top) * .44, w * .26, 520 * zm);
     cx = Math.min(right - R * .6, w - R * .8);
     cy = top + (stageH - top) * .45;
   } else {
-    R = Math.min(w * .44, 200);
+    R = Math.min(w * .44, 200 * zm);
     cx = w * .56;
     cy = (parseFloat(getComputedStyle(heroEl).paddingTop) || 300) * .5;
   }
@@ -2694,7 +2698,7 @@ function buildLine() {
   const xFor = k => mod(S / 2 - (N - 1 - k) * sp - sp / 2, W);
   const apply = () => {
     track.style.transform = `translate3d(${(mod(x, W) - W).toFixed(1)}px,0,0)`;
-    stage.style.setProperty("--bx", `${mod(x, 40).toFixed(1)}px`);
+    stage.style.setProperty("--bx", `${mod(x, 40 * zoom()).toFixed(1)}px`);
   };
   const probe = () => {
     let best = -1, bd = Infinity;
@@ -2719,7 +2723,7 @@ function buildLine() {
       x += diff * Math.min(1, dt * 7);
       if (Math.abs(diff) < .5) { x = glideTo; glideTo = null; v = 0; }
     } else {
-      const target = still() || hover || focusK >= 0 ? 0 : (S < 700 ? 34 : 46);
+      const zm = zoom(), target = still() || hover || focusK >= 0 ? 0 : (S < 700 * zm ? 34 : 46) * zm;
       v += (target - v) * Math.min(1, dt * (Math.abs(v) > Math.abs(target) ? 2.2 : 1.2));
       x += v * dt;
     }
@@ -2759,7 +2763,7 @@ function buildLine() {
   });
   const release = e => {
     if (!drag || (e && e.pointerId !== drag.id)) return;
-    if (drag.moved) { suppress = true; v = Math.max(-1600, Math.min(1600, drag.vx)); setTimeout(() => (suppress = false), 0); }
+    if (drag.moved) { suppress = true; v = Math.max(-1600 * zoom(), Math.min(1600 * zoom(), drag.vx)); setTimeout(() => (suppress = false), 0); }
     stage.classList.remove("dragging");
     drag = null; wake();
   };

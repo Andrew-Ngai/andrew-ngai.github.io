@@ -13,6 +13,30 @@ def strip_css(src):
     return re.sub(r"\n{2,}", "\n", out).strip() + "\n"
 
 
+# A pixel length outside a string, a url() or a media query condition.
+PX = re.compile(
+    r'"(?:\\.|[^"\\])*"'
+    r"|'(?:\\.|[^'\\])*'"
+    r"|url\([^)]*\)"
+    r"|@media[^{]*"
+    r"|@property[^{]*\{[^}]*\}"
+    r"|--u:[^;}]*"
+    r"|(?<![\w.#-])(-?(?:\d+\.?\d*|\.\d+))px\b"
+)
+
+
+def scale_px(src):
+    """Write each CSS pixel length as a multiple of --u (see the top of style.css).
+
+    Media query breakpoints stay in real pixels, and the --u declarations themselves are left as written."""
+    def unit(m):
+        n = m.group(1)
+        if n is None or float(n) == 0:
+            return m.group(0)
+        return f"calc({n}*var(--u))"
+    return PX.sub(unit, src)
+
+
 def strip_js(src):
     """Drop whole-line // and /* */ comments, never inside a template literal."""
     out, in_block, in_tpl = [], False, False
@@ -36,7 +60,7 @@ def strip_js(src):
     return re.sub(r"\n{2,}", "\n", "\n".join(out)).strip() + "\n"
 
 
-css = strip_css((SRC / "style.css").read_text())
+css = scale_px(strip_css((SRC / "style.css").read_text()))
 js = strip_js((SRC / "app.js").read_text())
 body = (SRC / "body.html").read_text()
 head = (SRC / "head.html").read_text()
