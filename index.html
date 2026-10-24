@@ -418,7 +418,7 @@ html.paused .die-echo.land{animation:none}
   .line-readout{min-height:calc(132*var(--u))}
   .lr-n{font-size:calc(26*var(--u))}
 }
-.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
+.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);font-size:calc(19*var(--u));position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(calc(24*var(--u)))}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) calc(1*var(--u)),transparent calc(1*var(--u))),linear-gradient(90deg,var(--grid) calc(1*var(--u)),transparent calc(1*var(--u)));background-size:calc(48*var(--u)) calc(48*var(--u));-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
 .memo-head{position:relative;display:flex;align-items:center;gap:calc(18*var(--u));padding:calc(12*var(--u)) var(--gutter);border-bottom:calc(1*var(--u)) solid var(--rule)}

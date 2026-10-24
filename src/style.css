@@ -457,7 +457,7 @@ html.paused .die-echo.land{animation:none}
 /* ---------------------------------------------------------------- memo reader */
 /* Memos fill one screen, so they scale with the window's height as well as its width: 100% up to an 840px-tall
    window, rising to the full 150% at 1260px tall. Most slides then fit without scrolling. */
-.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
+.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);font-size:19px;position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
 .memo-head{position:relative;display:flex;align-items:center;gap:18px;padding:12px var(--gutter);border-bottom:1px solid var(--rule)}
