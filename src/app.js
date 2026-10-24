@@ -1230,11 +1230,11 @@ const VIZ = {
     const LV = [["SL1", "Hobbyist hackers"], ["SL2", "Professional opportunists"], ["SL3", "Crime groups, insiders"], ["SL4", "Standard state operations"], ["SL5", "Top nation-state operations"]];
     const rings = LV.map(([n], i) => { const r = 128 - i * 22, last = i === 4; return `<circle cx="140" cy="160" r="${r}" fill="none" stroke="${last ? "var(--coral)" : "var(--violet)"}" stroke-width="${last ? 2 : 6}" opacity="${last ? 1 : (.25 + i * .14).toFixed(2)}" ${last ? `stroke-dasharray="4 6" class="wt-ring5"` : ""}/>`; }).join("");
     const labels = LV.map(([n, d], i) => { const y = 72 + i * 42, last = i === 4, r = 128 - i * 22, a = Math.atan2(y - 10 - 160, 300 - 140); return `<line x1="${(140 + r * Math.cos(a)).toFixed(1)}" y1="${(160 + r * Math.sin(a)).toFixed(1)}" x2="300" y2="${y - 10}" stroke="var(--faint)" stroke-width=".8"/><text x="306" y="${y - 6}" class="t-strong" font-size="13" ${last ? `style="fill:var(--coral)"` : ""}>${n}</text><text x="306" y="${y + 9}" font-size="11">${d}</text>`; }).join("");
-    const F3 = `<svg viewBox="0 0 460 320" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
+    const F3 = `<svg viewBox="0 0 460 320" data-freeze-at="2.2" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
         ${rings}
         <circle cx="140" cy="160" r="26" fill="var(--amber)" opacity=".18"/><circle class="wt-core" cx="140" cy="160" r="16" fill="var(--amber)"/>
         <text x="140" y="164" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">W</text>
-        <circle r="5" fill="var(--coral)"><animateMotion dur="5s" repeatCount="indefinite" path="M-10 20 L140 160" keyPoints="0;.62;.62;1;1" keyTimes="0;.35;.55;.8;1" calcMode="linear"/></circle>
+        <g class="wt-attacker"><animateMotion dur="5s" repeatCount="indefinite" path="M24 52 L140 160" keyPoints="0;.51;.51;.87;.87" keyTimes="0;.35;.55;.8;1" calcMode="linear"/><animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;.08;.9;1"/><circle r="5" fill="var(--coral)"/><text x="-9" y="-8" text-anchor="end" font-size="11" font-weight="700" style="fill:var(--coral)">Attacker</text></g>
         ${labels}
         <text x="306" y="290" font-size="12" style="fill:var(--coral)" font-weight="700">SL5: “currently not possible”</text>
         <text x="306" y="306" font-size="11">5+ years, per labs RAND spoke to</text>
@@ -2066,7 +2066,7 @@ function buildMap() {
 
 /* ---------------------------------------------------------------- memo reader */
 const memo = $("#memo");
-let memoId = null, lastFocus = null, memoKeys = null;
+let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {};
 
 // Line-break helpers for slide 1. A title, pull quote or claim breaks between phrases, never inside one.
 // "|" marks where a line may break: with a space when the pipe has one beside it, with none right after a dash.
@@ -2155,6 +2155,13 @@ function memoHTML(t) {
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
       <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="memo-src">
+        <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
+        <div class="memo-src-panel" id="memoSrc" hidden>
+          <p class="memo-src-k">Receipts for this thesis</p>
+          <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
+        </div>
+      </div>
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
@@ -2172,15 +2179,17 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure><div class="ctas">${t.extraCta || ""}<a class="btn" href="#contact">Tell me I’m wrong</a></div></div>
-          <p class="receipt-links"><span>Receipts:</span>${t.receipts.map(([l, h]) => `<a href="${h}" target="_blank" rel="noopener">${l}</a>`).join("")}${t.note ? `<span>${t.note}</span>` : ""}</p>
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}</div>
+          ${t.note ? `<p class="memo-note">${t.note}</p>` : ""}
         </section>
       </div>
+      <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
       <div class="viz-pane">${VIZ[t.viz]()}</div>
     </div>
     <div class="memo-foot">
       <button class="btn" id="memoPrev" type="button">Back</button>
       <span class="count" id="memoCount">1 of 3</span>
+      <a class="btn memo-ask" href="#contact">Tell me I’m wrong</a>
       <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
     </div>`;
 }
@@ -2189,7 +2198,9 @@ function memoHTML(t) {
 function freezeSvg(s) {
   if (!s.pauseAnimations) return;
   s.pauseAnimations();
-  try { s.setCurrentTime(s.getCurrentTime()); } catch (e) {}
+  // a chart can name the moment that tells its story best (data-freeze-at, in seconds)
+  const at = parseFloat(s.dataset.freezeAt);
+  try { s.setCurrentTime(isNaN(at) ? s.getCurrentTime() : at); } catch (e) {}
 }
 
 // A mover whose motion path never got applied sits at the SVG origin. Hide it rather than leave it in the corner.
@@ -2252,7 +2263,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
 });
 const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
-addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => fitViz(memo)); });
+addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
 
 function openMemo(id) {
   const t = byId[id];
@@ -2263,7 +2274,7 @@ function openMemo(id) {
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
   fitViz(memo);
-  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => !memo.hidden && fitViz(memo));
+  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => { if (!memo.hidden) { fitViz(memo); markMore(); } });
   if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
   hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
@@ -2277,7 +2288,7 @@ function openMemo(id) {
     step = s;
     if (viz) viz.dataset.step = s;
     // the caption (and anything a step adds) can change height with the step, so refit once it lands
-    setTimeout(() => !memo.hidden && fitViz(memo), 650);
+    setTimeout(() => { if (!memo.hidden) { fitViz(memo); markMore(); } }, 650);
     prog.forEach((p, i) => p.classList.toggle("on", i < s));
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
@@ -2285,7 +2296,26 @@ function openMemo(id) {
   };
   set(1);
   const go = s => slides.scrollTo({ left: (s - 1) * slides.clientWidth, behavior: calm ? "auto" : "smooth" });
-  slides.addEventListener("scroll", () => set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))), { passive: true });
+  slides.addEventListener("scroll", () => { set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))); markMore(); }, { passive: true });
+
+  // A slide taller than its window scrolls inside itself. Fade its bottom edge and show "More" so that's visible.
+  const slideEls = $$(".slide", slides), more = $("#slidesMore");
+  const cur = () => slideEls[step - 1];
+  markMore = () => {
+    if (memo.hidden) return;
+    slideEls.forEach(s => s.classList.toggle("more", s.scrollHeight - s.clientHeight - s.scrollTop > 8));
+    more.hidden = !cur().classList.contains("more");
+  };
+  slideEls.forEach(s => s.addEventListener("scroll", markMore, { passive: true }));
+  more.addEventListener("click", () => cur().scrollBy({ top: cur().clientHeight * .8, behavior: calm ? "auto" : "smooth" }));
+  requestAnimationFrame(markMore);
+  setTimeout(markMore, 700);
+
+  // Receipts: a menu in the top bar, so the sources are one click away on every slide
+  const srcBtn = $("#memoSrcBtn"), srcPanel = $("#memoSrc");
+  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); };
+  srcBtn.addEventListener("click", () => setSrc(srcPanel.hidden));
+  [...memo.children].forEach(el => el.addEventListener("click", e => { if (!srcPanel.hidden && !e.target.closest(".memo-src")) setSrc(false); }));
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
@@ -2293,7 +2323,14 @@ function openMemo(id) {
   if (memoKeys) document.removeEventListener("keydown", memoKeys);
   memoKeys = e => {
     if (memo.hidden) return;
-    if (e.key === "Escape") closeMemo(true);
+    if (e.key === "Escape" && !srcPanel.hidden) { setSrc(false); srcBtn.focus(); }
+    else if (e.key === "Escape") closeMemo(true);
+    else if (e.target === slides && ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(e.key)) {
+      e.preventDefault();
+      const s = cur(), page = s.clientHeight * .85, line = 60;
+      const by = { ArrowDown: line, ArrowUp: -line, PageDown: page, " ": e.shiftKey ? -page : page, PageUp: -page, Home: -s.scrollHeight, End: s.scrollHeight }[e.key];
+      s.scrollBy({ top: by, behavior: calm ? "auto" : "smooth" });
+    }
     else if (e.key === "ArrowRight" && !e.target.matches("input,textarea")) { e.preventDefault(); step < 3 ? go(step + 1) : null; }
     else if (e.key === "ArrowLeft") { e.preventDefault(); step > 1 && go(step - 1); }
   };

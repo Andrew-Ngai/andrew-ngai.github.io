@@ -8,6 +8,7 @@
 
 :root{
   --u:clamp(1px,100vw / 960,1.5px);
+  --u-page:clamp(1px,100vw / 960,1.5px); /* the page scale, for sections that set their own --u */
   /* Layout: one long scroll. WebGL wafer hero, then a wafer-map index of theses, a scorecard ledger,
      a contact block and the Echo test line. Theses open as full-screen three-slide memos.
      Single dark world by choice. */
@@ -94,13 +95,16 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 @media (max-width:380px){.mark span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 
 /* ---------------------------------------------------------------- hero */
-.hero{position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:128px 0 0}
+/* The hero is the first screen, so it scales with the window's height too (100% up to an 800px-tall window), and the
+   headline is capped by height. Name, headline, intro and buttons then fit on a laptop screen. The top gap clears the
+   fixed nav, which keeps the page scale. */
+.hero{--u:clamp(1px,min(100vw / 960,100svh / 800),1.5px);position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:calc(62 * var(--u-page) + 28px) 0 0}
 #wafer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;will-change:transform}
 .hero.no-gl::before{content:"";position:absolute;z-index:-1;right:-6vw;top:12%;width:min(70vw,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),transparent 40%),conic-gradient(from 200deg,#6aa8ff,#d4e3f0,#f4977a,#3fd6c8,#6aa8ff);opacity:.5;transform:perspective(900px) rotateX(55deg) rotateZ(-20deg)}
-.hero-copy{width:100%;display:grid;gap:26px;padding-bottom:44px}
+.hero-copy{width:100%;display:grid;gap:clamp(16px,3.3svh,26px);padding-bottom:44px}
 .hero .lede,.hero .who{text-shadow:0 1px 14px rgba(7,16,29,.95),0 0 2px rgba(7,16,29,.8)}
 @media (max-width:700px){.hero{padding-top:min(86vw,340px);min-height:0}.hero-copy{gap:20px;padding-bottom:36px}}
-.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,11vw,132px);line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 4px 40px rgba(7,16,29,.55)}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,min(11vw,25.5svh - 72px),132px);line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 4px 40px rgba(7,16,29,.55)}
 .hero .who{font-family:var(--label);font-weight:600;font-size:20px;color:var(--dim);letter-spacing:.02em}
 .hero .who b{color:var(--paper);font-weight:800}
 .feat-wrap{position:relative;min-width:0;padding:20px var(--gutter) 30px;border-top:1px solid var(--rule);background:linear-gradient(rgba(7,16,29,.35),var(--ink) 72%)}
@@ -451,7 +455,9 @@ html.paused .die-echo.land{animation:none}
 }
 
 /* ---------------------------------------------------------------- memo reader */
-.memo{position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
+/* Memos fill one screen, so they scale with the window's height as well as its width: 100% up to an 840px-tall
+   window, rising to the full 150% at 1260px tall. Most slides then fit without scrolling. */
+.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
 .memo-head{position:relative;display:flex;align-items:center;gap:18px;padding:12px var(--gutter);border-bottom:1px solid var(--rule)}
@@ -495,12 +501,29 @@ blockquote.pull .qc{color:var(--bin)}
 .bet-row .echo{width:120px;flex:0 0 auto}
 .bet-echo{margin:0;display:grid;justify-items:center;gap:2px;flex:0 0 auto}
 .bet-echo figcaption{font-family:var(--label);font-weight:600;font-size:13px;color:var(--faint)}
-.receipt-links{font-family:var(--label);font-size:16px;color:var(--faint);display:flex;flex-wrap:wrap;gap:6px 18px}
-.receipt-links a{color:var(--dim)}
+.memo-note{font-family:var(--label);font-size:15px;color:var(--dim)}
 .viz-pane{position:relative;border-left:1px solid var(--rule);display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;padding:clamp(18px,3vw,40px);overflow:hidden;min-height:0}
 .memo-foot{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px var(--gutter);border-top:1px solid var(--rule)}
 .memo-foot .count{font-family:var(--label);font-size:16px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
-.memo-foot .btn{font-size:17px;padding:9px 16px 10px}
+.memo-foot .btn{font-size:17px;padding:9px 16px 10px;white-space:nowrap}
+.memo-foot .memo-ask{margin-left:auto}
+/* Receipts: a menu in the top bar */
+.memo-head{z-index:3}
+.memo-src{position:relative;flex:0 0 auto}
+.memo-src-btn{font-size:17px;padding:8px 14px 9px}
+.memo-src-btn[aria-expanded="true"]{border-color:var(--paper)}
+.memo-src-n{font-weight:600;color:var(--dim);font-variant-numeric:tabular-nums}
+.memo-src-panel{position:absolute;top:calc(100% + 12px);right:0;width:min(440px,calc(100vw - 2 * var(--gutter)));max-height:min(62vh,560px);overflow:auto;overscroll-behavior:contain;padding:16px 20px 12px;background:var(--ink-2);border:1px solid var(--rule);border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.memo-src-k{font-family:var(--label);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--bin);margin-bottom:6px}
+.memo-src-panel ul{list-style:none;margin:0;padding:0}
+.memo-src-panel li + li{border-top:1px solid var(--rule)}
+.memo-src-panel a{display:block;padding:9px 0;font-family:var(--label);font-weight:600;font-size:18px;line-height:1.25;color:var(--paper);text-decoration:underline;text-decoration-color:rgba(238,244,248,.28);text-underline-offset:3px}
+.memo-src-panel a:hover{text-decoration-color:var(--bin)}
+/* A slide taller than its window: fade the bottom edge and show "More" */
+.slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 72px),transparent);mask-image:linear-gradient(#000 calc(100% - 72px),transparent)}
+.slides-more{position:absolute;z-index:2;left:var(--gutter);bottom:14px;display:inline-flex;align-items:center;gap:6px;font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.03em;color:var(--paper);background:rgba(12,26,43,.94);border:1px solid var(--rule);border-radius:999px;padding:6px 14px 7px;cursor:pointer}
+.slides-more span{color:var(--bin)}
+.slides-more:hover{border-color:var(--paper)}
 @media (max-width:860px){
   .pkg-rot{--ps:.62}
   .memo-body{grid-template-columns:1fr;grid-template-rows:minmax(200px,36svh) minmax(0,1fr)}
@@ -508,6 +531,17 @@ blockquote.pull .qc{color:var(--bin)}
   .memo-prog{display:none}
   .slide{padding-top:24px}
   .slide h2{font-size:clamp(30px,8.9vw,44px)}
+}
+/* Phones: progress moves to a thin bar under the top bar, which frees the bottom bar for Back, the ask and Next */
+@media (max-width:600px){
+  .memo-head{gap:12px}
+  .memo-foot .count{display:none}
+  .memo-prog{display:flex;position:absolute;left:var(--gutter);right:var(--gutter);bottom:-2px;gap:4px}
+  .memo-prog i{flex:1;width:auto;height:3px}
+}
+@media (max-width:380px){
+  .memo-foot{gap:8px}
+  .memo-foot .btn,.memo-src-btn,.memo-close{font-size:15px;padding:8px 11px 9px}
 }
 
 /* viz frames */

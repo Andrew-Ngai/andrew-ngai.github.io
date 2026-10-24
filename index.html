@@ -23,6 +23,7 @@
 @property --u{syntax:"<length>";inherits:true;initial-value:1px}
 :root{
   --u:clamp(1px,100vw / 960,1.5px);
+  --u-page:clamp(1px,100vw / 960,1.5px);
   --ink:#07101d;
   --ink-2:#0c1a2b;
   --ink-3:#14283f;
@@ -91,13 +92,13 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(calc(46*var(--
 @media (max-width:480px){.nav{gap:calc(10*var(--u))}.nav-links{gap:calc(10*var(--u));font-size:calc(16*var(--u))}.pads{margin-left:0;padding-left:calc(8*var(--u));gap:calc(5*var(--u))}.nav-links a.pad{width:calc(25*var(--u));height:calc(23*var(--u));font-size:calc(14*var(--u))}.mark{font-size:calc(17*var(--u));gap:calc(7*var(--u))}.mark svg{width:calc(22*var(--u));height:calc(22*var(--u))}}
 @media (max-width:430px){.nav{gap:calc(8*var(--u))}.nav-links{gap:calc(9*var(--u));font-size:calc(15*var(--u))}.pads{padding-left:calc(7*var(--u));gap:calc(4*var(--u))}.mark{font-size:calc(16*var(--u));gap:calc(6*var(--u))}}
 @media (max-width:380px){.mark span{position:absolute;width:calc(1*var(--u));height:calc(1*var(--u));overflow:hidden;clip:rect(0 0 0 0)}}
-.hero{position:relative;isolation:isolate;overflow:hidden;min-height:max(calc(660*var(--u)),94svh);display:grid;align-content:end;padding:calc(128*var(--u)) 0 0}
+.hero{--u:clamp(1px,min(100vw / 960,100svh / 800),1.5px);position:relative;isolation:isolate;overflow:hidden;min-height:max(calc(660*var(--u)),94svh);display:grid;align-content:end;padding:calc(62 * var(--u-page) + calc(28*var(--u))) 0 0}
 #wafer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;will-change:transform}
 .hero.no-gl::before{content:"";position:absolute;z-index:-1;right:-6vw;top:12%;width:min(70vw,calc(720*var(--u)));aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),transparent 40%),conic-gradient(from 200deg,#6aa8ff,#d4e3f0,#f4977a,#3fd6c8,#6aa8ff);opacity:.5;transform:perspective(calc(900*var(--u))) rotateX(55deg) rotateZ(-20deg)}
-.hero-copy{width:100%;display:grid;gap:calc(26*var(--u));padding-bottom:calc(44*var(--u))}
+.hero-copy{width:100%;display:grid;gap:clamp(calc(16*var(--u)),3.3svh,calc(26*var(--u)));padding-bottom:calc(44*var(--u))}
 .hero .lede,.hero .who{text-shadow:0 calc(1*var(--u)) calc(14*var(--u)) rgba(7,16,29,.95),0 0 calc(2*var(--u)) rgba(7,16,29,.8)}
 @media (max-width:700px){.hero{padding-top:min(86vw,calc(340*var(--u)));min-height:0}.hero-copy{gap:calc(20*var(--u));padding-bottom:calc(36*var(--u))}}
-.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(calc(40*var(--u)),11vw,calc(132*var(--u)));line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 calc(4*var(--u)) calc(40*var(--u)) rgba(7,16,29,.55)}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(calc(40*var(--u)),min(11vw,25.5svh - calc(72*var(--u))),calc(132*var(--u)));line-height:.86;letter-spacing:-.008em;max-width:13ch;text-shadow:0 calc(4*var(--u)) calc(40*var(--u)) rgba(7,16,29,.55)}
 .hero .who{font-family:var(--label);font-weight:600;font-size:calc(20*var(--u));color:var(--dim);letter-spacing:.02em}
 .hero .who b{color:var(--paper);font-weight:800}
 .feat-wrap{position:relative;min-width:0;padding:calc(20*var(--u)) var(--gutter) calc(30*var(--u));border-top:calc(1*var(--u)) solid var(--rule);background:linear-gradient(rgba(7,16,29,.35),var(--ink) 72%)}
@@ -417,7 +418,7 @@ html.paused .die-echo.land{animation:none}
   .line-readout{min-height:calc(132*var(--u))}
   .lr-n{font-size:calc(26*var(--u))}
 }
-.memo{position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
+.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(calc(24*var(--u)))}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) calc(1*var(--u)),transparent calc(1*var(--u))),linear-gradient(90deg,var(--grid) calc(1*var(--u)),transparent calc(1*var(--u)));background-size:calc(48*var(--u)) calc(48*var(--u));-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
 .memo-head{position:relative;display:flex;align-items:center;gap:calc(18*var(--u));padding:calc(12*var(--u)) var(--gutter);border-bottom:calc(1*var(--u)) solid var(--rule)}
@@ -460,12 +461,27 @@ blockquote.pull .qc{color:var(--bin)}
 .bet-row .echo{width:calc(120*var(--u));flex:0 0 auto}
 .bet-echo{margin:0;display:grid;justify-items:center;gap:calc(2*var(--u));flex:0 0 auto}
 .bet-echo figcaption{font-family:var(--label);font-weight:600;font-size:calc(13*var(--u));color:var(--faint)}
-.receipt-links{font-family:var(--label);font-size:calc(16*var(--u));color:var(--faint);display:flex;flex-wrap:wrap;gap:calc(6*var(--u)) calc(18*var(--u))}
-.receipt-links a{color:var(--dim)}
+.memo-note{font-family:var(--label);font-size:calc(15*var(--u));color:var(--dim)}
 .viz-pane{position:relative;border-left:calc(1*var(--u)) solid var(--rule);display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;padding:clamp(calc(18*var(--u)),3vw,calc(40*var(--u)));overflow:hidden;min-height:0}
 .memo-foot{position:relative;display:flex;justify-content:space-between;align-items:center;gap:calc(12*var(--u));padding:calc(12*var(--u)) var(--gutter);border-top:calc(1*var(--u)) solid var(--rule)}
 .memo-foot .count{font-family:var(--label);font-size:calc(16*var(--u));color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
-.memo-foot .btn{font-size:calc(17*var(--u));padding:calc(9*var(--u)) calc(16*var(--u)) calc(10*var(--u))}
+.memo-foot .btn{font-size:calc(17*var(--u));padding:calc(9*var(--u)) calc(16*var(--u)) calc(10*var(--u));white-space:nowrap}
+.memo-foot .memo-ask{margin-left:auto}
+.memo-head{z-index:3}
+.memo-src{position:relative;flex:0 0 auto}
+.memo-src-btn{font-size:calc(17*var(--u));padding:calc(8*var(--u)) calc(14*var(--u)) calc(9*var(--u))}
+.memo-src-btn[aria-expanded="true"]{border-color:var(--paper)}
+.memo-src-n{font-weight:600;color:var(--dim);font-variant-numeric:tabular-nums}
+.memo-src-panel{position:absolute;top:calc(100% + calc(12*var(--u)));right:0;width:min(calc(440*var(--u)),calc(100vw - 2 * var(--gutter)));max-height:min(62vh,calc(560*var(--u)));overflow:auto;overscroll-behavior:contain;padding:calc(16*var(--u)) calc(20*var(--u)) calc(12*var(--u));background:var(--ink-2);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(4*var(--u));box-shadow:0 calc(20*var(--u)) calc(50*var(--u)) rgba(0,0,0,.55)}
+.memo-src-k{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.12em;text-transform:uppercase;color:var(--bin);margin-bottom:calc(6*var(--u))}
+.memo-src-panel ul{list-style:none;margin:0;padding:0}
+.memo-src-panel li + li{border-top:calc(1*var(--u)) solid var(--rule)}
+.memo-src-panel a{display:block;padding:calc(9*var(--u)) 0;font-family:var(--label);font-weight:600;font-size:calc(18*var(--u));line-height:1.25;color:var(--paper);text-decoration:underline;text-decoration-color:rgba(238,244,248,.28);text-underline-offset:calc(3*var(--u))}
+.memo-src-panel a:hover{text-decoration-color:var(--bin)}
+.slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent);mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent)}
+.slides-more{position:absolute;z-index:2;left:var(--gutter);bottom:calc(14*var(--u));display:inline-flex;align-items:center;gap:calc(6*var(--u));font-family:var(--label);font-weight:700;font-size:calc(15*var(--u));letter-spacing:.03em;color:var(--paper);background:rgba(12,26,43,.94);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));padding:calc(6*var(--u)) calc(14*var(--u)) calc(7*var(--u));cursor:pointer}
+.slides-more span{color:var(--bin)}
+.slides-more:hover{border-color:var(--paper)}
 @media (max-width:860px){
   .pkg-rot{--ps:.62}
   .memo-body{grid-template-columns:1fr;grid-template-rows:minmax(calc(200*var(--u)),36svh) minmax(0,1fr)}
@@ -473,6 +489,16 @@ blockquote.pull .qc{color:var(--bin)}
   .memo-prog{display:none}
   .slide{padding-top:calc(24*var(--u))}
   .slide h2{font-size:clamp(calc(30*var(--u)),8.9vw,calc(44*var(--u)))}
+}
+@media (max-width:600px){
+  .memo-head{gap:calc(12*var(--u))}
+  .memo-foot .count{display:none}
+  .memo-prog{display:flex;position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(-2*var(--u));gap:calc(4*var(--u))}
+  .memo-prog i{flex:1;width:auto;height:calc(3*var(--u))}
+}
+@media (max-width:380px){
+  .memo-foot{gap:calc(8*var(--u))}
+  .memo-foot .btn,.memo-src-btn,.memo-close{font-size:calc(15*var(--u));padding:calc(8*var(--u)) calc(11*var(--u)) calc(9*var(--u))}
 }
 .viz{position:relative;width:100%;height:100%;max-width:calc(560*var(--u));max-height:calc(600*var(--u))}
 .frame{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:calc(10*var(--u));opacity:0;transform:translateY(calc(14*var(--u)));transition:opacity .5s var(--ease),transform .6s var(--ease);pointer-events:none}
@@ -2410,11 +2436,11 @@ const VIZ = {
     const LV = [["SL1", "Hobbyist hackers"], ["SL2", "Professional opportunists"], ["SL3", "Crime groups, insiders"], ["SL4", "Standard state operations"], ["SL5", "Top nation-state operations"]];
     const rings = LV.map(([n], i) => { const r = 128 - i * 22, last = i === 4; return `<circle cx="140" cy="160" r="${r}" fill="none" stroke="${last ? "var(--coral)" : "var(--violet)"}" stroke-width="${last ? 2 : 6}" opacity="${last ? 1 : (.25 + i * .14).toFixed(2)}" ${last ? `stroke-dasharray="4 6" class="wt-ring5"` : ""}/>`; }).join("");
     const labels = LV.map(([n, d], i) => { const y = 72 + i * 42, last = i === 4, r = 128 - i * 22, a = Math.atan2(y - 10 - 160, 300 - 140); return `<line x1="${(140 + r * Math.cos(a)).toFixed(1)}" y1="${(160 + r * Math.sin(a)).toFixed(1)}" x2="300" y2="${y - 10}" stroke="var(--faint)" stroke-width=".8"/><text x="306" y="${y - 6}" class="t-strong" font-size="13" ${last ? `style="fill:var(--coral)"` : ""}>${n}</text><text x="306" y="${y + 9}" font-size="11">${d}</text>`; }).join("");
-    const F3 = `<svg viewBox="0 0 460 320" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
+    const F3 = `<svg viewBox="0 0 460 320" data-freeze-at="2.2" role="img" aria-label="RAND's five security levels drawn as rings around the weights. Levels 1 to 4 stop attackers up to standard state operations. Level 5, against top-priority nation-state operations, is drawn dashed because RAND says it is not currently achievable.">
         ${rings}
         <circle cx="140" cy="160" r="26" fill="var(--amber)" opacity=".18"/><circle class="wt-core" cx="140" cy="160" r="16" fill="var(--amber)"/>
         <text x="140" y="164" text-anchor="middle" font-size="10" style="fill:var(--ink)" font-weight="800">W</text>
-        <circle r="5" fill="var(--coral)"><animateMotion dur="5s" repeatCount="indefinite" path="M-10 20 L140 160" keyPoints="0;.62;.62;1;1" keyTimes="0;.35;.55;.8;1" calcMode="linear"/></circle>
+        <g class="wt-attacker"><animateMotion dur="5s" repeatCount="indefinite" path="M24 52 L140 160" keyPoints="0;.51;.51;.87;.87" keyTimes="0;.35;.55;.8;1" calcMode="linear"/><animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;.08;.9;1"/><circle r="5" fill="var(--coral)"/><text x="-9" y="-8" text-anchor="end" font-size="11" font-weight="700" style="fill:var(--coral)">Attacker</text></g>
         ${labels}
         <text x="306" y="290" font-size="12" style="fill:var(--coral)" font-weight="700">SL5: “currently not possible”</text>
         <text x="306" y="306" font-size="11">5+ years, per labs RAND spoke to</text>
@@ -3179,7 +3205,7 @@ function buildMap() {
   addEventListener("resize", follow);
 }
 const memo = $("#memo");
-let memoId = null, lastFocus = null, memoKeys = null;
+let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {};
 const plain = s => s.replace(/<[^>]+>/g, "").replace(/\s*\|\s*/g, " ");
 const phrases = (txt, tail = "") => {
   const bits = txt.replace(/—(?!\|)/g, "⁠—⁠").split("|");
@@ -3256,6 +3282,13 @@ function memoHTML(t) {
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
       <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="memo-src">
+        <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
+        <div class="memo-src-panel" id="memoSrc" hidden>
+          <p class="memo-src-k">Receipts for this thesis</p>
+          <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
+        </div>
+      </div>
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
@@ -3273,22 +3306,25 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure><div class="ctas">${t.extraCta || ""}<a class="btn" href="#contact">Tell me I’m wrong</a></div></div>
-          <p class="receipt-links"><span>Receipts:</span>${t.receipts.map(([l, h]) => `<a href="${h}" target="_blank" rel="noopener">${l}</a>`).join("")}${t.note ? `<span>${t.note}</span>` : ""}</p>
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}</div>
+          ${t.note ? `<p class="memo-note">${t.note}</p>` : ""}
         </section>
       </div>
+      <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
       <div class="viz-pane">${VIZ[t.viz]()}</div>
     </div>
     <div class="memo-foot">
       <button class="btn" id="memoPrev" type="button">Back</button>
       <span class="count" id="memoCount">1 of 3</span>
+      <a class="btn memo-ask" href="#contact">Tell me I’m wrong</a>
       <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
     </div>`;
 }
 function freezeSvg(s) {
   if (!s.pauseAnimations) return;
   s.pauseAnimations();
-  try { s.setCurrentTime(s.getCurrentTime()); } catch (e) {}
+  const at = parseFloat(s.dataset.freezeAt);
+  try { s.setCurrentTime(isNaN(at) ? s.getCurrentTime() : at); } catch (e) {}
 }
 function hideStuckMovers(root) {
   setTimeout(() => $$("animateMotion", root).forEach(a => {
@@ -3342,7 +3378,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
 });
 const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
-addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => fitViz(memo)); });
+addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
 function openMemo(id) {
   const t = byId[id];
   if (!t) return;
@@ -3352,7 +3388,7 @@ function openMemo(id) {
   memo.hidden = false;
   if (VIZ_INIT[t.viz]) VIZ_INIT[t.viz](memo);
   fitViz(memo);
-  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => !memo.hidden && fitViz(memo));
+  if (document.fonts && document.fonts.status !== "loaded") document.fonts.ready.then(() => { if (!memo.hidden) { fitViz(memo); markMore(); } });
   if (calm || motionPaused) $$("svg", memo).forEach(freezeSvg);
   hideStuckMovers(memo);
   document.documentElement.style.overflow = "hidden";
@@ -3364,7 +3400,7 @@ function openMemo(id) {
     if (s === step) return;
     step = s;
     if (viz) viz.dataset.step = s;
-    setTimeout(() => !memo.hidden && fitViz(memo), 650);
+    setTimeout(() => { if (!memo.hidden) { fitViz(memo); markMore(); } }, 650);
     prog.forEach((p, i) => p.classList.toggle("on", i < s));
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
@@ -3372,14 +3408,36 @@ function openMemo(id) {
   };
   set(1);
   const go = s => slides.scrollTo({ left: (s - 1) * slides.clientWidth, behavior: calm ? "auto" : "smooth" });
-  slides.addEventListener("scroll", () => set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))), { passive: true });
+  slides.addEventListener("scroll", () => { set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))); markMore(); }, { passive: true });
+  const slideEls = $$(".slide", slides), more = $("#slidesMore");
+  const cur = () => slideEls[step - 1];
+  markMore = () => {
+    if (memo.hidden) return;
+    slideEls.forEach(s => s.classList.toggle("more", s.scrollHeight - s.clientHeight - s.scrollTop > 8));
+    more.hidden = !cur().classList.contains("more");
+  };
+  slideEls.forEach(s => s.addEventListener("scroll", markMore, { passive: true }));
+  more.addEventListener("click", () => cur().scrollBy({ top: cur().clientHeight * .8, behavior: calm ? "auto" : "smooth" }));
+  requestAnimationFrame(markMore);
+  setTimeout(markMore, 700);
+  const srcBtn = $("#memoSrcBtn"), srcPanel = $("#memoSrc");
+  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); };
+  srcBtn.addEventListener("click", () => setSrc(srcPanel.hidden));
+  [...memo.children].forEach(el => el.addEventListener("click", e => { if (!srcPanel.hidden && !e.target.closest(".memo-src")) setSrc(false); }));
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
   if (memoKeys) document.removeEventListener("keydown", memoKeys);
   memoKeys = e => {
     if (memo.hidden) return;
-    if (e.key === "Escape") closeMemo(true);
+    if (e.key === "Escape" && !srcPanel.hidden) { setSrc(false); srcBtn.focus(); }
+    else if (e.key === "Escape") closeMemo(true);
+    else if (e.target === slides && ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(e.key)) {
+      e.preventDefault();
+      const s = cur(), page = s.clientHeight * .85, line = 60;
+      const by = { ArrowDown: line, ArrowUp: -line, PageDown: page, " ": e.shiftKey ? -page : page, PageUp: -page, Home: -s.scrollHeight, End: s.scrollHeight }[e.key];
+      s.scrollBy({ top: by, behavior: calm ? "auto" : "smooth" });
+    }
     else if (e.key === "ArrowRight" && !e.target.matches("input,textarea")) { e.preventDefault(); step < 3 ? go(step + 1) : null; }
     else if (e.key === "ArrowLeft") { e.preventDefault(); step > 1 && go(step - 1); }
   };
