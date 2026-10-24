@@ -9,14 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Big+Shoulders+Text:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
 <style>
-:root{--ink:#07101d;--paper:#eef4f8;--dim:#9fb3c4;--amber:#3fd6c8;color-scheme:dark}
+@property --u{syntax:"<length>";inherits:true;initial-value:1px}
+:root{--ink:#07101d;--paper:#eef4f8;--dim:#9fb3c4;--amber:#3fd6c8;--u:clamp(1px,100vw / 960,1.5px);color-scheme:dark}
+html{font-size:calc(16*var(--u))}
 html,body{height:100%}
-body{margin:0;background:var(--ink);color:var(--paper);font-family:"Newsreader",Georgia,serif;display:grid;place-items:center;padding:24px;text-align:center}
-main{display:grid;justify-items:center;gap:18px;max-width:32rem}
-.echo{width:150px}
-h1{margin:0;font-family:"Big Shoulders Display","Arial Narrow",sans-serif;font-weight:900;font-size:clamp(48px,10vw,96px);line-height:.9;text-transform:uppercase}
-p{margin:0;color:var(--dim);font-size:19px}
-a{display:inline-block;margin-top:8px;font-family:"Big Shoulders Text","Arial Narrow",sans-serif;font-weight:700;font-size:19px;color:#07101d;background:var(--amber);padding:12px 20px 13px;border-radius:3px;text-decoration:none}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:"Newsreader",Georgia,serif;display:grid;place-items:center;padding:calc(24*var(--u));text-align:center}
+main{display:grid;justify-items:center;gap:calc(18*var(--u));max-width:32rem}
+.echo{width:calc(150*var(--u))}
+h1{margin:0;font-family:"Big Shoulders Display","Arial Narrow",sans-serif;font-weight:900;font-size:clamp(calc(48*var(--u)),10vw,calc(96*var(--u)));line-height:.9;text-transform:uppercase}
+p{margin:0;color:var(--dim);font-size:calc(19*var(--u))}
+a{display:inline-block;margin-top:calc(8*var(--u));font-family:"Big Shoulders Text","Arial Narrow",sans-serif;font-weight:700;font-size:calc(19*var(--u));color:#07101d;background:var(--amber);padding:calc(12*var(--u)) calc(20*var(--u)) calc(13*var(--u));border-radius:calc(3*var(--u));text-decoration:none}
 .echo{overflow:visible;display:block}
 .echo *{transform-box:view-box}
 .echo-all{transform-origin:50px 104px}
