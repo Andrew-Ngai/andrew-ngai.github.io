@@ -16,7 +16,7 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 // An OS "reduce motion" setting (common on managed work laptops) keeps gentle loops but drops
 // parallax, scroll-linked motion and the load sweep. The footer button pauses everything.
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-// The page's scale: CSS px per design px (1 on phones, up to 1.5 on desktop; see the top of style.css).
+// The page's scale: CSS px per design px (1 unless --u-max is raised; see the top of style.css).
 // Fixed sizes in this file are design px, so multiply them by zoom() before comparing with measured ones.
 const zoom = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--u")) || 1;
 let motionPaused = false;

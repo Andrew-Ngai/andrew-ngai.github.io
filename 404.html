@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Big+Shoulders+Text:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
 <style>
 @property --u{syntax:"<length>";inherits:true;initial-value:1px}
-:root{--ink:#07101d;--paper:#eef4f8;--dim:#9fb3c4;--amber:#3fd6c8;--u:clamp(1px,100vw / 960,1.5px);color-scheme:dark}
+:root{--ink:#07101d;--paper:#eef4f8;--dim:#9fb3c4;--amber:#3fd6c8;--u-max:1px;--u:clamp(1px,100vw / 960,var(--u-max));color-scheme:dark}
 html{font-size:calc(16*var(--u))}
 html,body{height:100%}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:"Newsreader",Georgia,serif;display:grid;place-items:center;padding:calc(24*var(--u));text-align:center}
