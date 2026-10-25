@@ -136,7 +136,9 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .feat:hover .feat-go i,.feat:focus-visible .feat-go i{transform:translateX(5px)}
 .feat:hover .feat-go,.feat:focus-visible .feat-go{text-decoration:underline;text-underline-offset:4px}
 .feat:hover .feat-echo,.feat:focus-visible .feat-echo{transform:translateY(-12px) rotate(-5deg)}
-@media (max-width:1650px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Four chips in a row need about 1100px at the hero's scale. The hero scales with the window's height, so a laptop or
+   monitor window fits all four; only narrow windows, or tall ones (narrower than 11:8) under 1650px, go two by two. */
+@media (max-width:1100px),(max-width:1650px) and (max-aspect-ratio:11/8){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){
   .feat-hint{display:none}.feat-swipe{display:inline}
   .feats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scrollbar-width:none}

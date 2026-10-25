@@ -130,7 +130,7 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(calc(46*var(--
 .feat:hover .feat-go i,.feat:focus-visible .feat-go i{transform:translateX(calc(5*var(--u)))}
 .feat:hover .feat-go,.feat:focus-visible .feat-go{text-decoration:underline;text-underline-offset:calc(4*var(--u))}
 .feat:hover .feat-echo,.feat:focus-visible .feat-echo{transform:translateY(calc(-12*var(--u))) rotate(-5deg)}
-@media (max-width:1650px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1100px),(max-width:1650px) and (max-aspect-ratio:11/8){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){
   .feat-hint{display:none}.feat-swipe{display:inline}
   .feats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:calc(14*var(--u));margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) calc(6*var(--u));scrollbar-width:none}
