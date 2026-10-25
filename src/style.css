@@ -1,14 +1,16 @@
 @font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/InterVariable.woff2") format("woff2")}
 
-/* Scale. Sizes in this file are written in px, and the build turns each into a multiple of --u. --u is 1px up to
-   a 960px-wide window, then grows with the window and tops out at 1.5px from 1440px, so a laptop or monitor gets
-   the page at 150% while phones and tablets keep it 1:1. Breakpoints at or below 960px need no change; ones above
-   it are written x1.5. Inside an SVG, px are the drawing's own units and already scale with it, so --u is 1px there. */
+/* Scale. Sizes in this file are written in px, and the build turns each into a multiple of --u. --u is 1px on
+   phones and can grow with the window from 960px wide, up to --u-max at 1440px. --u-max is 1px, so the page shows
+   at its designed size everywhere. Raise it (1.25px, say) to enlarge the page on laptops and monitors; the hero
+   and memos then also cap the scale by window height so they still fit one screen. Inside an SVG, px are the
+   drawing's own units and already scale with it, so --u is 1px there. */
 @property --u{syntax:"<length>";inherits:true;initial-value:1px}
 
 :root{
-  --u:clamp(1px,100vw / 960,1.5px);
-  --u-page:clamp(1px,100vw / 960,1.5px); /* the page scale, for sections that set their own --u */
+  --u-max:1px;
+  --u:clamp(1px,100vw / 960,var(--u-max));
+  --u-page:clamp(1px,100vw / 960,var(--u-max)); /* the page scale, for sections that set their own --u */
   /* Layout: one long scroll. WebGL wafer hero, then a wafer-map index of theses, a scorecard ledger,
      a contact block and the Echo test line. Theses open as full-screen three-slide memos.
      Single dark world by choice. */
@@ -95,10 +97,10 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 @media (max-width:380px){.mark span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 
 /* ---------------------------------------------------------------- hero */
-/* The hero is the first screen, so it scales with the window's height too (100% up to an 800px-tall window), and the
-   headline is capped by height. Name, headline, intro and buttons then fit on a laptop screen. The top gap clears the
-   fixed nav, which keeps the page scale. */
-.hero{--u:clamp(1px,min(100vw / 960,100svh / 800),1.5px);position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:calc(62 * var(--u-page) + 28px) 0 0}
+/* The hero is the first screen, so its headline is capped by window height and, if --u-max is above 1px, its scale
+   is too (1px up to an 800px-tall window). Name, headline, intro and buttons then fit on a laptop screen. The top gap
+   clears the fixed nav, which keeps the page scale. */
+.hero{--u:clamp(1px,min(100vw / 960,100svh / 800),var(--u-max));position:relative;isolation:isolate;overflow:hidden;min-height:max(660px,94svh);display:grid;align-content:end;padding:calc(62 * var(--u-page) + 28px) 0 0}
 #wafer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:-1;display:block;will-change:transform}
 .hero.no-gl::before{content:"";position:absolute;z-index:-1;right:-6vw;top:12%;width:min(70vw,720px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.18),transparent 40%),conic-gradient(from 200deg,#6aa8ff,#d4e3f0,#f4977a,#3fd6c8,#6aa8ff);opacity:.5;transform:perspective(900px) rotateX(55deg) rotateZ(-20deg)}
 .hero-copy{width:100%;display:grid;gap:clamp(16px,3.3svh,26px);padding-bottom:44px}
@@ -136,9 +138,10 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .feat:hover .feat-go i,.feat:focus-visible .feat-go i{transform:translateX(5px)}
 .feat:hover .feat-go,.feat:focus-visible .feat-go{text-decoration:underline;text-underline-offset:4px}
 .feat:hover .feat-echo,.feat:focus-visible .feat-echo{transform:translateY(-12px) rotate(-5deg)}
-/* Four chips in a row need about 1100px at the hero's scale. The hero scales with the window's height, so a laptop or
-   monitor window fits all four; only narrow windows, or tall ones (narrower than 11:8) under 1650px, go two by two. */
-@media (max-width:1100px),(max-width:1650px) and (max-aspect-ratio:11/8){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Four chips in a row need about 1100px at the hero's scale. If --u-max goes above 1px, tall windows (narrower than
+   11:8) up to 1100px x --u-max wide must go two by two as well: add "(max-width:1650px) and (max-aspect-ratio:11/8)"
+   for 1.5px. */
+@media (max-width:1100px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){
   .feat-hint{display:none}.feat-swipe{display:inline}
   .feats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;scrollbar-width:none}
@@ -457,9 +460,9 @@ html.paused .die-echo.land{animation:none}
 }
 
 /* ---------------------------------------------------------------- memo reader */
-/* Memos fill one screen, so they scale with the window's height as well as its width: 100% up to an 840px-tall
-   window, rising to the full 150% at 1260px tall. Most slides then fit without scrolling. */
-.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),1.5px);font-size:19px;position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
+/* Memos fill one screen, so if --u-max is above 1px they scale with the window's height as well as its width
+   (1px up to an 840px-tall window). Most slides then fit without scrolling. */
+.memo{--u:clamp(1px,min(100vw / 960,100svh / 840),var(--u-max));font-size:19px;position:fixed;inset:0;z-index:60;background:var(--ink);display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
 @keyframes memo-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .memo::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%);mask-image:radial-gradient(ellipse at 75% 45%,#000 0%,transparent 70%)}
 .memo-head{position:relative;display:flex;align-items:center;gap:18px;padding:12px var(--gutter);border-bottom:1px solid var(--rule)}
