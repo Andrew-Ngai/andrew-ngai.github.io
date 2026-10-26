@@ -2380,13 +2380,17 @@ let wafer = null;
 const depthEls = $$("[data-depth]");
 const heroEl = $(".hero");
 let canvas = $("#wafer");
+// Phones and tablets scroll on their own thread, so a parallax shift set from script lands a frame or two behind
+// the finger and the wafer shakes. On touch screens the canvas rides the page as is and only its tilt follows the scroll.
+const touch = matchMedia("(hover: none) and (pointer: coarse)");
 function onScroll() {
   const y = window.scrollY;
   nav.classList.toggle("solid", y > 40);
   if (calm || motionPaused) return;
   const hh = heroEl.offsetHeight;
   if (y < hh * 1.2) {
-    canvas.style.transform = `translate3d(0,${(y * 0.38).toFixed(1)}px,0)`;
+    if (!touch.matches) canvas.style.transform = `translate3d(0,${(y * 0.38).toFixed(1)}px,0)`;
+    else if (canvas.style.transform) canvas.style.transform = "";
     if (wafer) wafer.setScroll(Math.min(1, y / hh));
   }
   for (const el of depthEls) {
@@ -2526,7 +2530,11 @@ void main(){
   let W = 1, H = 1, L = null;
   return {
     kind: "gl",
-    resize(w, h, sc) { W = Math.max(1, Math.round(w * sc)); H = Math.max(1, Math.round(h * sc)); cv.width = W; cv.height = H; gl.viewport(0, 0, W, H); L = waferLayout(w, h); },
+    resize(w, h, sc) {
+      const nW = Math.max(1, Math.round(w * sc)), nH = Math.max(1, Math.round(h * sc));
+      if (nW !== W || nH !== H) { W = nW; H = nH; cv.width = W; cv.height = H; gl.viewport(0, 0, W, H); }
+      L = waferLayout(w, h);
+    },
     draw(t) {
       gl.uniform2f(u.res, W, H);
       gl.uniform1f(u.time, t);
@@ -2557,7 +2565,12 @@ function make2D(cv, st) {
   const disc = () => { ctx.beginPath(); ctx.arc(0, 0, 1, 0, TAU); };
   return {
     kind: "2d",
-    resize(w, h, s) { sc = s; cv.width = Math.max(1, Math.round(w * s)); cv.height = Math.max(1, Math.round(h * s)); L = waferLayout(w, h); },
+    resize(w, h, s) {
+      sc = s;
+      const nW = Math.max(1, Math.round(w * s)), nH = Math.max(1, Math.round(h * s));
+      if (cv.width !== nW || cv.height !== nH) { cv.width = nW; cv.height = nH; }
+      L = waferLayout(w, h);
+    },
     draw(t) {
       const { cx, cy, R, w, h } = L;
       ctx.setTransform(sc, 0, 0, sc, 0, 0);
@@ -2602,7 +2615,7 @@ function make2D(cv, st) {
 }
 
 function initWafer() {
-  const st = { mouse: [0, 0], target: [0, 0], scroll: 0 };
+  const st = { mouse: [0, 0], target: [0, 0], scroll: 0, scrollTo: 0 };
   const t0 = performance.now();
   const q = location.search;
   const fresh = () => { const c = canvas.cloneNode(false); canvas.replaceWith(c); canvas = c; return c; };
@@ -2621,6 +2634,7 @@ function initWafer() {
   const frame = now => {
     st.mouse[0] += (st.target[0] - st.mouse[0]) * .05;
     st.mouse[1] += (st.target[1] - st.mouse[1]) * .05;
+    st.scroll += (st.scrollTo - st.scroll) * .3;
     r.draw((now - t0) / 1000);
   };
   const sync = () => {
@@ -2641,6 +2655,8 @@ function initWafer() {
   };
   function loop(now) {
     if (!running || !r) return;
+    raf = requestAnimationFrame(loop);
+    if (last && now - last < 10) return;
     if (r.kind === "gl" && last) {
       frames++;
       if (frames > 10 && now - last > 50) slow++;
@@ -2648,7 +2664,6 @@ function initWafer() {
     }
     last = now;
     frame(now);
-    raf = requestAnimationFrame(loop);
   }
   addEventListener("resize", () => { if (!r) return; size(); if (!running) frame(performance.now()); });
   if (window.ResizeObserver) new ResizeObserver(() => { if (!r) return; size(); if (!running) frame(performance.now()); }).observe(heroEl);
@@ -2657,7 +2672,7 @@ function initWafer() {
   size();
   frame(performance.now());
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(heroEl);
-  return { setScroll(p) { st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
+  return { setScroll(p) { st.scrollTo = p; if (!running) st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
 }
 
 /* ---------------------------------------------------------------- Echo test line */
@@ -2852,7 +2867,8 @@ mountEchoes();
 wafer = initWafer();
 $$("[data-motion]").forEach(b => b.addEventListener("click", () => setMotion(!motionPaused, true)));
 setMotion(motionPaused, false);
-addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
+let scrollQueued = false;
+addEventListener("scroll", () => { if (scrollQueued) return; scrollQueued = true; requestAnimationFrame(() => { scrollQueued = false; onScroll(); }); }, { passive: true });
 addEventListener("hashchange", route);
 route();
 })();

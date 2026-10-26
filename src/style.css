@@ -78,6 +78,8 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 /* ---------------------------------------------------------------- nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) 14px;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 .nav.solid{background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--rule)}
+/* On touch screens a blur over the live wafer is redrawn every frame while scrolling; a denser fill reads the same. */
+@media (hover:none) and (pointer:coarse){.nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(7,16,29,.95)}}
 .mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap;font-family:var(--label);font-weight:800;font-size:21px;letter-spacing:.02em}
 .mark svg{width:26px;height:26px}
 .nav-links{display:flex;gap:clamp(14px,2.4vw,30px);font-family:var(--label);font-weight:600;font-size:18px}
