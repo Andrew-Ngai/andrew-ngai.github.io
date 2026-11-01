@@ -1114,12 +1114,6 @@ html.paused .gng-list li{animation:none!important}
 @keyframes echo-led{0%,100%{opacity:1}50%{opacity:.15}}
 .echo .echo-spin{transform-box:fill-box;transform-origin:center;animation:echo-spin 1.4s linear infinite}
 @keyframes echo-spin{to{transform:rotate(360deg)}}
-.echo .echo-flip{transform-box:fill-box;transform-origin:center;animation:echo-flip 4s cubic-bezier(.6,0,.3,1) infinite}
-@keyframes echo-flip{0%,68%{transform:rotate(0)}86%,100%{transform:rotate(180deg)}}
-.echo .echo-merc{transform-box:fill-box;transform-origin:bottom;animation:echo-merc 2.8s ease-in-out infinite}
-@keyframes echo-merc{0%,100%{transform:scaleY(.5)}50%{transform:scaleY(1)}}
-.echo-stack{animation:echo-stack 1.6s ease-in-out infinite}
-@keyframes echo-stack{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-2px)}}
 .echo-lamp{opacity:.2;animation:echo-lamp 1.8s ease-in-out infinite}
 @keyframes echo-lamp{0%,100%{opacity:.12}50%{opacity:.5}}
 .echo-water{animation:echo-water 1.6s linear infinite}
@@ -1527,6 +1521,211 @@ html.paused .memo{animation:none}
 .fp-bus{animation:fp-bus 1s linear infinite}
 @keyframes fp-bus{to{stroke-dashoffset:-8}}
 @media (max-width:860px){.rbcalc,.rccalc,.rfcalc,.slcalc,.bfcalc{gap:4px}.rccalc .oc-l,.rfcalc .oc-l,.slcalc .oc-l{font-size:13px}.rf-grid{gap:2px}.rf-leg{display:none}.rf-out,.rb-out,.bf-out{min-height:0}.bf-w{font-size:14px}.bf-w b{font-size:22px}.bf-b{padding:6px 0;font-size:13px;border-width:1px}.bf-grp{font-size:11px}.bf-acc{font-size:13px;grid-template-columns:auto minmax(0,1fr) 52px}.bf-acc b{font-size:18px}}
+
+/* the older thesis Echoes, each with its own moves */
+.echo .xhb-steam,.echo .xth-drop{transform-box:fill-box;transform-origin:center}
+/* Researcher: a lab coat; pipettes into a rack of test tubes that fill and light up one after another */
+.echo-labcoat .echo-all{animation:xfb-body 4.5s ease-in-out infinite}
+.echo-labcoat .echo-fin-l,.echo-labcoat .echo-hand-l{animation:xfb-l 4.5s ease-in-out infinite}
+.echo-labcoat .echo-fin-r{animation:echo-sway-r 2.25s ease-in-out infinite}
+@keyframes xfb-body{0%,100%{transform:rotate(0)}15%,85%{transform:rotate(-3deg)}}
+@keyframes xfb-l{0%,6%,94%,100%{transform:rotate(0) translateY(0)}12%,28%{transform:rotate(15deg) translateY(0)}20%{transform:rotate(15deg) translateY(2.5px)}40%,58%{transform:rotate(8deg) translateY(0)}49%{transform:rotate(8deg) translateY(2.5px)}70%,88%{transform:rotate(0) translateY(0)}79%{transform:rotate(0) translateY(2.5px)}}
+.echo .xfb-fill{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
+.xfb-1{animation:xfb-1 4.5s ease-out infinite}.xfb-2{animation:xfb-2 4.5s ease-out infinite}.xfb-3{animation:xfb-3 4.5s ease-out infinite}
+@keyframes xfb-1{0%,17%{transform:scaleY(0);fill:#4fd2ff}27%,90%{transform:scaleY(1);fill:#2fb87a}97%,100%{transform:scaleY(0)}}
+@keyframes xfb-2{0%,45%{transform:scaleY(0);fill:#4fd2ff}55%,90%{transform:scaleY(1);fill:#2fb87a}97%,100%{transform:scaleY(0)}}
+@keyframes xfb-3{0%,75%{transform:scaleY(0);fill:#4fd2ff}85%,90%{transform:scaleY(1);fill:#2fb87a}97%,100%{transform:scaleY(0)}}
+/* Camper: a steady trail march with a walking stick; the headlamp beam sweeps the path ahead */
+.echo-trail .echo-all{animation:xca-walk 1.2s ease-in-out infinite}
+.echo-trail .echo-foot-l{animation:echo-step 1.2s ease-in-out infinite}
+.echo-trail .echo-foot-r{animation:echo-step 1.2s ease-in-out infinite -.6s}
+.echo-trail .echo-fin-r,.echo-trail .echo-hand-r{animation:xca-stick 1.2s ease-in-out infinite}
+.echo-trail .echo-fin-l{animation:xca-arm 1.2s ease-in-out infinite}
+@keyframes xca-walk{0%,100%{transform:rotate(-2deg) translateY(0)}25%,75%{transform:rotate(0) translateY(-2.5px)}50%{transform:rotate(2deg) translateY(0)}}
+@keyframes xca-stick{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(6deg)}}
+@keyframes xca-arm{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(14deg)}}
+.xca-beam{transform-origin:54px 4px;animation:xca-beam 2.4s ease-in-out infinite}
+@keyframes xca-beam{0%,100%{transform:rotate(-7deg);opacity:.75}50%{transform:rotate(7deg);opacity:1}}
+.xca-trail{animation:xca-trail .6s linear infinite}
+@keyframes xca-trail{to{stroke-dashoffset:12}}
+/* Keeper: a night guard with a flashlight; the weights sit on a pedestal behind blinking lasers */
+.echo-guard .echo-all{animation:xvb-patrol 3.2s ease-in-out infinite}
+.echo-guard .echo-fin-r,.echo-guard .echo-hand-r{animation:xvb-r 3.2s ease-in-out infinite}
+.echo-guard .echo-fin-l{animation:echo-sway-l 1.6s ease-in-out infinite}
+@keyframes xvb-patrol{0%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(2px) rotate(2deg)}75%{transform:translateX(-2px) rotate(-2deg)}}
+@keyframes xvb-r{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(-15deg)}}
+.xvb-laser{animation:xvb-laser 1.4s steps(2,end) infinite}
+@keyframes xvb-laser{0%{opacity:.95}50%{opacity:.2}}
+.xvb-gem{transform-origin:-6px 81px;animation:xvb-gem 2.4s ease-in-out infinite}
+@keyframes xvb-gem{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.06)}}
+/* Rack: slides a server blade into the rack beside it; the new slot lights up and the LEDs ripple */
+.echo-rackup .echo-all{animation:xra-body 3s ease-in-out infinite}
+.echo-rackup .echo-fin-r,.echo-rackup .echo-hand-r{animation:xra-r 3s ease-in-out infinite}
+.echo-rackup .echo-fin-l{animation:echo-sway-l 1.5s ease-in-out infinite}
+@keyframes xra-body{0%,100%{transform:rotate(0)}30%,45%{transform:rotate(3deg)}}
+@keyframes xra-r{0%,12%,100%{transform:rotate(9deg)}32%,44%{transform:rotate(-6deg)}56%,90%{transform:rotate(6deg)}}
+.xra-blade{animation:xra-blade 3s ease-in-out infinite}
+@keyframes xra-blade{0%,40%,92%,100%{opacity:1}46%,86%{opacity:0}}
+.xra-slot{opacity:0;animation:xra-slot 3s ease-in-out infinite}
+@keyframes xra-slot{0%,42%,94%,100%{opacity:0}46%,90%{opacity:1}}
+.xra-led{animation:xra-led 1.2s ease-in-out infinite}
+@keyframes xra-led{0%,100%{opacity:.25}50%{opacity:1}}
+/* Hard hat: a hard hat with a lamp, tightening a bolt on a machine whose gauge swings, gears turn and steam puffs */
+.echo-machinist .echo-all{animation:echo-bob 1.6s ease-in-out infinite}
+.echo-machinist .echo-fin-l,.echo-machinist .echo-hand-l{animation:xhb-l .8s ease-in-out infinite}
+.echo-machinist .echo-fin-r{animation:echo-sway-r 1.6s ease-in-out infinite}
+@keyframes xhb-l{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(8deg)}}
+.echo .xhb-rev{animation-direction:reverse}
+.xhb-needle{transform-origin:-8px 66px;animation:xhb-needle 2.4s ease-in-out infinite}
+@keyframes xhb-needle{0%,100%{transform:rotate(-50deg)}50%{transform:rotate(55deg)}}
+.xhb-steam{opacity:0;animation:xhb-steam 2.7s ease-out infinite}
+@keyframes xhb-steam{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:.85}100%{opacity:0;transform:translateY(-16px) scale(1.6)}}
+.xhb-bolt{opacity:0;animation:xhb-bolt 3.2s infinite}
+@keyframes xhb-bolt{0%,60%{opacity:0;transform:translate(13px,-4px)}62%{opacity:1;transform:translate(13px,-4px);animation-timing-function:cubic-bezier(.2,.6,.4,1)}72%{transform:translate(4px,-22px);animation-timing-function:cubic-bezier(.6,0,.8,.4)}84%{opacity:1;transform:translate(0,0)}96%{opacity:1}100%{opacity:0}}
+/* Power plant: plugs into a server; a pulse runs down the cable from the bloom, and the rack wakes up */
+.echo-plugin .echo-all{animation:xba-body 3.6s ease-in-out infinite}
+.echo-plugin .echo-fin-r,.echo-plugin .echo-hand-r{animation:xba-r 3.6s ease-in-out infinite}
+.echo-plugin .echo-fin-l{animation:echo-sway-l 1.8s ease-in-out infinite}
+@keyframes xba-body{0%,20%,90%,100%{transform:rotate(0)}30%,80%{transform:rotate(2.5deg)}}
+@keyframes xba-r{0%,18%,90%,100%{transform:rotate(6deg)}30%,80%{transform:rotate(-6deg)}}
+.xba-flow{opacity:0;animation:xba-flow 3.6s linear infinite}
+@keyframes xba-flow{0%,30%{opacity:0;stroke-dashoffset:0}34%{opacity:1}78%{opacity:1;stroke-dashoffset:-48}84%,100%{opacity:0;stroke-dashoffset:-56}}
+.xba-led{opacity:.15;animation:xba-led 3.6s ease infinite}
+@keyframes xba-led{0%,34%,86%,100%{opacity:.15}40%,80%{opacity:1}}
+.xba-core{opacity:.2;animation:xba-core 3.6s ease infinite}
+@keyframes xba-core{0%,30%,88%,100%{opacity:.15}38%,80%{opacity:.85}}
+.xba-pet{animation:xba-pet 3.6s ease-in-out infinite}
+@keyframes xba-pet{0%,30%{transform:rotate(0)}80%,100%{transform:rotate(120deg)}}
+/* Captain: in a little boat, telescope up, watching a fleet of data-center ships bob along the horizon */
+.echo-lookout .echo-all,.xcpa-boat{animation:xcpa-bob 2.8s ease-in-out infinite}
+.echo-lookout .echo-shadow{opacity:0}
+@keyframes xcpa-bob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(2.5px) rotate(1.5deg)}}
+.xcpa-boat{transform-origin:50px 100px}
+.echo-lookout .echo-fin-r,.echo-lookout .echo-hand-r{transform-origin:87px 44px;animation:xcpa-r 2.8s ease-in-out infinite}
+@keyframes xcpa-r{0%,100%{transform:rotate(10deg)}50%{transform:rotate(14deg)}}
+.echo-lookout .echo-fin-l{animation:echo-sway-l 2.8s ease-in-out infinite}
+.xcpa-tube{animation:xcpa-tube 2.8s ease-in-out infinite}
+@keyframes xcpa-tube{0%,100%{transform:translateX(-4px)}50%{transform:translateX(2px)}}
+.xcpa-ship{animation:xcpa-ship 2.4s ease-in-out infinite}
+@keyframes xcpa-ship{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}
+/* Record keeper: an AI chomper eats the office chair piece by piece while Echo hugs the database, untouched */
+.echo-chomp .echo-all{animation:xsa-body 5s ease-in-out infinite}
+.echo-chomp .echo-fin-r,.echo-chomp .echo-hand-r{animation:xsa-r 5s ease-in-out infinite}
+.echo-chomp .echo-fin-l{animation:echo-sway-l 2.5s ease-in-out infinite}
+@keyframes xsa-body{0%,18%,80%,100%{transform:rotate(0)}26%,72%{transform:rotate(3.5deg)}}
+@keyframes xsa-r{0%,18%,80%,100%{transform:rotate(-4deg)}26%,72%{transform:rotate(6deg)}}
+.xsa-chomp{animation:xsa-move 5s ease-in-out infinite}
+@keyframes xsa-move{0%,8%{transform:translateX(0);opacity:0}12%{opacity:1}26%{transform:translateX(14px)}40%{transform:translateX(18px)}54%{transform:translateX(21px)}66%{transform:translateX(21px);opacity:1}76%,100%{transform:translateX(0);opacity:0}}
+.xsa-top{transform-origin:-26px 88px;animation:xsa-top .3s ease-in-out infinite alternate}
+.xsa-bot{transform-origin:-26px 88px;animation:xsa-bot .3s ease-in-out infinite alternate}
+@keyframes xsa-top{from{transform:rotate(0)}to{transform:rotate(-32deg)}}
+@keyframes xsa-bot{from{transform:rotate(0)}to{transform:rotate(32deg)}}
+.xsa-p1{animation:xsa-p1 5s steps(1,end) infinite}.xsa-p2{animation:xsa-p2 5s steps(1,end) infinite}.xsa-p3{animation:xsa-p3 5s steps(1,end) infinite}
+@keyframes xsa-p1{0%,30%{opacity:1}31%,88%{opacity:0}89%,100%{opacity:1}}
+@keyframes xsa-p2{0%,44%{opacity:1}45%,90%{opacity:0}91%,100%{opacity:1}}
+@keyframes xsa-p3{0%,58%{opacity:1}59%,92%{opacity:0}93%,100%{opacity:1}}
+/* Neocloud: rides a see-through cloud full of GPUs, waving a FOR RENT sign */
+.echo-forrent .echo-all{transform-origin:50px -12px;animation:echo-float 3.4s ease-in-out infinite}
+.echo-forrent .echo-fin-l,.echo-forrent .echo-hand-l{transform-origin:13px 44px;animation:xcb2-sign 1.6s ease-in-out infinite}
+@keyframes xcb2-sign{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(4deg)}}
+.echo-forrent .echo-fin-r{animation:echo-sway-r 3.4s ease-in-out infinite}
+.xcb2-gpu{animation:xcb2-gpu 1.8s ease-in-out infinite}
+@keyframes xcb2-gpu{0%,100%{fill:#211a32}50%{fill:#2b5a7a}}
+/* Parachute: keeps laying bricks with the chute packed on its back, even as the chart behind it crashes */
+.echo-bricks .echo-all{animation:xcb3-body 5s ease-in-out infinite}
+.echo-bricks .echo-fin-r,.echo-bricks .echo-hand-r{animation:xcb3-r .9s ease-in-out infinite}
+.echo-bricks .echo-fin-l{animation:echo-sway-l 2.5s ease-in-out infinite}
+@keyframes xcb3-body{0%,44%,66%,100%{transform:rotate(0)}50%,60%{transform:rotate(-5deg)}}
+@keyframes xcb3-r{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(-14deg)}}
+.xcb3-line{stroke-dasharray:100;stroke-dashoffset:100;animation:xcb3-line 5s ease-in infinite}
+@keyframes xcb3-line{0%,40%{stroke-dashoffset:100;opacity:1}60%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.xcb3-b{opacity:0}
+.xcb3-b1{animation:xcb3-b1 5s infinite}.xcb3-b2{animation:xcb3-b2 5s infinite}.xcb3-b3{animation:xcb3-b3 5s infinite}.xcb3-b4{animation:xcb3-b4 5s infinite}.xcb3-b5{animation:xcb3-b5 5s infinite}
+@keyframes xcb3-b1{0%,6%{opacity:0;transform:translateY(-10px)}12%,94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@keyframes xcb3-b2{0%,22%{opacity:0;transform:translateY(-10px)}28%,94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@keyframes xcb3-b3{0%,38%{opacity:0;transform:translateY(-10px)}44%,94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@keyframes xcb3-b4{0%,62%{opacity:0;transform:translateY(-10px)}68%,94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+@keyframes xcb3-b5{0%,78%{opacity:0;transform:translateY(-10px)}84%,94%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+/* Moat keeper: waist-deep in the moat with a castle hat and pennant; a crocodile surfaces and snaps */
+.echo-croc .echo-shadow{opacity:0}
+.echo-croc .echo-all{animation:xmb-body 4s ease-in-out infinite}
+.echo-croc .echo-fin-l{animation:xmb-l 4s ease-in-out infinite}
+.echo-croc .echo-fin-r{animation:xmb-r 4s ease-in-out infinite}
+@keyframes xmb-body{0%,40%,100%{transform:translateY(0) rotate(0)}46%{transform:translateY(-8px) rotate(-4deg)}54%{transform:translateY(0) rotate(0)}62%,74%{transform:translateY(0) rotate(-2deg)}}
+@keyframes xmb-l{0%,40%,80%,100%{transform:rotate(-2deg)}46%,74%{transform:rotate(24deg)}}
+@keyframes xmb-r{0%,40%,80%,100%{transform:rotate(2deg)}46%,74%{transform:rotate(-24deg)}}
+.xmb-croc{animation:xmb-croc 4s ease-in-out infinite}
+@keyframes xmb-croc{0%,12%{transform:translate(8px,14px)}26%,76%{transform:translate(0,0)}90%,100%{transform:translate(8px,14px)}}
+.xmb-jaw{transform-origin:88px 96px;animation:xmb-jaw 4s ease-in-out infinite}
+@keyframes xmb-jaw{0%,30%,100%{transform:rotate(0)}36%{transform:rotate(-24deg)}40%{transform:rotate(0)}46%{transform:rotate(-24deg)}50%{transform:rotate(0)}}
+.xmb-flag{transform-origin:50px -18px;animation:xmb-flag .6s ease-in-out infinite alternate}
+@keyframes xmb-flag{from{transform:scaleX(1)}to{transform:scaleX(.7)}}
+/* HBM stack: memory dies drop onto the stack one at a time, each one landing with a bump, then the TSVs light up */
+.echo-stacker .echo-all{animation:xhm-body 4s ease-in-out infinite}
+.echo-stacker .echo-fin-l{animation:echo-sway-l 2s ease-in-out infinite}
+.echo-stacker .echo-fin-r{animation:echo-sway-r 2s ease-in-out infinite}
+@keyframes xhm-body{0%,14%,22%,26%,34%,38%,46%,50%,58%,100%{transform:scale(1,1)}18%,30%,42%,54%{transform:scale(1.03,.95)}}
+.xhm-l{opacity:0}
+.xhm-l0{animation:xhm-l0 4s infinite}.xhm-l1{animation:xhm-l1 4s infinite}.xhm-l2{animation:xhm-l2 4s infinite}.xhm-l3{animation:xhm-l3 4s infinite}
+@keyframes xhm-l0{0%,10%{opacity:0;transform:translateY(-22px);animation-timing-function:ease-in}11%{opacity:1;transform:translateY(-22px);animation-timing-function:ease-in}17%,88%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+@keyframes xhm-l1{0%,22%{opacity:0;transform:translateY(-22px);animation-timing-function:ease-in}23%{opacity:1;transform:translateY(-22px);animation-timing-function:ease-in}29%,88%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+@keyframes xhm-l2{0%,34%{opacity:0;transform:translateY(-22px);animation-timing-function:ease-in}35%{opacity:1;transform:translateY(-22px);animation-timing-function:ease-in}41%,88%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+@keyframes xhm-l3{0%,46%{opacity:0;transform:translateY(-22px);animation-timing-function:ease-in}47%{opacity:1;transform:translateY(-22px);animation-timing-function:ease-in}53%,88%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+.xhm-tsv{opacity:0;animation:xhm-tsv 4s ease infinite}
+@keyframes xhm-tsv{0%,58%,88%,100%{opacity:0}62%,70%,78%{opacity:1}66%,74%,82%{opacity:.3}}
+/* Packager: pick and place: a suction tool sets the GPU die between two HBM stacks on the interposer */
+.echo-pickplace .echo-all{animation:xpb-body 3.6s ease-in-out infinite}
+.echo-pickplace .echo-fin-r,.echo-pickplace .echo-hand-r{animation:xpb-r 3.6s ease-in-out infinite}
+.echo-pickplace .echo-fin-l{animation:echo-sway-l 1.8s ease-in-out infinite}
+@keyframes xpb-body{0%,20%,70%,100%{transform:rotate(0)}40%,60%{transform:rotate(-3deg)}}
+@keyframes xpb-r{0%,100%{transform:rotate(2deg)}30%,50%{transform:rotate(10deg)}}
+.xpb-x{animation:xpb-x 3.6s ease-in-out infinite}
+@keyframes xpb-x{0%,16%{transform:translateX(0);opacity:1}46%,82%{transform:translateX(-37px);opacity:1}90%{transform:translateX(-37px);opacity:0}92%{transform:translateX(0);opacity:0}100%{transform:translateX(0);opacity:1}}
+.xpb-y{animation:xpb-y 3.6s infinite}
+@keyframes xpb-y{0%,16%{transform:translateY(0);animation-timing-function:cubic-bezier(.2,.6,.4,1)}30%{transform:translateY(-12px);animation-timing-function:cubic-bezier(.6,0,.8,.4)}46%,100%{transform:translateY(5.5px)}}
+.xpb-ok{opacity:0;transform-origin:50px 62px;animation:xpb-ok 3.6s ease-out infinite}
+@keyframes xpb-ok{0%,48%{opacity:0;transform:scale(.4)}54%{opacity:1;transform:scale(1.2)}58%,82%{opacity:1;transform:scale(1)}90%,100%{opacity:0}}
+/* Thermometer: the mercury climbs, steam rises, sweat flies, and Echo fans itself with a paper fan */
+.echo-overheat .echo-all{animation:xth-body 3s ease-in-out infinite}
+.echo-overheat .echo-fin-l,.echo-overheat .echo-hand-l{transform-origin:13px 44px;animation:xth-l 3s ease-in-out infinite}
+.echo-overheat .echo-fin-r,.echo-overheat .echo-hand-r{animation:echo-sway-r 1.5s ease-in-out infinite}
+@keyframes xth-body{0%,100%{transform:rotate(-2deg) scale(1,1)}50%{transform:rotate(2deg) scale(1.01,.98)}}
+@keyframes xth-l{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(-8deg)}}
+.xth-fan{transform-origin:9px 3px;animation:xth-fan .3s ease-in-out infinite alternate}
+@keyframes xth-fan{from{transform:rotate(-22deg)}to{transform:rotate(18deg)}}
+.echo .xth-merc{transform-box:fill-box;transform-origin:50% 100%;animation:xth-merc 3s ease-in-out infinite}
+@keyframes xth-merc{0%{transform:scaleY(.35)}70%,90%{transform:scaleY(1)}100%{transform:scaleY(.35)}}
+.xth-heat{opacity:0;animation:xth-heat 3s ease-in-out infinite}
+@keyframes xth-heat{0%,100%{opacity:0}70%,90%{opacity:.22}}
+.xth-steam{opacity:0;animation:xth-steam 1.8s ease-out infinite}
+@keyframes xth-steam{0%{opacity:0;transform:translateY(4px)}30%{opacity:.9}100%{opacity:0;transform:translateY(-10px)}}
+.xth-drop{opacity:0;animation:xth-drop 1.5s ease-in infinite}
+@keyframes xth-drop{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(0,22px)}}
+/* Timekeeper: hands you an alarm clock tied with a bow, its hands spinning backward, under a little confetti */
+.echo-giftclock .echo-all{animation:xhgb-hop 1.6s ease-in-out infinite}
+.echo-giftclock .echo-fin-l{animation:xhgb-l 1.6s ease-in-out infinite}
+.echo-giftclock .echo-fin-r,.echo-giftclock .echo-hand-r{animation:xhgb-r 3.2s ease-in-out infinite}
+@keyframes xhgb-hop{0%,40%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(1px) scale(1.03,.96)}62%{transform:translateY(-6px) scale(.98,1.03)}78%{transform:translateY(0) scale(1,1)}}
+@keyframes xhgb-l{0%,40%,100%{transform:rotate(-2deg)}62%{transform:rotate(20deg)}}
+@keyframes xhgb-r{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(-16deg)}}
+.xhgb-min{transform-origin:101px 73px;animation:xhgb-min 1.2s linear infinite}
+.xhgb-hr{transform-origin:101px 73px;animation:xhgb-min 7.2s linear infinite}
+@keyframes xhgb-min{to{transform:rotate(-360deg)}}
+.xhgb-conf{animation:xhgb-conf 2.2s linear infinite}
+@keyframes xhgb-conf{0%{opacity:0;transform:translateY(0) rotate(0)}10%{opacity:1}100%{opacity:0;transform:translateY(60px) rotate(540deg)}}
+.echo .xhgb-conf{transform-box:fill-box;transform-origin:center}
+/* Astronaut: a slow spacewalk on a tether to a satellite, past a ringed planet and twinkling stars */
+.echo-spacewalk .echo-shadow{opacity:0}
+.echo-spacewalk .echo-all{transform-origin:50px 50px;animation:xhb3-drift 7s ease-in-out infinite}
+@keyframes xhb3-drift{0%,100%{transform:translate(0,0) rotate(-14deg)}50%{transform:translate(4px,-4px) rotate(14deg)}}
+.echo-spacewalk .echo-fin-l{animation:echo-paddle-l 3.5s ease-in-out infinite}
+.echo-spacewalk .echo-fin-r{animation:echo-paddle-r 3.5s ease-in-out infinite}
+.xhb3-sat{animation:xhb3-sat 7s ease-in-out infinite}
+@keyframes xhb3-sat{0%,100%{transform:translate(0,0)}50%{transform:translate(3px,2px)}}
+.xhb3-teth{animation:xhb3-teth 7s ease-in-out infinite}
+@keyframes xhb3-teth{0%,100%{stroke-dashoffset:0}50%{stroke-dashoffset:10}}
+.xhb3-planet{animation:xhb3-planet 5s ease-in-out infinite}
+@keyframes xhb3-planet{0%,100%{transform:translate(0,0)}50%{transform:translate(-3px,-4px)}}
 
 /* ---------------------------------------------------------------- EchoTempo band */
 .hero .who-link{color:inherit;text-decoration:none;border-bottom:1px solid rgba(159,179,196,.45);transition:color .2s,border-color .2s}
