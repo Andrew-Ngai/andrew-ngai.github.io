@@ -185,7 +185,7 @@ const BINS = {
 /* ---------------------------------------------------------------- theses */
 const THESES = [
   {
-    id: "automate", die: [0, -5], stance: "agree",
+    id: "automate", die: [0, 6], stance: "agree",
     title: "Automate the researcher, not the economy.",
     h2: "Automate the researcher, | not the economy.",
     short: "Automate the researcher",
@@ -204,7 +204,7 @@ const THESES = [
     viz: "automate", echo: { pose: "idle", acc: "flask", name: "Researcher" }
   },
   {
-    id: "agent", die: [3, 1], stance: "build",
+    id: "agent", die: [4, 8], stance: "build",
     title: "An agent is a brain with a body.",
     h2: "An agent is | a brain with a body.",
     short: "A brain with a body",
@@ -223,7 +223,7 @@ const THESES = [
     viz: "agent", echo: { pose: "run", acc: "camper", name: "Camper" }
   },
   {
-    id: "weights", die: [-1, 5], stance: "agree",
+    id: "weights", die: [-2, -6], stance: "agree",
     title: "Weights are the new crown jewels.",
     h2: "Weights are | the new crown jewels.",
     short: "Weights are the crown jewels",
@@ -243,7 +243,7 @@ const THESES = [
     viz: "weights", echo: { pose: "idle", acc: "vault", name: "Keeper" }
   },
   {
-    id: "ooms", die: [2, 7], stance: "build",
+    id: "ooms", die: [0, -3], stance: "build",
     title: "The computer is now the building.",
     h2: "The computer is | now the building.",
     short: "The computer is the building",
@@ -262,7 +262,7 @@ const THESES = [
     viz: "ooms", echo: { pose: "idle", acc: "rack", name: "Rack" }
   },
   {
-    id: "molecules", die: [-6, 6], stance: "build",
+    id: "molecules", die: [7, 5], stance: "build",
     title: "Molecules are easy. Machines are hard.",
     h2: "Molecules are easy. Machines are hard.",
     short: "Molecules are easy",
@@ -281,7 +281,7 @@ const THESES = [
     viz: "molecules", echo: { pose: "idle", acc: "hardhat", name: "Hard hat" }
   },
   {
-    id: "bloom", die: [-9, -1], stance: "build",
+    id: "bloom", die: [-9, 2], stance: "build",
     title: "The power plant that ships like a server.",
     h2: "The power plant | that ships like a server.",
     short: "Power that ships like servers",
@@ -301,7 +301,7 @@ const THESES = [
     viz: "bloom", echo: { pose: "idle", acc: "bloom", name: "Power plant" }
   },
   {
-    id: "fleet", die: [-8, 3], stance: "push",
+    id: "fleet", die: [-3, 2], stance: "push",
     title: "A fleet, not a cluster.",
     h2: "A fleet, | not a cluster.",
     short: "A fleet, not a cluster",
@@ -320,7 +320,7 @@ const THESES = [
     viz: "fleet", echo: { pose: "swim", acc: "captain", name: "Captain" }
   },
   {
-    id: "gpulife", die: [1, -9], stance: "push",
+    id: "gpulife", die: [4, 5], stance: "push",
     title: "Old GPUs don’t die. They move down the menu.",
     h2: "Old GPUs don’t die. They move | down the menu.",
     short: "Old GPUs move down the menu",
@@ -340,7 +340,7 @@ const THESES = [
     viz: "gpulife", echo: { pose: "idle", acc: "waiter", name: "Maître d’" }
   },
   {
-    id: "saas", die: [6, 4], stance: "push",
+    id: "saas", die: [3, -2], stance: "push",
     title: "AI eats the seat, not the software.",
     h2: "AI eats the seat, | not the software.",
     short: "The seat, not the software",
@@ -360,7 +360,7 @@ const THESES = [
     viz: "saas", echo: { pose: "wave", acc: "seat", name: "Record keeper" }
   },
   {
-    id: "neocloud", die: [-2, -8], stance: "build",
+    id: "neocloud", die: [-6, -7], stance: "build",
     title: "The clouds are renting from the neoclouds.",
     h2: "The clouds are renting | from the neoclouds.",
     short: "Clouds renting from neoclouds",
@@ -379,7 +379,7 @@ const THESES = [
     viz: "neocloud", echo: { pose: "float", acc: "cloud", name: "Neocloud" }
   },
   {
-    id: "builders", die: [-7, -6], stance: "build",
+    id: "builders", die: [-1, 9], stance: "build",
     title: "Back the builders. Survive the bust.",
     h2: "Back the builders. Survive the bust.",
     short: "Back the builders",
@@ -399,7 +399,7 @@ const THESES = [
     viz: "builders", echo: { pose: "float", acc: "chute", name: "Parachute" }
   },
   {
-    id: "moat", die: [9, 0], stance: "build",
+    id: "moat", die: [-1, -9], stance: "build",
     title: "The slowdown is the moat.",
     h2: "The slowdown | is the moat.",
     short: "The slowdown is the moat",
@@ -418,7 +418,7 @@ const THESES = [
     viz: "moat", echo: { pose: "wave", acc: "moat", name: "Moat keeper" }
   },
   {
-    id: "memory", die: [-5, -3], stance: "original",
+    id: "memory", die: [-6, 7], stance: "original",
     title: "The bottleneck moved below the GPU.",
     h2: "The bottleneck moved | below the GPU.",
     short: "Below the GPU",
@@ -437,7 +437,7 @@ const THESES = [
     viz: "memory", echo: { pose: "idle", acc: "hbm", name: "HBM stack" }
   },
   {
-    id: "backend", die: [5, -7], stance: "build",
+    id: "backend", die: [0, 3], stance: "build",
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
     h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
     short: "The back end is the bottleneck",
@@ -456,7 +456,7 @@ const THESES = [
     viz: "backend", echo: { pose: "idle", acc: "package", name: "Packager" }
   },
   {
-    id: "heat", die: [-1, -2], stance: "build",
+    id: "heat", die: [7, -5], stance: "build",
     title: "Going 3D saved Moore’s law. Heat is the bill.",
     h2: "Going 3D | saved Moore’s law. Heat is the bill.",
     short: "Heat is the bill",
@@ -476,7 +476,7 @@ const THESES = [
     viz: "heat", echo: { pose: "idle", acc: "thermo", name: "Thermometer" }
   },
   {
-    id: "screentime", die: [-3, 8], stance: "original",
+    id: "screentime", die: [9, 0], stance: "original",
     title: "The best consumer AI will give you your time back.",
     h2: "The best consumer AI | will give you | your time back.",
     short: "Give people time back",
@@ -496,7 +496,7 @@ const THESES = [
     viz: "screen", echo: { pose: "idle", acc: "hourglass", name: "Hourglass" }
   },
   {
-    id: "spacex", die: [8, -4], stance: "original",
+    id: "spacex", die: [3, 2], stance: "original",
     title: "SpaceX’s strongest engine is its stock.",
     h2: "SpaceX’s | strongest engine | is its stock.",
     short: "The stock is the engine",
@@ -517,7 +517,7 @@ const THESES = [
     viz: "spacex", echo: { pose: "float", acc: "jet", name: "Dealmaker" }
   },
   {
-    id: "quantum", die: [7, 6], stance: "build",
+    id: "quantum", die: [6, 1], stance: "build",
     title: "Quantum’s first big job is breaking keys, not training models.",
     h2: "Quantum’s first big job | is breaking keys, | not training models.",
     short: "Quantum breaks keys first",
@@ -537,7 +537,7 @@ const THESES = [
     viz: "quantum", echo: { pose: "float", acc: "qubit", name: "Qubit" }
   },
   {
-    id: "ledger", die: [4, 8], stance: "build",
+    id: "ledger", die: [4, -8], stance: "build",
     title: "Banks won’t mine. They’ll still share the ledger.",
     h2: "Banks won’t mine. | They’ll still | share the ledger.",
     short: "Banks will share the ledger",
@@ -556,7 +556,7 @@ const THESES = [
     viz: "ledger", echo: { pose: "idle", acc: "chain", name: "Ledger" }
   },
   {
-    id: "custom", die: [6, -1], stance: "original",
+    id: "custom", die: [-3, -2], stance: "original",
     title: "The chip is custom. The moat is everything around it.",
     h2: "The chip is custom. | The moat is | everything around it.",
     short: "The moat around the chip",
@@ -577,7 +577,7 @@ const THESES = [
     viz: "custom", echo: { pose: "idle", acc: "asic", name: "Chip designer" }
   },
   {
-    id: "tokens", die: [-4, -8], stance: "agree",
+    id: "tokens", die: [6, -3], stance: "agree",
     title: "Rent GPUs to survive. Sell tokens to win.",
     h2: "Rent GPUs to survive. | Sell tokens to win.",
     short: "Sell tokens to win",
@@ -598,7 +598,7 @@ const THESES = [
     viz: "tokens", echo: { pose: "wave", acc: "tokens", name: "Token seller" }
   },
   {
-    id: "factory", die: [-3, -5], stance: "build",
+    id: "factory", die: [-4, 5], stance: "build",
     title: "A token factory is a country of experts on a meter.",
     h2: "A token factory | is a country of experts | on a meter.",
     short: "A country of experts",
@@ -618,7 +618,7 @@ const THESES = [
     viz: "factory", echo: { pose: "idle", acc: "factory", name: "Foreman" }
   },
   {
-    id: "chipnames", die: [3, -4], stance: "original",
+    id: "chipnames", die: [2, -6], stance: "original",
     title: "Every GPU name is a scientist and a year.",
     h2: "Every GPU name | is a scientist | and a year.",
     short: "A scientist and a year",
@@ -638,7 +638,7 @@ const THESES = [
     viz: "chipnames", echo: { pose: "wave", acc: "nametag", name: "Name tag" }
   },
   {
-    id: "openclaw", die: [4, 3], stance: "build",
+    id: "openclaw", die: [-5, -3], stance: "build",
     title: "OpenClaw gave the brain a body. Now it needs a badge.",
     h2: "OpenClaw gave the brain | a body. | Now it needs a badge.",
     short: "A body that needs a badge",
@@ -657,7 +657,7 @@ const THESES = [
     viz: "openclaw", echo: { pose: "run", acc: "claw", name: "Claw" }
   },
   {
-    id: "race", die: [-4, 2], stance: "agree",
+    id: "race", die: [-6, 1], stance: "agree",
     title: "America can’t afford second place in AI.",
     h2: "America can’t afford | second place in AI.",
     short: "No second place in AI",
@@ -677,7 +677,7 @@ const THESES = [
     viz: "race", echo: { pose: "run", acc: "baton", name: "Relay" }
   },
   {
-    id: "silicon", die: [1, 3], stance: "original",
+    id: "silicon", die: [-9, -2], stance: "original",
     title: "Software can be patched. Silicon has to be outlived.",
     h2: "Software can be patched. | Silicon has to be outlived.",
     short: "Silicon has to be outlived",
@@ -699,7 +699,7 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [4, -2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." }
+  { die: [0, 0], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." }
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
