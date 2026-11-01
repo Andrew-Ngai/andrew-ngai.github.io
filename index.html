@@ -1351,26 +1351,62 @@ html.paused .memo{animation:none}
 .ow-ring{transition:stroke-dasharray 1s var(--ease)}
 .viz:not([data-step="3"]) .ow-ring{stroke-dasharray:0 999}
 @media (max-width:860px){.ow-phone{padding:calc(8*var(--u)) calc(9*var(--u)) calc(10*var(--u));border-radius:calc(16*var(--u))}.ow-top{font-size:calc(13*var(--u));padding-bottom:calc(6*var(--u))}.ow-thread{gap:calc(4*var(--u));padding-top:calc(6*var(--u))}.ow-m{font-size:calc(12*var(--u));padding:calc(5*var(--u)) calc(9*var(--u)) calc(6*var(--u))}.ow-m.step{padding:calc(3*var(--u)) calc(8*var(--u))}}
-.rc-l{transform-box:fill-box;transform-origin:100% 50%}
-.rc-r,.rc-l2{transform-box:fill-box;transform-origin:0 50%}
-.viz[data-step="1"] .f1 .rc-l,.viz[data-step="1"] .f1 .rc-r,.viz[data-step="2"] .f2 .rc-l2{animation:tk-grow .9s var(--ease) both}
-.viz[data-step="2"] .f2 .rc-donut{animation:sp-fade .8s ease both}
-.viz[data-step="3"] .f3 .rc-ev{animation:sp-fade .5s ease both}
-.si-bug{animation:si-bug 6s ease infinite}
-@keyframes si-bug{0%{opacity:0}10%,44%{opacity:1}54%,100%{opacity:0}}
-.si-band{animation:si-band 6s ease infinite}
-@keyframes si-band{0%,36%{opacity:0}46%,86%{opacity:1}100%{opacity:0}}
-.si-bugstay{animation:si-stay 6s ease infinite}
-@keyframes si-stay{0%{opacity:0}10%,100%{opacity:1}}
-.si-shield{animation:si-band 6s ease infinite}
-.si-k,.sicalc .oc-l b{color:var(--coral)}
+.rbcalc,.rccalc,.rfcalc,.slcalc,.bfcalc{display:grid;gap:calc(8*var(--u));align-content:center;min-height:0}
+.rbcalc{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch}
+.rb-pick .tk-r.on,.rc-pick .tk-r.on{background:var(--beat);border-color:var(--beat)}
+.rb-under{transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
+.rb-val{transition:transform .9s var(--ease)}
+.rb-bob{animation:rb-bob 4s ease-in-out infinite}
+@keyframes rb-bob{50%{transform:translateY(calc(2.5*var(--u)))}}
+.rb-wave{animation:echo-water 1.6s linear infinite}
+.rb-out,.bf-out{min-height:2.6em}
+.sx-out .s-m{display:none}
+@media (max-width:860px){.sx-out span.s-m{display:inline}}
+.rc-k,.rccalc .oc-l b{color:var(--beat)}
+.rc-range{accent-color:var(--beat)}
+.frame .rc-chart,.frame .sl-chart{height:auto;max-height:100%}
+.rf-k,.rfcalc .oc-l b{color:var(--amber)}
+.rf-range{accent-color:var(--amber)}
+.rf-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:calc(3*var(--u))}
+.rf-grid i{position:relative;display:block;aspect-ratio:1.4/1;border-radius:calc(2*var(--u));background:var(--ink-3);transition:background .2s,transform .3s var(--ease)}
+.rf-grid i.d{background:rgba(63,214,200,.42)}
+.rf-grid i.a{background:rgba(244,151,122,.42)}
+.rf-grid i.d.a{background:linear-gradient(135deg,rgba(63,214,200,.5) 50%,rgba(244,151,122,.5) 50%)}
+.rf-grid i.flaw{z-index:1;transform:scale(1.5);box-shadow:0 0 0 calc(2*var(--u)) var(--ink),0 0 calc(14*var(--u)) currentColor}
+.rf-grid i.win-d{background:var(--amber);color:var(--amber)}
+.rf-grid i.win-a{background:var(--coral);color:var(--coral)}
+.rf-leg span.d{background:var(--amber)}
+.rf-leg span.a{background:var(--coral);margin-left:calc(10*var(--u))}
+.rf-out{min-height:3.6em}
+.si-k,.slcalc .oc-l b{color:var(--coral)}
 .si-range{accent-color:var(--coral)}
-.si-grid i.lo{background:var(--coral)}
-.si-grid i.hi{background:rgba(244,151,122,.4)}
-.si-leg span{background:var(--coral)}
-.si-leg span.hi{background:rgba(244,151,122,.4);margin-left:calc(10*var(--u))}
-.si-pick .tk-r.on{background:var(--coral);border-color:var(--coral)}
-@media (max-width:860px){.si-leg{display:none}}
+.bf-w{margin:0;font-family:var(--label);font-size:calc(16*var(--u));color:var(--dim)}
+.bf-w b{margin-left:calc(6*var(--u));font-family:var(--display);font-weight:900;font-size:calc(30*var(--u));color:var(--paper);font-variant-numeric:tabular-nums;transition:color .3s}
+.bf-w b.bad{color:var(--coral)}
+.bf-bits{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:calc(3*var(--u))}
+.bf-b{appearance:none;padding:calc(9*var(--u)) 0;border:calc(1.5*var(--u)) solid var(--rule);border-radius:calc(4*var(--u));background:var(--ink-2);color:var(--paper);font-family:var(--display);font-weight:800;font-size:calc(18*var(--u));line-height:1;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.bf-b.s{border-color:var(--violet)}
+.bf-b.e{border-color:var(--coral)}
+.bf-b:hover{transform:translateY(calc(-2*var(--u)))}
+.bf-b.flip{background:var(--coral);border-color:var(--coral);color:var(--ink)}
+.bf-b.hint{animation:bf-hint 1.4s ease-in-out infinite}
+@keyframes bf-hint{50%{box-shadow:0 0 0 calc(4*var(--u)) rgba(244,151,122,.45)}}
+.bf-grp{display:grid;grid-template-columns:1fr 5fr 10fr;gap:calc(3*var(--u));margin:0;font-family:var(--label);font-size:calc(13*var(--u));color:var(--faint);text-align:center}
+.bf-grp span{padding-top:calc(3*var(--u));border-top:calc(2*var(--u)) solid var(--rule)}
+.bf-grp .s{border-color:var(--violet)}
+.bf-grp .e{border-color:var(--coral)}
+.bf-acc{display:grid;grid-template-columns:auto minmax(0,1fr) calc(64*var(--u));gap:calc(10*var(--u));align-items:center;font-family:var(--label);font-size:calc(15*var(--u));color:var(--dim)}
+.bf-bar{height:calc(14*var(--u));border-radius:calc(3*var(--u));background:var(--ink-3);overflow:hidden}
+.bf-bar i{display:block;height:100%;width:100%;background:var(--amber);transition:width .9s var(--ease),background .3s}
+.bf-bar i.bad{background:var(--coral)}
+.bf-acc b{font-family:var(--display);font-weight:900;font-size:calc(22*var(--u));color:var(--paper);text-align:right;font-variant-numeric:tabular-nums}
+.bf-reset{font-size:calc(13*var(--u))}
+.fp-glow{opacity:0;animation:fp-glow 6s ease-in-out var(--d) infinite}
+@keyframes fp-glow{0%,100%{opacity:0}6%,14%{opacity:.9}26%{opacity:0}}
+.viz[data-step="3"] .f3 .fp-pin,.viz[data-step="3"] .f3 .fp-key{animation:sp-fade .5s ease var(--d) both}
+.fp-bus{animation:fp-bus 1s linear infinite}
+@keyframes fp-bus{to{stroke-dashoffset:-8}}
+@media (max-width:860px){.rbcalc,.rccalc,.rfcalc,.slcalc,.bfcalc{gap:calc(4*var(--u))}.rccalc .oc-l,.rfcalc .oc-l,.slcalc .oc-l{font-size:calc(13*var(--u))}.rf-grid{gap:calc(2*var(--u))}.rf-leg{display:none}.rf-out,.rb-out,.bf-out{min-height:0}.bf-w{font-size:calc(14*var(--u))}.bf-w b{font-size:calc(22*var(--u))}.bf-b{padding:calc(6*var(--u)) 0;font-size:calc(13*var(--u));border-width:calc(1*var(--u))}.bf-grp{font-size:calc(11*var(--u))}.bf-acc{font-size:calc(13*var(--u));grid-template-columns:auto minmax(0,1fr) calc(52*var(--u))}.bf-acc b{font-size:calc(18*var(--u))}}
 .hero .who-link{color:inherit;text-decoration:none;border-bottom:calc(1*var(--u)) solid rgba(159,179,196,.45);transition:color .2s,border-color .2s}
 .hero .who-link:hover{color:var(--paper);border-color:var(--amber)}
 .band{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 85% 30%,var(--plum) 0%,var(--night) 62%);font-family:var(--sans);padding-block:clamp(calc(72*var(--u)),9vw,calc(116*var(--u)));border-top:calc(1*var(--u)) solid var(--rule);border-bottom:calc(1*var(--u)) solid var(--rule)}
@@ -3617,75 +3653,80 @@ const VIZ = {
     </div>`;
   },
   race() {
-    const ROWS = [["Private AI investment, 2025", 285.9, 12.4, v => `$${v}B`], ["Share of world AI compute", 72.2, 9.6, v => `${v}%`], ["Notable AI models, 2025", 50, 30, v => `${v}`], ["Best model’s rating, Mar 2026", 1503, 1464, v => v.toLocaleString("en-US")], ["Industrial robots installed", 34200, 295000, v => `${(v / 1000).toFixed(v < 1e5 ? 1 : 0)}K`]];
-    const row = ([l, us, cn, f], i) => { const y = 76 + i * 46, m = Math.max(us, cn), wu = us / m * 168, wc = cn / m * 168, lead = us >= cn; return `<text x="230" y="${y - 12}" text-anchor="middle" font-size="12" class="t-strong">${l}</text>
-        <rect class="rc-l" style="animation-delay:${(.15 + i * .15).toFixed(2)}s" x="${(228 - wu).toFixed(1)}" y="${y - 6}" width="${wu.toFixed(1)}" height="14" rx="2" fill="var(--beat)" opacity="${lead ? 1 : .55}"/>
-        <rect class="rc-r" style="animation-delay:${(.15 + i * .15).toFixed(2)}s" x="232" y="${y - 6}" width="${Math.max(2, wc).toFixed(1)}" height="14" rx="2" fill="var(--coral)" opacity="${lead ? .55 : 1}"/>
-        <text x="${(Math.max(26, 222 - wu)).toFixed(1)}" y="${y + 5}" text-anchor="${wu > 150 ? "start" : "end"}" font-size="12" font-weight="800" ${wu > 150 ? `style="fill:var(--ink)"` : `style="fill:var(--beat)"`} dx="${wu > 150 ? 6 : 0}">${f(us)}</text>
-        <text x="${(wc > 150 ? 226 + wc : 238 + wc).toFixed(1)}" y="${y + 5}" text-anchor="${wc > 150 ? "end" : "start"}" font-size="12" font-weight="800" ${wc > 150 ? `style="fill:var(--ink)"` : `style="fill:var(--coral)"`}>${f(cn)}</text>`; };
-    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="United States versus China. Private AI investment in 2025: 285.9 billion dollars versus 12.4 billion. Share of world AI compute: 72.2 percent versus 9.6 percent. Notable AI models in 2025: 50 versus 30. Best model's rating in March 2026: 1,503 versus 1,464. Industrial robots installed: 34,200 versus 295,000.">
-        <text x="216" y="26" text-anchor="end" font-size="15" font-weight="800" style="fill:var(--beat)">United States</text><text x="244" y="26" font-size="15" font-weight="800" style="fill:var(--coral)">China</text>
-        <line x1="230" y1="40" x2="230" y2="290" stroke="var(--rule)"/>
-        ${ROWS.map(row).join("")}
-      </svg>`;
-    const arc = (a, b, c) => { const p = t => [118 + 70 * Math.cos(t * 2 * Math.PI - Math.PI / 2), 168 + 70 * Math.sin(t * 2 * Math.PI - Math.PI / 2)]; const [x0, y0] = p(a), [x1, y1] = p(b); return `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)} A70 70 0 ${b - a > .5 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${c}" stroke-width="26"/>`; };
-    const SH = [[72.2, "var(--beat)", "US"], [9.6, "var(--coral)", "China"], [5.1, "var(--violet)", "EU"], [5.6, "var(--amber)", "Malaysia, India, Japan"], [7.5, "var(--ink-3)", "rest of world"]];
-    let acc = 0;
-    const donut = SH.map(([v, c]) => { const a = acc / 100, b = (acc + v) / 100 - .003; acc += v; return arc(a, b, c); }).join("");
-    const NEW = [["2022–24", 60, "~60%"], ["2025", 72, "72%"], ["H1 2026", 78, "78%"]];
-    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="AI compute by country. Cumulative share as of Q2 2026: US 72.2 percent, China 9.6, EU 5.1, Malaysia, India and Japan 5.6 combined, rest of world 7.5. US share of new compute added each year: about 60 percent in 2022 to 2024, 72 percent in 2025, 78 percent in the first half of 2026.">
-        <text x="14" y="24" class="t-strong" font-size="16">Who holds the world’s AI compute</text>
-        <text x="14" y="42" font-size="12">H100-equivalents, from customs records (Epoch AI)</text>
-        <g class="rc-donut">${donut}</g>
-        <text x="118" y="166" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--beat);font-family:var(--display)">72%</text><text x="118" y="184" text-anchor="middle" font-size="11">US, cumulative</text>
-        ${SH.map(([v, c, n], i) => `<text x="${[14, 84, 164, 14, 164][i]}" y="${i < 3 ? 268 : 286}" font-size="11"><tspan style="fill:${c === "var(--ink-3)" ? "var(--faint)" : c}" font-weight="800">■</tspan> ${n} ${v}%</text>`).join("")}
-        <text x="262" y="78" class="t-strong" font-size="13">US share of new compute</text>
-        ${NEW.map(([l, v, t], i) => { const y = 100 + i * 52, w = v / 100 * 170; return `<text x="262" y="${y + 6}" font-size="12">${l}</text><rect x="262" y="${y + 14}" width="170" height="16" rx="2" fill="var(--ink-3)"/><rect class="rc-l2" style="animation-delay:${(.3 + i * .2).toFixed(1)}s" x="262" y="${y + 14}" width="${w.toFixed(1)}" height="16" rx="2" fill="var(--beat)"/><text x="${(262 + w - 6).toFixed(1)}" y="${y + 27}" text-anchor="end" font-size="12" font-weight="800" style="fill:var(--ink)">${t}</text>`; }).join("")}
-      </svg>`;
-    const vline = (rows, y0, step, x0 = 112) => `<line x1="${x0}" y1="${y0 - 12}" x2="${x0}" y2="${y0 + (rows.length - 1) * step + 12}" stroke="var(--rule)" stroke-width="2"/>` + rows.map(([d, a, b, c, open], i) => { const y = y0 + i * step; return `<g class="rc-ev" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><text x="${x0 - 14}" y="${y + 4}" text-anchor="end" font-size="11.5" font-weight="800" style="fill:${c}">${d}</text><circle cx="${x0}" cy="${y}" r="6" fill="${open ? "var(--ink)" : c}" stroke="${c}" stroke-width="2"/><text x="${x0 + 16}" y="${b ? y - 2 : y + 4}" font-size="12" class="t-strong">${a}</text>${b ? `<text x="${x0 + 16}" y="${y + 13}" font-size="11.5">${b}</text>` : ""}</g>`; }).join("");
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="AI on both sides of the fence. November 24, 2025: the Genesis Mission puts the Energy Department's national labs behind AI for science. August 20, 2026: five agencies warn attackers are using AI to write exploits for industrial controllers. Late August: AI helps researchers find two decade-old flaws in PHP. October 21: the PHP fix ships. October 22: governments and companies take sites offline to patch.">
-        <text x="14" y="24" class="t-strong" font-size="16">AI is on both sides of the fence</text>
-        <text x="14" y="42" font-size="12"><tspan style="fill:var(--amber)" font-weight="800">● defense</tspan>   <tspan style="fill:var(--coral)" font-weight="800">● offense and fallout</tspan></text>
-        ${vline([["Nov 24, 2025", "Genesis Mission puts the national labs", "behind AI for science", "var(--amber)"], ["Aug 20, 2026", "NSA, CISA, FBI, DOE, EPA: attackers are", "using AI to write factory-controller exploits", "var(--coral)"], ["Late Aug", "AI helps researchers find two", "decade-old flaws in PHP", "var(--amber)"], ["Oct 21", "The PHP fix ships", "", "var(--amber)"], ["Oct 21–22", "Governments and companies take", "sites offline worldwide to patch", "var(--coral)"]], 80, 46, 104)}
-      </svg>`;
+    const BERG = "M-56 0 L-78 24 L-92 68 L-74 116 L-34 150 L16 146 L64 118 L90 70 L78 24 L56 0 Z";
+    const tip = h => `M-44 0 L-29 ${(-h * .52).toFixed(1)} L-13 ${(-h).toFixed(1)} L3 ${(-h * .74).toFixed(1)} L20 ${(-h * .9).toFixed(1)} L44 0 Z`;
+    const berg = (id, x, c, h, rating, d) => `<g class="rb-bob" style="animation-delay:${d}s"><g transform="translate(${x} 118)">
+        <g class="rb-under" id="rb-${id}"><path d="${BERG}" fill="${c}" fill-opacity=".34" stroke="${c}" stroke-width="1.4"/></g>
+        <path d="${tip(h)}" fill="${c}"/><path d="M-13 ${(-h).toFixed(1)} L3 ${(-h * .74).toFixed(1)} L-2 0 L-29 ${(-h * .52).toFixed(1)} Z" fill="#fff" fill-opacity=".22"/>
+        <text y="${(-h - 9).toFixed(1)}" text-anchor="middle" font-size="17" font-weight="900" style="fill:${c};font-family:var(--display)">${rating}</text>
+        <g class="rb-val" id="rb-${id}-v"><text text-anchor="middle" font-size="14" font-weight="800" style="fill:${c}"></text></g>
+      </g></g>`;
+    const F1 = `<div class="rbcalc" data-flex>
+        <div class="tk-rate rb-pick" role="group" aria-label="What’s under the water">${[["inv", "Investment"], ["comp", "Compute"], ["bots", "Robots"]].map(([k, l], i) => `<button type="button" class="tk-r rb-f${i ? "" : " on"}" data-m="${k}">${l}</button>`).join("")}</div>
+        <svg viewBox="0 0 460 300" role="img" aria-label="Two icebergs, the United States and China. Above water, the best models are nearly level: ratings of 1,503 and 1,464. Below water, area to scale: private AI investment in 2025 was 285.9 billion dollars against 12.4 billion; share of the world's AI compute 72.2 percent against 9.6; industrial robots installed 34,200 against 295,000, where China leads.">
+          <text x="14" y="22" class="t-strong" font-size="16">Level at the tip. Not underneath.</text>
+          <text x="242" y="96" text-anchor="middle" font-size="11.5">best model’s</text><text x="242" y="110" text-anchor="middle" font-size="11.5">rating, Mar 2026</text>
+          ${berg("us", 140, "var(--beat)", 64, "1,503", 0)}${berg("cn", 345, "var(--coral)", 62.3, "1,464", -1.7)}
+          <rect x="-200" y="118" width="860" height="182" fill="var(--beat)" fill-opacity=".06"/>
+          <path class="rb-wave" d="M-204 118 q6 -3 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="var(--beat)" stroke-opacity=".7" stroke-width="1.6"/>
+        </svg>
+        <p class="sx-out rb-out" id="rbOut"></p>
+      </div>`;
+    const F2 = `<div class="rccalc">
+        <p class="nc-k rc-k">How long would catching up take?</p>
+        <div class="tk-rate rc-pick" role="group" aria-label="The US lead in AI compute today">${[["7.52", "Today’s US lead: 7.5×"], ["2", "If the lead were 2×"]].map(([v, l], i) => `<button type="button" class="tk-r rc-f${i ? "" : " on"}" data-r="${v}">${l}</button>`).join("")}</div>
+        <label class="oc-l" for="rcRange">China’s compute grows <b id="rcN">30%</b> faster a year than America’s</label>
+        <input class="oc-range rc-range" type="range" id="rcRange" min="0" max="100" step="5" value="30">
+        <svg class="rc-chart" id="rcChart" viewBox="0 0 460 172" role="img" aria-label="US compute as a multiple of China's, from 2026 to 2040, for the growth gap you choose. Where the line crosses 1 times, China has caught up."></svg>
+        <p class="sx-out" id="rcOut"></p>
+      </div>`;
+    const F3 = `<div class="rfcalc">
+        <p class="nc-k rf-k">Who finds the flaw first?</p>
+        <label class="oc-l" for="rfRange">The defender’s AI is <b id="rfN">1.5×</b> as strong as the attacker’s</label>
+        <input class="oc-range rf-range" type="range" id="rfRange" min="0.5" max="3" step="0.25" value="1.5">
+        <div class="rf-grid" id="rfGrid" aria-hidden="true">${"<i></i>".repeat(120)}</div>
+        <p class="sp-leg rf-leg" aria-hidden="true"><span class="d"></span>checked by the defender <span class="a"></span>checked by the attacker</p>
+        <p class="sx-out rf-out" id="rfOut" aria-live="polite"></p>
+      </div>`;
     return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Stanford AI Index 2026 (investment, models, ratings, robots); Epoch AI (compute share, Q2 2026). China’s investment figure likely misses state guidance funds.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Epoch AI’s chip-imports explorer, via OfficeChai (Oct 2026). Excludes chips made and used inside Taiwan.</p></div>
-      <div class="frame f3">${F3}<p class="cap">Federal Register (Nov 2025); joint NSA, CISA, FBI, DOE and EPA advisory (Aug 2026); PHP coverage (Oct 2026).</p></div>
+      <div class="frame f1">${F1}<p class="cap"><span class="cap-l">Area to scale below the waterline. Stanford AI Index 2026 (investment, ratings, robots); Epoch AI (compute, Q2 2026).</span><span class="cap-s">Area to scale. Stanford AI Index 2026; Epoch AI.</span></p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative. Starts from Epoch AI’s count of the world’s AI compute (US 72.2%, China 9.6%, Q2 2026). The US took 78% of new compute in the first half of 2026, so for now the gap is widening.</span><span class="cap-s">Illustrative, from Epoch AI’s compute shares (Q2 2026).</span></p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: each side checks files at a speed set by its model. PHP2Shell went the defenders’ way: Wiz and Calif found it with AI, and the fix shipped on Oct 21.</span><span class="cap-s">Illustrative. PHP2Shell went the defenders’ way.</span></p></div>
     </div>`;
   },
   silicon() {
-    const L = [["Apps", 52], ["Operating system", 108], ["Firmware", 164], ["Silicon", 220]];
-    const bug = (x, y, cls, d) => `<g class="${cls}" style="animation-delay:${d}s" transform="translate(${x} ${y})"><ellipse rx="7" ry="5" fill="var(--amber)"/><circle cx="7" r="3" fill="var(--amber)"/><path d="M-4 -4 L-6 -8 M0 -5 V-9 M4 -4 L6 -8 M-4 4 L-6 8 M0 5 V9 M4 4 L6 8" stroke="var(--amber)" stroke-width="1.2" stroke-linecap="round"/></g>`;
-    const band = (x, y, cls, d) => `<g class="${cls}" style="animation-delay:${d}s" transform="translate(${x} ${y}) rotate(-30)"><rect x="-15" y="-5" width="30" height="10" rx="5" fill="#f2c096"/><rect x="-5" y="-5" width="10" height="10" fill="#d9a072"/></g>`;
-    const layer = ([n, y], i) => { const si = i === 3; return `<rect x="20" y="${y - 22}" width="300" height="44" rx="${si ? 3 : 6}" fill="${si ? "#11263c" : "var(--ink-2)"}" stroke="${si ? "var(--violet)" : "var(--rule)"}" stroke-width="${si ? 1.6 : 1}"/>${si ? Array.from({ length: 13 }, (_, k) => `<line x1="${34 + k * 22}" y1="${y - 22}" x2="${34 + k * 22}" y2="${y + 22}" stroke="var(--violet)" stroke-opacity=".12"/>`).join("") : ""}<text x="34" y="${y + 5}" font-size="14" class="t-strong">${n}</text><text x="226" y="${y + 5}" font-size="12" font-weight="800" style="fill:${si ? "var(--coral)" : "var(--amber)"}">${si ? "work around" : "patch"}</text>${bug(196, y, si ? "si-bugstay" : "si-bug", (i * .4).toFixed(1))}${si ? `<path class="si-shield" d="M196 ${y - 14} L208 ${y - 9} V${y + 1} C208 ${y + 8} 202 ${y + 12} 196 ${y + 15} C190 ${y + 12} 184 ${y + 8} 184 ${y + 1} V${y - 9} Z" fill="rgba(244,151,122,.25)" stroke="var(--coral)" stroke-width="1.4"/>` : band(196, y, "si-band", (i * .4).toFixed(1))}`; };
-    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="Four layers: apps, operating system, firmware and silicon. Bugs in the top three get patched and disappear. A bug in the silicon stays; software can only work around it, and the workaround slows the machine.">
-        <text x="20" y="22" class="t-strong" font-size="16">Where a fix can reach</text>
-        ${L.map(layer).join("")}
-        <g transform="translate(394 148)"><path d="M-46 0 A46 46 0 0 1 46 0" fill="none" stroke="var(--ink-3)" stroke-width="10"/><path d="M-46 0 A46 46 0 0 1 46 0" fill="none" stroke="var(--amber)" stroke-width="10" stroke-dasharray="109 200"/><path d="M33 -32 A46 46 0 0 1 46 0" fill="none" stroke="var(--coral)" stroke-width="10"/><g transform="rotate(88)"><path d="M0 0 L0 -40" stroke="var(--paper)" stroke-width="2.4" stroke-linecap="round"/><animateTransform attributeName="transform" type="rotate" values="88;88;60;60;88" keyTimes="0;.42;.52;.9;1" dur="6s" repeatCount="indefinite"/></g><circle r="5" fill="var(--paper)"/>
-          <text y="24" text-anchor="middle" font-size="12" class="t-strong">speed</text><text y="40" text-anchor="middle" font-size="11" style="fill:var(--coral)">the mitigation tax</text></g>
-        <path d="M322 220 C360 220 380 210 390 190" fill="none" stroke="var(--coral)" stroke-dasharray="3 3"/>
-      </svg>`;
-    const F2 = `<div class="sicalc">
-        <p class="nc-k si-k">The mitigation tax</p>
-        <div class="tk-rate si-pick" role="group" aria-label="Which hardware fix">${[["ecc", "ECC vs GPUHammer: 3–10%"], ["kpti", "Meltdown/Spectre fixes, databases: 8–19%"]].map(([k, l], i) => `<button type="button" class="tk-r si-f${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div>
-        <label class="oc-l" for="siRange">Fleet: <b id="siN">10,000</b> machines</label>
-        <input class="oc-range si-range" type="range" id="siRange" min="1000" max="100000" step="1000" value="10000">
-        <div class="fa-grid si-grid" id="siGrid" aria-hidden="true">${"<i></i>".repeat(100)}</div>
-        <p class="sp-leg si-leg" aria-hidden="true"><span class="lo"></span>lost at the low end <span class="hi"></span>more lost at the high end</p>
-        <p class="sx-out si-out" id="siOut"></p>
+    const F1 = `<div class="slcalc">
+        <p class="nc-k si-k">Patch it, or outlive it</p>
+        <label class="oc-l" for="slRange">Flaw found <b id="slN">1.5 years</b> into a six-year service life</label>
+        <input class="oc-range si-range" type="range" id="slRange" min="0" max="6" step="0.25" value="1.5">
+        <svg class="sl-chart" id="slChart" viewBox="0 0 460 176" role="img" aria-label="Two lanes over a six-year service life. A software bug is exposed from the day it's found until a patch about ten weeks later. A silicon flaw stays exposed, with a speed tax for the workaround, until the fleet is retired."></svg>
+        <p class="sx-out" id="slOut"></p>
       </div>`;
-    const vline = (rows, y0, step, x0 = 112) => `<line x1="${x0}" y1="${y0 - 12}" x2="${x0}" y2="${y0 + (rows.length - 1) * step + 12}" stroke="var(--rule)" stroke-width="2"/>` + rows.map(([d, a, b, c, open], i) => { const y = y0 + i * step; return `<g class="rc-ev" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><text x="${x0 - 14}" y="${y + 4}" text-anchor="end" font-size="11.5" font-weight="800" style="fill:${c}">${d}</text><circle cx="${x0}" cy="${y}" r="6" fill="${open ? "var(--ink)" : c}" stroke="${c}" stroke-width="2"/><text x="${x0 + 16}" y="${b ? y - 2 : y + 4}" font-size="12" class="t-strong">${a}</text>${b ? `<text x="${x0 + 16}" y="${y + 13}" font-size="11.5">${b}</text>` : ""}</g>`; }).join("");
-    const V = "var(--violet)", C = "var(--coral)";
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Timeline. Hardware and physical attacks: Stuxnet, which by 2010 likely wrecked about 1,000 centrifuges through Siemens controllers; Meltdown and Spectre in 2018, whose first fixes cost 8 to 19 percent on databases; GPUHammer in 2025, where one flipped bit breaks an AI model; TEE.fail in October 2025. The AI era: in February 2026 Altman says superintelligence may be a couple of years away; in August 2026 agencies warn AI is writing exploits for Siemens controllers; in October 2026 AI finds PHP flaws and sites go dark; and by the end of 2028, Altman says, more of the world's intellect could sit inside data centers than outside.">
-        <text x="14" y="24" class="t-strong" font-size="16">From Stuxnet to superintelligence</text>
-        <text x="14" y="42" font-size="12"><tspan style="fill:var(--violet)" font-weight="800">● hardware &amp; physical</tspan>   <tspan style="fill:var(--coral)" font-weight="800">● the AI era</tspan></text>
-        ${vline([["2010", "Stuxnet likely wrecks ~1,000 centrifuges via Siemens PLCs", "", V], ["2018", "First Meltdown/Spectre fixes cost 8–19% on databases", "", V], ["2025", "GPUHammer: one flipped bit breaks an AI model", "", V], ["Oct 2025", "TEE.fail: a sub-$1,000 probe beats secure enclaves", "", V], ["Feb 2026", "Altman: superintelligence “a couple of years away”", "", C], ["Aug 2026", "Agencies: AI is writing exploits for Siemens PLCs", "", C], ["Oct 2026", "AI finds decade-old PHP flaws; sites go dark", "", C], ["End 2028", "More intellect inside data centers than outside?", "", C, 1]], 70, 29, 96)}
+    const F2 = `<div class="bfcalc">
+        <p class="nc-k si-k">Flip one bit</p>
+        <p class="bf-w">One weight in an image model: <b id="bfVal">0.0127</b></p>
+        <div class="bf-bits" id="bfBits" role="group" aria-label="The weight's 16 bits: 1 sign bit, 5 exponent bits, 10 fraction bits">${Array.from({ length: 16 }, (_, i) => `<button type="button" class="bf-b ${i === 0 ? "s" : i < 6 ? "e" : "m"}${i === 1 ? " hint" : ""}" data-i="${i}" aria-label="${i === 0 ? "Sign bit" : i < 6 ? `Exponent bit ${i}` : `Fraction bit ${i - 5}`}"></button>`).join("")}</div>
+        <p class="bf-grp" aria-hidden="true"><span class="s">sign</span><span class="e">exponent</span><span class="m">fraction</span></p>
+        <div class="bf-acc"><span class="bf-acc-l">Model accuracy</span><span class="bf-bar"><i id="bfBar"></i></span><b id="bfAcc">80%</b></div>
+        <p class="sx-out bf-out" id="bfOut" aria-live="polite"></p>
+        <div><button type="button" class="tk-r bf-reset" id="bfReset">Reset the weight</button></div>
+      </div>`;
+    const RINGS = [["Site fence", 30, 58, 268, 234, "6 4"], ["Building", 46, 80, 236, 200], ["Data hall", 62, 102, 204, 164], ["Cage", 80, 124, 168, 128, "2 3"], ["Rack", 98, 146, 132, 94], ["Server", 114, 166, 100, 62]];
+    const PINS = [[1, 280, 46, "PHP2Shell", "from anywhere online", "Fix: a patch, shipped Oct 21", "var(--amber)"], [2, 264, 91, "AI-written PLC exploits", "the building’s control network", "Fix: isolate and watch it", "var(--beat)"], [3, 133, 205, "GPUHammer", "code on the same GPU", "Fix: ECC, a 3–10% tax", "var(--coral)"], [4, 160, 186, "TEE.fail", "hands on the memory bus", "Fix: keep hands off it", "var(--coral)"]];
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="A data center seen from above, ring inside ring: site fence, building, data hall, cage, rack, server, then the chip and its memory. PHP2Shell needed only an internet connection, and a patch fixed it. AI-written exploits for factory controllers need the building's control network. GPUHammer needs code running on the same GPU, and its fix, ECC, costs 3 to 10 percent of speed. TEE.fail needs hands on the memory bus, and the chipmakers say that's outside their threat model, so the defense is keeping people out.">
+        <text x="14" y="22" class="t-strong" font-size="16">Where each attack has to stand</text>
+        <text x="14" y="44" font-size="11.5">Anywhere online</text>
+        ${RINGS.map(([n, x, y, w, h, dash], i) => `<g class="fp-ring" style="--d:${(i * .55).toFixed(2)}s"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${8 - i}" fill="var(--ink-2)" fill-opacity=".55" stroke="var(--rule)" stroke-width="1.4" ${dash ? `stroke-dasharray="${dash}"` : ""}/><rect class="fp-glow" x="${x}" y="${y}" width="${w}" height="${h}" rx="${8 - i}" fill="none" stroke="var(--amber)" stroke-width="2.4"/><text x="${x + 8}" y="${y + 15}" font-size="11">${n}</text></g>`).join("")}
+        <rect x="122" y="192" width="22" height="22" rx="2" fill="#11263c" stroke="var(--violet)" stroke-width="1.2"/><path d="M126 192 v-3 M131 192 v-3 M136 192 v-3 M140 192 v-3 M126 214 v3 M131 214 v3 M136 214 v3 M140 214 v3" stroke="var(--violet)" stroke-opacity=".6"/>
+        ${[0, 1, 2, 3].map(k => `<rect x="${178 + k * 7}" y="${190 + k % 2}" width="4.5" height="26" rx="1" fill="var(--ink-3)" stroke="var(--violet)" stroke-opacity=".6" stroke-width=".7"/>`).join("")}
+        <path class="fp-bus" d="M145 203 H177" stroke="var(--coral)" stroke-width="2" stroke-dasharray="2 2"/>
+        ${PINS.map(([n, x, y, , , , c], i) => `<g class="fp-pin" style="--d:${(.4 + i * .35).toFixed(2)}s"><circle cx="${x}" cy="${y}" r="8.5" fill="${c}" stroke="var(--ink)" stroke-width="1.5"/><text x="${x}" y="${y + 4}" text-anchor="middle" font-size="11" font-weight="900" style="fill:var(--ink)">${n}</text></g>`).join("")}
+        ${PINS.map(([n, , , t, a, f, c], i) => { const y = 74 + i * 56; return `<g class="fp-key" style="--d:${(.4 + i * .35).toFixed(2)}s"><circle cx="318" cy="${y - 4}" r="8" fill="${c}"/><text x="318" y="${y}" text-anchor="middle" font-size="10.5" font-weight="900" style="fill:var(--ink)">${n}</text><text x="332" y="${y}" font-size="12.5" class="t-strong">${t}</text><text x="332" y="${y + 15}" font-size="11.5">${a}</text><text x="332" y="${y + 30}" font-size="11.5" style="fill:${c}">${f}</text></g>`; }).join("")}
       </svg>`;
     return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Software patches remove a bug. A silicon flaw stays in every chip already made, so the fix is a workaround that costs speed.</p></div>
-      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative: share of a fleet’s output lost to a fix, using the published ranges. GPUHammer paper (2025): ECC costs 6.5% of memory and 3–10% of speed. Red Hat (2018): the first Meltdown and Spectre fixes cost 8–19% on transaction-heavy databases, later tuned to 4–8%.</span><span class="cap-s">Illustrative. ECC: 3–10% slower. Meltdown/Spectre fixes: 8–19% on databases.</span></p></div>
-      <div class="frame f3">${F3}<p class="cap">Stuxnet, Meltdown, GPUHammer and TEE.fail show silicon can be attacked; the AI era raises the stakes. Sources in Receipts.</p></div>
+      <div class="frame f1">${F1}<p class="cap"><span class="cap-l">Illustrative: a six-year service life, about how long hyperscalers depreciate servers. PHP2Shell went from first report to patch in about ten weeks. GPUHammer hit Nvidia’s A6000 almost five years after it launched.</span><span class="cap-s">Illustrative: a six-year service life.</span></p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">A half-precision (FP16) weight. Flipping the exponent’s top bit multiplies it by 65,536. GPUHammer (2025) did this through the memory of an Nvidia A6000: ResNet-50 fell from 80% to 0.08% accuracy.</span><span class="cap-s">FP16 weight. GPUHammer (2025): 80% → 0.08% accuracy.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap">The closer an attack gets to the chip, the fewer people can reach it, and the less software can do about it. Intel and AMD say physical attacks are outside their threat model.</p></div>
     </div>`;
   }
 };
@@ -3922,20 +3963,154 @@ const VIZ_INIT = {
     $$(".cn-p", root).forEach(b => b.addEventListener("click", () => { $$(".cn-p", root).forEach(x => x.classList.toggle("on", x === b)); show(b.dataset.p); }));
     show("GB200 NVL72");
   },
-  silicon(root) {
-    const r = $("#siRange", root);
-    if (!r) return;
-    const F = { ecc: [3, 10, "ECC against GPUHammer", " It also gives up 6.5% of memory."], kpti: [8, 19, "Meltdown and Spectre fixes on databases", ""] };
-    let f = "ecc";
-    const cells = $$("#siGrid i", root);
-    const upd = () => {
-      const n = +r.value, [lo, hi, l, extra] = F[f];
-      $("#siN", root).textContent = n.toLocaleString("en-US");
-      cells.forEach((c, i) => { c.classList.toggle("lo", i >= 100 - lo); c.classList.toggle("hi", i >= 100 - hi && i < 100 - lo); });
-      $("#siOut", root).innerHTML = `<b class="dn">${Math.round(n * lo / 100).toLocaleString("en-US")}–${Math.round(n * hi / 100).toLocaleString("en-US")}</b><span>machines’ worth of output lost to ${l}.${extra}</span>`;
+  race(root) {
+    const viz = $(".viz", root);
+    if (!$("#rbOut", root)) return;
+    const shown = n => viz && viz.isConnected && viz.dataset.step === String(n) && !document.documentElement.classList.contains("paused");
+    const M = {
+      inv: ["Private AI investment, 2025", 285.9, 12.4, v => `$${v}B`, " China’s figure likely misses state guidance funds.", "investment: US leads"],
+      comp: ["Share of the world’s AI compute", 72.2, 9.6, v => `${v}%`, "", "compute: US leads"],
+      bots: ["Industrial robots installed in a year", 34.2, 295, v => `${v}K`, " China leads where AI meets the factory floor.", "robots: China leads"]
     };
-    $$(".si-f", root).forEach(b => b.addEventListener("click", () => { $$(".si-f", root).forEach(x => x.classList.toggle("on", x === b)); f = b.dataset.f; upd(); }));
-    r.addEventListener("input", upd);
+    const setBerg = (id, s, txt) => {
+      $(`#rb-${id}`, root).style.transform = `scale(${s.toFixed(3)})`;
+      const v = $(`#rb-${id}-v`, root);
+      v.style.transform = `translateY(${(150 * s + 20).toFixed(1)}px)`;
+      $("text", v).textContent = txt;
+    };
+    let m = "inv", picked = false;
+    const show = k => {
+      m = k;
+      const [l, us, cn, f, note, sh] = M[k], big = Math.max(us, cn), lead = us >= cn;
+      setBerg("us", Math.sqrt(us / big), `US ${f(us)}`);
+      setBerg("cn", Math.sqrt(cn / big), `China ${f(cn)}`);
+      const x = big / Math.min(us, cn);
+      $("#rbOut", root).innerHTML = `<b class="${lead ? "up" : "dn"}">${x.toFixed(x < 10 ? 1 : 0)}×</b><span>${l}: ${lead ? "the US" : "China"} leads.${note}</span><span class="s-m">${sh}</span>`;
+      $$(".rb-f", root).forEach(b => b.classList.toggle("on", b.dataset.m === k));
+    };
+    $$(".rb-f", root).forEach(b => b.addEventListener("click", () => { picked = true; show(b.dataset.m); }));
+    show("inv");
+    const order = ["inv", "comp", "bots"];
+    const cyc = setInterval(() => {
+      if (!viz.isConnected) return clearInterval(cyc);
+      if (!picked && shown(1)) show(order[(order.indexOf(m) + 1) % 3]);
+    }, 4200);
+    const r = $("#rcRange", root);
+    let R0 = 7.52;
+    const X = t => 46 + t * (400 / 14), Y = v => 16 + (3 - Math.log2(v)) * 34;
+    const draw = () => {
+      const g = +r.value / 100;
+      $("#rcN", root).textContent = `${r.value}%`;
+      const pts = [];
+      for (let t = 0; t <= 14.001; t += .25) { const v = R0 / Math.pow(1 + g, t); if (v < .5) break; pts.push(`${X(t).toFixed(1)},${Y(v).toFixed(1)}`); }
+      const cross = g > 0 ? Math.log(R0) / Math.log(1 + g) : Infinity;
+      const in30 = R0 / Math.pow(1 + g, 4);
+      $("#rcChart", root).innerHTML =
+        `<rect x="46" y="${Y(1)}" width="400" height="${(Y(.5) - Y(1)).toFixed(1)}" fill="var(--coral)" fill-opacity=".08"/>` +
+        [8, 4, 2, 1, .5].map(v => `<line class="gridl" x1="46" y1="${Y(v)}" x2="446" y2="${Y(v)}"/><text x="38" y="${Y(v) + 4}" text-anchor="end" font-size="11">${v === .5 ? "½" : v}×</text>`).join("") +
+        `<line x1="46" y1="${Y(1)}" x2="446" y2="${Y(1)}" stroke="var(--coral)" stroke-width="1.4" stroke-dasharray="4 3"/>` +
+        `<text x="442" y="${Y(1) - 6}" text-anchor="end" font-size="11" style="fill:var(--coral)">parity</text><text x="442" y="${Y(.5) - 6}" text-anchor="end" font-size="11" style="fill:var(--coral)">China ahead</text>` +
+        [2026, 2030, 2035, 2040].map(y => `<text x="${X(y - 2026).toFixed(1)}" y="168" text-anchor="middle" font-size="11">${y}</text>`).join("") +
+        `<polyline points="${pts.join(" ")}" fill="none" stroke="var(--beat)" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>` +
+        `<circle cx="${X(0)}" cy="${Y(R0).toFixed(1)}" r="4.5" fill="var(--beat)"/><text x="${X(0) + 9}" y="${(Y(R0) - 7).toFixed(1)}" font-size="11.5" class="t-strong">US: ${R0 === 2 ? "2" : "7.5"}× China’s compute</text>` +
+        (cross <= 14 ? `<circle cx="${X(cross).toFixed(1)}" cy="${Y(1)}" r="6" fill="var(--ink)" stroke="var(--coral)" stroke-width="2.4"/><text x="${Math.min(X(cross), 400).toFixed(1)}" y="${Y(1) + 20}" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--coral)">${Math.round(2026 + cross)}</text>` : "");
+      $("#rcOut", root).innerHTML = g === 0
+        ? `<b class="up">Never</b><span>At the same growth rate the ratio holds, and the gap in chips widens every year.</span><span class="s-m">the gap holds</span>`
+        : `<b class="${cross > 8 ? "up" : "dn"}">${cross.toFixed(cross < 10 ? 1 : 0)} years</b><span class="s-m">to catch up, ~${Math.round(2026 + cross)}</span><span>to catch up, around ${Math.round(2026 + cross)}. ${in30 >= 1 ? `In 2030 the US still has ${in30.toFixed(1)}× China’s compute.` : "China is ahead before 2030."}</span>`;
+    };
+    $$(".rc-f", root).forEach(b => b.addEventListener("click", () => { $$(".rc-f", root).forEach(x => x.classList.toggle("on", x === b)); R0 = +b.dataset.r; draw(); }));
+    r.addEventListener("input", draw);
+    draw();
+    const fr = $("#rfRange", root), cells = $$("#rfGrid i", root), N = cells.length;
+    const shuffle = () => { const a = [...Array(N).keys()]; for (let i = N - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    let race = null, tally = { d: 0, a: 0 }, last = 0;
+    const odds = s => Math.round(s / (1 + s) * 100);
+    const reset = () => {
+      cells.forEach(c => (c.className = ""));
+      race = { od: shuffle(), oa: shuffle(), id: 0, ia: 0, cd: 0, ca: 0, flaw: Math.floor(Math.random() * N), done: 0, wait: 0 };
+    };
+    const label = () => {
+      const s = +fr.value;
+      $("#rfN", root).textContent = `${s}×`;
+      return `With ${s === 1 ? "equal models" : s > 1 ? `a ${s}× stronger model` : `a weaker model (${s}×)`}, the defender finds it first about ${odds(s)}% of the time.`;
+    };
+    const out = msg => { $("#rfOut", root).innerHTML = `${msg}<span>${label()} Tally: defender ${tally.d}, attacker ${tally.a}.</span><span class="s-m">defender wins ~${odds(+fr.value)}%</span>`; };
+    fr.addEventListener("input", () => { tally = { d: 0, a: 0 }; reset(); out(`<b>Scanning…</b>`); });
+    reset(); out(`<b>Scanning…</b>`);
+    const tick = now => {
+      if (!viz.isConnected) return;
+      requestAnimationFrame(tick);
+      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+      if (!shown(3)) return;
+      if (race.done) { race.wait += dt; if (race.wait > 2.4) { reset(); out(`<b>Scanning…</b>`); } return; }
+      const base = 7, rate = { d: base * +fr.value, a: base };
+      for (const side of ["d", "a"]) {
+        race["c" + side] += dt * rate[side];
+        while (race["c" + side] >= 1 && !race.done) {
+          race["c" + side] -= 1;
+          const k = race["o" + side][race["i" + side]++];
+          if (k === undefined) break;
+          cells[k].classList.add(side);
+          if (k === race.flaw) {
+            race.done = 1; tally[side]++;
+            cells[k].classList.add("flaw", side === "d" ? "win-d" : "win-a");
+            out(side === "d" ? `<b class="up">Defender first</b><span>Patched before anyone could use it.</span>` : `<b class="dn">Attacker first</b><span>Exploited before the fix.</span>`);
+          }
+        }
+      }
+    };
+    requestAnimationFrame(tick);
+  },
+  silicon(root) {
+    if (!$("#slRange", root)) return;
+    const r = $("#slRange", root);
+    const X = t => 122 + t * 52;
+    const draw = () => {
+      const f = +r.value, p = Math.min(6, f + .2);
+      $("#slN", root).textContent = `${f % 1 ? f.toFixed(f * 4 % 2 ? 2 : 1) : f} year${f === 1 ? "" : "s"}`;
+      const lane = (y, l) => `<text x="12" y="${y + 13}" font-size="12.5" class="t-strong">${l}</text><rect x="${X(0)}" y="${y}" width="${X(6) - X(0)}" height="18" rx="3" fill="var(--ink-3)"/>`;
+      $("#slChart", root).innerHTML = `<defs><pattern id="slHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--coral)" fill-opacity=".55"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--ink)" stroke-opacity=".55" stroke-width="2"/></pattern></defs>` +
+        lane(26, "Software bug") + lane(92, "Silicon flaw") +
+        (f < 6 ? `<rect x="${X(f)}" y="26" width="${(X(p) - X(f)).toFixed(1)}" height="18" fill="var(--coral)"/>` + (p < 6 ? `<rect x="${X(p)}" y="26" width="${(X(6) - X(p)).toFixed(1)}" height="18" fill="var(--amber)" fill-opacity=".45"/><text x="${(X(p) + 6).toFixed(1)}" y="39" font-size="11" font-weight="800" style="fill:var(--ink)">${X(6) - X(p) > 70 ? "patched" : ""}</text>` : "") +
+          `<rect x="${X(f)}" y="92" width="${(X(6) - X(f)).toFixed(1)}" height="18" fill="url(#slHatch)"/>` + (X(6) - X(f) > 112 ? `<text x="${(X(f) + 6).toFixed(1)}" y="105" font-size="11" font-weight="800" style="fill:var(--paper)">exposed, paying the tax</text>` : "") : "") +
+        `<line x1="${X(f)}" y1="14" x2="${X(f)}" y2="118" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="3 3"/><text x="${Math.min(Math.max(X(f), X(0) + 30), X(6) - 30)}" y="11" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--coral)">flaw found</text>` +
+        `<text x="${X(6) + 2}" y="70" text-anchor="end" font-size="11" style="fill:var(--amber)">retire, replace ↻</text>` +
+        [0, 1, 2, 3, 4, 5, 6].map(t => `<line x1="${X(t)}" y1="122" x2="${X(t)}" y2="126" stroke="var(--rule)"/><text x="${X(t)}" y="139" text-anchor="middle" font-size="11">${t ? `yr ${t}` : "deploy"}</text>`).join("") +
+        `<path d="M${X(4.75)} 150 l-4 7 h8 z" fill="var(--violet)"/><text x="${X(4.75) - 8}" y="170" text-anchor="end" font-size="11" style="fill:var(--violet)">GPUHammer hit the A6000 ~4.75 years after it launched</text>`;
+      $("#slOut", root).innerHTML = f >= 6
+        ? `<b class="up">0 years</b><span>Found at retirement: the fleet outlived it.</span><span class="s-m">outlived</span>`
+        : `<b class="dn">${(6 - f).toFixed(6 - f < 1 ? 2 : (6 - f) % 1 ? 2 : 0).replace(/\.?0+$/, "")} years</b><span>with the flaw in every chip. The software bug was patched in about ten weeks.</span><span class="s-m">with the flaw in every chip</span>`;
+    };
+    r.addEventListener("input", draw);
+    draw();
+    const ORIG = [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1];
+    let bits = [...ORIG];
+    const btns = $$(".bf-b", root);
+    const val = b => {
+      const s = b[0] ? -1 : 1, e = parseInt(b.slice(1, 6).join(""), 2), m = parseInt(b.slice(6).join(""), 2);
+      if (e === 31) return m ? NaN : s * Infinity;
+      return e === 0 ? s * Math.pow(2, -14) * (m / 1024) : s * Math.pow(2, e - 15) * (1 + m / 1024);
+    };
+    const v0 = val(ORIG);
+    const fmt = v => !isFinite(v) ? (isNaN(v) ? "NaN" : v > 0 ? "∞" : "−∞") : Math.abs(v) >= 100 ? Math.round(v).toLocaleString("en-US") : Math.abs(v) >= 1 ? v.toFixed(2) : v.toPrecision(3);
+    const upd = () => {
+      btns.forEach((b, i) => { b.textContent = bits[i]; b.classList.toggle("flip", bits[i] !== ORIG[i]); });
+      const v = val(bits), k = Math.abs(v / v0), changed = bits.some((b, i) => b !== ORIG[i]);
+      const onlyMsb = changed && bits.every((b, i) => (i === 1 ? b !== ORIG[i] : b === ORIG[i]));
+      const broke = !isFinite(v) || k >= 256;
+      $("#bfVal", root).textContent = fmt(v);
+      $("#bfVal", root).classList.toggle("bad", broke);
+      const acc = broke ? (onlyMsb ? .08 : 0) : 80;
+      $("#bfBar", root).style.width = `${Math.max(acc / 80 * 100, .6)}%`;
+      $("#bfBar", root).classList.toggle("bad", broke);
+      $("#bfAcc", root).textContent = broke ? (onlyMsb ? "0.08%" : "~0%") : changed ? "~80%" : "80%";
+      $("#bfOut", root).innerHTML = !changed ? `<b>Tap a bit.</b><span>Try the first exponent bit.</span><span class="s-m">try the first exponent bit</span>`
+        : onlyMsb ? `<b class="dn">×65,536</b><span>One flipped bit turned 0.0127 into ${fmt(v)}. That’s the GPUHammer flip: ResNet-50 fell to 0.08% accuracy.</span><span class="s-m">0.0127 → ${fmt(v)}</span>`
+        : broke ? `<b class="dn">×${k >= 1e6 || !isFinite(k) ? "∞" : Math.round(k).toLocaleString("en-US")}</b><span>The weight blows up, and with it the model.</span>`
+        : `<b>×${k < 10 ? k.toFixed(k < 1 ? 3 : 2).replace(/\.?0+$/, "") : Math.round(k)}</b><span>A nudge the model can mostly absorb. The danger is the top of the exponent.</span>`;
+    };
+    btns.forEach((b, i) => b.addEventListener("click", () => { bits[i] ^= 1; btns[1].classList.remove("hint"); upd(); }));
+    $("#bfReset", root).addEventListener("click", () => { bits = [...ORIG]; upd(); });
     upd();
   },
   neocloud(root) {
@@ -4576,7 +4751,7 @@ function hideStuckMovers(root) {
 function fitFrames(root) {
   $$(".viz .frame", root).forEach(fr => {
     const body = fr.firstElementChild;
-    if (!body || body.matches("svg, .cap")) return;
+    if (!body || body.matches("svg, .cap, [data-flex]")) return;
     ["transform", "transform-origin", "width", "height", "align-self"].forEach(k => body.style.removeProperty(k));
     const slot = body.getBoundingClientRect().height;
     const natural = () => {

@@ -1468,29 +1468,65 @@ html.paused .memo{animation:none}
 .viz:not([data-step="3"]) .ow-ring{stroke-dasharray:0 999}
 @media (max-width:860px){.ow-phone{padding:8px 9px 10px;border-radius:16px}.ow-top{font-size:13px;padding-bottom:6px}.ow-thread{gap:4px;padding-top:6px}.ow-m{font-size:12px;padding:5px 9px 6px}.ow-m.step{padding:3px 8px}}
 
-/* race: head to head, compute, both sides of the fence */
-.rc-l{transform-box:fill-box;transform-origin:100% 50%}
-.rc-r,.rc-l2{transform-box:fill-box;transform-origin:0 50%}
-.viz[data-step="1"] .f1 .rc-l,.viz[data-step="1"] .f1 .rc-r,.viz[data-step="2"] .f2 .rc-l2{animation:tk-grow .9s var(--ease) both}
-.viz[data-step="2"] .f2 .rc-donut{animation:sp-fade .8s ease both}
-.viz[data-step="3"] .f3 .rc-ev{animation:sp-fade .5s ease both}
+/* race: icebergs, the catch-up clock, the flaw race */
+.rbcalc,.rccalc,.rfcalc,.slcalc,.bfcalc{display:grid;gap:8px;align-content:center;min-height:0}
+.rbcalc{grid-template-rows:auto minmax(0,1fr) auto;align-content:stretch}
+.rb-pick .tk-r.on,.rc-pick .tk-r.on{background:var(--beat);border-color:var(--beat)}
+.rb-under{transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
+.rb-val{transition:transform .9s var(--ease)}
+.rb-bob{animation:rb-bob 4s ease-in-out infinite}
+@keyframes rb-bob{50%{transform:translateY(2.5px)}}
+.rb-wave{animation:echo-water 1.6s linear infinite}
+.rb-out,.bf-out{min-height:2.6em}
+.sx-out .s-m{display:none}
+@media (max-width:860px){.sx-out span.s-m{display:inline}}
+.rc-k,.rccalc .oc-l b{color:var(--beat)}
+.rc-range{accent-color:var(--beat)}
+.frame .rc-chart,.frame .sl-chart{height:auto;max-height:100%}
+.rf-k,.rfcalc .oc-l b{color:var(--amber)}
+.rf-range{accent-color:var(--amber)}
+.rf-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.rf-grid i{position:relative;display:block;aspect-ratio:1.4/1;border-radius:2px;background:var(--ink-3);transition:background .2s,transform .3s var(--ease)}
+.rf-grid i.d{background:rgba(63,214,200,.42)}
+.rf-grid i.a{background:rgba(244,151,122,.42)}
+.rf-grid i.d.a{background:linear-gradient(135deg,rgba(63,214,200,.5) 50%,rgba(244,151,122,.5) 50%)}
+.rf-grid i.flaw{z-index:1;transform:scale(1.5);box-shadow:0 0 0 2px var(--ink),0 0 14px currentColor}
+.rf-grid i.win-d{background:var(--amber);color:var(--amber)}
+.rf-grid i.win-a{background:var(--coral);color:var(--coral)}
+.rf-leg span.d{background:var(--amber)}
+.rf-leg span.a{background:var(--coral);margin-left:10px}
+.rf-out{min-height:3.6em}
 
-/* silicon: patch or work around, the tax, the timeline */
-.si-bug{animation:si-bug 6s ease infinite}
-@keyframes si-bug{0%{opacity:0}10%,44%{opacity:1}54%,100%{opacity:0}}
-.si-band{animation:si-band 6s ease infinite}
-@keyframes si-band{0%,36%{opacity:0}46%,86%{opacity:1}100%{opacity:0}}
-.si-bugstay{animation:si-stay 6s ease infinite}
-@keyframes si-stay{0%{opacity:0}10%,100%{opacity:1}}
-.si-shield{animation:si-band 6s ease infinite}
-.si-k,.sicalc .oc-l b{color:var(--coral)}
+/* silicon: patch or outlive, flip one bit, where each attack stands */
+.si-k,.slcalc .oc-l b{color:var(--coral)}
 .si-range{accent-color:var(--coral)}
-.si-grid i.lo{background:var(--coral)}
-.si-grid i.hi{background:rgba(244,151,122,.4)}
-.si-leg span{background:var(--coral)}
-.si-leg span.hi{background:rgba(244,151,122,.4);margin-left:10px}
-.si-pick .tk-r.on{background:var(--coral);border-color:var(--coral)}
-@media (max-width:860px){.si-leg{display:none}}
+.bf-w{margin:0;font-family:var(--label);font-size:16px;color:var(--dim)}
+.bf-w b{margin-left:6px;font-family:var(--display);font-weight:900;font-size:30px;color:var(--paper);font-variant-numeric:tabular-nums;transition:color .3s}
+.bf-w b.bad{color:var(--coral)}
+.bf-bits{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px}
+.bf-b{appearance:none;padding:9px 0;border:1.5px solid var(--rule);border-radius:4px;background:var(--ink-2);color:var(--paper);font-family:var(--display);font-weight:800;font-size:18px;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.bf-b.s{border-color:var(--violet)}
+.bf-b.e{border-color:var(--coral)}
+.bf-b:hover{transform:translateY(-2px)}
+.bf-b.flip{background:var(--coral);border-color:var(--coral);color:var(--ink)}
+.bf-b.hint{animation:bf-hint 1.4s ease-in-out infinite}
+@keyframes bf-hint{50%{box-shadow:0 0 0 4px rgba(244,151,122,.45)}}
+.bf-grp{display:grid;grid-template-columns:1fr 5fr 10fr;gap:3px;margin:0;font-family:var(--label);font-size:13px;color:var(--faint);text-align:center}
+.bf-grp span{padding-top:3px;border-top:2px solid var(--rule)}
+.bf-grp .s{border-color:var(--violet)}
+.bf-grp .e{border-color:var(--coral)}
+.bf-acc{display:grid;grid-template-columns:auto minmax(0,1fr) 64px;gap:10px;align-items:center;font-family:var(--label);font-size:15px;color:var(--dim)}
+.bf-bar{height:14px;border-radius:3px;background:var(--ink-3);overflow:hidden}
+.bf-bar i{display:block;height:100%;width:100%;background:var(--amber);transition:width .9s var(--ease),background .3s}
+.bf-bar i.bad{background:var(--coral)}
+.bf-acc b{font-family:var(--display);font-weight:900;font-size:22px;color:var(--paper);text-align:right;font-variant-numeric:tabular-nums}
+.bf-reset{font-size:13px}
+.fp-glow{opacity:0;animation:fp-glow 6s ease-in-out var(--d) infinite}
+@keyframes fp-glow{0%,100%{opacity:0}6%,14%{opacity:.9}26%{opacity:0}}
+.viz[data-step="3"] .f3 .fp-pin,.viz[data-step="3"] .f3 .fp-key{animation:sp-fade .5s ease var(--d) both}
+.fp-bus{animation:fp-bus 1s linear infinite}
+@keyframes fp-bus{to{stroke-dashoffset:-8}}
+@media (max-width:860px){.rbcalc,.rccalc,.rfcalc,.slcalc,.bfcalc{gap:4px}.rccalc .oc-l,.rfcalc .oc-l,.slcalc .oc-l{font-size:13px}.rf-grid{gap:2px}.rf-leg{display:none}.rf-out,.rb-out,.bf-out{min-height:0}.bf-w{font-size:14px}.bf-w b{font-size:22px}.bf-b{padding:6px 0;font-size:13px;border-width:1px}.bf-grp{font-size:11px}.bf-acc{font-size:13px;grid-template-columns:auto minmax(0,1fr) 52px}.bf-acc b{font-size:18px}}
 
 /* ---------------------------------------------------------------- EchoTempo band */
 .hero .who-link{color:inherit;text-decoration:none;border-bottom:1px solid rgba(159,179,196,.45);transition:color .2s,border-color .2s}
