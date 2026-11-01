@@ -575,7 +575,7 @@ const THESES = [
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
     receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["Motley Fool on the Lumentum talks (Oct 2026)", SRC.mrvlLite]],
-    viz: "custom", echo: { pose: "idle", acc: "asic", name: "Chip designer" }
+    viz: "custom", echo: { pose: "idle", acc: "goggles", name: "Chip designer" }
   },
   {
     id: "tokens", die: [6, -3], stance: "agree",
@@ -616,7 +616,7 @@ const THESES = [
     bet: "Count AI capacity like an economy, not a server room: how many experts are on staff (agents running at once), how many hours they work (tokens), and how productive they are (tokens per watt). Back what raises output per megawatt: inference engines, smarter routing and caching, smaller distilled models, and in-country token factories for banks, hospitals and governments.",
     wrong: "By 2028, tokens per watt stop improving and per-token prices stop falling, so a token factory behaves like a utility with fixed output instead of an economy whose workforce keeps growing.",
     receipts: [["Dario Amodei, Machines of Loving Grace (Oct 2024)", SRC.amodeiMlg], ["Fortune on “a country of geniuses” (Jan 2026)", SRC.amodeiAdol], ["Civo Navigate London 2026 wrap-up (Sept 2026)", SRC.civoWrap], ["SiliconANGLE on Huang at GTC (Mar 2026)", SRC.gtc26], ["Google I/O 2026 keynote (May 2026)", SRC.googTok], ["Gigatokens and Civo (Oct 2026)", SRC.gigatokens], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf]],
-    viz: "factory", echo: { pose: "idle", acc: "factory", name: "Foreman" }
+    viz: "factory", echo: { pose: "wave", acc: "hivis", name: "Foreman" }
   },
   {
     id: "chipnames", die: [2, -6], stance: "original",
@@ -817,22 +817,27 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     const cube = (x, y, c) => `<g transform="translate(${x} ${y})"><path d="M-9 -4 L0 -9 L9 -4 L0 1 Z" fill="${c}" opacity=".95"/><path d="M-9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".7"/><path d="M9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".5"/><path d="M-9 -4 L0 1 L9 -4 M0 1 V12" stroke="#fff" stroke-opacity=".5" stroke-width=".6" fill="none"/></g>`;
     accIn = cube(93, 62, "#ffb23f") + `<path d="M84 70 Q70 86 52 84" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/>`;
     accExtra = cube(-6, 66, "#4fd2ff") + `<path d="M3 72 Q18 88 40 86" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/><text class="echo-z" x="98" y="40" font-size="8" font-weight="800" fill="#ffb23f">#</text><text class="echo-z" style="animation-delay:1.4s" x="-10" y="46" font-size="8" font-weight="800" fill="#4fd2ff">#</text>`;
-  } else if (acc === "asic") {
-    // a blueprint with a chip drawn on it and a pencil: the customer designs, the partner builds
-    accIn = `<g transform="translate(88 66) rotate(-8)"><rect x="-17" y="-15" width="34" height="30" rx="2" fill="#1d3f74" stroke="#a6e9ff"/><path d="M-17 -7 H17 M-17 1 H17 M-17 9 H17 M-9 -15 V15 M-1 -15 V15 M7 -15 V15" stroke="#a6e9ff" stroke-opacity=".25" stroke-width=".6"/><rect x="-8" y="-7" width="16" height="14" rx="1.5" fill="none" stroke="#ffd98a" stroke-width="1.4"/><path d="M-11 -3 H-8 M-11 3 H-8 M8 -3 H11 M8 3 H11 M-3 -10 V-7 M3 -10 V-7 M-3 7 V10 M3 7 V10" stroke="#ffd98a" stroke-width="1.1"/><g class="echo-glint"><path d="M12 -20 L22 -30 L25 -27 L15 -17 Z" fill="#ffb23f"/><path d="M12 -20 L15 -17 L10 -15 Z" fill="#ffe7c2"/></g></g>`;
-    accExtra = `<g transform="translate(-8 66)"><circle r="7" fill="none" stroke="#4fd2ff" stroke-width="1.6"/><path class="echo-spin" style="animation-duration:6s" d="M0 -10 V-6 M0 6 V10 M-10 0 H-6 M6 0 H10" stroke="#4fd2ff" stroke-width="1.6"/></g>`;
+  } else if (acc === "goggles") {
+    // Chip designer A: brass goggles over the eyes with a flip-down loupe, and tweezers holding a glowing die
+    accIn = `<path d="M7 20 C9 -1 91 -1 93 20" stroke="#2b2142" stroke-width="3" fill="none"/>` +
+      [11.6, 88.4].map(x => `<circle cx="${x}" cy="18.5" r="7.4" fill="#a6e9ff" fill-opacity=".3" stroke="#ffb23f" stroke-width="2.6"/><circle cx="${x}" cy="18.5" r="7.4" fill="none" stroke="#d98a12" stroke-width=".7"/><path d="M${(x - 4.4).toFixed(1)} 15.6 A5.2 5.2 0 0 1 ${(x - .6).toFixed(1)} 13.3" stroke="#fff" stroke-width="1.3" fill="none" opacity=".85"/>`).join("") +
+      `<g transform="translate(88.4 18.5)"><path d="M6 -3 L13 -9" stroke="#ffb23f" stroke-width="2.4" stroke-linecap="round"/><circle cx="16.5" cy="-11.5" r="5.8" fill="#bfe9ff" fill-opacity=".5" stroke="#d98a12" stroke-width="2.2"/><circle class="echo-glint" cx="14.6" cy="-13.4" r="1.5" fill="#fff"/></g>` +
+      `<g transform="translate(84 80) rotate(-38)"><path d="M0 0 L23 -2.4 M0 0 L23 2.4" stroke="#dfe5f0" stroke-width="1.9" stroke-linecap="round"/><circle r="1.6" fill="#8a93a8"/><g transform="translate(27.5 0)"><rect x="-5" y="-5" width="10" height="10" rx="1.2" fill="#211a32" stroke="#4fd2ff" stroke-width="1.1"/><rect class="echo-led" x="-2.4" y="-2.4" width="4.8" height="4.8" fill="#4fd2ff"/></g></g>`;
+    accExtra = spark(116, 34, .5, "#4fd2ff", 0) + spark(108, 22, .38, "#ffd98a", .6);
   } else if (acc === "tokens") {
     // a ticket roll of tokens, priced by the million
     const coin = (y, d) => `<g class="echo-stack" style="animation-delay:${d}s"><ellipse cx="0" cy="${y}" rx="9" ry="3.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".7"/><text x="0" y="${y + 2}" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32">TOK</text></g>`;
     accIn = `<g transform="translate(92 74)">${coin(0, 0)}${coin(-5, .12)}${coin(-10, .24)}${coin(-15, .36)}</g><g transform="translate(91 40) rotate(10)"><path d="M0 -4 V2" stroke="#cfc6f5" stroke-width="1.1"/><rect x="-13" y="2" width="26" height="12" rx="2" fill="#fbfaff" stroke="#cfc6f5"/><text x="0" y="10.6" text-anchor="middle" font-size="6.2" font-weight="900" fill="#211a32">$/M tok</text></g>`;
     accExtra = [[-12, 30, 0], [-6, 56, .6], [-14, 80, 1.2]].map(([x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="8" font-weight="800" fill="#ffb23f">tok</text>`).join("");
-  } else if (acc === "factory") {
-    // a little factory with a sawtooth roof, puffing word-pieces instead of smoke
-    accIn = `<g transform="translate(90 70)"><path d="M-16 12 V-2 L-9 -7 V-2 L-2 -7 V-2 L5 -7 V-2 L12 -7 V12 Z" fill="#cfc6f5" stroke="#9b83ff" stroke-width=".9" stroke-linejoin="round"/><rect x="8" y="-20" width="5" height="16" fill="#9b83ff"/><rect x="-12" y="3" width="5" height="5" rx="1" fill="#4fd2ff" class="echo-led"/><rect x="-3" y="3" width="5" height="5" rx="1" fill="#4fd2ff" class="echo-led" style="animation-delay:.4s"/><rect x="5" y="3" width="5" height="9" rx="1" fill="#211a32"/></g>`;
-    accExtra = [["Th", 104, 40, 0], ["ink", 98, 26, .9], ["ing", 108, 12, 1.8]].map(([w, x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="7.5" font-weight="800" fill="#ffd98a">${w}</text>`).join("");
+  } else if (acc === "hivis") {
+    // Foreman B: hi-vis vest, a headset to call the shift, and a clipboard tallying tokens
+    const panel = s => `<path d="M${50 + s * 35} 50 C${50 + s * 30} 47 ${50 + s * 22} 46 ${50 + s * 16} 47 L${50 + s * 18} 93 C${50 + s * 24} 93 ${50 + s * 30} 90 ${50 + s * 34} 86 Z" fill="#ff8a3d" stroke="#e06a1f" stroke-width=".9"/><path d="M${50 + s * 34.6} 64 L${50 + s * 16.7} 64 L${50 + s * 16.9} 68.5 L${50 + s * 34.5} 68.5 Z M${50 + s * 34.3} 76 L${50 + s * 17.2} 76 L${50 + s * 17.4} 80.5 L${50 + s * 34.2} 80.5 Z" fill="#fff3a8"/>`;
+    accIn = panel(-1) + panel(1) +
+      `<path d="M3 24 C2 -8 98 -8 97 24" stroke="#2b2142" stroke-width="3.4" fill="none" stroke-linecap="round"/><rect x="-2" y="17" width="9" height="15" rx="4" fill="#2b2142"/><rect x="93" y="17" width="9" height="15" rx="4" fill="#2b2142"/><path d="M3 31 C2 46 12 51 22 50" stroke="#2b2142" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="24.5" cy="50" rx="3.4" ry="2.8" fill="#ffb23f"/>` +
+      `<g transform="translate(94 70) rotate(10)"><rect x="-11" y="-14" width="22" height="28" rx="2" fill="#c79a5b" stroke="#9c7440"/><rect x="-8.5" y="-10" width="17" height="21" rx="1" fill="#fbfaff"/><rect x="-5" y="-16" width="10" height="5" rx="1.5" fill="#cfd6e4" stroke="#8a93a8" stroke-width=".7"/><text x="0" y="-4.5" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32">TOKENS</text>${[0, 1, 2].map(i => `<path d="M-6 ${(-.5 + i * 4.2).toFixed(1)} l1.6 1.6 l3 -3" stroke="#2fb87a" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-0.5 ${(.4 + i * 4.2).toFixed(1)} H6" stroke="#cfc6f5" stroke-width="1.1"/>`).join("")}</g>`;
   } else if (acc === "nametag") {
     // a "Hello, my name is" sticker reading H100
-    accIn = `<g transform="translate(50 70) rotate(-6)"><rect x="-21" y="-12" width="42" height="25" rx="3" fill="#fff" stroke="#ff6b80" stroke-width="1"/><path d="M-21 -9 A3 3 0 0 1 -18 -12 H18 A3 3 0 0 1 21 -9 V-3 H-21 Z" fill="#ff6b80"/><text x="0" y="-5" text-anchor="middle" font-size="4.6" font-weight="900" fill="#fff" letter-spacing=".3">HELLO MY NAME IS</text><text x="0" y="9" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="12" font-weight="900" fill="#211a32">H100</text></g>`;
+    accIn = `<g transform="translate(50 70) rotate(-6)"><rect x="-21" y="-12" width="42" height="25" rx="3" fill="#fff" stroke="#ff6b80" stroke-width="1"/><path d="M-21 -9 A3 3 0 0 1 -18 -12 H18 A3 3 0 0 1 21 -9 V-3 H-21 Z" fill="#ff6b80"/><text x="0" y="-5.2" text-anchor="middle" font-size="4.4" font-weight="900" fill="#fff" textLength="33" lengthAdjust="spacingAndGlyphs">HELLO MY NAME IS</text><text x="0" y="9" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="12" font-weight="900" fill="#211a32">H100</text></g>`;
     accExtra = spark(102, 30, .6, "#ffd98a", 0) + spark(-8, 40, .5, "#4fd2ff", .5);
   } else if (acc === "claw") {
     // a lobster claw for a hand and two antennae: an agent that grabs things
