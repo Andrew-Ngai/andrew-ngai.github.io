@@ -201,7 +201,7 @@ const THESES = [
     bet: "Back the tooling for automated research: experiment schedulers, evals that agents can’t game, and verification that lets one person trust a hundred agents’ results.",
     wrong: "Agent-workdays grow 10x and the pace of frontier releases doesn’t change. Then labor was never the bottleneck.",
     receipts: [["Situational Awareness, ch. II", SRC.saII], ["OpenAI, Research acceleration (Sept 2026)", SRC.openai]],
-    viz: "automate", echo: { pose: "idle", acc: "flask", name: "Researcher" }
+    viz: "automate", echo: { pose: "labcoat", acc: "labcoat", name: "Researcher" }
   },
   {
     id: "agent", die: [4, 8], stance: "build",
@@ -220,7 +220,7 @@ const THESES = [
     bet: "Back the body. The next wave of agent value is in the harness: permissions and identity for agents, payment mandates, connectors to calendars and stores, and memory that survives between sessions. A better brain makes every body more useful, but only a better body lets it act.",
     wrong: "By 2028, most people still won’t let an agent check out for them, even with a confirm button.",
     receipts: [["Anthropic, Building effective agents (Dec 2024)", SRC.bea], ["Anthropic, Effective harnesses for long-running agents (Nov 2025)", SRC.harness], ["OpenAI, Introducing ChatGPT Pulse (Sept 2025)", SRC.cpulse], ["Google Cloud, Announcing AP2 (Sept 2025)", SRC.ap2], ["Axios on Instant Checkout (Sept 2025)", SRC.axios], ["Hypotenuse on its retirement (2026)", SRC.hypo]],
-    viz: "agent", echo: { pose: "run", acc: "camper", name: "Camper" }
+    viz: "agent", echo: { pose: "trail", acc: "trail", name: "Camper" }
   },
   {
     id: "weights", die: [-2, -6], stance: "agree",
@@ -240,7 +240,7 @@ const THESES = [
     bet: "Frontier weights get treated like fissile material: a national asset with government-grade protection. Expect SL4 and SL5 data centers built with the national security community, confidential computing down to the GPU, insider-risk programs, and anti-distillation detection as a standard product. Back the companies that make weights hard to steal and capabilities hard to copy.",
     wrong: "By 2028, open or distilled models match the frontier within months without any stolen weights, so locking down one file stops mattering.",
     receipts: [["RAND, Securing AI Model Weights (2024)", SRC.rand], ["Epoch AI on training costs (Cottier et al.)", SRC.epochCost], ["Vaswani et al., Attention Is All You Need (2017)", SRC.attention], ["The Batch on the LLaMA leak (2023)", SRC.llamaLeak], ["TechCrunch on distillation (Feb 2026)", SRC.distill], ["The Hacker News on seven labs (Sept 2026)", SRC.distill7], ["Al Jazeera on the export controls (July 2026)", SRC.exportCtl]],
-    viz: "weights", echo: { pose: "idle", acc: "vault", name: "Keeper" }
+    viz: "weights", echo: { pose: "guard", acc: "guard", name: "Keeper" }
   },
   {
     id: "ooms", die: [0, -3], stance: "build",
@@ -259,7 +259,7 @@ const THESES = [
     bet: "Back the glue between levels: networking and optical interconnect, power delivery inside the building, and software that keeps a whole campus busy. I expect each new OOM to make the glue a bigger share of the bill.",
     wrong: "A single rack can train a frontier model by 2028, so the frontier stops climbing levels.",
     receipts: [["Situational Awareness, ch. I", SRC.saI], ["DGX B200 specs", SRC.dgx], ["DCD on rack density (Mar 2025)", SRC.dcd], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu], ["SiliconANGLE on Meta’s TPUs (Feb 2026)", SRC.metaTpu]],
-    viz: "ooms", echo: { pose: "idle", acc: "rack", name: "Rack" }
+    viz: "ooms", echo: { pose: "rackup", acc: "rackup", name: "Rack" }
   },
   {
     id: "molecules", die: [7, 5], stance: "build",
@@ -278,7 +278,7 @@ const THESES = [
     bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
-    viz: "molecules", echo: { pose: "idle", acc: "hardhat", name: "Hard hat" }
+    viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
   {
     id: "bloom", die: [-9, 2], stance: "build",
@@ -298,7 +298,7 @@ const THESES = [
     bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back it, and the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
     receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
-    viz: "bloom", echo: { pose: "idle", acc: "bloom", name: "Power plant" }
+    viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
   {
     id: "fleet", die: [-3, 2], stance: "push",
@@ -317,7 +317,7 @@ const THESES = [
     bet: "The next winners run fleets: software that places training and inference across sites by power price and availability, long-haul links between datacenters, and training methods that tolerate distance.",
     wrong: "Someone builds a single 5 GW+ training campus and its models clearly beat fleet-trained rivals.",
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["OpenAI (Sept 2026)", SRC.openai]],
-    viz: "fleet", echo: { pose: "swim", acc: "captain", name: "Captain" }
+    viz: "fleet", echo: { pose: "lookout", acc: "lookout", name: "Captain" }
   },
   {
     id: "gpulife", die: [4, 5], stance: "push",
@@ -357,7 +357,7 @@ const THESES = [
     bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents (CrowdStrike, Fortinet and Palo Alto Networks have all more than doubled this year), and the metering and billing that outcome pricing needs.",
     wrong: "By 2028, big companies are moving their core records, like CRM, ERP and HR, off SaaS and onto in-house systems built with AI, the way Klarna did, and revenue from existing customers at the big system-of-record vendors starts shrinking.",
     receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Intercom pricing (Oct 2026)", SRC.intercom], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
-    viz: "saas", echo: { pose: "wave", acc: "seat", name: "Record keeper" }
+    viz: "saas", echo: { pose: "chomp", acc: "chomp", name: "Record keeper" }
   },
   {
     id: "neocloud", die: [-6, -7], stance: "build",
@@ -376,7 +376,7 @@ const THESES = [
     bet: "Neoclouds become the wholesale layer of AI compute. Hyperscalers keep the customers and the software; neoclouds build and run GPU capacity fastest and sell it to anyone, hyperscalers included. Back the ones with take-or-pay contracts from investment-grade buyers and their own power pipeline. Nebius is targeting 5 GW of contracted power by the end of 2026.",
     wrong: "When the shortage ends, the hyperscalers stop renewing, pull their workloads back in-house, and GPU-hour prices fall below what the neoclouds’ GPU-backed debt needs.",
     receipts: [["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["Investing.com on the Meta deal (Mar 2026)", SRC.nbMeta], ["DCD, “Becoming Nebius” (May 2025)", SRC.nbDcd], ["DCD on Nebius in Missouri (May 2026)", SRC.nbMo], ["Nebius Q2 2026 call (Aug 2026)", SRC.nbQ2], ["Motley Fool on Nebius pricing (Sept 2026)", SRC.nbPrice], ["AWS EC2 on-demand pricing", SRC.awsPrice], ["AWS on its P5 price cut (June 2025)", SRC.awsCut], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Motley Fool on customer concentration (Oct 2026)", SRC.nbConc], ["Yahoo Finance on Microsoft’s neocloud deals (Oct 2025)", SRC.msftNeo]],
-    viz: "neocloud", echo: { pose: "float", acc: "cloud", name: "Neocloud" }
+    viz: "neocloud", echo: { pose: "forrent", acc: "forrent", name: "Neocloud" }
   },
   {
     id: "builders", die: [-1, 9], stance: "build",
@@ -396,7 +396,7 @@ const THESES = [
     wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
     note: "Not investment advice.",
     receipts: [["13F filing history", SRC.f13], ["Daniel Scrivner on the Q2 2026 13F", SRC.scrivner], ["Wikipedia, Telecoms crash", SRC.telecom]],
-    viz: "builders", echo: { pose: "float", acc: "chute", name: "Parachute" }
+    viz: "builders", echo: { pose: "bricks", acc: "bricks", name: "Parachute" }
   },
   {
     id: "moat", die: [-1, -9], stance: "build",
@@ -415,7 +415,7 @@ const THESES = [
     bet: "Back the next chokepoint before it’s obvious: the steps only one or two companies can do as chips go 3D, like hybrid bonding, advanced packaging and inspecting layers you can’t see from the top.",
     wrong: "A chipmaker reaches leading-edge volume production without ASML’s EUV machines.",
     receipts: [["Chip War (Wikipedia)", SRC.chipwar], ["The video behind this note", SRC.video], ["Epoch AI on training compute (May 2024)", SRC.epochTrend], ["TechTimes on High-NA EUV (Sept 2026)", SRC.highna], ["Wikipedia, 3 nm process", SRC.n3]],
-    viz: "moat", echo: { pose: "wave", acc: "moat", name: "Moat keeper" }
+    viz: "moat", echo: { pose: "croc", acc: "croc", name: "Moat keeper" }
   },
   {
     id: "memory", die: [-6, 7], stance: "original",
@@ -434,7 +434,7 @@ const THESES = [
     bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
     wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
     receipts: [["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
-    viz: "memory", echo: { pose: "idle", acc: "hbm", name: "HBM stack" }
+    viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
   {
     id: "backend", die: [0, 3], stance: "build",
@@ -453,7 +453,7 @@ const THESES = [
     bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. Back the back end: packaging and test houses taking on CoWoS work, substrate materials, and the bonding and inspection tools that make big packages yield. The first US packaging lines at scale are worth more than they look.",
     wrong: "CoWoS supply catches up with demand in 2027 and stays caught up while AI chip shipments keep growing.",
     receipts: [["Chip War (2022)", SRC.chipwar], ["TrendForce on CoWoS supply (June 2026)", SRC.trend], ["TrendForce on CoWoS outsourcing (Aug 2026)", SRC.cowosOut], ["Tom’s Hardware on T-glass (Mar 2026)", SRC.tglass], ["DCD on the Arizona Blackwell wafer (Oct 2025)", SRC.bwWafer], ["DCD on TSMC’s Arizona packaging (Apr 2026)", SRC.tsmcAp], ["AZ Big Media on Amkor (Sept 2026)", SRC.amkor], ["Yahoo Finance on Amkor and Nvidia (July 2026)", SRC.amkorNv]],
-    viz: "backend", echo: { pose: "idle", acc: "package", name: "Packager" }
+    viz: "backend", echo: { pose: "pickplace", acc: "pickplace", name: "Packager" }
   },
   {
     id: "heat", die: [7, -5], stance: "build",
@@ -473,7 +473,7 @@ const THESES = [
     bet: "The next decade of compute gains will be gated by thermals, not lithography. Back thermal-first infrastructure: in-chip and two-phase liquid cooling, thermal-aware chip design tools, high-conductivity bonding and packaging materials, and retrofits that bring liquid to existing datacenters.",
     wrong: "Logic-on-logic 3D chips ship at scale before 2030 using ordinary cold plates alone.",
     receipts: [["Moore, Electronics (1965)", SRC.moore], ["TechSpot on TSMC N2 (Dec 2025)", SRC.n2], ["TrendForce on TSMC A16 (Apr 2026)", SRC.a16], ["DCD on Nvidia rack density (Mar 2025)", SRC.dcd], ["Microsoft on microfluidics (Sept 2025)", SRC.msft]],
-    viz: "heat", echo: { pose: "idle", acc: "thermo", name: "Thermometer" }
+    viz: "heat", echo: { pose: "overheat", acc: "overheat", name: "Thermometer" }
   },
   {
     id: "screentime", die: [9, 0], stance: "original",
@@ -493,7 +493,7 @@ const THESES = [
     extraCta: `<a class="btn primary" href="${CONFIG.echotempoSite}" target="_blank" rel="noopener">See EchoTempo</a>`,
     wrong: "People say they want more time together but won’t spend 20 seconds a week to get it.",
     receipts: [["Surgeon General advisory (2023)", SRC.sg], ["STAT News coverage", SRC.stat]],
-    viz: "screen", echo: { pose: "idle", acc: "hourglass", name: "Hourglass" }
+    viz: "screen", echo: { pose: "giftclock", acc: "giftclock", name: "Timekeeper" }
   },
   {
     id: "spacex", die: [3, 2], stance: "original",
@@ -735,9 +735,9 @@ const ECHO_SHELL = "M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5
 
 function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const k = "pq" + (++echoN);
-  const up = pose === "wave" || pose === "cheer" || pose === "sell";
+  const up = pose === "wave" || pose === "cheer" || pose === "sell" || pose === "forrent" || pose === "overheat";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
-  const finR = pose === "cheer" ? FIN_UP_R : FIN_DOWN_R;
+  const finR = pose === "cheer" || pose === "lookout" ? FIN_UP_R : FIN_DOWN_R;
   // sitting or dozing on a ledge: no floor, so no shadow, and the feet dangle over the edge
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
@@ -753,47 +753,6 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<g transform="translate(84 70) rotate(-16)"><circle r="23" fill="url(#${k}i)" stroke="#ece7ff" stroke-width="1.3"/><g clip-path="url(#${k}c)" stroke="#0f0c22" stroke-opacity=".38" stroke-width=".7"><path d="M-23 -15 H23 M-23 -9 H23 M-23 -3 H23 M-23 3 H23 M-23 9 H23 M-23 15 H23 M-15 -23 V23 M-9 -23 V23 M-3 -23 V23 M3 -23 V23 M9 -23 V23 M15 -23 V23"/></g><circle cy="23" r="2.4" fill="#0f0c22"/><ellipse class="echo-glint" cx="-8" cy="-10" rx="7" ry="2.6" fill="#fff" transform="rotate(-32 -8 -10)"/></g>`;
   } else if (acc === "memo") {
     accIn = `<g transform="rotate(-7 50 74)"><rect x="26" y="52" width="48" height="42" rx="3" fill="#fbfaff" stroke="#cfc6f5"/><text x="31" y="67" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="14" font-weight="900" fill="#2b2142">SA</text><text x="51" y="67" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="700" fill="#7b5cfa">2024</text><path d="M31 74 H68 M31 79 H63 M31 84 H66 M31 89 H56" stroke="#b8a6ff" stroke-width="1.7" stroke-linecap="round"/><path d="M58 86 l3.5 3.5 l7 -8" stroke="#2fb87a" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
-  } else if (acc === "thermo") {
-    accIn = `<path d="M86 1 C86 1 81.5 6.5 81.5 9.2 A4.5 4.5 0 0 0 90.5 9.2 C90.5 6.5 86 1 86 1 Z" fill="#a6e9ff" stroke="#fff" stroke-width=".8"/><g transform="translate(90 62) rotate(16)"><rect x="-4.5" y="-28" width="9" height="36" rx="4.5" fill="#fff" stroke="#cfc6f5"/><rect class="echo-merc" x="-1.8" y="-18" width="3.6" height="24" rx="1.8" fill="#ff6b80"/><circle cy="10" r="7" fill="#ff6b80" stroke="#fff" stroke-width="1.6"/><path d="M4.5 -22 h3 M4.5 -15 h3 M4.5 -8 h3" stroke="#cfc6f5" stroke-width="1.1"/></g>`;
-  } else if (acc === "flask") {
-    accIn = `<g transform="translate(93 70) rotate(10)"><path d="M-4 -18 H4 V-10 L13 5 Q14 8 11 8 H-11 Q-14 8 -13 5 L-4 -10 Z" fill="#f2fbff" fill-opacity=".92" stroke="#bfe9ff"/><path class="echo-glint" d="M-8.8 -2 H8.8 L13 5 Q14 8 11 8 H-11 Q-14 8 -13 5 Z" fill="#4fd2ff"/><rect x="-5.5" y="-21" width="11" height="3.4" rx="1.2" fill="#bfe9ff"/></g>`;
-    accExtra = [[96, 44, 2.6, 0], [100, 32, 2, .7], [94, 22, 1.6, 1.4]].map(([x, y, r, d]) => `<circle class="echo-bubble" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="${r}" fill="#4fd2ff" fill-opacity=".45" stroke="#a6e9ff" stroke-width=".6"/>`).join("");
-  } else if (acc === "rack") {
-    accIn = `<g transform="translate(86 52)"><rect width="22" height="42" rx="2.5" fill="#211a32" stroke="#9b83ff"/>${[0, 1, 2, 3].map(i => `<rect x="3" y="${4 + i * 9.5}" width="16" height="6.5" rx="1" fill="#30234d"/><circle class="echo-led" style="animation-delay:${(i * .27).toFixed(2)}s" cx="7" cy="${(7.2 + i * 9.5).toFixed(1)}" r="1.4" fill="#4fd2ff"/><circle class="echo-led" style="animation-delay:${(i * .27 + .5).toFixed(2)}s" cx="11.5" cy="${(7.2 + i * 9.5).toFixed(1)}" r="1.4" fill="#ffb23f"/>`).join("")}</g>`;
-  } else if (acc === "captain") {
-    accIn = `<path d="M22 8 C22 -10 78 -10 78 8 Z" fill="#f8f6ff" stroke="#cfc6f5"/><rect x="20" y="2" width="60" height="7" rx="2" fill="#211a32"/><path d="M16 8 Q50 17 84 8 L82 11.5 Q50 21 18 11.5 Z" fill="#1b1530"/><g transform="translate(50 -3)" fill="none" stroke="#ffb23f" stroke-width="1.6" stroke-linecap="round"><path d="M0 -3 V5 M-4 2 Q0 7 4 2 M-3 -1 H3"/><circle cy="-4.6" r="1.4"/></g>`;
-  } else if (acc === "chute") {
-    accDefs = `<linearGradient id="${k}c" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"><stop offset=".25" stop-color="#ffb23f"/><stop offset=".25" stop-color="#f8f6ff"/><stop offset=".5" stop-color="#f8f6ff"/><stop offset=".5" stop-color="#ffb23f"/><stop offset=".75" stop-color="#ffb23f"/><stop offset=".75" stop-color="#f8f6ff"/></linearGradient>`;
-    accIn = `<path d="M2 -4 L14 32 M26 -4 L24 3 M74 -4 L76 3 M98 -4 L86 32" stroke="#cfc6f5" stroke-width=".8" fill="none"/><path d="M0 -4 C8 -24 92 -24 100 -4 Q87.5 -10 75 -4 Q62.5 -10 50 -4 Q37.5 -10 25 -4 Q12.5 -10 0 -4 Z" fill="url(#${k}c)" stroke="#d98a12" stroke-width=".8"/>`;
-  } else if (acc === "moat") {
-    accIn = `<path d="M26 7 V-9 H33 V-3 H40 V-9 H47 V-3 H53 V-9 H60 V-3 H67 V-9 H74 V7 Z" fill="#b8a6ff" stroke="#7b5cfa"/><path d="M45 7 V2 A5 5 0 0 1 55 2 V7 Z" fill="#2b2142"/>`;
-    accExtra = `<ellipse cx="50" cy="107" rx="56" ry="7" fill="#4fd2ff" fill-opacity=".2"/><path class="echo-water" d="M-6 107 q6 -4 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#4fd2ff" stroke-width="1.6" stroke-linecap="round"/>`;
-  } else if (acc === "hbm") {
-    accIn = `<rect x="34" y="-1.2" width="32" height="2.6" rx="1" fill="#4fd2ff"/>` + [0, 1, 2, 3].map(i => `<rect class="echo-stack" style="animation-delay:${(i * .12).toFixed(2)}s" x="30" y="${(-5.6 - i * 4.8).toFixed(1)}" width="40" height="4" rx="1" fill="${i % 2 ? "#ffc566" : "#ffb23f"}" stroke="#d98a12" stroke-width=".6"/>`).join("");
-  } else if (acc === "hourglass") {
-    accIn = `<g transform="translate(94 68)"><g class="echo-flip"><path d="M-8 -14 H8 M-8 14 H8" stroke="#b8a6ff" stroke-width="2.4" stroke-linecap="round"/><path d="M-6.5 -12 H6.5 C6.5 -5 1.5 -2 1.2 0 C1.5 2 6.5 5 6.5 12 H-6.5 C-6.5 5 -1.5 2 -1.2 0 C-1.5 -2 -6.5 -5 -6.5 -12 Z" fill="#f2fbff" fill-opacity=".88" stroke="#cfc6f5" stroke-width=".8"/><path d="M-5.5 -10 H5.5 C5 -6 2 -4 0 -1.5 C-2 -4 -5 -6 -5.5 -10 Z" fill="#ffb23f"/><path d="M-4.5 11 H4.5 C4 8 2 7 0 6.5 C-2 7 -4 8 -4.5 11 Z" fill="#ffb23f"/></g></g>`;
-  } else if (acc === "camper") {
-    accUnder = `<rect x="-13" y="34" width="24" height="46" rx="7" fill="#2fb87a"/><rect x="-9" y="56" width="16" height="14" rx="3" fill="#249566"/><rect x="-15" y="25" width="28" height="11" rx="5.5" fill="#ffb23f"/><path d="M-7 25 V36 M5 25 V36" stroke="#d98a12" stroke-width="1.4"/>`;
-    accIn = `<path d="M13 10 Q50 0 87 10" stroke="#30234d" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle class="echo-lamp" cx="50" cy="4" r="10" fill="#ffd98a"/><circle cx="50" cy="4.5" r="4.4" fill="#ffd98a" stroke="#d98a12"/>`;
-  } else if (acc === "cloud") {
-    // Echo floats on a small cloud with a price tag: GPU-hours by the hour
-    accUnder = `<g transform="translate(50 104)"><path d="M-44 6 C-50 -6 -36 -14 -26 -8 C-22 -20 -4 -22 2 -12 C8 -22 28 -20 30 -6 C42 -10 52 2 44 10 C46 18 36 20 30 16 H-36 C-48 18 -54 10 -44 6 Z" fill="#f2eefb" stroke="#cfc6f5"/><path d="M-30 10 H30" stroke="#cfc6f5" stroke-width="1.2" opacity=".7"/></g>`;
-    accIn = `<g transform="translate(92 60) rotate(14)"><path d="M0 -10 V-2" stroke="#cfc6f5" stroke-width="1.2"/><path d="M-11 -2 H11 L14 4 L11 18 H-11 Z" fill="#ffb23f" stroke="#d98a12"/><circle cx="0" cy="2" r="1.6" fill="#211a32"/><text x="0" y="14.5" text-anchor="middle" font-size="7.5" font-weight="900" fill="#211a32">$/hr</text></g>`;
-    accExtra = [[-14, 30, 0], [108, 24, .5], [-10, 74, 1]].map(([x, y, d]) => `<rect class="echo-led" style="animation-delay:${d}s" x="${x}" y="${y}" width="9" height="5" rx="1.2" fill="#4fd2ff"/>`).join("");
-  } else if (acc === "vault") {
-    accIn = `<g transform="translate(90 70) rotate(-28)"><circle r="8.5" fill="none" stroke="#ffc566" stroke-width="4"/><circle r="8.5" fill="none" stroke="#d98a12" stroke-width="1" opacity=".6"/><path d="M8 -1.6 H30 V1.6 H8 Z" fill="#ffc566"/><path d="M22 1.6 V7 H25.5 V1.6 M27 1.6 V5.2 H30 V1.6" fill="#ffc566"/><path class="echo-glint" d="M-4 -4 L2 -6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></g>`;
-    accExtra = `<g transform="translate(-9 62)"><path d="M-5 -2 V-7 A5 5 0 0 1 5 -7 V-2" fill="none" stroke="#cfc6f5" stroke-width="2.2"/><rect x="-7.5" y="-2.5" width="15" height="13" rx="2.5" fill="#a08bff" stroke="#fff" stroke-opacity=".6"/><circle class="echo-led" cy="3" r="1.8" fill="#4fd2ff"/></g>`;
-  } else if (acc === "package") {
-    // a finished chip: black mold body, gold leads, metal lid with a die glint
-    const leads = [0, 1, 2, 3, 4].map(i => `<rect x="${-13 + i * 6}" y="-19" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="${-13 + i * 6}" y="14" width="2.6" height="5" rx=".8" fill="#ffc566"/><rect x="-19" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/><rect x="14" y="${-13 + i * 6}" width="5" height="2.6" rx=".8" fill="#ffc566"/>`).join("");
-    accIn = `<g transform="translate(90 68) rotate(-10)">${leads}<rect x="-15" y="-15" width="30" height="30" rx="3" fill="#1b1530" stroke="#4a3f86"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="#cfc6f5"/><rect x="-9" y="-9" width="18" height="18" rx="2" fill="url(#${k}p)" opacity=".85"/><path class="echo-glint" d="M-7 4 L4 -7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="-11" cy="-11" r="1.4" fill="#4a3f86"/></g>`;
-    accDefs = `<linearGradient id="${k}p" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd2ff"/><stop offset=".5" stop-color="#a08bff"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
-    accExtra = `<g transform="translate(-8 70)"><rect x="-6" y="-4" width="12" height="8" rx="2" fill="#2fb87a"/><path d="M-3 0 L-1 2 L3 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
-  } else if (acc === "bloom") {
-    // a flower on Echo's head whose center is a fuel cell: petals around a glowing bolt
-    const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
-    accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M62 2 C56 -1 54 -6 55 -9 C59 -8 62 -5 62 2 Z" fill="#2fb87a"/><g transform="translate(69 -14)">${petals}<circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="echo-lamp" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>`;
-    accExtra = [[100, 44, 0], [104, 28, .6], [-8, 40, 1.2]].map(([x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="10" font-weight="800" fill="#4fd2ff">⚡</text>`).join("");
   } else if (acc === "waiter") {
     // a maître d' with a bow tie, serving a GPU on a tray: today's special, or tomorrow's value menu
     accIn = `<g transform="translate(50 50)"><path d="M0 0 L-9 -5 V5 Z M0 0 L9 -5 V5 Z" fill="#211a32" stroke="#ff6b80" stroke-width=".8" stroke-linejoin="round"/><circle r="2.2" fill="#ff6b80"/></g>` +
@@ -803,14 +762,103 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accUnder = `<path class="echo-flame" d="M-4.5 70 Q.5 106 5.5 70 Z" fill="#ffb23f"/><path class="echo-flame" style="animation-delay:.12s" d="M94.5 70 Q99.5 106 104.5 70 Z" fill="#ffb23f"/><path class="echo-flame" d="M-2 70 Q.5 94 3 70 Z" fill="#fff4d6"/><path class="echo-flame" style="animation-delay:.12s" d="M97 70 Q99.5 94 102 70 Z" fill="#fff4d6"/><rect x="-6" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/><rect x="93" y="40" width="13" height="34" rx="5" fill="#cfc6f5" stroke="#9b83ff"/>`;
     accIn = `<g transform="translate(86 70) rotate(-12)"><rect x="-15" y="-10.5" width="30" height="21" rx="2" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.3"/><rect x="-12" y="-7.5" width="24" height="15" rx="1" fill="none" stroke="#ffd98a" stroke-width=".8"/><text x="0" y="1.6" text-anchor="middle" font-size="7" font-weight="900" fill="#211a32">SPCX</text><path d="M-6 5 H6" stroke="#cfc6f5" stroke-width="1"/><path d="M11 -15 L15 -21 L19 -15 M15 -21 V-11" stroke="#2fb87a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
     accBack = spark(-10, 4, .5, "#fff", 0) + spark(112, 24, .45, "#fff", .6) + spark(110, 84, .55, "#ffd98a", 1.1);
-  } else if (acc === "seat") {
-    // Echo keeps the record (a database with a rules check) while an office chair beside it has a bite taken out
-    accIn = `<g transform="translate(91 67) rotate(8)"><path d="M-12 -14 V12 A12 4.2 0 0 0 12 12 V-14 Z" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-12 -5 A12 4.2 0 0 0 12 -5 M-12 4 A12 4.2 0 0 0 12 4" stroke="#ffb23f" stroke-width="1.6" fill="none"/><ellipse cy="-14" rx="12" ry="4.2" fill="#ffd98a" stroke="#d98a12" stroke-width=".8"/><circle class="echo-led" cx="-6" cy="0" r="1.3" fill="#4fd2ff"/><circle class="echo-led" style="animation-delay:.5s" cx="-6" cy="8.6" r="1.3" fill="#4fd2ff"/><g transform="translate(9 12)"><circle r="5.6" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-2.6 0 L-.6 2 L2.8 -2" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>`;
-    accExtra = `<g transform="translate(-8 70)"><mask id="${k}m" maskUnits="userSpaceOnUse" x="-20" y="-34" width="40" height="52"><rect x="-20" y="-34" width="40" height="52" fill="#fff"/><circle cx="8.5" cy="-27" r="4.4" fill="#000"/><circle cx="10.5" cy="-20.5" r="3.8" fill="#000"/><circle cx="3.6" cy="-29.5" r="3.4" fill="#000"/></mask><g mask="url(#${k}m)"><rect x="-8" y="-30" width="16" height="18" rx="4" fill="#ff6b80"/><rect x="-1.4" y="-12" width="2.8" height="5" fill="#c94a5e"/><rect x="-11" y="-7.5" width="22" height="6" rx="3" fill="#ff8a9a"/></g><rect x="-1.3" y="-1.5" width="2.6" height="9" fill="#cfc6f5"/><path d="M-9 10 L0 7.5 L9 10" stroke="#cfc6f5" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle cx="9" cy="11.5" r="1.8" fill="#cfc6f5"/><circle class="echo-bubble" cx="14" cy="-30" r="1.3" fill="#ff8a9a"/><circle class="echo-bubble" style="animation-delay:.8s" cx="17" cy="-24" r="1" fill="#ff8a9a"/></g>`;
-  } else if (acc === "helmet") {
+  } else if (acc === "labcoat") {
+    // Researcher: a lab coat; pipettes into a rack of test tubes that fill and light up one after another
+    const coat = s => `<path d="M${50 + s * 36} 49 C${50 + s * 31} 46 ${50 + s * 22} 45 ${50 + s * 14} 47 L${50 + s * 16} 95 C${50 + s * 24} 95 ${50 + s * 31} 92 ${50 + s * 35} 87 Z" fill="#f4f7fd" stroke="#b8c4da" stroke-width=".9"/>`;
+    accIn = coat(-1) + coat(1) + `<path d="M36 47 L44 60 M64 47 L56 60" stroke="#b8c4da" stroke-width="1.3" stroke-linecap="round"/><rect x="69" y="63" width="11" height="9" rx="1.5" fill="#e6ecf6" stroke="#b8c4da" stroke-width=".8"/><rect x="71" y="57.5" width="2.2" height="7" rx="1" fill="#ffb23f"/><rect x="74.6" y="58.5" width="2.2" height="6" rx="1" fill="#4fd2ff"/><circle cx="33.5" cy="74" r="1.3" fill="#b8c4da"/><circle cx="33.5" cy="83" r="1.3" fill="#b8c4da"/>` +
+      `<g class="echo-hand-l"><ellipse cx="4.5" cy="62" rx="3.6" ry="4.4" fill="#ff8a9a"/><rect x="3" y="65.5" width="3" height="27" rx="1.2" fill="#f2fbff" stroke="#bfe9ff" stroke-width=".7"/><path d="M3 92.5 L4.5 97.5 L6 92.5 Z" fill="#bfe9ff"/>${mitt(5, 79, 20)}</g>`;
+    accExtra = `<rect x="-16" y="101" width="26" height="4" rx="1.5" fill="#cfc6f5"/><rect x="-16" y="91.5" width="26" height="2.4" rx="1" fill="#cfc6f5" opacity=".7"/>` +
+      [-11, -4, 3].map((x, i) => `<rect x="${x - 2.4}" y="84" width="4.8" height="18" rx="2.4" fill="#f2fbff" fill-opacity=".22" stroke="#bfe9ff" stroke-width=".8"/><rect class="xfb-fill xfb-${i + 1}" x="${x - 1.6}" y="90" width="3.2" height="11.4" rx="1.6" fill="#4fd2ff"/>`).join("");
+  } else if (acc === "trail") {
+    // Camper: a steady trail march with a walking stick; the headlamp beam sweeps the path ahead
+    accDefs = `<linearGradient id="${k}lb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd98a" stop-opacity=".6"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></linearGradient>`;
+    accUnder = `<rect x="-13" y="34" width="24" height="46" rx="7" fill="#2fb87a"/><rect x="-9" y="56" width="16" height="14" rx="3" fill="#249566"/><rect x="-15" y="25" width="28" height="11" rx="5.5" fill="#ffb23f"/><path d="M-7 25 V36 M5 25 V36" stroke="#d98a12" stroke-width="1.4"/>`;
+    accIn = `<g class="xca-beam"><path d="M55 4 L122 -18 L122 26 Z" fill="url(#${k}lb)"/></g><path d="M13 10 Q50 0 87 10" stroke="#30234d" stroke-width="3.2" fill="none" stroke-linecap="round"/><circle cx="50" cy="4.5" r="4.4" fill="#ffd98a" stroke="#d98a12"/>` +
+      `<g class="echo-hand-r"><path d="M102 56 L88.5 113" stroke="#9c7440" stroke-width="3.2" stroke-linecap="round"/><circle cx="102" cy="56" r="2.6" fill="#c79a5b"/>${mitt(96, 81)}</g>`;
+    accExtra = `<path class="xca-trail" d="M-16 112.5 H116" stroke="#cfc6f5" stroke-opacity=".55" stroke-width="1.6" stroke-dasharray="6 6"/>`;
+  } else if (acc === "guard") {
+    // Keeper: a night guard with a flashlight; the weights sit on a pedestal behind blinking lasers
+    accDefs = `<linearGradient id="${k}fl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff3a8" stop-opacity=".65"/><stop offset="1" stop-color="#fff3a8" stop-opacity="0"/></linearGradient>`;
+    accIn = `<path d="M24 5 C24 -12 76 -12 76 5 Z" fill="#2b3a6b" stroke="#1b2550" stroke-width="1"/><path d="M18 5 Q50 13 82 5 L80 9 Q50 18 20 9 Z" fill="#1b1530"/><path d="M50 -9 L52 -4.6 L56.8 -4.4 L53 -1.4 L54.4 3.2 L50 .6 L45.6 3.2 L47 -1.4 L43.2 -4.4 L48 -4.6 Z" fill="#ffc566"/>` +
+      `<g class="echo-hand-r"><g class="xvb-beam"><path d="M108 77.5 L126 62 L126 94 Z" fill="url(#${k}fl)"/></g><rect x="92" y="74" width="14" height="7" rx="2" fill="#30234d" stroke="#8a93a8" stroke-width=".8"/><rect x="104.5" y="72.4" width="4" height="10.2" rx="1.2" fill="#8a93a8"/><circle cx="108.6" cy="77.5" r="2.4" fill="#fff3a8"/>${mitt(95.5, 80)}</g>`;
+    accExtra = `<rect x="-14" y="92" width="16" height="16" rx="1.5" fill="#cfc6f5" stroke="#9b83ff"/><rect x="-16" y="90" width="20" height="4" rx="1" fill="#b8a6ff"/><g class="xvb-gem"><path d="M-6 73 L1 79.5 L-6 89 L-13 79.5 Z" fill="#4fd2ff" stroke="#a6e9ff" stroke-width=".8"/><path d="M-13 79.5 H1 M-9.5 79.5 L-6 73 L-2.5 79.5 L-6 89" stroke="#fff" stroke-opacity=".6" stroke-width=".6" fill="none"/></g><g class="xvb-laser" stroke="#ff6b80" stroke-width="1" stroke-linecap="round"><path d="M-16 68 L6 92 M6 68 L-16 92 M-16 80 H7"/></g>`;
+  } else if (acc === "rackup") {
+    // Rack: slides a server blade into the rack beside it; the new slot lights up and the LEDs ripple
+    accBack = `<g transform="translate(99 26)"><rect width="17" height="84" rx="2" fill="#211a32" stroke="#9b83ff"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => i === 5 ? `<rect x="2.5" y="54" width="12" height="7" rx="1" fill="#30234d" stroke="#9b83ff" stroke-dasharray="1.5 1.5" stroke-width=".6"/><g class="xra-slot"><rect x="1.5" y="53" width="14" height="9" rx="1" fill="#cfc6f5" stroke="#ffd98a" stroke-width="1.2"/><circle cx="5" cy="57.5" r="1.5" fill="#2fb87a"/><circle cx="9.5" cy="57.5" r="1.5" fill="#ffb23f"/></g>` : `<rect x="2.5" y="${4 + i * 10}" width="12" height="7" rx="1" fill="#30234d"/><circle class="xra-led" style="animation-delay:${(i * .12).toFixed(2)}s" cx="5.5" cy="${7.5 + i * 10}" r="1.2" fill="#4fd2ff"/>`).join("")}</g>`;
+    accIn = `<g class="echo-hand-r"><g class="xra-blade"><rect x="84" y="78" width="22" height="10" rx="1.4" fill="#cfc6f5" stroke="#7b5cfa" stroke-width="1"/><path d="M87 81 H97 M87 83 H97 M87 85 H97" stroke="#7b5cfa" stroke-width=".7"/><circle cx="101" cy="81.4" r="1.4" fill="#2fb87a"/><circle cx="101" cy="85" r="1.4" fill="#ffb23f"/></g>${mitt(92.5, 84, -10)}</g>`;
+  } else if (acc === "machinist") {
+    // Hard hat: a hard hat with a lamp, tightening a bolt on a machine whose gauge swings, gears turn and steam puffs
+    const gear = (cx, cy, r, n) => { let d = ""; for (let i = 0; i < n * 2; i++) { const a = i * Math.PI / n, rr = i % 2 ? r : r + 2; d += `${i ? "L" : "M"}${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a)).toFixed(1)} `; } return d + "Z"; };
+    accDefs = `<linearGradient id="${k}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
+    accIn = `<path d="M17 4 C17 -17 83 -17 83 4 Z" fill="url(#${k}h)"/><rect x="8" y="1.5" width="84" height="7" rx="3.5" fill="#f2a12a"/><circle cx="50" cy="-6" r="4.6" fill="#fff3a8" stroke="#d98a12"/><circle class="echo-lamp" cx="50" cy="-6" r="9" fill="#fff3a8"/>` +
+      `<g class="echo-hand-l"><path d="M5 82 L-1.5 96" stroke="#8a93a8" stroke-width="2.8" stroke-linecap="round"/><path d="M-5 95.5 A4 4 0 1 0 2 98.5 L-.4 97 L-2.6 96 Z" fill="#8a93a8"/>${mitt(5, 80, 20)}</g>`;
+    accExtra = `<rect x="-16" y="56" width="16" height="50" rx="2" fill="#30234d" stroke="#9b83ff"/><path d="M-12 56 V50 H-6" stroke="#8a93a8" stroke-width="2.4" fill="none"/>` +
+      [0, .9, 1.8].map(d => `<circle class="xhb-steam" style="animation-delay:${d}s" cx="-5" cy="48" r="2.6" fill="#e8f4ff"/>`).join("") +
+      `<circle cx="-8" cy="66" r="5.4" fill="#fbfaff" stroke="#9b83ff"/><path d="M-12 66 A4 4 0 0 1 -4 66" stroke="#ff6b80" stroke-width="1" fill="none"/><path class="xhb-needle" d="M-8 66 L-8 61.6" stroke="#211a32" stroke-width="1.2" stroke-linecap="round"/>` +
+      `<g transform="translate(-10 81)"><g class="echo-spin" style="animation-duration:2.4s"><path d="${gear(0, 0, 4.4, 7)}" fill="#ffb23f"/></g></g><g transform="translate(-4.8 90)"><g class="echo-spin xhb-rev" style="animation-duration:2.4s"><path d="${gear(0, 0, 3.4, 6)}" fill="#4fd2ff"/></g></g>` +
+      `<path d="M-1.5 97 l1.6 -2.8 h3.2 l1.6 2.8 l-1.6 2.8 h-3.2 Z" fill="#cfc6f5"/><path class="xhb-bolt" d="M-14 101 l1.4 -2.4 h2.8 l1.4 2.4 l-1.4 2.4 h-2.8 Z" fill="#ffd98a"/>`;
+  } else if (acc === "plugin") {
+    // Power plant: plugs into a server; a pulse runs down the cable from the bloom, and the rack wakes up
+    const petals = [0, 60, 120, 180, 240, 300].map((a, i) => `<ellipse cx="0" cy="-8.5" rx="4.6" ry="7.6" transform="rotate(${a})" fill="${i % 2 ? "#ffb23f" : "#b8a6ff"}" stroke="#fff" stroke-opacity=".55" stroke-width=".6"/>`).join("");
+    accIn = `<path d="M60 9 C62 2 64 -4 68 -9" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round"/><g transform="translate(69 -14)"><g class="xba-pet">${petals}</g><circle r="6" fill="#211a32" stroke="#4fd2ff" stroke-width="1.2"/><circle class="xba-core" r="6" fill="#4fd2ff"/><path d="M1 -4 L-2.4 .6 H.6 L-1 4 L2.6 -.8 H-.4 Z" fill="#fff"/></g>` +
+      `<path d="M74 -10 C96 -8 104 14 102 40 C101 56 101 64 100 70" stroke="#30234d" stroke-width="2.4" fill="none" stroke-linecap="round"/><path class="xba-flow" d="M74 -10 C96 -8 104 14 102 40 C101 56 101 64 100 70" stroke="#4fd2ff" stroke-width="1.4" fill="none" stroke-dasharray="3 5" stroke-linecap="round"/>` +
+      `<g class="echo-hand-r"><rect x="95" y="70" width="10" height="11" rx="2.5" fill="#cfc6f5" stroke="#9b83ff" stroke-width=".8"/><path d="M105 73 H109 M105 78 H109" stroke="#ffc566" stroke-width="1.6" stroke-linecap="round"/>${mitt(96, 80)}</g>`;
+    accExtra = `<rect x="108" y="60" width="9" height="36" rx="1.5" fill="#211a32" stroke="#9b83ff"/>${[0, 1, 2].map(i => `<circle class="xba-led" style="animation-delay:${(i * .15).toFixed(2)}s" cx="112.5" cy="${80 + i * 5}" r="1.3" fill="#4fd2ff"/>`).join("")}<rect x="109.5" y="69" width="6" height="8" rx="1" fill="#30234d"/>`;
+  } else if (acc === "lookout") {
+    // Captain: in a little boat, telescope up, watching a fleet of data-center ships bob along the horizon
+    accIn = `<path d="M22 8 C22 -10 78 -10 78 8 Z" fill="#f8f6ff" stroke="#cfc6f5"/><rect x="20" y="2" width="60" height="7" rx="2" fill="#211a32"/><path d="M16 8 Q50 17 84 8 L82 11.5 Q50 21 18 11.5 Z" fill="#1b1530"/><g transform="translate(50 -3)" fill="none" stroke="#ffb23f" stroke-width="1.6" stroke-linecap="round"><path d="M0 -3 V5 M-4 2 Q0 7 4 2 M-3 -1 H3"/><circle cy="-4.6" r="1.4"/></g>` +
+      `<g class="echo-hand-r"><path d="M89 19 L104 13" stroke="#d98a12" stroke-width="6.4" stroke-linecap="round"/><g class="xcpa-tube"><path d="M101 14 L113 9.2" stroke="#ffc566" stroke-width="4.4" stroke-linecap="round"/></g><circle cx="113.4" cy="9" r="2.4" fill="#a6e9ff"/>${mitt(95.5, 16, 0)}</g>`;
+    accBack = `<path d="M-16 50 H116" stroke="#a6e9ff" stroke-opacity=".3" stroke-width="1"/>` + [[-12, 0], [-3, .8], [106, 1.6]].map(([x, d]) => `<g class="xcpa-ship" style="animation-delay:${d}s"><path d="M${x - 6} 45 H${x + 6} L${x + 4} 49 H${x - 4} Z" fill="#cfc6f5"/><rect x="${x - 3.5}" y="39.5" width="7" height="5.5" rx=".6" fill="#9b83ff"/><circle cx="${x - 1.6}" cy="42" r=".8" fill="#4fd2ff"/><circle cx="${x + 1.4}" cy="42" r=".8" fill="#ffb23f"/></g>`).join("");
+    accExtra = `<g class="xcpa-boat"><path d="M-10 82 H110 L99 107 Q50 113 1 107 Z" fill="#c94a5e" stroke="#8a2f3e" stroke-width="1.2"/><path d="M-7 89 H107" stroke="#fbfaff" stroke-width="2.4"/>${[16, 34, 66, 84].map(x => `<circle cx="${x}" cy="98" r="3" fill="#a6e9ff" stroke="#fbfaff" stroke-width="1"/>`).join("")}</g><path class="echo-water" d="M-28 110 q6 -4 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#4fd2ff" stroke-width="1.8" stroke-linecap="round"/>`;
+  } else if (acc === "chomp") {
+    // Record keeper: an AI chomper eats the office chair piece by piece while Echo hugs the database, untouched
+    accIn = `<g class="echo-hand-r"><g transform="translate(97 70) rotate(6)"><path d="M-11 -12 V11 A11 4 0 0 0 11 11 V-12 Z" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-11 -4 A11 4 0 0 0 11 -4 M-11 4 A11 4 0 0 0 11 4" stroke="#ffb23f" stroke-width="1.6" fill="none"/><ellipse cy="-12" rx="11" ry="4" fill="#ffd98a" stroke="#d98a12" stroke-width=".8"/><circle class="echo-led" cx="-5.5" cy="0" r="1.3" fill="#4fd2ff"/><circle class="echo-led" style="animation-delay:.5s" cx="-5.5" cy="8" r="1.3" fill="#4fd2ff"/></g>${mitt(94, 80)}</g>`;
+    accExtra = `<g class="xsa-p1"><rect x="-12" y="70" width="14" height="16" rx="4" fill="#ff6b80"/></g><g class="xsa-p2"><rect x="-6.2" y="86" width="2.6" height="4.6" fill="#c94a5e"/><rect x="-14" y="90" width="18" height="5.4" rx="2.7" fill="#ff8a9a"/></g><g class="xsa-p3"><rect x="-6.2" y="95" width="2.4" height="8" fill="#cfc6f5"/><path d="M-13 106 L-5 103.5 L3 106" stroke="#cfc6f5" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="-13" cy="107.5" r="1.7" fill="#cfc6f5"/><circle cx="3" cy="107.5" r="1.7" fill="#cfc6f5"/></g>` +
+      `<g class="xsa-chomp"><g class="xsa-top"><path d="M-7 0 A7 7 0 0 1 7 0 Z" transform="translate(-26 88)" fill="#ffb23f"/></g><g class="xsa-bot"><path d="M-7 0 A7 7 0 0 0 7 0 Z" transform="translate(-26 88)" fill="#ffb23f"/></g><circle cx="-27.5" cy="84" r="1.2" fill="#211a32"/></g>`;
+  } else if (acc === "forrent") {
+    // Neocloud: rides a see-through cloud full of GPUs, waving a FOR RENT sign
+    accUnder = `<g transform="translate(50 104)"><path d="M-44 6 C-50 -6 -36 -14 -26 -8 C-22 -20 -4 -22 2 -12 C8 -22 28 -20 30 -6 C42 -10 52 2 44 10 C46 18 36 20 30 16 H-36 C-48 18 -54 10 -44 6 Z" fill="#f2eefb" fill-opacity=".9" stroke="#cfc6f5"/></g>`;
+    accIn = `<g class="echo-hand-l"><path d="M9 5 V-7" stroke="#9c7440" stroke-width="2.2" stroke-linecap="round"/><rect x="-14" y="-21.5" width="46" height="14" rx="2.2" fill="#fbfaff" stroke="#ff6b80" stroke-width="1.3"/><text x="9" y="-11.6" text-anchor="middle" font-size="8" font-weight="900" fill="#c94a5e" textLength="38" lengthAdjust="spacingAndGlyphs">FOR RENT</text>${mitt(9, 5, 0)}</g>`;
+    accExtra = [-2, 88].map((x, i) => `<rect class="xcb2-gpu" style="animation-delay:${(i * .5).toFixed(1)}s" x="${x}" y="108" width="14" height="6" rx="1" fill="#211a32" stroke="#4fd2ff" stroke-width=".9"/><circle cx="${x + 4}" cy="111" r="1.4" fill="#4fd2ff"/><circle cx="${x + 10}" cy="111" r="1.4" fill="#4fd2ff"/>`).join("") + [[-12, 96, 0], [110, 92, .7]].map(([x, y, d]) => `<path class="echo-led" style="animation-delay:${d}s" d="M${x + 1.5} ${y - 6} L${x - 1.5} ${y} H${x + .8} L${x - .8} ${y + 5} L${x + 2.8} ${y - 1.4} H${x + .4} Z" fill="#ffd98a"/>`).join("");
+  } else if (acc === "bricks") {
+    // Parachute: keeps laying bricks with the chute packed on its back, even as the chart behind it crashes
+    accDefs = `<linearGradient id="${k}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
+
+    accUnder = `<rect x="-14" y="30" width="24" height="44" rx="8" fill="#ffb23f" stroke="#d98a12"/><path d="M-10 40 H6 M-10 50 H6" stroke="#f8f6ff" stroke-width="3"/><circle cx="-2" cy="64" r="3.6" fill="none" stroke="#ff6b80" stroke-width="2"/>`;
+    accIn = `<path d="M17 4 C17 -17 83 -17 83 4 Z" fill="url(#${k}h)"/><rect x="8" y="1.5" width="84" height="7" rx="3.5" fill="#f2a12a"/>` +
+      `<g class="echo-hand-r"><path d="M95 82 L99 90" stroke="#9c7440" stroke-width="2.4" stroke-linecap="round"/><path d="M96 89 L110 92 L101 98 Z" fill="#cfd6e4" stroke="#8a93a8" stroke-width=".7"/>${mitt(95.5, 80)}</g>`;
+    accExtra = `<rect x="97" y="18" width="22" height="20" rx="2.4" fill="#211a32" stroke="#9b83ff"/><polyline class="xcb3-line" points="100,22 104,21 106,26 109,25 112,32 116,34" fill="none" stroke="#ff6b80" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" pathLength="100"/>` + [[98, 104, 1], [110, 104, 2], [104, 97, 3], [98, 90, 4], [110, 90, 5]].map(([x, y, n]) => `<rect class="xcb3-b xcb3-b${n}" x="${x - 5.6}" y="${y}" width="11.2" height="6" rx="1" fill="#e06a1f" stroke="#a84a14" stroke-width=".7"/>`).join("");
+  } else if (acc === "croc") {
+    // Moat keeper: waist-deep in the moat with a castle hat and pennant; a crocodile surfaces and snaps
+    accIn = `<path d="M26 7 V-9 H33 V-3 H40 V-9 H47 V-3 H53 V-9 H60 V-3 H67 V-9 H74 V7 Z" fill="#b8a6ff" stroke="#7b5cfa"/><path d="M45 7 V2 A5 5 0 0 1 55 2 V7 Z" fill="#2b2142"/><path d="M50 -9 V-21" stroke="#7b5cfa" stroke-width="1.2"/><path class="xmb-flag" d="M50 -21 L60 -18 L50 -15 Z" fill="#ff6b80"/>`;
+    accExtra = `<g class="xmb-croc"><path d="M88 96 Q100 88 116 92 L116 98 Q104 100 88 100 Z" fill="#2fb87a" stroke="#1f8a5a"/><g class="xmb-jaw"><path d="M88 96 Q100 84 116 86 L116 90 Q102 91 88 96 Z" fill="#3fcf8e" stroke="#1f8a5a"/><path d="M96 91 l1.2 2 l1.2 -2 M102 89.4 l1.2 2 l1.2 -2 M108 88.6 l1.2 2 l1.2 -2" stroke="#fbfaff" stroke-width=".9" fill="none"/></g><circle cx="94" cy="88" r="2.6" fill="#3fcf8e" stroke="#1f8a5a"/><circle cx="94.4" cy="87.6" r="1" fill="#211a32"/></g>` +
+      `<path d="M-16 92 H116 V116 H-16 Z" fill="#4fd2ff" fill-opacity=".32"/><path class="echo-water" d="M-28 92 q6 -4 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#a6e9ff" stroke-width="1.6" stroke-linecap="round"/>`;
+  } else if (acc === "stacker") {
+    // HBM stack: memory dies drop onto the stack one at a time, each one landing with a bump, then the TSVs light up
+    accIn = `<rect x="34" y="-1.2" width="32" height="2.6" rx="1" fill="#4fd2ff"/>` + [0, 1, 2, 3].map(i => `<g class="xhm-l xhm-l${i}"><rect x="30" y="${(-5.6 - i * 4.8).toFixed(1)}" width="40" height="4" rx="1" fill="${i % 2 ? "#ffc566" : "#ffb23f"}" stroke="#d98a12" stroke-width=".6"/></g>`).join("") +
+      `<g class="xhm-tsv" stroke="#4fd2ff" stroke-width="1.4" stroke-linecap="round"><path d="M38 0 V-24 M46 0 V-24 M54 0 V-24 M62 0 V-24"/></g>`;
+  } else if (acc === "pickplace") {
+    // Packager: pick and place: a suction tool sets the GPU die between two HBM stacks on the interposer
+    accIn = `<rect x="25" y="82" width="50" height="7" rx="1.4" fill="#1b1530" stroke="#ffc566" stroke-width="1"/>` + [30, 60].map(x => [0, 1, 2, 3].map(i => `<rect x="${x}" y="${79 - i * 3.6}" width="10" height="3" rx=".6" fill="${i % 2 ? "#ffc566" : "#ffb23f"}" stroke="#d98a12" stroke-width=".5"/>`).join("")).join("") +
+      `<rect x="43" y="69" width="14" height="13" rx="1" fill="none" stroke="#4fd2ff" stroke-width=".8" stroke-dasharray="2 1.6"/><g class="xpb-ok"><circle cx="50" cy="62" r="4.6" fill="#2fb87a" stroke="#fff" stroke-width=".9"/><path d="M47.8 62 L49.4 63.6 L52.4 60.4" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
+      `<g class="echo-hand-r"><path d="M95 84 L87 62" stroke="#dfe5f0" stroke-width="2.2" stroke-linecap="round"/><path d="M83.4 60 H90.6 L89.4 63 H84.6 Z" fill="#8a93a8"/>${mitt(95.5, 82)}</g>` +
+      `<g class="xpb-x"><g class="xpb-y"><rect x="81" y="64" width="12" height="11" rx="1" fill="#211a32" stroke="#4fd2ff" stroke-width=".9"/><rect class="echo-led" x="84" y="67" width="6" height="5" fill="#4fd2ff"/></g></g>`;
+  } else if (acc === "overheat") {
+    // Thermometer: the mercury climbs, steam rises, sweat flies, and Echo fans itself with a paper fan
+    accIn = `<g class="xth-heat"><ellipse cx="50" cy="30" rx="44" ry="34" fill="#ff6b80"/></g>` + [0, .6, 1.2].map((d, i) => `<path class="xth-steam" style="animation-delay:${d}s" d="M${38 + i * 12} -2 q-3 -4 0 -8 q3 -4 0 -8" stroke="#e8f4ff" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join("") +
+      `<g class="echo-hand-l"><g class="xth-fan"><path d="M9 3 L-6 -12 A21 21 0 0 1 24 -12 Z" fill="#ffd98a" stroke="#d98a12" stroke-width=".8"/><path d="M9 3 L-1 -16 M9 3 L4 -18 M9 3 L9 -18.4 M9 3 L14 -18 M9 3 L19 -16" stroke="#d98a12" stroke-width=".6"/></g>${mitt(9, 5, 0)}</g>` +
+      `<g class="echo-hand-r"><rect x="95.5" y="46" width="8" height="34" rx="4" fill="#fff" stroke="#cfc6f5"/><rect class="xth-merc" x="98" y="52" width="3" height="26" rx="1.5" fill="#ff6b80"/><circle cx="99.5" cy="83" r="6" fill="#ff6b80" stroke="#fff" stroke-width="1.4"/><path d="M104 56 h2.6 M104 63 h2.6 M104 70 h2.6" stroke="#cfc6f5" stroke-width="1"/>${mitt(95.5, 84)}</g>`;
+    accExtra = [[96, 22, 0], [-6, 30, .5], [102, 40, 1]].map(([x, y, d]) => `<path class="xth-drop" style="animation-delay:${d}s" d="M${x} ${y} c0 0 -2.6 3.2 -2.6 4.8 a2.6 2.6 0 0 0 5.2 0 c0 -1.6 -2.6 -4.8 -2.6 -4.8 Z" fill="#a6e9ff"/>`).join("");
+  } else if (acc === "giftclock") {
+    // Timekeeper: hands you an alarm clock tied with a bow, its hands spinning backward, under a little confetti
+    accIn = `<g class="echo-hand-r"><path d="M93 64 L91 60 M109 64 L111 60" stroke="#c94a5e" stroke-width="1.6" stroke-linecap="round"/><circle cx="91" cy="59" r="3.4" fill="#ff8a9a" stroke="#c94a5e" stroke-width=".8"/><circle cx="111" cy="59" r="3.4" fill="#ff8a9a" stroke="#c94a5e" stroke-width=".8"/><circle cx="101" cy="73" r="10.4" fill="#fbfaff" stroke="#ff6b80" stroke-width="2"/>${[0, 90, 180, 270].map(a => `<path d="M101 64.6 V66.4" stroke="#b8a6ff" stroke-width="1.2" transform="rotate(${a} 101 73)"/>`).join("")}<g class="xhgb-min"><path d="M101 73 V65.6" stroke="#211a32" stroke-width="1.3" stroke-linecap="round"/></g><g class="xhgb-hr"><path d="M101 73 H106" stroke="#211a32" stroke-width="1.8" stroke-linecap="round"/></g><circle cx="101" cy="73" r="1.3" fill="#ff6b80"/><path d="M101 62.6 C96 57 92 61 97 63 Z M101 62.6 C106 57 110 61 105 63 Z" fill="#4fd2ff" stroke="#1f86b0" stroke-width=".6"/>${mitt(96, 84)}</g>`;
+    accExtra = [[-10, "#ffb23f", 0], [6, "#4fd2ff", .5], [86, "#ff6b80", .9], [110, "#b8a6ff", .3], [30, "#2fb87a", 1.2], [66, "#ffd98a", .7]].map(([x, c, d]) => `<rect class="xhgb-conf" style="animation-delay:${d}s" x="${x}" y="-18" width="3.4" height="2" rx=".5" fill="${c}"/>`).join("");
+  } else if (acc === "spacewalk") {
+    // Astronaut: a slow spacewalk on a tether to a satellite, past a ringed planet and twinkling stars
     accDefs = `<radialGradient id="${k}g" cx="50%" cy="45%" r="55%"><stop offset=".72" stop-color="#bfe9ff" stop-opacity="0"/><stop offset=".95" stop-color="#bfe9ff" stop-opacity=".26"/><stop offset="1" stop-color="#e8f8ff" stop-opacity=".5"/></radialGradient>`;
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="echo-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
-    accBack = spark(-12, -12, .8, "#ffb23f", 0) + spark(112, 4, .6, "#fff", .4) + spark(118, 70, .7, "#4fd2ff", .8);
+    accBack = `<g class="xhb3-sat"><rect x="-14" y="-18" width="10" height="8" rx="1" fill="#cfd6e4" stroke="#8a93a8"/><rect x="-26" y="-16" width="11" height="4" fill="#4fd2ff" stroke="#1f86b0" stroke-width=".5"/><rect x="-3" y="-16" width="11" height="4" fill="#4fd2ff" stroke="#1f86b0" stroke-width=".5"/></g><path class="xhb3-teth" d="M-9 -10 C-20 20 -4 40 4 56" stroke="#cfd6e4" stroke-width="1.2" fill="none" stroke-dasharray="3 2"/>` +
+      `<g class="xhb3-planet"><circle cx="112" cy="98" r="7" fill="#ffb23f"/><ellipse cx="112" cy="98" rx="12" ry="3" fill="none" stroke="#ffd98a" stroke-width="1.4" transform="rotate(-18 112 98)"/></g>` + spark(-10, 80, .5, "#fff", 0) + spark(110, 20, .45, "#fff", .4) + spark(96, -14, .4, "#ffd98a", .8);
   } else if (acc === "qubit") {
     // superposition: two ghost Echoes split off and collapse back in a flash; a Bloch sphere in hand; an entangled pair orbits the head
     const ghost = (c, col) => `<g class="${c}"><path d="${ECHO_SHELL}" fill="${col}" fill-opacity=".38" stroke="${col}" stroke-width="1.3"/><ellipse cx="29.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><ellipse cx="70.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="${col}" fill-opacity=".3"/></g>`;
@@ -879,7 +927,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
   if (pose === "run" && acc !== "camper") extras = `<rect class="echo-speed" x="-22" y="44" width="16" height="2.6" rx="1.3" fill="#4fd2ff"/><rect class="echo-speed" style="animation-delay:.12s" x="-19" y="60" width="13" height="2.6" rx="1.3" fill="#4fd2ff"/><rect class="echo-speed" style="animation-delay:.24s" x="-16" y="76" width="10" height="2.6" rx="1.3" fill="#4fd2ff"/>`;
   if (pose === "dance") extras = `<text class="echo-note" x="100" y="10" font-size="14" fill="#4fd2ff">♪</text><text class="echo-note" style="animation-delay:.5s" x="-14" y="22" font-size="12" fill="#b8a6ff">♫</text>`;
-  if (pose === "swim" && acc !== "helmet") extras = `<circle class="echo-bubble" cx="94" cy="30" r="3" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="echo-bubble" style="animation-delay:.6s" cx="100" cy="12" r="2" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="echo-bubble" style="animation-delay:1.2s" cx="90" cy="0" r="1.6" fill="none" stroke="#a6e9ff" stroke-width=".9"/>`;
+  if (pose === "swim") extras = `<circle class="echo-bubble" cx="94" cy="30" r="3" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="echo-bubble" style="animation-delay:.6s" cx="100" cy="12" r="2" fill="none" stroke="#a6e9ff" stroke-width=".9"/><circle class="echo-bubble" style="animation-delay:1.2s" cx="90" cy="0" r="1.6" fill="none" stroke="#a6e9ff" stroke-width=".9"/>`;
   if (sleep) extras = `<text class="echo-z" x="92" y="6" font-size="11" font-weight="800" fill="#b8a6ff">z</text><text class="echo-z" style="animation-delay:1.1s" x="100" y="-6" font-size="8" font-weight="800" fill="#b8a6ff">z</text>`;
   if (bare) { accExtra = ""; extras = ""; }
   const a11y = label ? `role="img" aria-label="${label}"` : `aria-hidden="true" focusable="false"`;
@@ -3859,7 +3907,7 @@ const ECHO_CLASSICS = [
 const ECHO_CREW = [
   { pose: "idle", acc: "wafer", n: "Wafer", d: "Hosting the theses map", go: "#theses", goText: "See the wafer map" },
   { pose: "idle", acc: "memo", n: "Analyst", d: "Grading the scorecard", go: "#scorecard", goText: "See the scorecard" },
-  { pose: "swim", acc: "helmet", n: "Astronaut", d: "For thinking big" }
+  { pose: "spacewalk", acc: "spacewalk", n: "Astronaut", d: "For thinking big" }
 ];
 
 function buildLine() {
