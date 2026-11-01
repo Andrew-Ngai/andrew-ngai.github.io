@@ -3389,17 +3389,21 @@ const VIZ = {
         <ul class="cn-parts" id="cnParts"></ul>
         <p class="cn-mem" id="cnMem"></p>
       </div>`;
-    const xs = y => 64 + (y - 2021) * 70, ys = g => 236 - g * .56;
-    const NV = [[2022, 80, "H100"], [2024, 141, "H200"], [2024.6, 192, "B200"], [2025.4, 288, "B300"], [2026.3, 288, "Rubin (HBM4)"]];
-    const GO = [[2021, 32, "v4"], [2023, 95, "v5p"], [2024, 32, "v6e"], [2025.4, 192, "v7 Ironwood"], [2026.3, 288, "8i (preview)"]];
-    const ser = (pts, c, cls, below) => `<polyline class="${cls}" points="${pts.map(([y, g]) => `${xs(y).toFixed(1)},${ys(g).toFixed(1)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round" pathLength="100"/>` +
-      pts.map(([y, g, l], i) => `<circle cx="${xs(y).toFixed(1)}" cy="${ys(g).toFixed(1)}" r="4.5" fill="${c}"/><text x="${xs(y).toFixed(1)}" y="${(ys(g) + (below ? 18 : -10)).toFixed(1)}" text-anchor="middle" font-size="11" class="t-strong" style="fill:${c}">${l}</text>`).join("");
-    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Memory per chip in gigabytes. Nvidia: H100 80 in 2022, H200 141 and B200 192 in 2024, B300 288 in 2025, Rubin 288 of HBM4 in 2026. Google TPUs: v4 32 in 2021, v5p 95 in 2023, v6e Trillium 32 in 2024, Ironwood 192 in 2025, TPU 8i 288 in 2026.">
+    const xs = y => 64 + (y - 2021) * 58, ys = g => 236 - g * .56;
+    const NV = [[2022, 80, "H100", 0, -11, "middle"], [2024, 141, "H200", -6, -9, "end"], [2024.6, 192, "B200", -6, -9, "end"], [2025.4, 288, "B300", -6, -9, "end"], [2026.3, 288, "Rubin (HBM4)", 11, -4, "start"]];
+    const GO = [[2021, 32, "v4", 9, 14, "start"], [2023, 95, "v5p", -4, 22, "end"], [2024, 32, "v6e", 9, 9, "start"], [2025.4, 192, "v7 Ironwood", 9, 10, "start"], [2026.3, 288, "8i (preview)", 11, 13, "start"]];
+    const halo = "paint-order:stroke;stroke:var(--ink);stroke-width:4px;stroke-linejoin:round";
+    const ser = (pts, c, r) => `<polyline class="cn-line" points="${pts.map(([y, g]) => `${xs(y).toFixed(1)},${ys(g).toFixed(1)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round" pathLength="100"/>` +
+      pts.map(([y, g]) => `<circle cx="${xs(y).toFixed(1)}" cy="${ys(g).toFixed(1)}" r="${r}" fill="${r > 5 ? "var(--ink)" : c}" stroke="${c}" stroke-width="${r > 5 ? 2.4 : 0}"/>`).join("");
+    const lab = (pts, c) => pts.map(([y, g, l, dx, dy, an]) => `<text x="${(xs(y) + dx).toFixed(1)}" y="${(ys(g) + dy).toFixed(1)}" text-anchor="${an}" font-size="12.5" class="t-strong" style="fill:${c};${halo}">${l}</text>`).join("");
+    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Memory per chip in gigabytes. Nvidia: H100 80 in 2022, H200 141 and B200 192 in 2024, B300 288 in 2025, Rubin 288 of HBM4 in 2026. Google TPUs: v4 32 in 2021, v5p 95 in 2023, v6e Trillium 32 in 2024, Ironwood 192 in 2025, TPU 8i 288 in 2026, a preview.">
         <text x="14" y="24" class="t-strong" font-size="16">Memory per chip (GB)</text>
-        <text x="14" y="42" font-size="12"><tspan style="fill:var(--beat)" font-weight="700">● Nvidia GPUs</tspan>  <tspan style="fill:var(--amber)" font-weight="700">● Google TPUs</tspan></text>
-        ${[0, 100, 200, 300].map(g => `<line class="gridl" x1="56" y1="${ys(g)}" x2="446" y2="${ys(g)}"/><text x="48" y="${ys(g) + 4}" text-anchor="end" font-size="11">${g}</text>`).join("")}
+        <text x="14" y="44" font-size="12.5"><tspan style="fill:var(--beat)" font-weight="700">● Nvidia GPUs</tspan><tspan dx="16" style="fill:var(--amber)" font-weight="700">● Google TPUs</tspan></text>
+        ${[0, 100, 200, 300].map(g => `<line class="gridl" x1="56" y1="${ys(g)}" x2="380" y2="${ys(g)}"/><text x="48" y="${ys(g) + 4}" text-anchor="end" font-size="11">${g}</text>`).join("")}
         ${[2021, 2022, 2023, 2024, 2025, 2026].map(y => `<text x="${xs(y)}" y="258" text-anchor="middle" font-size="11.5">${y}</text>`).join("")}
-        ${ser(GO, "var(--amber)", "cn-line", true)}${ser(NV, "var(--beat)", "cn-line", false)}
+        ${ser(GO, "var(--amber)", 4.5)}${ser(NV, "var(--beat)", 4.5)}
+        <circle cx="${xs(2026.3).toFixed(1)}" cy="${ys(288).toFixed(1)}" r="8" fill="none" stroke="var(--amber)" stroke-width="2"/>
+        ${lab(NV, "var(--beat)")}${lab(GO, "var(--amber)")}
       </svg>`;
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Named for Volta, Turing, Ampère, Lovelace, Hopper, Blackwell, Rubin and Feynman. Year = first launch.</p></div>
