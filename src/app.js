@@ -161,19 +161,18 @@ const SRC = {
   ocNow: "https://thegenaimagazine.com/openclaw-where-is-it-now-what-people-built-hype-dead",
   ocRedHat: "https://siliconangle.com/2026/10/27/red-hat-openclaw-agents-kubeconna/",
   saIIId: "https://situational-awareness.ai/the-free-world-must-prevail/",
-  aiIndex: "https://thenextweb.com/news/stanford-ai-index-2026-china-us-performance-gap",
+  aiIndex: "https://hai.stanford.edu/ai-index/2026-ai-index-report",
   epochShare: "https://officechai.com/ai/the-uss-share-of-new-compute-has-risen-from-60-in-2024-to-78-in-first-half-of-2026/",
   genesis: "https://www.govinfo.gov/content/pkg/FR-2025-11-28/html/2025-21665.htm",
-  phpKt: "https://www.koreatimes.co.kr/world/20261022/websites-go-dark-worldwide-as-ai-exposes-critical-security-flaws",
-  phpCtv: "https://ctvnews.ca/sci-tech/article/websites-shut-down-globally-after-ai-finds-cybersecurity-flaw-affecting-70-of-the-internet/",
-  phpPaubox: "https://www.paubox.com/blog/php-flaws-found-by-ai-force-governments-and-major-sites-offline",
-  plcAi: "https://www.helpnetsecurity.com/2026/08/20/usa-ai-attacks-siemens-s7-plcs-critical-infrastructure/",
-  altman3: "https://www.forbes.com/sites/anishasircar/2026/10/22/sam-altman-reportedly-laid-out-three-endgames-for-ai-and-one-ends-with-rivals-gpus-melted/",
-  altmanSI: "https://www.medianama.com/2026/02/223-superintelligence-within-years-sam-altman-meta-ai-scientist-disagrees/",
+  phpWiz: "https://www.wiz.io/blog/php2shell-php-rce",
+  phpAj: "https://www.aljazeera.com/news/2026/10/22/whats-the-php-coding-flaw-that-could-pull-down-70-percent-of-the-internet",
+  plcAi: "https://www.ic3.gov/CSA/2026/260819.pdf",
+  altman3: "https://www.theinformation.com/articles/altman-describes-three-endgames-ai-including-one-single-firm-melts-everyone-elses-gpus",
+  altmanSI: "https://www.businesstoday.in/technology/news/story/india-well-positioned-to-lead-in-ai-not-just-build-it-but-shape-it-sam-altman-a-sharp-turn-from-his-2023-hopeless-remark-516988-2026-02-19",
   gpuHammer: "https://arxiv.org/abs/2507.08166",
-  teeFail: "https://bleepingcomputer.com/news/security/teefail-attack-breaks-confidential-computing-on-intel-amd-nvidia-cpus",
-  meltdownPerf: "https://www.infoq.com/news/2018/01/intel-spectre-performance",
-  stuxnet: "https://www.rte.ie/brainstorm/2025/0624/1520026-iran-nuclear-power-stuxnet-cyberattack"
+  teeFail: "https://www.securityweek.com/new-attack-targets-ddr5-memory-to-steal-keys-from-intel-and-amd-tees/",
+  meltdownPerf: "https://access.redhat.com/articles/3307751",
+  stuxnet: "https://www.isis-online.org/uploads/isis-reports/documents/stuxnet_FEP_22Dec2010.pdf"
 };
 
 const BINS = {
@@ -535,7 +534,7 @@ const THESES = [
     bet: `Quantum’s first trillion-dollar consequence is a migration, not a computer. Back the post-quantum switchover: tools that find everywhere a company uses breakable encryption, post-quantum libraries and hardware security modules, wallet and custody upgrades for crypto, and the GPU-side control stack (decoders and low-latency links) that every quantum builder needs, whichever qubit type wins. The blockchain half of this story is in <a href="#ledger">Banks won’t mine</a>.`,
     wrong: "A quantum computer trains or serves a frontier AI model faster than GPUs before any quantum computer breaks a 256-bit elliptic-curve key.",
     receipts: [["Google Quantum AI on cryptocurrency (Mar 2026)", SRC.qGoogle], ["Forbes on Google’s paper (Mar 2026)", SRC.qForbes], ["The Quantum Insider on Quantum Echoes (Oct 2025)", SRC.qEchoes], ["Caltech’s 6,100-qubit array (Sept 2025)", SRC.qCaltech], ["Quantum Zeitgeist logical-qubit leaderboard (2026)", SRC.qBoard], ["DCD on IBM’s Starling roadmap (2025)", SRC.qIbm], ["Quantum Computing Report on NVQLink (Oct 2025)", SRC.qNvq], ["ForkLog on Glassnode’s exposed-key count (Oct 2026)", SRC.btcExposed]],
-    viz: "quantum", echo: { pose: "float", acc: "qubit", name: "Qubit" }
+    viz: "quantum", echo: { pose: "superpose", acc: "qubit", name: "Qubit" }
   },
   {
     id: "ledger", die: [4, -8], stance: "build",
@@ -554,7 +553,7 @@ const THESES = [
     bet: `Within five years, most money moving between big banks will move on shared ledgers: deposit tokens, tokenized Treasurys and stablecoins from bank subsidiaries. Banks still reconciling separate books will be slower and costlier than the ones that aren’t. Back the plumbing: bridges between bank chains and public ones, identity and compliance built into the token, custody, and post-quantum signatures before the ledgers are valuable enough to attack. The quantum side is in <a href="#quantum">Quantum’s first big job</a>.`,
     wrong: "By 2031, the biggest US banks still settle almost all of their payments with each other on legacy rails, and their chains are still pilots.",
     receipts: [["Satoshi Nakamoto, Bitcoin white paper (2008)", SRC.btcPaper], ["Catenaa on Kinexys and Mitsubishi (Apr 2026)", SRC.kinexys], ["OCC Bulletin 2026-50, GENIUS Act final rule (Oct 2026)", SRC.occGenius], ["Google Quantum AI on elliptic-curve keys (Mar 2026)", SRC.qGoogle]],
-    viz: "ledger", echo: { pose: "idle", acc: "chain", name: "Ledger" }
+    viz: "ledger", echo: { pose: "mint", acc: "chain", name: "Ledger" }
   },
   {
     id: "custom", die: [-3, -2], stance: "original",
@@ -575,7 +574,7 @@ const THESES = [
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
     receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["Motley Fool on the Lumentum talks (Oct 2026)", SRC.mrvlLite]],
-    viz: "custom", echo: { pose: "idle", acc: "goggles", name: "Chip designer" }
+    viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
   {
     id: "tokens", die: [6, -3], stance: "agree",
@@ -596,7 +595,7 @@ const THESES = [
     wrong: "By the end of 2027, Nebius earns no more revenue per megawatt than CoreWeave, or token prices fall faster than its cost per token, so selling tokens pays no better than renting GPUs.",
     note: "Not investment advice.",
     receipts: [["betteresearch, Nebius Investment Framework (May 2026)", SRC.nbFrame], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft]],
-    viz: "tokens", echo: { pose: "wave", acc: "tokens", name: "Token seller" }
+    viz: "tokens", echo: { pose: "sell", acc: "tokens", name: "Token seller" }
   },
   {
     id: "factory", die: [-4, 5], stance: "build",
@@ -616,12 +615,12 @@ const THESES = [
     bet: "Count AI capacity like an economy, not a server room: how many experts are on staff (agents running at once), how many hours they work (tokens), and how productive they are (tokens per watt). Back what raises output per megawatt: inference engines, smarter routing and caching, smaller distilled models, and in-country token factories for banks, hospitals and governments.",
     wrong: "By 2028, tokens per watt stop improving and per-token prices stop falling, so a token factory behaves like a utility with fixed output instead of an economy whose workforce keeps growing.",
     receipts: [["Dario Amodei, Machines of Loving Grace (Oct 2024)", SRC.amodeiMlg], ["Fortune on “a country of geniuses” (Jan 2026)", SRC.amodeiAdol], ["Civo Navigate London 2026 wrap-up (Sept 2026)", SRC.civoWrap], ["SiliconANGLE on Huang at GTC (Mar 2026)", SRC.gtc26], ["Google I/O 2026 keynote (May 2026)", SRC.googTok], ["Gigatokens and Civo (Oct 2026)", SRC.gigatokens], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf]],
-    viz: "factory", echo: { pose: "wave", acc: "hivis", name: "Foreman" }
+    viz: "factory", echo: { pose: "foreman", acc: "hivis", name: "Foreman" }
   },
   {
     id: "chipnames", die: [2, -6], stance: "original",
     title: "Every GPU name is a scientist and a year.",
-    h2: "Every GPU name | is a scientist | and a year.",
+    h2: "Every GPU name | is a scientist and a year.",
     short: "A scientist and a year",
     hook: "H100, B200, Rubin: the alphabet soup is a family tree. Learn the letters and the roadmap reads itself.",
     ref: { k: "Reference design", label: "Nvidia’s data-center GPU roadmap and Google’s TPU documentation, from Turing (2018) to Rubin (2026) and TPU v1 to TPU 8", href: SRC.nvRoad },
@@ -636,12 +635,12 @@ const THESES = [
     bet: "Ignore the name on the box and read three numbers: memory per chip, memory bandwidth, and how many chips act as one machine, 72 in an NVL72 rack or 9,216 in an Ironwood pod. That’s where the generations really differ. Back what wins whichever name is on the box: HBM suppliers, the interconnect that makes thousands of chips act as one, and software that moves models between GPUs and TPUs without a rewrite.",
     wrong: "By 2028, a chip with less memory and a smaller scale-up domain than its rivals wins the frontier on raw compute alone.",
     receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
-    viz: "chipnames", echo: { pose: "wave", acc: "nametag", name: "Name tag" }
+    viz: "chipnames", echo: { pose: "introduce", acc: "nametag", name: "Name tag" }
   },
   {
     id: "openclaw", die: [-5, -3], stance: "build",
     title: "OpenClaw gave the brain a body. Now it needs a badge.",
-    h2: "OpenClaw gave the brain | a body. | Now it needs a badge.",
+    h2: "OpenClaw gave | the brain a body. | Now it needs a badge.",
     short: "A body that needs a badge",
     hook: "The open-source agent that lives in your group chat is the best test yet of my brain-with-a-body thesis, and of what breaks without permissions.",
     ref: { label: "OpenClaw, Peter Steinberger’s open-source agent (November 2025 onward), now run by the OpenClaw Foundation", href: SRC.ocWiki },
@@ -655,7 +654,7 @@ const THESES = [
     bet: `Personal agents will follow the smartphone: open and messy first, then managed. Startups should run OpenClaw now for back-office work, with the sandbox on and only skills they’ve read. Big companies will run its descendants inside managed runtimes. Back the badge: agent identity and permissions, vetted skill registries, sandboxes and secret stores, and an audit log for every action. It’s the next step of the bet in <a href="#agent">An agent is a brain with a body</a>.`,
     wrong: "By 2028, most large companies still don’t let any autonomous agent act in employees’ email or calendars, sandboxed or not.",
     receipts: [["Wikipedia, OpenClaw", SRC.ocWiki], ["The GenAI Magazine, OpenClaw one year later (Oct 2026)", SRC.ocNow], ["SiliconANGLE on Red Hat and OpenShell (Oct 2026)", SRC.ocRedHat], ["Anthropic, Building effective agents (Dec 2024)", SRC.bea]],
-    viz: "openclaw", echo: { pose: "run", acc: "claw", name: "Claw" }
+    viz: "openclaw", echo: { pose: "snap", acc: "claw", name: "Claw" }
   },
   {
     id: "race", die: [-6, 1], stance: "agree",
@@ -674,8 +673,8 @@ const THESES = [
     ],
     bet: "Treat frontier AI as a strategic industry, the way the US treated chips in the 1980s and space in the 1960s: secure the inputs (power, fabs, packaging, talent), secure the outputs (model weights and access), and use the lead to set the safety rules everyone else has to meet. The Genesis Mission, the November 2025 order putting the Energy Department’s national labs behind AI for science, is a start. Back what the buildout and its defense need: power and grid, domestic packaging, AI-native cyber defense and secure compute for government.",
     wrong: "By 2028, Chinese models lead American ones for a full year, and US companies and defenses are no worse off for it. Then it was a market, not a race.",
-    receipts: [["Situational Awareness, ch. IIId", SRC.saIIId], ["TNW on Stanford’s 2026 AI Index (Apr 2026)", SRC.aiIndex], ["OfficeChai on Epoch AI’s compute shares (Oct 2026)", SRC.epochShare], ["Korea Times on the PHP flaws (Oct 2026)", SRC.phpKt], ["Help Net Security on AI-written PLC exploits (Aug 2026)", SRC.plcAi], ["Forbes on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Federal Register, Launching the Genesis Mission (Nov 2025)", SRC.genesis]],
-    viz: "race", echo: { pose: "run", acc: "baton", name: "Relay" }
+    receipts: [["Situational Awareness, ch. IIId", SRC.saIIId], ["Stanford HAI, 2026 AI Index Report (Apr 2026)", SRC.aiIndex], ["OfficeChai on Epoch AI’s compute shares (Oct 2026)", SRC.epochShare], ["Wiz Research on the PHP2Shell flaws (Oct 2026)", SRC.phpWiz], ["NSA, CISA, FBI, DOE and EPA advisory on Siemens S7 PLCs (Aug 2026)", SRC.plcAi], ["The Information on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Federal Register, Launching the Genesis Mission (Nov 2025)", SRC.genesis]],
+    viz: "race", echo: { pose: "sprint", acc: "baton", name: "Relay" }
   },
   {
     id: "silicon", die: [-9, -2], stance: "original",
@@ -683,19 +682,19 @@ const THESES = [
     h2: "Software can be patched. | Silicon has to be outlived.",
     short: "Silicon has to be outlived",
     hook: "If superintelligence arrives on Altman’s schedule, the weakest point won’t be the model. It’ll be the chips it runs on.",
-    ref: { k: "Reference design", label: "My own read of 2026’s AI-found flaws and hardware attacks, against Sam Altman’s superintelligence timeline", href: SRC.altmanSI },
+    ref: { k: "Reference design", label: "GPUHammer (University of Toronto, 2025): one flipped bit in an Nvidia GPU’s memory breaks the model, and the fix is a permanent tax", href: SRC.gpuHammer },
     signal: `<blockquote class="pull">…only a couple of years away | from early versions | of true superintelligence.</blockquote>
       <p>Sam Altman said that in February, adding that by the end of 2028 more of the world’s intellectual capacity could sit inside data centers than outside them. In October, The Information reported he had walked OpenAI staff through three endgames. In one, a lab uses self-improving AI to starve its rivals of chips, the “melt their GPUs” scenario. He reportedly called it terrible.</p>
       <p>Either way, the prize is the hardware.</p>`,
     takes: [
-      ["AI now finds holes faster than people fill them.", "Researchers using frontier AI models found two flaws that had hidden in PHP for more than a decade, and Wiz said AI did in a week what used to take a world-class team months. When the fix shipped on October 21, governments and companies pulled sites offline worldwide. Industrial systems are next in line: in August, federal agencies warned that attackers are using AI to write exploits for Siemens industrial controllers. So far they’re mapping systems, not breaking them. But Stuxnet showed in 2010 that code aimed at Siemens controllers can wreck about 1,000 centrifuges."],
-      ["Chip flaws don’t get patched. They get taxed.", "A hardware flaw is baked into the silicon, so software can only work around it, usually at a cost in speed. The 2018 fixes for Meltdown and Spectre slowed database-style workloads by 8% to 19%. In 2025, GPUHammer flipped one bit in an Nvidia A6000’s memory and dropped an image model’s accuracy from 80% to 0.08%. The fix, error-correcting memory, costs 6.5% of capacity and 3% to 10% of speed. TEE.fail used a memory-bus probe built for under $1,000 to pull keys from Intel’s and AMD’s secure enclaves and fake Nvidia attestations."],
-      ["So the trust boundary moves to the building.", "If chips can’t be made perfect, security comes from who can touch them and what they can reach: locked cages, isolated networks, attestation that a chip is genuine and unmodified, and replacing fleets before known flaws pile up. AMD said physical attacks like TEE.fail are out of scope for its chips. For a data center holding the most valuable model on Earth, physical access is the whole scope."]
+      ["AI now finds holes faster than people fill them.", "Researchers at Wiz and Calif used frontier AI models to find two flaws that had hidden in PHP for more than a decade. Wiz says one researcher with AI did in a week what used to take a world-class team months. When the fix shipped on October 21, governments and companies pulled sites offline worldwide. Industrial systems are next in line: in August, the NSA, CISA, FBI and two other agencies warned that attackers are using AI to write exploits for Siemens industrial controllers. So far they’re mapping systems, not breaking them. But Stuxnet, malware aimed at Siemens controllers, is believed to have wrecked about 1,000 of Iran’s centrifuges in 2009 and 2010."],
+      ["Chip flaws don’t get patched. They get taxed.", "A hardware flaw is baked into the silicon, so software can only work around it, usually at a cost in speed. Red Hat measured the first 2018 fixes for Meltdown and Spectre slowing database workloads by 8% to 19%, and later tuning only cut that to 4% to 8%. In 2025, GPUHammer flipped one bit in an Nvidia A6000’s memory and dropped an image model’s accuracy from 80% to 0.08%. The fix, error-correcting memory, costs 6.5% of capacity and 3% to 10% of speed. TEE.fail used a memory-bus probe built for under $1,000 to pull keys from Intel’s and AMD’s secure enclaves and break Nvidia’s GPU attestation."],
+      ["So the trust boundary moves to the building.", "If chips can’t be made perfect, security comes from who can touch them and what they can reach: locked cages, isolated networks, attestation that a chip is genuine and unmodified, and replacing fleets before known flaws pile up. Intel and AMD say attacks that need physical access are outside their chips’ threat model. For a data center holding the most valuable model on Earth, physical access is the whole scope."]
     ],
     bet: `As AI gets more capable, the decisive security work moves from patching software to defending hardware and buildings. Back defensive AI that finds and fixes flaws before attackers do, memory encryption with integrity checks, hardware attestation, monitoring for industrial control systems, and data centers where physical access is the hardest thing to get. It’s the physical half of <a href="#weights">Weights are the new crown jewels</a>.`,
     wrong: "By 2028, a new generation of AI accelerators goes two years with no publicly demonstrated hardware attack, and serious AI-found software flaws get rarer, not more common.",
-    receipts: [["Medianama on Altman’s superintelligence remarks (Feb 2026)", SRC.altmanSI], ["Forbes on Altman’s three endgames (Oct 2026)", SRC.altman3], ["CTV News on the PHP flaws (Oct 2026)", SRC.phpCtv], ["Paubox on the PHP fix and shutdowns (Oct 2026)", SRC.phpPaubox], ["Help Net Security on AI-written PLC exploits (Aug 2026)", SRC.plcAi], ["RTÉ on Stuxnet (2025)", SRC.stuxnet], ["InfoQ on Meltdown and Spectre slowdowns (Jan 2018)", SRC.meltdownPerf], ["GPUHammer paper (2025)", SRC.gpuHammer], ["BleepingComputer on TEE.fail (Oct 2025)", SRC.teeFail]],
-    viz: "silicon", echo: { pose: "idle", acc: "patch", name: "Patcher" }
+    receipts: [["Business Today on Altman’s India AI Impact Summit keynote (Feb 2026)", SRC.altmanSI], ["The Information on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Wiz Research on the PHP2Shell flaws (Oct 2026)", SRC.phpWiz], ["Al Jazeera on the PHP shutdowns (Oct 2026)", SRC.phpAj], ["NSA, CISA, FBI, DOE and EPA advisory on Siemens S7 PLCs (Aug 2026)", SRC.plcAi], ["Institute for Science and International Security on Stuxnet at Natanz (Dec 2010)", SRC.stuxnet], ["Red Hat on Meltdown and Spectre performance costs (2018, updated 2019)", SRC.meltdownPerf], ["GPUHammer paper, University of Toronto (2025)", SRC.gpuHammer], ["SecurityWeek on TEE.fail (Oct 2025)", SRC.teeFail]],
+    viz: "silicon", echo: { pose: "patch", acc: "patch", name: "Patcher" }
   }
 ];
 
@@ -732,15 +731,19 @@ const EYES_OPEN = `<circle cx="11.6" cy="18.5" r="2.6" fill="#1b1530"/><circle c
 const EYES_SHUT = `<path d="M8.9 18.8 Q11.6 21.2 14.3 18.8 M85.7 18.8 Q88.4 21.2 91.1 18.8" stroke="#1b1530" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
 const spark = (x, y, s, c, d) => `<g transform="translate(${x} ${y}) scale(${s})"><path class="echo-spark" style="animation-delay:${d}s" d="M0 -5 C.7 -.7 .7 -.7 5 0 C.7 .7 .7 .7 0 5 C-.7 .7 -.7 .7 -5 0 C-.7 -.7 -.7 -.7 0 -5 Z" fill="${c}"/></g>`;
 
+const ECHO_SHELL = "M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z";
+
 function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const k = "pq" + (++echoN);
-  const up = pose === "wave" || pose === "cheer";
+  const up = pose === "wave" || pose === "cheer" || pose === "sell";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
   const finR = pose === "cheer" ? FIN_UP_R : FIN_DOWN_R;
   // sitting or dozing on a ledge: no floor, so no shadow, and the feet dangle over the edge
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
-  let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "";
+  let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "", hideFinR = false;
+  // a prop held in a fin rides in an .echo-hand-* group that turns with that fin; a fin-colored mitt wraps the grip
+  const mitt = (x, y, r = -20) => `<ellipse cx="${x}" cy="${y}" rx="5" ry="5.6" transform="rotate(${r} ${x} ${y})" fill="url(#${k}n)"/>`;
   if (acc === "hardhat") {
     accDefs = `<linearGradient id="${k}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#ffb23f"/></linearGradient>`;
     accIn = `<path d="M17 4 C17 -17 83 -17 83 4 Z" fill="url(#${k}h)"/><path d="M50 -13.6 V3" stroke="#d98a12" stroke-width="3" stroke-linecap="round"/><rect x="8" y="1.5" width="84" height="7" rx="3.5" fill="#f2a12a"/><path d="M27 -5 Q31 -11 39 -12.6" stroke="#fff" stroke-opacity=".6" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
@@ -809,49 +812,68 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="echo-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
     accBack = spark(-12, -12, .8, "#ffb23f", 0) + spark(112, 4, .6, "#fff", .4) + spark(118, 70, .7, "#4fd2ff", .8);
   } else if (acc === "qubit") {
-    // a Bloch sphere in hand, its state arrow sweeping, and two entangled sparks orbiting the head
-    accIn = `<g transform="translate(91 66)"><circle r="13" fill="#bfe9ff" fill-opacity=".18" stroke="#a6e9ff" stroke-width="1.2"/><ellipse rx="13" ry="4.2" fill="none" stroke="#a6e9ff" stroke-width=".9" stroke-dasharray="2 2"/><path d="M0 -13 V13" stroke="#a6e9ff" stroke-width=".7" opacity=".6"/><g class="echo-spin" style="animation-duration:3.2s"><circle r="13" fill="none"/><path d="M0 0 L7.5 -8.5" stroke="#ffd98a" stroke-width="2" stroke-linecap="round"/><circle cx="7.5" cy="-8.5" r="2.4" fill="#ffd98a"/></g><circle r="1.6" fill="#fff"/></g>`;
-    accExtra = spark(4, -6, .55, "#4fd2ff", 0) + spark(98, -12, .5, "#ffd98a", .6) + `<ellipse cx="50" cy="-4" rx="40" ry="6" fill="none" stroke="#a6e9ff" stroke-opacity=".45" stroke-width=".8" stroke-dasharray="3 3"/>`;
+    // superposition: two ghost Echoes split off and collapse back in a flash; a Bloch sphere in hand; an entangled pair orbits the head
+    const ghost = (c, col) => `<g class="${c}"><path d="${ECHO_SHELL}" fill="${col}" fill-opacity=".38" stroke="${col}" stroke-width="1.3"/><ellipse cx="29.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><ellipse cx="70.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="${col}" fill-opacity=".3"/></g>`;
+    accBack = ghost("echo-ghost-l", "#4fd2ff") + ghost("echo-ghost-r", "#ffd98a") + `<circle class="echo-collapse" cx="50" cy="52" r="46" fill="none" stroke="#a6e9ff" stroke-width="1.8"/>`;
+    accIn = `<g class="echo-hand-r"><g transform="translate(99 69)"><circle r="11.5" fill="#bfe9ff" fill-opacity=".22" stroke="#a6e9ff" stroke-width="1.2"/><ellipse rx="11.5" ry="3.8" fill="none" stroke="#a6e9ff" stroke-width=".9" stroke-dasharray="2 2"/><path d="M0 -11.5 V11.5" stroke="#a6e9ff" stroke-width=".7" opacity=".6"/><g class="echo-spin" style="animation-duration:2.6s"><circle r="11.5" fill="none"/><path d="M0 0 L6.6 -7.6" stroke="#ffd98a" stroke-width="2" stroke-linecap="round"/><circle cx="6.6" cy="-7.6" r="2.2" fill="#ffd98a"/></g><circle r="1.5" fill="#fff"/></g>${mitt(95.5, 82)}</g>` +
+      `<ellipse cx="50" cy="-5" rx="42" ry="6" fill="none" stroke="#a6e9ff" stroke-opacity=".35" stroke-width=".8" stroke-dasharray="3 3"/>` +
+      [["#4fd2ff", 0], ["#ffd98a", 1]].map(([c, h]) => `<g class="echo-orb-x" style="animation-delay:${-1.1 * h}s"><g class="echo-orb-y" style="animation-delay:${(-.55 - 1.1 * h).toFixed(2)}s"><circle cx="50" cy="-5" r="5.2" fill="${c}" opacity=".25"/><circle cx="50" cy="-5" r="2.8" fill="${c}"/></g></g>`).join("");
   } else if (acc === "chain") {
-    // a block from the whiteboard in each hand, linked by a chain: data, hash, previous hash
-    const cube = (x, y, c) => `<g transform="translate(${x} ${y})"><path d="M-9 -4 L0 -9 L9 -4 L0 1 Z" fill="${c}" opacity=".95"/><path d="M-9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".7"/><path d="M9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".5"/><path d="M-9 -4 L0 1 L9 -4 M0 1 V12" stroke="#fff" stroke-opacity=".5" stroke-width=".6" fill="none"/></g>`;
-    accIn = cube(93, 62, "#ffb23f") + `<path d="M84 70 Q70 86 52 84" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/>`;
-    accExtra = cube(-6, 66, "#4fd2ff") + `<path d="M3 72 Q18 88 40 86" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/><text class="echo-z" x="98" y="40" font-size="8" font-weight="800" fill="#ffb23f">#</text><text class="echo-z" style="animation-delay:1.4s" x="-10" y="46" font-size="8" font-weight="800" fill="#4fd2ff">#</text>`;
+    // Ledger: hashes the block in hand, adds it to the chain stacked beside it, and nods it through
+    const cube = (x, y, c) => `<g transform="translate(${x} ${y})"><path d="M-9 -4 L0 -9 L9 -4 L0 1 Z" fill="${c}"/><path d="M-9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".72"/><path d="M9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".5"/><path d="M-9 -4 L0 1 L9 -4 M0 1 V12" stroke="#fff" stroke-opacity=".5" stroke-width=".6" fill="none"/></g>`;
+    accIn = `<g class="echo-hand-r"><g class="echo-mint-held">${cube(99, 70, "#ffb23f")}</g><text class="echo-mint-hash" x="99" y="57" text-anchor="middle" font-size="11" font-weight="900" fill="#ffd98a">#</text>${mitt(95.5, 82)}</g>`;
+    accExtra = cube(-6, 97, "#4fd2ff") + cube(-6, 86, "#a08bff") + `<g class="echo-mint-drop">${cube(-6, 75, "#ffb23f")}</g>` +
+      `<g class="echo-mint-link"><rect x="5" y="76" width="7" height="4.4" rx="2.2" fill="none" stroke="#cfc6f5" stroke-width="1.4" transform="rotate(-35 8.5 78.2)"/><rect x="9" y="72.6" width="7" height="4.4" rx="2.2" fill="none" stroke="#ffd98a" stroke-width="1.4" transform="rotate(-35 12.5 74.8)"/></g>`;
   } else if (acc === "goggles") {
-    // Chip designer A: brass goggles over the eyes with a flip-down loupe, and tweezers holding a glowing die
+    // Chip designer: brass goggles; lifts the die in tweezers, leans in, flips the loupe down, and signs it off
     accIn = `<path d="M7 20 C9 -1 91 -1 93 20" stroke="#2b2142" stroke-width="3" fill="none"/>` +
       [11.6, 88.4].map(x => `<circle cx="${x}" cy="18.5" r="7.4" fill="#a6e9ff" fill-opacity=".3" stroke="#ffb23f" stroke-width="2.6"/><circle cx="${x}" cy="18.5" r="7.4" fill="none" stroke="#d98a12" stroke-width=".7"/><path d="M${(x - 4.4).toFixed(1)} 15.6 A5.2 5.2 0 0 1 ${(x - .6).toFixed(1)} 13.3" stroke="#fff" stroke-width="1.3" fill="none" opacity=".85"/>`).join("") +
-      `<g transform="translate(88.4 18.5)"><path d="M6 -3 L13 -9" stroke="#ffb23f" stroke-width="2.4" stroke-linecap="round"/><circle cx="16.5" cy="-11.5" r="5.8" fill="#bfe9ff" fill-opacity=".5" stroke="#d98a12" stroke-width="2.2"/><circle class="echo-glint" cx="14.6" cy="-13.4" r="1.5" fill="#fff"/></g>` +
-      `<g transform="translate(84 80) rotate(-38)"><path d="M0 0 L23 -2.4 M0 0 L23 2.4" stroke="#dfe5f0" stroke-width="1.9" stroke-linecap="round"/><circle r="1.6" fill="#8a93a8"/><g transform="translate(27.5 0)"><rect x="-5" y="-5" width="10" height="10" rx="1.2" fill="#211a32" stroke="#4fd2ff" stroke-width="1.1"/><rect class="echo-led" x="-2.4" y="-2.4" width="4.8" height="4.8" fill="#4fd2ff"/></g></g>`;
-    accExtra = spark(116, 34, .5, "#4fd2ff", 0) + spark(108, 22, .38, "#ffd98a", .6);
+      `<g class="echo-loupe"><path d="M95.5 12 L92.6 14.9" stroke="#ffb23f" stroke-width="2.4" stroke-linecap="round"/><circle cx="88.4" cy="18.5" r="6.2" fill="#bfe9ff" fill-opacity=".55" stroke="#d98a12" stroke-width="2.2"/><circle cx="86.5" cy="16.6" r="1.5" fill="#fff"/><circle cx="95.5" cy="12" r="2" fill="#d98a12"/></g>` +
+      `<g class="echo-hand-r"><path d="M93 82 L104.2 62.4 M93 82 L107.6 64.4" stroke="#dfe5f0" stroke-width="1.9" stroke-linecap="round"/><g transform="translate(108.2 59.6) rotate(-30)"><rect x="-5.2" y="-5.2" width="10.4" height="10.4" rx="1.2" fill="#211a32" stroke="#4fd2ff" stroke-width="1.1"/><rect class="echo-die-led" x="-2.5" y="-2.5" width="5" height="5" fill="#4fd2ff"/></g><g class="echo-ok"><circle cx="108" cy="45" r="5" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M105.6 45 L107.4 46.8 L110.6 43.4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>${mitt(95.5, 82)}</g>`;
   } else if (acc === "tokens") {
-    // a ticket roll of tokens, priced by the million
-    const coin = (y, d) => `<g class="echo-stack" style="animation-delay:${d}s"><ellipse cx="0" cy="${y}" rx="9" ry="3.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".7"/><text x="0" y="${y + 2}" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32">TOK</text></g>`;
-    accIn = `<g transform="translate(92 74)">${coin(0, 0)}${coin(-5, .12)}${coin(-10, .24)}${coin(-15, .36)}</g><g transform="translate(91 40) rotate(10)"><path d="M0 -4 V2" stroke="#cfc6f5" stroke-width="1.1"/><rect x="-13" y="2" width="26" height="12" rx="2" fill="#fbfaff" stroke="#cfc6f5"/><text x="0" y="10.6" text-anchor="middle" font-size="6.2" font-weight="900" fill="#211a32">$/M tok</text></g>`;
-    accExtra = [[-12, 30, 0], [-6, 56, .6], [-14, 80, 1.2]].map(([x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="8" font-weight="800" fill="#ffb23f">tok</text>`).join("");
+    // Token seller: hawks a TOKENS sign with one fin and flips a token off the stack in the other
+    const coin = y => `<ellipse cx="97" cy="${y + 1.3}" rx="8.2" ry="3.1" fill="#c47a0e"/><ellipse cx="97" cy="${y}" rx="8.2" ry="3.1" fill="#ffb23f" stroke="#d98a12" stroke-width=".6"/>`;
+    accIn = `<g class="echo-hand-l"><path d="M9 6 V-9" stroke="#9c7440" stroke-width="2.2" stroke-linecap="round"/><rect x="-12" y="-22" width="42" height="13.5" rx="2.2" fill="#fbfaff" stroke="#ffb23f" stroke-width="1.3"/><text x="4.4" y="-12.4" text-anchor="middle" font-size="7.4" font-weight="900" fill="#211a32" textLength="25" lengthAdjust="spacingAndGlyphs">TOKENS</text><rect x="19" y="-20" width="9" height="9.5" rx="1.6" fill="#ffb23f"/><text x="23.5" y="-13.4" text-anchor="middle" font-size="4.8" font-weight="900" fill="#211a32" textLength="7.2" lengthAdjust="spacingAndGlyphs">$/M</text>${mitt(9, 5, 0)}</g>` +
+      `<g class="echo-hand-r">${coin(78)}${coin(74)}${coin(70)}<g class="echo-toss"><g class="echo-coin"><circle cx="97" cy="66" r="7.4" fill="#ffb23f" stroke="#d98a12" stroke-width="1.1"/><circle cx="97" cy="66" r="4.6" fill="none" stroke="#ffd98a" stroke-width="1.2"/></g></g><g class="echo-ching">${[[87, 58, .5], [108, 60, .42], [100, 50, .36]].map(([x, y, s]) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 -5 C.7 -.7 .7 -.7 5 0 C.7 .7 .7 .7 0 5 C-.7 .7 -.7 .7 -5 0 C-.7 -.7 -.7 -.7 0 -5 Z" fill="#ffd98a"/>`).join("")}</g>${mitt(96, 84)}</g>`;
   } else if (acc === "hivis") {
-    // Foreman B: hi-vis vest, a headset to call the shift, and a clipboard tallying tokens
+    // Foreman: hi-vis vest and a bright headset; points the shift where to go, radios it in, and ticks off the tally
     const panel = s => `<path d="M${50 + s * 35} 50 C${50 + s * 30} 47 ${50 + s * 22} 46 ${50 + s * 16} 47 L${50 + s * 18} 93 C${50 + s * 24} 93 ${50 + s * 30} 90 ${50 + s * 34} 86 Z" fill="#ff8a3d" stroke="#e06a1f" stroke-width=".9"/><path d="M${50 + s * 34.6} 64 L${50 + s * 16.7} 64 L${50 + s * 16.9} 68.5 L${50 + s * 34.5} 68.5 Z M${50 + s * 34.3} 76 L${50 + s * 17.2} 76 L${50 + s * 17.4} 80.5 L${50 + s * 34.2} 80.5 Z" fill="#fff3a8"/>`;
     accIn = panel(-1) + panel(1) +
-      `<path d="M3 24 C2 -8 98 -8 97 24" stroke="#2b2142" stroke-width="3.4" fill="none" stroke-linecap="round"/><rect x="-2" y="17" width="9" height="15" rx="4" fill="#2b2142"/><rect x="93" y="17" width="9" height="15" rx="4" fill="#2b2142"/><path d="M3 31 C2 46 12 51 22 50" stroke="#2b2142" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="24.5" cy="50" rx="3.4" ry="2.8" fill="#ffb23f"/>` +
-      `<g transform="translate(94 70) rotate(10)"><rect x="-11" y="-14" width="22" height="28" rx="2" fill="#c79a5b" stroke="#9c7440"/><rect x="-8.5" y="-10" width="17" height="21" rx="1" fill="#fbfaff"/><rect x="-5" y="-16" width="10" height="5" rx="1.5" fill="#cfd6e4" stroke="#8a93a8" stroke-width=".7"/><text x="0" y="-4.5" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32">TOKENS</text>${[0, 1, 2].map(i => `<path d="M-6 ${(-.5 + i * 4.2).toFixed(1)} l1.6 1.6 l3 -3" stroke="#2fb87a" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-0.5 ${(.4 + i * 4.2).toFixed(1)} H6" stroke="#cfc6f5" stroke-width="1.1"/>`).join("")}</g>`;
+      `<path d="M3 24 C2 -8 98 -8 97 24" stroke="#1f86b0" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M3 24 C2 -8 98 -8 97 24" stroke="#4fd2ff" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M16 3 C32 -6 68 -6 84 3" stroke="#fff" stroke-opacity=".6" stroke-width="1" fill="none" stroke-linecap="round"/>` +
+      `<rect x="-3" y="15.5" width="11" height="17" rx="5" fill="#4fd2ff" stroke="#1f86b0" stroke-width="1.3"/><rect x="92" y="15.5" width="11" height="17" rx="5" fill="#4fd2ff" stroke="#1f86b0" stroke-width="1.3"/><path d="M-.5 19 V28 M100.5 19 V28" stroke="#fff" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"/>` +
+      `<path d="M3 31 C2 46 12 51 22 50" stroke="#1f86b0" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M3 31 C2 46 12 51 22 50" stroke="#4fd2ff" stroke-width="1.8" fill="none" stroke-linecap="round"/><ellipse class="echo-mic" cx="24.5" cy="50" rx="3.8" ry="3.2" fill="#ffd23f" stroke="#d98a12" stroke-width=".8"/>` +
+      `<g class="echo-hand-r"><g transform="rotate(8 99 68)"><rect x="88" y="54" width="22" height="28" rx="2" fill="#c79a5b" stroke="#9c7440"/><rect x="90.5" y="58" width="17" height="21.5" rx="1" fill="#fbfaff"/><rect x="94" y="52" width="10" height="5" rx="1.5" fill="#cfd6e4" stroke="#8a93a8" stroke-width=".7"/><text x="99" y="63.6" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32" textLength="13" lengthAdjust="spacingAndGlyphs">TOKENS</text>${[0, 1, 2].map(i => `<path class="echo-chk echo-chk${i + 1}" d="M92.4 ${(67.4 + i * 4.2).toFixed(1)} l1.6 1.6 l3 -3" stroke="#2fb87a" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M98.6 ${(68.3 + i * 4.2).toFixed(1)} H105.4" stroke="#cfc6f5" stroke-width="1.1"/>`).join("")}</g>${mitt(95, 83)}</g>`;
+    accExtra = `<g class="echo-radio">${[0, 1, 2].map(i => `<path style="animation-delay:${(i * .09).toFixed(2)}s" d="M${-6 - i * 4} ${16 - i * 2} Q${-10 - i * 5} 24 ${-6 - i * 4} ${32 + i * 2}" stroke="#4fd2ff" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join("")}</g>`;
   } else if (acc === "nametag") {
-    // a "Hello, my name is" sticker reading H100
-    accIn = `<g transform="translate(50 70) rotate(-6)"><rect x="-21" y="-12" width="42" height="25" rx="3" fill="#fff" stroke="#ff6b80" stroke-width="1"/><path d="M-21 -9 A3 3 0 0 1 -18 -12 H18 A3 3 0 0 1 21 -9 V-3 H-21 Z" fill="#ff6b80"/><text x="0" y="-5.2" text-anchor="middle" font-size="4.4" font-weight="900" fill="#fff" textLength="33" lengthAdjust="spacingAndGlyphs">HELLO MY NAME IS</text><text x="0" y="9" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="12" font-weight="900" fill="#211a32">H100</text></g>`;
-    accExtra = spark(102, 30, .6, "#ffd98a", 0) + spark(-8, 40, .5, "#4fd2ff", .5);
+    // Name tag: the sticker flips through the names (T4, A100, H100, B200), and Echo does a ta-da for each one
+    accIn = `<g class="echo-tag"><g transform="translate(50 70) rotate(-6)"><rect x="-21" y="-12" width="42" height="25" rx="3" fill="#fff" stroke="#ff6b80" stroke-width="1"/><path d="M-21 -9 A3 3 0 0 1 -18 -12 H18 A3 3 0 0 1 21 -9 V-3 H-21 Z" fill="#ff6b80"/><text x="0" y="-5.2" text-anchor="middle" font-size="4.4" font-weight="900" fill="#fff" textLength="33" lengthAdjust="spacingAndGlyphs">HELLO MY NAME IS</text>` +
+      ["T4", "A100", "H100", "B200"].map((n, i) => `<text class="echo-nm" style="animation-delay:${[0, -4.5, -3, -1.5][i]}s" x="0" y="9" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="12.5" font-weight="900" fill="#211a32">${n}</text>`).join("") + `</g></g>`;
+    accExtra = spark(104, 28, .62, "#ffd98a", 0) + spark(-8, 38, .5, "#4fd2ff", .5) + spark(110, 66, .42, "#ff6b80", .9);
   } else if (acc === "claw") {
-    // a lobster claw for a hand and two antennae: an agent that grabs things
-    accIn = `<path d="M38 3 C34 -8 26 -14 18 -16 M62 3 C66 -8 74 -14 82 -16" stroke="#ff6b80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="-16" r="2.4" fill="#ff6b80"/><circle cx="82" cy="-16" r="2.4" fill="#ff6b80"/>` +
-      `<g transform="translate(92 66) rotate(-20)"><path d="M-6 6 C-10 -6 -6 -18 6 -20 C10 -12 8 -6 2 -4 C8 -2 12 2 10 8 C4 12 -2 10 -6 6 Z" fill="#ff6b80" stroke="#c94a5e" stroke-width=".9"/><path d="M2 -4 L8 -10" stroke="#c94a5e" stroke-width="1.4" stroke-linecap="round"/><circle cx="-1" cy="-9" r="1.4" fill="#fff" opacity=".7"/></g>`;
-    accExtra = `<g transform="translate(-10 34)"><rect x="-8" y="-6" width="16" height="12" rx="4" fill="#4fd2ff"/><path d="M-4 6 L-6 10 L0 6" fill="#4fd2ff"/><circle cx="-3.5" cy="0" r="1.1" fill="#211a32"/><circle cx="0" cy="0" r="1.1" fill="#211a32"/><circle cx="3.5" cy="0" r="1.1" fill="#211a32"/></g>`;
+    // Claw: the whole right arm is a lobster claw; crab-shuffles, raises the claw, and snaps twice; antennae twitch while the agent types
+    hideFinR = true;
+    accIn = `<g class="echo-ant-l"><path d="M38 3 C34 -8 26 -14 18 -16" stroke="#ff6b80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="-16" r="2.4" fill="#ff6b80"/></g><g class="echo-ant-r"><path d="M62 3 C66 -8 74 -14 82 -16" stroke="#ff6b80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="82" cy="-16" r="2.4" fill="#ff6b80"/></g>` +
+      `<g class="echo-claw-arm"><path d="M90 50 C99 52 106 49 107 41 L107.5 29" stroke="#c94a5e" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 50 C99 52 106 49 107 41 L107.5 29" stroke="#ff6b80" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M98.6 46.4 l-1.4 6.2 M103 39.4 l6.4 -.4" stroke="#c94a5e" stroke-width="1.3" stroke-linecap="round"/><g transform="translate(104.5 15) rotate(10)"><path class="echo-pincer" d="M-2.4 0 C-8.6 -5 -9 -15 -3.6 -23.5 C-2 -16 -.6 -8.4 1.8 -1.4 Z" fill="#ff8a9a" stroke="#c94a5e" stroke-width=".9" stroke-linejoin="round"/><path d="M-6 13 C-11 9 -10 1 -3.5 -1 C1 -2.4 5 -8 6.4 -24.6 C11.4 -17 13 -6 10.6 3 C9 10.4 1.6 16.6 -6 13 Z" fill="#ff6b80" stroke="#c94a5e" stroke-width=".9" stroke-linejoin="round"/><path d="M4.6 -6 l-2.2 -.4 M5.6 -12 l-2.2 -.2 M6 -18 l-2 0" stroke="#c94a5e" stroke-width="1" stroke-linecap="round"/><ellipse cx="2" cy="5" rx="3.4" ry="2" fill="#fff" opacity=".45" transform="rotate(-40 2 5)"/><g class="echo-snapfx" stroke="#ffd98a" stroke-width="1.5" stroke-linecap="round"><path d="M1 -28 V-33 M-4.6 -27 L-7.4 -31 M6.6 -27 L9.4 -31"/></g></g></g>`;
+    accExtra = `<g transform="translate(-9 32)"><rect x="-8.5" y="-6.5" width="17" height="13" rx="4.5" fill="#4fd2ff"/><path d="M-4 6.4 L-6.4 10.6 L.4 6.4" fill="#4fd2ff"/>${[-4, 0, 4].map((x, i) => `<circle class="echo-type" style="animation-delay:${(i * .15).toFixed(2)}s" cx="${x}" cy="0" r="1.25" fill="#211a32"/>`).join("")}</g>`;
   } else if (acc === "baton") {
-    // a relay baton in hand and a stopwatch: a race you hand off, and keep timing
-    accIn = `<g transform="translate(92 64) rotate(-35)"><rect x="-4" y="-16" width="8" height="32" rx="4" fill="#ffb23f" stroke="#d98a12" stroke-width=".8"/><path d="M-4 -6 H4 M-4 6 H4" stroke="#fff" stroke-opacity=".7" stroke-width="1.4"/></g>`;
-    accExtra = `<g transform="translate(-8 60)"><rect x="-2" y="-14" width="4" height="4" rx="1" fill="#cfc6f5"/><circle r="9" fill="#fbfaff" stroke="#9b83ff" stroke-width="1.4"/><g class="echo-spin" style="animation-duration:2s"><circle r="6.5" fill="none"/><path d="M0 0 V-6.5" stroke="#ff6b80" stroke-width="1.4" stroke-linecap="round"/></g><circle r="1.3" fill="#211a32"/></g>`;
+    // Relay: sprints with the baton actually in hand, pumping both fins, and reaches it forward for the hand-off every few strides
+    accIn = `<g class="echo-hand-r"><g transform="translate(97 80) rotate(28)"><rect x="-4.2" y="-17" width="8.4" height="34" rx="4.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".8"/><path d="M-4.2 -9 H4.2 M-4.2 9 H4.2" stroke="#fff" stroke-opacity=".8" stroke-width="1.6"/></g><g class="echo-passfx" stroke="#ffd98a" stroke-width="1.6" stroke-linecap="round"><path d="M108 58 l4 -4 M110.6 63.4 h5.6 M104.4 55.2 v-5.4"/></g>${mitt(95.5, 82)}</g>`;
+    accExtra = `<g transform="translate(-6 4)"><rect x="-2" y="-14" width="4" height="4" rx="1" fill="#cfc6f5"/><circle r="9" fill="#fbfaff" stroke="#9b83ff" stroke-width="1.4"/><g class="echo-spin" style="animation-duration:2s"><circle r="6.5" fill="none"/><path d="M0 0 V-6.5" stroke="#ff6b80" stroke-width="1.4" stroke-linecap="round"/></g><circle r="1.3" fill="#211a32"/></g>` +
+      [[-24, 46, 17, "#4fd2ff", 0], [-20, 62, 13, "#ff6b80", .1], [-17, 78, 10, "#fbfaff", .2]].map(([x, y, w, c, d]) => `<rect class="echo-speed" style="animation-delay:${d}s" x="${x}" y="${y}" width="${w}" height="2.6" rx="1.3" fill="${c}"/>`).join("") +
+      [[6, 104, 0], [16, 107, .25]].map(([x, y, d]) => `<circle class="echo-dust" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="4" fill="#cfc6f5"/>`).join("");
   } else if (acc === "patch") {
-    // a chip with a bandage on it (silicon can only be worked around) and a bug slinking off
-    accIn = `<g transform="translate(90 68) rotate(-10)"><rect x="-13" y="-13" width="26" height="26" rx="2.5" fill="#1b1530" stroke="#4a3f86"/>${[-8, -2, 4].map(v => `<rect x="${v}" y="-16" width="2.4" height="3" fill="#ffc566"/><rect x="${v}" y="13" width="2.4" height="3" fill="#ffc566"/>`).join("")}<g transform="rotate(-38)"><rect x="-15" y="-4.5" width="30" height="9" rx="4.5" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="-4.5" y="-4.5" width="9" height="9" fill="#f2c096"/><circle cx="-10" cy="-1.5" r=".7" fill="#d9a072"/><circle cx="-8" cy="1.5" r=".7" fill="#d9a072"/><circle cx="8" cy="-1.5" r=".7" fill="#d9a072"/><circle cx="10" cy="1.5" r=".7" fill="#d9a072"/></g></g>`;
-    accExtra = `<g transform="translate(-8 74)"><g class="echo-speed" style="animation-duration:1.4s"><ellipse rx="6" ry="4.4" fill="#2fb87a"/><circle cx="6" cy="0" r="2.6" fill="#2fb87a"/><path d="M-4 -4 L-6 -8 M0 -4 L0 -8 M4 -4 L6 -8 M-4 4 L-6 8 M0 4 L0 8 M4 4 L6 8 M8 -1 L11 -4 M8 1 L11 4" stroke="#2fb87a" stroke-width="1" stroke-linecap="round"/></g></g>`;
+    // Patcher: a chip doctor with a head mirror; slaps a bandage on a cracked chip, the green check lasts a beat, then the crack glows straight through and Echo shrugs
+    const crack = "M-12.6 87.6 L-8.4 92 L-10.6 94.8 L-4.6 98.2 L-6.6 100.6 L-1.4 102.6";
+    accIn = `<path d="M8 22 C9 -2 91 -2 92 22" stroke="#2b2142" stroke-width="2.6" fill="none"/><g transform="translate(50 3.5)"><circle r="8.6" fill="#dfe5f0" stroke="#8a93a8" stroke-width="1.3"/><circle r="6.2" fill="#f7faff"/><circle r="1.7" fill="#2b2142"/><path class="echo-glint" d="M-4.6 -2.4 A5 5 0 0 1 -1.8 -4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>` +
+      `<g class="echo-hand-l"><g class="echo-aid-held" transform="rotate(62 4.6 84)"><rect x="-3.6" y="80.6" width="16.4" height="6.8" rx="3.4" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="2" y="80.6" width="5.2" height="6.8" fill="#f2c096"/></g>${mitt(4.5, 82, 20)}</g>` +
+      `<g class="echo-hand-r"><g transform="rotate(-8 99 73)"><rect x="96" y="63.6" width="6" height="3.4" rx="1" fill="#cfc6f5"/><rect x="90" y="66.5" width="18" height="13.5" rx="2.6" fill="#fbfaff" stroke="#cfc6f5"/><path d="M99 69.6 V77 M95.3 73.3 H102.7" stroke="#ffb23f" stroke-width="2.6" stroke-linecap="round"/></g>${mitt(95.5, 82)}</g>`;
+    accExtra = `<g><rect x="-15.5" y="85" width="21" height="19" rx="2.4" fill="#1b1530" stroke="#4a3f86" stroke-width="1"/>${[-12, -6.8, -1.6].map(x => `<rect x="${x}" y="82" width="2.6" height="3.2" rx=".6" fill="#ffc566"/><rect x="${x}" y="103.8" width="2.6" height="3.2" rx=".6" fill="#ffc566"/>`).join("")}` +
+      `<g class="echo-crack"><path d="${crack}" stroke="#ff6b80" stroke-width="3.6" stroke-opacity=".3" fill="none" stroke-linejoin="round"/><path d="${crack}" stroke="#ff6b80" stroke-width="1.4" fill="none" stroke-linejoin="round"/></g>` +
+      `<g class="echo-aid"><g transform="rotate(42 -5 94.6)"><rect x="-17" y="91" width="24" height="7.2" rx="3.6" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="-8.6" y="91" width="7.2" height="7.2" fill="#f2c096"/>${[-14, -11.6, 2, 4.4].map((x, i) => `<circle cx="${x}" cy="${i % 2 ? 95.8 : 93.2}" r=".6" fill="#d9a072"/>`).join("")}</g></g>` +
+      `<path class="echo-crack-through" d="${crack}" stroke="#ff6b80" stroke-width="1.6" fill="none" stroke-linejoin="round"/>` +
+      [[-10, 84, "#ff6b80", 0], [-3, 82, "#4fd2ff", .5], [2, 86, "#ff6b80", 1]].map(([x, y, c, j]) => `<rect class="echo-glitch" style="animation-delay:${(j * -.06).toFixed(2)}s" x="${x}" y="${y}" width="2.8" height="2.8" fill="${c}"/>`).join("") +
+      `<g class="echo-fixed"><circle cx="-5" cy="74" r="5" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-7.4 74 L-5.6 75.8 L-2.4 72.4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
+      `<g class="echo-warn"><circle cx="-5" cy="74" r="5" fill="#ff6b80" stroke="#fff" stroke-width="1"/><path d="M-5 71 V75" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="-5" cy="77.3" r=".95" fill="#fff"/></g></g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -861,7 +883,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   if (sleep) extras = `<text class="echo-z" x="92" y="6" font-size="11" font-weight="800" fill="#b8a6ff">z</text><text class="echo-z" style="animation-delay:1.1s" x="100" y="-6" font-size="8" font-weight="800" fill="#b8a6ff">z</text>`;
   if (bare) { accExtra = ""; extras = ""; }
   const a11y = label ? `role="img" aria-label="${label}"` : `aria-hidden="true" focusable="false"`;
-  return `<svg class="echo echo-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}${dangle || bare ? "" : `<ellipse class="echo-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/>`}<g class="echo-all">${accUnder}<path class="echo-fin-l" d="${finL}" fill="url(#${k}n)"/><path class="echo-fin-r" d="${finR}" fill="url(#${k}n)"/><path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>${dangle ? `<ellipse class="echo-foot-l" cx="31" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/><ellipse class="echo-foot-r" cx="69" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/>` : `<ellipse class="echo-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="echo-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/>`}<path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="echo-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
+  return `<svg class="echo echo-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}${dangle || bare ? "" : `<ellipse class="echo-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/>`}<g class="echo-all">${accUnder}<path class="echo-fin-l" d="${finL}" fill="url(#${k}n)"/>${hideFinR ? "" : `<path class="echo-fin-r" d="${finR}" fill="url(#${k}n)"/>`}<path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>${dangle ? `<ellipse class="echo-foot-l" cx="31" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/><ellipse class="echo-foot-r" cx="69" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/>` : `<ellipse class="echo-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="echo-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/>`}<path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="echo-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
 }
 
 function mountEchoes(root = document) {
@@ -2239,15 +2261,15 @@ const VIZ = {
     // ---- frame 3: from Stuxnet to superintelligence, as a vertical timeline
     const vline = (rows, y0, step, x0 = 112) => `<line x1="${x0}" y1="${y0 - 12}" x2="${x0}" y2="${y0 + (rows.length - 1) * step + 12}" stroke="var(--rule)" stroke-width="2"/>` + rows.map(([d, a, b, c, open], i) => { const y = y0 + i * step; return `<g class="rc-ev" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><text x="${x0 - 14}" y="${y + 4}" text-anchor="end" font-size="11.5" font-weight="800" style="fill:${c}">${d}</text><circle cx="${x0}" cy="${y}" r="6" fill="${open ? "var(--ink)" : c}" stroke="${c}" stroke-width="2"/><text x="${x0 + 16}" y="${b ? y - 2 : y + 4}" font-size="12" class="t-strong">${a}</text>${b ? `<text x="${x0 + 16}" y="${y + 13}" font-size="11.5">${b}</text>` : ""}</g>`; }).join("");
     const V = "var(--violet)", C = "var(--coral)";
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Timeline. Hardware and physical attacks: Stuxnet in 2010 wrecked about 1,000 centrifuges through Siemens controllers; Meltdown and Spectre in 2018, whose fixes cost 8 to 19 percent on databases; GPUHammer in 2025, where one flipped bit breaks an AI model; TEE.fail in October 2025. The AI era: in February 2026 Altman says superintelligence may be a couple of years away; in August 2026 agencies warn AI is writing exploits for Siemens controllers; in October 2026 AI finds PHP flaws and sites go dark; and by the end of 2028, Altman says, more of the world's intellect could sit inside data centers than outside.">
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Timeline. Hardware and physical attacks: Stuxnet, which by 2010 likely wrecked about 1,000 centrifuges through Siemens controllers; Meltdown and Spectre in 2018, whose first fixes cost 8 to 19 percent on databases; GPUHammer in 2025, where one flipped bit breaks an AI model; TEE.fail in October 2025. The AI era: in February 2026 Altman says superintelligence may be a couple of years away; in August 2026 agencies warn AI is writing exploits for Siemens controllers; in October 2026 AI finds PHP flaws and sites go dark; and by the end of 2028, Altman says, more of the world's intellect could sit inside data centers than outside.">
         <text x="14" y="24" class="t-strong" font-size="16">From Stuxnet to superintelligence</text>
         <text x="14" y="42" font-size="12"><tspan style="fill:var(--violet)" font-weight="800">● hardware &amp; physical</tspan>   <tspan style="fill:var(--coral)" font-weight="800">● the AI era</tspan></text>
-        ${vline([["2010", "Stuxnet wrecks ~1,000 centrifuges via Siemens PLCs", "", V], ["2018", "Meltdown/Spectre fixes cost 8–19% on databases", "", V], ["2025", "GPUHammer: one flipped bit breaks an AI model", "", V], ["Oct 2025", "TEE.fail: a sub-$1,000 probe beats secure enclaves", "", V], ["Feb 2026", "Altman: superintelligence “a couple of years away”", "", C], ["Aug 2026", "Agencies: AI is writing exploits for Siemens PLCs", "", C], ["Oct 2026", "AI finds decade-old PHP flaws; sites go dark", "", C], ["End 2028", "More intellect inside data centers than outside?", "", C, 1]], 70, 29, 96)}
+        ${vline([["2010", "Stuxnet likely wrecks ~1,000 centrifuges via Siemens PLCs", "", V], ["2018", "First Meltdown/Spectre fixes cost 8–19% on databases", "", V], ["2025", "GPUHammer: one flipped bit breaks an AI model", "", V], ["Oct 2025", "TEE.fail: a sub-$1,000 probe beats secure enclaves", "", V], ["Feb 2026", "Altman: superintelligence “a couple of years away”", "", C], ["Aug 2026", "Agencies: AI is writing exploits for Siemens PLCs", "", C], ["Oct 2026", "AI finds decade-old PHP flaws; sites go dark", "", C], ["End 2028", "More intellect inside data centers than outside?", "", C, 1]], 70, 29, 96)}
       </svg>`;
 
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Software patches remove a bug. A silicon flaw stays in every chip already made, so the fix is a workaround that costs speed.</p></div>
-      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative: share of a fleet’s output lost to a fix, using the published ranges. GPUHammer paper (2025): ECC costs 6.5% of memory and 3–10% of speed. Red Hat via InfoQ (2018): Meltdown and Spectre fixes cost 8–19% on transaction-heavy databases.</span><span class="cap-s">Illustrative. ECC: 3–10% slower. Meltdown/Spectre fixes: 8–19% on databases.</span></p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative: share of a fleet’s output lost to a fix, using the published ranges. GPUHammer paper (2025): ECC costs 6.5% of memory and 3–10% of speed. Red Hat (2018): the first Meltdown and Spectre fixes cost 8–19% on transaction-heavy databases, later tuned to 4–8%.</span><span class="cap-s">Illustrative. ECC: 3–10% slower. Meltdown/Spectre fixes: 8–19% on databases.</span></p></div>
       <div class="frame f3">${F3}<p class="cap">Stuxnet, Meltdown, GPUHammer and TEE.fail show silicon can be attacked; the AI era raises the stakes. Sources in Receipts.</p></div>
     </div>`;
   }
@@ -2710,7 +2732,7 @@ function renderHome() {
       <span class="feat-top"><span>Die ${dieLabel(t.die)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span>${r.fresh ? `<span class="feat-new">New</span>` : ""}</span>
       <b class="feat-v">${r.v}</b>
       <span class="feat-t">${r.t}</span>
-      <span class="feat-title">${t.title}</span>
+      <span class="feat-title">${sentences(t.h2 || t.title)}</span>
       <span class="feat-go">Open thesis <i>→</i></span>
       <span class="feat-echo" aria-hidden="true">${echo(t.echo)}</span>
     </a></li>`;
@@ -2853,7 +2875,7 @@ function renderHome() {
 
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${t.title}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
@@ -2956,7 +2978,7 @@ function buildMap() {
     decho.style.top = pTop + "px";
     decho.classList.add("show");
     tag.style.setProperty("--bin", css);
-    tag.innerHTML = `<span class="dt-row"><span>Die ${dieLabel(t.die)}</span><span class="bin${isProbe ? " probe" : ""}" style="--bin:${css}">${bin}</span></span><b class="dt-t">${t.title}</b><span class="dt-go">${isProbe ? "Still testing this one." : `${spec.name} Echo is on it. Click the die to open.`}</span>`;
+    tag.innerHTML = `<span class="dt-row"><span>Die ${dieLabel(t.die)}</span><span class="bin${isProbe ? " probe" : ""}" style="--bin:${css}">${bin}</span></span><b class="dt-t">${t.h2 ? sentences(t.h2) : t.title}</b><span class="dt-go">${isProbe ? "Still testing this one." : `${spec.name} Echo is on it. Click the die to open.`}</span>`;
     const w = tag.offsetWidth, h = tag.offsetHeight;
     const left = Math.max(-8, Math.min(wr.width - w + 8, cx - w / 2));
     let top = pTop - h - 4;
@@ -3077,7 +3099,8 @@ const phrases = (txt, tail = "") => {
   }).join("");
 };
 const sentences = (txt, tail = "") => {
-  const ss = txt.split(/(?<=[.!?…])\s+(?=[A-Z“"])/);
+  // a sentence ends at . ! ? or … followed by a space, or by a "|" phrase mark, and then a capital
+  const ss = txt.split(/(?<=[.!?…])(?:\s*\|\s*|\s+)(?=[A-Z“"])/);
   return ss.map((x, i) => `<span class="sen">${phrases(x, i === ss.length - 1 ? tail : "")}</span>`).join(" ");
 };
 const tidySignal = html => html
@@ -3111,6 +3134,8 @@ function setType(root) {
     // joint before phrase i: a space, or nothing (a break right after a dash); flag sentence starts
     const gap = ph.map((p, i) => (i && p.previousSibling && p.previousSibling.nodeName === "WBR" ? 0 : sp));
     const senStart = ph.map((p, i) => i > 0 && p.parentNode.classList.contains("sen") && p === p.parentNode.querySelector(".ph"));
+    // index of the last phrase in each phrase's sentence: a sentence may join the end of a line only if it finishes there
+    const senEnd = ph.map(p => ph.indexOf(p.parentNode.classList.contains("sen") ? [...p.parentNode.querySelectorAll(".ph")].pop() : p));
     let best = null;
     for (let mask = 0; mask < 1 << (n - 1); mask++) {
       const lines = [];
@@ -3123,7 +3148,7 @@ function setType(root) {
       const lw = lines.map(l => {
         const x = l.reduce((s, i, k) => s + w[i] + (k ? gap[i] : 0), 0);
         if (l.length > 1 && x > W + .5) ok = false;
-        l.slice(1).forEach(i => { if (senStart[i]) cost += .1; });
+        l.slice(1).forEach(i => { if (senStart[i]) cost += senEnd[i] > l[l.length - 1] ? 2 : .1; });
         return Math.min(x, W);
       });
       if (!ok) continue;
