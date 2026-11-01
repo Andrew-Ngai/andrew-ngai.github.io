@@ -1066,6 +1066,178 @@ html.paused .memo{animation:none}
 .motion-btn:hover{color:var(--paper)}
 .slide p,.takes span,.bet,.wrong,.t-hook,.feat-t{text-wrap:pretty}
 @media (max-width:860px){.memo-meta .m-title{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:calc(17*var(--u));line-height:1.08;text-wrap:balance}}
+.bet a{color:var(--paper);text-decoration:underline;text-decoration-color:var(--bin);text-underline-offset:calc(3*var(--u))}
+.bet a:hover{color:var(--bin)}
+.tk-rate{display:flex;flex-wrap:wrap;align-items:center;gap:calc(6*var(--u));font-family:var(--label);font-size:calc(14*var(--u));color:var(--dim)}
+.tk-r{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));line-height:1.1;padding:calc(5*var(--u)) calc(10*var(--u)) calc(6*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));background:transparent;color:var(--dim);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tk-r:hover{border-color:var(--paper);color:var(--paper)}
+.tk-r.on{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.viz .qu-row{fill:var(--paper)}
+.qu-q{fill:var(--beat);animation:qu-blink 1.8s ease-in-out infinite}
+@keyframes qu-blink{0%,100%{opacity:.25}50%{opacity:1}}
+.qu-now{fill:var(--beat);filter:drop-shadow(0 0 calc(6*var(--u)) var(--beat))}
+.qu-tgt{fill:var(--ink);stroke:var(--coral);stroke-width:2.4}
+.qu-gap{fill:rgba(244,151,122,.1);stroke:var(--coral);stroke-opacity:.5;stroke-dasharray:3 3}
+.viz .qu-gapt{fill:var(--coral)}
+.qu-old{opacity:.75}
+.viz[data-step="1"] .f1 .qu-need{animation:qu-slide 1.6s var(--ease) .5s both}
+.viz[data-step="1"] .f1 .qu-old{animation:qu-old 1.6s var(--ease) .5s both}
+@keyframes qu-slide{from{transform:translateX(calc(72*var(--u)));opacity:.3}to{transform:none;opacity:1}}
+@keyframes qu-old{from{opacity:1}to{opacity:.45}}
+.qu-tier{fill:#c9a45a;opacity:.9}
+.qu-rod{stroke:#c9a45a;stroke-width:2;opacity:.8}
+.qu-pk{fill:var(--beat)}.qu-pk2{fill:var(--amber)}
+.qucalc,.lgcalc,.tkcalc,.facalc,.sicalc{display:grid;gap:calc(8*var(--u));align-content:center;min-height:0}
+.qu-k,.qucalc .oc-l b{color:var(--coral)}
+.qu-range{accent-color:var(--coral)}
+.qu-chart,.lg-chart{width:100%;height:auto;max-height:calc(160*var(--u));overflow:visible}
+.qu-rest{display:grid;grid-template-columns:calc(90*var(--u)) minmax(0,1fr);gap:calc(10*var(--u));align-items:center;font-family:var(--label);font-size:calc(15*var(--u));color:var(--dim)}
+.qu-rest b{color:var(--paper)}
+.qu-bar{display:block;height:calc(12*var(--u));background:var(--ink-3);border-radius:calc(2*var(--u));overflow:hidden}
+.qu-bar i{display:block;height:100%;width:0;background:var(--coral);transition:width 1s var(--ease) .3s}
+.viz:not([data-step="3"]) .qu-bar i{width:0!important}
+.lgc{display:grid;gap:calc(10*var(--u));align-content:center;min-height:0}
+.lg-k{color:var(--amber)}
+.lg-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:calc(14*var(--u))}
+.lg-b{position:relative;display:grid;gap:calc(5*var(--u));padding:calc(9*var(--u)) calc(9*var(--u)) calc(8*var(--u));background:var(--ink-2);border:calc(1.5*var(--u)) solid var(--amber);border-radius:calc(4*var(--u));font-family:var(--label);transition:border-color .3s,background .3s}
+.lg-b:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:calc(14*var(--u));height:0;border-top:calc(2*var(--u)) dashed var(--amber);transition:border-color .3s}
+.lg-b.bad{border-color:var(--coral);background:rgba(244,151,122,.08)}
+.lg-b.bad::after{border-top-color:var(--coral)}
+.lg-h{font-weight:800;font-size:calc(13*var(--u));color:var(--paper);line-height:1.1}
+.lg-f{display:grid;gap:calc(1*var(--u));min-width:0}
+.lg-f i{font-style:normal;font-weight:700;font-size:calc(11*var(--u));letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.lg-f code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:calc(13*var(--u));color:var(--paper);font-variant-numeric:tabular-nums}
+.lg-f code.x{color:var(--coral);text-decoration:line-through}
+.lg-f input{width:100%;min-width:0;font-family:var(--label);font-weight:600;font-size:calc(13*var(--u));color:var(--paper);background:var(--ink);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));padding:calc(3*var(--u)) calc(5*var(--u))}
+.lg-f input:focus{outline:calc(2*var(--u)) solid var(--amber);outline-offset:0}
+.lg-ok{font-weight:800;font-size:calc(12.5*var(--u));color:var(--amber)}
+.lg-b.bad .lg-ok{color:var(--coral)}
+.lg-ctl{display:flex;flex-wrap:wrap;gap:calc(8*var(--u))}
+.lg-btn{font-size:calc(15*var(--u));padding:calc(7*var(--u)) calc(12*var(--u)) calc(8*var(--u))}
+.lg-msg{font-family:var(--label);font-size:calc(15*var(--u));line-height:1.3;color:var(--dim);min-height:2.6em}
+.lg-msg b{color:var(--paper)}
+.lg-range{accent-color:var(--amber)}
+.lgcalc .oc-l b{color:var(--amber)}
+.viz .lg-lab{fill:var(--faint);font-weight:700;letter-spacing:.08em}
+.lg-drop{animation:lg-drop var(--dur) cubic-bezier(.5,0,.75,1) infinite}
+@keyframes lg-drop{0%{transform:translateY(calc(-14*var(--u)));opacity:0}25%{opacity:1}60%{transform:translateY(calc(8*var(--u)));opacity:1}100%{transform:translateY(calc(8*var(--u)));opacity:0}}
+@media (max-width:860px){.lg-row{gap:calc(9*var(--u))}.lg-b{padding:calc(6*var(--u)) calc(6*var(--u)) calc(5*var(--u));gap:calc(3*var(--u))}.lg-b:not(:last-child)::after{width:calc(9*var(--u))}.lg-f code,.lg-f input{font-size:calc(12*var(--u))}.lg-f i{font-size:calc(10*var(--u))}.lg-msg{font-size:calc(13*var(--u));min-height:0}.lgcalc{gap:calc(4*var(--u))}.lgcalc .oc-l{font-size:calc(13*var(--u))}}
+.cu{display:grid;gap:calc(8*var(--u));align-content:center;min-height:0}
+.cu svg{width:100%;height:auto;max-height:calc(260*var(--u));overflow:visible}
+.cu-r{--o:var(--amber)}
+.cu-r[data-o="c"]{--o:var(--beat)}
+.cu-r[data-o="s"]{--o:var(--coral)}
+.cu-r rect,.cu-r path{fill:var(--o);fill-opacity:.24;stroke:var(--o);stroke-width:1.4;transition:fill .5s,stroke .5s}
+.cu-r .cu-pkg{fill-opacity:.07;stroke-dasharray:5 4}
+.cu-r .cu-ring{fill:none;stroke-width:10;stroke-opacity:.55}
+.cu-r .cu-ln,.cu-r .cu-wire{fill:none;stroke-width:1;stroke-opacity:.6}
+.cu-wire{stroke:var(--rule);stroke-width:1.4;stroke-dasharray:3 3}
+.viz .cu-t{fill:var(--paper);font-weight:700}
+.cu-leg{display:flex;flex-wrap:wrap;gap:calc(6*var(--u)) calc(14*var(--u));font-family:var(--label);font-size:calc(14*var(--u));color:var(--dim)}
+.cu-leg span::before{content:"";display:inline-block;width:calc(11*var(--u));height:calc(11*var(--u));border-radius:calc(2*var(--u));margin-right:calc(6*var(--u));vertical-align:calc(-1*var(--u))}
+.cu-leg .c::before{background:var(--beat)}.cu-leg .p::before{background:var(--amber)}.cu-leg .s::before{background:var(--coral)}
+.cu-range{accent-color:var(--beat)}
+.cu-read{font-family:var(--label);font-size:calc(15.5*var(--u));line-height:1.3;color:var(--dim);min-height:2.6em}
+.cu-read b{color:var(--paper)}
+.cu-e{fill:none;stroke:var(--c);stroke-width:2;stroke-opacity:.8;stroke-dasharray:7 5;animation:cu-flow 1.4s linear infinite}
+.cu-e[stroke-dasharray]{stroke-dasharray:2 6;stroke-opacity:.55}
+@keyframes cu-flow{to{stroke-dashoffset:-24}}
+.cu-bar{fill:var(--amber);transform-box:fill-box;transform-origin:50% 100%}
+.viz[data-step="3"] .f3 .cu-bar{animation:cu-grow .9s var(--ease) both}
+@keyframes cu-grow{from{transform:scaleY(.02)}}
+@media (max-width:860px){.cu{gap:calc(4*var(--u))}.cu-leg{font-size:calc(12*var(--u))}.cu-read{font-size:calc(13*var(--u));min-height:0}}
+.viz[data-step="1"] .f1 .tk-step{animation:sp-fade .5s ease both}
+.viz[data-step="1"] .f1 .tk-pin{animation:sp-fade .6s ease both}
+.tk-k,.tkcalc .oc-l b{color:var(--amber)}
+.tk-range{accent-color:var(--amber)}
+.tk-chart{width:100%;height:auto;max-height:calc(190*var(--u));overflow:visible}
+.tk-rng{transform-box:fill-box;transform-origin:0 50%}
+.viz[data-step="3"] .f3 .tk-rng{animation:tk-grow .9s var(--ease) both}
+@keyframes tk-grow{from{transform:scaleX(.03)}}
+@media (max-width:860px){.tkcalc,.facalc,.sicalc,.qucalc{gap:calc(4*var(--u))}.tkcalc .oc-l,.facalc .oc-l,.sicalc .oc-l,.qucalc .oc-l{font-size:calc(13*var(--u))}.tk-r{font-size:calc(12*var(--u));padding:calc(3*var(--u)) calc(8*var(--u)) calc(4*var(--u))}.tk-rate{font-size:calc(12*var(--u));gap:calc(4*var(--u))}.qu-rest{display:none}}
+.fa-tok{animation:fa-belt 13s linear infinite}
+@keyframes fa-belt{from{transform:translateX(calc(-60*var(--u)))}to{transform:translateX(calc(460*var(--u)))}}
+.viz .fa-puff{fill:var(--amber);animation:fa-puff 3.3s ease-out infinite}
+@keyframes fa-puff{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(calc(-36*var(--u)));opacity:0}}
+.fa-k,.facalc .oc-l b{color:var(--amber)}
+.fa-range{accent-color:var(--amber)}
+.fa-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:calc(3*var(--u))}
+.fa-grid i{display:block;aspect-ratio:1;border-radius:50%;background:var(--ink-3);transition:background .25s}
+.fa-grid i.a{background:var(--amber)}
+.fa-grid i.nobel{box-shadow:0 0 0 calc(2*var(--u)) var(--coral)}
+.fa-tile{transform-box:fill-box}
+.viz[data-step="3"] .f3 .fa-tile{animation:fa-drop .45s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes fa-drop{from{transform:translateY(calc(-30*var(--u)));opacity:0}}
+.viz[data-step="3"] .f3 .fa-x{animation:sp-fade .6s ease 1.9s both}
+.cn-tile rect{fill:var(--ink-2);stroke:var(--violet);stroke-opacity:.5;stroke-width:1.4}
+.cn-tile.fut rect{stroke-dasharray:4 3}
+.viz[data-step="1"] .f1 .cn-tile{animation:cn-lit .6s var(--ease) both}
+@keyframes cn-lit{from{opacity:0;transform:translateY(calc(8*var(--u)))}}
+.viz[data-step="1"] .f1 .cn-tile rect{animation:cn-glow 1.4s ease both;animation-delay:inherit}
+@keyframes cn-glow{0%{stroke:var(--amber);stroke-opacity:1}100%{stroke:var(--violet);stroke-opacity:.5}}
+.viz .cn-yr{fill:var(--faint);font-weight:700}
+.viz .cn-sym{fill:var(--paper);font-family:var(--display);font-weight:900;font-size:calc(27*var(--u))}
+.viz .cn-lane{fill:var(--faint);font-weight:700;letter-spacing:.12em}
+.viz .cn-nm{fill:var(--dim)}
+.cn{display:grid;gap:calc(10*var(--u));align-content:center;min-height:0}
+.cn-k{color:var(--amber)}
+.cn-picks{display:flex;flex-wrap:wrap;gap:calc(6*var(--u))}
+.cn-p{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));padding:calc(5*var(--u)) calc(10*var(--u)) calc(6*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));background:var(--ink-2);color:var(--dim);cursor:pointer}
+.cn-p:hover{border-color:var(--paper);color:var(--paper)}
+.cn-p.on{border-color:var(--amber);color:var(--ink);background:var(--amber)}
+.cn-name{font-family:var(--display);font-weight:900;font-size:clamp(calc(40*var(--u)),5vw,calc(62*var(--u)));line-height:1;color:var(--paper);min-height:1em}
+.cn-name span{color:var(--c);border-bottom:calc(3*var(--u)) solid var(--c);padding-bottom:calc(2*var(--u))}
+.cn-parts{list-style:none;margin:0;padding:0;display:grid;gap:calc(6*var(--u))}
+.cn-parts li{display:grid;grid-template-columns:calc(76*var(--u)) minmax(0,1fr);gap:calc(10*var(--u));align-items:baseline;font-family:var(--label);font-size:calc(16*var(--u));color:var(--dim)}
+.cn-parts b{font-family:var(--display);font-weight:900;font-size:calc(20*var(--u));color:var(--c)}
+.cn-mem{font-family:var(--label);font-size:calc(15*var(--u));color:var(--paper);padding:calc(8*var(--u)) calc(12*var(--u));background:var(--ink-2);border-left:calc(3*var(--u)) solid var(--amber)}
+.cn-line{stroke-dasharray:100}
+.viz[data-step="3"] .f3 .cn-line{animation:cn-draw 1.6s var(--ease) both}
+@keyframes cn-draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@media (max-width:860px){.cn{gap:calc(5*var(--u))}.cn-p{font-size:calc(12*var(--u));padding:calc(3*var(--u)) calc(7*var(--u)) calc(4*var(--u))}.cn-name{font-size:calc(30*var(--u))}.cn-parts li{font-size:calc(13*var(--u));grid-template-columns:calc(56*var(--u)) minmax(0,1fr)}.cn-parts b{font-size:calc(15*var(--u))}.cn-mem{font-size:calc(13*var(--u));padding:calc(5*var(--u)) calc(9*var(--u))}}
+.ow{display:grid;place-items:center;min-height:0}
+.ow-phone{width:min(100%,calc(370*var(--u)));background:var(--ink-2);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(22*var(--u));padding:calc(12*var(--u)) calc(12*var(--u)) calc(14*var(--u));box-shadow:0 calc(20*var(--u)) calc(40*var(--u)) rgba(0,0,0,.35)}
+.ow-top{display:flex;align-items:center;gap:calc(8*var(--u));padding:calc(2*var(--u)) calc(4*var(--u)) calc(10*var(--u));border-bottom:calc(1*var(--u)) solid var(--rule);font-family:var(--label);font-size:calc(15*var(--u));color:var(--paper)}
+.ow-top svg{width:calc(22*var(--u));height:calc(22*var(--u))}
+.ow-top span{margin-left:auto;font-size:calc(12*var(--u));color:var(--faint)}
+.ow-thread{display:grid;gap:calc(7*var(--u));padding-top:calc(10*var(--u))}
+.ow-m{max-width:86%;margin:0;padding:calc(7*var(--u)) calc(11*var(--u)) calc(8*var(--u));border-radius:calc(14*var(--u));font-family:var(--sans);font-size:calc(13.5*var(--u));line-height:1.35}
+.ow-m.me{justify-self:end;background:#2c5aa0;color:#fff;border-bottom-right-radius:calc(4*var(--u))}
+.ow-m.bot{justify-self:start;background:var(--ink-3);color:var(--paper);border-bottom-left-radius:calc(4*var(--u))}
+.ow-m.step{display:flex;align-items:center;gap:calc(8*var(--u));flex-wrap:wrap;background:transparent;border:calc(1*var(--u)) solid var(--rule);padding:calc(5*var(--u)) calc(10*var(--u))}
+.ow-m small{font-family:var(--label);font-size:calc(11.5*var(--u));color:var(--faint);margin-left:auto}
+.ow-tick{width:calc(15*var(--u));height:calc(15*var(--u));border-radius:50%;background:var(--amber);position:relative;flex:none}
+.ow-tick::after{content:"";position:absolute;left:calc(5*var(--u));top:calc(2.5*var(--u));width:calc(4*var(--u));height:calc(7*var(--u));border:solid var(--ink);border-width:0 calc(2*var(--u)) calc(2*var(--u)) 0;transform:rotate(45deg)}
+.ow-btns{display:flex;gap:calc(8*var(--u));justify-self:start}
+.ow-btns span{font-family:var(--label);font-weight:700;font-size:calc(13*var(--u));padding:calc(5*var(--u)) calc(12*var(--u));border-radius:calc(999*var(--u));border:calc(1*var(--u)) solid var(--rule);color:var(--paper)}
+.ow-btns .go{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.viz[data-step="1"] .f1 .ow-m,.viz[data-step="1"] .f1 .ow-btns{animation:ow-in .45s var(--ease) var(--d) both}
+@keyframes ow-in{from{opacity:0;transform:translateY(calc(8*var(--u)))}}
+.ow-line{stroke-dasharray:100}
+.viz[data-step="3"] .f3 .ow-line{animation:cn-draw 1.8s var(--ease) both}
+.ow-ring{transition:stroke-dasharray 1s var(--ease)}
+.viz:not([data-step="3"]) .ow-ring{stroke-dasharray:0 999}
+@media (max-width:860px){.ow-phone{padding:calc(8*var(--u)) calc(9*var(--u)) calc(10*var(--u));border-radius:calc(16*var(--u))}.ow-top{font-size:calc(13*var(--u));padding-bottom:calc(6*var(--u))}.ow-thread{gap:calc(4*var(--u));padding-top:calc(6*var(--u))}.ow-m{font-size:calc(12*var(--u));padding:calc(5*var(--u)) calc(9*var(--u)) calc(6*var(--u))}.ow-m.step{padding:calc(3*var(--u)) calc(8*var(--u))}}
+.rc-l{transform-box:fill-box;transform-origin:100% 50%}
+.rc-r,.rc-l2{transform-box:fill-box;transform-origin:0 50%}
+.viz[data-step="1"] .f1 .rc-l,.viz[data-step="1"] .f1 .rc-r,.viz[data-step="2"] .f2 .rc-l2{animation:tk-grow .9s var(--ease) both}
+.viz[data-step="2"] .f2 .rc-donut{animation:sp-fade .8s ease both}
+.viz[data-step="3"] .f3 .rc-ev{animation:sp-fade .5s ease both}
+.si-bug{animation:si-bug 6s ease infinite}
+@keyframes si-bug{0%{opacity:0}10%,44%{opacity:1}54%,100%{opacity:0}}
+.si-band{animation:si-band 6s ease infinite}
+@keyframes si-band{0%,36%{opacity:0}46%,86%{opacity:1}100%{opacity:0}}
+.si-bugstay{animation:si-stay 6s ease infinite}
+@keyframes si-stay{0%{opacity:0}10%,100%{opacity:1}}
+.si-shield{animation:si-band 6s ease infinite}
+.si-k,.sicalc .oc-l b{color:var(--coral)}
+.si-range{accent-color:var(--coral)}
+.si-grid i.lo{background:var(--coral)}
+.si-grid i.hi{background:rgba(244,151,122,.4)}
+.si-leg span{background:var(--coral)}
+.si-leg span.hi{background:rgba(244,151,122,.4);margin-left:calc(10*var(--u))}
+.si-pick .tk-r.on{background:var(--coral);border-color:var(--coral)}
+@media (max-width:860px){.si-leg{display:none}}
 .hero .who-link{color:inherit;text-decoration:none;border-bottom:calc(1*var(--u)) solid rgba(159,179,196,.45);transition:color .2s,border-color .2s}
 .hero .who-link:hover{color:var(--paper);border-color:var(--amber)}
 .band{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 85% 30%,var(--plum) 0%,var(--night) 62%);font-family:var(--sans);padding-block:clamp(calc(72*var(--u)),9vw,calc(116*var(--u)));border-top:calc(1*var(--u)) solid var(--rule);border-bottom:calc(1*var(--u)) solid var(--rule)}
@@ -1270,7 +1442,7 @@ html.paused .memo{animation:none}
     </div>
     <div class="wrap">
       <footer class="foot">
-        <span>© 2026 <span data-name>Andrew Ngai</span>. Theses updated September 2026.</span>
+        <span>© 2026 <span data-name>Andrew Ngai</span>. Theses updated November 2026.</span>
         <span>Echo appears courtesy of <a data-href="echotempoSite" target="_blank" rel="noopener">EchoTempo</a>. Sources are linked inside each thesis.</span>
         <button class="motion-btn" type="button" data-motion>Pause motion</button>
       </footer>
@@ -1399,7 +1571,55 @@ const SRC = {
   h100Spike: "https://www.silicondata.com/blog/h100-price-spike",
   semiShort: "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
   nbDep: "https://www.sec.gov/Archives/edgar/data/0001513845/000110465926094844/nbis-20260812xex99d1.htm",
-  dgxH100: "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html"
+  dgxH100: "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html",
+  qGoogle: "https://www.research.google/blog/safeguarding-cryptocurrency-by-disclosing-quantum-vulnerabilities-responsibly/",
+  qForbes: "https://www.forbes.com/sites/digital-assets/2026/03/31/google-finds-quantum-computers-could-break-bitcoin-sooner-than-expected/",
+  qEchoes: "https://thequantuminsider.com/2025/10/22/google-quantum-ai-shows-13000x-speedup-over-worlds-fastest-supercomputer-in-physics-simulation/",
+  qBoard: "https://quantumzeitgeist.com/quantum-logical-qubit-leaderboard/",
+  qIbm: "https://www.datacenterdynamics.com/en/news/ibm-updates-quantum-computing-roadmap-to-deliver-starling-system-by-2029/",
+  qNvq: "https://quantumcomputingreport.com/nvidias-nvqlink-unites-quantum-ecosystem-for-real-time-error-correction/",
+  btcExposed: "https://forklog.com/en/news/glassnode-assesses-bitcoin-with-exposed-public-keys",
+  btcPaper: "https://bitcoin.org/bitcoin.pdf",
+  kinexys: "https://catenaa.com/markets/global-markets/jpmorgan-blockchain-payments-kinexys-mitsubishi",
+  occGenius: "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-50.html",
+  avgoQ3: "https://pulse2.com/broadcom-q3-fiscal-2026-revenue-jumps-86-to-29-6-billion-as-ai-semiconductor-revenue-reaches-16-7-billion/",
+  avgoCall: "https://www.nasdaq.com/articles/broadcom-q3-earnings-call-highlights",
+  asicState: "https://tomshardware.com/tech-industry/semiconductors/custom-ai-asics-examined-from-broadcom-to-mtia",
+  mrvlBench: "https://finance.yahoo.com/news/marvell-mrvl-stock-downgraded-concerns-092046712.html",
+  mrvlHigh: "https://www.fool.com/investing/2026/06/18/marvell-stock-just-hit-a-new-high-a-quiet-amazon-d/",
+  mrvlQ2: "https://pulse2.com/marvell-data-center-revenue-growth-accelerates-to-46-as-ai-demand-drives-record-2-74-billion-quarter/",
+  mrvlLite: "https://www.fool.com/investing/2026/10/29/why-marvell-stock-is-down-today/",
+  nbFrame: "https://betteresearch.com/posts/nebius-investment-framework",
+  nbTf: "https://nebius.com/newsroom/nebius-launches-nebius-token-factory-to-deliver-production-ai-inference-at-scale",
+  amodeiMlg: "https://www.darioamodei.com/essay/machines-of-loving-grace",
+  amodeiAdol: "https://fortune.com/2026/01/27/country-of-geniuses-anthropic-dario-amodei-50-million-nobel-prize-winners/",
+  gtc26: "https://siliconangle.com/2026/03/16/ai-inflection-point-nvidias-jensen-huang-outlines-vision-agents-ai-factory-forecasts-big-jump-revenue/",
+  googTok: "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
+  civoWrap: "https://www.civo.com/blog/navigate-london-2026-wrap-up",
+  gigatokens: "https://finance.yahoo.com/technology/ai/articles/gigatokens-civo-bring-uk-sovereign-160000930.html",
+  nvNames: "https://en.wikipedia.org/wiki/List_of_eponyms_of_Nvidia_GPU_microarchitectures",
+  tpuWiki: "https://en.wikipedia.org/wiki/Tensor_Processing_Unit",
+  tpu7: "https://docs.cloud.google.com/tpu/docs/tpu7x",
+  nvRoad: "https://www.tomshardware.com/tech-industry/semiconductors/nvidia-enterprise-roadmap-rubin-rubin-ultra-feynman-and-silicon-photonics",
+  gtcBuy: "https://bizon-tech.com/blog/nvidia-gtc-2026-key-announcements",
+  gpuGens: "https://www.baseten.co/inference-engineering/book/03-hardware/gpu-architecture-generations/",
+  ocWiki: "https://en.wikipedia.org/wiki/OpenClaw",
+  ocNow: "https://thegenaimagazine.com/openclaw-where-is-it-now-what-people-built-hype-dead",
+  ocRedHat: "https://siliconangle.com/2026/10/27/red-hat-openclaw-agents-kubeconna/",
+  saIIId: "https://situational-awareness.ai/the-free-world-must-prevail/",
+  aiIndex: "https://thenextweb.com/news/stanford-ai-index-2026-china-us-performance-gap",
+  epochShare: "https://officechai.com/ai/the-uss-share-of-new-compute-has-risen-from-60-in-2024-to-78-in-first-half-of-2026/",
+  genesis: "https://www.govinfo.gov/content/pkg/FR-2025-11-28/html/2025-21665.htm",
+  phpKt: "https://www.koreatimes.co.kr/world/20261022/websites-go-dark-worldwide-as-ai-exposes-critical-security-flaws",
+  phpCtv: "https://ctvnews.ca/sci-tech/article/websites-shut-down-globally-after-ai-finds-cybersecurity-flaw-affecting-70-of-the-internet/",
+  phpPaubox: "https://www.paubox.com/blog/php-flaws-found-by-ai-force-governments-and-major-sites-offline",
+  plcAi: "https://www.helpnetsecurity.com/2026/08/20/usa-ai-attacks-siemens-s7-plcs-critical-infrastructure/",
+  altman3: "https://www.forbes.com/sites/anishasircar/2026/10/22/sam-altman-reportedly-laid-out-three-endgames-for-ai-and-one-ends-with-rivals-gpus-melted/",
+  altmanSI: "https://www.medianama.com/2026/02/223-superintelligence-within-years-sam-altman-meta-ai-scientist-disagrees/",
+  gpuHammer: "https://arxiv.org/abs/2507.08166",
+  teeFail: "https://bleepingcomputer.com/news/security/teefail-attack-breaks-confidential-computing-on-intel-amd-nvidia-cpus",
+  meltdownPerf: "https://www.infoq.com/news/2018/01/intel-spectre-performance",
+  stuxnet: "https://www.rte.ie/brainstorm/2025/0624/1520026-iran-nuclear-power-stuxnet-cyberattack"
 };
 const BINS = {
   agree:    { label: "Agree",     css: "var(--beat)",   hex: "#6aa8ff" },
@@ -1739,11 +1959,190 @@ const THESES = [
     note: "Not investment advice.",
     receipts: [["SpaceX 8-K closing the Cursor deal (Aug 2026)", SRC.spxCursor], ["Capital Brief on the option exercise (June 2026)", SRC.spxExercise], ["Dealroom on Cursor’s $4B run rate (June 2026)", SRC.cursor4b], ["Wikipedia, Cursor (company)", SRC.cursorCo], ["Reuters on the IPO (June 2026)", SRC.spxIpo], ["Via Satellite on SpaceX’s 2025 financials (May 2026)", SRC.spxFin], ["AP on SpaceX’s Q2 (2026)", SRC.spxQ2], ["Stock Analysis, SPCX statistics (Oct 2026)", SRC.spxCap], ["AIAA on Starship Flight 14 (Sept 2026)", SRC.spxF14], ["Via Satellite on Flight 14 (Sept 2026)", SRC.spxF14b], ["TechCrunch on the Anthropic lease (May 2026)", SRC.spxLeaseTc], ["P&G and Gillette merger release (Jan 2005)", SRC.pgGillette], ["Rocket Lab Q2 2026 results (Aug 2026)", SRC.rklbQ2], ["Manufacturing Dive on Rocket Lab and Iridium (June 2026)", SRC.rklbIrdm], ["Spaceflight Now on Neutron (Aug 2026)", SRC.neutron]],
     viz: "spacex", echo: { pose: "float", acc: "jet", name: "Dealmaker" }
+  },
+  {
+    id: "quantum", die: [7, 6], stance: "build",
+    title: "Quantum’s first big job is breaking keys, not training models.",
+    h2: "Quantum’s first big job | is breaking keys, | not training models.",
+    short: "Quantum breaks keys first",
+    hook: "The AI race runs on GPUs. Quantum computing’s first decisive move will be on the locks, not the models.",
+    ref: { label: "Google Quantum AI, “Safeguarding cryptocurrency by disclosing quantum vulnerabilities responsibly” (March 2026)", href: SRC.qGoogle },
+    signal: `<p class="claim">Fewer than 500,000 qubits. | A few minutes per key.</p>
+      <p>On March 31, 2026, Google Quantum AI said a quantum computer with fewer than 500,000 physical qubits could break the 256-bit elliptic-curve keys that secure Bitcoin and Ethereum, in a few minutes per key. That’s about 20 times fewer qubits than earlier estimates. Google published a zero-knowledge proof that its circuits work instead of the circuits themselves.</p>
+      <p>Google’s best chip has 105 qubits. The gap is about 5,000×, and it’s closing from both ends.</p>`,
+    takes: [
+      ["The hardware works, and it’s still tiny.", "In December 2024, Google’s 105-qubit Willow chip showed error correction getting better as it added qubits, the threshold that makes scaling worth it. In October 2025, a 65-qubit run of its “Quantum Echoes” experiment beat the Frontier supercomputer about 13,000× on one physics problem: 2.1 hours versus roughly 3.2 years. Error-corrected “logical” qubits are still counted in dozens. Quantinuum’s Helios ran 48 on 98 physical qubits in November 2025, and IBM is aiming for 200 by 2029. Breaking a Bitcoin key takes about 1,200."],
+      ["AI helps quantum more than quantum helps AI.", "Training a frontier model means pushing trillions of tokens through matrix math, and quantum computers have no known edge at either. They can’t even load that much data. The help runs the other way: error correction needs a classical computer to read the qubits and decide fixes within microseconds, so Nvidia’s NVQLink, launched in October 2025, wires GPUs to quantum processors from 17 builders with a round trip under 4 µs. Quantum’s eventual gift to AI is data: simulations of molecules and materials no GPU can run, for drugs, batteries and chips."],
+      ["The AI race meets the quantum clock at the locks.", "About 6.26 million bitcoin, 31% of supply, sit in addresses whose public keys are already visible, including roughly 1.1 million attributed to Satoshi. Anything encrypted today can be recorded now and read later, which is why Google set itself a 2029 deadline to move to post-quantum cryptography and the NSA wants national security systems there by 2030. The first key-breaking machine would open years of other people’s secrets, including the ones that guard AI labs."]
+    ],
+    bet: `Quantum’s first trillion-dollar consequence is a migration, not a computer. Back the post-quantum switchover: tools that find everywhere a company uses breakable encryption, post-quantum libraries and hardware security modules, wallet and custody upgrades for crypto, and the GPU-side control stack (decoders and low-latency links) that every quantum builder needs, whichever qubit type wins. The blockchain half of this story is in <a href="#ledger">Banks won’t mine</a>.`,
+    wrong: "A quantum computer trains or serves a frontier AI model faster than GPUs before any quantum computer breaks a 256-bit elliptic-curve key.",
+    receipts: [["Google Quantum AI on cryptocurrency (Mar 2026)", SRC.qGoogle], ["Forbes on Google’s paper (Mar 2026)", SRC.qForbes], ["The Quantum Insider on Quantum Echoes (Oct 2025)", SRC.qEchoes], ["Quantum Zeitgeist logical-qubit leaderboard (2026)", SRC.qBoard], ["DCD on IBM’s Starling roadmap (2025)", SRC.qIbm], ["Quantum Computing Report on NVQLink (Oct 2025)", SRC.qNvq], ["ForkLog on Glassnode’s exposed-key count (Oct 2026)", SRC.btcExposed]],
+    viz: "quantum", echo: { pose: "float", acc: "qubit", name: "Qubit" }
+  },
+  {
+    id: "ledger", die: [4, 8], stance: "build",
+    title: "Banks won’t mine. They’ll still share the ledger.",
+    h2: "Banks won’t mine. | They’ll still | share the ledger.",
+    short: "Banks will share the ledger",
+    hook: "Bitcoin built a ledger nobody owns and anyone can check. Banks want the second half without the first.",
+    ref: { label: "Satoshi Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System” (2008)", href: SRC.btcPaper },
+    signal: `<blockquote class="pull">…a record that | cannot be changed | without redoing | the proof-of-work.</blockquote>
+      <p>That’s the whole trick. Every block holds its data, its own hash (a fingerprint of everything in it) and the hash of the block before it. Change anything in an old block and its fingerprint changes, which breaks the link to every block after it. Only the first block, the genesis block, points to nothing.</p>`,
+    takes: [
+      ["Tampering doesn’t fail. It gets outworked.", "A forger can rewrite a block and make the chain look valid again, but only by redoing the proof of work for that block and every block after it, then outrunning everyone still adding honest ones. Bitcoin tunes that work so a block lands about every 10 minutes. Satoshi did the math: an attacker with 10% of the network’s computing power, six blocks behind, catches up about 0.02% of the time. Waiting for confirmations is waiting for that number to shrink."],
+      ["Everyone keeps a copy, so nobody reconciles.", "Every participant holds the whole ledger and checks each new block, so agreement comes from consensus instead of a back office matching two banks’ books after the fact. That’s what banks are buying. JPMorgan’s Kinexys moves about $5 billion a day and has handled more than $3 trillion since 2020, and its JPM Coin deposit token runs on Coinbase’s Base network."],
+      ["Banks swap the work for a guest list.", "Proof of work burns electricity so strangers can trust each other. Banks know who’s on their network, so their chains use proof of authority or stake: identified validators vote, and blocks settle in seconds. The rules are arriving too. The OCC’s final GENIUS Act rule for payment stablecoins, issued October 21, takes effect January 18, 2027. What none of them can swap yet is the signature math: Shor’s algorithm on a big enough quantum computer breaks the elliptic-curve keys (ECDSA) behind Bitcoin and most chains."]
+    ],
+    bet: `Within five years, most money moving between big banks will move on shared ledgers: deposit tokens, tokenized Treasurys and stablecoins from bank subsidiaries. Banks still reconciling separate books will be slower and costlier than the ones that aren’t. Back the plumbing: bridges between bank chains and public ones, identity and compliance built into the token, custody, and post-quantum signatures before the ledgers are valuable enough to attack. The quantum side is in <a href="#quantum">Quantum’s first big job</a>.`,
+    wrong: "By 2031, the biggest US banks still settle almost all of their payments with each other on legacy rails, and their chains are still pilots.",
+    receipts: [["Satoshi Nakamoto, Bitcoin white paper (2008)", SRC.btcPaper], ["Catenaa on Kinexys and Mitsubishi (Apr 2026)", SRC.kinexys], ["OCC Bulletin 2026-50, GENIUS Act final rule (Oct 2026)", SRC.occGenius], ["Google Quantum AI on elliptic-curve keys (Mar 2026)", SRC.qGoogle]],
+    viz: "ledger", echo: { pose: "idle", acc: "chain", name: "Ledger" }
+  },
+  {
+    id: "custom", die: [6, -1], stance: "original",
+    title: "The chip is custom. The moat is everything around it.",
+    h2: "The chip is custom. | The moat is | everything around it.",
+    short: "The moat around the chip",
+    hook: "Hyperscalers can learn to design their own AI chips. The wires, the packaging and the supply are much harder to bring in-house.",
+    ref: { k: "Reference design", label: "My own read of Broadcom’s and Marvell’s 2026 results and the custom-chip deals behind them", href: SRC.avgoCall },
+    signal: `<p class="claim">$16.7 billion of AI chips | in one quarter, | up 221%.</p>
+      <p>That was Broadcom’s AI semiconductor revenue in its fiscal third quarter, reported September 3. Custom accelerators were 73% of it, led by Google’s TPUs and OpenAI’s first chip, which shipped that quarter. Meta’s MTIA follows in the fourth. Broadcom expects about $115 billion of AI revenue in fiscal 2027 and about $230 billion in 2028.</p>
+      <p>Every one of those customers is also learning to design chips without it.</p>`,
+    takes: [
+      ["Custom wins on the job, not the spec sheet.", "A GPU is built to run anything. A custom accelerator, or ASIC, is built for one company’s models, trading flexibility for cost and power. Custom ASIC shipments were projected to grow 44.6% in 2026 against 16.1% for GPUs, and Broadcom and Marvell co-design about 95% of them. Anthropic alone plans to add 5 GW of Google’s TPU v8i in 2027, per Broadcom."],
+      ["The insourcing threat is real, and partial.", "Google brought in MediaTek as a second design partner for TPU v7. Amazon designs Trainium in-house at Annapurna Labs, and in December 2025 Benchmark said it was highly confident Marvell had lost Trainium3 and Trainium4 to Taiwan’s Alchip. What customers keep buying is the hard periphery: high-speed I/O, the memory interface, packaging and a slice of TSMC’s scarce CoWoS capacity, where Broadcom holds about 15%."],
+      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. Marvell’s stock more than tripled in the first half of 2026, partly on optical networking, then fell about 13% on October 29 after Bloomberg reported it was in advanced talks to buy Lumentum, an optical-parts maker worth about $83 billion, likely in stock."]
+    ],
+    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell is betting optics becomes its moat, and a Lumentum deal would make that bet in one move.",
+    wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
+    note: "Not investment advice.",
+    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["Motley Fool on the Lumentum talks (Oct 2026)", SRC.mrvlLite]],
+    viz: "custom", echo: { pose: "idle", acc: "asic", name: "Chip designer" }
+  },
+  {
+    id: "tokens", die: [-4, -8], stance: "agree",
+    title: "Rent GPUs to survive. Sell tokens to win.",
+    h2: "Rent GPUs to survive. | Sell tokens to win.",
+    short: "Sell tokens to win",
+    hook: "Nebius’s bull case isn’t more data centers. It’s selling what comes out of them.",
+    ref: { label: "betteresearch, “Nebius Group · Investment Framework” (May 2026)", href: SRC.nbFrame },
+    signal: `<p class="claim">Pennies to make. | Dollars to sell.</p>
+      <p>The framework’s rough math for a million tokens from a popular model: about $0.10 to $0.30 of GPU time to make, run efficiently, and $5 to $15 at list price through a public API. That’s a spread of 17× to 150×. Renting the same GPUs by the hour earns gross margins of about 20% to 30%.</p>
+      <p>Nebius launched Token Factory in November 2025 to sell the tokens instead of the hours.</p>`,
+    takes: [
+      ["The GPU-hour is a commodity.", "Raw rental is priced against every other operator with the same Nvidia chips. Field interviews the framework cites found bare-metal customers keep three to five providers and re-bid every month. CoreWeave, which mostly rents GPU-hours, brings in about $8 million to $12 million a year per megawatt. That’s what a strong neocloud earns. It isn’t a software business."],
+      ["The token is a product.", "Token Factory serves more than 40 open models with fine-tuning, distillation and dedicated endpoints at a 99.9% uptime SLA. Prosus runs up to 200 billion tokens a day on it and reports costs up to 26× lower than with proprietary models. Then Nebius bought ways to get more out of each GPU and each customer: Eigen AI ($643 million) for model-level inference tuning, Clarifai’s team and patents for system-level orchestration, and Tavily for agent search, with about 700,000 developers. A customer wired into an API is harder to re-bid than a rack."],
+      ["The spread is real, and it’s melting.", "Token prices fall 30% to 50% a year across providers, so over four years the 17–150× spread shrinks to roughly 2–20×. Together AI, Fireworks, Groq and open engines like vLLM chase the same margin. The framework gives the window two to four years, and Nebius hasn’t yet broken out Token Factory revenue. Its scenarios show the stakes: about 11× for shareholders if tokens become a software-class business, a loss of 70% or more if Nebius stays a GPU landlord in a glut."]
+    ],
+    bet: `Neoclouds that stay landlords earn landlord returns. The ones worth owning turn more of every megawatt into tokens sold by the million, and keep customers through APIs, fine-tuned models and agents rather than price. This extends my take in <a href="#neocloud">The clouds are renting from the neoclouds</a>: renting GPU-hours wholesale is the floor, and tokens are the upside. The tell is the share of Nebius’s revenue that comes from Token Factory, which it hasn’t disclosed yet.`,
+    wrong: "By the end of 2027, Nebius earns no more revenue per megawatt than CoreWeave, or token prices fall faster than its cost per token, so selling tokens pays no better than renting GPUs.",
+    note: "Not investment advice.",
+    receipts: [["betteresearch, Nebius Investment Framework (May 2026)", SRC.nbFrame], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft]],
+    viz: "tokens", echo: { pose: "wave", acc: "tokens", name: "Token seller" }
+  },
+  {
+    id: "factory", die: [-3, -5], stance: "build",
+    title: "A token factory is a country of experts on a meter.",
+    h2: "A token factory | is a country of experts | on a meter.",
+    short: "A country of experts",
+    hook: "Data centers used to store work. The new ones manufacture it, one token at a time.",
+    ref: { label: "Dario Amodei, “Machines of Loving Grace” (October 2024), and the “country full of experts” framing I heard on a Civo Navigate London 2026 panel", href: SRC.amodeiMlg },
+    signal: `<blockquote class="pull">This is your token factory, | this is your AI factory, | this is your revenue.</blockquote>
+      <p>That’s Jensen Huang at GTC, March 16, 2026. A token is a piece of a word, the unit an AI model reads and writes. Google was processing more than 3.2 quadrillion of them a month by May, up 7× in a year.</p>
+      <p>At Civo Navigate London in September, I heard the human version: an optimized data center is a mini country full of experts.</p>`,
+    takes: [
+      ["Raw materials in, finished work out.", "A token factory takes in electricity, chips and a trained model and ships tokens: answers, code, plans. So measure it like a factory. Throughput is tokens per second, efficiency is tokens per watt, and the price list is per token. Nebius named its inference product Token Factory, and one customer, Prosus, runs up to 200 billion tokens a day through it."],
+      ["It’s a country, with strange labor laws.", "Dario Amodei’s version: the cluster that trains a model can then run millions of copies of it, each working at roughly 10× to 100× human speed, a “country of geniuses in a datacenter.” These experts never sleep, can be copied on demand and switch specialties between requests. Every hour they work is metered in tokens, and every token has a power bill."],
+      ["Countries have borders, so token factories do too.", "Tokens carry the data they work on, so regulated firms want the factory in-country. At the same event, Civo unveiled a liquid-cooled UK edge data center built on Nvidia’s Vera Rubin, with 72 Rubin GPUs per rack and 40 UK sites planned. In October, Gigatokens began selling per-token AI from Civo’s UK GPUs with zero data retention by default. Sovereignty used to be a policy. Now it’s an address."]
+    ],
+    bet: "Count AI capacity like an economy, not a server room: how many experts are on staff (agents running at once), how many hours they work (tokens), and how productive they are (tokens per watt). Back what raises output per megawatt: inference engines, smarter routing and caching, smaller distilled models, and in-country token factories for banks, hospitals and governments.",
+    wrong: "By 2028, tokens per watt stop improving and per-token prices stop falling, so a token factory behaves like a utility with fixed output instead of an economy whose workforce keeps growing.",
+    receipts: [["Dario Amodei, Machines of Loving Grace (Oct 2024)", SRC.amodeiMlg], ["Fortune on “a country of geniuses” (Jan 2026)", SRC.amodeiAdol], ["Civo Navigate London 2026 wrap-up (Sept 2026)", SRC.civoWrap], ["SiliconANGLE on Huang at GTC (Mar 2026)", SRC.gtc26], ["Google I/O 2026 keynote (May 2026)", SRC.googTok], ["Gigatokens and Civo (Oct 2026)", SRC.gigatokens], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf]],
+    viz: "factory", echo: { pose: "idle", acc: "factory", name: "Foreman" }
+  },
+  {
+    id: "chipnames", die: [3, -4], stance: "original",
+    title: "Every GPU name is a scientist and a year.",
+    h2: "Every GPU name | is a scientist | and a year.",
+    short: "A scientist and a year",
+    hook: "H100, B200, Rubin: the alphabet soup is a family tree. Learn the letters and the roadmap reads itself.",
+    ref: { k: "Reference design", label: "My own map of Nvidia’s architectures and Google’s TPUs, from their roadmaps and docs", href: SRC.nvNames },
+    signal: `<p class="claim">The letter is the scientist. | The number is the tier.</p>
+      <p>Nvidia names each architecture after a scientist and stamps the initial on the chip: T4 for Alan Turing, A100 for André-Marie Ampère, L40S for Ada Lovelace, H100 for Grace Hopper, B200 for David Blackwell. Rubin, for the astronomer Vera Rubin, ships this year, and Feynman is due in 2028.</p>
+      <p>The extras are clues too. GB200 pairs Blackwell GPUs with Nvidia’s Grace CPU, and “NVL72” means 72 GPUs wired to act as one.</p>`,
+    takes: [
+      ["The family split in 2022, then came back together.", "Turing (2018) put tensor cores, the matrix-math units AI runs on, into gaming cards and the low-power T4. Ampere (2020) covered everything from the A100 to RTX 30 cards. In 2022 Nvidia split the line: Ada Lovelace for graphics and cheaper inference (RTX 40, L4, L40S) and Hopper for the data center (H100). Blackwell reunited them, from B200 to RTX 50, and Nvidia now ships a new data-center architecture every year."],
+      ["The real upgrade is usually memory.", "H200 is the H100’s Hopper chip with 141 GB of memory instead of 80 GB, and 4.8 TB/s instead of 3.35. B200 joins two dies with 192 GB, and B300, Blackwell Ultra, has 288 GB. A Rubin GPU keeps 288 GB but moves to HBM4 at up to 22 TB/s, nearly triple B300’s 8 TB/s, and Nvidia rates it at 50 petaflops of FP4 inference. A model lives in memory, so memory decides how big it can be and bandwidth decides how fast it answers."],
+      ["Google’s TPUs went the other way: one customer, then everyone.", "TPU v1 (2015) only ran models inside Google. v2 (2017) added training and the bfloat16 number format now used across AI. v4 (2021) linked 4,096 chips in a pod. Ironwood, TPU v7, reached general availability in April 2026 with 192 GB per chip and pods of 9,216 chips. Google then split the eighth generation into TPU 8t for training and 8i for inference, and sells to outside labs: Anthropic signed for up to a million TPUs."]
+    ],
+    bet: "Ignore the name on the box and read three numbers: memory per chip, memory bandwidth, and how many chips act as one machine, 72 in an NVL72 rack or 9,216 in an Ironwood pod. That’s where the generations really differ. Back what wins whichever name is on the box: HBM suppliers, the interconnect that makes thousands of chips act as one, and software that moves models between GPUs and TPUs without a rewrite.",
+    wrong: "By 2028, a chip with less memory and a smaller scale-up domain than its rivals wins the frontier on raw compute alone.",
+    receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
+    viz: "chipnames", echo: { pose: "wave", acc: "nametag", name: "Name tag" }
+  },
+  {
+    id: "openclaw", die: [4, 3], stance: "build",
+    title: "OpenClaw gave the brain a body. Now it needs a badge.",
+    h2: "OpenClaw gave the brain | a body. | Now it needs a badge.",
+    short: "A body that needs a badge",
+    hook: "The open-source agent that lives in your group chat is the best test yet of my brain-with-a-body thesis, and of what breaks without permissions.",
+    ref: { label: "OpenClaw, Peter Steinberger’s open-source agent (November 2025 onward), now run by the OpenClaw Foundation", href: SRC.ocWiki },
+    signal: `<p class="claim">A side project | to 391,800 GitHub stars | in under a year.</p>
+      <p>Peter Steinberger released it as Warelay on November 24, 2025, and renamed it four times, partly after trademark complaints from Anthropic, before settling on OpenClaw on January 30. It runs on your own machine, takes orders through Signal, Telegram or Discord, and acts on your email, calendar, files and browser through installable “skills.” Steinberger joined OpenAI in February, and a nonprofit foundation now runs the project.</p>`,
+    takes: [
+      ["For a lean startup, it’s staff.", "The best-documented uses are small and practical: lead generation, prospect research, website audits, CRM updates, inbox triage, price alerts. One-person agencies run SEO monitoring, email and a Shopify store through it from a chat window. The software is MIT-licensed and free, and the bill is model tokens. For a five-person company, that’s a back office for the price of an API key."],
+      ["For a big company, it’s a liability until it has a badge.", "Satya Nadella called OpenClaw a virus-like security risk in February. By May, Microsoft was testing an OpenClaw-based desktop called ClawPilot internally. Nvidia launched NemoClaw in March to wrap it in guardrails and sandboxing, and on October 27 Red Hat brought Nvidia’s OpenShell sandbox runtime to OpenClaw agents on Kubernetes. China barred state agencies, state firms and banks from running it in March. Enterprises want the agent, with identity, permissions and an audit trail."],
+      ["The body is where it breaks.", "One audit reportedly found 341 of 2,857 skills on ClawHub, about 12%, were malicious, and researchers have counted more than 40,000 exposed instances online. In OpenClaw 2.0, released August 30, the sandbox is still off by default and stored secrets aren’t encrypted at rest. An agent with your inbox and no badge is a very helpful stranger."]
+    ],
+    bet: `Personal agents will follow the smartphone: open and messy first, then managed. Startups should run OpenClaw now for back-office work, with the sandbox on and only skills they’ve read. Big companies will run its descendants inside managed runtimes. Back the badge: agent identity and permissions, vetted skill registries, sandboxes and secret stores, and an audit log for every action. It’s the next step of the bet in <a href="#agent">An agent is a brain with a body</a>.`,
+    wrong: "By 2028, most large companies still don’t let any autonomous agent act in employees’ email or calendars, sandboxed or not.",
+    receipts: [["Wikipedia, OpenClaw", SRC.ocWiki], ["The GenAI Magazine, OpenClaw one year later (Oct 2026)", SRC.ocNow], ["SiliconANGLE on Red Hat and OpenShell (Oct 2026)", SRC.ocRedHat], ["Anthropic, Building effective agents (Dec 2024)", SRC.bea]],
+    viz: "openclaw", echo: { pose: "run", acc: "claw", name: "Claw" }
+  },
+  {
+    id: "race", die: [-4, 2], stance: "agree",
+    title: "America can’t afford second place in AI.",
+    h2: "America can’t afford | second place in AI.",
+    short: "No second place in AI",
+    hook: "China has nearly caught up on models. America’s lead is in capital and compute, and in a race where the prize compounds, that lead is the game.",
+    ref: { label: "Leopold Aschenbrenner, Situational Awareness, ch. IIId, “The Free World Must Prevail” (June 2024)", href: SRC.saIIId },
+    signal: `<p class="claim">China: 2.7% behind on models. | 23× behind on investment.</p>
+      <p>Stanford’s 2026 AI Index found the best Chinese model trails the best American one by 2.7% on head-to-head ratings, down from as much as 31.6 points in 2023. But US private AI investment was $285.9 billion in 2025, against China’s reported $12.4 billion, and the US added 78% of the world’s new AI compute in the first half of 2026.</p>
+      <p>The models are close. The inputs aren’t.</p>`,
+    takes: [
+      ["Commercially, the leader sets the defaults.", "Whoever’s models, chips and clouds the world builds on collects the rent and writes the standards, the way the US did with the internet. The US hosts 5,427 data centers, more than ten times any other country, and about 72% of the world’s AI compute. China leads where AI meets the physical world: it installed 295,000 industrial robots last year to America’s 34,200, and filed 69.7% of AI patents. Once models converge, compute and capital are the moat, and both can be lost."],
+      ["For security, AI now finds the weapons.", "In October, AI models helped find two flaws that had sat unnoticed for over a decade in PHP, which runs about 70% of websites, and governments took sites offline to patch. In August, the NSA, CISA, FBI, Energy Department and EPA warned that attackers are using AI to write exploits for Siemens controllers in water and energy systems. The side with the better models finds the holes first, in its own systems or someone else’s."],
+      ["Racing has a cost, so a lead has to buy something.", "Aschenbrenner’s argument is that a healthy lead buys room to be careful, where a neck-and-neck race invites cutting corners. Sam Altman reportedly told OpenAI staff in October that he favors an IAEA-style international watchdog, but that OpenAI can’t afford to cede ground while it waits. Others argue the race itself is the danger and only coordination makes it safe. Either way, a lead is only worth having if it’s spent on safety and standards."]
+    ],
+    bet: "Treat frontier AI as a strategic industry, the way the US treated chips in the 1980s and space in the 1960s: secure the inputs (power, fabs, packaging, talent), secure the outputs (model weights and access), and use the lead to set the safety rules everyone else has to meet. The Genesis Mission, the November 2025 order putting the Energy Department’s national labs behind AI for science, is a start. Back what the buildout and its defense need: power and grid, domestic packaging, AI-native cyber defense and secure compute for government.",
+    wrong: "By 2028, Chinese models lead American ones for a full year, and US companies and defenses are no worse off for it. Then it was a market, not a race.",
+    receipts: [["Situational Awareness, ch. IIId", SRC.saIIId], ["TNW on Stanford’s 2026 AI Index (Apr 2026)", SRC.aiIndex], ["OfficeChai on Epoch AI’s compute shares (Oct 2026)", SRC.epochShare], ["Korea Times on the PHP flaws (Oct 2026)", SRC.phpKt], ["Help Net Security on AI-written PLC exploits (Aug 2026)", SRC.plcAi], ["Forbes on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Federal Register, Launching the Genesis Mission (Nov 2025)", SRC.genesis]],
+    viz: "race", echo: { pose: "run", acc: "baton", name: "Relay" }
+  },
+  {
+    id: "silicon", die: [1, 3], stance: "original",
+    title: "Software can be patched. Silicon has to be outlived.",
+    h2: "Software can be patched. | Silicon has to be outlived.",
+    short: "Silicon has to be outlived",
+    hook: "If superintelligence arrives on Altman’s schedule, the weakest point won’t be the model. It’ll be the chips it runs on.",
+    ref: { k: "Reference design", label: "My own read of 2026’s AI-found flaws and hardware attacks, against Sam Altman’s superintelligence timeline", href: SRC.altmanSI },
+    signal: `<blockquote class="pull">…only a couple of years away | from early versions | of true superintelligence.</blockquote>
+      <p>Sam Altman said that in February, adding that by the end of 2028 more of the world’s intellectual capacity could sit inside data centers than outside them. In October, The Information reported he had walked OpenAI staff through three endgames. In one, a lab uses self-improving AI to starve its rivals of chips, the “melt their GPUs” scenario. He reportedly called it terrible.</p>
+      <p>Either way, the prize is the hardware.</p>`,
+    takes: [
+      ["AI now finds holes faster than people fill them.", "Researchers using frontier AI models found two flaws that had hidden in PHP for more than a decade, and Wiz said AI did in a week what used to take a world-class team months. When the fix shipped on October 21, governments and companies pulled sites offline worldwide. Industrial systems are next in line: in August, federal agencies warned that attackers are using AI to write exploits for Siemens industrial controllers. So far they’re mapping systems, not breaking them. But Stuxnet showed in 2010 that code aimed at Siemens controllers can wreck about 1,000 centrifuges."],
+      ["Chip flaws don’t get patched. They get taxed.", "A hardware flaw is baked into the silicon, so software can only work around it, usually at a cost in speed. The 2018 fixes for Meltdown and Spectre slowed database-style workloads by 8% to 19%. In 2025, GPUHammer flipped one bit in an Nvidia A6000’s memory and dropped an image model’s accuracy from 80% to 0.08%. The fix, error-correcting memory, costs 6.5% of capacity and 3% to 10% of speed. TEE.fail used a memory-bus probe built for under $1,000 to pull keys from Intel’s and AMD’s secure enclaves and fake Nvidia attestations."],
+      ["So the trust boundary moves to the building.", "If chips can’t be made perfect, security comes from who can touch them and what they can reach: locked cages, isolated networks, attestation that a chip is genuine and unmodified, and replacing fleets before known flaws pile up. AMD said physical attacks like TEE.fail are out of scope for its chips. For a data center holding the most valuable model on Earth, physical access is the whole scope."]
+    ],
+    bet: `As AI gets more capable, the decisive security work moves from patching software to defending hardware and buildings. Back defensive AI that finds and fixes flaws before attackers do, memory encryption with integrity checks, hardware attestation, monitoring for industrial control systems, and data centers where physical access is the hardest thing to get. It’s the physical half of <a href="#weights">Weights are the new crown jewels</a>.`,
+    wrong: "By 2028, a new generation of AI accelerators goes two years with no publicly demonstrated hardware attack, and serious AI-found software flaws get rarer, not more common.",
+    receipts: [["Medianama on Altman’s superintelligence remarks (Feb 2026)", SRC.altmanSI], ["Forbes on Altman’s three endgames (Oct 2026)", SRC.altman3], ["CTV News on the PHP flaws (Oct 2026)", SRC.phpCtv], ["Paubox on the PHP fix and shutdowns (Oct 2026)", SRC.phpPaubox], ["Help Net Security on AI-written PLC exploits (Aug 2026)", SRC.plcAi], ["RTÉ on Stuxnet (2025)", SRC.stuxnet], ["InfoQ on Meltdown and Spectre slowdowns (Jan 2018)", SRC.meltdownPerf], ["GPUHammer paper (2025)", SRC.gpuHammer], ["BleepingComputer on TEE.fail (Oct 2025)", SRC.teeFail]],
+    viz: "silicon", echo: { pose: "idle", acc: "patch", name: "Patcher" }
   }
 ];
 const PROBES = [
-  { die: [4, -2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
-  { die: [-4, 2], title: "AGI becomes a national project.", hook: "Building on Aschenbrenner’s “The Project”: a Manhattan Project–scale effort, with national funding and a task force." }
+  { die: [4, -2], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." }
 ];
 const RECEIPTS = [
   { v: "~2 TB", t: "A billion-dollar training run, boiled down to one file.", id: "weights", fresh: 1 },
@@ -1838,6 +2237,36 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accDefs = `<radialGradient id="${k}g" cx="50%" cy="45%" r="55%"><stop offset=".72" stop-color="#bfe9ff" stop-opacity="0"/><stop offset=".95" stop-color="#bfe9ff" stop-opacity=".26"/><stop offset="1" stop-color="#e8f8ff" stop-opacity=".5"/></radialGradient>`;
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="echo-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
     accBack = spark(-12, -12, .8, "#ffb23f", 0) + spark(112, 4, .6, "#fff", .4) + spark(118, 70, .7, "#4fd2ff", .8);
+  } else if (acc === "qubit") {
+    accIn = `<g transform="translate(91 66)"><circle r="13" fill="#bfe9ff" fill-opacity=".18" stroke="#a6e9ff" stroke-width="1.2"/><ellipse rx="13" ry="4.2" fill="none" stroke="#a6e9ff" stroke-width=".9" stroke-dasharray="2 2"/><path d="M0 -13 V13" stroke="#a6e9ff" stroke-width=".7" opacity=".6"/><g class="echo-spin" style="animation-duration:3.2s"><circle r="13" fill="none"/><path d="M0 0 L7.5 -8.5" stroke="#ffd98a" stroke-width="2" stroke-linecap="round"/><circle cx="7.5" cy="-8.5" r="2.4" fill="#ffd98a"/></g><circle r="1.6" fill="#fff"/></g>`;
+    accExtra = spark(4, -6, .55, "#4fd2ff", 0) + spark(98, -12, .5, "#ffd98a", .6) + `<ellipse cx="50" cy="-4" rx="40" ry="6" fill="none" stroke="#a6e9ff" stroke-opacity=".45" stroke-width=".8" stroke-dasharray="3 3"/>`;
+  } else if (acc === "chain") {
+    const cube = (x, y, c) => `<g transform="translate(${x} ${y})"><path d="M-9 -4 L0 -9 L9 -4 L0 1 Z" fill="${c}" opacity=".95"/><path d="M-9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".7"/><path d="M9 -4 V7 L0 12 V1 Z" fill="${c}" opacity=".5"/><path d="M-9 -4 L0 1 L9 -4 M0 1 V12" stroke="#fff" stroke-opacity=".5" stroke-width=".6" fill="none"/></g>`;
+    accIn = cube(93, 62, "#ffb23f") + `<path d="M84 70 Q70 86 52 84" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/>`;
+    accExtra = cube(-6, 66, "#4fd2ff") + `<path d="M3 72 Q18 88 40 86" stroke="#cfc6f5" stroke-width="2.2" fill="none" stroke-dasharray="5 3" stroke-linecap="round"/><text class="echo-z" x="98" y="40" font-size="8" font-weight="800" fill="#ffb23f">#</text><text class="echo-z" style="animation-delay:1.4s" x="-10" y="46" font-size="8" font-weight="800" fill="#4fd2ff">#</text>`;
+  } else if (acc === "asic") {
+    accIn = `<g transform="translate(88 66) rotate(-8)"><rect x="-17" y="-15" width="34" height="30" rx="2" fill="#1d3f74" stroke="#a6e9ff"/><path d="M-17 -7 H17 M-17 1 H17 M-17 9 H17 M-9 -15 V15 M-1 -15 V15 M7 -15 V15" stroke="#a6e9ff" stroke-opacity=".25" stroke-width=".6"/><rect x="-8" y="-7" width="16" height="14" rx="1.5" fill="none" stroke="#ffd98a" stroke-width="1.4"/><path d="M-11 -3 H-8 M-11 3 H-8 M8 -3 H11 M8 3 H11 M-3 -10 V-7 M3 -10 V-7 M-3 7 V10 M3 7 V10" stroke="#ffd98a" stroke-width="1.1"/><g class="echo-glint"><path d="M12 -20 L22 -30 L25 -27 L15 -17 Z" fill="#ffb23f"/><path d="M12 -20 L15 -17 L10 -15 Z" fill="#ffe7c2"/></g></g>`;
+    accExtra = `<g transform="translate(-8 66)"><circle r="7" fill="none" stroke="#4fd2ff" stroke-width="1.6"/><path class="echo-spin" style="animation-duration:6s" d="M0 -10 V-6 M0 6 V10 M-10 0 H-6 M6 0 H10" stroke="#4fd2ff" stroke-width="1.6"/></g>`;
+  } else if (acc === "tokens") {
+    const coin = (y, d) => `<g class="echo-stack" style="animation-delay:${d}s"><ellipse cx="0" cy="${y}" rx="9" ry="3.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".7"/><text x="0" y="${y + 2}" text-anchor="middle" font-size="4.6" font-weight="900" fill="#211a32">TOK</text></g>`;
+    accIn = `<g transform="translate(92 74)">${coin(0, 0)}${coin(-5, .12)}${coin(-10, .24)}${coin(-15, .36)}</g><g transform="translate(91 40) rotate(10)"><path d="M0 -4 V2" stroke="#cfc6f5" stroke-width="1.1"/><rect x="-13" y="2" width="26" height="12" rx="2" fill="#fbfaff" stroke="#cfc6f5"/><text x="0" y="10.6" text-anchor="middle" font-size="6.2" font-weight="900" fill="#211a32">$/M tok</text></g>`;
+    accExtra = [[-12, 30, 0], [-6, 56, .6], [-14, 80, 1.2]].map(([x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="8" font-weight="800" fill="#ffb23f">tok</text>`).join("");
+  } else if (acc === "factory") {
+    accIn = `<g transform="translate(90 70)"><path d="M-16 12 V-2 L-9 -7 V-2 L-2 -7 V-2 L5 -7 V-2 L12 -7 V12 Z" fill="#cfc6f5" stroke="#9b83ff" stroke-width=".9" stroke-linejoin="round"/><rect x="8" y="-20" width="5" height="16" fill="#9b83ff"/><rect x="-12" y="3" width="5" height="5" rx="1" fill="#4fd2ff" class="echo-led"/><rect x="-3" y="3" width="5" height="5" rx="1" fill="#4fd2ff" class="echo-led" style="animation-delay:.4s"/><rect x="5" y="3" width="5" height="9" rx="1" fill="#211a32"/></g>`;
+    accExtra = [["Th", 104, 40, 0], ["ink", 98, 26, .9], ["ing", 108, 12, 1.8]].map(([w, x, y, d]) => `<text class="echo-z" style="animation-delay:${d}s" x="${x}" y="${y}" font-size="7.5" font-weight="800" fill="#ffd98a">${w}</text>`).join("");
+  } else if (acc === "nametag") {
+    accIn = `<g transform="translate(50 70) rotate(-6)"><rect x="-21" y="-12" width="42" height="25" rx="3" fill="#fff" stroke="#ff6b80" stroke-width="1"/><path d="M-21 -9 A3 3 0 0 1 -18 -12 H18 A3 3 0 0 1 21 -9 V-3 H-21 Z" fill="#ff6b80"/><text x="0" y="-5" text-anchor="middle" font-size="4.6" font-weight="900" fill="#fff" letter-spacing=".3">HELLO MY NAME IS</text><text x="0" y="9" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="12" font-weight="900" fill="#211a32">H100</text></g>`;
+    accExtra = spark(102, 30, .6, "#ffd98a", 0) + spark(-8, 40, .5, "#4fd2ff", .5);
+  } else if (acc === "claw") {
+    accIn = `<path d="M38 3 C34 -8 26 -14 18 -16 M62 3 C66 -8 74 -14 82 -16" stroke="#ff6b80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="-16" r="2.4" fill="#ff6b80"/><circle cx="82" cy="-16" r="2.4" fill="#ff6b80"/>` +
+      `<g transform="translate(92 66) rotate(-20)"><path d="M-6 6 C-10 -6 -6 -18 6 -20 C10 -12 8 -6 2 -4 C8 -2 12 2 10 8 C4 12 -2 10 -6 6 Z" fill="#ff6b80" stroke="#c94a5e" stroke-width=".9"/><path d="M2 -4 L8 -10" stroke="#c94a5e" stroke-width="1.4" stroke-linecap="round"/><circle cx="-1" cy="-9" r="1.4" fill="#fff" opacity=".7"/></g>`;
+    accExtra = `<g transform="translate(-10 34)"><rect x="-8" y="-6" width="16" height="12" rx="4" fill="#4fd2ff"/><path d="M-4 6 L-6 10 L0 6" fill="#4fd2ff"/><circle cx="-3.5" cy="0" r="1.1" fill="#211a32"/><circle cx="0" cy="0" r="1.1" fill="#211a32"/><circle cx="3.5" cy="0" r="1.1" fill="#211a32"/></g>`;
+  } else if (acc === "baton") {
+    accIn = `<g transform="translate(92 64) rotate(-35)"><rect x="-4" y="-16" width="8" height="32" rx="4" fill="#ffb23f" stroke="#d98a12" stroke-width=".8"/><path d="M-4 -6 H4 M-4 6 H4" stroke="#fff" stroke-opacity=".7" stroke-width="1.4"/></g>`;
+    accExtra = `<g transform="translate(-8 60)"><rect x="-2" y="-14" width="4" height="4" rx="1" fill="#cfc6f5"/><circle r="9" fill="#fbfaff" stroke="#9b83ff" stroke-width="1.4"/><g class="echo-spin" style="animation-duration:2s"><circle r="6.5" fill="none"/><path d="M0 0 V-6.5" stroke="#ff6b80" stroke-width="1.4" stroke-linecap="round"/></g><circle r="1.3" fill="#211a32"/></g>`;
+  } else if (acc === "patch") {
+    accIn = `<g transform="translate(90 68) rotate(-10)"><rect x="-13" y="-13" width="26" height="26" rx="2.5" fill="#1b1530" stroke="#4a3f86"/>${[-8, -2, 4].map(v => `<rect x="${v}" y="-16" width="2.4" height="3" fill="#ffc566"/><rect x="${v}" y="13" width="2.4" height="3" fill="#ffc566"/>`).join("")}<g transform="rotate(-38)"><rect x="-15" y="-4.5" width="30" height="9" rx="4.5" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="-4.5" y="-4.5" width="9" height="9" fill="#f2c096"/><circle cx="-10" cy="-1.5" r=".7" fill="#d9a072"/><circle cx="-8" cy="1.5" r=".7" fill="#d9a072"/><circle cx="8" cy="-1.5" r=".7" fill="#d9a072"/><circle cx="10" cy="1.5" r=".7" fill="#d9a072"/></g></g>`;
+    accExtra = `<g transform="translate(-8 74)"><g class="echo-speed" style="animation-duration:1.4s"><ellipse rx="6" ry="4.4" fill="#2fb87a"/><circle cx="6" cy="0" r="2.6" fill="#2fb87a"/><path d="M-4 -4 L-6 -8 M0 -4 L0 -8 M4 -4 L6 -8 M-4 4 L-6 8 M0 4 L0 8 M4 4 L6 8 M8 -1 L11 -4 M8 1 L11 4" stroke="#2fb87a" stroke-width="1" stroke-linecap="round"/></g></g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -2697,9 +3126,650 @@ const VIZ = {
         <g transform="translate(16 296)" class="st-north hug" data-max="196"><rect width="196" height="30" rx="15"/><path d="M15 15 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="35" y="19.5" font-size="12" class="t-strong">North star: plans that happened</text></g>
       </svg><p class="cap">EchoTempo’s “It’s a tempo!” screen, when friends’ echoes line up. Echo appears courtesy of EchoTempo.</p></div>
     </div>`;
+  },
+  quantum() {
+    const X = n => 60 + Math.log10(n) * 55;
+    const ticks = [1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7].map((n, i) => `<line class="ax" x1="${X(n).toFixed(1)}" y1="262" x2="${X(n).toFixed(1)}" y2="268"/><text x="${X(n).toFixed(1)}" y="284" text-anchor="middle" font-size="12">${["1", "10", "100", "1K", "10K", "100K", "1M", "10M"][i]}</text>`).join("");
+    const dots = Array.from({ length: 14 }, (_, i) => { const a = i * 2.4, r = 5 + (i % 4) * 3.2; return `<circle class="qu-q" style="animation-delay:${(i * .17).toFixed(2)}s" cx="${(X(105) + Math.cos(a) * r).toFixed(1)}" cy="${(96 + Math.sin(a) * r * .7).toFixed(1)}" r="1.7"/>`; }).join("");
+    const gap = (x0, x1, y, lab) => `<rect class="qu-gap" x="${x0.toFixed(1)}" y="${y - 6}" width="${(x1 - x0).toFixed(1)}" height="12" rx="3"/><text x="${((x0 + x1) / 2).toFixed(1)}" y="${y - 12}" text-anchor="middle" font-size="13" font-weight="800" class="qu-gapt">${lab}</text>`;
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="Qubits on a log scale. Physical qubits: today's best chips have about 100 (Google Willow 105, Quantinuum Helios 98); Google's 2026 estimate to break a 256-bit elliptic-curve key is under 500,000, down from millions in earlier estimates, a gap of about 5,000 times. Logical qubits: Helios ran 48 in 2025, IBM targets 200 by 2029, and the attack needs about 1,200, a gap of about 25 times.">
+        <text x="20" y="26" class="t-strong" font-size="16">Qubits needed to break a Bitcoin key</text>
+        <text x="20" y="44" font-size="12">Log scale: each step is 10×</text>
+        <text x="20" y="74" font-size="13" class="t-strong qu-row">Physical qubits</text>
+        <line class="ax" x1="${X(1)}" y1="96" x2="${X(1e7)}" y2="96" stroke-dasharray="2 4"/>
+        ${gap(X(105) + 10, X(5e5) - 10, 96, "~5,000×")}
+        ${dots}<circle cx="${X(105).toFixed(1)}" cy="96" r="7" class="qu-now"/>
+        <text x="${X(105).toFixed(1)}" y="126" text-anchor="middle" font-size="12" class="t-strong">Today: ~100</text><text x="${X(105).toFixed(1)}" y="141" text-anchor="middle" font-size="11">Willow 105 · Helios 98</text>
+        <g class="qu-old"><circle cx="${X(1e7).toFixed(1)}" cy="96" r="6" fill="none" stroke="var(--faint)" stroke-dasharray="2 2"/><text x="${X(1e7).toFixed(1)}" y="74" text-anchor="end" font-size="11">earlier estimates: millions</text></g>
+        <g class="qu-need"><circle cx="${X(5e5).toFixed(1)}" cy="96" r="8" class="qu-tgt"/><path d="M${X(5e5).toFixed(1)} 104 V114" stroke="var(--coral)"/><text x="${X(5e5).toFixed(1)}" y="128" text-anchor="middle" font-size="12" class="t-strong" style="fill:var(--coral)">Needed: &lt;500K</text><text x="${X(5e5).toFixed(1)}" y="143" text-anchor="middle" font-size="11">Google, Mar 2026</text></g>
+        <text x="20" y="182" font-size="13" class="t-strong qu-row">Error-corrected (logical) qubits</text>
+        <line class="ax" x1="${X(1)}" y1="206" x2="${X(1e7)}" y2="206" stroke-dasharray="2 4"/>
+        ${gap(X(48) + 8, X(1200) - 8, 206, "~25×")}
+        <circle cx="${X(48).toFixed(1)}" cy="206" r="6" class="qu-now"/><text x="${X(48).toFixed(1)}" y="234" text-anchor="middle" font-size="11"><tspan class="t-strong">48</tspan> Helios</text>
+        <circle cx="${X(200).toFixed(1)}" cy="206" r="5" fill="none" stroke="var(--beat)" stroke-width="1.6" stroke-dasharray="3 2"/><text x="${X(200).toFixed(1)}" y="250" text-anchor="middle" font-size="11"><tspan class="t-strong">200</tspan> IBM, 2029 goal</text>
+        <circle cx="${X(1200).toFixed(1)}" cy="206" r="7" class="qu-tgt"/><text x="${(X(1200) + 12).toFixed(1)}" y="234" font-size="11" style="fill:var(--coral)"><tspan font-weight="800">~1,200</tspan> to break a key</text>
+        <line class="ax" x1="${X(1)}" y1="262" x2="${X(1e7)}" y2="262"/>${ticks}
+      </svg>`;
+    const tiers = [[70, 92], [104, 74], [138, 56], [172, 40]].map(([y, w], i) => `<rect x="${100 - w / 2}" y="${y}" width="${w}" height="9" rx="2" class="qu-tier"/>${i < 3 ? [-1, 1].map(s => `<line x1="${100 + s * (w / 2 - 10)}" y1="${y + 9}" x2="${100 + s * (w / 2 - 14)}" y2="${y + 34}" class="qu-rod"/>`).join("") : ""}`).join("");
+    const grid = Array.from({ length: 9 }, (_, i) => `<circle class="qu-q" style="animation-delay:${(i * .2).toFixed(1)}s" cx="${88 + (i % 3) * 12}" cy="${206 + Math.floor(i / 3) * 10}" r="2.2"/>`).join("");
+    const mv = (id, n, dur, cls) => Array.from({ length: n }, (_, i) => `<circle r="4" class="${cls}"><animateMotion dur="${dur}s" begin="-${(i * dur / n).toFixed(2)}s" repeatCount="indefinite"><mpath href="#${id}"/></animateMotion></circle>`).join("");
+    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="A quantum processor in its refrigerator sends qubit readouts to a GPU, which decodes errors and sends corrections back, over Nvidia's NVQLink in under four microseconds round trip. Seventeen quantum builders support it. Later, quantum computers may send AI something back: simulations of molecules and materials.">
+        <text x="20" y="26" class="t-strong" font-size="16">Who needs whom, today</text>
+        <line x1="100" y1="44" x2="100" y2="70" class="qu-rod"/>${tiers}
+        <rect x="76" y="196" width="48" height="34" rx="3" fill="var(--ink-2)" stroke="var(--beat)"/>${grid}
+        <text x="100" y="252" text-anchor="middle" font-size="13" class="t-strong">Quantum chip</text><text x="100" y="267" text-anchor="middle" font-size="11">at ~0.01 K, in its fridge</text>
+        <g transform="translate(320 112)"><rect width="110" height="70" rx="5" fill="var(--ink-2)" stroke="var(--amber)" stroke-width="1.5"/>${[0, 1, 2, 3, 4, 5, 6].map(k => `<line x1="${14 + k * 14}" y1="10" x2="${14 + k * 14}" y2="60" stroke="var(--amber)" stroke-opacity=".35"/>`).join("")}<rect x="34" y="20" width="42" height="30" rx="3" fill="var(--ink-3)" stroke="var(--amber)"/><text x="55" y="40" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--amber)">GPU</text></g>
+        <text x="375" y="202" text-anchor="middle" font-size="13" class="t-strong">GPU decoder</text><text x="375" y="217" text-anchor="middle" font-size="11">reads errors, sends fixes</text>
+        <path id="quUp" d="M128 120 C200 74 260 74 318 128" fill="none" stroke="var(--beat)" stroke-opacity=".35" stroke-dasharray="4 4"/>
+        <path id="quDn" d="M318 168 C260 214 200 214 128 196" fill="none" stroke="var(--amber)" stroke-opacity=".35" stroke-dasharray="4 4"/>
+        ${mv("quUp", 4, 1.6, "qu-pk")}${mv("quDn", 4, 1.6, "qu-pk2")}
+        <text x="222" y="82" text-anchor="middle" font-size="12" style="fill:var(--beat)" font-weight="700">qubit readouts</text>
+        <text x="222" y="222" text-anchor="middle" font-size="12" style="fill:var(--amber)" font-weight="700">corrections</text>
+        <g transform="translate(222 150)"><rect x="-78" y="-21" width="156" height="42" rx="21" fill="var(--ink)" stroke="var(--rule)"/><text y="-3" text-anchor="middle" font-size="13" class="t-strong">NVQLink: &lt; 4 µs</text><text y="13" text-anchor="middle" font-size="11">17 quantum builders</text></g>
+        <path d="M100 274 C180 296 300 296 372 236" fill="none" stroke="var(--violet)" stroke-dasharray="2 5" stroke-opacity=".7"/>
+        <text x="236" y="292" text-anchor="middle" font-size="11" style="fill:var(--violet)">later: molecule and material simulations, as data for AI</text>
+      </svg>`;
+    const F3 = `<div class="qucalc">
+        <p class="nc-k qu-k">Can a quantum thief beat your transaction?</p>
+        <label class="oc-l" for="quRange">Breaking one exposed key takes <b id="quT">9 minutes</b></label>
+        <input class="oc-range qu-range" type="range" id="quRange" min="1" max="30" step="1" value="9">
+        <svg class="qu-chart" id="quChart" viewBox="0 0 460 140" role="img" aria-label="Chance the attacker breaks the key before the transaction's first confirmation, by minutes needed per key."></svg>
+        <p class="sx-out qu-out" id="quOut"></p>
+        <div class="qu-rest"><span class="qu-bar" aria-hidden="true"><i></i></span><span><b>6.26M BTC</b> (31%) need no race at all: their public keys are already on-chain.</span></div>
+      </div>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Physical qubits are the hardware; logical qubits are error-corrected ones built from many physical qubits. Google (Mar 2026), Quantinuum (Nov 2025), IBM roadmap.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Error correction needs fast classical decoding, so the GPU sits in the loop. Quantum Computing Report on NVQLink (Oct 2025).</p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Spending bitcoin reveals your public key. Blocks arrive at random, about every 10 minutes, so the thief wins if the key breaks before the first confirmation. Google says “a few minutes” per key; Forbes reports about 9, with the same ~41% odds. Exposed coins: Glassnode (Oct 2026).</span><span class="cap-s">Blocks arrive about every 10 minutes at random. Google: “a few minutes” per key.</span></p></div>
+    </div>`;
+  },
+  ledger() {
+    const F1 = `<div class="lgc">
+        <p class="nc-k lg-k">The whiteboard, live: edit any block</p>
+        <div class="lg-row" id="lgRow"></div>
+        <div class="lg-ctl"><button class="btn lg-btn" id="lgTamper" type="button">Tamper with block 1</button><button class="btn lg-btn primary" id="lgMine" type="button">Redo the work</button></div>
+        <p class="lg-msg" id="lgMsg" aria-live="polite"></p>
+      </div>`;
+    const F2 = `<div class="lgcalc">
+        <p class="nc-k lg-k">Can a forger catch up?</p>
+        <label class="oc-l" for="lgQ">Forger’s share of the network’s computing power: <b id="lgQv">10%</b></label>
+        <input class="oc-range lg-range" type="range" id="lgQ" min="1" max="49" step="1" value="10">
+        <label class="oc-l" for="lgZ">Blocks you wait before trusting a payment: <b id="lgZv">6</b></label>
+        <input class="oc-range lg-range" type="range" id="lgZ" min="0" max="12" step="1" value="6">
+        <svg class="lg-chart" id="lgChart" viewBox="0 0 460 130" role="img" aria-label="Chance the forger ever catches up, for each number of blocks waited."></svg>
+        <p class="sx-out lg-out" id="lgOut"></p>
+      </div>`;
+    const COLS = [
+      [82, "Proof of work", "anyone with machines", "electricity spent", "~10 min", "Bitcoin", "var(--coral)", 3.2],
+      [230, "Proof of stake", "anyone who stakes coins", "a deposit at risk", "seconds", "Ethereum", "var(--beat)", 1.1],
+      [378, "Proof of authority", "known, vetted members", "a name and a license", "seconds", "bank networks", "var(--amber)", .9]
+    ];
+    const col = ([x, h, who, why, spd, ex, c, dur], i) => `<g>
+        <rect x="${x - 68}" y="56" width="136" height="178" rx="6" fill="var(--ink-2)" stroke="${c}" stroke-opacity=".7"/>
+        <text x="${x}" y="80" text-anchor="middle" class="t-strong" font-size="14.5">${h}</text>
+        <text x="${x - 58}" y="104" font-size="10.5" class="lg-lab">WHO ADDS BLOCKS</text><text x="${x - 58}" y="120" font-size="12.5" class="t-strong">${who}</text>
+        <text x="${x - 58}" y="144" font-size="10.5" class="lg-lab">WHAT KEEPS THEM HONEST</text><text x="${x - 58}" y="160" font-size="12.5" class="t-strong">${why}</text>
+        <text x="${x - 58}" y="184" font-size="10.5" class="lg-lab">NEW BLOCK EVERY</text><text x="${x - 58}" y="200" font-size="12.5" class="t-strong">${spd}</text>
+        <text x="${x}" y="224" text-anchor="middle" font-size="11.5" style="fill:${c}" font-weight="700">${ex}</text>
+        <g class="lg-drop" style="--dur:${dur}s;animation-delay:${(i * .3).toFixed(1)}s"><rect x="${x - 9}" y="34" width="18" height="14" rx="2.5" fill="${c}"/></g>
+      </g>`;
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Three ways a network agrees on the next block. Proof of work: anyone with machines, kept honest by electricity spent, a block about every 10 minutes, Bitcoin. Proof of stake: anyone who stakes coins, kept honest by a deposit at risk, seconds, Ethereum. Proof of authority: known, vetted members, kept honest by their name and license, seconds, bank networks. Banks land on stake and authority. All three still rely on elliptic-curve signatures, which a large quantum computer could break.">
+        <text x="14" y="24" class="t-strong" font-size="16">Three ways to agree on the next block</text>
+        ${col(COLS[0], 0)}${col(COLS[1], 1)}${col(COLS[2], 2)}
+        <path d="M230 248 V256 H378 V248" fill="none" stroke="var(--amber)" stroke-width="1.4"/>
+        <text x="304" y="272" text-anchor="middle" font-size="12" class="t-strong" style="fill:var(--amber)">Where banks land</text>
+        <text x="304" y="287" text-anchor="middle" font-size="11">Kinexys: ~$5B a day · JPM Coin on Base</text>
+        <g transform="translate(46 262)"><path d="M-6 0 V-5 A6 6 0 0 1 6 -5 V0" fill="none" stroke="var(--coral)" stroke-width="2"/><rect x="-9" y="-1" width="18" height="14" rx="2.5" fill="var(--coral)"/></g>
+        <text x="62" y="268" font-size="11.5" class="t-strong">All three sign with</text><text x="62" y="283" font-size="11.5" class="t-strong">elliptic-curve keys</text>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Real SHA-256 hashes, shortened to their first six characters. Here a block counts as “mined” when its hash starts with 00, about 256 tries on average.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Satoshi’s formula, section 11 of the white paper. Bitcoin users traditionally wait six confirmations, about an hour.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Banks keep the shared ledger and replace mining with known validators. Signatures are the part none of them have replaced yet.</p></div>
+    </div>`;
+  },
+  custom() {
+    const cores = Array.from({ length: 16 }, (_, i) => `<rect x="${178 + (i % 4) * 27}" y="${86 + Math.floor(i / 4) * 24}" width="21" height="18" rx="2"/>`).join("");
+    const hbm = [[118, 70], [118, 150], [322, 70], [322, 150]].map(([x, y]) => `<g class="cu-r" data-r="mem"><rect x="${x}" y="${y}" width="20" height="62" rx="3"/>${[1, 2, 3, 4, 5].map(k => `<line x1="${x}" y1="${y + k * 10.3}" x2="${x + 20}" y2="${y + k * 10.3}" class="cu-ln"/>`).join("")}</g>`).join("");
+    const F1 = `<div class="cu">
+        <svg viewBox="0 0 460 250" role="img" aria-label="A custom AI chip in its package. Regions: the compute cores, the memory interface and HBM stacks, the high-speed I/O ring, the package and its CoWoS supply, and the network beyond the chip. Drag the slider to see which of these the customer designs at each stage.">
+          <g class="cu-r" data-r="pkg"><rect x="96" y="44" width="268" height="190" rx="8" class="cu-pkg"/><text x="230" y="226" text-anchor="middle" font-size="11.5" class="cu-t">Packaging &amp; CoWoS supply</text></g>
+          ${hbm}
+          <text x="128" y="62" text-anchor="middle" font-size="11" class="cu-t">HBM</text><text x="332" y="62" text-anchor="middle" font-size="11" class="cu-t">HBM</text>
+          <g class="cu-r" data-r="io"><rect x="152" y="62" width="156" height="146" rx="5" class="cu-ring"/></g>
+          <text x="230" y="78" text-anchor="middle" font-size="10.5" class="cu-t">high-speed I/O ring</text>
+          <g class="cu-r" data-r="core">${cores}</g>
+          <text x="230" y="202" text-anchor="middle" font-size="11" class="cu-t">compute cores</text>
+          <g class="cu-r" data-r="net"><path d="M364 139 H392" class="cu-wire"/><rect x="392" y="100" width="58" height="78" rx="6"/><path d="M402 118 H440 M402 132 H440 M402 146 H440 M402 160 H440" class="cu-ln"/></g>
+          <text x="421" y="196" text-anchor="middle" font-size="11" class="cu-t">network &amp;</text><text x="421" y="209" text-anchor="middle" font-size="11" class="cu-t">optics</text>
+          <text x="40" y="132" text-anchor="middle" font-size="11" class="cu-t">memory</text><text x="40" y="145" text-anchor="middle" font-size="11" class="cu-t">interface</text><path d="M62 139 H116" class="cu-wire"/>
+        </svg>
+        <div class="cu-leg" aria-hidden="true"><span class="c">customer</span><span class="p">design partner</span><span class="s">cheaper second partner</span></div>
+        <input class="oc-range cu-range" type="range" id="cuRange" min="1" max="4" step="1" value="2" aria-label="Stage of insourcing">
+        <p class="cu-read" id="cuRead"></p>
+      </div>`;
+    const C = [["Google", 50], ["Anthropic", 92], ["Meta", 134], ["OpenAI", 176], ["Amazon", 218], ["Microsoft", 260]];
+    const P = [["Broadcom", 64, "var(--amber)"], ["MediaTek", 116, "var(--coral)"], ["Marvell", 168, "var(--beat)"], ["Alchip", 216, "var(--coral)"], ["In-house", 262, "var(--violet)"]];
+    const E = [[0, 0, "TPU"], [0, 1, "TPU v7"], [1, 0, "via TPUs", 1], [2, 0, "MTIA"], [3, 0, "first chip"], [4, 2, "Trainium2"], [4, 3, "Trn3/4, reported"], [4, 4, "Annapurna"], [5, 2, "Maia 200"]];
+    const edge = ([ci, pi, lab, dash], k) => { const y0 = C[ci][1], y1 = P[pi][1]; return `<path class="cu-e" style="--c:${P[pi][2]};animation-delay:${(k * .15).toFixed(2)}s" d="M126 ${y0} C230 ${y0} 230 ${y1} 330 ${y1}" ${dash ? `stroke-dasharray="3 5"` : ""}/>`; };
+    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="Who designs whose custom AI chip in 2026. Google works with Broadcom and, for TPU v7, MediaTek. Anthropic uses Google's TPUs. Meta's MTIA and OpenAI's first chip are with Broadcom. Amazon used Marvell for Trainium2, reportedly Alchip for Trainium3 and 4, and designs in-house at Annapurna Labs. Microsoft's Maia 200 is with Marvell.">
+        <text x="14" y="24" class="t-strong" font-size="16">Who designs whose chip, 2026</text>
+        ${E.map(edge).join("")}
+        ${C.map(([n, y]) => `<g><rect x="14" y="${y - 15}" width="112" height="30" rx="15" fill="var(--ink-2)" stroke="var(--rule)"/><text x="70" y="${y + 5}" text-anchor="middle" font-size="13.5" class="t-strong">${n}</text></g>`).join("")}
+        ${P.map(([n, y, c]) => `<g><rect x="330" y="${y - 16}" width="116" height="32" rx="4" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5"/><text x="388" y="${y + 5}" text-anchor="middle" font-size="13.5" class="t-strong" style="fill:${c}">${n}</text></g>`).join("")}
+        <text x="70" y="294" text-anchor="middle" font-size="11">customers</text><text x="388" y="294" text-anchor="middle" font-size="11">design partners</text>
+        <text x="230" y="294" text-anchor="middle" font-size="11" style="fill:var(--faint)">dashed: indirect</text>
+      </svg>`;
+    const Y = v => 238 - v * .78;
+    const bars = [["FY2026", 58, "forecast"], ["FY2027", 115, "outlook"], ["FY2028", 230, "outlook"]].map(([l, v, s], i) => { const x = 70 + i * 92; return `<rect class="cu-bar" style="animation-delay:${(.2 + i * .25).toFixed(2)}s" x="${x}" y="${Y(v).toFixed(1)}" width="62" height="${(238 - Y(v)).toFixed(1)}" rx="3"/><text x="${x + 31}" y="${(Y(v) - 8).toFixed(1)}" text-anchor="middle" font-size="15" class="t-strong">~$${v}B</text><text x="${x + 31}" y="256" text-anchor="middle" font-size="12.5" class="t-strong">${l}</text><text x="${x + 31}" y="271" text-anchor="middle" font-size="11">${s}</text>`; }).join("");
+    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Broadcom's AI revenue: about 58 billion dollars forecast for fiscal 2026, about 115 billion for fiscal 2027 and about 230 billion for fiscal 2028. In fiscal Q3 2026, custom accelerators were 73 percent of 16.7 billion dollars of AI revenue.">
+        <text x="14" y="24" class="t-strong" font-size="16">Broadcom AI revenue, by fiscal year</text>
+        <text x="14" y="42" font-size="12">Doubling a year, if the outlook holds</text>
+        <line class="ax" x1="50" y1="238" x2="330" y2="238"/>${bars}
+        <g transform="translate(352 74)"><text x="45" y="0" text-anchor="middle" font-size="12" class="t-strong">FQ3 2026</text><text x="45" y="16" text-anchor="middle" font-size="12">$16.7B</text>
+          <rect x="22" y="26" width="46" height="150" rx="3" fill="var(--ink-3)"/><rect class="cu-xpu" x="22" y="${(26 + 150 * .27).toFixed(1)}" width="46" height="${(150 * .73).toFixed(1)}" rx="3" fill="var(--amber)"/>
+          <text x="45" y="${(26 + 150 * .27 + 58).toFixed(1)}" text-anchor="middle" font-size="16" font-weight="900" style="fill:var(--ink)">73%</text><text x="45" y="${(26 + 150 * .27 + 74).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" style="fill:var(--ink)">custom</text><text x="45" y="48" text-anchor="middle" font-size="10.5">network</text><text x="45" y="61" text-anchor="middle" font-size="10.5">&amp; other</text></g>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Drag through four stages. Most of today’s deals sit at stage 2 or 3; stage 4 is the threat.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Tom’s Hardware (May 2026); Broadcom’s Q3 call (Sept 2026); Benchmark via Yahoo Finance on Trainium3 and 4 (Dec 2025, not confirmed by the companies).</p></div>
+      <div class="frame f3">${F3}<p class="cap">Broadcom’s fiscal year ends around November. FY2026 forecast and FY2027–28 outlook from its Q3 call; 73% custom share for fiscal Q3.</p></div>
+    </div>`;
+  },
+  tokens() {
+    const S = [["Land & power", ""], ["GPUs", "bought from Nvidia"], ["GPU-hours", "20–30% gross margin"], ["Tokens", "Token Factory, 2025"], ["Agents", "Tavily search, 2026"]];
+    const step = ([t, s], i) => { const x = 14 + i * 88, y = 250 - i * 42; return `<g class="tk-step" style="animation-delay:${(i * .18).toFixed(2)}s"><rect x="${x}" y="${y}" width="88" height="${292 - y}" fill="${i > 2 ? "rgba(63,214,200,.12)" : "var(--ink-2)"}" stroke="${i > 2 ? "var(--amber)" : "var(--rule)"}"/><text x="${x + 8}" y="${y + 19}" class="t-strong" font-size="13.5">${t}</text>${s ? `<text x="${x + 8}" y="${y + 34}" font-size="10.5">${s}</text>` : ""}</g>`; };
+    const path = "M30 248 L102 248 L102 206 L190 206 L190 164 L278 164 L278 122 L366 122 L366 80 L440 80";
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="A staircase from land and power, to GPUs, to GPU-hours at 20 to 30 percent gross margin, to tokens sold through Token Factory since November 2025, to agents, with Tavily search in 2026. Acquisitions sit on the upper steps: Eigen AI and Clarifai's team on tokens, Tavily on agents. Price on the lower steps is set by the cost of capital; on the upper steps, by the value to the customer.">
+        <text x="14" y="24" class="t-strong" font-size="16">Moving up the stack</text>
+        <text x="14" y="42" font-size="12">The higher the step, the more price follows value, not cost</text>
+        ${S.map(step).join("")}
+        <path id="tkStair" d="${path}" fill="none"/>
+        <g><circle r="8" fill="var(--amber)"/><text y="3.5" text-anchor="middle" font-size="8" font-weight="900" style="fill:var(--ink)">tok</text><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.8;1" calcMode="linear"><mpath href="#tkStair"/></animateMotion></g>
+        <g class="tk-pin" style="animation-delay:1.2s"><rect x="246" y="64" width="106" height="38" rx="4" fill="var(--ink)" stroke="var(--amber)"/><text x="254" y="80" font-size="11" class="t-strong">Eigen AI, $643M</text><text x="254" y="95" font-size="11">Clarifai team</text><path d="M322 102 L322 122" stroke="var(--amber)"/></g>
+        <g class="tk-pin" style="animation-delay:1.5s"><rect x="372" y="34" width="78" height="22" rx="4" fill="var(--ink)" stroke="var(--amber)"/><text x="380" y="49" font-size="11" class="t-strong">+ Tavily</text><path d="M410 56 L410 78" stroke="var(--amber)"/></g>
+      </svg>`;
+    const F2 = `<div class="tkcalc">
+        <p class="nc-k tk-k">One million tokens from a popular model</p>
+        <label class="oc-l" for="tkRange">Years from now: <b id="tkY">0</b></label>
+        <input class="oc-range tk-range" type="range" id="tkRange" min="0" max="4" step="1" value="0">
+        <div class="tk-rate" role="group" aria-label="Yearly fall in token prices"><span>Prices fall</span>${[30, 40, 50].map(r => `<button type="button" class="tk-r${r === 40 ? " on" : ""}" data-r="${r}">${r}%/yr</button>`).join("")}</div>
+        <svg class="tk-chart" id="tkChart" viewBox="0 0 460 170" role="img" aria-label="List price per million tokens falling over four years against a flat production cost, and the spread between them."></svg>
+        <p class="sx-out tk-out" id="tkOut"></p>
+      </div>`;
+    const X = v => 128 + v * 2.7;
+    const R = [["Bear", 5, 12, "−70% to −100%", "commodity GPU landlord in a glut", "var(--coral)"], ["Base", 45, 66, "~4.5×", "specialist, some token revenue", "var(--beat)"], ["Bull", 77, 112, "~11×", "tokens over half of revenue", "var(--amber)"]];
+    const row = ([n, lo, hi, out, d, c], i) => { const y = 92 + i * 62; return `<text x="14" y="${y + 5}" class="t-strong" font-size="15">${n}</text><text x="14" y="${y + 21}" font-size="12.5" font-weight="800" style="fill:${c}">${out}</text>
+        <line class="ax" x1="${X(0)}" y1="${y}" x2="${X(120)}" y2="${y}" stroke-dasharray="2 4"/>
+        <rect class="tk-rng" style="animation-delay:${(.2 + i * .25).toFixed(2)}s" x="${X(lo).toFixed(1)}" y="${y - 9}" width="${(X(hi) - X(lo)).toFixed(1)}" height="18" rx="9" fill="${c}"/>
+        <text x="${X(hi) + 8 > 400 ? (X(lo) - 8).toFixed(1) : (X(hi) + 8).toFixed(1)}" y="${y + 4.5}" ${X(hi) + 8 > 400 ? `text-anchor="end"` : ""} font-size="12.5" class="t-strong">$${lo}–${hi}B</text>
+        <text x="${X(0)}" y="${y + 27}" font-size="11">${d}</text>`; };
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="The framework's three 2030 scenarios for Nebius's revenue run rate. Bear: 5 to 12 billion dollars, a loss of 70 to 100 percent per share. Base: 45 to 66 billion, about 4.5 times. Bull: 77 to 112 billion, about 11 times.">
+        <text x="14" y="24" class="t-strong" font-size="16">Nebius in 2030: three outcomes</text>
+        <text x="14" y="42" font-size="12">Revenue run rate ($B) and per-share return from ~$207 (May 2026)</text>
+        ${R.map(row).join("")}
+        <line class="ax" x1="${X(0)}" y1="276" x2="${X(120)}" y2="276"/>${[0, 30, 60, 90, 120].map(v => `<line class="ax" x1="${X(v)}" y1="272" x2="${X(v)}" y2="280"/><text x="${X(v)}" y="294" text-anchor="middle" font-size="11.5">$${v}B</text>`).join("")}
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Nebius’s own climb. Acquisitions: Eigen AI ($643M, May 2026), Clarifai’s team and patents (May 2026), Tavily (early 2026).</p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">The framework’s numbers: $5–15 list price and $0.10–0.30 production cost per million tokens today, with prices falling 30–50% a year and cost held flat. At 40% a year, four years cuts list prices about 87%.</span><span class="cap-s">List $5–15, cost $0.10–0.30 per million tokens; prices fall 30–50% a year.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap">Scenario ranges from the betteresearch framework (May 2026), at a ~$64B diluted market cap.</p></div>
+    </div>`;
+  },
+  factory() {
+    const racks = Array.from({ length: 5 }, (_, i) => `<rect x="${146 + i * 36}" y="160" width="24" height="68" rx="2" fill="#11263c" stroke="var(--violet)" stroke-opacity=".7"/>${[0, 1, 2, 3].map(k => `<rect class="nc-led" style="animation-delay:${((i * 4 + k) * .17 % 1.6).toFixed(2)}s" x="${150 + i * 36}" y="${166 + k * 15}" width="16" height="4" rx="1" fill="var(--amber)"/>`).join("")}`).join("");
+    const words = ["Th", "ink", "ing", " step", " by", " step", "def", " plan", "()", " yes"];
+    const belt = words.map((w, i) => `<g class="fa-tok" style="animation-delay:-${(i * 1.3).toFixed(2)}s"><rect x="0" y="-11" width="${18 + w.length * 6}" height="20" rx="4" fill="var(--ink-2)" stroke="var(--amber)"/><text x="${9 + w.length * 3}" y="3.5" text-anchor="middle" font-size="11.5" class="t-strong">${w.trim() || "·"}</text></g>`).join("");
+    const puffs = ["Th", "ink", "ing"].map((w, i) => `<text class="fa-puff" style="animation-delay:${(i * 1.1).toFixed(1)}s" x="309" y="54" text-anchor="middle" font-size="11" font-weight="800">${w}</text>`).join("");
+    const inArr = (y, d) => `<path id="faIn${y}" d="M78 ${y} H138" fill="none"/><circle r="3.4" fill="var(--beat)"><animateMotion dur="1.4s" begin="-${d}s" repeatCount="indefinite"><mpath href="#faIn${y}"/></animateMotion></circle>`;
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="A token factory in cross-section. Power, chips and a trained model go in on the left; racks inside run the model; tokens come out on a conveyor on the right and puff from the smokestack. Google processed more than 3.2 quadrillion tokens a month by May 2026.">
+        <text x="14" y="24" class="t-strong" font-size="16">In: power, chips, a model. Out: tokens.</text>
+        <path d="M134 250 V128 L170 104 V128 L206 104 V128 L242 104 V128 L278 104 V128 L314 104 V250 Z" fill="var(--ink-2)" stroke="var(--rule)" stroke-width="1.5" stroke-linejoin="round"/>
+        <rect x="300" y="62" width="18" height="50" fill="var(--ink-3)" stroke="var(--rule)"/>${puffs}
+        ${racks}
+        <g transform="translate(50 150)"><path class="nc-bolt" d="M4 -16 L-8 3 H2 L-4 18 L12 -3 H2 L8 -16 Z" fill="var(--amber)"/></g><text x="50" y="182" text-anchor="middle" font-size="11">power</text>
+        <g transform="translate(50 210)"><rect x="-11" y="-11" width="22" height="22" rx="2" fill="var(--ink-3)" stroke="var(--violet)"/><rect x="-5" y="-5" width="10" height="10" fill="var(--violet)"/></g><text x="50" y="238" text-anchor="middle" font-size="11">chips</text>
+        <g transform="translate(50 108)"><path d="M-9 -12 H4 L10 -6 V12 H-9 Z" fill="var(--ink-3)" stroke="var(--beat)"/><path d="M-5 -2 H6 M-5 3 H6 M-5 8 H3" stroke="var(--beat)" stroke-width="1.2"/></g><text x="50" y="134" text-anchor="middle" font-size="11">model</text>
+        ${inArr(108, 0)}${inArr(150, .5)}${inArr(210, 1)}
+        <line x1="314" y1="250" x2="456" y2="250" stroke="var(--rule)" stroke-width="2"/>
+        <defs><clipPath id="faClip"><rect x="316" y="212" width="144" height="40"/></clipPath></defs><g clip-path="url(#faClip)"><g transform="translate(0 236)">${belt}</g></g>
+        <text x="386" y="276" text-anchor="middle" font-size="12" class="t-strong" style="fill:var(--amber)">tokens out</text>
+        <text x="14" y="292" font-size="12">Google, May 2026: <tspan class="t-strong">3.2 quadrillion tokens a month</tspan>, 7× a year earlier</text>
+      </svg>`;
+    const F2 = `<div class="facalc">
+        <p class="nc-k fa-k">Staff a country of experts</p>
+        <label class="oc-l" for="faRange">Copies of the model running at once: <b id="faN">1,000,000</b></label>
+        <input class="oc-range fa-range" type="range" id="faRange" min="3" max="7" step=".25" value="6">
+        <div class="tk-rate" role="group" aria-label="Speed versus a human"><span>Each works at</span>${[10, 100].map(s => `<button type="button" class="tk-r fa-s${s === 10 ? " on" : ""}" data-s="${s}">${s}× human speed</button>`).join("")}</div>
+        <div class="fa-grid" id="faGrid" aria-hidden="true">${"<i></i>".repeat(100)}</div>
+        <p class="sx-out fa-out" id="faOut"></p>
+      </div>`;
+    const tile = (x, i, c, d) => `<rect class="fa-tile" style="animation-delay:${d}s" x="${x}" y="${246 - (i + 1) * 6.2}" width="58" height="5" rx="1" fill="${c}"/>`;
+    const may25 = Array.from({ length: 5 }, (_, i) => tile(112, i, "var(--violet)", (i * .05).toFixed(2))).join("");
+    const may26 = Array.from({ length: 32 }, (_, i) => tile(276, i, "var(--amber)", (.3 + i * .045).toFixed(2))).join("");
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Google's monthly tokens, stacked in blocks of 100 trillion: about 480 trillion in May 2025, more than 3.2 quadrillion in May 2026, seven times more.">
+        <text x="14" y="24" class="t-strong" font-size="16">The meter, one year apart</text>
+        <text x="14" y="42" font-size="12">Google’s tokens per month · each bar = 100 trillion</text>
+        <line class="ax" x1="80" y1="247" x2="380" y2="247"/>
+        ${may25}${may26}
+        <text x="141" y="264" text-anchor="middle" font-size="13" class="t-strong">May 2025</text><text x="141" y="280" text-anchor="middle" font-size="12">~480 trillion</text>
+        <text x="305" y="264" text-anchor="middle" font-size="13" class="t-strong">May 2026</text><text x="305" y="280" text-anchor="middle" font-size="12">3.2 quadrillion+</text>
+        <g class="fa-x"><path d="M178 200 C200 150 230 100 262 66" fill="none" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="4 4"/><text x="214" y="118" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--amber);font-family:var(--display)">7×</text></g>
+        <text x="352" y="96" font-size="12" class="t-strong">Gemini app</text><text x="352" y="112" font-size="12">400M → 900M+</text><text x="352" y="128" font-size="12">monthly users</text>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">A token is a piece of a word. Throughput is tokens per second; efficiency is tokens per watt. Google I/O, May 2026.</p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative: copies × speed gives full-time expert equivalents. Amodei expects clusters able to run millions of copies at 10–100× human speed by about 2027, and pictured that country as about 50 million geniuses (Jan 2026).</span><span class="cap-s">Illustrative: copies × speed. Amodei: millions of copies at 10–100× human speed.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap">Google I/O keynotes, May 2025 and May 2026.</p></div>
+    </div>`;
+  },
+  chipnames() {
+    const X = y => 34 + (y - 2017) * 36.5;
+    const T = [[2017, "Vo", "Volta", "V100", "dc"], [2018, "Tu", "Turing", "T4 · RTX 20", "gx"], [2020, "Am", "Ampere", "A100 · RTX 30", "both"], [2022, "Lo", "Lovelace", "L40S · RTX 40", "gx"], [2022, "Ho", "Hopper", "H100 · H200", "dc"], [2024, "Bl", "Blackwell", "B200 · B300 · RTX 50", "both"], [2026, "Ru", "Rubin", "Vera Rubin", "dc"], [2028, "Fe", "Feynman", "due 2028", "dc"]];
+    const tile = ([yr, sym, name, chips, lane], i) => { const x = X(yr), both = lane === "both", y = lane === "gx" ? 168 : 72, h = both ? 168 : 72; return `<g class="cn-tile${yr >= 2026 ? " fut" : ""}" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><rect x="${(x - 25).toFixed(1)}" y="${y}" width="50" height="${h}" rx="4"/><text x="${(x - 20).toFixed(1)}" y="${y + 13}" font-size="9.5" class="cn-yr">${yr}</text><text x="${x.toFixed(1)}" y="${y + (both ? h / 2 + 8 : 46)}" text-anchor="middle" class="cn-sym">${sym}</text></g><text x="${x.toFixed(1)}" y="${(both ? 252 : lane === "gx" ? 256 : 160)}" text-anchor="middle" font-size="10.5" class="t-strong cn-nm">${name}</text>`; };
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="Nvidia's architectures as element tiles on two lanes, data center and graphics. Volta 2017, Turing 2018 (T4, RTX 20), Ampere 2020 across both lanes (A100, RTX 30), Ada Lovelace 2022 for graphics (L40S, RTX 40) and Hopper 2022 for the data center (H100, H200), Blackwell 2024 across both (B200, B300, RTX 50), Rubin 2026 and Feynman due 2028.">
+        <text x="14" y="24" class="t-strong" font-size="16">Nvidia’s family tree</text>
+        <text x="14" y="62" font-size="10.5" class="cn-lane">DATA CENTER</text><text x="14" y="282" font-size="10.5" class="cn-lane">GRAPHICS &amp; CHEAPER INFERENCE</text>
+        <line x1="14" y1="164" x2="446" y2="164" stroke="var(--grid)" stroke-dasharray="3 5"/>
+        ${T.map(tile).join("")}
+        <path d="M${X(2022) + 28} 108 C${X(2022) + 40} 140 ${X(2022) + 40} 170 ${X(2022) + 28} 196" fill="none" stroke="var(--coral)" stroke-width="1.4" stroke-dasharray="3 3"/><text x="${X(2022) + 34}" y="186" font-size="10.5" text-anchor="end" style="fill:var(--coral)" font-weight="700">split</text>
+      </svg>`;
+    const PICKS = ["T4", "A100", "L40S", "H100", "H200", "B200", "GB200 NVL72", "B300", "Vera Rubin NVL72"];
+    const F2 = `<div class="cn">
+        <p class="nc-k cn-k">Decode a chip name</p>
+        <div class="cn-picks" role="group" aria-label="Chip names">${PICKS.map(p => `<button type="button" class="cn-p${p === "GB200 NVL72" ? " on" : ""}" data-p="${p}">${p}</button>`).join("")}</div>
+        <p class="cn-name" id="cnName" aria-live="polite"></p>
+        <ul class="cn-parts" id="cnParts"></ul>
+        <p class="cn-mem" id="cnMem"></p>
+      </div>`;
+    const xs = y => 64 + (y - 2021) * 70, ys = g => 236 - g * .56;
+    const NV = [[2022, 80, "H100"], [2024, 141, "H200"], [2024.6, 192, "B200"], [2025.4, 288, "B300"], [2026.3, 288, "Rubin (HBM4)"]];
+    const GO = [[2021, 32, "v4"], [2023, 95, "v5p"], [2024, 32, "v6e"], [2025.4, 192, "v7 Ironwood"], [2026.3, 288, "8i (preview)"]];
+    const ser = (pts, c, cls, below) => `<polyline class="${cls}" points="${pts.map(([y, g]) => `${xs(y).toFixed(1)},${ys(g).toFixed(1)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round" pathLength="100"/>` +
+      pts.map(([y, g, l], i) => `<circle cx="${xs(y).toFixed(1)}" cy="${ys(g).toFixed(1)}" r="4.5" fill="${c}"/><text x="${xs(y).toFixed(1)}" y="${(ys(g) + (below ? 18 : -10)).toFixed(1)}" text-anchor="middle" font-size="11" class="t-strong" style="fill:${c}">${l}</text>`).join("");
+    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Memory per chip in gigabytes. Nvidia: H100 80 in 2022, H200 141 and B200 192 in 2024, B300 288 in 2025, Rubin 288 of HBM4 in 2026. Google TPUs: v4 32 in 2021, v5p 95 in 2023, v6e Trillium 32 in 2024, Ironwood 192 in 2025, TPU 8i 288 in 2026.">
+        <text x="14" y="24" class="t-strong" font-size="16">Memory per chip (GB)</text>
+        <text x="14" y="42" font-size="12"><tspan style="fill:var(--beat)" font-weight="700">● Nvidia GPUs</tspan>  <tspan style="fill:var(--amber)" font-weight="700">● Google TPUs</tspan></text>
+        ${[0, 100, 200, 300].map(g => `<line class="gridl" x1="56" y1="${ys(g)}" x2="446" y2="${ys(g)}"/><text x="48" y="${ys(g) + 4}" text-anchor="end" font-size="11">${g}</text>`).join("")}
+        ${[2021, 2022, 2023, 2024, 2025, 2026].map(y => `<text x="${xs(y)}" y="258" text-anchor="middle" font-size="11.5">${y}</text>`).join("")}
+        ${ser(GO, "var(--amber)", "cn-line", true)}${ser(NV, "var(--beat)", "cn-line", false)}
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Named for Volta, Turing, Ampère, Lovelace, Hopper, Blackwell, Rubin and Feynman. Year = first launch.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Memory and bandwidth from Baseten and Nvidia’s GTC 2026 specs. Rubin rack figures from Civo’s Vera Rubin build.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Year of launch. Ironwood reached general availability in April 2026; TPU 8i is a preview, due in late 2027.</p></div>
+    </div>`;
+  },
+  openclaw() {
+    const steps = [["Found 20 clinics", "web search"], ["Audited 20 sites: 14 load slowly on phones", "site audit"], ["Added 20 leads to the CRM", "CRM skill"]];
+    const F1 = `<div class="ow">
+        <div class="ow-phone">
+          <div class="ow-top"><svg viewBox="-12 -12 24 24" aria-hidden="true"><path d="M-4 6 C-8 -4 -4 -10 6 -11 C9 -5 7 -2 2 -1 C7 0 10 3 8 8 C3 11 -1 9 -4 6 Z" fill="#f4977a"/></svg><b>OpenClaw</b><span>on your own machine</span></div>
+          <div class="ow-thread">
+            <p class="ow-m me" style="--d:.2s">Find 20 dental clinics in Austin with no online booking. Audit their sites and add them to our CRM.</p>
+            <p class="ow-m bot" style="--d:1s">On it. Skills: web search, site audit, CRM.</p>
+            ${steps.map(([t, s], i) => `<p class="ow-m bot step" style="--d:${(1.8 + i * .8).toFixed(1)}s"><i class="ow-tick" aria-hidden="true"></i>${t}<small>${s}</small></p>`).join("")}
+            <p class="ow-m bot" style="--d:4.4s">Drafted 20 intro emails. Send them?</p>
+            <div class="ow-btns" style="--d:5s"><span>Review first</span><span class="go">Send</span></div>
+          </div>
+        </div>
+      </div>`;
+    const lane = (y, nodes, c, dur, id, dots) => { const xs = nodes.map((_, i) => 40 + i * (380 / (nodes.length - 1))); return `<path id="${id}" d="M${xs[0]} ${y} H${xs[xs.length - 1]}" stroke="var(--rule)" stroke-width="2" fill="none"/>` +
+      nodes.map(([n, gate], i) => `<g transform="translate(${xs[i].toFixed(1)} ${y})">${gate ? `<rect x="-17" y="-17" width="34" height="34" rx="6" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5"/><path d="M-5 -2 V-6 A5 5 0 0 1 5 -6 V-2" fill="none" stroke="${c}" stroke-width="1.6"/><rect x="-7" y="-2" width="14" height="10" rx="2" fill="${c}"/>` : `<circle r="14" fill="var(--ink-2)" stroke="var(--paper)" stroke-opacity=".5"/>`}</g><text x="${xs[i].toFixed(1)}" y="${y + 34}" text-anchor="middle" font-size="11.5" class="t-strong">${n}</text>`).join("") +
+      Array.from({ length: dots }, (_, k) => `<circle r="5" fill="${c}"><animateMotion dur="${dur}s" begin="-${(k * dur / dots).toFixed(2)}s" repeatCount="indefinite"><mpath href="#${id}"/></animateMotion></circle>`).join(""); };
+    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="Same agent, two speeds. At a lean startup, a task goes straight to the agent and is done. At a big company, the same task passes gates for identity, a sandbox, approval and an audit log before it's done.">
+        <text x="14" y="24" class="t-strong" font-size="16">Same agent, two speeds</text>
+        <text x="14" y="64" font-size="12.5" font-weight="800" style="fill:var(--beat)">LEAN STARTUP</text>
+        ${lane(96, [["task"], ["agent"], ["done"]], "var(--beat)", 2.4, "owA", 3)}
+        <text x="14" y="176" font-size="12.5" font-weight="800" style="fill:var(--amber)">BIG COMPANY</text>
+        ${lane(208, [["task"], ["identity", 1], ["sandbox", 1], ["approval", 1], ["agent"], ["audit", 1], ["done"]], "var(--amber)", 6, "owB", 3)}
+        <text x="14" y="288" font-size="12">Gates are what NemoClaw and Red Hat’s OpenShell runtime sell: the badge.</text>
+      </svg>`;
+    const D = d => 54 + d * (300 / 323), V = v => 200 - v / 400 * 140;
+    const PTS = [[0, 0], [98, 247], [142, 346], [306, 390.6], [323, 391.8]];
+    const EV = [[67, "renamed OpenClaw (Jan 30)"], [82, "Steinberger joins OpenAI (Feb 14)"], [279, "2.0 (Aug 30)"]];
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="OpenClaw's GitHub stars: zero at launch on November 24, 2025; 247,000 by March 2, 2026; about 346,000 in April; 390,600 by September 26; 391,800 by October 13. One audit found 341 of 2,857 ClawHub skills, about 12 percent, were malicious.">
+        <text x="14" y="24" class="t-strong" font-size="16">GitHub stars (thousands)</text>
+        ${[0, 100, 200, 300, 400].map(v => `<line class="gridl" x1="54" y1="${V(v).toFixed(1)}" x2="356" y2="${V(v).toFixed(1)}"/><text x="46" y="${(V(v) + 4).toFixed(1)}" text-anchor="end" font-size="11">${v}</text>`).join("")}
+        ${EV.map(([d], i) => `<line x1="${D(d).toFixed(1)}" y1="${V(400) + 8}" x2="${D(d).toFixed(1)}" y2="200" stroke="var(--violet)" stroke-opacity=".4" stroke-dasharray="2 3"/><circle cx="${D(d).toFixed(1)}" cy="${V(400)}" r="7" fill="var(--ink)" stroke="var(--violet)"/><text x="${D(d).toFixed(1)}" y="${V(400) + 3.5}" text-anchor="middle" font-size="9.5" font-weight="800" style="fill:var(--violet)">${i + 1}</text>`).join("")}
+        <text x="14" y="240" font-size="11" style="fill:var(--violet)">${EV.map(([, l], i) => `${i + 1} ${l}`).join("   ")}</text>
+        <polyline class="ow-line" points="${PTS.map(([d, v]) => `${D(d).toFixed(1)},${V(v).toFixed(1)}`).join(" ")}" pathLength="100" fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-linejoin="round"/>
+        ${PTS.slice(1).map(([d, v]) => `<circle cx="${D(d).toFixed(1)}" cy="${V(v).toFixed(1)}" r="4" fill="var(--coral)"/>`).join("")}
+        <text x="${D(323).toFixed(1)}" y="${(V(391.8) + 20).toFixed(1)}" text-anchor="end" font-size="12" class="t-strong">391.8K, Oct 13</text>
+        ${["Nov", "Jan", "Mar", "May", "Jul", "Sep"].map((m, i) => `<text x="${D([7, 38, 97, 158, 219, 281][i]).toFixed(1)}" y="218" text-anchor="middle" font-size="11">${m}</text>`).join("")}
+        <g transform="translate(408 120)"><circle r="34" fill="none" stroke="var(--ink-3)" stroke-width="12"/><circle class="ow-ring" r="34" fill="none" stroke="var(--coral)" stroke-width="12" stroke-dasharray="${(2 * Math.PI * 34 * .119).toFixed(1)} 999" transform="rotate(-90)"/><text y="5" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--coral);font-family:var(--display)">12%</text></g>
+        <text x="408" y="174" text-anchor="middle" font-size="11" class="t-strong">of ClawHub</text><text x="408" y="188" text-anchor="middle" font-size="11" class="t-strong">skills audited</text><text x="408" y="202" text-anchor="middle" font-size="11">were malicious</text>
+        <text x="14" y="264" font-size="12"><tspan class="t-strong">40,000+</tspan> instances found exposed online.</text>
+        <text x="14" y="282" font-size="12">In 2.0, the sandbox is still off by default; secrets aren’t encrypted at rest.</text>
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">An illustrative errand. Lead research, site audits and CRM updates are among the best-documented uses. The send button stays with you.</p></div>
+      <div class="frame f2">${F2}<p class="cap">The enterprise version adds a badge at every step. NemoClaw (Nvidia, Mar 2026); OpenShell on Red Hat (Oct 2026).</p></div>
+      <div class="frame f3">${F3}<p class="cap">Dots are known star counts, joined by straight lines. Wikipedia and The GenAI Magazine (Oct 2026); the skill audit is as reported there.</p></div>
+    </div>`;
+  },
+  race() {
+    const ROWS = [["Private AI investment, 2025", 285.9, 12.4, v => `$${v}B`], ["Share of world AI compute", 72.2, 9.6, v => `${v}%`], ["Notable AI models, 2025", 50, 30, v => `${v}`], ["Best model’s rating, Mar 2026", 1503, 1464, v => v.toLocaleString("en-US")], ["Industrial robots installed", 34200, 295000, v => `${(v / 1000).toFixed(v < 1e5 ? 1 : 0)}K`]];
+    const row = ([l, us, cn, f], i) => { const y = 76 + i * 46, m = Math.max(us, cn), wu = us / m * 168, wc = cn / m * 168, lead = us >= cn; return `<text x="230" y="${y - 12}" text-anchor="middle" font-size="12" class="t-strong">${l}</text>
+        <rect class="rc-l" style="animation-delay:${(.15 + i * .15).toFixed(2)}s" x="${(228 - wu).toFixed(1)}" y="${y - 6}" width="${wu.toFixed(1)}" height="14" rx="2" fill="var(--beat)" opacity="${lead ? 1 : .55}"/>
+        <rect class="rc-r" style="animation-delay:${(.15 + i * .15).toFixed(2)}s" x="232" y="${y - 6}" width="${Math.max(2, wc).toFixed(1)}" height="14" rx="2" fill="var(--coral)" opacity="${lead ? .55 : 1}"/>
+        <text x="${(Math.max(26, 222 - wu)).toFixed(1)}" y="${y + 5}" text-anchor="${wu > 150 ? "start" : "end"}" font-size="12" font-weight="800" ${wu > 150 ? `style="fill:var(--ink)"` : `style="fill:var(--beat)"`} dx="${wu > 150 ? 6 : 0}">${f(us)}</text>
+        <text x="${(wc > 150 ? 226 + wc : 238 + wc).toFixed(1)}" y="${y + 5}" text-anchor="${wc > 150 ? "end" : "start"}" font-size="12" font-weight="800" ${wc > 150 ? `style="fill:var(--ink)"` : `style="fill:var(--coral)"`}>${f(cn)}</text>`; };
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="United States versus China. Private AI investment in 2025: 285.9 billion dollars versus 12.4 billion. Share of world AI compute: 72.2 percent versus 9.6 percent. Notable AI models in 2025: 50 versus 30. Best model's rating in March 2026: 1,503 versus 1,464. Industrial robots installed: 34,200 versus 295,000.">
+        <text x="216" y="26" text-anchor="end" font-size="15" font-weight="800" style="fill:var(--beat)">United States</text><text x="244" y="26" font-size="15" font-weight="800" style="fill:var(--coral)">China</text>
+        <line x1="230" y1="40" x2="230" y2="290" stroke="var(--rule)"/>
+        ${ROWS.map(row).join("")}
+      </svg>`;
+    const arc = (a, b, c) => { const p = t => [118 + 70 * Math.cos(t * 2 * Math.PI - Math.PI / 2), 168 + 70 * Math.sin(t * 2 * Math.PI - Math.PI / 2)]; const [x0, y0] = p(a), [x1, y1] = p(b); return `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)} A70 70 0 ${b - a > .5 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${c}" stroke-width="26"/>`; };
+    const SH = [[72.2, "var(--beat)", "US"], [9.6, "var(--coral)", "China"], [5.1, "var(--violet)", "EU"], [5.6, "var(--amber)", "Malaysia, India, Japan"], [7.5, "var(--ink-3)", "rest of world"]];
+    let acc = 0;
+    const donut = SH.map(([v, c]) => { const a = acc / 100, b = (acc + v) / 100 - .003; acc += v; return arc(a, b, c); }).join("");
+    const NEW = [["2022–24", 60, "~60%"], ["2025", 72, "72%"], ["H1 2026", 78, "78%"]];
+    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="AI compute by country. Cumulative share as of Q2 2026: US 72.2 percent, China 9.6, EU 5.1, Malaysia, India and Japan 5.6 combined, rest of world 7.5. US share of new compute added each year: about 60 percent in 2022 to 2024, 72 percent in 2025, 78 percent in the first half of 2026.">
+        <text x="14" y="24" class="t-strong" font-size="16">Who holds the world’s AI compute</text>
+        <text x="14" y="42" font-size="12">H100-equivalents, from customs records (Epoch AI)</text>
+        <g class="rc-donut">${donut}</g>
+        <text x="118" y="166" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--beat);font-family:var(--display)">72%</text><text x="118" y="184" text-anchor="middle" font-size="11">US, cumulative</text>
+        ${SH.map(([v, c, n], i) => `<text x="${[14, 84, 164, 14, 164][i]}" y="${i < 3 ? 268 : 286}" font-size="11"><tspan style="fill:${c === "var(--ink-3)" ? "var(--faint)" : c}" font-weight="800">■</tspan> ${n} ${v}%</text>`).join("")}
+        <text x="262" y="78" class="t-strong" font-size="13">US share of new compute</text>
+        ${NEW.map(([l, v, t], i) => { const y = 100 + i * 52, w = v / 100 * 170; return `<text x="262" y="${y + 6}" font-size="12">${l}</text><rect x="262" y="${y + 14}" width="170" height="16" rx="2" fill="var(--ink-3)"/><rect class="rc-l2" style="animation-delay:${(.3 + i * .2).toFixed(1)}s" x="262" y="${y + 14}" width="${w.toFixed(1)}" height="16" rx="2" fill="var(--beat)"/><text x="${(262 + w - 6).toFixed(1)}" y="${y + 27}" text-anchor="end" font-size="12" font-weight="800" style="fill:var(--ink)">${t}</text>`; }).join("")}
+      </svg>`;
+    const vline = (rows, y0, step, x0 = 112) => `<line x1="${x0}" y1="${y0 - 12}" x2="${x0}" y2="${y0 + (rows.length - 1) * step + 12}" stroke="var(--rule)" stroke-width="2"/>` + rows.map(([d, a, b, c, open], i) => { const y = y0 + i * step; return `<g class="rc-ev" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><text x="${x0 - 14}" y="${y + 4}" text-anchor="end" font-size="11.5" font-weight="800" style="fill:${c}">${d}</text><circle cx="${x0}" cy="${y}" r="6" fill="${open ? "var(--ink)" : c}" stroke="${c}" stroke-width="2"/><text x="${x0 + 16}" y="${b ? y - 2 : y + 4}" font-size="12" class="t-strong">${a}</text>${b ? `<text x="${x0 + 16}" y="${y + 13}" font-size="11.5">${b}</text>` : ""}</g>`; }).join("");
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="AI on both sides of the fence. November 24, 2025: the Genesis Mission puts the Energy Department's national labs behind AI for science. August 20, 2026: five agencies warn attackers are using AI to write exploits for industrial controllers. Late August: AI helps researchers find two decade-old flaws in PHP. October 21: the PHP fix ships. October 22: governments and companies take sites offline to patch.">
+        <text x="14" y="24" class="t-strong" font-size="16">AI is on both sides of the fence</text>
+        <text x="14" y="42" font-size="12"><tspan style="fill:var(--amber)" font-weight="800">● defense</tspan>   <tspan style="fill:var(--coral)" font-weight="800">● offense and fallout</tspan></text>
+        ${vline([["Nov 24, 2025", "Genesis Mission puts the national labs", "behind AI for science", "var(--amber)"], ["Aug 20, 2026", "NSA, CISA, FBI, DOE, EPA: attackers are", "using AI to write factory-controller exploits", "var(--coral)"], ["Late Aug", "AI helps researchers find two", "decade-old flaws in PHP", "var(--amber)"], ["Oct 21", "The PHP fix ships", "", "var(--amber)"], ["Oct 21–22", "Governments and companies take", "sites offline worldwide to patch", "var(--coral)"]], 80, 46, 104)}
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Stanford AI Index 2026 (investment, models, ratings, robots); Epoch AI (compute share, Q2 2026). China’s investment figure likely misses state guidance funds.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Epoch AI’s chip-imports explorer, via OfficeChai (Oct 2026). Excludes chips made and used inside Taiwan.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Federal Register (Nov 2025); joint NSA, CISA, FBI, DOE and EPA advisory (Aug 2026); PHP coverage (Oct 2026).</p></div>
+    </div>`;
+  },
+  silicon() {
+    const L = [["Apps", 52], ["Operating system", 108], ["Firmware", 164], ["Silicon", 220]];
+    const bug = (x, y, cls, d) => `<g class="${cls}" style="animation-delay:${d}s" transform="translate(${x} ${y})"><ellipse rx="7" ry="5" fill="var(--amber)"/><circle cx="7" r="3" fill="var(--amber)"/><path d="M-4 -4 L-6 -8 M0 -5 V-9 M4 -4 L6 -8 M-4 4 L-6 8 M0 5 V9 M4 4 L6 8" stroke="var(--amber)" stroke-width="1.2" stroke-linecap="round"/></g>`;
+    const band = (x, y, cls, d) => `<g class="${cls}" style="animation-delay:${d}s" transform="translate(${x} ${y}) rotate(-30)"><rect x="-15" y="-5" width="30" height="10" rx="5" fill="#f2c096"/><rect x="-5" y="-5" width="10" height="10" fill="#d9a072"/></g>`;
+    const layer = ([n, y], i) => { const si = i === 3; return `<rect x="20" y="${y - 22}" width="300" height="44" rx="${si ? 3 : 6}" fill="${si ? "#11263c" : "var(--ink-2)"}" stroke="${si ? "var(--violet)" : "var(--rule)"}" stroke-width="${si ? 1.6 : 1}"/>${si ? Array.from({ length: 13 }, (_, k) => `<line x1="${34 + k * 22}" y1="${y - 22}" x2="${34 + k * 22}" y2="${y + 22}" stroke="var(--violet)" stroke-opacity=".12"/>`).join("") : ""}<text x="34" y="${y + 5}" font-size="14" class="t-strong">${n}</text><text x="226" y="${y + 5}" font-size="12" font-weight="800" style="fill:${si ? "var(--coral)" : "var(--amber)"}">${si ? "work around" : "patch"}</text>${bug(196, y, si ? "si-bugstay" : "si-bug", (i * .4).toFixed(1))}${si ? `<path class="si-shield" d="M196 ${y - 14} L208 ${y - 9} V${y + 1} C208 ${y + 8} 202 ${y + 12} 196 ${y + 15} C190 ${y + 12} 184 ${y + 8} 184 ${y + 1} V${y - 9} Z" fill="rgba(244,151,122,.25)" stroke="var(--coral)" stroke-width="1.4"/>` : band(196, y, "si-band", (i * .4).toFixed(1))}`; };
+    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="Four layers: apps, operating system, firmware and silicon. Bugs in the top three get patched and disappear. A bug in the silicon stays; software can only work around it, and the workaround slows the machine.">
+        <text x="20" y="22" class="t-strong" font-size="16">Where a fix can reach</text>
+        ${L.map(layer).join("")}
+        <g transform="translate(394 148)"><path d="M-46 0 A46 46 0 0 1 46 0" fill="none" stroke="var(--ink-3)" stroke-width="10"/><path d="M-46 0 A46 46 0 0 1 46 0" fill="none" stroke="var(--amber)" stroke-width="10" stroke-dasharray="109 200"/><path d="M33 -32 A46 46 0 0 1 46 0" fill="none" stroke="var(--coral)" stroke-width="10"/><g transform="rotate(88)"><path d="M0 0 L0 -40" stroke="var(--paper)" stroke-width="2.4" stroke-linecap="round"/><animateTransform attributeName="transform" type="rotate" values="88;88;60;60;88" keyTimes="0;.42;.52;.9;1" dur="6s" repeatCount="indefinite"/></g><circle r="5" fill="var(--paper)"/>
+          <text y="24" text-anchor="middle" font-size="12" class="t-strong">speed</text><text y="40" text-anchor="middle" font-size="11" style="fill:var(--coral)">the mitigation tax</text></g>
+        <path d="M322 220 C360 220 380 210 390 190" fill="none" stroke="var(--coral)" stroke-dasharray="3 3"/>
+      </svg>`;
+    const F2 = `<div class="sicalc">
+        <p class="nc-k si-k">The mitigation tax</p>
+        <div class="tk-rate si-pick" role="group" aria-label="Which hardware fix">${[["ecc", "ECC vs GPUHammer: 3–10%"], ["kpti", "Meltdown/Spectre fixes, databases: 8–19%"]].map(([k, l], i) => `<button type="button" class="tk-r si-f${i ? "" : " on"}" data-f="${k}">${l}</button>`).join("")}</div>
+        <label class="oc-l" for="siRange">Fleet: <b id="siN">10,000</b> machines</label>
+        <input class="oc-range si-range" type="range" id="siRange" min="1000" max="100000" step="1000" value="10000">
+        <div class="fa-grid si-grid" id="siGrid" aria-hidden="true">${"<i></i>".repeat(100)}</div>
+        <p class="sp-leg si-leg" aria-hidden="true"><span class="lo"></span>lost at the low end <span class="hi"></span>more lost at the high end</p>
+        <p class="sx-out si-out" id="siOut"></p>
+      </div>`;
+    const vline = (rows, y0, step, x0 = 112) => `<line x1="${x0}" y1="${y0 - 12}" x2="${x0}" y2="${y0 + (rows.length - 1) * step + 12}" stroke="var(--rule)" stroke-width="2"/>` + rows.map(([d, a, b, c, open], i) => { const y = y0 + i * step; return `<g class="rc-ev" style="animation-delay:${(.15 + i * .22).toFixed(2)}s"><text x="${x0 - 14}" y="${y + 4}" text-anchor="end" font-size="11.5" font-weight="800" style="fill:${c}">${d}</text><circle cx="${x0}" cy="${y}" r="6" fill="${open ? "var(--ink)" : c}" stroke="${c}" stroke-width="2"/><text x="${x0 + 16}" y="${b ? y - 2 : y + 4}" font-size="12" class="t-strong">${a}</text>${b ? `<text x="${x0 + 16}" y="${y + 13}" font-size="11.5">${b}</text>` : ""}</g>`; }).join("");
+    const V = "var(--violet)", C = "var(--coral)";
+    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Timeline. Hardware and physical attacks: Stuxnet in 2010 wrecked about 1,000 centrifuges through Siemens controllers; Meltdown and Spectre in 2018, whose fixes cost 8 to 19 percent on databases; GPUHammer in 2025, where one flipped bit breaks an AI model; TEE.fail in October 2025. The AI era: in February 2026 Altman says superintelligence may be a couple of years away; in August 2026 agencies warn AI is writing exploits for Siemens controllers; in October 2026 AI finds PHP flaws and sites go dark; and by the end of 2028, Altman says, more of the world's intellect could sit inside data centers than outside.">
+        <text x="14" y="24" class="t-strong" font-size="16">From Stuxnet to superintelligence</text>
+        <text x="14" y="42" font-size="12"><tspan style="fill:var(--violet)" font-weight="800">● hardware &amp; physical</tspan>   <tspan style="fill:var(--coral)" font-weight="800">● the AI era</tspan></text>
+        ${vline([["2010", "Stuxnet wrecks ~1,000 centrifuges via Siemens PLCs", "", V], ["2018", "Meltdown/Spectre fixes cost 8–19% on databases", "", V], ["2025", "GPUHammer: one flipped bit breaks an AI model", "", V], ["Oct 2025", "TEE.fail: a sub-$1,000 probe beats secure enclaves", "", V], ["Feb 2026", "Altman: superintelligence “a couple of years away”", "", C], ["Aug 2026", "Agencies: AI is writing exploits for Siemens PLCs", "", C], ["Oct 2026", "AI finds decade-old PHP flaws; sites go dark", "", C], ["End 2028", "More intellect inside data centers than outside?", "", C, 1]], 70, 29, 96)}
+      </svg>`;
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Software patches remove a bug. A silicon flaw stays in every chip already made, so the fix is a workaround that costs speed.</p></div>
+      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">Illustrative: share of a fleet’s output lost to a fix, using the published ranges. GPUHammer paper (2025): ECC costs 6.5% of memory and 3–10% of speed. Red Hat via InfoQ (2018): Meltdown and Spectre fixes cost 8–19% on transaction-heavy databases.</span><span class="cap-s">Illustrative. ECC: 3–10% slower. Meltdown/Spectre fixes: 8–19% on databases.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap">Stuxnet, Meltdown, GPUHammer and TEE.fail show silicon can be attacked; the AI era raises the stakes. Sources in Receipts.</p></div>
+    </div>`;
   }
 };
 const VIZ_INIT = {
+  quantum(root) {
+    const r = $("#quRange", root), svg = $("#quChart", root);
+    if (!r || !svg) return;
+    $(".qu-bar i", root).style.width = "31.2%";
+    const P = t => Math.exp(-t / 10), X = t => 40 + t * 13.6, Y = p => 116 - p * 100;
+    const curve = Array.from({ length: 61 }, (_, i) => `${X(i / 2).toFixed(1)},${Y(P(i / 2)).toFixed(1)}`).join(" ");
+    const base = `<line class="ax" x1="40" y1="116" x2="448" y2="116"/>` +
+      [0, 50, 100].map(v => `<text x="34" y="${Y(v / 100) + 4}" text-anchor="end" font-size="11">${v}%</text>`).join("") +
+      [0, 10, 20, 30].map(t => `<text x="${X(t)}" y="132" text-anchor="middle" font-size="11">${t} min</text>`).join("") +
+      `<polygon points="40,116 ${curve} ${X(30)},116" fill="rgba(244,151,122,.14)"/><polyline points="${curve}" fill="none" stroke="var(--coral)" stroke-width="2.4"/>` +
+      `<line x1="${X(10)}" y1="14" x2="${X(10)}" y2="116" stroke="var(--violet)" stroke-dasharray="3 3" opacity=".6"/><text x="${X(10) + 4}" y="24" font-size="10.5" style="fill:var(--violet)">avg. block: 10 min</text>`;
+    const upd = () => {
+      const t = +r.value, p = P(t);
+      $("#quT", root).textContent = `${t} minute${t > 1 ? "s" : ""}`;
+      svg.innerHTML = base + `<line x1="${X(t)}" y1="${Y(p)}" x2="${X(t)}" y2="116" stroke="var(--paper)" stroke-opacity=".5"/><circle cx="${X(t)}" cy="${Y(p)}" r="6" fill="var(--coral)" stroke="var(--ink)" stroke-width="2"/>`;
+      $("#quOut", root).innerHTML = `<b class="${p > .2 ? "dn" : "up"}">${Math.round(p * 100)}%</b><span>chance the thief breaks your key before your transaction confirms.</span>`;
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  ledger(root) {
+    const row = $("#lgRow", root);
+    if (!row) return;
+    const frac = x => (x - Math.floor(x)) * 4294967296 | 0;
+    const primes = []; for (let n = 2; primes.length < 64; n++) if (primes.every(p => n % p)) primes.push(n);
+    const K = primes.map(p => frac(Math.cbrt(p))), H0 = primes.slice(0, 8).map(p => frac(Math.sqrt(p)));
+    const enc = new TextEncoder(), w = new Int32Array(64);
+    const sha = str => {
+      const b = enc.encode(str), l = b.length, n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n);
+      m.set(b); m[l] = 0x80;
+      const dv = new DataView(m.buffer);
+      dv.setUint32(n - 4, l * 8 >>> 0); dv.setUint32(n - 8, Math.floor(l / 536870912));
+      const h = H0.slice();
+      for (let o = 0; o < n; o += 64) {
+        for (let i = 0; i < 16; i++) w[i] = dv.getInt32(o + i * 4);
+        for (let i = 16; i < 64; i++) {
+          const a = w[i - 15], c = w[i - 2];
+          w[i] = (w[i - 16] + ((a >>> 7 | a << 25) ^ (a >>> 18 | a << 14) ^ (a >>> 3)) + w[i - 7] + ((c >>> 17 | c << 15) ^ (c >>> 19 | c << 13) ^ (c >>> 10))) | 0;
+        }
+        let [A, B, C, D, E, F, G, Hh] = h;
+        for (let i = 0; i < 64; i++) {
+          const t1 = (Hh + ((E >>> 6 | E << 26) ^ (E >>> 11 | E << 21) ^ (E >>> 25 | E << 7)) + ((E & F) ^ (~E & G)) + K[i] + w[i]) | 0;
+          const t2 = (((A >>> 2 | A << 30) ^ (A >>> 13 | A << 19) ^ (A >>> 22 | A << 10)) + ((A & B) ^ (A & C) ^ (B & C))) | 0;
+          Hh = G; G = F; F = E; E = (D + t1) | 0; D = C; C = B; B = A; A = (t1 + t2) | 0;
+        }
+        [A, B, C, D, E, F, G, Hh].forEach((v, i) => (h[i] = (h[i] + v) | 0));
+      }
+      return h.map(v => (v >>> 0).toString(16).padStart(8, "0")).join("");
+    };
+    const DATA = ["Genesis", "Alice pays Bob 5", "Bob pays Cara 2", "Cara pays Dev 1"];
+    const B = DATA.map((d, i) => ({ i, data: d, nonce: 0, hash: "" }));
+    const hashOf = (b, prev) => sha(`${b.i}|${prev}|${b.data}|${b.nonce}`);
+    const prevOf = i => (i ? B[i - 1].hash : "0".repeat(64));
+    const mineSync = i => { const prev = prevOf(i), b = B[i]; b.nonce = 0; while (!(b.hash = hashOf(b, prev)).startsWith("00")) b.nonce++; };
+    B.forEach((_, i) => mineSync(i));
+    const stored = B.map(b => b.hash);
+    row.innerHTML = B.map((b, i) => `<div class="lg-b" data-i="${i}">
+        <span class="lg-h">${i ? `Block ${i}` : "Block 0 · genesis"}</span>
+        <label class="lg-f"><i>Data</i><input type="text" value="${b.data}" data-i="${i}" spellcheck="false" aria-label="Data in block ${i}"></label>
+        <span class="lg-f"><i>Prev hash</i><code class="lg-prev"></code></span>
+        <span class="lg-f"><i>Nonce</i><code class="lg-n"></code></span>
+        <span class="lg-f"><i>Hash</i><code class="lg-hash"></code></span>
+        <span class="lg-ok"></span>
+      </div>`).join("");
+    const cards = $$(".lg-b", row), msg = $("#lgMsg", root);
+    const short = h => (h === "0".repeat(64) ? "none" : h.slice(0, 6).toUpperCase());
+    let busy = false;
+    const draw = (note) => {
+      const now = B.map((b, i) => hashOf(b, i ? stored[i - 1] : "0".repeat(64)));
+      let firstBad = -1;
+      cards.forEach((c, i) => {
+        const linked = i === 0 || stored[i - 1] === now[i - 1];
+        const ok = firstBad < 0 && now[i].startsWith("00") && now[i] === stored[i] && linked;
+        if (!ok && firstBad < 0) firstBad = i;
+        c.classList.toggle("bad", !ok);
+        $(".lg-prev", c).textContent = short(i ? stored[i - 1] : "0".repeat(64));
+        $(".lg-prev", c).classList.toggle("x", !linked);
+        $(".lg-n", c).textContent = B[i].nonce;
+        $(".lg-hash", c).textContent = short(now[i]);
+        $(".lg-hash", c).classList.toggle("x", !now[i].startsWith("00"));
+        $(".lg-ok", c).textContent = ok ? "✓ valid" : "✕ invalid";
+      });
+      msg.innerHTML = note || (firstBad < 0 ? `All four blocks are valid. Each hash starts with <b>00</b>, and each block points at the one before it.`
+        : `Block ${firstBad} no longer matches its fingerprint, so every block after it points at a hash that doesn’t exist. Press <b>Redo the work</b> to re-mine from block ${firstBad}.`);
+      $("#lgMine", root).disabled = firstBad < 0 || busy;
+      return firstBad;
+    };
+    $$("input", row).forEach(inp => inp.addEventListener("input", () => { if (busy) return; B[+inp.dataset.i].data = inp.value; draw(); }));
+    $("#lgTamper", root).addEventListener("click", () => {
+      if (busy) return;
+      const inp = $$("input", row)[1];
+      inp.value = B[1].data === "Alice pays Bob 500" ? "Alice pays Bob 5" : "Alice pays Bob 500";
+      B[1].data = inp.value; draw();
+    });
+    $("#lgMine", root).addEventListener("click", () => {
+      const start = draw();
+      if (start < 0 || busy) return;
+      busy = true; $("#lgMine", root).disabled = true;
+      let i = start, tries = 0;
+      const step = () => {
+        const prev = i ? stored[i - 1] : "0".repeat(64), b = B[i];
+        for (let k = 0; k < (calm || motionPaused ? 1e6 : 9); k++) {
+          const h = hashOf(b, prev); tries++;
+          if (h.startsWith("00")) { stored[i] = h; i++; break; }
+          b.nonce++;
+        }
+        draw(`Mining block ${Math.min(i, B.length - 1)}… nonce <b>${B[Math.min(i, B.length - 1)].nonce}</b>`);
+        if (i < B.length) requestAnimationFrame(step);
+        else { busy = false; draw(`Valid again, after <b>${tries.toLocaleString("en-US")}</b> tries across ${B.length - start} block${B.length - start > 1 ? "s" : ""}. On Bitcoin, you’d also have to outrun every honest miner.`); }
+      };
+      B[start].nonce = 0;
+      requestAnimationFrame(step);
+    });
+    draw();
+    const q = $("#lgQ", root), z = $("#lgZ", root), chart = $("#lgChart", root);
+    const catchUp = (qq, zz) => {
+      const p = 1 - qq, lam = zz * (qq / p);
+      let sum = 1, pois = Math.exp(-lam);
+      for (let k = 0; k <= zz; k++) { if (k > 0) pois *= lam / k; sum -= pois * (1 - Math.pow(qq / p, zz - k)); }
+      return Math.max(0, Math.min(1, sum));
+    };
+    const pct = v => (v >= .1 ? `${(v * 100).toFixed(0)}%` : v >= .001 ? `${(v * 100).toFixed(1)}%` : v >= .00001 ? `${(v * 100).toFixed(3)}%` : "<0.001%");
+    const upd = () => {
+      const qq = +q.value / 100, zz = +z.value;
+      $("#lgQv", root).textContent = `${q.value}%`; $("#lgZv", root).textContent = zz;
+      const bw = 400 / 13;
+      chart.innerHTML = `<line class="ax" x1="42" y1="104" x2="444" y2="104"/>` + Array.from({ length: 13 }, (_, k) => {
+        const v = catchUp(qq, k), h = Math.max(1.5, (6 + Math.log10(Math.max(v, 1e-6))) / 6 * 88), x = 44 + k * bw;
+        return `<rect x="${x.toFixed(1)}" y="${(104 - h).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${h.toFixed(1)}" rx="2" fill="${k === zz ? "var(--coral)" : "var(--ink-3)"}" stroke="${k === zz ? "var(--coral)" : "var(--rule)"}"/><text x="${(x + bw / 2 - 3).toFixed(1)}" y="120" text-anchor="middle" font-size="11" ${k === zz ? `class="t-strong"` : ""}>${k}</text>`;
+      }).join("") + [["100%", 0], ["1%", 2], ["0.01%", 4], ["0.0001%", 6]].map(([t, e]) => `<text x="38" y="${(16 + e / 6 * 88 + 4).toFixed(1)}" text-anchor="end" font-size="10.5">${t}</text><line class="gridl" x1="42" y1="${(16 + e / 6 * 88).toFixed(1)}" x2="444" y2="${(16 + e / 6 * 88).toFixed(1)}"/>`).join("");
+      const v = catchUp(qq, zz);
+      $("#lgOut", root).innerHTML = `<b class="${v > .01 ? "dn" : "up"}">${pct(v)}</b><span>chance a forger with ${q.value}% of the power ever catches up from ${zz} block${zz === 1 ? "" : "s"} behind.</span>`;
+    };
+    q.addEventListener("input", upd); z.addEventListener("input", upd);
+    upd();
+  },
+  custom(root) {
+    const r = $("#cuRange", root);
+    if (!r) return;
+    const regions = $$(".cu-r", root);
+    const OWN = {
+      1: { core: "p", mem: "p", io: "p", pkg: "p", net: "p" },
+      2: { core: "c", mem: "p", io: "p", pkg: "p", net: "p" },
+      3: { core: "c", mem: "s", io: "s", pkg: "s", net: "p" },
+      4: { core: "c", mem: "c", io: "c", pkg: "c", net: "p" }
+    };
+    const TXT = {
+      1: "<b>1. Turnkey.</b> The partner builds the whole chip from the customer’s requirements.",
+      2: "<b>2. Today’s norm.</b> The customer designs the compute; Broadcom or Marvell does the high-speed I/O, memory interface, packaging and supply.",
+      3: "<b>3. Price pressure.</b> A cheaper second partner takes the back end: MediaTek on TPU v7, and reportedly Alchip on Trainium3 and 4.",
+      4: "<b>4. Full insourcing, the threat.</b> The customer does it all. What’s left to sell is the network and the optics around the chip."
+    };
+    const upd = () => {
+      const s = +r.value;
+      regions.forEach(g => g.setAttribute("data-o", OWN[s][g.dataset.r]));
+      $("#cuRead", root).innerHTML = TXT[s];
+    };
+    r.addEventListener("input", upd);
+    upd();
+  },
+  tokens(root) {
+    const r = $("#tkRange", root), svg = $("#tkChart", root);
+    if (!r || !svg) return;
+    let rate = .4;
+    const Y = v => 140 - (Math.log10(v) - Math.log10(.05)) / (Math.log10(20) - Math.log10(.05)) * 124, X = y => 64 + y * 92;
+    const money = v => (v >= 1 ? `$${Math.abs(v - Math.round(v)) < .05 ? Math.round(v) : v.toFixed(1)}` : `$${v.toFixed(2)}`);
+    const upd = () => {
+      const yr = +r.value, f = t => Math.pow(1 - rate, t);
+      $("#tkY", root).textContent = yr;
+      const hi = Array.from({ length: 41 }, (_, i) => `${X(i / 10).toFixed(1)},${Y(15 * f(i / 10)).toFixed(1)}`), lo = Array.from({ length: 41 }, (_, i) => `${X(i / 10).toFixed(1)},${Y(5 * f(i / 10)).toFixed(1)}`).reverse();
+      const rl = 5 * f(yr), rh = 15 * f(yr), sl = rl / .3, sh = rh / .1;
+      svg.innerHTML = [.1, 1, 10].map(v => `<line class="gridl" x1="64" y1="${Y(v).toFixed(1)}" x2="432" y2="${Y(v).toFixed(1)}"/><text x="56" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="11">${money(v)}</text>`).join("") +
+        [0, 1, 2, 3, 4].map(y => `<text x="${X(y)}" y="160" text-anchor="middle" font-size="11" ${y === yr ? `class="t-strong"` : ""}>yr ${y}</text>`).join("") +
+        `<polygon points="${hi.join(" ")} ${lo.join(" ")}" fill="rgba(63,214,200,.22)" stroke="var(--amber)" stroke-width="1.4"/>` +
+        `<rect x="64" y="${Y(.3).toFixed(1)}" width="368" height="${(Y(.1) - Y(.3)).toFixed(1)}" fill="rgba(244,151,122,.25)" stroke="var(--coral)" stroke-width="1.2"/>` +
+        `<text x="430" y="${(Y(.3) - 6).toFixed(1)}" text-anchor="end" font-size="11" font-weight="800" style="fill:var(--coral)">cost to make: $0.10–0.30</text>` +
+        `<text x="70" y="${(Y(15) - 6).toFixed(1)}" font-size="11" font-weight="800" style="fill:var(--amber)">list price</text>` +
+        `<line x1="${X(yr)}" y1="${Y(rh).toFixed(1)}" x2="${X(yr)}" y2="${Y(.1).toFixed(1)}" stroke="var(--paper)" stroke-width="2" stroke-dasharray="3 3"/>` +
+        `<circle cx="${X(yr)}" cy="${Y(rh).toFixed(1)}" r="4.5" fill="var(--amber)"/><circle cx="${X(yr)}" cy="${Y(rl).toFixed(1)}" r="4.5" fill="var(--amber)"/>`;
+      $("#tkOut", root).innerHTML = `<b class="${sl >= 5 ? "up" : sl >= 1.5 ? "" : "dn"}">${sl.toFixed(sl < 10 ? 1 : 0)}–${sh.toFixed(0)}×</b><span>spread. List price ${money(rl)}–${money(rh)} per million tokens.</span>`;
+    };
+    $$(".tk-r", root).forEach(b => b.addEventListener("click", () => {
+      $$(".tk-r", root).forEach(x => x.classList.toggle("on", x === b));
+      rate = +b.dataset.r / 100; upd();
+    }));
+    r.addEventListener("input", upd);
+    upd();
+  },
+  factory(root) {
+    const r = $("#faRange", root);
+    if (!r) return;
+    let speed = 10;
+    const cells = $$("#faGrid i", root), MAX = 5e8;
+    const big = v => (v >= 1e9 ? `${(v / 1e9).toFixed(v >= 1e10 ? 0 : 1)} billion` : v >= 1e6 ? `${(v / 1e6).toFixed(v >= 1e7 ? 0 : 1).replace(/\.0$/, "")} million` : `${Math.round(v / 1e3).toLocaleString("en-US")},000`);
+    const upd = () => {
+      const n = Math.round(Math.pow(10, +r.value)), e = n * speed;
+      $("#faN", root).textContent = n.toLocaleString("en-US");
+      const lit = Math.min(100, Math.ceil(e / MAX * 100 - 1e-9));
+      cells.forEach((c, i) => { c.classList.toggle("a", i < lit); c.classList.toggle("nobel", i === Math.round(5e7 / MAX * 100) - 1); });
+      $("#faOut", root).innerHTML = `<b>${big(e)}</b><span>full-time experts’ worth of work${e >= 5e7 ? `, past Amodei’s “50 million”` : `, ${Math.round(e / 5e7 * 100) || "<1"}% of Amodei’s “50 million”`}.</span>`;
+    };
+    $$(".fa-s", root).forEach(b => b.addEventListener("click", () => {
+      $$(".fa-s", root).forEach(x => x.classList.toggle("on", x === b));
+      speed = +b.dataset.s; upd();
+    }));
+    r.addEventListener("input", upd);
+    upd();
+  },
+  chipnames(root) {
+    const name = $("#cnName", root);
+    if (!name) return;
+    const D = {
+      "T4": [[["T", "Turing (2018), after Alan Turing"], ["4", "the small, low-power tier"]], "A small inference card, still common for low-traffic serving."],
+      "A100": [[["A", "Ampere (2020), after André-Marie Ampère"], ["100", "the flagship tier"]], "The H100’s predecessor, and the chip behind early ChatGPT-era training."],
+      "L40S": [[["L", "Ada Lovelace (2022), after Ada Lovelace"], ["40", "the mid tier, for graphics and inference"], ["S", "a boosted version of the L40"]], "48 GB of memory and no NVLink, so it doesn’t scale up like an H100."],
+      "H100": [[["H", "Hopper (2022), after Grace Hopper"], ["100", "the flagship tier"]], "80 GB of memory at 3.35 TB/s."],
+      "H200": [[["H", "still Hopper: the same chip"], ["200", "the refresh, with more and faster memory"]], "141 GB at 4.8 TB/s, up from 80 GB at 3.35."],
+      "B200": [[["B", "Blackwell (2024), after David Blackwell"], ["200", "the flagship: two dies in one package"]], "192 GB at up to 8 TB/s."],
+      "GB200 NVL72": [[["G", "a Grace CPU, one for every two GPUs"], ["B200", "Blackwell GPUs"], ["NVL72", "72 GPUs on one NVLink network: a rack that works as one"]], "36 Grace CPUs and 72 Blackwell GPUs per rack."],
+      "B300": [[["B", "still Blackwell"], ["300", "Blackwell Ultra, the mid-cycle upgrade"]], "288 GB at 8 TB/s."],
+      "Vera Rubin NVL72": [[["Vera", "the Vera CPU, which replaces Grace"], ["Rubin", "Rubin GPUs (2026), after astronomer Vera Rubin"], ["NVL72", "72 Rubin GPUs and 36 Vera CPUs per rack"]], "288 GB of HBM4 per GPU at up to 22 TB/s; 20.7 TB per rack."]
+    };
+    const COLORS = ["var(--beat)", "var(--amber)", "var(--coral)"];
+    const show = p => {
+      const [parts, mem] = D[p];
+      name.innerHTML = parts.map(([s], i) => `<span style="--c:${COLORS[i]}">${s}</span>`).join(p.includes(" ") ? " " : "");
+      $("#cnParts", root).innerHTML = parts.map(([s, d], i) => `<li style="--c:${COLORS[i]}"><b>${s}</b><span>${d}</span></li>`).join("");
+      $("#cnMem", root).textContent = mem;
+    };
+    $$(".cn-p", root).forEach(b => b.addEventListener("click", () => { $$(".cn-p", root).forEach(x => x.classList.toggle("on", x === b)); show(b.dataset.p); }));
+    show("GB200 NVL72");
+  },
+  silicon(root) {
+    const r = $("#siRange", root);
+    if (!r) return;
+    const F = { ecc: [3, 10, "ECC against GPUHammer", " It also gives up 6.5% of memory."], kpti: [8, 19, "Meltdown and Spectre fixes on databases", ""] };
+    let f = "ecc";
+    const cells = $$("#siGrid i", root);
+    const upd = () => {
+      const n = +r.value, [lo, hi, l, extra] = F[f];
+      $("#siN", root).textContent = n.toLocaleString("en-US");
+      cells.forEach((c, i) => { c.classList.toggle("lo", i >= 100 - lo); c.classList.toggle("hi", i >= 100 - hi && i < 100 - lo); });
+      $("#siOut", root).innerHTML = `<b class="dn">${Math.round(n * lo / 100).toLocaleString("en-US")}–${Math.round(n * hi / 100).toLocaleString("en-US")}</b><span>machines’ worth of output lost to ${l}.${extra}</span>`;
+    };
+    $$(".si-f", root).forEach(b => b.addEventListener("click", () => { $$(".si-f", root).forEach(x => x.classList.toggle("on", x === b)); f = b.dataset.f; upd(); }));
+    r.addEventListener("input", upd);
+    upd();
+  },
   neocloud(root) {
     const r = $("#ncRange", root);
     if (!r) return;
@@ -3499,7 +4569,7 @@ function onScroll() {
     el.style.transform = `translate3d(0,${(-c * parseFloat(el.dataset.depth)).toFixed(1)}px,0)`;
   }
 }
-const LIT = Array.from({ length: 20 }, (_, i) => THESES[i] || null);
+const LIT = Array.from({ length: 32 }, (_, i) => THESES[i] || null);
 function waferLayout(w, h) {
   const fw = $(".feat-wrap", heroEl), nav = $("#nav"), zm = zoom();
   const stageH = Math.max(320 * zm, h - (fw ? fw.offsetHeight : 0));
@@ -3526,7 +4596,7 @@ function makeGL(cv, st, force) {
   const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
   const fs = `precision highp float;
 uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uScroll;uniform float uExpose;uniform vec2 uCenter;uniform float uDist;
-uniform vec2 uDies[20];uniform vec3 uBins[20];
+uniform vec2 uDies[32];uniform vec3 uBins[32];
 mat3 rx(float a){float c=cos(a),s=sin(a);return mat3(1.,0.,0.,0.,c,s,0.,-s,c);}
 mat3 ry(float a){float c=cos(a),s=sin(a);return mat3(c,0.,-s,0.,1.,0.,s,0.,c);}
 mat3 rz(float a){float c=cos(a),s=sin(a);return mat3(c,s,0.,-s,c,0.,0.,0.,1.);}
@@ -3587,7 +4657,7 @@ void main(){
       float exposed=smoothstep(uExpose,uExpose-.06,sx);
       vec3 surf=mix(si,dieCol,full*inDie*exposed);
       surf+=vec3(.35,.95,.88)*exp(-pow((sx-uExpose)*55.,2.))*step(uExpose,1.05)*.9;
-      for(int i=0;i<20;i++){
+      for(int i=0;i<32;i++){
         float m=step(abs(id.x-uDies[i].x)+abs(id.y-uDies[i].y),.5)*inDie*full;
         surf=mix(surf,uBins[i]*(.78+.22*sin(uTime*2.2+float(i)*1.7))+E*.12,m*.9*exposed);
       }
