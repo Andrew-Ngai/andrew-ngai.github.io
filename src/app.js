@@ -1822,8 +1822,8 @@ const VIZ = {
         <text x="222" y="82" text-anchor="middle" font-size="12" style="fill:var(--beat)" font-weight="700">qubit readouts</text>
         <text x="222" y="222" text-anchor="middle" font-size="12" style="fill:var(--amber)" font-weight="700">corrections</text>
         <g transform="translate(222 150)"><rect x="-78" y="-21" width="156" height="42" rx="21" fill="var(--ink)" stroke="var(--rule)"/><text y="-3" text-anchor="middle" font-size="13" class="t-strong">NVQLink: &lt; 4 µs</text><text y="13" text-anchor="middle" font-size="11">17 quantum builders</text></g>
-        <path d="M100 274 C180 296 300 296 372 236" fill="none" stroke="var(--violet)" stroke-dasharray="2 5" stroke-opacity=".7"/>
-        <text x="236" y="292" text-anchor="middle" font-size="11" style="fill:var(--violet)">later: molecule and material simulations, as data for AI</text>
+        <path d="M164 262 C200 270 230 270 262 270 C330 270 372 258 375 228" fill="none" stroke="var(--violet)" stroke-dasharray="2 5" stroke-opacity=".7"/>
+        <text x="262" y="294" text-anchor="middle" font-size="11" style="fill:var(--violet)">later: molecule and material simulations, as data for AI</text>
       </svg>`;
 
     // ---- frame 3: can a quantum thief beat the next block?
