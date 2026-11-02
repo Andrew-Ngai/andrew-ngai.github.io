@@ -2503,3 +2503,12 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
 @keyframes cl-bob{50%{transform:translateY(-1.5px)}}
 .bd2[data-m="on"] .cl-arm.l{transform-origin:24px 33px;animation:cl-wave 2.6s ease-in-out infinite}
 @keyframes cl-wave{0%,60%,100%{transform:rotate(0)}75%{transform:rotate(-14deg)}88%{transform:rotate(4deg)}}
+
+/* tokens: the tap and the bottle; two buildings in 2030 */
+.tw-pour{animation:tw-pour .6s linear infinite}
+@keyframes tw-pour{to{stroke-dashoffset:-12}}
+.tw-b{animation:sp-fade .5s ease both}
+.bb-w{animation:bb-w 2.6s ease-in-out infinite}
+@keyframes bb-w{50%{opacity:.35}}
+.bb-c{animation:fk-walk 1.4s linear infinite}
+.bb-n{font-variant-numeric:tabular-nums}
