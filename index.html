@@ -2066,6 +2066,12 @@ html.paused .st-card{animation:none}
 .pt-big i{font-style:normal;font-weight:700;font-size:calc(15*var(--u));color:var(--dim)}
 .pt-big b{align-self:center;justify-self:center;font-family:var(--display);font-weight:900;font-size:calc(76*var(--u));line-height:1;color:var(--bin)}
 .pt-big span{font-size:calc(13*var(--u));line-height:1.1;color:var(--dim)}
+.pt-el.lock{box-shadow:0 0 0 calc(3*var(--u)) var(--bin),0 calc(10*var(--u)) calc(24*var(--u)) calc(-8*var(--u)) var(--bin);transform:translateY(calc(-3*var(--u)))}
+.pt-el.lock::before{content:"";position:absolute;right:calc(6*var(--u));top:calc(7*var(--u));width:calc(7*var(--u));height:calc(7*var(--u));border-radius:50%;background:var(--bin);box-shadow:0 0 calc(8*var(--u)) var(--bin)}
+.pt-pin{margin:calc(2*var(--u)) 0 0;font-size:calc(13.5*var(--u));color:var(--faint)}
+.pt-card.locked .pt-pin{color:var(--amber);font-weight:700}
+.pt-unpin{margin-left:calc(6*var(--u));padding:calc(1*var(--u)) calc(8*var(--u)) calc(2*var(--u));font-family:var(--label);font-weight:700;font-size:calc(13*var(--u));color:var(--paper);background:var(--ink);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));cursor:pointer}
+.pt-unpin:hover{border-color:var(--amber)}
 .pt-l{margin:calc(4*var(--u)) 0 0;font-weight:800;font-size:calc(12.5*var(--u));letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .pt-card h3{margin:0;font-family:var(--display);font-weight:800;font-size:calc(25*var(--u));line-height:1.05}
 .pt-n{margin:0;font-size:calc(16*var(--u));line-height:1.35;color:var(--dim)}
@@ -2158,6 +2164,7 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
   .bd-opts{gap:calc(6*var(--u))}.bd-opt{grid-template-columns:calc(30*var(--u)) minmax(0,1fr);padding:calc(7*var(--u)) calc(8*var(--u));column-gap:calc(8*var(--u))}.bd-opt .bd-oi{width:calc(30*var(--u));height:calc(30*var(--u))}.bd-oi svg{width:calc(18*var(--u));height:calc(18*var(--u))}.bd-opt b{font-size:calc(14.5*var(--u))}.bd-opt small{display:none}.bd-opt .bd-oi{grid-row:auto}
   .pt-card{position:fixed;top:auto;left:0;right:0;bottom:0;z-index:8;align-content:start;max-height:72svh;overflow:auto;padding:calc(14*var(--u)) calc(16*var(--u)) calc(calc(18*var(--u)) + env(safe-area-inset-bottom,0px));border-radius:calc(10*var(--u)) calc(10*var(--u)) 0 0;border:calc(1*var(--u)) solid var(--rule);border-top:calc(3*var(--u)) solid var(--bin);box-shadow:0 calc(-18*var(--u)) calc(40*var(--u)) rgba(0,0,0,.6);transform:translateY(105%);transition:transform .35s var(--ease),visibility 0s .35s;visibility:hidden}
   .pt-card.open{transform:none;visibility:visible;transition:transform .35s var(--ease)}
+  .pt-pin{display:none}
   .pt-x{display:block;justify-self:end;margin:calc(-4*var(--u)) calc(-4*var(--u)) calc(-40*var(--u)) 0;padding:calc(5*var(--u)) calc(12*var(--u)) calc(6*var(--u));font-family:var(--label);font-weight:700;font-size:calc(15*var(--u));color:var(--paper);background:var(--ink);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));cursor:pointer}
 }
 
@@ -6131,15 +6138,29 @@ function boardTable() {
 function initTable(root) {
   const card = $("#ptCard", root);
   if (!card) return;
-  const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l]));
-  const pick = id => { const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
-    $$(".pt-el[data-id]", root).forEach(e => e.classList.toggle("on", e.dataset.id === id));
+  const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l])), els = $$(".pt-el[data-id]", root);
+  let locked = null, shown = null;
+  const pick = id => { shown = id; const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
+    els.forEach(e => { e.classList.toggle("on", e.dataset.id === id); e.classList.toggle("lock", e.dataset.id === locked); e.setAttribute("aria-pressed", String(e.dataset.id === locked)); });
+    card.classList.toggle("locked", locked === id);
     card.style.setProperty("--bin", b.css);
     card.innerHTML = `<button type="button" class="pt-x" aria-label="Close this element">Close</button><div class="pt-big"><i>${n}</i><b>${S[id]}</b><span>${t.short}</span></div>
+      <p class="pt-pin">${locked === id ? `Locked on ${S[id]}. <button type="button" class="pt-unpin">Unlock</button>` : "Click an element to lock it here"}</p>
       <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn" href="#${id}">Open the thesis →</a>`; };
-  const sheet = matchMedia("(max-width: 700px)");
-  $$(".pt-el[data-id]", root).forEach(e => { e.addEventListener("click", () => { pick(e.dataset.id); if (sheet.matches) card.classList.add("open"); }); e.addEventListener("pointerenter", () => matchMedia("(hover: hover)").matches && pick(e.dataset.id)); });
-  card.addEventListener("click", e => { if (e.target.closest(".pt-x")) card.classList.remove("open"); });
+  const sheet = matchMedia("(max-width: 700px)"), hover = matchMedia("(hover: hover)");
+  els.forEach(e => {
+    e.addEventListener("click", () => {
+      const id = e.dataset.id;
+      locked = locked === id && !sheet.matches ? null : id;
+      pick(id);
+      if (sheet.matches) card.classList.add("open");
+    });
+    e.addEventListener("pointerenter", () => { if (hover.matches && !locked) pick(e.dataset.id); });
+  });
+  card.addEventListener("click", e => {
+    if (e.target.closest(".pt-x")) { card.classList.remove("open"); locked = null; els.forEach(x => { x.classList.remove("lock"); x.setAttribute("aria-pressed", "false"); }); }
+    if (e.target.closest(".pt-unpin")) { locked = null; pick(shown); }
+  });
   pick(THESES[THESES.length - 1].id);
 }
 const FLAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

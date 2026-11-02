@@ -4111,16 +4111,31 @@ function boardTable() {
 function initTable(root) {
   const card = $("#ptCard", root);
   if (!card) return;
-  const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l]));
-  const pick = id => { const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
-    $$(".pt-el[data-id]", root).forEach(e => e.classList.toggle("on", e.dataset.id === id));
+  const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l])), els = $$(".pt-el[data-id]", root);
+  // hovering previews an element; clicking locks the card onto it, so the mouse can travel to "Open the thesis"
+  let locked = null, shown = null;
+  const pick = id => { shown = id; const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
+    els.forEach(e => { e.classList.toggle("on", e.dataset.id === id); e.classList.toggle("lock", e.dataset.id === locked); e.setAttribute("aria-pressed", String(e.dataset.id === locked)); });
+    card.classList.toggle("locked", locked === id);
     card.style.setProperty("--bin", b.css);
     card.innerHTML = `<button type="button" class="pt-x" aria-label="Close this element">Close</button><div class="pt-big"><i>${n}</i><b>${S[id]}</b><span>${t.short}</span></div>
+      <p class="pt-pin">${locked === id ? `Locked on ${S[id]}. <button type="button" class="pt-unpin">Unlock</button>` : "Click an element to lock it here"}</p>
       <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn" href="#${id}">Open the thesis →</a>`; };
   // on a phone the card is a sheet that slides up over the table, so a tap doesn't send you scrolling for it
-  const sheet = matchMedia("(max-width: 700px)");
-  $$(".pt-el[data-id]", root).forEach(e => { e.addEventListener("click", () => { pick(e.dataset.id); if (sheet.matches) card.classList.add("open"); }); e.addEventListener("pointerenter", () => matchMedia("(hover: hover)").matches && pick(e.dataset.id)); });
-  card.addEventListener("click", e => { if (e.target.closest(".pt-x")) card.classList.remove("open"); });
+  const sheet = matchMedia("(max-width: 700px)"), hover = matchMedia("(hover: hover)");
+  els.forEach(e => {
+    e.addEventListener("click", () => {
+      const id = e.dataset.id;
+      locked = locked === id && !sheet.matches ? null : id;
+      pick(id);
+      if (sheet.matches) card.classList.add("open");
+    });
+    e.addEventListener("pointerenter", () => { if (hover.matches && !locked) pick(e.dataset.id); });
+  });
+  card.addEventListener("click", e => {
+    if (e.target.closest(".pt-x")) { card.classList.remove("open"); locked = null; els.forEach(x => { x.classList.remove("lock"); x.setAttribute("aria-pressed", "false"); }); }
+    if (e.target.closest(".pt-unpin")) { locked = null; pick(shown); }
+  });
   pick(THESES[THESES.length - 1].id);
 }
 
