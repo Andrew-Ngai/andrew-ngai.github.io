@@ -1415,6 +1415,8 @@ html.paused .memo{animation:none}
 .viz[data-step="1"] .f1 .cn-tile{animation:cn-lit .6s var(--ease) both}
 @keyframes cn-lit{from{opacity:0;transform:translateY(8px)}}
 .viz[data-step="1"] .f1 .cn-tile rect{animation:cn-glow 1.4s ease both;animation-delay:inherit}
+.viz[data-step="1"] .f1 .cn-split{animation:cn-split .7s var(--ease) 1.45s both}
+@keyframes cn-split{from{opacity:0;clip-path:inset(0 0 100% 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
 @keyframes cn-glow{0%{stroke:var(--amber);stroke-opacity:1}100%{stroke:var(--violet);stroke-opacity:.5}}
 .viz .cn-yr{fill:var(--faint);font-weight:700}
 .viz .cn-sym{fill:var(--paper);font-family:var(--display);font-weight:900;font-size:27px}
@@ -2371,8 +2373,6 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
 .ep-read b{display:block;font-size:16px;color:var(--paper);margin-bottom:2px}
 
 /* packaging, frame 3: the hourglass. Count the neck */
-.hg-g{animation:hg-fall 2.2s ease-in infinite;opacity:0}
-@keyframes hg-fall{0%{transform:translateY(-6px);opacity:0}15%{opacity:1}100%{transform:translateY(82px);opacity:0}}
 .viz[data-step="3"] .f3 .hg-b{animation:sp-fade .4s ease both}
 
 /* chip names, frame 3: ignore the box, read the Spec Facts label */
@@ -2416,8 +2416,9 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
 .bd2[data-m="on"] .bd2-card{border-top-color:var(--amber)}
 .bd2-card::before{content:"";position:absolute;left:50%;top:6px;width:44px;height:7px;margin-left:-22px;border-radius:4px;background:var(--ink)}
 .bd2-top{display:flex;gap:14px;align-items:center;margin:6px 0 12px}
-.bd2-ph{width:62px;height:62px;flex:none;display:grid;place-items:center;background:var(--ink);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
-.bd2-ph .echo{width:56px;height:auto}
+.bd2-ph{width:86px;height:86px;flex:none;display:grid;place-items:center;background:var(--ink);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.bd2-ph{position:relative}
+.bd2-ph svg{width:100%;height:100%;overflow:hidden}
 .bd2-top b{display:block;font-family:var(--display);font-weight:900;font-size:22px;color:var(--paper)}
 .bd2-st{display:inline-block;margin-top:3px;padding:2px 8px;font-weight:800;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border-radius:3px}
 .bd2-st.x-off{color:var(--coral);border:1.5px solid var(--coral)}.bd2-st.x-on{color:var(--ink);background:var(--amber)}
@@ -2432,7 +2433,7 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
 .bd2-log span{animation:sp-fade .3s ease both}.bd2-log span:nth-child(2){animation-delay:.6s}.bd2-log span:nth-child(3){animation-delay:1.2s}
 .bd2-t{font-family:var(--label);font-weight:700;font-size:14px;padding:5px 11px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);color:var(--dim);cursor:pointer}
 .bd2-t.on{border-color:var(--amber);background:var(--amber);color:var(--ink)}
-@media (max-width:860px){.bd2-tabs{margin-bottom:8px}.bd2-t{font-size:12px;padding:3px 8px 4px}.bd2-lan{height:16px}.bd2-card{padding:10px 12px 10px}.bd2-top{margin:4px 0 8px;gap:10px}.bd2-ph{width:44px;height:44px}.bd2-ph .echo{width:40px}.bd2-top b{font-size:17px}.bd2 dl div{grid-template-columns:78px minmax(0,1fr);padding:4px 0;font-size:12.5px}.bd2 dt{font-size:10.5px}.bd2-log{font-size:10.5px;padding:5px 8px}}
+@media (max-width:860px){.bd2-tabs{margin-bottom:8px}.bd2-t{font-size:12px;padding:3px 8px 4px}.bd2-lan{height:16px}.bd2-card{padding:10px 12px 10px}.bd2-top{margin:4px 0 8px;gap:10px}.bd2-ph{width:60px;height:60px}.bd2-top b{font-size:17px}.bd2 dl div{grid-template-columns:78px minmax(0,1fr);padding:4px 0;font-size:12.5px}.bd2 dt{font-size:10.5px}.bd2-log{font-size:10.5px;padding:5px 8px}}
 
 /* tokens: the two scales, the two aisles, the fork in the road */
 .bal{animation:sp-fade .5s ease both}
@@ -2456,3 +2457,49 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
 .fk-dash{animation:fk-walk 1.4s linear infinite}
 @keyframes fk-walk{to{stroke-dashoffset:-26}}
 @media (max-width:860px){.ai{gap:10px}.ai-col{gap:6px}.ai-h{font-size:10.5px}.ai-h span{font-size:17px}.ai-box{height:74px}.ai-box b{font-size:10px}.ai-box small{display:none}.ai-tag{font-size:8px;width:28px;margin-left:-14px}.ai-big{padding:8px 9px}.ai-big>b{font-size:17px;margin-bottom:4px}.ai-big ul{gap:3px;margin-bottom:5px}.ai-big li{font-size:10.5px;padding:1px 5px 2px}.ai-q{font-size:11px;padding-top:5px}.ai-n{font-size:11.5px;line-height:1.25}}
+
+/* packaging, frame 3: wafers pour in and crowd the neck; chips trickle out */
+.hg-w,.hg-q{fill:var(--beat);fill-opacity:.38;stroke:var(--beat);stroke-width:1}
+.hg-w{transform-box:fill-box;transform-origin:center;animation:hg-pour 6s ease-in infinite}
+@keyframes hg-pour{0%{transform:translate(0,0) scale(.3);opacity:0}12%{transform:translate(0,0) scale(1);opacity:1}55%{transform:translate(calc(var(--dx) * .45 + var(--sw)),calc(var(--dy) * .4)) scale(1)}88%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.35);opacity:0}}
+.hg-q{transform-box:fill-box;transform-origin:center;animation:hg-jostle 1.4s ease-in-out infinite}
+@keyframes hg-jostle{0%,100%{transform:translate(0,0)}25%{transform:translate(1.4px,-1px)}50%{transform:translate(-1px,1.2px)}75%{transform:translate(1px,1px)}}
+.hg-fill{animation:hg-breathe 3s ease-in-out infinite}
+@keyframes hg-breathe{50%{fill-opacity:.18}}
+.hg-g{animation:hg-fall 2.85s ease-in infinite;opacity:0}
+@keyframes hg-fall{0%{transform:translateY(-4px);opacity:0}12%{opacity:1}100%{transform:translateY(88px);opacity:0}}
+.hg-neck{transform-box:fill-box;transform-origin:center;opacity:.25;animation:hg-neck 1.4s ease-in-out infinite}
+@keyframes hg-neck{0%,100%{transform:scale(.7);opacity:.12}50%{transform:scale(1.5);opacity:.35}}
+.hg-pile{transform-box:fill-box;transform-origin:50% 100%;animation:hg-pile 8s ease-in-out infinite alternate}
+@keyframes hg-pile{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+.hg-chip{opacity:0;animation:hg-chip 3.5s ease-out infinite}
+@keyframes hg-chip{0%{opacity:0;transform:translateY(-6px)}20%,80%{opacity:.9;transform:none}100%{opacity:0}}
+.hg-lab{animation:bd-pulse 1.4s ease-in-out infinite}
+.hg-glint{animation:hg-glint 4s ease-in-out infinite}
+@keyframes hg-glint{0%,100%{stroke-opacity:.08}50%{stroke-opacity:.3}}
+
+/* openclaw, frame 3: the agent's photo. Loose and red out of the box; teal, boxed in its sandbox and tagged with a badge */
+.bd2-ph{--cc:var(--coral)}
+.bd2[data-m="on"] .bd2-ph{--cc:var(--amber)}
+.cl-body,.cl-pin{fill:var(--cc);transition:fill .5s}
+.cl-arm path:first-child,.cl-leg,.cl-ant{fill:none;stroke:var(--cc);stroke-width:2.6;stroke-linecap:round;transition:stroke .5s}
+.cl-eye{fill:var(--ink)}
+.cl-box{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-dasharray:3 3;opacity:0;transition:opacity .5s}
+.bd2[data-m="on"] .cl-box{opacity:.8}
+.cl-tag{fill:var(--paper);opacity:0;transition:opacity .4s .2s}
+.bd2[data-m="on"] .cl-tag{opacity:1}
+.bd2-ph .cl-warn{font-family:var(--display);font-weight:900;font-size:14px;fill:var(--coral);animation:bd-pulse .8s steps(2,jump-none) infinite}
+.bd2[data-m="on"] .cl-warn{display:none}
+.cl-bot,.cl-in,.cl-arm{transform-box:view-box}
+.bd2[data-m="off"] .cl-bot{animation:cl-roam 3.4s ease-in-out infinite}
+@keyframes cl-roam{0%,100%{transform:translate(-9px,-6px) rotate(-14deg)}22%{transform:translate(9px,-8px) rotate(12deg)}45%{transform:translate(11px,8px) rotate(-6deg)}68%{transform:translate(-10px,9px) rotate(16deg)}84%{transform:translate(-3px,-2px) rotate(-20deg)}}
+.bd2[data-m="off"] .cl-arm.l{transform-origin:24px 33px;animation:cl-snap-l .45s ease-in-out infinite}
+.bd2[data-m="off"] .cl-arm.r{transform-origin:40px 33px;animation:cl-snap-r .45s ease-in-out infinite}
+@keyframes cl-snap-l{50%{transform:rotate(-24deg)}}
+@keyframes cl-snap-r{50%{transform:rotate(24deg)}}
+.bd2[data-m="on"] .cl-bot{animation:cl-walk 2.6s ease-in-out infinite}
+@keyframes cl-walk{0%,100%{transform:translate(-5px,2px)}50%{transform:translate(5px,2px)}}
+.bd2[data-m="on"] .cl-in{transform-origin:32px 44px;animation:cl-bob .65s ease-in-out infinite}
+@keyframes cl-bob{50%{transform:translateY(-1.5px)}}
+.bd2[data-m="on"] .cl-arm.l{transform-origin:24px 33px;animation:cl-wave 2.6s ease-in-out infinite}
+@keyframes cl-wave{0%,60%,100%{transform:rotate(0)}75%{transform:rotate(-14deg)}88%{transform:rotate(4deg)}}
