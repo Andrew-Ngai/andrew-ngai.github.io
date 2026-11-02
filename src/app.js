@@ -154,6 +154,10 @@ const SRC = {
   nvNames: "https://en.wikipedia.org/wiki/List_of_eponyms_of_Nvidia_GPU_microarchitectures",
   tpuWiki: "https://en.wikipedia.org/wiki/Tensor_Processing_Unit",
   tpu7: "https://docs.cloud.google.com/tpu/docs/tpu7x",
+  tpuV4: "https://docs.cloud.google.com/tpu/docs/v4",
+  tpuV5p: "https://docs.cloud.google.com/tpu/docs/v5p",
+  tpuV6e: "https://docs.cloud.google.com/tpu/docs/v6e",
+  tpu8: "https://datacenterdynamics.com/en/news/google-unveils-eighth-generation-tpus-two-dedicated-training-and-inference-chips",
   nvRoad: "https://www.tomshardware.com/tech-industry/semiconductors/nvidia-enterprise-roadmap-rubin-rubin-ultra-feynman-and-silicon-photonics",
   gtcBuy: "https://bizon-tech.com/blog/nvidia-gtc-2026-key-announcements",
   gpuGens: "https://www.baseten.co/inference-engineering/book/03-hardware/gpu-architecture-generations/",
@@ -665,7 +669,7 @@ const THESES = [
     ],
     bet: "Ignore the name on the box and read three numbers: memory per chip, memory bandwidth, and how many chips act as one machine, 72 in an NVL72 rack or 9,216 in an Ironwood pod. That’s where the generations really differ. Back what wins whichever name is on the box: HBM suppliers, the interconnect that makes thousands of chips act as one, and software that moves models between GPUs and TPUs without a rewrite.",
     wrong: "By 2028, a chip with less memory and a smaller scale-up domain than its rivals wins the frontier on raw compute alone.",
-    receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["NVIDIA, T4 specs", SRC.nvT4], ["NVIDIA, A100 specs", SRC.nvA100], ["NVIDIA, L40S specs", SRC.nvL40s], ["Meta on its H100 clusters for Llama 3 (Mar 2024)", SRC.metaH100], ["Tom’s Hardware on B200 vs H100 (Mar 2024)", SRC.b200Toms], ["NVIDIA, GB200 NVL72 specs", SRC.gb200], ["Tom’s Hardware on B300 (Mar 2025)", SRC.b300Toms], ["HotHardware on the Vera Rubin superchip (Oct 2025)", SRC.vrSuper], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
+    receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["NVIDIA, T4 specs", SRC.nvT4], ["NVIDIA, A100 specs", SRC.nvA100], ["NVIDIA, L40S specs", SRC.nvL40s], ["Meta on its H100 clusters for Llama 3 (Mar 2024)", SRC.metaH100], ["Tom’s Hardware on B200 vs H100 (Mar 2024)", SRC.b200Toms], ["NVIDIA, GB200 NVL72 specs", SRC.gb200], ["Tom’s Hardware on B300 (Mar 2025)", SRC.b300Toms], ["HotHardware on the Vera Rubin superchip (Oct 2025)", SRC.vrSuper], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Google Cloud, TPU v4 docs", SRC.tpuV4], ["Google Cloud, TPU v5p docs", SRC.tpuV5p], ["Google Cloud, TPU v6e (Trillium) docs", SRC.tpuV6e], ["DCD on TPU 8t and 8i (Apr 2026)", SRC.tpu8], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
     viz: "chipnames", echo: { pose: "introduce", acc: "nametag", name: "Name tag" }
   },
   {
@@ -1739,62 +1743,37 @@ const VIZ = {
       <text x="230" y="258" text-anchor="middle" font-size="13">Runs at full speed in a socket. Now it’s a chip.</text></g>`;
     const STEPS = ["Probe", "Dice", "Sort", "Bond", "Seal", "Test"];
 
-    // ---- frame 2: the choke point in numbers
-    const sq = (mm2, x, y, c, num, name) => { const s = Math.sqrt(mm2) * 2.3; return `<rect x="${x}" y="${y - s}" width="${s}" height="${s}" rx="2" fill="${c}" fill-opacity=".22" stroke="${c}" stroke-width="1.5"/><text x="${x + s / 2}" y="${y + 17}" text-anchor="middle" font-size="13" class="t-strong">${num}</text><text x="${x + s / 2}" y="${y + 32}" text-anchor="middle" font-size="11">${name}</text>`; };
-    const F2 = `<svg viewBox="0 0 460 320" role="img" aria-label="Nvidia reportedly reserved more than half of TSMC's 2026 CoWoS capacity and demand runs about 20 percent ahead of supply; GPU silicon roughly doubled from Hopper's 814 square millimeters to about 1,700 across Blackwell's two dies; one supplier makes about 90 percent of the specialist glass cloth in substrates.">
-        <text x="20" y="24" class="t-strong" font-size="15">TSMC CoWoS, 2026</text>
-        <text x="20" y="44" font-size="12">Supply</text>
-        <rect class="g-bar grow" x="76" y="32" width="300" height="18" fill="var(--ink-3)" stroke="var(--rule)"/>
-        <rect class="g-bar grow" x="76" y="32" width="160" height="18" fill="var(--amber)"/>
-        <text x="84" y="45" font-size="12" style="fill:var(--ink)" font-weight="700">Nvidia, over half</text>
-        <text x="20" y="74" font-size="12">Demand</text>
-        <rect class="g-bar grow" x="76" y="62" width="300" height="18" fill="var(--paper)" opacity=".18"/>
-        <rect class="g-bar grow" x="376" y="62" width="60" height="18" fill="var(--coral)" opacity=".85"/>
-        <text x="406" y="98" text-anchor="middle" font-size="12" style="fill:var(--coral)" font-weight="700">~20% short</text>
-        <line class="ax" x1="20" y1="122" x2="440" y2="122"/>
-        <text x="20" y="148" class="t-strong" font-size="15">GPU silicon per package</text>
-        ${sq(814, 30, 276, "var(--violet)", "814 mm²", "Hopper")}${sq(1700, 112, 276, "var(--amber)", "~1,700 mm²", "Blackwell, 2 dies")}
-        
-        <text x="300" y="148" class="t-strong" font-size="15">Specialist glass cloth</text>
-        <circle cx="352" cy="226" r="46" fill="none" stroke="var(--ink-3)" stroke-width="18"/>
-        <circle class="bk-donut" cx="352" cy="226" r="46" fill="none" stroke="var(--coral)" stroke-width="18" pathLength="100" stroke-dasharray="90 100" transform="rotate(-90 352 226)"/>
-        <text x="352" y="232" text-anchor="middle" class="t-strong" font-size="20">~90%</text>
-        <text x="352" y="296" text-anchor="middle" font-size="12">from one supplier, Nittobo.</text>
-        <text x="352" y="312" text-anchor="middle" font-size="12">New supply: mid-2027.</text>
-      </svg>`;
-
-    // ---- frame 3: the round trip
-    const lat = [70, 120, 170, 220].map(y => `<path d="M10 ${y} Q230 ${y - 26} 450 ${y}" fill="none" stroke="var(--grid)"/>`).join("") + [60, 140, 230, 320, 400].map(x => `<path d="M${x} 30 Q${x + (x - 230) * .08} 140 ${x} 250" fill="none" stroke="var(--grid)"/>`).join("");
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="A wafer made in Arizona flies to Taiwan for CoWoS packaging and the finished chip flies back. Packaging lines planned in Arizona would close the loop. In 1963, packaging was the first step to move to Hong Kong.">
-        ${lat}
-        <text x="230" y="150" text-anchor="middle" font-size="12" style="fill:var(--faint);letter-spacing:.3em">PACIFIC</text>
-        <path id="bkOut" d="M106 132 Q235 4 362 122" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-dasharray="5 5"/>
-        <path id="bkBack" d="M108 150 Q235 262 362 140" fill="none" stroke="var(--beat)" stroke-width="1.8" stroke-dasharray="5 5"/>
-        <text font-size="12" class="t-strong" dy="-6"><textPath href="#bkOut" startOffset="50%" text-anchor="middle">wafer goes out</textPath></text>
-        <text font-size="12" class="t-strong" dy="16"><textPath href="#bkBack" startOffset="50%" text-anchor="middle">chip comes back</textPath></text>
-        <circle r="5" fill="var(--amber)"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#bkOut"/></animateMotion></circle>
-        <circle r="5" fill="var(--beat)"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#bkBack"/></animateMotion></circle>
-        <circle cx="100" cy="140" r="7" fill="var(--amber)"/>
-        <circle cx="100" cy="140" r="22" fill="none" stroke="var(--paper)" stroke-width="1.4" stroke-dasharray="4 4" class="bk-loop"/>
-        <text x="100" y="186" text-anchor="middle" class="t-strong" font-size="14">Arizona</text>
-        <text x="100" y="203" text-anchor="middle" font-size="12">TSMC fab: wafers</text>
-        <circle cx="368" cy="130" r="7" fill="var(--beat)"/>
-        <text x="404" y="88" text-anchor="middle" class="t-strong" font-size="14">Taiwan</text>
-        <text x="404" y="105" text-anchor="middle" font-size="12">CoWoS packaging</text>
-        <circle cx="318" cy="214" r="5" fill="none" stroke="var(--faint)" stroke-width="1.4"/>
-        <text x="318" y="238" text-anchor="middle" font-size="12" style="fill:var(--faint)">Hong Kong, 1963:</text>
-        <text x="318" y="253" text-anchor="middle" font-size="12" style="fill:var(--faint)">packaging leaves first</text>
-        <text x="16" y="270" class="t-strong" font-size="13">Closing the loop in Arizona:</text>
-        <text x="16" y="288" font-size="12">Amkor phase 1 due 2028. TSMC CoWoS before 2029.</text>
-      </svg>`;
-
     return `<div class="viz" data-step="1">
       <div class="frame f1"><div class="bk">
         <svg class="bk-stage" viewBox="0 0 460 280" role="img" aria-label="Animated back-end line, from finished wafer to finished chip, in six steps: probe, dice, sort, bond, seal and test.">${S1}${S2}${S3}${S4}${S5}${S6}</svg>
         <div class="bk-steps" role="group" aria-label="Back-end steps">${STEPS.map((s, i) => `<button type="button" data-s="${i}" aria-pressed="${i === 0}"><b>${i + 1}</b>${s}</button>`).join("")}<button type="button" class="bk-play" aria-label="Pause the line">❚❚</button></div>
       </div><p class="cap" id="bkCap">Probe. Needles touch every die on the finished wafer, and bad ones are flagged before anyone pays to package them.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Sources: TrendForce (June and Aug 2026), Tom’s Hardware (Mar 2026). Squares drawn to scale.</p></div>
-      <div class="frame f3">${F3}<p class="cap">Simplified map. The first US-made Blackwell wafer, October 2025, still needed CoWoS in Taiwan.</p></div>
+      <div class="frame f2"><div class="ep">
+      <svg viewBox="0 0 460 290" class="ep-svg" aria-label="An AI package exploded into layers: GPU dies and HBM stacks on top, a silicon interposer, and an organic substrate with glass cloth inside.">
+        <g class="ep-l l3" data-l="3"><g class="ep-sub"><polygon class="ef" points="45.6,210.0 184.8,290.0 184.8,302.0 45.6,222.0"/><polygon class="er" points="289.2,230.0 184.8,290.0 184.8,302.0 289.2,242.0"/><polygon class="et" points="150.0,150.0 289.2,230.0 184.8,290.0 45.6,210.0"/></g><path d="M150.0,164.0 L271.8,234.0" class="ep-cloth"/></g>
+        <g class="ep-l l2" data-l="2"><g class="ep-int"><polygon class="ef" points="56.9,146.5 187.4,221.5 187.4,227.5 56.9,152.5"/><polygon class="er" points="277.9,169.5 187.4,221.5 187.4,227.5 277.9,175.5"/><polygon class="et" points="147.4,94.5 277.9,169.5 187.4,221.5 56.9,146.5"/></g></g>
+        <g class="ep-l l1" data-l="1"><g class="ep-gpu"><polygon class="ef" points="122.2,82.0 153.5,100.0 153.5,108.0 122.2,90.0"/><polygon class="er" points="193.5,77.0 153.5,100.0 153.5,108.0 193.5,85.0"/><polygon class="et" points="162.2,59.0 193.5,77.0 153.5,100.0 122.2,82.0"/></g><g class="ep-gpu"><polygon class="ef" points="157.0,102.0 188.3,120.0 188.3,128.0 157.0,110.0"/><polygon class="er" points="228.3,97.0 188.3,120.0 188.3,128.0 228.3,105.0"/><polygon class="et" points="197.0,79.0 228.3,97.0 188.3,120.0 157.0,102.0"/></g><g class="ep-hbm"><polygon class="ef" points="129.1,42.0 141.3,49.0 141.3,61.0 129.1,54.0"/><polygon class="er" points="155.2,41.0 141.3,49.0 141.3,61.0 155.2,53.0"/><polygon class="et" points="143.0,34.0 155.2,41.0 141.3,49.0 129.1,42.0"/></g><g class="ep-hbm"><polygon class="ef" points="231.8,101.0 244.0,108.0 244.0,120.0 231.8,113.0"/><polygon class="er" points="257.9,100.0 244.0,108.0 244.0,120.0 257.9,112.0"/><polygon class="et" points="245.7,93.0 257.9,100.0 244.0,108.0 231.8,101.0"/></g><g class="ep-hbm"><polygon class="ef" points="112.6,51.5 124.8,58.5 124.8,70.5 112.6,63.5"/><polygon class="er" points="138.7,50.5 124.8,58.5 124.8,70.5 138.7,62.5"/><polygon class="et" points="126.5,43.5 138.7,50.5 124.8,58.5 112.6,51.5"/></g><g class="ep-hbm"><polygon class="ef" points="215.3,110.5 227.4,117.5 227.4,129.5 215.3,122.5"/><polygon class="er" points="241.3,109.5 227.4,117.5 227.4,129.5 241.3,121.5"/><polygon class="et" points="229.2,102.5 241.3,109.5 227.4,117.5 215.3,110.5"/></g><g class="ep-hbm"><polygon class="ef" points="96.1,61.0 108.2,68.0 108.2,80.0 96.1,73.0"/><polygon class="er" points="122.2,60.0 108.2,68.0 108.2,80.0 122.2,72.0"/><polygon class="et" points="110.0,53.0 122.2,60.0 108.2,68.0 96.1,61.0"/></g><g class="ep-hbm"><polygon class="ef" points="198.7,120.0 210.9,127.0 210.9,139.0 198.7,132.0"/><polygon class="er" points="224.8,119.0 210.9,127.0 210.9,139.0 224.8,131.0"/><polygon class="et" points="212.6,112.0 224.8,119.0 210.9,127.0 198.7,120.0"/></g><g class="ep-hbm"><polygon class="ef" points="79.5,70.5 91.7,77.5 91.7,89.5 79.5,82.5"/><polygon class="er" points="105.6,69.5 91.7,77.5 91.7,89.5 105.6,81.5"/><polygon class="et" points="93.5,62.5 105.6,69.5 91.7,77.5 79.5,70.5"/></g><g class="ep-hbm"><polygon class="ef" points="182.2,129.5 194.4,136.5 194.4,148.5 182.2,141.5"/><polygon class="er" points="208.3,128.5 194.4,136.5 194.4,148.5 208.3,140.5"/><polygon class="et" points="196.1,121.5 208.3,128.5 194.4,136.5 182.2,129.5"/></g></g>
+        <g class="ep-tags">
+          <g class="ep-tag" data-l="1"><line x1="300" y1="54" x2="330" y2="54"/><text x="336" y="50" class="t-strong" font-size="13">GPU dies + HBM</text><text x="336" y="66" font-size="11.5">814 → ~1,700 mm² of GPU</text></g>
+          <g class="ep-tag" data-l="2"><line x1="300" y1="140" x2="330" y2="140"/><text x="336" y="136" class="t-strong" font-size="13">Interposer: CoWoS</text><text x="336" y="152" font-size="11.5">Nvidia holds over half</text></g>
+          <g class="ep-tag" data-l="3"><line x1="300" y1="214" x2="330" y2="214"/><text x="336" y="210" class="t-strong" font-size="13">Substrate</text><text x="336" y="226" font-size="11.5">glass cloth: one supplier</text></g>
+        </g>
+      </svg>
+      <div class="ep-read" id="epRead"></div>
+    </div><p class="cap">Simplified Blackwell-style package, not to scale. TrendForce (2026), Tom’s Hardware (Mar 2026).</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 300" class="hg" aria-label="An hourglass. Wafer starts at the top, CoWoS packaging capacity at the narrow neck, AI chips shipped at the bottom. Through 2028, count the neck.">
+      <text x="14" y="22" class="t-strong" font-size="15">Through 2028, count the neck</text>
+      <path d="M110 40 H250 C250 100 196 128 188 150 C196 172 250 200 250 260 H110 C110 200 164 172 172 150 C164 128 110 100 110 40 Z" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="2"/>
+      <path d="M118 48 H242 C240 92 200 116 186 140 H174 C160 116 120 92 118 48 Z" fill="var(--beat)" fill-opacity=".12"/>
+      <circle cx="128" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="141" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="154" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="167" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="180" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="193" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="206" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="219" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="232" cy="58" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="134" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="147" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="160" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="173" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="186" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="199" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="212" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="225" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="238" cy="72" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="128" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="141" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="154" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="167" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="180" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="193" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="206" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/><circle cx="219" cy="86" r="5" fill="var(--beat)" fill-opacity=".35" stroke="var(--beat)" stroke-width="1"/>
+      <rect class="hg-g" x="176" y="146" width="8" height="8" rx="1" fill="var(--amber)" style="animation-delay:0.00s"/><rect class="hg-g" x="176" y="146" width="8" height="8" rx="1" fill="var(--amber)" style="animation-delay:0.55s"/><rect class="hg-g" x="176" y="146" width="8" height="8" rx="1" fill="var(--amber)" style="animation-delay:1.10s"/><rect class="hg-g" x="176" y="146" width="8" height="8" rx="1" fill="var(--amber)" style="animation-delay:1.65s"/>
+      <path d="M128 252 Q180 214 232 252 Z" fill="var(--amber)" fill-opacity=".3" stroke="var(--amber)"/>
+      <text x="180" y="34" text-anchor="middle" font-size="12" style="fill:var(--beat)">wafer starts: plenty</text>
+      <text x="180" y="278" text-anchor="middle" font-size="12" style="fill:var(--amber)">AI chips shipped</text>
+      <line x1="196" y1="150" x2="262" y2="150" stroke="var(--coral)" stroke-width="1.5"/><text x="268" y="146" class="t-strong" font-size="13">CoWoS capacity</text><text x="268" y="162" font-size="11.5" style="fill:var(--coral)">the neck</text>
+      <text x="300" y="196" font-size="12" style="fill:var(--amber)" font-weight="700">BACK THE BACK END</text>
+      <g class="hg-b" style="animation-delay:0.4s"><rect x="300" y="206" width="8" height="8" fill="var(--amber)"/><text x="314" y="214" font-size="12.5" style="fill:var(--paper)">Packaging and test houses</text></g><g class="hg-b" style="animation-delay:0.7s"><rect x="300" y="230" width="8" height="8" fill="var(--amber)"/><text x="314" y="238" font-size="12.5" style="fill:var(--paper)">Substrate materials</text></g><g class="hg-b" style="animation-delay:1.0s"><rect x="300" y="254" width="8" height="8" fill="var(--amber)"/><text x="314" y="262" font-size="12.5" style="fill:var(--paper)">Bonding and inspection tools</text></g>
+    </svg><p class="cap">The bet: AI chip supply is set by packaging capacity, not wafer starts, through 2028.</p></div>
     </div>`;
   },
 
@@ -2218,10 +2197,13 @@ const VIZ = {
       </svg>`;
 
     // ---- frame 2: the decoder. Pick a chip; read its name, my whiteboard note on it, and its three numbers
-    const PICKS = [["T4", "18"], ["A100", "20"], ["L40S", "23"], ["H100", "22"], ["H200", "23"], ["B200", "24"], ["GB200 NVL72", "24"], ["B300", "25"], ["Vera Rubin NVL72", "26"]];
-    const F2 = `<div class="cn">
-        <p class="nc-k cn-k">Decode a chip name</p>
-        <div class="cn-picks" role="group" aria-label="Chip names">${PICKS.map(([p, y]) => `<button type="button" class="cn-p${p === "GB200 NVL72" ? " on" : ""}" data-p="${p}" aria-pressed="${p === "GB200 NVL72"}">${p}<small>’${y}</small></button>`).join("")}</div>
+    // Nvidia's GPUs, and a condensed run of Google's TPUs: label on the button, the key it decodes, and its year
+    const PICKS = [["T4", "T4", "18"], ["A100", "A100", "20"], ["L40S", "L40S", "23"], ["H100", "H100", "22"], ["H200", "H200", "23"], ["B200", "B200", "24"], ["GB200 NVL72", "GB200 NVL72", "24"], ["B300", "B300", "25"], ["Vera Rubin NVL72", "Vera Rubin NVL72", "26"]];
+    const TPUS = [["v1", "TPU v1", "15"], ["v2", "TPU v2", "17"], ["v4", "TPU v4", "21"], ["v5p", "TPU v5p", "23"], ["Trillium", "TPU v6e Trillium", "24"], ["Ironwood", "TPU7x Ironwood", "25"], ["8t", "TPU 8t", "26"], ["8i", "TPU 8i", "26"]];
+    const pick = f => ([l, p, y]) => `<button type="button" class="cn-p${p === "GB200 NVL72" ? " on" : ""}" data-f="${f}" data-p="${p}" aria-pressed="${p === "GB200 NVL72"}">${l}<small>’${y}</small></button>`;
+    const F2 = `<div class="cn" data-f="nv">
+        <div class="cn-top"><p class="nc-k cn-k">Decode a chip name</p><div class="cn-fam" role="group" aria-label="Chip family"><button type="button" class="cn-f on" data-f="nv" aria-pressed="true">Nvidia GPUs</button><button type="button" class="cn-f" data-f="tpu" aria-pressed="false">Google TPUs</button></div></div>
+        <div class="cn-picks" role="group" aria-label="Chip names">${PICKS.map(pick("nv")).join("")}${TPUS.map(pick("tpu")).join("")}</div>
         <div class="cn-dec"><p class="cn-name" id="cnName" aria-live="polite"></p><ul class="cn-parts" id="cnParts"></ul></div>
         <div class="cn-wb" id="cnWb">
           <div class="cn-wb-main">
@@ -2233,35 +2215,24 @@ const VIZ = {
           <div class="cn-chip" id="cnChip" aria-hidden="true"></div>
         </div>
         <div class="cn-gs">
-          <div class="cn-g"><span class="cn-gk">Memory per GPU</span><i class="cn-bar"><b id="cnMemB"></b></i><span class="cn-gv" id="cnMemV"></span></div>
-          <div class="cn-g"><span class="cn-gk">Bandwidth per GPU</span><i class="cn-bar"><b id="cnBwB"></b></i><span class="cn-gv" id="cnBwV"></span></div>
-          <div class="cn-g"><span class="cn-gk">GPUs that act as one</span><i class="cn-dom" id="cnDom">${"<b></b>".repeat(72)}</i><span class="cn-gv" id="cnDomV"></span></div>
+          <div class="cn-g"><span class="cn-gk">Memory per <span class="cn-u">GPU</span></span><i class="cn-bar"><b id="cnMemB"></b></i><span class="cn-gv" id="cnMemV"></span></div>
+          <div class="cn-g"><span class="cn-gk">Bandwidth per <span class="cn-u">GPU</span></span><i class="cn-bar"><b id="cnBwB"></b></i><span class="cn-gv" id="cnBwV"></span></div>
+          <div class="cn-g"><span class="cn-gk"><span class="cn-u">GPU</span>s that act as one</span><i class="cn-dom" id="cnDom">${"<b></b>".repeat(72)}</i><i class="cn-log" id="cnLog"><b id="cnLogB"></b><em style="left:${(Math.log10(72) / 4 * 100).toFixed(1)}%">72</em></i><span class="cn-gv" id="cnDomV"></span></div>
         </div>
       </div>`;
 
-    // ---- frame 3: memory per chip, GPUs vs TPUs
-    // labels sit beside their points, off the lines, with a dark halo so they read over gridlines
-    const xs = y => 64 + (y - 2021) * 58, ys = g => 236 - g * .56;
-    const NV = [[2022, 80, "H100", 0, -11, "middle"], [2024, 141, "H200", -6, -9, "end"], [2024.6, 192, "B200", -6, -9, "end"], [2025.4, 288, "B300", -6, -9, "end"], [2026.3, 288, "Rubin (HBM4)", 11, -4, "start"]];
-    const GO = [[2021, 32, "v4", 9, 14, "start"], [2023, 95, "v5p", -4, 22, "end"], [2024, 32, "v6e", 9, 9, "start"], [2025.4, 192, "v7 Ironwood", 9, 10, "start"], [2026.3, 288, "8i (preview)", 11, 13, "start"]];
-    const halo = "paint-order:stroke;stroke:var(--ink);stroke-width:4px;stroke-linejoin:round";
-    const ser = (pts, c, r) => `<polyline class="cn-line" points="${pts.map(([y, g]) => `${xs(y).toFixed(1)},${ys(g).toFixed(1)}`).join(" ")}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linejoin="round" pathLength="100"/>` +
-      pts.map(([y, g]) => `<circle cx="${xs(y).toFixed(1)}" cy="${ys(g).toFixed(1)}" r="${r}" fill="${r > 5 ? "var(--ink)" : c}" stroke="${c}" stroke-width="${r > 5 ? 2.4 : 0}"/>`).join("");
-    const lab = (pts, c) => pts.map(([y, g, l, dx, dy, an]) => `<text x="${(xs(y) + dx).toFixed(1)}" y="${(ys(g) + dy).toFixed(1)}" text-anchor="${an}" font-size="12.5" class="t-strong" style="fill:${c};${halo}">${l}</text>`).join("");
-    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Memory per chip in gigabytes. Nvidia: H100 80 in 2022, H200 141 and B200 192 in 2024, B300 288 in 2025, Rubin 288 of HBM4 in 2026. Google TPUs: v4 32 in 2021, v5p 95 in 2023, v6e Trillium 32 in 2024, Ironwood 192 in 2025, TPU 8i 288 in 2026, a preview.">
-        <text x="14" y="24" class="t-strong" font-size="16">Memory per chip (GB)</text>
-        <text x="14" y="44" font-size="12.5"><tspan style="fill:var(--beat)" font-weight="700">● Nvidia GPUs</tspan><tspan dx="16" style="fill:var(--amber)" font-weight="700">● Google TPUs</tspan></text>
-        ${[0, 100, 200, 300].map(g => `<line class="gridl" x1="56" y1="${ys(g)}" x2="380" y2="${ys(g)}"/><text x="48" y="${ys(g) + 4}" text-anchor="end" font-size="11">${g}</text>`).join("")}
-        ${[2021, 2022, 2023, 2024, 2025, 2026].map(y => `<text x="${xs(y)}" y="258" text-anchor="middle" font-size="11.5">${y}</text>`).join("")}
-        ${ser(GO, "var(--amber)", 4.5)}${ser(NV, "var(--beat)", 4.5)}
-        <circle cx="${xs(2026.3).toFixed(1)}" cy="${ys(288).toFixed(1)}" r="8" fill="none" stroke="var(--amber)" stroke-width="2"/>
-        ${lab(NV, "var(--beat)")}${lab(GO, "var(--amber)")}
-      </svg>`;
-
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Named for Volta, Turing, Ampère, Lovelace, Hopper, Blackwell, Rubin and Feynman. Year = first launch.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Notes from my whiteboard. Specs from Nvidia; the multipliers are Nvidia’s own claims.</p></div>
-      <div class="frame f3">${F3}<p class="cap">Year of launch. Ironwood reached general availability in April 2026; TPU 8i is a preview, due in late 2027.</p></div>
+      <div class="frame f2">${F2}<p class="cap">GPU notes from my whiteboard; multipliers are Nvidia’s own claims. TPU specs from Google Cloud’s docs and Wikipedia.</p></div>
+      <div class="frame f3"><div class="nf">
+      <div class="nf-pick" role="group" aria-label="Chip"><button type="button" class="cn-p" data-i="0">H100</button><button type="button" class="cn-p" data-i="1">B200</button><button type="button" class="cn-p" data-i="2">GB200 NVL72</button><button type="button" class="cn-p on" data-i="3">B300</button><button type="button" class="cn-p" data-i="4">Vera Rubin NVL72</button><button type="button" class="cn-p g" data-i="5">TPU v5p</button><button type="button" class="cn-p g" data-i="6">Ironwood</button><button type="button" class="cn-p g" data-i="7">TPU 8t</button><button type="button" class="cn-p g" data-i="8">TPU 8i</button></div>
+      <div class="nf-row">
+        <div class="nf-box" aria-hidden="true"><span class="nf-name" id="nfName"></span><svg viewBox="0 0 120 30"><path d="M4 18 C20 4 30 26 46 12 S70 26 84 10 S108 24 116 12" stroke="var(--coral)" stroke-width="5" fill="none" stroke-linecap="round"/></svg><small>ignore the name</small></div>
+        <div class="nf-lab"><b class="nf-h">Spec Facts</b><span class="nf-sz">Per chip · what decides the generation</span>
+          <div class="nf-r big"><span>Memory</span><b id="nfM"></b></div><div class="nf-r"><span>Bandwidth</span><b id="nfB"></b></div><div class="nf-r"><span>Chips that act as one</span><b id="nfO"></b></div>
+          <p class="nf-ft">Memory sets how big a model fits. Bandwidth sets how fast it answers. Scale-up sets how big a job runs as one machine.</p></div>
+      </div>
+    </div><p class="cap">Specs from Nvidia, Google Cloud’s TPU docs and Wikipedia. GB200 memory is per GPU; TPU 8t’s 9,600 is a superpod.</p></div>
     </div>`;
   },
 
@@ -2294,29 +2265,22 @@ const VIZ = {
         <text x="14" y="288" font-size="12">Gates are what NemoClaw and Red Hat’s OpenShell runtime sell: the badge.</text>
       </svg>`;
 
-    // ---- frame 3: stars, and what's hiding in the skill store
-    const D = d => 54 + d * (300 / 323), V = v => 200 - v / 400 * 140;
-    const PTS = [[0, 0], [98, 247], [142, 346], [306, 390.6], [323, 391.8]];
-    const EV = [[67, "renamed OpenClaw (Jan 30)"], [82, "Steinberger joins OpenAI (Feb 14)"], [279, "2.0 (Aug 30)"]];
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="OpenClaw's GitHub stars: zero at launch on November 24, 2025; 247,000 by March 2, 2026; about 346,000 in April; 390,600 by September 26; 391,800 by October 13. One audit found 341 of 2,857 ClawHub skills, about 12 percent, were malicious.">
-        <text x="14" y="24" class="t-strong" font-size="16">GitHub stars (thousands)</text>
-        ${[0, 100, 200, 300, 400].map(v => `<line class="gridl" x1="54" y1="${V(v).toFixed(1)}" x2="356" y2="${V(v).toFixed(1)}"/><text x="46" y="${(V(v) + 4).toFixed(1)}" text-anchor="end" font-size="11">${v}</text>`).join("")}
-        ${EV.map(([d], i) => `<line x1="${D(d).toFixed(1)}" y1="${V(400) + 8}" x2="${D(d).toFixed(1)}" y2="200" stroke="var(--violet)" stroke-opacity=".4" stroke-dasharray="2 3"/><circle cx="${D(d).toFixed(1)}" cy="${V(400)}" r="7" fill="var(--ink)" stroke="var(--violet)"/><text x="${D(d).toFixed(1)}" y="${V(400) + 3.5}" text-anchor="middle" font-size="9.5" font-weight="800" style="fill:var(--violet)">${i + 1}</text>`).join("")}
-        <text x="14" y="240" font-size="11" style="fill:var(--violet)">${EV.map(([, l], i) => `${i + 1} ${l}`).join("   ")}</text>
-        <polyline class="ow-line" points="${PTS.map(([d, v]) => `${D(d).toFixed(1)},${V(v).toFixed(1)}`).join(" ")}" pathLength="100" fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-linejoin="round"/>
-        ${PTS.slice(1).map(([d, v]) => `<circle cx="${D(d).toFixed(1)}" cy="${V(v).toFixed(1)}" r="4" fill="var(--coral)"/>`).join("")}
-        <text x="${D(323).toFixed(1)}" y="${(V(391.8) + 20).toFixed(1)}" text-anchor="end" font-size="12" class="t-strong">391.8K, Oct 13</text>
-        ${["Nov", "Jan", "Mar", "May", "Jul", "Sep"].map((m, i) => `<text x="${D([7, 38, 97, 158, 219, 281][i]).toFixed(1)}" y="218" text-anchor="middle" font-size="11">${m}</text>`).join("")}
-        <g transform="translate(408 120)"><circle r="34" fill="none" stroke="var(--ink-3)" stroke-width="12"/><circle class="ow-ring" r="34" fill="none" stroke="var(--coral)" stroke-width="12" stroke-dasharray="${(2 * Math.PI * 34 * .119).toFixed(1)} 999" transform="rotate(-90)"/><text y="5" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--coral);font-family:var(--display)">12%</text></g>
-        <text x="408" y="174" text-anchor="middle" font-size="11" class="t-strong">of ClawHub</text><text x="408" y="188" text-anchor="middle" font-size="11" class="t-strong">skills audited</text><text x="408" y="202" text-anchor="middle" font-size="11">were malicious</text>
-        <text x="14" y="264" font-size="12"><tspan class="t-strong">40,000+</tspan> instances found exposed online.</text>
-        <text x="14" y="282" font-size="12">In 2.0, the sandbox is still off by default; secrets aren’t encrypted at rest.</text>
-      </svg>`;
+    // ---- frame 3: the badge. The same agent out of the box (2.0 defaults), then with identity, scopes, vetted skills, a sandbox, a secret store and a log
+    const BADGE = [["Identity", "none: it acts as you", "its own, issued by IT"], ["Permissions", "everything you can touch", "read inbox · send needs approval"], ["Skills", "anything on ClawHub", "vetted registry only"], ["Sandbox", "off by default", "on"], ["Secrets", "not encrypted at rest", "in a secret store"], ["Audit log", "none", "every action, logged"]];
+    const F3 = `<div class="bd2" data-m="off">
+        <div class="bd2-tabs" role="group" aria-label="Badge"><button type="button" class="bd2-t on" data-m="off" aria-pressed="true">Out of the box (2.0)</button><button type="button" class="bd2-t" data-m="on" aria-pressed="false">With a badge</button></div>
+        <div class="bd2-lan" aria-hidden="true"></div>
+        <div class="bd2-card" aria-live="polite">
+          <div class="bd2-top"><div class="bd2-ph">${echo({ pose: "snap", acc: "claw" })}</div><div><b>OpenClaw agent</b><span class="bd2-st x-off">Visitor · unverified</span><span class="bd2-st x-on">Staff · verified</span></div></div>
+          <dl>${BADGE.map(([k, a, b]) => `<div><dt>${k}</dt><dd class="x-off">${a}</dd><dd class="x-on">${b}</dd></div>`).join("")}</dl>
+          <div class="bd2-log x-on"><span>09:14 read inbox · allowed</span><span>09:15 draft reply · allowed</span><span>09:15 send · waiting for approval</span></div>
+        </div>
+      </div>`;
 
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">An illustrative errand. Lead research, site audits and CRM updates are among the best-documented uses. The send button stays with you.</p></div>
       <div class="frame f2">${F2}<p class="cap">The enterprise version adds a badge at every step. NemoClaw (Nvidia, Mar 2026); OpenShell on Red Hat (Oct 2026).</p></div>
-      <div class="frame f3">${F3}<p class="cap">Dots are known star counts, joined by straight lines. Wikipedia and The GenAI Magazine (Oct 2026); the skill audit is as reported there.</p></div>
+      <div class="frame f3">${F3}<p class="cap">2.0 defaults as reported: sandbox off, secrets unencrypted. About 12% of audited ClawHub skills were malicious. The log is illustrative.</p></div>
     </div>`;
   },
 
@@ -2658,7 +2622,24 @@ const VIZ_INIT = {
         wb: "for <u>reasoning models</u> &amp; agentic pipelines", x: ["+50%", "memory and FP4 compute over B200"], aside: "Blackwell Ultra, the mid-cycle bump", mem: [288, "HBM3e"], bw: 8, one: 8, oneT: "on a board" },
       "Vera Rubin NVL72": { parts: [["Vera", "the Vera CPU, which replaces Grace"], ["Rubin", "Rubin GPUs (2026), after astronomer Vera Rubin"], ["NVL72", "72 Rubin GPUs and 36 Vera CPUs per rack"]], arch: "Vera Rubin (2026)",
         wb: "72 Rubin GPUs + 36 Vera CPUs as <u>one machine</u>", x: ["10×", "tokens per megawatt vs GB200"], aside: "] agentic-AI supercomputer, at a tenth the cost per token", mem: [288, "HBM4"], bw: 22, one: 72, oneT: "one rack",
-        chip: ["Vera Rubin superchip", "Vera", "CPU · 88 cores", "Rubin", "288 GB HBM4", "NVLink-C2C", "1.8 TB/s"] }
+        chip: ["Vera Rubin superchip", "Vera", "CPU · 88 cores", "Rubin", "288 GB HBM4", "NVLink-C2C", "1.8 TB/s"] },
+      // Google's TPUs: no scientists, just generations, then plants, then a training/inference split
+      "TPU v1": { tpu: 1, parts: [["TPU", "Tensor Processing Unit: Google’s own AI chip"], ["v1", "the first generation"]], arch: "Google (2015)",
+        wb: "ran models <u>inside Google only</u>", aside: "no training yet; v2 added it", mem: [8, "DDR3"], bw: .034, one: 1, oneT: "one chip" },
+      "TPU v2": { tpu: 1, parts: [["TPU", "Tensor Processing Unit"], ["v2", "the second generation"]], arch: "Google (2017)",
+        wb: "added <u>training</u> and <u>bfloat16</u>, the number format now used across AI", aside: "the first TPU pods, 256 chips each", mem: [16, "HBM"], bw: .6, one: 256, oneT: "a pod" },
+      "TPU v4": { tpu: 1, parts: [["TPU", "Tensor Processing Unit"], ["v4", "the fourth generation"]], arch: "Google (2021)",
+        wb: "linked <u>4,096 chips</u> in one pod", aside: "16× the v2 pod", mem: [32, "HBM"], bw: 1.2, one: 4096, oneT: "a pod" },
+      "TPU v5p": { tpu: 1, gap: [" ", "", ""], parts: [["TPU", "Tensor Processing Unit"], ["v5", "the fifth generation"], ["p", "the big-pod version; v5e is the cost-efficient one"]], arch: "Google (2023)",
+        wb: "the <u>big-pod</u> fifth generation", aside: "95 GB per chip, 8,960 chips per pod", mem: [95, "HBM"], bw: 2.77, one: 8960, oneT: "a pod" },
+      "TPU v6e Trillium": { tpu: 1, gap: ["", " ", ""], parts: [["v6", "the sixth generation"], ["e", "the cost-efficient version"], ["Trillium", "the first TPU with a name: a flower"]], arch: "Google (2024)",
+        wb: "the first <u>named</u> TPU, built to be cheap", aside: "small pods: 256 chips", mem: [32, "HBM"], bw: 1.64, one: 256, oneT: "a pod" },
+      "TPU7x Ironwood": { tpu: 1, parts: [["TPU7x", "the seventh generation"], ["Ironwood", "named for a tree"]], arch: "Google (2025)",
+        wb: "<u>192 GB</u> per chip, <u>9,216 chips</u> per pod", aside: "unveiled April 2025; generally available April 2026", mem: [192, "HBM"], bw: 7.37, one: 9216, oneT: "a pod" },
+      "TPU 8t": { tpu: 1, gap: [" ", "", ""], parts: [["TPU", "Tensor Processing Unit"], ["8", "the eighth generation, split in two"], ["t", "training"]], arch: "Google (2026)",
+        wb: "built to <u>train</u> frontier models", aside: "announced April 2026, due later this year", mem: [216, "HBM3e"], bw: 6.53, one: 9600, oneT: "a superpod" },
+      "TPU 8i": { tpu: 1, gap: [" ", "", ""], parts: [["TPU", "Tensor Processing Unit"], ["8", "the eighth generation, split in two"], ["i", "inference"]], arch: "Google (2026)",
+        wb: "built to <u>serve</u> models and agents", aside: "288 GB of HBM plus 384 MB of on-chip SRAM", mem: [288, "HBM3e"], bw: 8.6, one: 1152, oneT: "a pod" }
     };
     const COLORS = ["var(--beat)", "var(--amber)", "var(--coral)"];
     // the superchip from my sticky note: one CPU wired to two GPUs
@@ -2671,10 +2652,11 @@ const VIZ_INIT = {
     let t0 = 0;
     const show = p => {
       const d = D[p];
-      name.innerHTML = d.parts.map(([s], i) => `<span style="--c:${COLORS[i]}">${s}</span>`).join(p.includes(" ") ? " " : "");
+      name.innerHTML = d.parts.map(([s], i) => `<span style="--c:${COLORS[i]}">${s}</span>` + (i < d.parts.length - 1 ? (d.gap ? d.gap[i] : p.includes(" ") ? " " : "") : "")).join("");
       $("#cnParts", root).innerHTML = d.parts.map(([s, x], i) => `<li style="--c:${COLORS[i]}"><b>${s}</b><span>${x}</span></li>`).join("");
       // rewrite the whiteboard note in marker, the way it reads on my board
       $("#cnWbT", root).innerHTML = `<b>${p}:</b> <span class="cn-arch">${d.arch}</span> ${d.wb}`;
+      $(".cn-wb-k", root).textContent = d.tpu ? "The short version" : "From my whiteboard";
       const br = d.aside.startsWith("] "), wa = $("#cnWbA", root);
       wa.textContent = br ? d.aside.slice(2) : d.aside;
       wa.classList.toggle("br", br);
@@ -2688,17 +2670,37 @@ const VIZ_INIT = {
       $("#cnMemB", root).style.width = (d.mem[0] / 288 * 100).toFixed(1) + "%";
       $("#cnMemV", root).innerHTML = `${d.mem[0]} GB <small>${d.mem[1]}</small>`;
       $("#cnBwB", root).style.width = (d.bw / 22 * 100).toFixed(1) + "%";
-      $("#cnBwV", root).innerHTML = `${d.bw < 1 ? d.bw.toFixed(2) : d.bw} TB/s`;
-      $("#cnDomV", root).innerHTML = `${d.one} <small>${d.oneT}</small>`;
+      $("#cnBwV", root).innerHTML = `${d.bw < .1 ? d.bw.toFixed(3) : d.bw < 1 ? d.bw.toFixed(2) : d.bw} TB/s`;
+      $("#cnDomV", root).innerHTML = `${d.one.toLocaleString("en-US")} <small>${d.oneT}</small>`;
+      $("#cnLogB", root).style.width = (Math.log10(Math.max(1, d.one)) / 4 * 100).toFixed(1) + "%";
       const now = ++t0;
       cells.forEach((c, i) => c.classList.toggle("on", i < d.one));
       cells.forEach((c, i) => { c.style.transitionDelay = now > 1 ? `${Math.min(i, d.one) * 6}ms` : "0ms"; });
     };
-    $$(".cn-p", root).forEach(b => b.addEventListener("click", () => {
-      $$(".cn-p", root).forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+    const pickChip = b => {
+      $$(".cn-picks .cn-p", root).forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
       show(b.dataset.p);
+    };
+    $$(".cn-picks .cn-p", root).forEach(b => b.addEventListener("click", () => pickChip(b)));
+    // switching family shows its chips and opens on its flagship: GB200 NVL72, or Ironwood
+    const cn = $(".cn", root);
+    $$(".cn-f", root).forEach(b => b.addEventListener("click", () => {
+      cn.dataset.f = b.dataset.f;
+      $$(".cn-f", root).forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+      $$(".cn-u", root).forEach(u => (u.textContent = b.dataset.f === "tpu" ? "chip" : "GPU"));
+      pickChip($(`.cn-p[data-p="${b.dataset.f === "tpu" ? "TPU7x Ironwood" : "GB200 NVL72"}"]`, root));
     }));
     show("GB200 NVL72");
+
+    // frame 3: ignore the name on the box, read the Spec Facts label
+    const LABEL = [["H100", 80, 3.35, 8], ["B200", 192, 8, 8], ["GB200 NVL72", 186, 8, 72], ["B300", 288, 8, 8], ["Vera Rubin NVL72", 288, 22, 72], ["TPU v5p", 95, 2.77, 8960], ["Ironwood", 192, 7.37, 9216], ["TPU 8t", 216, 6.53, 9600], ["TPU 8i", 288, 8.6, 1152]];
+    const facts = i => {
+      const [n, gb, bw, one] = LABEL[i];
+      $("#nfName", root).textContent = n; $("#nfM", root).textContent = `${gb} GB`; $("#nfB", root).textContent = `${bw} TB/s`; $("#nfO", root).textContent = one.toLocaleString("en-US");
+      $$(".nf-pick .cn-p", root).forEach(b => { b.classList.toggle("on", +b.dataset.i === i); b.setAttribute("aria-pressed", String(+b.dataset.i === i)); });
+    };
+    $$(".nf-pick .cn-p", root).forEach(b => b.addEventListener("click", () => facts(+b.dataset.i)));
+    facts(3);
   },
   race(root) {
     const viz = $(".viz", root);
@@ -2972,6 +2974,14 @@ const VIZ_INIT = {
       if (playing && !motionPaused && viz.dataset.step === "1") step();
     }, 2600);
   },
+  openclaw(root) {
+    const b = $(".bd2", root);
+    if (!b) return;
+    $$(".bd2-t", root).forEach(t => t.addEventListener("click", () => {
+      b.dataset.m = t.dataset.m;
+      $$(".bd2-t", root).forEach(x => { x.classList.toggle("on", x === t); x.setAttribute("aria-pressed", String(x === t)); });
+    }));
+  },
   backend(root) {
     const stage = $(".bk-stage", root), cap = $("#bkCap", root), viz = $(".viz", root);
     if (!stage) return;
@@ -3001,6 +3011,22 @@ const VIZ_INIT = {
       if (!root.contains(stage) || memo.hidden) return clearInterval(timer);
       if (playing && !motionPaused && viz.dataset.step === "1") show((cur + 1) % scenes.length);
     }, 3600);
+
+    // frame 2: the exploded package. Layers take turns until someone clicks one
+    const rd = $("#epRead", root);
+    const T = {
+      1: ["GPU dies + HBM", "The GPU silicon roughly doubled, from Hopper’s 814 mm² die to about 1,700 mm² across Blackwell’s two. One bad die scraps the whole package, so testing before assembly decides the yield."],
+      2: ["Silicon interposer: CoWoS", "Nvidia reportedly reserved 800,000–850,000 wafers of TSMC’s 2026 CoWoS, more than half, and demand still runs ~20% ahead. TSMC is handing more chip-on-wafer work to houses like ASE."],
+      3: ["Substrate and its glass cloth", "Nittobo makes about 90% of the specialist low-expansion glass cloth inside the substrate. New supply lands in mid-2027."]
+    };
+    let layer = 1, held = false;
+    const setLayer = l => { layer = l; rd.innerHTML = `<b>${T[l][0]}</b><span>${T[l][1]}</span>`; $$(".ep-l,.ep-tag", root).forEach(g => g.classList.toggle("on", +g.dataset.l === l)); };
+    $$(".ep-l,.ep-tag", root).forEach(g => g.addEventListener("click", () => { held = true; setLayer(+g.dataset.l); }));
+    setLayer(1);
+    const epTimer = setInterval(() => {
+      if (!root.contains(rd) || memo.hidden) return clearInterval(epTimer);
+      if (!held && !motionPaused && viz.dataset.step === "2") setLayer(layer % 3 + 1);
+    }, 3200);
   },
   bloom(root) {
     const r = $("#blRange", root);
