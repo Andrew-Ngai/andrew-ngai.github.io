@@ -737,7 +737,9 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [0, 0], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." }
+  { die: [0, 0], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
+  { die: [2, 8], title: "The datacenter became a bond.", hook: "Meta’s $27B Hyperion deal was the biggest private-credit deal ever. The risk moved off the balance sheet, not away." },
+  { die: [8, -1], title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." }
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
