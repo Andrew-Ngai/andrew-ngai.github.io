@@ -224,6 +224,7 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .t-item .t-die{font-family:var(--label);font-weight:600;font-size:16px;color:var(--faint);padding-top:8px;font-variant-numeric:tabular-nums}
 .t-item .t-title{font-family:var(--display);font-weight:700;font-size:clamp(30px,3vw,42px);line-height:1.02;transition:color .2s;text-wrap:balance}
 .t-item .t-hook{grid-column:2;color:var(--dim);font-size:18px;max-width:34rem}
+.t-item .t-note{margin-top:2px;padding-left:12px;border-left:2px solid var(--rule);font-size:16px;color:var(--faint)}
 .t-item .bin{grid-column:2;margin-top:6px}
 a.t-item:hover .t-title,a.t-item.on .t-title{color:var(--bin)}
 /* probe scan: the item a die points at gets a pass of inspection light and a bin-colored edge */

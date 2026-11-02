@@ -737,9 +737,10 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [0, 0], title: "The capex fight is really a depreciation fight.", hook: "Whether $700B a year pays off depends on how long a GPU stays useful." },
   { die: [2, 8], title: "The datacenter became a bond.", hook: "Meta’s $27B Hyperion deal was the biggest private-credit deal ever. The risk moved off the balance sheet, not away." },
-  { die: [8, -1], title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." }
+  { die: [8, -1], title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
+  { die: [-8, -5], title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?",
+    note: "My bet: a Tesla–SpaceX merger is close to inevitable by the end of Q1 2027. Both boards set up special committees to study it in October, and many Tesla shareholders are counting on it to hold up the valuation." }
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
@@ -3253,7 +3254,7 @@ function renderHome() {
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
     return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
-  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span><span class="bin probe">In probe</span></div></li>`).join("");
+  }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
   // a datasheet pinout: each way to reach me is an I/O pin on the package
