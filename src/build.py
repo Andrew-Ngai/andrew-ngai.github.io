@@ -60,8 +60,12 @@ def strip_js(src):
     return re.sub(r"\n{2,}", "\n", "\n".join(out)).strip() + "\n"
 
 
-css = scale_px(strip_css((SRC / "style.css").read_text()))
+css = scale_px(strip_css((SRC / "style.css").read_text() + "\n" + (SRC / "visuals.css").read_text()))
 js = strip_js((SRC / "app.js").read_text())
+# the slide visuals swap themselves into VIZ, so they run inside the app script, before the page first renders
+anchor = "function renderHome() {"
+assert anchor in js
+js = js.replace(anchor, strip_js((SRC / "visuals.js").read_text()) + anchor, 1)
 body = (SRC / "body.html").read_text()
 head = (SRC / "head.html").read_text()
 head_tail = (SRC / "head-tail.html").read_text()
