@@ -2083,49 +2083,47 @@ const VIZ = {
   },
 
   tokens() {
-    // ---- frame 1: climbing the stack, from landlord to token seller
-    const S = [["Land & power", ""], ["GPUs", "bought from Nvidia"], ["GPU-hours", "20–30% gross margin"], ["Tokens", "Token Factory, 2025"], ["Agents", "Tavily search, 2026"]];
-    const step = ([t, s], i) => { const x = 14 + i * 88, y = 250 - i * 42; return `<g class="tk-step" style="animation-delay:${(i * .18).toFixed(2)}s"><rect x="${x}" y="${y}" width="88" height="${292 - y}" fill="${i > 2 ? "rgba(63,214,200,.12)" : "var(--ink-2)"}" stroke="${i > 2 ? "var(--amber)" : "var(--rule)"}"/><text x="${x + 8}" y="${y + 19}" class="t-strong" font-size="13.5">${t}</text>${s ? `<text x="${x + 8}" y="${y + 34}" font-size="10.5">${s}</text>` : ""}</g>`; };
-    const path = "M30 248 L102 248 L102 206 L190 206 L190 164 L278 164 L278 122 L366 122 L366 80 L440 80";
-    const F1 = `<svg viewBox="0 0 460 300" role="img" aria-label="A staircase from land and power, to GPUs, to GPU-hours at 20 to 30 percent gross margin, to tokens sold through Token Factory since November 2025, to agents, with Tavily search in 2026. Acquisitions sit on the upper steps: Eigen AI and Clarifai's team on tokens, Tavily on agents. Price on the lower steps is set by the cost of capital; on the upper steps, by the value to the customer.">
-        <text x="14" y="24" class="t-strong" font-size="16">Moving up the stack</text>
-        <text x="14" y="42" font-size="12">The higher the step, the more price follows value, not cost</text>
-        ${S.map(step).join("")}
-        <path id="tkStair" d="${path}" fill="none"/>
-        <g><circle r="8" fill="var(--amber)"/><text y="3.5" text-anchor="middle" font-size="8" font-weight="900" style="fill:var(--ink)">tok</text><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.8;1" calcMode="linear"><mpath href="#tkStair"/></animateMotion></g>
-        <g class="tk-pin" style="animation-delay:1.2s"><rect x="246" y="64" width="106" height="38" rx="4" fill="var(--ink)" stroke="var(--amber)"/><text x="254" y="80" font-size="11" class="t-strong">Eigen AI, $643M</text><text x="254" y="95" font-size="11">Clarifai team</text><path d="M322 102 L322 122" stroke="var(--amber)"/></g>
-        <g class="tk-pin" style="animation-delay:1.5s"><rect x="372" y="34" width="78" height="22" rx="4" fill="var(--ink)" stroke="var(--amber)"/><text x="380" y="49" font-size="11" class="t-strong">+ Tavily</text><path d="M410 56 L410 78" stroke="var(--amber)"/></g>
-      </svg>`;
-
-    // ---- frame 2: the melting spread
-    const F2 = `<div class="tkcalc">
-        <p class="nc-k tk-k">One million tokens from a popular model</p>
-        <label class="oc-l" for="tkRange">Years from now: <b id="tkY">0</b></label>
-        <input class="oc-range tk-range" type="range" id="tkRange" min="0" max="4" step="1" value="0">
-        <div class="tk-rate" role="group" aria-label="Yearly fall in token prices"><span>Prices fall</span>${[30, 40, 50].map(r => `<button type="button" class="tk-r${r === 40 ? " on" : ""}" data-r="${r}">${r}%/yr</button>`).join("")}</div>
-        <svg class="tk-chart" id="tkChart" viewBox="0 0 460 170" role="img" aria-label="List price per million tokens falling over four years against a flat production cost, and the spread between them."></svg>
-        <p class="sx-out tk-out" id="tkOut"></p>
-      </div>`;
-
-    // ---- frame 3: the three 2030 outcomes the price is choosing between
-    const X = v => 128 + v * 2.7;
-    const R = [["Bear", 5, 12, "−70% to −100%", "commodity GPU landlord in a glut", "var(--coral)"], ["Base", 45, 66, "~4.5×", "specialist, some token revenue", "var(--beat)"], ["Bull", 77, 112, "~11×", "tokens over half of revenue", "var(--amber)"]];
-    const row = ([n, lo, hi, out, d, c], i) => { const y = 92 + i * 62; return `<text x="14" y="${y + 5}" class="t-strong" font-size="15">${n}</text><text x="14" y="${y + 21}" font-size="12.5" font-weight="800" style="fill:${c}">${out}</text>
-        <line class="ax" x1="${X(0)}" y1="${y}" x2="${X(120)}" y2="${y}" stroke-dasharray="2 4"/>
-        <rect class="tk-rng" style="animation-delay:${(.2 + i * .25).toFixed(2)}s" x="${X(lo).toFixed(1)}" y="${y - 9}" width="${(X(hi) - X(lo)).toFixed(1)}" height="18" rx="9" fill="${c}"/>
-        <text x="${X(hi) + 8 > 400 ? (X(lo) - 8).toFixed(1) : (X(hi) + 8).toFixed(1)}" y="${y + 4.5}" ${X(hi) + 8 > 400 ? `text-anchor="end"` : ""} font-size="12.5" class="t-strong">$${lo}–${hi}B</text>
-        <text x="${X(0)}" y="${y + 27}" font-size="11">${d}</text>`; };
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="The framework's three 2030 scenarios for Nebius's revenue run rate. Bear: 5 to 12 billion dollars, a loss of 70 to 100 percent per share. Base: 45 to 66 billion, about 4.5 times. Bull: 77 to 112 billion, about 11 times.">
-        <text x="14" y="24" class="t-strong" font-size="16">Nebius in 2030: three outcomes</text>
-        <text x="14" y="42" font-size="12">Revenue run rate ($B) and per-share return from ~$207 (May 2026)</text>
-        ${R.map(row).join("")}
-        <line class="ax" x1="${X(0)}" y1="276" x2="${X(120)}" y2="276"/>${[0, 30, 60, 90, 120].map(v => `<line class="ax" x1="${X(v)}" y1="272" x2="${X(v)}" y2="280"/><text x="${X(v)}" y="294" text-anchor="middle" font-size="11.5">$${v}B</text>`).join("")}
-      </svg>`;
-
+    // frame 1: pennies to make, dollars to sell. Renting the hour barely tips the scale; selling tokens crashes it
+    // frame 2: the commodity aisle (GPU-hours, re-bid monthly) next to the product aisle (Token Factory)
+    // frame 3: two roads from the same megawatt, with the end-of-2027 checkpoint on the way up
     return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Nebius’s own climb. Acquisitions: Eigen AI ($643M, May 2026), Clarifai’s team and patents (May 2026), Tavily (early 2026).</p></div>
-      <div class="frame f2">${F2}<p class="cap"><span class="cap-l">The framework’s numbers: $5–15 list price and $0.10–0.30 production cost per million tokens today, with prices falling 30–50% a year and cost held flat. At 40% a year, four years cuts list prices about 87%.</span><span class="cap-s">List $5–15, cost $0.10–0.30 per million tokens; prices fall 30–50% a year.</span></p></div>
-      <div class="frame f3">${F3}<p class="cap">Scenario ranges from the betteresearch framework (May 2026), at a ~$64B diluted market cap.</p></div>
+      <div class="frame f1"><svg viewBox="0 0 460 320" class="pd" aria-label="Two scales. Renting the hour: cost and price nearly balance, price about 1.3 times cost. Selling tokens: 10 to 30 cents of cost against 5 to 15 dollars of price, 17 to 150 times.">
+      <text x="14" y="22" class="t-strong" font-size="15">Pennies to make. Dollars to sell.</text>
+      <g class="bal" style="--t:4deg"><path d="M118 120 L104 236 H132 Z" fill="var(--ink-3)" stroke="var(--rule)"/><rect x="78" y="234" width="80" height="8" rx="3" fill="var(--rule)"/>
+        <line x1="48.1705164818123" y1="115.11704683791123" x2="187.82948351818771" y2="124.88295316208877" stroke="var(--paper)" stroke-width="3" stroke-linecap="round"/><circle cx="118" cy="120" r="6" fill="var(--faint)"/>
+        <line x1="48.1705164818123" y1="115.11704683791123" x2="26.1705164818123" y2="155.11704683791123" stroke="var(--faint)"/><line x1="48.1705164818123" y1="115.11704683791123" x2="70.1705164818123" y2="155.11704683791123" stroke="var(--faint)"/><path d="M20.1705164818123 155.11704683791123 h56 q-4 10 -28 10 q-24 0 -28 -10z" fill="var(--ink-3)" stroke="var(--faint)"/><ellipse cx="48.1705164818123" cy="149.11704683791123" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><ellipse cx="48.1705164818123" cy="145.11704683791123" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><ellipse cx="48.1705164818123" cy="141.11704683791123" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><ellipse cx="48.1705164818123" cy="137.11704683791123" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><ellipse cx="48.1705164818123" cy="133.11704683791123" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><text x="48.1705164818123" y="183.11704683791123" text-anchor="middle" font-size="12.5" class="t-strong">cost</text><text x="48.1705164818123" y="198.11704683791123" text-anchor="middle" font-size="11">of the hour</text><line x1="187.82948351818771" y1="124.88295316208877" x2="165.82948351818771" y2="164.88295316208877" stroke="var(--faint)"/><line x1="187.82948351818771" y1="124.88295316208877" x2="209.82948351818771" y2="164.88295316208877" stroke="var(--faint)"/><path d="M159.82948351818771 164.88295316208877 h56 q-4 10 -28 10 q-24 0 -28 -10z" fill="var(--ink-3)" stroke="var(--faint)"/><rect x="167.82948351818771" y="154.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="167.82948351818771" y="149.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="167.82948351818771" y="144.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="167.82948351818771" y="139.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="167.82948351818771" y="134.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="167.82948351818771" y="129.88295316208877" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><text x="187.82948351818771" y="192.88295316208877" text-anchor="middle" font-size="12.5" class="t-strong">price</text><text x="187.82948351818771" y="207.88295316208877" text-anchor="middle" font-size="11">about 1.3× cost</text>
+        <text x="118" y="62" text-anchor="middle" font-size="12" style="fill:var(--faint);letter-spacing:.1em" font-weight="700">RENT THE HOUR</text>
+        <text x="118" y="92" text-anchor="middle" style="fill:var(--faint);font-family:var(--display);font-weight:900" font-size="26">20–30%</text></g>
+      <g class="bal" style="--t:24deg"><path d="M342 120 L328 236 H356 Z" fill="var(--ink-3)" stroke="var(--rule)"/><rect x="302" y="234" width="80" height="8" rx="3" fill="var(--rule)"/>
+        <line x1="278.05181796501796" y1="91.52843498469399" x2="405.94818203498204" y2="148.471565015306" stroke="var(--paper)" stroke-width="3" stroke-linecap="round"/><circle cx="342" cy="120" r="6" fill="var(--amber)"/>
+        <line x1="278.05181796501796" y1="91.52843498469399" x2="256.05181796501796" y2="131.528434984694" stroke="var(--faint)"/><line x1="278.05181796501796" y1="91.52843498469399" x2="300.05181796501796" y2="131.528434984694" stroke="var(--faint)"/><path d="M250.05181796501796 131.528434984694 h56 q-4 10 -28 10 q-24 0 -28 -10z" fill="var(--ink-3)" stroke="var(--faint)"/><ellipse cx="278.05181796501796" cy="125.52843498469399" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><ellipse cx="278.05181796501796" cy="121.52843498469399" rx="12" ry="4" fill="#c77d3a" stroke="#7a4b1d" stroke-width=".8"/><text x="278.05181796501796" y="159.528434984694" text-anchor="middle" font-size="12.5" class="t-strong">$0.10–0.30</text><text x="278.05181796501796" y="174.528434984694" text-anchor="middle" font-size="11">to make 1M tokens</text><line x1="405.94818203498204" y1="148.471565015306" x2="383.94818203498204" y2="188.471565015306" stroke="var(--faint)"/><line x1="405.94818203498204" y1="148.471565015306" x2="427.94818203498204" y2="188.471565015306" stroke="var(--faint)"/><path d="M377.94818203498204 188.471565015306 h56 q-4 10 -28 10 q-24 0 -28 -10z" fill="var(--ink-3)" stroke="var(--faint)"/><rect x="385.94818203498204" y="178.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="173.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="168.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="163.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="158.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="153.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="148.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="143.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><rect x="385.94818203498204" y="138.471565015306" width="40" height="9" rx="1.5" fill="#2fb87a" stroke="#1b6e48" stroke-width=".8"/><text x="405.94818203498204" y="216.471565015306" text-anchor="middle" font-size="12.5" class="t-strong">$5–15</text><text x="405.94818203498204" y="231.471565015306" text-anchor="middle" font-size="11">to sell them</text>
+        <text x="342" y="62" text-anchor="middle" font-size="12" style="fill:var(--faint);letter-spacing:.1em" font-weight="700">SELL THE TOKENS</text>
+        <text x="342" y="92" text-anchor="middle" style="fill:var(--amber);font-family:var(--display);font-weight:900" font-size="26">17–150×</text></g>
+    </svg><p class="cap">A 20–30% gross margin means price runs about 1.25–1.4× cost. Token math from the framework, for a popular model run efficiently.</p></div>
+      <div class="frame f2"><div class="ai">
+      <div class="ai-col"><p class="ai-h">Commodity aisle <span>GPU-hours</span></p>
+        <div class="ai-shelf"><div class="ai-box" style="--i:1"><b>1 GPU-hour</b><small>provider 1</small><i class="ai-tag">re-bid</i></div><div class="ai-box" style="--i:2"><b>1 GPU-hour</b><small>provider 2</small><i class="ai-tag">re-bid</i></div><div class="ai-box" style="--i:3"><b>1 GPU-hour</b><small>provider 3</small><i class="ai-tag">re-bid</i></div><div class="ai-box" style="--i:4"><b>1 GPU-hour</b><small>provider 4</small><i class="ai-tag">re-bid</i></div><div class="ai-box" style="--i:5"><b>1 GPU-hour</b><small>provider 5</small><i class="ai-tag">re-bid</i></div></div>
+        <p class="ai-n">Customers keep <b>3–5 providers</b> and re-bid every month. CoreWeave earns about <b>$8–12M a year per megawatt</b>.</p></div>
+      <div class="ai-col prod"><p class="ai-h">Product aisle <span>tokens</span></p>
+        <div class="ai-big"><b>Token Factory</b><ul><li>40+ open models</li><li>fine-tuning</li><li>distillation</li><li>dedicated endpoints</li><li>99.9% uptime SLA</li></ul>
+          <p class="ai-q">Prosus: up to <b>200B tokens a day</b>, costs up to <b>26× lower</b> than proprietary models</p></div>
+        <p class="ai-n">A customer wired into an API is harder to re-bid than a rack.</p></div>
+    </div><p class="cap">Field interviews and figures as cited in the betteresearch framework; Prosus figures as Nebius reported them.</p></div>
+      <div class="frame f3"><svg viewBox="0 0 460 300" class="fk" aria-label="A fork in the road. Left: stay a GPU landlord, ending in a glut, down 70 percent or more. Right: sell tokens, past an end-of-2027 checkpoint, to a software-class business worth about 11 times.">
+      <path d="M200 300 C204 250 214 220 226 200" stroke="var(--rule)" stroke-width="34" fill="none"/>
+      <path d="M226 200 C200 160 120 150 70 160" stroke="var(--rule)" stroke-width="26" fill="none"/>
+      <path d="M226 200 C262 140 300 90 380 50" stroke="var(--rule)" stroke-width="26" fill="none"/>
+      <path d="M200 300 C204 250 214 220 226 200 C262 140 300 90 380 50" stroke="var(--amber)" stroke-width="2" stroke-dasharray="6 7" fill="none" class="fk-dash"/>
+      <path d="M226 200 C200 160 120 150 70 160" stroke="var(--coral)" stroke-width="2" stroke-dasharray="6 7" fill="none" opacity=".7"/>
+      <path d="M30 148 L70 168 L42 186 L60 196 L24 200 Z" fill="var(--coral)" fill-opacity=".15" stroke="var(--coral)"/>
+      <text x="16" y="128" font-size="13" class="t-strong" style="fill:var(--coral)">GPU landlord</text><text x="16" y="222" font-size="12">a glut: −70% or worse</text>
+      <text x="446" y="40" text-anchor="end" font-size="13" class="t-strong" style="fill:var(--amber)">Software-class</text><text x="446" y="78" text-anchor="end" font-size="12">tokens: ~11×</text>
+      <g transform="translate(316 96)"><line x1="0" y1="0" x2="0" y2="-34" stroke="var(--paper)" stroke-width="2"/><path d="M0 -34 h30 l-6 8 l6 8 h-30z" fill="var(--amber)"/><text x="8" y="12" font-size="11" class="t-strong">End of 2027</text><text x="8" y="26" font-size="10.5">more revenue per MW</text><text x="8" y="39" font-size="10.5">than CoreWeave’s $8–12M</text></g>
+      <g transform="translate(232 238)"><line x1="0" y1="0" x2="0" y2="52" stroke="var(--faint)" stroke-width="3"/>
+        <path d="M2 -2 h110 l10 10 l-10 10 h-110z" fill="var(--ink-2)" stroke="var(--amber)"/><text x="10" y="12" font-size="11.5" style="fill:var(--amber)" font-weight="700">sell tokens, keep them</text>
+        <path d="M-2 22 h-104 l-10 10 l10 10 h104z" fill="var(--ink-2)" stroke="var(--coral)"/><text x="-10" y="36" text-anchor="end" font-size="11.5" style="fill:var(--coral)" font-weight="700">rent hours wholesale</text></g>
+      <text x="14" y="22" class="t-strong" font-size="15">Two roads from the same megawatt</text>
+    </svg><p class="cap">Outcomes from the betteresearch framework’s scenarios (May 2026). CoreWeave’s revenue per megawatt as cited there.</p></div>
     </div>`;
   },
 
@@ -2227,7 +2225,7 @@ const VIZ = {
       <div class="frame f3"><div class="nf">
       <div class="nf-pick" role="group" aria-label="Chip"><button type="button" class="cn-p" data-i="0">H100</button><button type="button" class="cn-p" data-i="1">B200</button><button type="button" class="cn-p" data-i="2">GB200 NVL72</button><button type="button" class="cn-p on" data-i="3">B300</button><button type="button" class="cn-p" data-i="4">Vera Rubin NVL72</button><button type="button" class="cn-p g" data-i="5">TPU v5p</button><button type="button" class="cn-p g" data-i="6">Ironwood</button><button type="button" class="cn-p g" data-i="7">TPU 8t</button><button type="button" class="cn-p g" data-i="8">TPU 8i</button></div>
       <div class="nf-row">
-        <div class="nf-box" aria-hidden="true"><span class="nf-name" id="nfName"></span><svg viewBox="0 0 120 30"><path d="M4 18 C20 4 30 26 46 12 S70 26 84 10 S108 24 116 12" stroke="var(--coral)" stroke-width="5" fill="none" stroke-linecap="round"/></svg><small>ignore the name</small></div>
+        <div class="nf-box"><span class="nf-name" id="nfName"></span><div class="nf-art" id="nfArt" aria-hidden="true"></div><small class="nf-what" id="nfWhat"></small></div>
         <div class="nf-lab"><b class="nf-h">Spec Facts</b><span class="nf-sz">Per chip · what decides the generation</span>
           <div class="nf-r big"><span>Memory</span><b id="nfM"></b></div><div class="nf-r"><span>Bandwidth</span><b id="nfB"></b></div><div class="nf-r"><span>Chips that act as one</span><b id="nfO"></b></div>
           <p class="nf-ft">Memory sets how big a model fits. Bandwidth sets how fast it answers. Scale-up sets how big a job runs as one machine.</p></div>
@@ -2548,35 +2546,6 @@ const VIZ_INIT = {
     r.addEventListener("input", upd);
     upd();
   },
-  tokens(root) {
-    const r = $("#tkRange", root), svg = $("#tkChart", root);
-    if (!r || !svg) return;
-    let rate = .4;
-    // log price axis from 5 cents to $20 per million tokens
-    const Y = v => 140 - (Math.log10(v) - Math.log10(.05)) / (Math.log10(20) - Math.log10(.05)) * 124, X = y => 64 + y * 92;
-    const money = v => (v >= 1 ? `$${Math.abs(v - Math.round(v)) < .05 ? Math.round(v) : v.toFixed(1)}` : `$${v.toFixed(2)}`);
-    const upd = () => {
-      const yr = +r.value, f = t => Math.pow(1 - rate, t);
-      $("#tkY", root).textContent = yr;
-      const hi = Array.from({ length: 41 }, (_, i) => `${X(i / 10).toFixed(1)},${Y(15 * f(i / 10)).toFixed(1)}`), lo = Array.from({ length: 41 }, (_, i) => `${X(i / 10).toFixed(1)},${Y(5 * f(i / 10)).toFixed(1)}`).reverse();
-      const rl = 5 * f(yr), rh = 15 * f(yr), sl = rl / .3, sh = rh / .1;
-      svg.innerHTML = [.1, 1, 10].map(v => `<line class="gridl" x1="64" y1="${Y(v).toFixed(1)}" x2="432" y2="${Y(v).toFixed(1)}"/><text x="56" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="11">${money(v)}</text>`).join("") +
-        [0, 1, 2, 3, 4].map(y => `<text x="${X(y)}" y="160" text-anchor="middle" font-size="11" ${y === yr ? `class="t-strong"` : ""}>yr ${y}</text>`).join("") +
-        `<polygon points="${hi.join(" ")} ${lo.join(" ")}" fill="rgba(63,214,200,.22)" stroke="var(--amber)" stroke-width="1.4"/>` +
-        `<rect x="64" y="${Y(.3).toFixed(1)}" width="368" height="${(Y(.1) - Y(.3)).toFixed(1)}" fill="rgba(244,151,122,.25)" stroke="var(--coral)" stroke-width="1.2"/>` +
-        `<text x="430" y="${(Y(.3) - 6).toFixed(1)}" text-anchor="end" font-size="11" font-weight="800" style="fill:var(--coral)">cost to make: $0.10–0.30</text>` +
-        `<text x="70" y="${(Y(15) - 6).toFixed(1)}" font-size="11" font-weight="800" style="fill:var(--amber)">list price</text>` +
-        `<line x1="${X(yr)}" y1="${Y(rh).toFixed(1)}" x2="${X(yr)}" y2="${Y(.1).toFixed(1)}" stroke="var(--paper)" stroke-width="2" stroke-dasharray="3 3"/>` +
-        `<circle cx="${X(yr)}" cy="${Y(rh).toFixed(1)}" r="4.5" fill="var(--amber)"/><circle cx="${X(yr)}" cy="${Y(rl).toFixed(1)}" r="4.5" fill="var(--amber)"/>`;
-      $("#tkOut", root).innerHTML = `<b class="${sl >= 5 ? "up" : sl >= 1.5 ? "" : "dn"}">${sl.toFixed(sl < 10 ? 1 : 0)}–${sh.toFixed(0)}×</b><span>spread. List price ${money(rl)}–${money(rh)} per million tokens.</span>`;
-    };
-    $$(".tk-r", root).forEach(b => b.addEventListener("click", () => {
-      $$(".tk-r", root).forEach(x => x.classList.toggle("on", x === b));
-      rate = +b.dataset.r / 100; upd();
-    }));
-    r.addEventListener("input", upd);
-    upd();
-  },
   factory(root) {
     const r = $("#faRange", root);
     if (!r) return;
@@ -2693,10 +2662,30 @@ const VIZ_INIT = {
     show("GB200 NVL72");
 
     // frame 3: ignore the name on the box, read the Spec Facts label
-    const LABEL = [["H100", 80, 3.35, 8], ["B200", 192, 8, 8], ["GB200 NVL72", 186, 8, 72], ["B300", 288, 8, 8], ["Vera Rubin NVL72", 288, 22, 72], ["TPU v5p", 95, 2.77, 8960], ["Ironwood", 192, 7.37, 9216], ["TPU 8t", 216, 6.53, 9600], ["TPU 8i", 288, 8.6, 1152]];
+    // a mini drawing of each design: compute dies (blue), HBM stacks (violet), or for an NVL72 the rack itself.
+    // TPU stack counts are drawn only where Google has published them; the rest show HBM as a band.
+    const pkg = (dies, hbm, opt = {}) => {
+      const W = dies === 2 ? 64 : 44, x0 = 60 - W / 2, die = dies === 2 ? [0, 1].map(k => `<rect x="${x0 + k * 33}" y="34" width="31" height="52" rx="2" class="na-die"/>`).join("") : `<rect x="${x0}" y="34" width="${W}" height="52" rx="2" class="na-die${opt.tpu ? " tpu" : ""}"/>`;
+      const side = n => Array.from({ length: n }, (_, k) => k);
+      const stacks = hbm ? [-1, 1].map(sd => side(hbm / 2).map(k => { const h = 52 / (hbm / 2) - 3, x = sd < 0 ? x0 - 18 : x0 + W + 4, y = 34 + k * (h + 3); const off = opt.dark && sd > 0 && k === hbm / 2 - 1; return `<rect x="${x}" y="${y.toFixed(1)}" width="14" height="${h.toFixed(1)}" rx="1.5" class="na-hbm${off ? " off" : ""}${opt.tall ? " tall" : ""}"/>`; }).join("")).join("") : `<rect x="${x0 - 18}" y="34" width="14" height="52" rx="2" class="na-band"/><rect x="${x0 + W + 4}" y="34" width="14" height="52" rx="2" class="na-band"/>`;
+      return `<svg viewBox="0 0 120 120"><rect x="8" y="16" width="104" height="88" rx="5" class="na-sub"/><rect x="${x0 - 22}" y="28" width="${W + 44}" height="64" rx="3" class="na-int"/>${stacks}${die}${opt.sram ? `<rect x="${x0 + 8}" y="70" width="${W - 16}" height="9" rx="1" class="na-sram"/>` : ""}</svg>`;
+    };
+    const rack = gpu => `<svg viewBox="0 0 120 120"><rect x="34" y="4" width="52" height="112" rx="3" class="na-rack"/>${Array.from({ length: 27 }, (_, k) => { const sw = k >= 10 && k < 19; return `<rect x="38" y="${7 + k * 4}" width="44" height="3" rx=".6" class="${sw ? "na-sw" : "na-ct " + gpu}"/>`; }).join("")}</svg>`;
+    const LABEL = [
+      ["H100", 80, 3.35, 8, pkg(1, 6, { dark: 1 }), "1 die · 6 HBM3 sites, 5 in use"],
+      ["B200", 192, 8, 8, pkg(2, 8), "2 dies · 8 HBM3e stacks"],
+      ["GB200 NVL72", 186, 8, 72, rack(""), "18 compute trays · 9 NVLink switch trays"],
+      ["B300", 288, 8, 8, pkg(2, 8, { tall: 1 }), "2 dies · 8 taller HBM3e stacks"],
+      ["Vera Rubin NVL72", 288, 22, 72, rack("rubin"), "72 Rubin GPUs, 36 Vera CPUs, one rack"],
+      ["TPU v5p", 95, 2.77, 8960, pkg(1, 0, { tpu: 1 }), "one TPU, HBM alongside (schematic)"],
+      ["Ironwood", 192, 7.37, 9216, pkg(2, 8), "2 compute dies · 8 HBM3e stacks"],
+      ["TPU 8t", 216, 6.53, 9600, pkg(1, 0, { tpu: 1 }), "built to train (schematic)"],
+      ["TPU 8i", 288, 8.6, 1152, pkg(1, 0, { tpu: 1, sram: 1 }), "384 MB of on-chip SRAM (schematic)"]
+    ];
     const facts = i => {
-      const [n, gb, bw, one] = LABEL[i];
+      const [n, gb, bw, one, art, what] = LABEL[i];
       $("#nfName", root).textContent = n; $("#nfM", root).textContent = `${gb} GB`; $("#nfB", root).textContent = `${bw} TB/s`; $("#nfO", root).textContent = one.toLocaleString("en-US");
+      $("#nfArt", root).innerHTML = art; $("#nfWhat", root).textContent = what;
       $$(".nf-pick .cn-p", root).forEach(b => { b.classList.toggle("on", +b.dataset.i === i); b.setAttribute("aria-pressed", String(+b.dataset.i === i)); });
     };
     $$(".nf-pick .cn-p", root).forEach(b => b.addEventListener("click", () => facts(+b.dataset.i)));
