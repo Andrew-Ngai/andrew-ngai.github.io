@@ -739,7 +739,7 @@ const PROBES = [
 // featured theses in the hero: one number each, drawn as chips fresh off the line
 const RECEIPTS = [
   { v: "17–150×", t: "The spread between making a million tokens and selling them. GPU-hours earn 20–30%.", id: "tokens", fresh: 1 },
-  { v: "391.8K", t: "GitHub stars in under a year. About 12% of audited skills were malicious.", id: "openclaw", fresh: 1 },
+  { v: "391.8K", t: "GitHub stars in under a year. About 12% of audited skills were malicious.", id: "openclaw" },
   { v: "22 TB/s", t: "Memory bandwidth per Rubin GPU, nearly 3× B300’s. Read the memory, not the name.", id: "chipnames", fresh: 1 },
   { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend" }
 ];
