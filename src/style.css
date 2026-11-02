@@ -2243,6 +2243,12 @@ html.paused .st-card{animation:none}
 .pt-big i{font-style:normal;font-weight:700;font-size:15px;color:var(--dim)}
 .pt-big b{align-self:center;justify-self:center;font-family:var(--display);font-weight:900;font-size:76px;line-height:1;color:var(--bin)}
 .pt-big span{font-size:13px;line-height:1.1;color:var(--dim)}
+.pt-el.lock{box-shadow:0 0 0 3px var(--bin),0 10px 24px -8px var(--bin);transform:translateY(-3px)}
+.pt-el.lock::before{content:"";position:absolute;right:6px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--bin);box-shadow:0 0 8px var(--bin)}
+.pt-pin{margin:2px 0 0;font-size:13.5px;color:var(--faint)}
+.pt-card.locked .pt-pin{color:var(--amber);font-weight:700}
+.pt-unpin{margin-left:6px;padding:1px 8px 2px;font-family:var(--label);font-weight:700;font-size:13px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);border-radius:3px;cursor:pointer}
+.pt-unpin:hover{border-color:var(--amber)}
 .pt-l{margin:4px 0 0;font-weight:800;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .pt-card h3{margin:0;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.05}
 .pt-n{margin:0;font-size:16px;line-height:1.35;color:var(--dim)}
@@ -2340,5 +2346,6 @@ html.paused .bd-opt,html.paused .bd-body.swap .bd-scroll>*{animation:none!import
   .bd-opts{gap:6px}.bd-opt{grid-template-columns:30px minmax(0,1fr);padding:7px 8px;column-gap:8px}.bd-opt .bd-oi{width:30px;height:30px}.bd-oi svg{width:18px;height:18px}.bd-opt b{font-size:14.5px}.bd-opt small{display:none}.bd-opt .bd-oi{grid-row:auto}
   .pt-card{position:fixed;top:auto;left:0;right:0;bottom:0;z-index:8;align-content:start;max-height:72svh;overflow:auto;padding:14px 16px calc(18px + env(safe-area-inset-bottom,0px));border-radius:10px 10px 0 0;border:1px solid var(--rule);border-top:3px solid var(--bin);box-shadow:0 -18px 40px rgba(0,0,0,.6);transform:translateY(105%);transition:transform .35s var(--ease),visibility 0s .35s;visibility:hidden}
   .pt-card.open{transform:none;visibility:visible;transition:transform .35s var(--ease)}
+  .pt-pin{display:none}
   .pt-x{display:block;justify-self:end;margin:-4px -4px -40px 0;padding:5px 12px 6px;font-family:var(--label);font-weight:700;font-size:15px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);border-radius:3px;cursor:pointer}
 }
