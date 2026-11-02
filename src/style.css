@@ -1420,22 +1420,69 @@ html.paused .memo{animation:none}
 .viz .cn-sym{fill:var(--paper);font-family:var(--display);font-weight:900;font-size:27px}
 .viz .cn-lane{fill:var(--faint);font-weight:700;letter-spacing:.12em}
 .viz .cn-nm{fill:var(--dim)}
-.cn{display:grid;gap:10px;align-content:center;min-height:0}
+.cn{display:grid;gap:9px;align-content:center;min-height:0}
 .cn-k{color:var(--amber)}
 .cn-picks{display:flex;flex-wrap:wrap;gap:6px}
-.cn-p{font-family:var(--label);font-weight:700;font-size:14px;padding:5px 10px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);color:var(--dim);cursor:pointer}
+.cn-p{font-family:var(--label);font-weight:700;font-size:14px;padding:5px 9px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);color:var(--dim);cursor:pointer}
+.cn-p small{font-size:11px;font-weight:600;margin-left:4px;opacity:.6}
 .cn-p:hover{border-color:var(--paper);color:var(--paper)}
 .cn-p.on{border-color:var(--amber);color:var(--ink);background:var(--amber)}
-.cn-name{font-family:var(--display);font-weight:900;font-size:clamp(40px,5vw,62px);line-height:1;color:var(--paper);min-height:1em}
+.cn-dec{display:grid;gap:8px}
+.cn-name{font-family:var(--display);font-weight:900;font-size:clamp(36px,4.4vw,54px);line-height:1;color:var(--paper);min-height:1em;margin:0}
 .cn-name span{color:var(--c);border-bottom:3px solid var(--c);padding-bottom:2px}
-.cn-parts{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.cn-parts li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;align-items:baseline;font-family:var(--label);font-size:16px;color:var(--dim)}
-.cn-parts b{font-family:var(--display);font-weight:900;font-size:20px;color:var(--c)}
-.cn-mem{font-family:var(--label);font-size:15px;color:var(--paper);padding:8px 12px;background:var(--ink-2);border-left:3px solid var(--amber)}
+.cn-parts{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+.cn-parts li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;align-items:baseline;font-family:var(--label);font-size:16px;line-height:1.25;color:var(--dim)}
+.cn-parts b{font-family:var(--display);font-weight:900;font-size:19px;color:var(--c)}
+/* my whiteboard note on the chip, in the memo's own dark style: the job, an aside, Nvidia's multiplier, and the superchip */
+.cn-wb{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:center;margin:2px 0 0;padding:10px 14px 12px;background:var(--ink-2);border:1px solid var(--rule);border-left:3px solid var(--amber);border-radius:3px;font-family:var(--label);color:var(--paper)}
+.cn-wb.has-chip{grid-template-columns:minmax(0,1fr) 170px}
+.cn-wb-main{display:grid;gap:4px;min-width:0}
+.cn-wb-k{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.cn-wb-t{margin:0;font-size:18px;line-height:1.3;color:var(--paper)}
+.cn-wb-t b{font-weight:800}
+.cn-arch{color:var(--amber)}
+.cn-wb-t u{text-decoration:underline;text-decoration-color:var(--beat);text-decoration-thickness:2px;text-underline-offset:4px}
+.cn-wb-a{margin:0;font-size:15.5px;line-height:1.3;color:var(--dim)}
+.cn-wb-a.br{padding-left:10px;border-left:2px solid var(--rule)}
+.cn-x{display:none;margin:4px 0 0;align-items:baseline;flex-wrap:wrap;gap:2px 9px;font-size:15.5px;color:var(--dim)}
+.cn-wb.has-x .cn-x{display:flex}
+.cn-x b{font-family:var(--display);font-weight:900;font-size:30px;line-height:1;color:var(--coral);font-variant-numeric:tabular-nums}
+.cn-chip:empty{display:none}
+.cn-chip svg{display:block;width:100%;height:auto}
+.viz .cn-chip text{font-family:var(--label);text-anchor:middle}
+.viz .cn-chip .sk-t{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;fill:var(--faint)}
+.viz .cn-chip .sk-b{font-size:12px;font-weight:800;fill:var(--paper)}
+.viz .cn-chip .sk-s{font-size:9.5px;font-weight:600;fill:var(--dim)}
+.viz .cn-chip .sk-k{fill:var(--violet)}
+.cn-chip .sk-c,.cn-chip .sk-g{fill:var(--ink-3);stroke-width:1.6}
+.cn-chip .sk-c{stroke:var(--beat)}
+.cn-chip .sk-g{stroke:var(--coral)}
+.cn-chip .sk-l{fill:none;stroke:var(--violet);stroke-opacity:.7;stroke-width:1.5;stroke-dasharray:40}
+.cn-wb.write .cn-wb-main>*{animation:cn-up .45s var(--ease) both}
+.cn-wb.write .cn-wb-t{animation-delay:.06s}.cn-wb.write .cn-wb-a{animation-delay:.14s}.cn-wb.write .cn-x{animation-delay:.24s}
+.cn-wb.write .cn-x b{animation:cn-pop .5s cubic-bezier(.3,1.5,.5,1) .3s both}
+.cn-wb.write .cn-chip svg{animation:cn-up .5s var(--ease) .12s both}
+.cn-wb.write .sk-l{animation:cn-wire .7s var(--ease) .45s both}
+@keyframes cn-up{from{opacity:0;transform:translateY(6px)}}
+@keyframes cn-pop{from{opacity:0;transform:scale(.6)}}
+@keyframes cn-wire{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+html.paused .cn-wb.write *{animation:none!important}
+/* the three numbers that matter */
+.cn-gs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.cn-g{display:grid;gap:5px;min-width:0}
+.cn-gk{font-family:var(--label);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cn-bar{display:block;height:9px;background:var(--ink-2);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.cn-bar b{display:block;height:100%;width:0;background:var(--amber);transition:width .8s var(--ease)}
+.cn-g:nth-child(2) .cn-bar b{background:var(--beat)}
+.cn-gv{font-family:var(--display);font-weight:800;font-size:23px;line-height:1;color:var(--paper);white-space:nowrap}
+.cn-gv small{font-family:var(--label);font-weight:700;font-size:13px;color:var(--dim);margin-left:2px}
+.cn-dom{display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:2px}
+.cn-dom b{aspect-ratio:1;background:var(--ink-2);border:1px solid var(--rule);border-radius:1px;transition:background .25s,border-color .25s}
+.cn-dom b.on{background:var(--coral);border-color:var(--coral)}
 .cn-line{stroke-dasharray:100}
 .viz[data-step="3"] .f3 .cn-line{animation:cn-draw 1.6s var(--ease) both}
 @keyframes cn-draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
-@media (max-width:860px){.cn{gap:5px}.cn-p{font-size:12px;padding:3px 7px 4px}.cn-name{font-size:30px}.cn-parts li{font-size:13px;grid-template-columns:56px minmax(0,1fr)}.cn-parts b{font-size:15px}.cn-mem{font-size:13px;padding:5px 9px}}
+@media (max-width:860px){.cn{gap:5px}.cn-k{display:none}.cn-picks{gap:4px}.cn-p{font-size:12px;padding:3px 6px 4px}.cn-p small{display:none}.cn-dec{gap:6px}.cn-name{font-size:28px;padding-bottom:3px}.cn-parts{gap:1px}.cn-parts li{font-size:12.5px;grid-template-columns:50px minmax(0,1fr);line-height:1.2}.cn-parts b{font-size:14px}.cn-wb{padding:4px 9px 5px;gap:0;margin:0}.cn-wb.has-chip{grid-template-columns:minmax(0,1fr)}.cn-chip,.cn-wb-k,.cn-wb.has-x .cn-wb-a{display:none!important}.cn-wb-main{gap:1px}.cn-wb-t{font-size:13.5px;line-height:1.22}.cn-wb-a{font-size:12px}.cn-wb-t u{text-decoration-thickness:1.5px;text-underline-offset:2px}.cn-x{margin:0;font-size:12px;gap:0 6px}.cn-x b{font-size:18px}.cn-gs{gap:8px}.cn-g{gap:3px}.cn-gk{font-size:9.5px;letter-spacing:.06em}.cn-bar{height:6px}.cn-gv{font-size:15px}.cn-gv small{font-size:10.5px}.cn-dom{grid-template-columns:repeat(24,minmax(0,1fr));gap:1px}}
 
 /* openclaw: the chat, two speeds, stars */
 .ow{display:grid;place-items:center;min-height:0}
