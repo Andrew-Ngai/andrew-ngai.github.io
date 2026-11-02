@@ -157,6 +157,14 @@ const SRC = {
   nvRoad: "https://www.tomshardware.com/tech-industry/semiconductors/nvidia-enterprise-roadmap-rubin-rubin-ultra-feynman-and-silicon-photonics",
   gtcBuy: "https://bizon-tech.com/blog/nvidia-gtc-2026-key-announcements",
   gpuGens: "https://www.baseten.co/inference-engineering/book/03-hardware/gpu-architecture-generations/",
+  nvT4: "https://www.nvidia.com/en-us/data-center/tesla-t4/",
+  nvA100: "https://www.nvidia.com/en-us/data-center/a100/",
+  nvL40s: "https://www.nvidia.com/en-us/data-center/l40s/",
+  metaH100: "https://engineering.fb.com/2024/03/12/data-center-engineering/building-metas-genai-infrastructure/",
+  b200Toms: "https://www.tomshardware.com/pc-components/gpus/nvidias-next-gen-ai-gpu-revealed-blackwell-b200-gpu-delivers-up-to-20-petaflops-of-compute-and-massive-improvements-over-hopper-h100",
+  gb200: "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+  b300Toms: "https://www.tomshardware.com/pc-components/gpus/nvidia-announces-blackwell-ultra-b300-1-5x-faster-than-b200-with-288gb-hbm3e-and-15-pflops-dense-fp4",
+  vrSuper: "https://hothardware.com/news/nvidia-vera-rubin-ai-super-chip-on-stage-gtc",
   ocWiki: "https://en.wikipedia.org/wiki/OpenClaw",
   ocNow: "https://thegenaimagazine.com/openclaw-where-is-it-now-what-people-built-hype-dead",
   ocRedHat: "https://siliconangle.com/2026/10/27/red-hat-openclaw-agents-kubeconna/",
@@ -634,7 +642,7 @@ const THESES = [
     ],
     bet: "Ignore the name on the box and read three numbers: memory per chip, memory bandwidth, and how many chips act as one machine, 72 in an NVL72 rack or 9,216 in an Ironwood pod. That’s where the generations really differ. Back what wins whichever name is on the box: HBM suppliers, the interconnect that makes thousands of chips act as one, and software that moves models between GPUs and TPUs without a rewrite.",
     wrong: "By 2028, a chip with less memory and a smaller scale-up domain than its rivals wins the frontier on raw compute alone.",
-    receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
+    receipts: [["Wikipedia, eponyms of Nvidia GPU architectures", SRC.nvNames], ["Baseten, GPU architecture generations", SRC.gpuGens], ["Bizon on GTC 2026 and Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware, Nvidia’s data-center roadmap", SRC.nvRoad], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["NVIDIA, T4 specs", SRC.nvT4], ["NVIDIA, A100 specs", SRC.nvA100], ["NVIDIA, L40S specs", SRC.nvL40s], ["Meta on its H100 clusters for Llama 3 (Mar 2024)", SRC.metaH100], ["Tom’s Hardware on B200 vs H100 (Mar 2024)", SRC.b200Toms], ["NVIDIA, GB200 NVL72 specs", SRC.gb200], ["Tom’s Hardware on B300 (Mar 2025)", SRC.b300Toms], ["HotHardware on the Vera Rubin superchip (Oct 2025)", SRC.vrSuper], ["Wikipedia, Tensor Processing Unit", SRC.tpuWiki], ["Google Cloud, TPU7x (Ironwood) docs", SRC.tpu7], ["Tom’s Hardware on Anthropic’s TPUs (Oct 2025)", SRC.anthTpu]],
     viz: "chipnames", echo: { pose: "introduce", acc: "nametag", name: "Name tag" }
   },
   {
@@ -2145,14 +2153,26 @@ const VIZ = {
         <path d="M${X(2022) + 28} 108 C${X(2022) + 40} 140 ${X(2022) + 40} 170 ${X(2022) + 28} 196" fill="none" stroke="var(--coral)" stroke-width="1.4" stroke-dasharray="3 3"/><text x="${X(2022) + 34}" y="156" font-size="10.5" text-anchor="end" style="fill:var(--coral)" font-weight="700">split</text>
       </svg>`;
 
-    // ---- frame 2: the decoder. Pick a chip; read its name
-    const PICKS = ["T4", "A100", "L40S", "H100", "H200", "B200", "GB200 NVL72", "B300", "Vera Rubin NVL72"];
+    // ---- frame 2: the decoder. Pick a chip; read its name, my whiteboard note on it, and its three numbers
+    const PICKS = [["T4", "18"], ["A100", "20"], ["L40S", "23"], ["H100", "22"], ["H200", "23"], ["B200", "24"], ["GB200 NVL72", "24"], ["B300", "25"], ["Vera Rubin NVL72", "26"]];
     const F2 = `<div class="cn">
         <p class="nc-k cn-k">Decode a chip name</p>
-        <div class="cn-picks" role="group" aria-label="Chip names">${PICKS.map(p => `<button type="button" class="cn-p${p === "GB200 NVL72" ? " on" : ""}" data-p="${p}">${p}</button>`).join("")}</div>
-        <p class="cn-name" id="cnName" aria-live="polite"></p>
-        <ul class="cn-parts" id="cnParts"></ul>
-        <p class="cn-mem" id="cnMem"></p>
+        <div class="cn-picks" role="group" aria-label="Chip names">${PICKS.map(([p, y]) => `<button type="button" class="cn-p${p === "GB200 NVL72" ? " on" : ""}" data-p="${p}" aria-pressed="${p === "GB200 NVL72"}">${p}<small>’${y}</small></button>`).join("")}</div>
+        <div class="cn-dec"><p class="cn-name" id="cnName" aria-live="polite"></p><ul class="cn-parts" id="cnParts"></ul></div>
+        <div class="cn-wb" id="cnWb">
+          <div class="cn-wb-main">
+            <span class="cn-wb-k">From my whiteboard</span>
+            <p class="cn-wb-t" id="cnWbT"></p>
+            <p class="cn-wb-a" id="cnWbA"></p>
+            <p class="cn-x" id="cnX"><b></b><span></span></p>
+          </div>
+          <div class="cn-chip" id="cnChip" aria-hidden="true"></div>
+        </div>
+        <div class="cn-gs">
+          <div class="cn-g"><span class="cn-gk">Memory per GPU</span><i class="cn-bar"><b id="cnMemB"></b></i><span class="cn-gv" id="cnMemV"></span></div>
+          <div class="cn-g"><span class="cn-gk">Bandwidth per GPU</span><i class="cn-bar"><b id="cnBwB"></b></i><span class="cn-gv" id="cnBwV"></span></div>
+          <div class="cn-g"><span class="cn-gk">GPUs that act as one</span><i class="cn-dom" id="cnDom">${"<b></b>".repeat(72)}</i><span class="cn-gv" id="cnDomV"></span></div>
+        </div>
       </div>`;
 
     // ---- frame 3: memory per chip, GPUs vs TPUs
@@ -2176,7 +2196,7 @@ const VIZ = {
 
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Named for Volta, Turing, Ampère, Lovelace, Hopper, Blackwell, Rubin and Feynman. Year = first launch.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Memory and bandwidth from Baseten and Nvidia’s GTC 2026 specs. Rubin rack figures from Civo’s Vera Rubin build.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Notes from my whiteboard. Specs from Nvidia; the multipliers are Nvidia’s own claims.</p></div>
       <div class="frame f3">${F3}<p class="cap">Year of launch. Ironwood reached general availability in April 2026; TPU 8i is a preview, due in late 2027.</p></div>
     </div>`;
   },
@@ -2552,25 +2572,68 @@ const VIZ_INIT = {
   chipnames(root) {
     const name = $("#cnName", root);
     if (!name) return;
+    // parts of the name; my whiteboard line (arch, year, job); an aside; Nvidia's multiplier;
+    // memory per GPU (GB, type), bandwidth per GPU (TB/s), and how many GPUs share one NVLink domain
     const D = {
-      "T4": [[["T", "Turing (2018), after Alan Turing"], ["4", "the small, low-power tier"]], "A small inference card, still common for low-traffic serving."],
-      "A100": [[["A", "Ampere (2020), after André-Marie Ampère"], ["100", "the flagship tier"]], "The H100’s predecessor, and the chip behind early ChatGPT-era training."],
-      "L40S": [[["L", "Ada Lovelace (2022), after Ada Lovelace"], ["40", "the mid tier, for graphics and inference"], ["S", "a boosted version of the L40"]], "48 GB of memory and no NVLink, so it doesn’t scale up like an H100."],
-      "H100": [[["H", "Hopper (2022), after Grace Hopper"], ["100", "the flagship tier"]], "80 GB of memory at 3.35 TB/s."],
-      "H200": [[["H", "still Hopper: the same chip"], ["200", "the refresh, with more and faster memory"]], "141 GB at 4.8 TB/s, up from 80 GB at 3.35."],
-      "B200": [[["B", "Blackwell (2024), after David Blackwell"], ["200", "the flagship: two dies in one package"]], "192 GB at up to 8 TB/s."],
-      "GB200 NVL72": [[["G", "a Grace CPU, one for every two GPUs"], ["B200", "Blackwell GPUs"], ["NVL72", "72 GPUs on one NVLink network: a rack that works as one"]], "36 Grace CPUs and 72 Blackwell GPUs per rack."],
-      "B300": [[["B", "still Blackwell"], ["300", "Blackwell Ultra, the mid-cycle upgrade"]], "288 GB at 8 TB/s."],
-      "Vera Rubin NVL72": [[["Vera", "the Vera CPU, which replaces Grace"], ["Rubin", "Rubin GPUs (2026), after astronomer Vera Rubin"], ["NVL72", "72 Rubin GPUs and 36 Vera CPUs per rack"]], "288 GB of HBM4 per GPU at up to 22 TB/s; 20.7 TB per rack."]
+      "T4": { parts: [["T", "Turing (2018), after Alan Turing"], ["4", "the small, low-power tier"]], arch: "Turing (2018)",
+        wb: "for <u>low-power</u> &amp; <u>low-traffic</u> inference", aside: "70 W on a small PCIe card, still common for light serving", mem: [16, "GDDR6"], bw: .32, one: 1, oneT: "alone" },
+      "A100": { parts: [["A", "Ampere (2020), after André-Marie Ampère"], ["100", "the flagship tier"]], arch: "Ampere (2020)",
+        wb: "the <u>flagship</u> chip behind early ChatGPT-era training", aside: "the H100’s predecessor", mem: [80, "HBM2e"], bw: 2.04, one: 8, oneT: "on a board" },
+      "L40S": { parts: [["L", "Ada Lovelace (2022), after Ada Lovelace"], ["40", "the mid tier, for graphics and inference"], ["S", "a boosted version of the L40"]], arch: "Lovelace (2022)",
+        wb: "<u>mid-tier</u> graphics &amp; inference, a boosted L40", aside: "no NVLink, so it can’t scale up like an H100", mem: [48, "GDDR6"], bw: .86, one: 1, oneT: "no NVLink" },
+      "H100": { parts: [["H", "Hopper (2022), after Grace Hopper"], ["100", "the flagship tier"]], arch: "Hopper (2022)",
+        wb: "the <u>flagship</u> for deep learning: training + inference", aside: "the 2023–24 workhorse: Meta trained Llama 3 on two 24,576-GPU H100 clusters", mem: [80, "HBM3"], bw: 3.35, one: 8, oneT: "on a board" },
+      "H200": { parts: [["H", "still Hopper: the same chip"], ["200", "the refresh, with more and faster memory"]], arch: "Hopper (2023)",
+        wb: "<u>faster memory</u>, same chip", aside: "80 → 141 GB and 3.35 → 4.8 TB/s, via HBM3e", mem: [141, "HBM3e"], bw: 4.8, one: 8, oneT: "on a board" },
+      "B200": { parts: [["B", "Blackwell (2024), after David Blackwell"], ["200", "the flagship: two dies in one package"]], arch: "Blackwell (2024)",
+        wb: "the <u>flagship</u>, with 2 dies in 1 package", x: ["2.5×", "H100’s FP8 compute"], aside: "208 billion transistors, vs 80 billion on an H100", mem: [192, "HBM3e"], bw: 8, one: 8, oneT: "on a board" },
+      "GB200 NVL72": { parts: [["G", "a Grace CPU, one for every two GPUs"], ["B200", "Blackwell GPUs"], ["NVL72", "72 GPUs on one NVLink network: a rack that works as one"]], arch: "Grace Blackwell (2024)",
+        wb: "72 Blackwell GPUs + 36 Grace CPUs in <u>one rack</u>", x: ["30×", "faster LLM inference than H100"], aside: "] rack-scale super LLM computer", mem: [186, "HBM3e"], bw: 8, one: 72, oneT: "one rack",
+        chip: ["Grace Blackwell superchip", "Grace", "CPU", "Blackwell", "186 GB HBM3e", "NVLink-C2C", ""] },
+      "B300": { parts: [["B", "still Blackwell"], ["300", "Blackwell Ultra, the mid-cycle upgrade"]], arch: "Blackwell Ultra (2025)",
+        wb: "for <u>reasoning models</u> &amp; agentic pipelines", x: ["+50%", "memory and FP4 compute over B200"], aside: "Blackwell Ultra, the mid-cycle bump", mem: [288, "HBM3e"], bw: 8, one: 8, oneT: "on a board" },
+      "Vera Rubin NVL72": { parts: [["Vera", "the Vera CPU, which replaces Grace"], ["Rubin", "Rubin GPUs (2026), after astronomer Vera Rubin"], ["NVL72", "72 Rubin GPUs and 36 Vera CPUs per rack"]], arch: "Vera Rubin (2026)",
+        wb: "72 Rubin GPUs + 36 Vera CPUs as <u>one machine</u>", x: ["10×", "tokens per megawatt vs GB200"], aside: "] agentic-AI supercomputer, at a tenth the cost per token", mem: [288, "HBM4"], bw: 22, one: 72, oneT: "one rack",
+        chip: ["Vera Rubin superchip", "Vera", "CPU · 88 cores", "Rubin", "288 GB HBM4", "NVLink-C2C", "1.8 TB/s"] }
     };
     const COLORS = ["var(--beat)", "var(--amber)", "var(--coral)"];
+    // the superchip from my sticky note: one CPU wired to two GPUs
+    const chip = ([t, cpu, cpuS, gpu, gpuS, link, linkS]) => `<svg viewBox="0 0 160 132"><text x="80" y="10" class="sk-t">${t}</text>
+      <path class="sk-l" pathLength="40" d="M64 50 C62 62 42 70 40 84 M96 50 C98 62 118 70 120 84"/>
+      <rect class="sk-c" x="48" y="20" width="64" height="30" rx="3"/><text x="80" y="33" class="sk-b">${cpu}</text><text x="80" y="44" class="sk-s">${cpuS}</text>
+      ${[6, 90].map(x => `<rect class="sk-g" x="${x}" y="84" width="64" height="34" rx="3"/><text x="${x + 32}" y="99" class="sk-b">${gpu}</text><text x="${x + 32}" y="111" class="sk-s">${gpuS}</text>`).join("")}
+      <text x="80" y="67" class="sk-s sk-k">${link}</text>${linkS ? `<text x="80" y="77" class="sk-s sk-k">${linkS}</text>` : ""}</svg>`;
+    const wb = $("#cnWb", root), cells = $$("#cnDom b", root);
+    let t0 = 0;
     const show = p => {
-      const [parts, mem] = D[p];
-      name.innerHTML = parts.map(([s], i) => `<span style="--c:${COLORS[i]}">${s}</span>`).join(p.includes(" ") ? " " : "");
-      $("#cnParts", root).innerHTML = parts.map(([s, d], i) => `<li style="--c:${COLORS[i]}"><b>${s}</b><span>${d}</span></li>`).join("");
-      $("#cnMem", root).textContent = mem;
+      const d = D[p];
+      name.innerHTML = d.parts.map(([s], i) => `<span style="--c:${COLORS[i]}">${s}</span>`).join(p.includes(" ") ? " " : "");
+      $("#cnParts", root).innerHTML = d.parts.map(([s, x], i) => `<li style="--c:${COLORS[i]}"><b>${s}</b><span>${x}</span></li>`).join("");
+      // rewrite the whiteboard note in marker, the way it reads on my board
+      $("#cnWbT", root).innerHTML = `<b>${p}:</b> <span class="cn-arch">${d.arch}</span> ${d.wb}`;
+      const br = d.aside.startsWith("] "), wa = $("#cnWbA", root);
+      wa.textContent = br ? d.aside.slice(2) : d.aside;
+      wa.classList.toggle("br", br);
+      $("#cnX b", root).textContent = d.x ? d.x[0] : "";
+      $("#cnX span", root).textContent = d.x ? d.x[1] : "";
+      $("#cnChip", root).innerHTML = d.chip ? chip(d.chip) : "";
+      wb.classList.toggle("has-x", !!d.x);
+      wb.classList.toggle("has-chip", !!d.chip);
+      wb.classList.remove("write"); void wb.offsetWidth; wb.classList.add("write");
+      // the three numbers that matter
+      $("#cnMemB", root).style.width = (d.mem[0] / 288 * 100).toFixed(1) + "%";
+      $("#cnMemV", root).innerHTML = `${d.mem[0]} GB <small>${d.mem[1]}</small>`;
+      $("#cnBwB", root).style.width = (d.bw / 22 * 100).toFixed(1) + "%";
+      $("#cnBwV", root).innerHTML = `${d.bw < 1 ? d.bw.toFixed(2) : d.bw} TB/s`;
+      $("#cnDomV", root).innerHTML = `${d.one} <small>${d.oneT}</small>`;
+      const now = ++t0;
+      cells.forEach((c, i) => c.classList.toggle("on", i < d.one));
+      cells.forEach((c, i) => { c.style.transitionDelay = now > 1 ? `${Math.min(i, d.one) * 6}ms` : "0ms"; });
     };
-    $$(".cn-p", root).forEach(b => b.addEventListener("click", () => { $$(".cn-p", root).forEach(x => x.classList.toggle("on", x === b)); show(b.dataset.p); }));
+    $$(".cn-p", root).forEach(b => b.addEventListener("click", () => {
+      $$(".cn-p", root).forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+      show(b.dataset.p);
+    }));
     show("GB200 NVL72");
   },
   race(root) {
