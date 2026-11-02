@@ -194,6 +194,7 @@ const BINS = {
 const THESES = [
   {
     id: "automate", die: [0, 6], stance: "agree",
+    layer: "M", tldr: ["Automate the researcher, not the economy", "OpenAI: 3.1 agent-workdays per human workday. Experiment compute is the speed limit; taste is the scarce input."],
     title: "Automate the researcher, not the economy.",
     h2: "Automate the researcher, | not the economy.",
     short: "Automate the researcher",
@@ -213,6 +214,7 @@ const THESES = [
   },
   {
     id: "agent", die: [4, 8], stance: "build",
+    layer: "A", tldr: ["An agent is a brain with a body", "Model = the brain. Harness = the body: tools, memory, permissions, the confirm button."],
     title: "An agent is a brain with a body.",
     h2: "An agent is | a brain with a body.",
     short: "A brain with a body",
@@ -232,6 +234,7 @@ const THESES = [
   },
   {
     id: "weights", die: [-2, -6], stance: "agree",
+    layer: "S", tldr: ["Weights are the new crown jewels", "A billion-dollar training run in one file. SL5 security is 5+ years away."],
     title: "Weights are the new crown jewels.",
     h2: "Weights are | the new crown jewels.",
     short: "Weights are the crown jewels",
@@ -252,6 +255,7 @@ const THESES = [
   },
   {
     id: "ooms", die: [0, -3], stance: "build",
+    layer: "I", tldr: ["The computer is now the building", "Every OOM lands somewhere physical. Back the glue: optics + power delivery."],
     title: "The computer is now the building.",
     h2: "The computer is | now the building.",
     short: "The computer is the building",
@@ -271,6 +275,7 @@ const THESES = [
   },
   {
     id: "molecules", die: [7, 5], stance: "build",
+    layer: "E", tldr: ["Molecules are easy. Machines are hard.", "The gas exists: ~1,200 wells ≈ 100 GW. Turbines, transformers and grid hookups take years. The scarce asset is a delivery slot."],
     title: "Molecules are easy. Machines are hard.",
     h2: "Molecules are easy. Machines are hard.",
     short: "Molecules are easy",
@@ -290,6 +295,7 @@ const THESES = [
   },
   {
     id: "bloom", die: [-9, 2], stance: "build",
+    layer: "E", tldr: ["The power plant that ships like a server", "Fuel cells skip the turbine queue. 800 V DC racks could let them skip the transformer too."],
     title: "The power plant that ships like a server.",
     h2: "The power plant | that ships like a server.",
     short: "Power that ships like servers",
@@ -310,6 +316,7 @@ const THESES = [
   },
   {
     id: "fleet", die: [-3, 2], stance: "push",
+    layer: "I", tldr: ["A fleet, not a cluster", "$ on pace for 1 → 10 → 100 GW, but sites split. Inference eats training."],
     title: "A fleet, not a cluster.",
     h2: "A fleet, | not a cluster.",
     short: "A fleet, not a cluster",
@@ -329,6 +336,7 @@ const THESES = [
   },
   {
     id: "gpulife", die: [4, 5], stance: "push",
+    layer: "I", tldr: ["Old GPUs move down the menu", "Treat a GPU like a jet, not a phone. Power is the real clock."],
     title: "Old GPUs don’t die. They move down the menu.",
     h2: "Old GPUs don’t die. They move | down the menu.",
     short: "Old GPUs move down the menu",
@@ -349,6 +357,7 @@ const THESES = [
   },
   {
     id: "saas", die: [3, -2], stance: "push",
+    layer: "A", tldr: ["AI eats the seat, not the software", "The screen collapses. The record + rulebook don’t. Price moves from seats to work."],
     title: "AI eats the seat, not the software.",
     h2: "AI eats the seat, | not the software.",
     short: "The seat, not the software",
@@ -369,6 +378,7 @@ const THESES = [
   },
   {
     id: "neocloud", die: [-6, -7], stance: "build",
+    layer: "I", tldr: ["The clouds rent from the neoclouds", "Microsoft → Nebius $17.4B. Meta up to $27B. Cheapest GPU-hour wins."],
     title: "The clouds are renting from the neoclouds.",
     h2: "The clouds are renting | from the neoclouds.",
     short: "Clouds renting from neoclouds",
@@ -388,6 +398,7 @@ const THESES = [
   },
   {
     id: "builders", die: [-1, 9], stance: "build",
+    layer: "F", tldr: ["Back the builders. Survive the bust.", "Situational Awareness fund: $255M → ~$20B. Bankruptcies don’t break the thesis. Leverage does."],
     title: "Back the builders. Survive the bust.",
     h2: "Back the builders. Survive the bust.",
     short: "Back the builders",
@@ -408,6 +419,7 @@ const THESES = [
   },
   {
     id: "moat", die: [-1, -9], stance: "build",
+    layer: "C", tldr: ["The slowdown is the moat", "Each harder step removes a competitor. “3 nm” gates sit ~45 nm apart."],
     title: "The slowdown is the moat.",
     h2: "The slowdown | is the moat.",
     short: "The slowdown is the moat",
@@ -427,6 +439,7 @@ const THESES = [
   },
   {
     id: "memory", die: [-6, 7], stance: "original",
+    layer: "C", tldr: ["The bottleneck moved below the GPU", "HBM is where the margin went. Agents are memory-bound."],
     title: "The bottleneck moved below the GPU.",
     h2: "The bottleneck moved | below the GPU.",
     short: "Below the GPU",
@@ -446,6 +459,7 @@ const THESES = [
   },
   {
     id: "backend", die: [0, 3], stance: "build",
+    layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in CoWoS capacity, not wafers."],
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
     h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
     short: "The back end is the bottleneck",
@@ -465,6 +479,7 @@ const THESES = [
   },
   {
     id: "heat", die: [7, -5], stance: "build",
+    layer: "C", tldr: ["Going 3D saved Moore’s law. Heat is the bill.", "Every layer traps heat. Cooling moves inside the chip."],
     title: "Going 3D saved Moore’s law. Heat is the bill.",
     h2: "Going 3D | saved Moore’s law. Heat is the bill.",
     short: "Heat is the bill",
@@ -485,6 +500,7 @@ const THESES = [
   },
   {
     id: "screentime", die: [9, 0], stance: "original",
+    layer: "A", tldr: ["Give people their time back", "Time with friends: 60 → 20 min/day (2003 → 2020). Count plans that happen."],
     title: "The best consumer AI will give you your time back.",
     h2: "The best consumer AI | will give you | your time back.",
     short: "Give people time back",
@@ -505,6 +521,7 @@ const THESES = [
   },
   {
     id: "spacex", die: [3, 2], stance: "original",
+    layer: "F", tldr: ["SpaceX’s strongest engine is its stock", "$1.77T IPO, then Cursor for $60B in stock four days later."],
     title: "SpaceX’s strongest engine is its stock.",
     h2: "SpaceX’s | strongest engine | is its stock.",
     short: "The stock is the engine",
@@ -526,6 +543,7 @@ const THESES = [
   },
   {
     id: "quantum", die: [6, 1], stance: "build",
+    layer: "S", tldr: ["Quantum’s first job: breaking keys", "Google: < 500K qubits could break Bitcoin-grade keys in minutes. Migrate before Q-day."],
     title: "Quantum’s first big job is breaking keys, not training models.",
     h2: "Quantum’s first big job | is breaking keys, | not training models.",
     short: "Quantum breaks keys first",
@@ -546,6 +564,7 @@ const THESES = [
   },
   {
     id: "ledger", die: [4, -8], stance: "build",
+    layer: "A", tldr: ["Banks won’t mine, but they’ll share the ledger", "Proof of work → a guest list. Deposit tokens on shared books."],
     title: "Banks won’t mine. They’ll still share the ledger.",
     h2: "Banks won’t mine. | They’ll still | share the ledger.",
     short: "Banks will share the ledger",
@@ -565,6 +584,7 @@ const THESES = [
   },
   {
     id: "custom", die: [-3, -2], stance: "original",
+    layer: "C", tldr: ["The chip is custom. The moat is around it.", "Broadcom AI chips: $16.7B a quarter, 73% custom."],
     title: "The chip is custom. The moat is everything around it.",
     h2: "The chip is custom. | The moat is | everything around it.",
     short: "The moat around the chip",
@@ -586,6 +606,7 @@ const THESES = [
   },
   {
     id: "tokens", die: [6, -3], stance: "agree",
+    layer: "I", tldr: ["Rent GPUs to survive. Sell tokens to win.", "$0.10–0.30 to make 1M tokens; $5–15 to sell. The spread is melting."],
     title: "Rent GPUs to survive. Sell tokens to win.",
     h2: "Rent GPUs to survive. | Sell tokens to win.",
     short: "Sell tokens to win",
@@ -607,6 +628,7 @@ const THESES = [
   },
   {
     id: "factory", die: [-4, 5], stance: "build",
+    layer: "I", tldr: ["A token factory = a country of experts on a meter", "Google: 3.2 quadrillion tokens a month, up 7× in a year."],
     title: "A token factory is a country of experts on a meter.",
     h2: "A token factory | is a country of experts | on a meter.",
     short: "A country of experts",
@@ -627,6 +649,7 @@ const THESES = [
   },
   {
     id: "chipnames", die: [2, -6], stance: "original",
+    layer: "C", tldr: ["Every GPU name = a scientist + a year", "T4 → A100 → H100 → B200 → Rubin. Then read memory, bandwidth and how many act as one."],
     title: "Every GPU name is a scientist and a year.",
     h2: "Every GPU name | is a scientist and a year.",
     short: "A scientist and a year",
@@ -647,6 +670,7 @@ const THESES = [
   },
   {
     id: "openclaw", die: [-5, -3], stance: "build",
+    layer: "A", tldr: ["OpenClaw needs a badge", "0 → 391.8K GitHub stars in under a year. ~12% of audited skills were malicious."],
     title: "OpenClaw gave the brain a body. Now it needs a badge.",
     h2: "OpenClaw gave | the brain a body. | Now it needs a badge.",
     short: "A body that needs a badge",
@@ -666,6 +690,7 @@ const THESES = [
   },
   {
     id: "race", die: [-6, 1], stance: "agree",
+    layer: "M", tldr: ["America can’t afford 2nd place in AI", "Best models 2.7% apart. Investment 23× apart. Compute 7.5× apart. Models converge; inputs compound."],
     title: "America can’t afford second place in AI.",
     h2: "America can’t afford | second place in AI.",
     short: "No second place in AI",
@@ -686,6 +711,7 @@ const THESES = [
   },
   {
     id: "silicon", die: [-9, -2], stance: "original",
+    layer: "S", tldr: ["Software can be patched. Silicon has to be outlived.", "GPUHammer: 1 flipped bit, 80% → 0.08% accuracy. The trust boundary moves to the building."],
     title: "Software can be patched. Silicon has to be outlived.",
     h2: "Software can be patched. | Silicon has to be outlived.",
     short: "Silicon has to be outlived",
@@ -718,6 +744,36 @@ const RECEIPTS = [
   { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend", fresh: 1 }
 ];
 
+// Marker doodles for the TL;DR whiteboard, one per thesis, each drawn in a 120 x 100 box.
+const DOODLES = {
+  agent: "<path d=\"M18 40 C8 30 16 13 31 16 C35 5 52 5 56 13 C68 9 79 21 73 32 C81 41 72 55 59 51 H28 C17 53 12 46 18 40 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M45 12 V50 M30 28 Q37 25 36 34 M58 24 Q52 28 58 34\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M60 51 L80 70 L98 60\" stroke=\"#1f5fbf\" stroke-width=\"4.4\" /><path d=\"M98 60 L106 52 M98 60 L108 64\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M100 70 h16 l-2 18 h-12 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M103 70 q5 -8 10 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"36\" y=\"76\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">brain</text><text x=\"78\" y=\"96\" fill=\"#1f5fbf\" font-size=\"17\" text-anchor=\"middle\">body</text>",
+  openclaw: "<path d=\"M20 70 C10 55 14 32 30 26 C40 22 46 32 40 40 C50 34 58 40 54 50 C48 62 36 74 20 70 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M40 40 L30 50\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M72 22 L84 8 L96 22\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M66 22 h38 v50 h-38 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M76 34 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M74 54 H96 M74 62 H90\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"85\" y=\"92\" fill=\"#1f5fbf\" font-size=\"18\" text-anchor=\"middle\">ID</text>",
+  saas: "<path d=\"M14 26 h26 v26 h-26 Z M10 56 h34 M27 56 v18 M15 82 l12 -8 l12 8\" stroke=\"#26303a\" stroke-width=\"3.2\" /><path d=\"M40 26 a5 5 0 0 0 -2 9 a5 5 0 0 0 2 9\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><text x=\"28\" y=\"18\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">seat</text><path d=\"M66 26 v48 a20 7 0 0 0 40 0 v-48\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 26 a20 7 0 0 0 40 0 a20 7 0 0 0 -40 0\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 42 a20 7 0 0 0 40 0 M66 58 a20 7 0 0 0 40 0\" stroke=\"#1d8a5c\" stroke-width=\"2\" /><path d=\"M78 88 l6 6 l12 -14\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><text x=\"86\" y=\"18\" fill=\"#1d8a5c\" font-size=\"16\" text-anchor=\"middle\">record</text>",
+  ledger: "<path d=\"M4 40 l14 -8 l14 8 l-14 8 Z M4 40 v18 l14 8 v-18 M32 40 v18 l-14 8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"18\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#a1</text><path d=\"M44 40 l14 -8 l14 8 l-14 8 Z M44 40 v18 l14 8 v-18 M72 40 v18 l-14 8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"58\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#b7</text><path d=\"M84 40 l14 -8 l14 8 l-14 8 Z M84 40 v18 l14 8 v-18 M112 40 v18 l-14 8\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><text x=\"98\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#c9</text><path d=\"M32 50 h12 M72 50 h12\" stroke=\"#26303a\" stroke-width=\"2.2\" stroke-dasharray=\"3 4\"/>",
+  screentime: "<path d=\"M30 30 a8 8 0 1 0 0.1 0 M30 46 V70 M30 54 L18 62 M30 54 L42 60 M30 70 L22 88 M30 70 L38 88\" stroke=\"#1f5fbf\" stroke-width=\"3.2\" /><path d=\"M84 30 a8 8 0 1 0 0.1 0 M84 46 V70 M84 54 L72 60 M84 54 L96 62 M84 70 L76 88 M84 70 L92 88\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M43 60 Q57 52 71 60\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M57 4 a12 12 0 1 0 0.1 0 M57 10 V16 L61 19\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M42 10 q-4 8 3 12\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><path d=\"M45 22 l-1 -6 l-5 3\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" />",
+  automate: "<path d=\"M60 14 A36 36 0 0 1 96 50\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M90 44 L96 52 L102 44\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><path d=\"M96 58 A36 36 0 0 1 40 82\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M46 76 L38 84 L48 88\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><path d=\"M28 72 A36 36 0 0 1 48 16\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M42 14 L50 14 L46 22\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><text x=\"60\" y=\"10\" fill=\"#26303a\" font-size=\"18\" text-anchor=\"middle\">AI</text><text x=\"108\" y=\"70\" fill=\"#26303a\" font-size=\"16\" text-anchor=\"middle\">research</text><text x=\"18\" y=\"90\" fill=\"#26303a\" font-size=\"16\" text-anchor=\"middle\">better AI</text><path d=\"M50 42 h20 v14 h-20 Z M54 56 l-2 6 M66 56 l2 6\" stroke=\"#6b4fd8\" stroke-width=\"2.4\" /><path d=\"M55 48 h2 M63 48 h2\" stroke=\"#6b4fd8\" stroke-width=\"2.4\" />",
+  race: "<path d=\"M0 50 Q8 47 16 50 T32 50 T48 50 T64 50 T80 50 T96 50 T112 50 T120 50\" stroke=\"#1f5fbf\" stroke-width=\"2\" /><path d=\"M18 50 L28 30 L34 36 L40 24 L50 50\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M70 50 L80 31 L86 36 L91 26 L100 50\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M14 52 L6 66 L12 88 L32 98 L52 90 L58 70 L52 52\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M78 52 L76 58 L84 62 L92 57 L91 52\" stroke=\"#d23c3c\" stroke-width=\"3\" /><text x=\"32\" y=\"80\" fill=\"#1f5fbf\" font-size=\"15\" text-anchor=\"middle\">$286B</text><text x=\"86\" y=\"76\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">$12B</text><text x=\"34\" y=\"18\" fill=\"#1f5fbf\" font-size=\"14\" text-anchor=\"middle\">1,503</text><text x=\"86\" y=\"20\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">1,464</text>",
+  ooms: "<path d=\"M4 78 h8 v8 h-8 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M16 82 L24 82 M15.9 85.9 L24 82 L15.9 78.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M28 70 h14 v20 h-14 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M46 82 L54 82 M45.9 85.9 L54 82 L45.9 78.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M58 56 h14 v34 h-14 Z M58 66 h14 M58 76 h14\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M76 82 L84 82 M75.9 85.9 L84 82 L75.9 78.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M86 40 h30 v50 h-30 Z M92 50 h6 M104 50 h6 M92 62 h6 M104 62 h6 M92 74 h6 M104 74 h6\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><text x=\"8\" y=\"100\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">chip</text><text x=\"35\" y=\"100\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">server</text><text x=\"65\" y=\"100\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">rack</text><text x=\"101\" y=\"100\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">building</text><text x=\"60\" y=\"26\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">1 OOM at a time</text>",
+  fleet: "<path d=\"M8 40 C14 22 42 14 64 18 C86 22 108 22 114 40 C118 58 104 80 80 82 C56 84 22 86 12 70 C6 60 4 50 8 40 Z\" stroke=\"#26303a\" stroke-width=\"2.2\" /><circle cx=\"26\" cy=\"42\" r=\"5.5\" fill=\"#1d8a5c\"/><circle cx=\"56\" cy=\"30\" r=\"5.5\" fill=\"#1d8a5c\"/><circle cx=\"94\" cy=\"38\" r=\"5.5\" fill=\"#1d8a5c\"/><circle cx=\"40\" cy=\"68\" r=\"5.5\" fill=\"#1d8a5c\"/><circle cx=\"88\" cy=\"66\" r=\"5.5\" fill=\"#1d8a5c\"/><path d=\"M26 42 L56 30 L94 38 L88 66 L40 68 Z M56 30 L40 68\" stroke=\"#1d8a5c\" stroke-width=\"1.8\" stroke-dasharray=\"4 4\"/><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">many sites, one fleet</text>",
+  neocloud: "<path d=\"M8 70 C2 58 14 50 22 54 C24 42 42 40 46 52 C56 48 62 58 56 66 C60 74 52 78 46 74 H14 C6 76 4 72 8 70 Z\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M62 40 C54 24 70 12 84 18 C90 4 112 6 114 22 C124 24 124 40 114 44 H70 C60 46 58 42 62 40 Z\" stroke=\"#26303a\" stroke-width=\"3.2\" /><path d=\"M44 46 L70 32 M64.7 39.3 L70 32 L61 32.4\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><text x=\"54\" y=\"36\" fill=\"#1d8a5c\" font-size=\"13\" text-anchor=\"middle\">GPU</text><path d=\"M88 50 L52 80 M55.7 71.8 L52 80 L60.7 77.8\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><text x=\"84\" y=\"70\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">$17.4B</text><text x=\"88\" y=\"34\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">big cloud</text><text x=\"30\" y=\"92\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">neocloud</text>",
+  tokens: "<path d=\"M8 26 h36 l8 10 l-8 10 h-36 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><circle cx=\"14\" cy=\"36\" r=\"2.4\" fill=\"#26303a\"/><text x=\"30\" y=\"41\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">$/hr</text><path d=\"M70 30 h34 v48 a6 6 0 0 1 -6 6 h-22 a6 6 0 0 1 -6 -6 Z M66 30 h42\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><circle cx=\"79\" cy=\"74\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><circle cx=\"93\" cy=\"74\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><circle cx=\"86\" cy=\"64\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><circle cx=\"79\" cy=\"54\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><circle cx=\"95\" cy=\"56\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><text x=\"87\" y=\"22\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">tokens</text><text x=\"28\" y=\"72\" fill=\"#d23c3c\" font-size=\"20\" text-anchor=\"middle\">17–150×</text><path d=\"M14 80 L56 80 M47.9 83.9 L56 80 L47.9 76.1\" stroke=\"#d23c3c\" stroke-width=\"2.2\" />",
+  factory: "<path d=\"M6 90 V54 L26 42 V54 L46 42 V54 L66 42 V90 Z M66 90 V30 H80 V90 Z M6 90 H116\" stroke=\"#26303a\" stroke-width=\"2.8\" /><path d=\"M14 64 h8 v8 h-8 Z M34 64 h8 v8 h-8 Z M50 64 h8 v8 h-8 Z\" stroke=\"#e8822a\" stroke-width=\"2.2\" /><circle cx=\"74\" cy=\"20\" r=\"6\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><text x=\"74\" y=\"24\" fill=\"#1d8a5c\" font-size=\"11\" text-anchor=\"middle\">t</text><circle cx=\"88\" cy=\"10\" r=\"7\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><text x=\"88\" y=\"14\" fill=\"#1d8a5c\" font-size=\"11\" text-anchor=\"middle\">t</text><circle cx=\"104\" cy=\"6\" r=\"6\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><text x=\"104\" y=\"10\" fill=\"#1d8a5c\" font-size=\"11\" text-anchor=\"middle\">t</text><circle cx=\"100\" cy=\"22\" r=\"5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2\"/><text x=\"100\" y=\"26\" fill=\"#1d8a5c\" font-size=\"11\" text-anchor=\"middle\">t</text><path d=\"M86 90 h28 M90 84 h20\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"100\" y=\"80\" fill=\"#1d8a5c\" font-size=\"13\" text-anchor=\"middle\">→ work</text>",
+  gpulife: "<path d=\"M4 30 H36 V52 H68 V74 H100 V94\" stroke=\"#26303a\" stroke-width=\"2.8\" /><text x=\"20\" y=\"24\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">train</text><text x=\"52\" y=\"46\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">serve</text><text x=\"84\" y=\"68\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">cheap</text><path d=\"M14 14 h12 v8 h-12 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><path d=\"M46 36 h12 v8 h-12 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" opacity=\".55\"/><path d=\"M78 58 h12 v8 h-12 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" opacity=\".3\"/><path d=\"M28 18 Q44 14 48 30\" stroke=\"#d23c3c\" stroke-width=\"2\" stroke-dasharray=\"3 4\"/><path d=\"M60 40 Q76 36 80 52\" stroke=\"#d23c3c\" stroke-width=\"2\" stroke-dasharray=\"3 4\"/><path d=\"M104 22 l10 -4 l-3 6 l3 6 l-10 -4 M98 24 h8\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><text x=\"104\" y=\"42\" fill=\"#1f5fbf\" font-size=\"13\" text-anchor=\"middle\">like a jet</text>",
+  chipnames: "<circle cx=\"8\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2.6\"/><text x=\"8\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">T</text><circle cx=\"29\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2.6\"/><text x=\"29\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">A</text><circle cx=\"50\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#1f5fbf\" stroke-width=\"2.6\"/><text x=\"50\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">L</text><circle cx=\"71\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2.6\"/><text x=\"71\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">H</text><circle cx=\"92\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#1d8a5c\" stroke-width=\"2.6\"/><text x=\"92\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">B</text><circle cx=\"113\" cy=\"38\" r=\"9.5\" fill=\"none\" stroke=\"#d23c3c\" stroke-width=\"2.6\"/><text x=\"113\" y=\"44\" fill=\"#26303a\" font-family=\"Kalam\" font-size=\"16\" font-weight=\"700\" text-anchor=\"middle\">R</text><path d=\"M2 62 H118\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M100 62 L118 62 M109.9 65.9 L118 62 L109.9 58.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"10\" y=\"80\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">2018</text><text x=\"110\" y=\"80\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">2026</text><text x=\"60\" y=\"96\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">scientist + year</text><text x=\"60\" y=\"16\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">Turing → Rubin</text>",
+  memory: "<path d=\"M40 40 h40 v34 h-40 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><text x=\"60\" y=\"62\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">GPU</text><path d=\"M12 72 h18 M12 67 h18 M12 62 h18 M12 57 h18 M12 52 h18\" stroke=\"#e8822a\" stroke-width=\"2.6\" /><path d=\"M90 72 h18 M90 67 h18 M90 62 h18 M90 57 h18 M90 52 h18\" stroke=\"#e8822a\" stroke-width=\"2.6\" /><text x=\"21\" y=\"40\" fill=\"#e8822a\" font-size=\"13\" text-anchor=\"middle\">HBM</text><text x=\"99\" y=\"40\" fill=\"#e8822a\" font-size=\"13\" text-anchor=\"middle\">HBM</text><path d=\"M34 57 h4 M82 57 h4\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"94\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">memory = moat</text><text x=\"60\" y=\"26\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">brand</text>",
+  backend: "<path d=\"M6 80 h108 v10 h-108 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M16 70 h88 v10 h-88 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><path d=\"M44 50 h32 v20 h-32 Z\" stroke=\"#26303a\" stroke-width=\"2.8\" /><path d=\"M22 70 v-20 M22 65 h12 M22 60 h12 M22 55 h12 M34 70 v-20\" stroke=\"#e8822a\" stroke-width=\"2\" /><path d=\"M86 70 v-20 M86 65 h12 M86 60 h12 M86 55 h12 M98 70 v-20\" stroke=\"#e8822a\" stroke-width=\"2\" /><text x=\"60\" y=\"64\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">die</text><text x=\"60\" y=\"104\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">CoWoS</text><text x=\"60\" y=\"32\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">1963 → offshore</text><path d=\"M20 38 q40 -20 80 0\" stroke=\"#d23c3c\" stroke-width=\"2.2\" stroke-dasharray=\"3 4\"/>",
+  heat: "<path d=\"M20 84 h70 l6 -6 h-70 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M23 74 h64 l6 -6 h-64 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M26 64 h58 l6 -6 h-58 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M29 54 h52 l6 -6 h-52 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M32 44 h46 l6 -6 h-46 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M40 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M54 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M68 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M104 30 v34 a6 6 0 1 0 6 0 v-34 a3 3 0 0 0 -6 0\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><circle cx=\"107\" cy=\"70\" r=\"4\" fill=\"#d23c3c\"/><text x=\"60\" y=\"100\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">stack up, heat up</text>",
+  moat: "<path d=\"M6 92 Q60 90 80 60 T112 10\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M6 92 H116\" stroke=\"#26303a\" stroke-width=\"1.8\" /><path d=\"M30 88 v-12 l8 4 l-8 4\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><path d=\"M66 72 v-12 l8 4 l-8 4\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><path d=\"M92 38 v-12 l8 4 l-8 4\" stroke=\"#d23c3c\" stroke-width=\"2.2\" /><path d=\"M20 84 l-4 8 M20 84 l4 8 M20 84 v-8 a3 3 0 1 1 0.1 0\" stroke=\"#26303a\" stroke-width=\"2\" /><text x=\"34\" y=\"60\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">harder</text><text x=\"36\" y=\"74\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">every step</text><text x=\"84\" y=\"98\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">few left</text>",
+  custom: "<path d=\"M10 92 V40 H18 V32 H28 V40 H38 V32 H48 V40 H72 V32 H82 V40 H92 V32 H102 V40 H110 V92 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M44 54 h32 v28 h-32 Z M40 60 h4 M40 68 h4 M40 76 h4 M76 60 h4 M76 68 h4 M76 76 h4\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><text x=\"60\" y=\"72\" fill=\"#1f5fbf\" font-size=\"13\" text-anchor=\"middle\">ASIC</text><text x=\"60\" y=\"20\" fill=\"#1d8a5c\" font-size=\"13\" text-anchor=\"middle\">SerDes · packaging · supply</text><path d=\"M4 98 Q60 106 116 98\" stroke=\"#1f5fbf\" stroke-width=\"2\" stroke-dasharray=\"4 4\"/>",
+  molecules: "<path d=\"M10 92 L22 40 L34 92 M14 72 H30 M17 58 H27 M22 40 V30\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"22\" y=\"22\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">gas</text><path d=\"M40 70 L56 70 M47.9 73.9 L56 70 L47.9 66.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M62 70 a16 16 0 1 0 32 0 a16 16 0 1 0 -32 0 M78 54 V86 M62 70 H94\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M70 20 h16 l-8 10 l8 10 h-16 l8 -10 Z\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M98 70 L108 70 M99.9 73.9 L108 70 L99.9 66.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M108 50 h10 v40 h-10 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"78\" y=\"104\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">queue = years</text>",
+  bloom: "<path d=\"M8 50 h56 v28 h-56 Z M64 58 h18 l10 10 v10 h-28 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><circle cx=\"22\" cy=\"82\" r=\"6\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.4\"/><circle cx=\"76\" cy=\"82\" r=\"6\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.4\"/><path d=\"M18 56 h36 v16 h-36 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><text x=\"36\" y=\"69\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">fuel cell</text><path d=\"M100 14 L90 36 H100 L92 56\" stroke=\"#e8822a\" stroke-width=\"3\" /><text x=\"102\" y=\"74\" fill=\"#e8822a\" font-size=\"16\" text-anchor=\"middle\">DC</text><path d=\"M54 16 h22 v18 h-22 Z\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M50 12 L80 38 M80 12 L50 38\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"65\" y=\"8\" fill=\"#26303a\" font-size=\"11\" text-anchor=\"middle\">transformer</text>",
+  weights: "<path d=\"M60 50 m-40 0 a40 40 0 1 0 80 0 a40 40 0 1 0 -80 0\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M60 50 m-30 0 a30 30 0 1 0 60 0 a30 30 0 1 0 -60 0\" stroke=\"#26303a\" stroke-width=\"1.6\" /><path d=\"M48 38 h18 l8 8 v22 h-26 Z M66 38 v8 h8\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M52 56 h16 M52 62 h12\" stroke=\"#1f5fbf\" stroke-width=\"2\" /><path d=\"M46 30 l4 -10 l6 6 l5 -9 l5 9 l6 -6 l4 10 Z\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"102\" y=\"98\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">SL5</text>",
+  silicon: "<path d=\"M30 30 h60 v50 h-60 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M42 30 v-8 M42 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M54 30 v-8 M54 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M66 30 v-8 M66 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M78 30 v-8 M78 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M44 36 L56 50 L50 56 L64 66 L60 74\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M36 70 L84 40\" stroke=\"#d9a072\" stroke-width=\"9\" /><path d=\"M54 59 L66 51\" stroke=\"#b9814f\" stroke-width=\"9\" /><text x=\"60\" y=\"100\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">patch ≠ fix</text>",
+  quantum: "<path d=\"M30 46 V34 a18 18 0 0 1 36 0 V46\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M24 46 h48 v40 h-48 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M48 60 v12\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M40 50 L52 64 L46 70 L56 82\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><path d=\"M98 34 m-16 0 a16 16 0 1 0 32 0 a16 16 0 1 0 -32 0 M82 34 a16 6 0 0 0 32 0\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><path d=\"M98 34 L108 22 M105.8 30.7 L108 22 L99.8 25.7\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><text x=\"98\" y=\"70\" fill=\"#1f5fbf\" font-size=\"14\" text-anchor=\"middle\">qubits</text><text x=\"48\" y=\"100\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">minutes / key</text>",
+  builders: "<path d=\"M20 88 L60 40 M14 46 Q30 30 48 34 M48 34 Q44 50 60 40\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M100 88 L66 44 M60 40 l12 -6 l6 14 l-12 6 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M26 12 Q60 -6 94 12 Q77 8 60 12 Q43 8 26 12 Z M26 12 L54 34 M94 12 L66 34\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">picks & shovels</text>",
+  spacex: "<path d=\"M84 16 L100 8 L96 26 L62 60 L52 50 Z M62 60 L58 72 L50 64 M52 50 L40 54 L48 46\" stroke=\"#26303a\" stroke-width=\"2.8\" /><circle cx=\"84\" cy=\"26\" r=\"4\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.2\"/><path d=\"M8 94 L18 86 L24 90 L32 78 L38 82 L46 68\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M40 74 L50 62 M47.8 70.7 L50 62 L41.8 65.7\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"30\" y=\"104\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">stock = fuel</text>"
+};
+
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
 const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
@@ -745,7 +801,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const k = "pq" + (++echoN);
   const up = pose === "wave" || pose === "cheer" || pose === "sell" || pose === "forrent" || pose === "overheat";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
-  const finR = pose === "cheer" || pose === "lookout" ? FIN_UP_R : FIN_DOWN_R;
+  const finR = pose === "cheer" || pose === "lookout" || pose === "draw" ? FIN_UP_R : FIN_DOWN_R;
   // sitting or dozing on a ledge: no floor, so no shadow, and the feet dangle over the edge
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
@@ -867,6 +923,10 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<circle cx="50" cy="50" r="60" fill="url(#${k}g)" stroke="#bfe9ff" stroke-opacity=".7" stroke-width="1.6"/><path class="echo-glint" d="M12 32 A46 46 0 0 1 38 7" stroke="#fff" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
     accBack = `<g class="xhb3-sat"><rect x="-14" y="-18" width="10" height="8" rx="1" fill="#cfd6e4" stroke="#8a93a8"/><rect x="-26" y="-16" width="11" height="4" fill="#4fd2ff" stroke="#1f86b0" stroke-width=".5"/><rect x="-3" y="-16" width="11" height="4" fill="#4fd2ff" stroke="#1f86b0" stroke-width=".5"/></g><path class="xhb3-teth" d="M-9 -10 C-20 20 -4 40 4 56" stroke="#cfd6e4" stroke-width="1.2" fill="none" stroke-dasharray="3 2"/>` +
       `<g class="xhb3-planet"><circle cx="112" cy="98" r="7" fill="#ffb23f"/><ellipse cx="112" cy="98" rx="12" ry="3" fill="none" stroke="#ffd98a" stroke-width="1.4" transform="rotate(-18 112 98)"/></g>` + spark(-10, 80, .5, "#fff", 0) + spark(110, 20, .45, "#fff", .4) + spark(96, -14, .4, "#ffd98a", .8);
+  } else if (acc === "marker") {
+    // the Sketcher (TL;DR whiteboard): a whiteboard marker held up high, mid-scribble; the board is never finished
+    accIn = `<g class="echo-hand-r"><path d="M89 20 L106 -11" stroke="#9aa6b2" stroke-width="10" stroke-linecap="round"/><path d="M89 20 L106 -11" stroke="#f6f8fa" stroke-width="8" stroke-linecap="round"/><path d="M95.5 8 L100.5 -1" stroke="#1d8a5c" stroke-width="8.2"/><path d="M87.6 22.5 L91 16.4" stroke="#1d8a5c" stroke-width="9" stroke-linecap="round"/><path d="M105 -12 L110.5 -20 L109.6 -9.6 Z" fill="#1d8a5c" stroke="#1d8a5c" stroke-width="2.4" stroke-linejoin="round"/>${mitt(92, 12, 28)}</g>`;
+    accExtra = `<path class="xdr-line" d="M113 -21 q4 -7 8 -1 t8 -2" stroke="#1d8a5c" stroke-width="2.4" fill="none" stroke-linecap="round" pathLength="10"/>`;
   } else if (acc === "qubit") {
     // superposition: two ghost Echoes split off and collapse back in a flash; a Bloch sphere in hand; an entangled pair orbits the head
     const ghost = (c, col) => `<g class="${c}"><path d="${ECHO_SHELL}" fill="${col}" fill-opacity=".38" stroke="${col}" stroke-width="1.3"/><ellipse cx="29.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><ellipse cx="70.5" cy="98" rx="20.5" ry="12.5" fill="${col}" fill-opacity=".32"/><path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="${col}" fill-opacity=".3"/></g>`;
@@ -3638,10 +3698,587 @@ function closeMemo(updateUrl) {
   memoId = null;
   document.documentElement.style.overflow = "";
   if (wafer) wafer.hold(false);
+  if (updateUrl && boardBack) { boardBack = false; location.hash = "tldr"; return; }
   if (updateUrl) {
     try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
   }
   if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+}
+
+/* ---------------------------------------------------------------- TL;DR: every thesis on one whiteboard */
+// The board is drawn from THESES and PROBES at open time, so a new thesis pins itself here the day it's published.
+// Each thesis carries a layer (the stack it sits in) and a two-line TL;DR; one without them still lands, under "Just pinned".
+const BOARD = {
+  stack: [
+    { k: "A", n: "Apps", s: "who uses it", c: "#1f5fbf" },
+    { k: "M", n: "Models", s: "the brain", c: "#6b4fd8" },
+    { k: "I", n: "Infra", s: "where it runs", c: "#1d8a5c" },
+    { k: "C", n: "Chips", s: "what it runs on", c: "#26303a" },
+    { k: "E", n: "Energy", s: "what it eats", c: "#e8822a" }
+  ],
+  side: [
+    { k: "S", n: "Secure it", s: "the race is won or lost at the vault", c: "#d23c3c" },
+    { k: "F", n: "Fund it", s: "who pays for the buildout", c: "#1d8a5c" }
+  ],
+  marks: { agree: ["✔", "#1f5fbf"], build: ["+", "#1d8a5c"], push: ["✗", "#d23c3c"], original: ["★", "#26303a"] },
+  idea: ["Value moves to whatever is scarce:", "power slots → packaging → memory → badges for agents → people’s time"],
+  bets: ["Delivery slots: onsite + DC power", "Packaging, HBM and cooling", "Neoclouds that sell tokens", "Badges for agents: identity + permissions", "Post-quantum + hardware security", "Consumer AI that gives time back"]
+};
+const board = $("#board");
+let boardBack = false, boardFocus = null, boardKeys = null;
+
+// a thesis with no doodle yet gets its die, sketched with its wafer coordinates
+const dieDoodle = d => `<path d="M34 16 h52 v52 h-52 Z M34 33 h52 M34 50 h52 M51 16 v52 M68 16 v52" stroke="#26303a" stroke-width="2.4"/><text x="60" y="92" fill="#26303a" font-size="17" text-anchor="middle">die ${dieLabel(d)}</text>`;
+// tally marks for the theses pinned so far, with the next stroke waiting in dashes
+function tally(n) {
+  let d = "";
+  for (let g = 0; g * 5 < n; g++) {
+    const x = g * 27, k = Math.min(5, n - g * 5);
+    for (let i = 0; i < Math.min(k, 4); i++) d += `M${x + 3 + i * 5} 4 V28 `;
+    if (k === 5) d += `M${x} 22 L${x + 22} 9 `;
+  }
+  const g = Math.floor(n / 5), r = n % 5, nx = r === 4 ? `M${g * 27} 22 L${g * 27 + 22} 9` : `M${g * 27 + 3 + r * 5} 4 V28`;
+  const w = Math.ceil((n + 1) / 5) * 27;
+  return `<svg class="wb-tally-s" viewBox="-2 0 ${w} 32" width="${w}" height="32" aria-hidden="true"><g filter="url(#wob)"><path d="${d}" stroke="#26303a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path class="wb-next" d="${nx}" stroke="#d23c3c" stroke-width="2.6" stroke-dasharray="3 4" fill="none" stroke-linecap="round"/></g></svg>`;
+}
+
+let BW = null;
+function boardWhite() {
+  const N = THESES.length, newest = THESES[N - 1];
+  const lm = new Date(document.lastModified);
+  const when = isNaN(lm) ? "" : lm.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const known = new Set([...BOARD.stack, ...BOARD.side].map(l => l.k));
+  let i = 0;
+  const card = t => {
+    const [m, c] = BOARD.marks[t.stance] || ["•", "#26303a"];
+    const [title, note] = t.tldr || [t.title, t.hook];
+    return `<a class="wb-card" href="#${t.id}" data-s="${t.stance}" style="--i:${i++}">
+        ${t === newest ? `<span class="wb-new">new</span>` : ""}
+        <svg class="wb-doo" viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg>
+        <span class="wb-tx"><span class="wb-ct"><i style="color:${c}">${m}</i> ${title}</span><span class="wb-cn">${note}</span></span>
+      </a>`;
+  };
+  const slot = `<div class="wb-slot" aria-hidden="true"><span>+ next thesis<br>lands here</span></div>`;
+  const band = L => `<section class="wb-band" style="--bc:${L.c}" aria-label="${L.n}, ${L.s}">
+      <div class="wb-bl"><b>${L.k}</b><span>${L.n}</span><small>${L.s}</small></div>
+      <div class="wb-cards">${THESES.filter(t => t.layer === L.k).map(card).join("")}${slot}</div>
+    </section>`;
+  const box = L => `<section class="wb-box" style="--bc:${L.c}" aria-label="${L.n}, ${L.s}">
+      <h3>${L.n}<small>${L.s}</small></h3>
+      <div class="wb-rows">${THESES.filter(t => t.layer === L.k).map(card).join("")}${slot}</div>
+    </section>`;
+  const loose = THESES.filter(t => !known.has(t.layer));
+  const pressed = s => `aria-pressed="false" data-f="${s}"`;
+  const marker = (s, lab) => { const c = BOARD.marks[s][1]; return `<button type="button" class="wb-mk" ${pressed(s)} style="--mc:${c}"><svg viewBox="0 0 120 24" aria-hidden="true"><path d="M4 12 L14 7 H22 V17 H14 Z" fill="${c}"/><rect x="22" y="5" width="66" height="14" rx="3" fill="#f6f8fa" stroke="#aab4be"/><rect x="40" y="8" width="30" height="8" rx="1.5" fill="${c}"/><rect x="86" y="4" width="30" height="16" rx="4" fill="${c}"/></svg><span>${BOARD.marks[s][0]} ${lab}</span></button>`; };
+  const top = `        <header class="wb-top">
+          <div class="wb-hd">
+            <h2 class="wb-title">The AI stack, bottom up</h2>
+            <svg class="wb-ul" viewBox="0 0 400 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8 Q110 2 210 7 T397 5" stroke="#1d8a5c" stroke-width="3.4" fill="none" stroke-linecap="round" filter="url(#wob)"/></svg>
+            <p class="wb-sub">${N} theses on where AI’s value lands · <span class="nw">Andrew Ngai</span></p>
+            <p class="wb-key"><span><i style="color:#1f5fbf">✔</i> agree</span><span><i style="color:#1d8a5c">+</i> build on</span><span><i style="color:#d23c3c">✗</i> push back</span><span><i>★</i> my read</span><span class="wb-flow">E ⇒ C ⇒ I ⇒ M ⇒ A</span></p>
+          </div>
+          <div class="wb-note wb-idea"><i class="mag" style="--mg:#d23c3c"></i><b>${BOARD.idea[0]}</b> ${BOARD.idea[1]}</div>
+          <div class="wb-note wb-wip" role="note"><i class="mag" style="--mg:#1f5fbf"></i>
+            <b class="wb-wip-h">Still drawing</b>
+            <p>This board is a work in progress. It redraws itself, so every new thesis gets pinned here the day it’s published.</p>
+            <div class="wb-tally">${tally(N)}<span>${N} pinned so far</span></div>
+            ${PROBES.length ? `<p class="wb-bench"><b>On the bench:</b> ${PROBES.map(x => `“${x.title.replace(/\.$/, "")}”`).join(", ")}</p>` : ""}
+            ${when ? `<p class="wb-when">Last redrawn ${when}</p>` : ""}
+          </div>
+        </header>
+`;
+  const tray = `        <div class="wb-tray" role="group" aria-label="Pick a marker to highlight theses by stance">
+          <span class="wb-tray-k">Pick a marker</span>
+          ${marker("agree", "Agree")}${marker("build", "Build on")}${marker("push", "Push back")}${marker("original", "My read")}
+          <button type="button" class="wb-eraser" data-f="" aria-pressed="true"><i></i><span>Show all</span></button>
+          <div class="wb-sketch wb-sketch-t" aria-hidden="true"><span class="wb-say">still drawing…<br>more theses coming!</span>${echo({ pose: "draw", acc: "marker" })}</div>
+        </div>
+`;
+  BW = { top, tray, card, slot, marker };
+  return `<div class="bd-head">
+      <button class="btn" id="boardClose" type="button">Close</button>
+      <div class="bd-meta"><span class="bd-k">TL;DR</span><span class="bd-t" id="boardTitle">Every thesis, on one whiteboard</span></div>
+      <span class="bd-wip"><i></i><b>Work in progress</b><span class="bd-wip-l">· ${N} theses so far, more on the way</span></span>
+    </div>
+    <div class="bd-scroll" id="boardScroll" tabindex="-1">
+      <div class="wb" id="wb">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></svg>
+        ${top}
+        ${loose.length ? `<section class="wb-box wb-loose" style="--bc:#d23c3c" aria-label="Just pinned"><h3>Just pinned<small>not sorted onto the stack yet</small></h3><div class="wb-rows">${loose.map(card).join("")}</div></section>` : ""}
+        <div class="wb-main">
+          <div class="wb-stack"><span class="wb-up" aria-hidden="true">value flows up</span>${BOARD.stack.map(band).join("")}</div>
+          <aside class="wb-side">
+            ${BOARD.side.map(box).join("")}
+            <div class="wb-note wb-bets"><i class="mag" style="--mg:#1f5fbf"></i><b class="wb-bets-h">My bets, so far</b><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div>
+            <div class="wb-sketch wb-sketch-s"><span class="wb-say">still drawing…<br>more theses coming!</span>${echo({ pose: "draw", acc: "marker" })}</div>
+          </aside>
+        </div>
+        ${tray}
+      </div>
+    </div>`;
+}
+
+// ---- Eight ways to draw the TL;DR. Each is built from THESES and PROBES, so a new thesis shows up in all of them.
+const WOB = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></svg>`;
+const NEON = { "#26303a": "#eef4f8", "#1d8a5c": "#3fd6c8", "#1f5fbf": "#6aa8ff", "#d23c3c": "#f4977a", "#e8822a": "#ffc566", "#6b4fd8": "#b8a6ff", "#9aa6b2": "#62798d", "#4fb8e8": "#4fd2ff", "#aab4be": "#3a5876", "#f6f8fa": "#14283f" };
+const neon = s => s.replace(/#[0-9a-f]{6}/gi, m => NEON[m.toLowerCase()] || m);
+const mono = (s, c) => s.replace(/#[0-9a-f]{6}/gi, c);
+const BINC = { agree: "var(--beat)", build: "var(--amber)", push: "var(--coral)", original: "var(--violet)" };
+const LAYC = { A: "#6aa8ff", M: "#b8a6ff", I: "#3fd6c8", C: "#d4e3f0", E: "#ffb86b", S: "#f4977a", F: "#7ee0a1" };
+const boardMeta = () => {
+  const N = THESES.length, newest = THESES[N - 1], lm = new Date(document.lastModified);
+  return { N, newest, when: isNaN(lm) ? "" : lm.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) };
+};
+// each view used to carry its own header; the board now draws one shared header with the view menu
+const boardHead = () => "";
+const binFilters = (cls) => `${Object.entries(BINS).map(([k, b]) => `<button type="button" class="${cls} bin" data-f="${k}" aria-pressed="false" style="--bin:${b.css}">${b.label}</button>`).join("")}<button type="button" class="${cls} ${cls}-all" data-f="" aria-pressed="true">Show all</button>`;
+const tdr = t => t.tldr || [t.title, t.hook];
+
+// The glass board: the whiteboard, but dark glass and neon markers in the site's colors
+function boardGlass() {
+  return neon(boardWhite()).replace('class="wb" id="wb"', 'class="wb glass" id="wb"').replace(/Every thesis, on one whiteboard/, "Every thesis, on one glass board");
+}
+
+// The floor plan: each layer a block on the chip, each thesis a placed cell, empty cells reserved
+function boardFloor() {
+  const { N, newest, when } = boardMeta();
+  const all = [...BOARD.stack, ...BOARD.side];
+  const cell = t => {
+    const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
+    return `<a class="fp-cell" href="#${t.id}" data-s="${t.stance}" style="--bin:${b.css}">
+      <svg class="fp-doo" viewBox="0 0 120 100" aria-hidden="true">${mono(DOODLES[t.id] || dieDoodle(t.die), "#d4e3f0")}</svg>
+      <span class="fp-top"><span class="bin">${b.label}</span><span class="fp-xy">${dieLabel(t.die)}</span></span>
+      <b class="fp-t">${title}</b><span class="fp-n">${note}</span>
+      ${t === newest ? `<span class="fp-new">Just placed</span>` : ""}
+    </a>`;
+  };
+  const resv = `<div class="fp-cell fp-resv" aria-hidden="true"><span>Reserved</span><small>next thesis</small></div>`;
+  const blk = (L, side) => { const ts = THESES.filter(t => t.layer === L.k); return `<section class="fp-blk${side ? " side" : ""}" style="--bc:${LAYC[L.k]}" aria-label="${L.n}">
+      <header><b>${L.k}</b><span>${L.n}</span><small>${L.s}</small><em>${ts.length} cells</em></header>
+      <div class="fp-cells">${ts.map(cell).join("")}${resv}</div></section>`; };
+  const path = BOARD.idea[1].split(" → ");
+  return `<div class="bd-scroll" tabindex="-1"><div class="fp" id="wb">
+      <i class="fp-mk tl"></i><i class="fp-mk tr"></i><i class="fp-mk bl"></i><i class="fp-mk br"></i><div class="fp-scan" aria-hidden="true"></div>
+      <header class="fp-head">
+        <div><p class="fp-k">TL;DR · the floor plan</p><h2 class="fp-title">The AI stack, bottom up</h2>
+          <p class="fp-sub">${N} theses, each placed as a cell in the layer it’s about. Value flows up the die: E → C → I → M → A.</p></div>
+        <div class="fp-rev" role="note"><p class="fp-rev-h"><b>Rev ${N}</b><span>Work in progress</span><i></i></p>
+          <p>This chip never tapes out. Every new thesis gets placed here as a new cell the day it’s published.</p>
+          <ul><li><b>${N}</b> cells placed</li>${PROBES.length ? `<li><b>${PROBES.length}</b> in probe: ${PROBES.map(p => p.title).join(" ")}</li>` : ""}<li>Last placed: ${newest.short}</li></ul>
+          ${when ? `<p class="fp-when">Updated ${when}</p>` : ""}</div>
+      </header>
+      <div class="fp-path" aria-label="${BOARD.idea.join(" ")}"><span class="fp-path-k">Critical path</span><span class="fp-path-l">${BOARD.idea[0]}</span>${path.map((x, i) => `${i ? `<i></i>` : ""}<span class="fp-node">${x}</span>`).join("")}</div>
+      <div class="fp-legend" role="group" aria-label="Highlight by stance">${binFilters("fp-f")}<span class="bin probe">Reserved: next thesis</span></div>
+      <div class="fp-main"><div class="fp-stack">${BOARD.stack.map(L => blk(L)).join("")}</div>
+        <aside class="fp-side">${BOARD.side.map(L => blk(L, true)).join("")}
+          <section class="fp-blk side fp-out" style="--bc:var(--amber)"><header><b>⇥</b><span>Outputs</span><small>my bets, so far</small></header><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></section>
+          <div class="fp-echo">${echo({ pose: "inspect", acc: null })}<span>Probe’s still running. New cells land as I publish.</span></div>
+        </aside></div>
+    </div></div>`;
+}
+
+// The chip stack: the layers as a 3D chip stack, each thesis a die; pick a layer to read its theses
+const STACK7 = [["F", "Substrate"], ["E", ""], ["C", ""], ["I", ""], ["M", ""], ["A", ""], ["S", "Lid"]];
+function boardStack() {
+  const { N, newest, when } = boardMeta();
+  const all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l]));
+  // an oblique view: wide, shallow slabs, so every layer's dies stay visible between the layers above and below
+  const iso = (x, y, z) => `${(54 + x + y * .55).toFixed(1)},${(472 - z - y * .36).toFixed(1)}`;
+  const W = 300, D = 80, T = 10, GAP = 58;
+  const slab = ([k, role], i) => {
+    const z = i * GAP, L = all[k], c = LAYC[k], ts = THESES.filter(t => t.layer === k);
+    const die = (x, cls, extra = "") => `<polygon ${cls} points="${iso(x, 20, z)} ${iso(x + 28, 20, z)} ${iso(x + 28, 62, z)} ${iso(x, 62, z)}"${extra}/>`;
+    const dies = ts.map((t, j) => { const b = BINS[t.stance] || BINS.original;
+      return `<a href="#${t.id}" class="st-die${t === newest ? " new" : ""}" style="--bin:${b.css}"><title>${tdr(t)[0]}</title>${die(12 + j * 36, "")}</a>`; }).join("");
+    return `<g class="st-slab" data-k="${k}" style="--c:${c}" tabindex="0" role="button" aria-label="${L.n}: ${ts.length} theses">
+      <polygon class="st-l" points="${iso(0, 0, z)} ${iso(W, 0, z)} ${iso(W, 0, z - T)} ${iso(0, 0, z - T)}"/>
+      <polygon class="st-r" points="${iso(W, 0, z)} ${iso(W, D, z)} ${iso(W, D, z - T)} ${iso(W, 0, z - T)}"/>
+      <polygon class="st-top" points="${iso(0, 0, z)} ${iso(W, 0, z)} ${iso(W, D, z)} ${iso(0, D, z)}"/>
+      ${dies}${die(12 + ts.length * 36, 'class="st-empty"')}
+      <text x="${(54 + W + D * .55 + 16).toFixed(1)}" y="${(472 - z - D * .36 + 14).toFixed(1)}" class="st-lab"><tspan class="st-lk">${k === "S" || k === "F" ? "" : k + " "}</tspan>${L.n}</text>
+      ${role ? `<text x="${(54 + W + D * .55 + 16).toFixed(1)}" y="${(472 - z - D * .36 + 30).toFixed(1)}" class="st-role">${role}</text>` : `<text x="${(54 + W + D * .55 + 16).toFixed(1)}" y="${(472 - z - D * .36 + 30).toFixed(1)}" class="st-role">${L.s}</text>`}
+    </g>`;
+  };
+  const top = 6 * GAP;
+  return `<div class="bd-scroll" tabindex="-1"><div class="st" id="wb">
+      <header class="st-head">
+        <div><p class="fp-k">TL;DR · the stack, exploded</p><h2 class="fp-title">The AI stack, bottom up</h2>
+          <p class="fp-sub">${N} theses as dies on a chip stack: who pays at the bottom, what it eats, what it runs on, where it runs, the brain, who uses it, and the lid that keeps it safe. Pick a layer.</p></div>
+        <div class="fp-rev" role="note"><p class="fp-rev-h"><b>${N} dies</b><span>Still stacking</span><i></i></p>
+          <p>This stack is a work in progress. Every new thesis is placed as a new die the day it’s published, so the empty sockets keep filling.</p>
+          <ul>${PROBES.length ? `<li><b>Next die:</b> ${PROBES.map(p => p.title).join(" ")}</li>` : ""}<li>Last placed: ${newest.short}</li></ul>
+          ${when ? `<p class="fp-when">Updated ${when}</p>` : ""}</div>
+      </header>
+      <div class="st-main">
+        <div class="st-fig">
+          <svg class="st-svg" viewBox="0 0 560 500" role="img" aria-label="The AI stack as seven layers of a chip stack, each thesis a die.">
+            <defs><marker id="stA" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#3fd6c8"/></marker></defs>
+            <path d="M24 470 V110" class="st-flow" marker-end="url(#stA)"/><text x="14" y="300" class="st-flow-t" transform="rotate(-90 14 300)">value flows up</text>
+            ${STACK7.map(slab).join("")}
+            <g class="st-pnp" aria-hidden="true"><path d="M${(54 + 210 + 41 * .55).toFixed(0)} 0 V${(472 - top - 92 - 41 * .36 - 30).toFixed(0)}" class="st-arm"/>
+              <rect x="${(54 + 210 + 41 * .55 - 14).toFixed(0)}" y="${(472 - top - 92 - 41 * .36 - 32).toFixed(0)}" width="28" height="10" rx="3" class="st-noz"/>
+              <polygon class="st-carry" points="${iso(196, 20, top + 92)} ${iso(224, 20, top + 92)} ${iso(224, 62, top + 92)} ${iso(196, 62, top + 92)}"/>
+              <text x="${(54 + 240 + 41 * .55).toFixed(0)}" y="${(472 - top - 92 - 41 * .36 - 16).toFixed(0)}" class="st-pnp-t">placing the next thesis…</text></g>
+          </svg>
+          <div class="st-tabs" role="tablist" aria-label="Layers">${STACK7.slice().reverse().map(([k]) => `<button type="button" role="tab" class="st-tab" data-k="${k}" style="--c:${LAYC[k]}">${k === "S" || k === "F" ? all[k].n : k + " · " + all[k].n}</button>`).join("")}</div>
+        </div>
+        <div class="st-panel" id="stPanel" aria-live="polite"></div>
+      </div>
+      <div class="st-foot">
+        <div class="st-idea"><span class="fp-path-k">The thread</span><b>${BOARD.idea[0]}</b> ${BOARD.idea[1]}</div>
+        <div class="st-bets"><span class="fp-path-k">My bets, so far</span><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div>
+      </div>
+    </div></div>`;
+}
+function initStack(root) {
+  const panel = $("#stPanel", root);
+  if (!panel) return;
+  const all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l])), newest = THESES[THESES.length - 1];
+  const pick = k => {
+    const L = all[k], ts = THESES.filter(t => t.layer === k);
+    $$(".st-slab", root).forEach(g => g.classList.toggle("on", g.dataset.k === k));
+    $$(".st-tab", root).forEach(b => b.setAttribute("aria-selected", String(b.dataset.k === k)));
+    panel.style.setProperty("--c", LAYC[k]);
+    panel.innerHTML = `<header class="st-ph"><b>${k === "S" || k === "F" ? "◆" : k}</b><div><h3>${L.n}</h3><small>${L.s} · ${ts.length} ${ts.length === 1 ? "thesis" : "theses"}</small></div></header>
+      <div class="st-cards">${ts.map((t, i) => { const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
+        return `<a class="st-card" href="#${t.id}" style="--bin:${b.css};--i:${i}"><svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${neon(DOODLES[t.id] || dieDoodle(t.die))}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>Just placed</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; }).join("")}
+        <div class="st-card st-next" aria-hidden="true"><span>+ empty socket<br><small>the next thesis lands here</small></span></div></div>`;
+  };
+  $$(".st-slab", root).forEach(g => { g.addEventListener("click", e => { if (!e.target.closest("a")) pick(g.dataset.k); }); g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(g.dataset.k); } }); g.addEventListener("pointerenter", () => matchMedia("(hover: hover)").matches && pick(g.dataset.k)); });
+  $$(".st-tab", root).forEach(b => b.addEventListener("click", () => pick(b.dataset.k)));
+  pick(newest.layer || "A");
+}
+
+// ---- the glass board and the chip stack, together
+const L7 = [["F", "substrate"], ["E", ""], ["C", ""], ["I", ""], ["M", ""], ["A", ""], ["S", "lid"]]; // bottom to top
+const layerOf = k => [...BOARD.stack, ...BOARD.side].find(l => l.k === k);
+const layerTs = k => THESES.filter(t => t.layer === k);
+// one slab of the stack, drawn oblique: the dies on top are this layer's theses, plus one empty socket
+function slabSVG(k, { w = 300, d = 80, t = 10 } = {}) {
+  const ts = layerTs(k), newest = THESES[THESES.length - 1], oy = 6 + d * .36, W = w + d * .55 + 12, H = oy + t + 6;
+  const P = (x, y, z = 0) => `${(6 + x + y * .55).toFixed(1)},${(oy - y * .36 - z).toFixed(1)}`;
+  const step = (w - 24) / 8, sz = step * .78, y0 = d * .22, y1 = d * .8;
+  const die = (j, inner) => `<polygon points="${P(12 + j * step, y0)} ${P(12 + j * step + sz, y0)} ${P(12 + j * step + sz, y1)} ${P(12 + j * step, y1)}"${inner}/>`;
+  return `<svg class="slab" viewBox="0 0 ${W.toFixed(0)} ${H.toFixed(0)}" style="--c:${LAYC[k]}" aria-hidden="true">
+    <polygon class="st-l" points="${P(0, 0)} ${P(w, 0)} ${P(w, 0, -t)} ${P(0, 0, -t)}"/><polygon class="st-r" points="${P(w, 0)} ${P(w, d)} ${P(w, d, -t)} ${P(w, 0, -t)}"/>
+    <polygon class="st-top" points="${P(0, 0)} ${P(w, 0)} ${P(w, d)} ${P(0, d)}"/>
+    ${ts.map((x, j) => `<g class="sd${x === newest ? " new" : ""}" data-id="${x.id}" style="--bin:${(BINS[x.stance] || BINS.original).css}">${die(j, "")}</g>`).join("")}${die(ts.length, ' class="st-empty"')}
+  </svg>`;
+}
+// the whole stack, exploded, for the scroll story
+function stackSVG() {
+  const W = 300, D = 80, T = 10, GAP = 58, top = 6 * GAP;
+  const iso = (x, y, z) => `${(54 + x + y * .55).toFixed(1)},${(472 - z - y * .36).toFixed(1)}`;
+  const slab = ([k, role], i) => { const z = i * GAP, L = layerOf(k), ts = layerTs(k), step = 34, die = (j, a) => `<polygon points="${iso(12 + j * step, 20, z)} ${iso(40 + j * step, 20, z)} ${iso(40 + j * step, 62, z)} ${iso(12 + j * step, 62, z)}"${a}/>`;
+    return `<g class="st-slab" data-k="${k}" style="--c:${LAYC[k]}"><polygon class="st-l" points="${iso(0, 0, z)} ${iso(W, 0, z)} ${iso(W, 0, z - T)} ${iso(0, 0, z - T)}"/><polygon class="st-r" points="${iso(W, 0, z)} ${iso(W, D, z)} ${iso(W, D, z - T)} ${iso(W, 0, z - T)}"/><polygon class="st-top" points="${iso(0, 0, z)} ${iso(W, 0, z)} ${iso(W, D, z)} ${iso(0, D, z)}"/>
+      ${ts.map((x, j) => `<g class="sd" data-id="${x.id}" style="--bin:${(BINS[x.stance] || BINS.original).css}">${die(j, "")}</g>`).join("")}${die(ts.length, ' class="st-empty"')}
+      <text x="${(54 + W + D * .55 + 16).toFixed(1)}" y="${(472 - z - D * .36 + 14).toFixed(1)}" class="st-lab">${k === "S" || k === "F" ? "" : `<tspan class="st-lk">${k} </tspan>`}${L.n}</text><text x="${(54 + W + D * .55 + 16).toFixed(1)}" y="${(472 - z - D * .36 + 30).toFixed(1)}" class="st-role">${role || L.s}</text></g>`; };
+  return `<svg class="st-svg" viewBox="0 0 560 500" role="img" aria-label="The AI stack as seven layers, each thesis a die.">
+    <path d="M24 470 V110" class="st-flow"/><text x="14" y="300" class="st-flow-t" transform="rotate(-90 14 300)">value flows up</text>
+    ${L7.map(slab).join("")}
+    <g class="st-pnp"><path d="M286 0 V${(472 - top - 92 - 15 - 30).toFixed(0)}" class="st-arm"/><rect x="272" y="${(472 - top - 92 - 15 - 32).toFixed(0)}" width="28" height="10" rx="3" class="st-noz"/>
+      <polygon class="st-carry" points="${iso(196, 20, top + 92)} ${iso(224, 20, top + 92)} ${iso(224, 62, top + 92)} ${iso(196, 62, top + 92)}"/><text x="316" y="${(472 - top - 92 - 30).toFixed(0)}" class="st-pnp-t">placing the next thesis…</text></g>
+  </svg>`;
+}
+const glassShell = (cls, inner, title) => { boardWhite(); const { N } = boardMeta();
+  return neon(`<div class="bd-scroll" tabindex="-1"><div class="wb glass ${cls}" id="wb">${WOB}${BW.top}${inner}${BW.tray}</div></div>`); };
+const sideBlock = k => { const L = layerOf(k); return `<section class="wb-box" style="--bc:${neon(LAYC[k] === "#f4977a" ? "#d23c3c" : "#1d8a5c")}" aria-label="${L.n}"><div class="e-boxslab">${slabSVG(k, { w: 170, d: 46 })}</div><h3>${L.n}<small>${L.s}</small></h3><div class="wb-rows">${layerTs(k).map(BW.card).join("")}${BW.slot}</div></section>`; };
+
+// Callouts: the exploded stack down the middle, every thesis a callout wired to its die
+function boardCallout() {
+  boardWhite();
+  const newest = THESES[THESES.length - 1];
+  const co = t => { const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
+    return `<a class="d-co" href="#${t.id}" data-id="${t.id}" data-s="${t.stance}" style="--bin:${b.css}"><svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>new</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; };
+  const nextCo = `<div class="d-co d-next" data-id="next"><span><b>+ empty socket</b><small>the next thesis lands here</small></span></div>`;
+  const row = ([k, role]) => { const L = layerOf(k), ts = layerTs(k), l = ts.filter((_, i) => i % 2 === 0), r = ts.filter((_, i) => i % 2 === 1);
+    (r.length < l.length ? r : l).push(null);
+    return `<section class="d-row" data-k="${k}" style="--c:${LAYC[k]}" aria-label="${L.n}"><svg class="d-lead" aria-hidden="true"></svg>
+      <div class="d-side d-l">${l.map(t => t ? co(t) : nextCo).join("")}</div>
+      <div class="d-mid">${slabSVG(k)}<p class="d-lab"><b>${k === "S" || k === "F" ? "" : k + " · "}${L.n}</b><span>${role ? role + " · " : ""}${L.s}</span></p></div>
+      <div class="d-side d-r">${r.map(t => t ? co(t) : nextCo).join("")}</div></section>`; };
+  const inner = `<div class="d-dia"><span class="d-flow" aria-hidden="true">value flows up</span>${L7.slice().reverse().map(row).join("")}</div>
+    <div class="st-foot"><div class="wb-note wb-bets"><i class="mag" style="--mg:#1f5fbf"></i><b class="wb-bets-h">My bets, so far</b><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div></div>`;
+  return glassShell("d", inner.replace(/<svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url\(#wob\)">/g, '<svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">'), "Every thesis, on one exploded stack");
+}
+function initCallout(root) {
+  const dia = $(".d-dia", root);
+  if (!dia) return;
+  const draw = () => $$(".d-row", root).forEach(row => {
+    const svg = $(".d-lead", row), R = row.getBoundingClientRect();
+    if (getComputedStyle(svg).display === "none") return;
+    svg.setAttribute("viewBox", `0 0 ${R.width.toFixed(0)} ${R.height.toFixed(0)}`);
+    svg.innerHTML = $$(".d-co", row).map(c => {
+      const id = c.dataset.id, d = id === "next" ? $(".st-empty", row) : $(`.sd[data-id="${id}"] polygon`, row);
+      if (!d) return "";
+      const a = c.getBoundingClientRect(), b = d.getBoundingClientRect(), left = c.closest(".d-l");
+      const x1 = (left ? a.right : a.left) - R.left, y1 = a.top + Math.min(34, a.height / 2) - R.top, x2 = b.left + b.width / 2 - R.left, y2 = b.top + b.height / 2 - R.top;
+      const xm = left ? x1 + 22 : x1 - 22, col = id === "next" ? "var(--faint)" : getComputedStyle(c).getPropertyValue("--bin");
+      return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} H${xm.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}" stroke="${col}" class="d-ln${id === "next" ? " nx" : ""}" data-id="${id}"/><circle cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="2.6" fill="${col}"/>`;
+    }).join("");
+  });
+  draw(); setTimeout(draw, 300);
+  if (document.fonts) document.fonts.ready.then(draw);
+  const ro = new ResizeObserver(draw); ro.observe(dia); boardObs.push(ro);
+}
+
+// Stack spine: every layer opens with its slab, its theses lit as dies; value runs up through the vias
+function boardSpine() {
+  boardWhite();
+  const band = L => `<section class="wb-band e-band" style="--bc:${neon(BOARD.stack.find(x => x.k === L.k).c)}" aria-label="${L.n}, ${L.s}">
+      <div class="e-spine">${slabSVG(L.k, { w: 170, d: 46 })}<div class="wb-bl"><b>${L.k}</b><span>${L.n}</span><small>${L.s}</small></div></div>
+      <div class="wb-cards">${layerTs(L.k).map(BW.card).join("")}${BW.slot}</div></section>`;
+  const inner = `<div class="wb-main"><div class="wb-stack e-stack"><span class="wb-up" aria-hidden="true">value flows up</span>${BOARD.stack.map(band).join("")}</div>
+    <aside class="wb-side">${BOARD.side.map(L => sideBlock(L.k)).join("")}
+      <div class="wb-note wb-bets"><i class="mag" style="--mg:#1f5fbf"></i><b class="wb-bets-h">My bets, so far</b><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div></aside></div>`;
+  return glassShell("e", inner, "Every thesis, on one glass board");
+}
+
+// Build it up: start at the substrate, place each layer, end at the lid and the empty socket
+function boardBuild() {
+  boardWhite();
+  const { N } = boardMeta();
+  const sec = ([k, role], i) => { const L = layerOf(k), ts = layerTs(k);
+    return `<section class="f-sec" data-k="${k}" style="--bc:${LAYC[k]}" aria-label="${L.n}">
+      <header><span class="f-n">Layer ${i + 1} of 7${role ? " · " + role : ""}</span><h3><b>${k === "S" || k === "F" ? "◆" : k}</b>${L.n}</h3><small>${L.s} · ${ts.length} ${ts.length === 1 ? "thesis" : "theses"}</small></header>
+      <div class="wb-cards">${ts.map(BW.card).join("")}${BW.slot}</div></section>`; };
+  const inner = `<div class="f-main"><div class="f-fig"><div class="f-pin">${stackSVG()}<p class="f-cap">Scroll down: the stack builds from the bottom up.</p></div></div>
+    <div class="f-secs">${L7.map(sec).join("")}
+      <section class="f-sec f-end" data-k="next"><header><span class="f-n">Layer 8?</span><h3><b>+</b>Not finished</h3><small>The lid isn’t sealed. New theses keep getting placed, and the stack keeps growing.</small></header>
+      <div class="wb-note wb-bets"><i class="mag" style="--mg:#1f5fbf"></i><b class="wb-bets-h">My bets, so far</b><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div></section></div></div>`;
+  return glassShell("f", inner, "Every thesis, one layer at a time");
+}
+function initBuild(root) {
+  const secs = $$(".f-sec", root), sc = $(".bd-scroll", board);
+  if (!secs.length || !sc) return;
+  const order = L7.map(([k]) => k);
+  const set = k => {
+    const n = k === "next" ? 7 : order.indexOf(k);
+    $$(".f-fig .st-slab", root).forEach(g => { const i = order.indexOf(g.dataset.k); g.classList.toggle("placed", i <= n); g.classList.toggle("on", i === n); g.classList.toggle("ghost", i > n); });
+    $(".f-fig", root).classList.toggle("done", n >= 7);
+  };
+  const io = new IntersectionObserver(es => { const v = es.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]; if (v) set(v.target.dataset.k); }, { root: sc, rootMargin: "-35% 0px -55% 0px" });
+  secs.forEach(s => io.observe(s)); boardObs.push(io);
+  set("F");
+}
+// hovering a thesis lights its die, and the other way round
+function initLinks(root) {
+  $$("[data-id]", root).forEach(el => {
+    const id = el.dataset.id;
+    el.addEventListener("pointerenter", () => $$(`[data-id="${id}"], a[href="#${id}"]`, root).forEach(x => x.classList.add("hot")));
+    el.addEventListener("pointerleave", () => $$(".hot", root).forEach(x => x.classList.remove("hot")));
+  });
+  $$(".wb-card", root).forEach(a => { const id = a.getAttribute("href").slice(1);
+    a.addEventListener("pointerenter", () => $$(`[data-id="${id}"]`, root).forEach(x => x.classList.add("hot")));
+    a.addEventListener("pointerleave", () => $$(".hot", root).forEach(x => x.classList.remove("hot"))); });
+  $$(".sd", root).forEach(g => g.addEventListener("click", () => { location.hash = g.dataset.id; }));
+}
+
+// ---- two that leave the whiteboard behind
+const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<div class="bd-scroll" tabindex="-1"><div class="${cls}" id="wb">${inner}</div></div>`; };
+
+// The periodic table of my theses: each thesis an element, numbered in the order I published it.
+// Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", spacex: "Sx", quantum: "Qu", ledger: "Lg", custom: "Cu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si" };
+function symbols() {
+  const used = new Set(Object.values(SYM)), out = {};
+  THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
+    const w = t.id.replace(/[^a-z]/g, ""); let s = "";
+    for (let i = 1; i < w.length && !s; i++) { const c = w[0].toUpperCase() + w[i]; if (!used.has(c)) s = c; }
+    s = s || w[0].toUpperCase() + "x"; used.add(s); out[t.id] = s; });
+  return out;
+}
+function boardTable() {
+  const { N, newest, when } = boardMeta(), S = symbols();
+  const tile = t => { const b = BINS[t.stance] || BINS.original, n = THESES.indexOf(t) + 1;
+    return `<button type="button" class="pt-el${t === newest ? " new" : ""}" data-id="${t.id}" data-s="${t.stance}" style="--bin:${b.css}" aria-label="No. ${n}, ${tdr(t)[0]}"><i>${n}</i><b>${S[t.id]}</b><span>${t.short}</span></button>`; };
+  const gap = `<div class="pt-el pt-gap" aria-hidden="true"><i>${N + 1}+</i><b>?</b><span>not discovered yet</span></div>`;
+  const row = (L, x) => `<div class="pt-row${x ? " x" : ""}" style="--bc:${LAYC[L.k]}"><div class="pt-per"><b>${L.k === "S" || L.k === "F" ? "◆" : L.k}</b><span>${L.n}</span><small>${L.s}</small></div>${layerTs(L.k).map(tile).join("")}${gap}</div>`;
+  const inner = `<header class="pt-head">
+      <div><p class="fp-k">TL;DR · the periodic table of my theses</p><h2 class="fp-title">The AI stack, bottom up</h2>
+        <p class="fp-sub">Every thesis is an element, numbered in the order I published it. Each row is a layer of the stack, top to bottom: who uses AI, the brain, where it runs, what it runs on, what it eats. Pick an element.</p></div>
+      <div class="fp-rev pt-rev" role="note"><p class="fp-rev-h"><b>${N} elements</b><span>Work in progress</span><i></i></p>
+        <p>Like Mendeleev’s first table, this one leaves gaps on purpose. The next theses haven’t been discovered yet, and each one lands in its row the day it’s published.</p>
+        ${PROBES.length ? `<div class="pt-pred"><div class="pt-el pt-gap probe"><i>${N + 1}</i><b>?</b><span>in probe</span></div><p><b>Predicted next:</b> ${PROBES[0].title}</p></div>` : ""}
+        ${when ? `<p class="fp-when">Updated ${when}</p>` : ""}</div>
+    </header>
+    <div class="pt-legend" role="group" aria-label="Highlight by stance">${binFilters("fp-f")}<span class="bin probe">Gap: next thesis</span></div>
+    <div class="pt-main"><div class="pt-grid">${BOARD.stack.map(L => row(L)).join("")}<p class="pt-xk">Two series that sit across the whole stack</p>${BOARD.side.map(L => row(L, true)).join("")}</div>
+      <aside class="pt-card" id="ptCard" aria-live="polite"></aside></div>
+    <div class="st-foot"><div class="st-idea"><span class="fp-path-k">The thread</span><b>${BOARD.idea[0]}</b> ${BOARD.idea[1]}</div><div class="st-bets"><span class="fp-path-k">My bets, so far</span><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div></div>`;
+  return plainShell("pt", inner, "Every thesis, as an element");
+}
+function initTable(root) {
+  const card = $("#ptCard", root);
+  if (!card) return;
+  const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l]));
+  const pick = id => { const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
+    $$(".pt-el[data-id]", root).forEach(e => e.classList.toggle("on", e.dataset.id === id));
+    card.style.setProperty("--bin", b.css);
+    card.innerHTML = `<button type="button" class="pt-x" aria-label="Close this element">Close</button><div class="pt-big"><i>${n}</i><b>${S[id]}</b><span>${t.short}</span></div>
+      <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn" href="#${id}">Open the thesis →</a>`; };
+  // on a phone the card is a sheet that slides up over the table, so a tap doesn't send you scrolling for it
+  const sheet = matchMedia("(max-width: 700px)");
+  $$(".pt-el[data-id]", root).forEach(e => { e.addEventListener("click", () => { pick(e.dataset.id); if (sheet.matches) card.classList.add("open"); }); e.addEventListener("pointerenter", () => matchMedia("(hover: hover)").matches && pick(e.dataset.id)); });
+  card.addEventListener("click", e => { if (e.target.closest(".pt-x")) card.classList.remove("open"); });
+  pick(THESES[THESES.length - 1].id);
+}
+
+// Departures: every thesis a row of split flaps that clatter into place; the next ones are already scheduled
+const FLAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+function boardFlaps() {
+  const { N, newest, when } = boardMeta(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l]));
+  const flaps = (s, cls = "") => `<span class="fl${cls}" aria-hidden="true">${s.toUpperCase().split(" ").map(w => `<span class="fw">${[...w].map(c => `<i data-c="${c}">${c}</i>`).join("")}</span>`).join(`<i class="sp"> </i>`)}</span><span class="fd-sr">${s}</span>`;
+  const row = t => { const b = BINS[t.stance] || BINS.original, L = all[t.layer] || { n: "New" }, [title, note] = tdr(t);
+    return `<a class="fd-row${t === newest ? " new" : ""}" href="#${t.id}" data-s="${t.stance}" style="--bin:${b.css};--bc:${LAYC[t.layer] || "#d4e3f0"}">
+      <span class="fd-gate">${flaps(t.layer || "?")}<small>${L.n}</small></span>
+      <span class="fd-t">${flaps(t.short)}<small>${note}</small></span>
+      <span class="fd-st"><i class="lamp"></i>${flaps(b.label)}</span></a>`; };
+  const order = ["A", "M", "I", "C", "E", "S", "F"];
+  const rows = order.flatMap(k => layerTs(k)).concat(THESES.filter(t => !order.includes(t.layer)));
+  const inner = `<header class="fd-head"><div><p class="fp-k">TL;DR · departures</p><h2 class="fp-title">Theses, now boarding</h2>
+        <p class="fp-sub">Every thesis on one board, by the layer of the AI stack it’s about. Gate A is apps, M the models, I the infra, C the chips, E energy; S is security and F is funding. Click a row to board.</p></div>
+      <div class="fd-clock"><span>Local time</span><b id="fdClock">--:--</b><small>${N} departures listed</small></div></header>
+    <div class="fd-board" role="list">
+      <div class="fd-row fd-cols" aria-hidden="true"><span>Gate</span><span>Thesis</span><span>Status</span></div>
+      ${rows.map(row).join("")}
+      ${PROBES.map(p => `<div class="fd-row fd-next"><span class="fd-gate">${flaps("?")}<small>tbd</small></span><span class="fd-t">${flaps(p.title.replace(/\.$/, ""))}<small>In probe. It gets a gate the day it’s published.</small></span><span class="fd-st"><i class="lamp blink"></i>${flaps("Boarding soon")}</span></div>`).join("")}
+      <div class="fd-row fd-next fd-blank"><span class="fd-gate">${flaps("-")}</span><span class="fd-t">${flaps("More theses scheduled")}<small>This board is a work in progress and updates itself as new theses are published.</small></span><span class="fd-st"><i class="lamp"></i>${flaps("TBA")}</span></div>
+    </div>
+    <div class="fd-filter" role="group" aria-label="Highlight by status"><span class="fp-path-k">Status</span>${binFilters("fp-f")}</div>
+    <div class="fd-tick" aria-hidden="true"><span>Work in progress · ${N} theses so far · ${PROBES.length ? `next: ${PROBES[0].title.replace(/\.$/, "")} · ` : ""}${when ? `updated ${when} · ` : ""}${BOARD.idea.join(" ")} · my bets: ${BOARD.bets.join(" · ")} · </span><span>Work in progress · ${N} theses so far · ${PROBES.length ? `next: ${PROBES[0].title.replace(/\.$/, "")} · ` : ""}${when ? `updated ${when} · ` : ""}${BOARD.idea.join(" ")} · my bets: ${BOARD.bets.join(" · ")} · </span></div>`;
+  return plainShell("fd", inner, "Every thesis, now boarding");
+}
+function initFlaps(root) {
+  const cells = $$(".fl i[data-c]", root);
+  if (!cells.length) return;
+  const clk = $("#fdClock", root), tick = () => { if (!clk.isConnected) return; clk.textContent = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }); };
+  tick(); const iv = setInterval(() => (clk.isConnected ? tick() : clearInterval(iv)), 15000);
+  if (calm || motionPaused) return;
+  // each flap spins through a few letters before it lands, row by row from the top
+  const t0 = performance.now(), rows = $$(".fd-row", root);
+  const until = cells.map(c => { const r = rows.indexOf(c.closest(".fd-row")); return 250 + r * 70 + Math.random() * 500; });
+  cells.forEach(c => c.classList.add("spin"));
+  const step = now => {
+    let live = 0;
+    cells.forEach((c, i) => { if (!c.classList.contains("spin")) return; if (now - t0 > until[i]) { c.textContent = c.dataset.c; c.classList.remove("spin"); } else { live++; c.textContent = FLAP[(Math.random() * FLAP.length) | 0]; } });
+    if (live && board && !board.hidden) setTimeout(() => requestAnimationFrame(step), 55);
+  };
+  requestAnimationFrame(step);
+}
+
+// The views, in the order the menu lists them. The periodic table is the default for now.
+const VIEWS = [
+  { k: "table", n: "Periodic table", d: "Each thesis an element, with gaps left for the next ones", t: "Every thesis, as an element", f: () => boardTable() },
+  { k: "flaps", n: "Departures", d: "A split-flap board; the next thesis is boarding soon", t: "Every thesis, now boarding", f: () => boardFlaps() },
+  { k: "glass", n: "Glass board", d: "My office whiteboard, after dark", t: "Every thesis, on one glass board", f: () => boardGlass() },
+  { k: "floor", n: "Floor plan", d: "Each layer a block on a chip, each thesis a cell", t: "Every thesis, on one die", f: () => boardFloor() },
+  { k: "stack", n: "Chip stack", d: "Seven layers of a chip stack; pick one to read it", t: "Every thesis, layer by layer", f: () => boardStack().replace('<div class="st" id="wb">', '<div class="st" id="wb">' + WOB) },
+  { k: "callout", n: "Callouts", d: "The stack, with every thesis wired to its die", t: "Every thesis, on one exploded stack", f: () => boardCallout() },
+  { k: "spine", n: "Stack spine", d: "The glass board, built around the stack", t: "Every thesis, on one glass board", f: () => boardSpine() },
+  { k: "build", n: "Build it up", d: "The stack assembles as you scroll", t: "Every thesis, one layer at a time", f: () => boardBuild() }
+];
+const VIEW_ICON = {
+  table: `<rect x="2.5" y="2.5" width="8.5" height="8.5" rx="1"/><rect x="13" y="2.5" width="8.5" height="8.5" rx="1"/><rect x="2.5" y="13" width="8.5" height="8.5" rx="1"/><rect x="13" y="13" width="8.5" height="8.5" rx="1" stroke-dasharray="2 2"/>`,
+  flaps: `<rect x="2" y="5" width="9" height="14" rx="1.5"/><rect x="13" y="5" width="9" height="14" rx="1.5"/><path d="M2 12h20"/>`,
+  glass: `<path d="M4 20l3-1 11-11-2-2L5 17z"/><path d="M14.5 6.5l2 2M3 22h6"/>`,
+  floor: `<rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 11h16M11 11v9M1.5 8h2M1.5 16h2M20.5 8h2M20.5 16h2"/>`,
+  stack: `<path d="M3 8l9-4 9 4-9 4zM3 12.5l9 4 9-4M3 17l9 4 9-4"/>`,
+  callout: `<path d="M7 11l5-2.5 5 2.5-5 2.5z"/><path d="M2 5h4l3 4M22 18h-4l-3-4"/>`,
+  spine: `<path d="M12 2v20"/><path d="M6 6.5l6-2.5 6 2.5-6 2.5zM6 16l6-2.5 6 2.5-6 2.5z"/>`,
+  build: `<path d="M3 18l9 3.5 9-3.5-9-3.5z"/><path d="M12 12V3M8.5 6.5L12 3l3.5 3.5"/>`
+};
+const viewIcon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${VIEW_ICON[k]}</svg>`;
+let boardView = (() => { try { const v = localStorage.getItem("tldrView"); return VIEWS.some(x => x.k === v) ? v : "table"; } catch (e) { return "table"; } })();
+let boardObs = [];
+function boardHTML() {
+  const N = THESES.length, v = VIEWS.find(x => x.k === boardView) || VIEWS[0];
+  return `<div class="bd-head">
+      <button class="btn" id="boardClose" type="button">Close</button>
+      <div class="bd-meta"><span class="bd-k">TL;DR</span><span class="bd-t" id="boardTitle">${v.t}</span></div>
+      <div class="bd-view">
+        <button type="button" class="bd-vbtn" id="bdView" aria-haspopup="true" aria-expanded="false" aria-controls="bdMenu"><span class="bd-vi" id="bdViewI">${viewIcon(v.k)}</span><span class="bd-vt"><small>View</small><b id="bdViewN">${v.n}</b></span><i class="bd-chev" aria-hidden="true"></i></button>
+        <div class="bd-menu" id="bdMenu" hidden>
+          <p class="bd-mk">Same ${N} theses, ${VIEWS.length} ways to see them</p>
+          <div class="bd-opts" role="menu" aria-label="Views">${VIEWS.map((x, i) => `<button type="button" role="menuitemradio" class="bd-opt" data-v="${x.k}" aria-checked="${x.k === v.k}" style="--i:${i}"><span class="bd-oi">${viewIcon(x.k)}</span><b>${x.n}</b><small>${x.d}</small></button>`).join("")}</div>
+          <p class="bd-mf">Every view is a draft too, so these will keep changing. Your pick is saved on this device.</p>
+        </div>
+      </div>
+      <span class="bd-wip"><i></i><b>Work in progress</b><span class="bd-wip-l">· ${N} theses so far, more on the way</span></span>
+    </div>
+    <div class="bd-body" id="boardBody"></div>`;
+}
+// Draw one view into the board's body: its own scroll area, then whatever it needs wired up
+function renderView(k) {
+  const v = VIEWS.find(x => x.k === k) || VIEWS[0], body = $("#boardBody", board);
+  if (!body) return;
+  boardView = v.k;
+  try { localStorage.setItem("tldrView", v.k); } catch (e) {}
+  boardObs.forEach(o => o.disconnect()); boardObs = [];
+  const html = v.f();
+  body.innerHTML = html.slice(html.indexOf('<div class="bd-scroll"'));
+  body.dataset.view = v.k;
+  $("#boardTitle", board).textContent = v.t;
+  $("#bdViewN", board).textContent = v.n;
+  $("#bdViewI", board).innerHTML = viewIcon(v.k);
+  $$(".bd-opt", board).forEach(o => o.setAttribute("aria-checked", String(o.dataset.v === v.k)));
+  const wb = $("#wb", body), btns = $$("[data-f]", body);
+  btns.forEach(b => b.addEventListener("click", () => {
+    const f = wb.dataset.f === b.dataset.f ? "" : b.dataset.f;
+    wb.dataset.f = f;
+    btns.forEach(x => x.setAttribute("aria-pressed", String(x.dataset.f === f)));
+  }));
+  initStack(body); initCallout(body); initBuild(body); initLinks(body); initTable(body); initFlaps(body);
+  if (calm || motionPaused) $$("svg", body).forEach(freezeSvg);
+  body.classList.remove("swap"); void body.offsetWidth; body.classList.add("swap");
+}
+
+function openBoard() {
+  if (!board) return;
+  if (board.hidden) boardFocus = document.activeElement;
+  board.innerHTML = boardHTML();
+  board.hidden = false;
+  document.documentElement.style.overflow = "hidden";
+  if (wafer) wafer.hold(true);
+  renderView(boardView);
+  const vbtn = $("#bdView", board), menu = $("#bdMenu", board), opts = $$(".bd-opt", menu);
+  const setMenu = open => {
+    menu.hidden = !open;
+    vbtn.setAttribute("aria-expanded", String(open));
+    if (open) ($('.bd-opt[aria-checked="true"]', menu) || opts[0]).focus();
+  };
+  vbtn.addEventListener("click", () => setMenu(menu.hidden));
+  opts.forEach(o => o.addEventListener("click", () => {
+    setMenu(false);
+    if (o.dataset.v !== boardView) { renderView(o.dataset.v); const sc = $(".bd-scroll", board); if (sc) sc.scrollTop = 0; }
+    vbtn.focus();
+  }));
+  menu.addEventListener("keydown", e => {
+    const i = opts.indexOf(document.activeElement), n = opts.length;
+    const to = { ArrowDown: i + 2, ArrowRight: i + 1, ArrowUp: i - 2, ArrowLeft: i - 1, Home: 0, End: n - 1 }[e.key];
+    if (to !== undefined) { e.preventDefault(); opts[(to + n) % n].focus(); }
+  });
+  board.addEventListener("click", e => { if (!menu.hidden && !e.target.closest(".bd-view")) setMenu(false); });
+  $("#boardClose", board).addEventListener("click", () => closeBoard(true));
+  if (boardKeys) document.removeEventListener("keydown", boardKeys);
+  boardKeys = e => {
+    if (board.hidden || !memo.hidden || e.key !== "Escape") return;
+    if (!menu.hidden) { setMenu(false); vbtn.focus(); } else closeBoard(true);
+  };
+  document.addEventListener("keydown", boardKeys);
+  $("#boardClose", board).focus({ preventScroll: true });
+}
+
+function closeBoard(updateUrl) {
+  if (!board || board.hidden) return;
+  board.hidden = true;
+  boardObs.forEach(o => o.disconnect()); boardObs = [];
+  board.innerHTML = "";
+  if (memo.hidden) { document.documentElement.style.overflow = ""; if (wafer) wafer.hold(false); }
+  if (updateUrl) {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    if (boardFocus && document.contains(boardFocus)) boardFocus.focus({ preventScroll: true });
+  }
 }
 
 /* ---------------------------------------------------------------- router */
@@ -3649,10 +4286,20 @@ const nav = $("#nav");
 
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
+  if (h === "tldr") {
+    boardBack = false;
+    closeMemo(false);
+    openBoard();
+    return;
+  }
   if (byId[h]) {
+    // a thesis opened from the whiteboard closes back to the whiteboard
+    if (board && !board.hidden) { boardBack = true; closeBoard(false); }
     openMemo(h);
     return;
   }
+  boardBack = false;
+  closeBoard(false);
   closeMemo(false);
   onScroll();
 }
