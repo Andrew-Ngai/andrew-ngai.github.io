@@ -3114,6 +3114,8 @@ const DOODLES = {
   builders: "<path d=\"M20 88 L60 40 M14 46 Q30 30 48 34 M48 34 Q44 50 60 40\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M100 88 L66 44 M60 40 l12 -6 l6 14 l-12 6 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M26 12 Q60 -6 94 12 Q77 8 60 12 Q43 8 26 12 Z M26 12 L54 34 M94 12 L66 34\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">picks & shovels</text>",
   spacex: "<path d=\"M84 16 L100 8 L96 26 L62 60 L52 50 Z M62 60 L58 72 L50 64 M52 50 L40 54 L48 46\" stroke=\"#26303a\" stroke-width=\"2.8\" /><circle cx=\"84\" cy=\"26\" r=\"4\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.2\"/><path d=\"M8 94 L18 86 L24 90 L32 78 L38 82 L46 68\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M40 74 L50 62 M47.8 70.7 L50 62 L41.8 65.7\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"30\" y=\"104\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">stock = fuel</text>"
 };
+const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "custom": "-16.8 0 153.6 106", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5", "spacex": "-7.9 0 127.9 114.5"};
+const doodleVB = id => DOODLE_VB[id] || "0 0 120 100";
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
 const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
@@ -5807,7 +5809,7 @@ function boardWhite() {
     const [title, note] = t.tldr || [t.title, t.hook];
     return `<a class="wb-card" href="#${t.id}" data-s="${t.stance}" style="--i:${i++}">
         ${t === newest ? `<span class="wb-new">new</span>` : ""}
-        <svg class="wb-doo" viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg>
+        <svg class="wb-doo" viewBox="${doodleVB(t.id)}" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg>
         <span class="wb-tx"><span class="wb-ct"><i style="color:${c}">${m}</i> ${title}</span><span class="wb-cn">${note}</span></span>
       </a>`;
   };
@@ -5892,7 +5894,7 @@ function boardFloor() {
   const cell = t => {
     const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
     return `<a class="fp-cell" href="#${t.id}" data-s="${t.stance}" style="--bin:${b.css}">
-      <svg class="fp-doo" viewBox="0 0 120 100" aria-hidden="true">${mono(DOODLES[t.id] || dieDoodle(t.die), "#d4e3f0")}</svg>
+      <svg class="fp-doo" viewBox="${doodleVB(t.id)}" aria-hidden="true">${mono(DOODLES[t.id] || dieDoodle(t.die), "#d4e3f0")}</svg>
       <span class="fp-top"><span class="bin">${b.label}</span><span class="fp-xy">${dieLabel(t.die)}</span></span>
       <b class="fp-t">${title}</b><span class="fp-n">${note}</span>
       ${t === newest ? `<span class="fp-new">Just placed</span>` : ""}
@@ -5984,11 +5986,13 @@ function initStack(root) {
     panel.style.setProperty("--c", LAYC[k]);
     panel.innerHTML = `<header class="st-ph"><b>${k === "S" || k === "F" ? "◆" : k}</b><div><h3>${L.n}</h3><small>${L.s} · ${ts.length} ${ts.length === 1 ? "thesis" : "theses"}</small></div></header>
       <div class="st-cards">${ts.map((t, i) => { const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
-        return `<a class="st-card" href="#${t.id}" style="--bin:${b.css};--i:${i}"><svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${neon(DOODLES[t.id] || dieDoodle(t.die))}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>Just placed</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; }).join("")}
+        return `<a class="st-card" href="#${t.id}" style="--bin:${b.css};--i:${i}"><svg viewBox="${doodleVB(t.id)}" aria-hidden="true"><g filter="url(#wob)">${neon(DOODLES[t.id] || dieDoodle(t.die))}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>Just placed</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; }).join("")}
         <div class="st-card st-next" aria-hidden="true"><span>+ empty socket<br><small>the next thesis lands here</small></span></div></div>`;
   };
-  $$(".st-slab", root).forEach(g => { g.addEventListener("click", e => { if (!e.target.closest("a")) pick(g.dataset.k); }); g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(g.dataset.k); } }); g.addEventListener("pointerenter", () => matchMedia("(hover: hover)").matches && pick(g.dataset.k)); });
-  $$(".st-tab", root).forEach(b => b.addEventListener("click", () => pick(b.dataset.k)));
+  let locked = false;
+  const lock = k => { locked = true; pick(k); root.querySelector(".st") && $(".st", root).classList.add("locked"); };
+  $$(".st-slab", root).forEach(g => { g.addEventListener("click", e => { if (!e.target.closest("a")) lock(g.dataset.k); }); g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); lock(g.dataset.k); } }); g.addEventListener("pointerenter", () => { if (!locked && matchMedia("(hover: hover)").matches) pick(g.dataset.k); }); });
+  $$(".st-tab", root).forEach(b => b.addEventListener("click", () => lock(b.dataset.k)));
   pick(newest.layer || "A");
 }
 const L7 = [["F", "substrate"], ["E", ""], ["C", ""], ["I", ""], ["M", ""], ["A", ""], ["S", "lid"]]; // bottom to top
@@ -6026,7 +6030,7 @@ function boardCallout() {
   boardWhite();
   const newest = THESES[THESES.length - 1];
   const co = t => { const b = BINS[t.stance] || BINS.original, [title, note] = tdr(t);
-    return `<a class="d-co" href="#${t.id}" data-id="${t.id}" data-s="${t.stance}" style="--bin:${b.css}"><svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>new</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; };
+    return `<a class="d-co" href="#${t.id}" data-id="${t.id}" data-s="${t.stance}" style="--bin:${b.css}"><svg viewBox="${doodleVB(t.id)}" aria-hidden="true"><g filter="url(#wob)">${DOODLES[t.id] || dieDoodle(t.die)}</g></svg><span><span class="bin">${b.label}</span>${t === newest ? `<em>new</em>` : ""}<b>${title}</b><small>${note}</small></span></a>`; };
   const nextCo = `<div class="d-co d-next" data-id="next"><span><b>+ empty socket</b><small>the next thesis lands here</small></span></div>`;
   const row = ([k, role]) => { const L = layerOf(k), ts = layerTs(k), l = ts.filter((_, i) => i % 2 === 0), r = ts.filter((_, i) => i % 2 === 1);
     (r.length < l.length ? r : l).push(null);
@@ -6036,7 +6040,7 @@ function boardCallout() {
       <div class="d-side d-r">${r.map(t => t ? co(t) : nextCo).join("")}</div></section>`; };
   const inner = `<div class="d-dia"><span class="d-flow" aria-hidden="true">value flows up</span>${L7.slice().reverse().map(row).join("")}</div>
     <div class="st-foot"><div class="wb-note wb-bets"><i class="mag" style="--mg:#1f5fbf"></i><b class="wb-bets-h">My bets, so far</b><ul>${BOARD.bets.map(b => `<li>${b}</li>`).join("")}</ul></div></div>`;
-  return glassShell("d", inner.replace(/<svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url\(#wob\)">/g, '<svg viewBox="0 0 120 100" aria-hidden="true"><g filter="url(#wob)">'), "Every thesis, on one exploded stack");
+  return glassShell("d", inner, "Every thesis, on one exploded stack");
 }
 function initCallout(root) {
   const dia = $(".d-dia", root);
