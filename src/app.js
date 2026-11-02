@@ -738,10 +738,10 @@ const PROBES = [
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
 const RECEIPTS = [
-  { v: "~2 TB", t: "A billion-dollar training run, boiled down to one file.", id: "weights", fresh: 1 },
-  { v: "55 days", t: "Fuel cells to first power at Oracle. A turbine ordered today ships ~2031.", id: "bloom", fresh: 1 },
-  { v: "76%", t: "SK hynix operating margin, Q2 2026. Memory is where the margin went.", id: "memory" },
-  { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend", fresh: 1 }
+  { v: "17–150×", t: "The spread between making a million tokens and selling them. GPU-hours earn 20–30%.", id: "tokens", fresh: 1 },
+  { v: "391.8K", t: "GitHub stars in under a year. About 12% of audited skills were malicious.", id: "openclaw", fresh: 1 },
+  { v: "22 TB/s", t: "Memory bandwidth per Rubin GPU, nearly 3× B300’s. Read the memory, not the name.", id: "chipnames", fresh: 1 },
+  { v: "50%+", t: "Of TSMC’s 2026 CoWoS packaging, reserved by Nvidia. Still ~20% short.", id: "backend" }
 ];
 
 // Marker doodles for the TL;DR whiteboard, one per thesis, each drawn in a 120 x 100 box.
