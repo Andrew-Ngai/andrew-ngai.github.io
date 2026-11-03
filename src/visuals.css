@@ -991,7 +991,6 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .flb-n b.a{color:var(--amber);font-size:18px}
 .flb-n b.b{color:var(--beat);font-size:18px}
 .fmt{gap:6px}
-.fmt-c{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
 .fmt-c .k-out{flex:1 1 280px}
 .fmt-c .k-out b{font-size:24px}
 .fkc .k-row{grid-template-columns:11.5em minmax(0,1fr) 3.2em}

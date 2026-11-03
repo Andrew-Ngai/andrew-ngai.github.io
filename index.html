@@ -3308,7 +3308,6 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .flb-n b.a{color:var(--amber);font-size:calc(18*var(--u))}
 .flb-n b.b{color:var(--beat);font-size:calc(18*var(--u))}
 .fmt{gap:calc(6*var(--u))}
-.fmt-c{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:calc(8*var(--u))}
 .fmt-c .k-out{flex:1 1 calc(280*var(--u))}
 .fmt-c .k-out b{font-size:calc(24*var(--u))}
 .fkc .k-row{grid-template-columns:11.5em minmax(0,1fr) 3.2em}
@@ -7811,8 +7810,7 @@ A["custom-3a"] = { html: () => {
       ${D.map(([l, v, s], i) => { const x = 70 + i * 92; return `<g class="cbr-b" data-i="${i}" tabindex="0" role="button"><rect class="k-grow-y" style="--d:${(.2 + i * .5).toFixed(1)}s" x="${x}" y="${f1(Y(v))}" width="62" height="${f1(232 - Y(v))}" rx="3" fill="var(--amber)" ${s === "outlook" ? `fill-opacity=".8"` : ""}/>
         <text x="${x + 31}" y="${f1(Y(v) - 8)}" text-anchor="middle" font-size="15" class="t-strong k-fade" style="--d:${(.4 + i * .5).toFixed(1)}s">~$<tspan data-to="${v}" data-dur="900">0</tspan>B</text>
         <text x="${x + 31}" y="250" text-anchor="middle" font-size="12.5" class="t-strong">${l}</text><text x="${x + 31}" y="265" text-anchor="middle" font-size="11">${s}</text></g>`; }).join("")}
-      ${[0, 1].map(i => { const sx = 101 + i * 92 + 28, sy = Y(D[i][1]) - 14, ex = 70 + (i + 1) * 92 - 4, ey = Y(D[i + 1][1]) + 14; return `<path d="M${sx} ${f1(sy)} Q${sx + 4} ${f1(ey)} ${ex} ${f1(ey)}" fill="none" stroke="var(--coral)" stroke-width="1.6" pathLength="100" class="k-draw" style="--d:${(.9 + i * .5).toFixed(1)}s;--t:.6s" marker-end="url(#cbrA)"/><text x="${sx}" y="${f1(ey - 4)}" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--coral);--d:${(1.2 + i * .5).toFixed(1)}s" class="k-fade">×2</text>`; }).join("")}
-      <defs><marker id="cbrA" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="var(--coral)"/></marker></defs>
+      ${[0, 1].map(i => { const sx = 101 + i * 92 + 28, sy = Y(D[i][1]) - 14, ex = 70 + (i + 1) * 92 - 4, ey = Y(D[i + 1][1]) + 14; return `<path d="M${sx} ${f1(sy)} Q${sx + 4} ${f1(ey)} ${ex} ${f1(ey)}" fill="none" stroke="var(--coral)" stroke-width="1.6" pathLength="100" class="k-draw" style="--d:${(.9 + i * .5).toFixed(1)}s;--t:.6s"/><path d="M${ex - 8} ${f1(ey - 4.8)} L${ex + 1.6} ${f1(ey)} L${ex - 8} ${f1(ey + 4.8)} Z" fill="var(--coral)" class="k-fade" style="--d:${(1.42 + i * .5).toFixed(2)}s;animation-duration:.15s"/><text x="${sx}" y="${f1(ey - 4)}" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--coral);--d:${(1.2 + i * .5).toFixed(1)}s" class="k-fade">×2</text>`; }).join("")}
       <g transform="translate(352 64)" class="cbr-b" data-i="3" tabindex="0" role="button"><text x="45" y="0" text-anchor="middle" font-size="12" class="t-strong">FQ3 2026</text><text x="45" y="16" text-anchor="middle" font-size="12">$16.7B</text>
         <rect x="22" y="26" width="46" height="160" rx="3" fill="var(--ink-3)"/>
         <rect x="22" y="26" width="46" height="${f1(160 * .27)}" rx="3" fill="var(--beat)" fill-opacity=".55" class="k-grow-y" style="--d:2.2s;transform-origin:50% 0"/>
@@ -7957,29 +7955,6 @@ A["factory-2a"] = { html: () => `<div class="k-col fco">
     K.tabs(fr, ".fco .k-b", v => { sp = +v; upd(); }, 10);
     K.raf(fr, dt => { ph = (ph + dt / 6000) % 1; const s = $("#fcoSun"); s.style.left = (ph * 100) + "%"; const night = ph > .5; s.classList.toggle("moon", night); fr.querySelector(".fco-day").classList.toggle("night", night); $("#fcoHs").textContent = night ? "asleep" : "at work"; });
   } };
-A["factory-3a"] = { html: () => `<div class="k-col fmt"><svg viewBox="0 0 460 250" class="k-svg" aria-label="Google's monthly tokens grew from about 480 trillion in May 2025 to more than 3.2 quadrillion in May 2026, seven times more. Gemini app users went from 400 million to more than 900 million.">
-      <text x="14" y="22" class="t-strong" font-size="16">The meter, one year apart</text>
-      <text x="14" y="40" font-size="12">Google’s tokens per month · each bar = 100 trillion</text>
-      <line class="ax" x1="80" y1="222" x2="380" y2="222"/>
-      ${Array.from({ length: 5 }, (_, i) => `<rect x="112" y="${222 - (i + 1) * 5.6}" width="58" height="4.5" rx="1" fill="var(--violet)"/>`).join("")}
-      <g id="fmtS"></g>
-      <text x="141" y="240" text-anchor="middle" font-size="13" class="t-strong">May 2025</text>
-      <text x="305" y="240" text-anchor="middle" font-size="13" class="t-strong" id="fmtM">May 2025</text>
-      <text x="305" y="${f1(222 - 33 * 5.6 - 8)}" text-anchor="middle" font-size="13" class="t-strong" style="fill:var(--amber)" id="fmtV">480T</text>
-      <path d="M178 186 C200 140 230 90 262 50" fill="none" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="4 4" id="fmtArc" opacity="0"/><text x="205" y="106" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--amber);font-family:var(--display)" id="fmtX" opacity="0">7×</text>
-      <text x="352" y="86" font-size="12" class="t-strong">Gemini app</text><text x="352" y="102" font-size="12"><tspan id="fmtU">400</tspan>M monthly users</text>
-    </svg>
-    <div class="fmt-c"><p class="k-out"><b id="fmtT">0</b><span>tokens Google processed since you opened this slide, at May 2026’s average pace</span></p></div></div>${cap("Google I/O keynotes, May 2025 and May 2026. The month-by-month climb between them is drawn smoothly; Google reported the two endpoints. The ticker assumes 3.2 quadrillion spread evenly over 30 days.")}`,
-  init: fr => {
-    const $ = s => fr.querySelector(s), MO = ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"]; let u = 1, tk = 0;
-    const draw = () => { const v = 4.8 * Math.pow(32 / 4.8, u), n = Math.round(v), mi = Math.round(u * 12);
-      $("#fmtS").innerHTML = Array.from({ length: n }, (_, i) => `<rect x="276" y="${f1(222 - (i + 1) * 5.6)}" width="58" height="4.5" rx="1" fill="var(--amber)"/>`).join("");
-      $("#fmtM").textContent = `${MO[mi]} ${mi >= 8 ? 2026 : 2025}`; $("#fmtV").setAttribute("y", f1(222 - n * 5.6 - 8)); $("#fmtV").textContent = v >= 10 ? (v / 10).toFixed(1) + "Q" : Math.round(v * 100) + "T";
-      $("#fmtArc").setAttribute("opacity", u >= 1 ? 1 : 0); $("#fmtX").setAttribute("opacity", u >= 1 ? 1 : 0); $("#fmtU").textContent = Math.round(400 + 500 * u) + (u >= 1 ? "+" : ""); };
-    const go = () => { u = 0; }; K.onEnter(fr, () => { go(); tk = 0; });
-    K.raf(fr, dt => { if (u < 1) { u = Math.min(1, u + dt / 4200); draw(); } tk += dt / 1000 * 3.2e15 / (30 * 86400); $("#fmtT").textContent = Math.round(tk).toLocaleString("en-US"); });
-    draw();
-  } };
 })();
 (() => {
 const A = window.AX, cap = t => `<p class="cap">${t}</p>`, f1 = v => (+v).toFixed(1);
@@ -8052,7 +8027,7 @@ A["race-2a"] = { html: () => `<div class="k-col rcu"><div class="rcu-top"><div c
   } };
 })();
 (function () {
-  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a","3":"factory-3a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"}};
+  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
