@@ -85,18 +85,17 @@ A["automate-1a"] = { html: () => {
         <path id="alTrail" fill="none" stroke="var(--amber)" stroke-width="10" stroke-linecap="round" opacity=".35"/>
         ${N.map(([n, s, a], i) => { const [x, y] = P(a); return `<g class="al-n" data-i="${i}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="44" fill="var(--ink-2)" stroke="var(--beat)" stroke-width="2"/><text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" text-anchor="middle" class="t-strong" font-size="15">${n}</text><text x="${x.toFixed(1)}" y="${(y + 15).toFixed(1)}" text-anchor="middle" font-size="10.5">${s}</text></g>`; }).join("")}
         <circle id="alDot" r="9" fill="var(--amber)" class="al-dot"/>
-        <text x="230" y="140" text-anchor="middle" font-size="11" style="fill:var(--faint);letter-spacing:.12em" font-weight="700">MODEL GENERATION</text>
+        <text x="230" y="124" text-anchor="middle" font-size="11" style="fill:var(--faint);letter-spacing:.12em" font-weight="700">MODEL GENERATION</text>
         <text x="230" y="172" text-anchor="middle" class="al-gen" id="alGen">1</text>
         <text x="230" y="190" text-anchor="middle" font-size="11.5" id="alSpd">lap speed 1.0×</text>
       </svg>
-      <div class="k-seg"><button type="button" class="k-b go" id="alRe">Start over</button><span class="k-note" style="align-self:center">Automate one job: the one whose output improves every other job.</span></div>
+      <p class="k-note">Automate one job: the one whose output improves every other job.</p>
     </div>${cap("Aschenbrenner’s shortcut: automate the one job whose output improves every other job. Speeds are illustrative.")}`; },
   init: fr => {
     const dot = fr.querySelector("#alDot"), trail = fr.querySelector("#alTrail"), gen = fr.querySelector("#alGen"), spd = fr.querySelector("#alSpd"), nodes = [...fr.querySelectorAll(".al-n")];
     let a = -90, v = 60, g = 1;
     const at = d => [230 + 112 * Math.cos(d * Math.PI / 180), 150 + 112 * Math.sin(d * Math.PI / 180)];
     const reset = () => { a = -90; v = 60; g = 1; gen.textContent = "1"; spd.textContent = "lap speed 1.0×"; };
-    fr.querySelector("#alRe").addEventListener("click", reset);
     K.onEnter(fr, reset);
     K.raf(fr, dt => {
       const prev = a; a += v * dt / 1000;
@@ -118,13 +117,13 @@ A["automate-2a"] = { html: () => `<div class="k-col wd">
       <div class="wd-row"><span class="wd-l">Human</span><div class="wd-bars"><i class="wd-b h"><b></b></i></div><b class="wd-v" id="wdH">0.0</b></div>
       <div class="wd-row"><span class="wd-l">Agents</span><div class="wd-bars">${[0, 1, 2, 3].map(i => `<i class="wd-b a" style="--cap:${i < 3 ? 1 : .1}"><b></b></i>`).join("")}</div><b class="wd-v" id="wdA">0.0</b></div>
       <p class="wd-ratio"><b id="wdR">0.0</b><span>agent-workdays for every human workday</span></p>
-      <div class="k-seg"><button type="button" class="k-b go" id="wdRe">Replay</button><span class="k-note" style="align-self:center">Each block is an eight-hour workday. Agent days are machine runtime.</span></div>
+      <p class="k-note">Each block is an eight-hour workday. Agent days are machine runtime.</p>
     </div>${cap("OpenAI’s research org, mid-August 2026: 3.1 agent-workdays per human workday.")}`,
   init: fr => {
     const hb = fr.querySelector(".wd-b.h b"), ab = [...fr.querySelectorAll(".wd-b.a b")], C = fr.querySelector("#wdC");
     let t = 0;
     const draw = () => {
-      const k = Math.min(1, t / 6000), hrs = 8 * k, agent = 3.1 * 8 * k;
+      const k = Math.min(1, t / 2800), hrs = 8 * k, agent = 3.1 * 8 * k;
       hb.style.width = (k * 100) + "%";
       ab.forEach((b, i) => { const v = K.clamp(agent / 8 - i, 0, i < 3 ? 1 : .1); b.style.width = (v / (i < 3 ? 1 : .1) * 100) + "%"; });
       const m = 9 * 60 + 480 * k; C.textContent = `${Math.floor(m / 60) > 12 ? Math.floor(m / 60) - 12 : Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, "0")}${m >= 720 ? " pm" : " am"}`;
@@ -133,8 +132,8 @@ A["automate-2a"] = { html: () => `<div class="k-col wd">
       fr.classList.toggle("wd-done", k >= 1);
     };
     const re = () => { t = 0; draw(); };
-    fr.querySelector("#wdRe").addEventListener("click", re); K.onEnter(fr, re);
-    K.raf(fr, dt => { if (t < 6000) { t += dt; draw(); } });
+    K.onEnter(fr, re);
+    K.raf(fr, dt => { if (t < 2800) { t += dt; draw(); } });
   } };
 
 
@@ -261,11 +260,11 @@ A["agent-3a"] = { html: () => {
     go.addEventListener("click", () => { if (!wait) return; wait = false; n++; fr.querySelector("#fcN").textContent = `${n} order${n > 1 ? "s" : ""}`; go.disabled = true; go.textContent = "Ordered. The loop starts again…"; ship = 0; });
     K.onEnter(fr, () => { a = -90; wait = false; go.disabled = true; go.textContent = "Waiting for the agent…"; });
     K.raf(fr, dt => {
-      if (!wait) { a += dt * .09; if (a >= 180 && a < 190) { a = 180; wait = true; go.disabled = false; go.textContent = "Tap to confirm"; } if (a >= 270) a = -90; }
+      if (!wait) { a += dt * .17; if (a >= 180 && a < 190) { a = 180; wait = true; go.disabled = false; go.textContent = "Tap to confirm"; } if (a >= 270) a = -90; }
       const pts = []; for (let d = -90; d <= a; d += 4) pts.push(P(d)); pts.push(P(a));
       arc.setAttribute("d", "M" + pts.map(p => p.map(v => v.toFixed(1)).join(" ")).join(" L"));
       nodes.forEach((g, i) => g.classList.toggle("lit", a >= [-90, 0, 90, 180][i] - 2));
-      if (ship >= 0) { ship += dt / 1200; const [x, y] = P(180 + ship * 90); box.setAttribute("transform", `translate(${x.toFixed(1)} ${(y - 30).toFixed(1)})`); box.setAttribute("opacity", ship < 1 ? 1 : 0); if (ship >= 1) ship = -1; }
+      if (ship >= 0) { ship += dt / 650; const [x, y] = P(180 + ship * 90); box.setAttribute("transform", `translate(${x.toFixed(1)} ${(y - 30).toFixed(1)})`); box.setAttribute("opacity", ship < 1 ? 1 : 0); if (ship >= 1) ship = -1; }
     });
   } };
 
@@ -314,52 +313,7 @@ const NEXT = {
 const START = ["The", "most", "valuable", "file", "in", "AI", "is"];
 
 // ---------------------------------------------------------- slide 1
-A["weights-1a"] = { html: () => `<div class="k-col nx">
-      <p class="k-k" id="nxK">Pass 1</p>
-      <div class="nx-row" id="nxRow"><svg class="nx-fan" id="nxFan" aria-hidden="true"></svg></div>
-      <p class="nx-w">The weights score every possible next token</p>
-      <ol class="nx-c" id="nxC"></ol>
-      <label class="k-row"><span>Temperature</span><input type="range" id="nxT" min=".2" max="2" step=".1" value="1"><b id="nxTv"></b></label>
-      <div class="k-seg"><button type="button" class="k-b go" id="nxStep">Next token</button><button type="button" class="k-b" id="nxPlay">Auto</button><button type="button" class="k-b" id="nxRe">Start over</button></div>
-    </div>${cap("Illustrative probabilities. Real models pick from tens of thousands of tokens on every pass.")}`,
-  init: fr => {
-    const row = fr.querySelector("#nxRow"), fan = fr.querySelector("#nxFan"), C = fr.querySelector("#nxC");
-    let toks = [], temp = 1, auto = true, busy = false, rnd = K.rng(7);
-    const probs = () => {
-      const c = NEXT[toks[toks.length - 1]] || NEXT.is, rest = Math.max(.02, 1 - c.reduce((s, x) => s + x[1], 0));
-      const T = Math.max(temp, .05), w = c.map(x => Math.pow(x[1], 1 / T)), wr = Math.pow(rest, 1 / T), S = w.reduce((a, b) => a + b, 0) + wr;
-      return c.map((x, i) => [x[0], w[i] / S]);
-    };
-    const draw = (pick = -1) => {
-      row.querySelectorAll(".nx-t").forEach(e => e.remove());
-      toks.forEach((t, i) => { const s = document.createElement("span"); s.className = "nx-t" + (i === toks.length - 1 && toks.length > START.length ? " new" : ""); s.textContent = t; row.appendChild(s); });
-      const q = document.createElement("span"); q.className = "nx-t q"; q.textContent = toks[toks.length - 1] === "." ? "✓" : "?"; row.appendChild(q);
-      fr.querySelector("#nxK").textContent = toks[toks.length - 1] === "." ? `Done: ${toks.length} tokens, one pass each` : `Pass ${toks.length - START.length + 1}: read all ${toks.length} tokens, then pick token ${toks.length + 1}`;
-      requestAnimationFrame(() => {
-        const W = row.offsetWidth, H = row.offsetHeight; fan.setAttribute("viewBox", `0 0 ${W} ${H + 40}`); fan.style.height = (H + 40) + "px";
-        const qx = q.offsetLeft + q.offsetWidth / 2, qy = q.offsetTop + q.offsetHeight; const r = K.rng(toks.length * 13);
-        fan.innerHTML = [...row.querySelectorAll(".nx-t:not(.q)")].map((s, i) => { const x = s.offsetLeft + s.offsetWidth / 2, y = s.offsetTop + s.offsetHeight, a = .25 + r() * .75, dep = Math.min(30, 8 + Math.abs(qx - x) / 9); return `<path d="M${x.toFixed(1)} ${y} Q${((x + qx) / 2).toFixed(1)} ${(Math.max(y, qy) + dep).toFixed(1)} ${qx.toFixed(1)} ${qy}" stroke-opacity="${a.toFixed(2)}" stroke-width="${(1 + a * 2).toFixed(1)}" style="animation-delay:${(-i * .13).toFixed(2)}s"/>`; }).join("");
-      });
-      if (toks[toks.length - 1] === ".") { C.innerHTML = `<li class="end">The sentence is finished. Every word above took one full pass.</li>`; return; }
-      C.innerHTML = probs().map(([w, p], i) => `<li class="${i === pick ? "win" : ""}"><span>${w}</span><i><b style="width:${(p * 100).toFixed(1)}%"></b></i><em>${Math.round(p * 100)}%</em></li>`).join("");
-    };
-    const step = () => {
-      if (busy) return; if (toks[toks.length - 1] === ".") { reset(); return; }
-      busy = true; const P = probs(); let k = 0;
-      if (temp > .45) { let u = rnd() * P.reduce((s, x) => s + x[1], 0); for (k = 0; k < P.length - 1 && u > P[k][1]; k++) u -= P[k][1]; }
-      draw(k);
-      setTimeout(() => { toks.push(P[k][0]); draw(); busy = false; }, 650);
-    };
-    const reset = () => { toks = START.slice(); rnd = K.rng(7); draw(); };
-    fr.querySelector("#nxStep").addEventListener("click", () => { auto = false; fr.querySelector("#nxPlay").classList.remove("on"); step(); });
-    fr.querySelector("#nxRe").addEventListener("click", reset);
-    const pb = fr.querySelector("#nxPlay"); pb.classList.add("on");
-    pb.addEventListener("click", () => { auto = !auto; pb.classList.toggle("on", auto); });
-    K.slider(fr, "#nxT", v => { temp = v; fr.querySelector("#nxTv").textContent = v.toFixed(1); if (toks.length) draw(); });
-    K.onEnter(fr, reset);
-    K.loop(fr, () => { if (auto) step(); }, 1700);
-    reset();
-  } };
+
 
 
 
@@ -561,14 +515,13 @@ A["molecules-1a"] = { html: () => `<div class="k-col mf"><svg viewBox="0 0 520 2
       <line x1="312" y1="240" x2="312" y2="240" id="mfM" stroke="var(--amber)" stroke-width="6" stroke-linecap="round"/>
       <text x="312" y="262" font-size="12">0</text><text x="500" y="262" text-anchor="end" font-size="12">12 months</text>
       <text x="${(312 + 188 * 11 / 12).toFixed(1)}" y="282" text-anchor="end" font-size="12.5" id="mfU" class="mf-u">month <tspan id="mfMo">0</tspan></text>
-    </svg><div class="k-seg"><button type="button" class="k-b go" id="mfGo">Drill again</button></div></div>${cap("Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).")}`,
+    </svg></div>${cap("Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).")}`,
   init: fr => {
     const F = fr.querySelector("#mfF"), r = K.rng(11), ord = [];
     F.innerHTML = Array.from({ length: 1200 }, (_, i) => `<circle cx="${(27 + (i % 40) * 6.4).toFixed(1)}" cy="${(73 + Math.floor(i / 40) * 6.4).toFixed(1)}" r="2" class="mf-d"/>`).join("");
     const D = [...F.children]; for (let i = 0; i < 1200; i++) ord.push(i); for (let i = 1199; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [ord[i], ord[j]] = [ord[j], ord[i]]; }
     let t = 0, n = 0;
     const reset = () => { t = 0; n = 0; D.forEach(d => d.classList.remove("on")); fr.querySelector(".mf-u").classList.remove("done"); };
-    fr.querySelector("#mfGo").addEventListener("click", reset);
     K.onEnter(fr, reset);
     K.raf(fr, dt => {
       if (t >= 1) return; t = Math.min(1, t + dt / 6000);
@@ -587,38 +540,7 @@ A["molecules-1a"] = { html: () => `<div class="k-col mf"><svg viewBox="0 0 520 2
 
 
 // ---------------------------------------------------------- slide 2
-A["molecules-2a"] = { html: () => { const X = t => 60 + (t - 2026) * 86; return `<div class="k-col tq"><svg viewBox="0 0 520 280" class="k-svg" aria-label="A conveyor line of gas turbines waiting their turn. An order placed now gets a slot around 2031, while the fuel is drilled in under a year.">
-      <text x="24" y="32" class="t-strong" font-size="17">Gas turbine delivery slot</text>
-      <text x="24" y="52" font-size="13">GE Vernova’s backlog: 116 GW</text>
-      <g transform="translate(318 18)" class="tq-fuel"><rect width="182" height="28" rx="14" fill="var(--ink-2)" stroke="var(--amber)"/><path d="M14 14 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round"/><text x="34" y="18.5" font-size="12.5" class="t-strong">Fuel: drilled in under a year</text></g>
-      <text x="${X(2026)}" y="96" font-size="30" class="tq-yr" id="tqY">2026</text>
-      <rect x="40" y="186" width="466" height="16" rx="8" fill="var(--ink-2)" stroke="var(--rule)"/>
-      <line x1="48" y1="194" x2="498" y2="194" stroke="var(--faint)" stroke-width="2" stroke-dasharray="3 9" class="tq-roll"/>
-      <line x1="40" y1="112" x2="40" y2="230" stroke="var(--amber)" stroke-width="2"/><text x="46" y="122" font-size="12" style="fill:var(--amber)">now</text><text x="46" y="136" font-size="12" style="fill:var(--amber)">shipping</text>
-      <g id="tqL"></g>
-      <line class="ax" x1="60" y1="236" x2="500" y2="236"/>
-      ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="ax" x1="${X(y)}" y1="232" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="258" text-anchor="middle" font-size="13">${y}</text>`).join("")}
-    </svg><div class="k-seg"><button type="button" class="k-b go" id="tqGo">Order now</button><span class="tq-s" id="tqS">Your slot: about five years out.</span></div></div>${cap("Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.")}`; },
-  init: fr => {
-    const L = fr.querySelector("#tqL"), tb = (me) => `<g class="tq-tb${me ? " me" : ""}"><path d="M-13 -6 L8 -8.5 L15 -4.5 V4.5 L8 8.5 L-13 6 Z" /><ellipse cx="-13" cy="0" rx="3.2" ry="8"/>${me ? `<g transform="translate(-30 -54)"><path d="M0 0 H60 V12 a4 4 0 0 0 0 8 V32 H0 V20 a4 4 0 0 0 0 -8 Z" fill="var(--paper)"/><text x="30" y="13" text-anchor="middle" font-size="9" font-weight="800" style="fill:var(--ink)">YOUR SLOT</text><text x="30" y="27" text-anchor="middle" font-size="13" font-weight="900" style="fill:var(--coral)" class="tq-tk">2031</text></g>` : ""}</g>`;
-    let q = [], t = 0, yr = 2026, mine = false, ship = null;
-    const S = fr.querySelector("#tqS");
-    const reset = () => { q = Array.from({ length: 10 }, (_, i) => ({ x: 86 + i * 39.4 })); yr = 2026; t = 0; mine = false; ship = null; S.textContent = "Your slot: about five years out."; };
-    const order = () => { if (mine) return; q.push({ x: 540, me: true }); mine = true; S.innerHTML = `Ordered in <b>${Math.floor(yr)}</b>. Fuel ready by <b>${Math.floor(yr) + 1}</b>. Turbine: <b>${Math.floor(yr) + 5}</b>.`; };
-    fr.querySelector("#tqGo").addEventListener("click", order);
-    K.onEnter(fr, () => { reset(); setTimeout(() => K.active(fr) && order(), 900); });
-    K.raf(fr, dt => {
-      yr += dt / 1900; t += dt;
-      fr.querySelector("#tqY").textContent = Math.floor(yr);
-      if (t > 950) { t = 0; if (q.length) { ship = q.shift(); } }
-      q.forEach((o, i) => { o.x += (86 + i * 39.4 - o.x) * Math.min(1, dt / 260); });
-      let h = q.map(o => `<g transform="translate(${o.x.toFixed(1)} 172)">${tb(o.me)}</g>`).join("");
-      if (ship) { ship.x -= dt * .07; h += `<g transform="translate(${ship.x.toFixed(1)} 172)" opacity="${K.clamp((ship.x - 14) / 50, 0, 1).toFixed(2)}">${tb(ship.me)}</g>`; if (ship.me && !ship.told) { ship.told = true; S.innerHTML = `<b>Shipped, ${Math.floor(yr)}.</b> The fuel had been ready for ${Math.floor(yr) - 2027} years.`; } if (ship.x < 14) ship = null; }
-      L.innerHTML = h;
-      if (yr > 2033) { reset(); order(); }
-    });
-    reset();
-  } };
+
 
 
 
@@ -627,32 +549,7 @@ A["molecules-2a"] = { html: () => { const X = t => 60 + (t - 2026) * 86; return 
 // ---------------------------------------------------------- slide 3
 const NODES = [["Gas well", "var(--amber)", "Months to drill. Plenty of it."], ["Turbine", "var(--coral)", "Burns the gas and spins a generator. Slots booked into 2031."], ["Transformer", "var(--coral)", "Steps the voltage up and down. Also backlogged."], ["Substation", "var(--coral)", "Ties the plant to the grid and the site. Needs permits and interconnection."], ["Rack", "var(--beat)", "Where power turns into tokens, once it arrives."]];
 const ICON = [`<path d="M-11 14 L0 -14 L11 14 M-7 3 H7 M-4 -5 H4"/>`, `<circle r="12"/><path d="M0 0 L0 -11 M0 0 L9.5 5.5 M0 0 L-9.5 5.5"><animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite"/></path>`, `<circle cx="-5" r="8"/><circle cx="5" r="8"/>`, `<path d="M-12 13 V-6 M12 13 V-6 M-12 -6 H12 M-12 4 H12 M-6 -13 V-6 M6 -13 V-6"/>`, `<rect x="-10" y="-14" width="20" height="28"/><path d="M-6 -7 H6 M-6 0 H6 M-6 7 H6"/>`];
-A["molecules-3a"] = { html: () => `<div class="k-col mq"><svg viewBox="0 0 520 250" class="k-svg" aria-label="Chain from gas well to turbine, transformer, substation and rack. The queue sits in the middle three.">
-      <path d="M110 58 V46 H410 V58" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="260" y="36" text-anchor="middle" font-size="16" style="fill:var(--coral);font-weight:700">the queue lives here</text>
-      <line class="ax" x1="50" y1="120" x2="470" y2="120"/>
-      <g id="mqP"></g>
-      ${NODES.map(([l, c], i) => `<g class="mq-n" data-i="${i}" transform="translate(${50 + i * 105} 120)"><circle r="36" fill="var(--ink-2)" stroke="${c}" stroke-width="2"/><g fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[i]}</g><text y="62" text-anchor="middle" font-size="15" class="t-strong">${l}</text></g>`).join("")}
-      <g id="mqQ">${[1, 2, 3].map(i => `<text x="${50 + i * 105}" y="210" text-anchor="middle" font-size="11.5" style="fill:var(--coral)" font-weight="700" class="mq-qt" data-i="${i}">0 waiting</text>`).join("")}</g>
-    </svg><p class="mq-say" id="mqSay">Tap a step.</p></div>${cap("Where the queue lives: between the molecule and the rack.")}`,
-  init: fr => {
-    const P = fr.querySelector("#mqP"), say = fr.querySelector("#mqSay");
-    let ps = [], acc = 0, q = [0, 0, 0, 0, 0];
-    fr.querySelectorAll(".mq-n").forEach(g => g.addEventListener("click", () => { fr.querySelectorAll(".mq-n").forEach(x => x.classList.toggle("sel", x === g)); const [l, , s] = NODES[+g.dataset.i]; say.innerHTML = `<b>${l}:</b> ${s}`; }));
-    const passP = [1, .05, .12, .16, 1];
-    K.raf(fr, dt => {
-      acc += dt / 120; while (acc > 1) { acc--; ps.push({ x: 86, stage: 0, w: 0 }); }
-      q = [0, 0, 0, 0, 0];
-      ps.forEach(p => {
-        const nextX = 50 + (p.stage + 1) * 105 - 40;
-        if (p.x < nextX) p.x += dt * .12; else if (p.stage < 4) { if (Math.random() < passP[p.stage + 1] * dt / 60) { p.stage++; p.x = 50 + p.stage * 105 + 40; } else q[p.stage + 1]++; }
-        if (p.stage === 4 && p.x > 452) p.dead = true;
-      });
-      ps = ps.filter(p => !p.dead).slice(-160);
-      const stacked = [0, 0, 0, 0, 0];
-      P.innerHTML = ps.map(p => { const waiting = p.stage < 4 && p.x >= 50 + (p.stage + 1) * 105 - 40; let x = p.x, y = 120; if (waiting) { const n = stacked[p.stage + 1]++; x = 50 + (p.stage + 1) * 105 - 42 - (n % 6) * 7; y = 120 + (Math.floor(n / 6) % 2 ? 7 : -7) * Math.ceil(Math.floor(n / 6) / 2); } return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6" fill="${p.stage >= 1 ? "var(--amber)" : "#5c86b8"}"/>`; }).join("");
-      fr.querySelectorAll(".mq-qt").forEach(t => { const n = q[+t.dataset.i]; t.textContent = n ? `${n} waiting` : ""; });
-    });
-  } };
+
 
 
 
@@ -804,7 +701,7 @@ A["fleet-1a"] = { html: () => {
 
 // ---------------------------------------------------------- slide 2
 A["fleet-2a"] = { html: () => `<div class="k-col mv"><svg viewBox="0 0 460 330" class="k-svg" id="mvS" aria-label="Map of Stargate's seven US sites, with Abilene's planned expansion moving to the other sites."></svg>
-      <div class="mv-row"><p class="mv-s" id="mvSay">Tap a site.</p><button type="button" class="k-b go" id="mvRe">Replay the move</button></div></div>${cap("Stargate today, per Epoch AI (Apr 2026): seven US sites, 9+ GW planned by 2029. OpenAI moved Abilene’s extra 2.1 GW to other sites.")}`,
+      <div class="mv-row"><p class="mv-s" id="mvSay">Tap a site.</p></div></div>${cap("Stargate today, per Epoch AI (Apr 2026): seven US sites, 9+ GW planned by 2029. OpenAI moved Abilene’s extra 2.1 GW to other sites.")}`,
   init: fr => {
     const S = sites(), svg = fr.querySelector("#mvS"), tot = S.reduce((a, s) => a + s.gw, 0);
     svg.innerHTML = usMap("mv") + `<text x="20" y="22" class="t-strong" font-size="17">Not one 100 GW campus. Seven sites.</text>
@@ -815,7 +712,6 @@ A["fleet-2a"] = { html: () => `<div class="k-col mv"><svg viewBox="0 0 460 330" 
     const T = [1, 2, 3, 4, 5]; let ps = [], t = 0, done = false;
     const go = () => { t = 0; done = false; ps = Array.from({ length: 21 }, (_, k) => ({ to: T[k % T.length], u: -k * .04 })); fr.querySelector("#mvGhost").setAttribute("opacity", 1); };
     fr.querySelectorAll(".mv-site").forEach(g => g.addEventListener("click", () => { const s = S[+g.dataset.i]; fr.querySelectorAll(".mv-site").forEach(x => x.classList.toggle("sel", x === g)); fr.querySelector("#mvSay").innerHTML = `<b>${s.name}:</b> ${s.note || s.gw.toFixed(1) + " GW planned"}.`; }));
-    fr.querySelector("#mvRe").addEventListener("click", go);
     K.onEnter(fr, go);
     K.raf(fr, dt => {
       t += dt; fr.querySelector("#mvN").textContent = Math.min(tot, t / 2200 * tot).toFixed(1);
@@ -985,7 +881,7 @@ A["saas-1a"] = { html: () => {
     fr.querySelector("svg").insertAdjacentHTML("afterbegin", `<defs><linearGradient id="sp1S" gradientUnits="userSpaceOnUse" x1="${X(2.6)}" x2="${X(5)}" y1="0" y2="0"><stop offset="0" stop-color="var(--coral)"/><stop offset="1" stop-color="var(--beat)"/></linearGradient></defs>`);
     fr.querySelectorAll(".sp1-e").forEach(e => e.addEventListener("click", () => { hold = +e.dataset.i; t = 99; draw(9.2); card(hold); }));
     K.onEnter(fr, () => { t = 0; hold = -1; });
-    K.raf(fr, dt => { if (t > 9.2) return; t = Math.min(9.2, t + dt / 650); draw(t); });
+    K.raf(fr, dt => { if (t > 9.2) return; t = Math.min(9.2, t + dt / 300); draw(t); });
   } };
 
 
@@ -996,13 +892,13 @@ A["saas-1a"] = { html: () => {
 const LAY = [["MODEL: the brain", "Anthropic, OpenAI, Google", "$ per token", "m"], ["AGENT: decides and acts", "calls tools instead of clicking", "", "a"], ["SCREEN: menus and forms", "built for people clicking", "✕ collapses", "s"], ["RULES: permissions, approvals, audit", "", "", "r"], ["SYSTEM OF RECORD", "customers, contracts, who can approve", "$ per outcome", "d"]];
 A["saas-2a"] = { html: () => `<div class="k-col sk">
       <div class="sk-st">${LAY.map(([t, s, p, k], i) => `<div class="sk-l ${k}" style="--i:${i}"><div><b>${t}</b>${s ? `<span>${s}</span>` : ""}</div>${p ? `<em>${p}</em>` : ""}${k === "r" ? `<span class="sk-ck">${["permission", "approval", "audit"].map(c => `<i data-c="${c}">${c}</i>`).join("")}</span>` : ""}${k === "s" ? `<span class="sk-sh">${Array.from({ length: 8 }, (_, j) => `<i style="--j:${j}"></i>`).join("")}</span>` : ""}</div>`).join("")}<i class="sk-dot" id="skDot"></i></div>
-      <div class="sk-f"><span>Outcomes billed: <b id="skN">0</b></span><button type="button" class="k-b go" id="skGo">Run again</button></div>
+      <div class="sk-f"><span>Outcomes billed: <b id="skN">0</b></span></div>
     </div>${cap("Nadella’s half: agents skip the screen. My half: they hit the record and its rules far more often than people ever did.")}`,
   init: fr => {
     const root = fr.querySelector(".sk"); let n = 0, tm = [];
     const run = () => { tm.forEach(clearTimeout); tm = []; root.className = "k-col sk"; void root.offsetWidth;
       ["s1", "s2", "s3", "s4", "s5", "s6", "s7"].forEach((c, i) => tm.push(setTimeout(() => { if (!K.active(fr)) return; root.classList.add(c); if (c === "s7") { n++; fr.querySelector("#skN").textContent = n; } }, 300 + i * 650))); };
-    fr.querySelector("#skGo").addEventListener("click", run);
+    K.loop(fr, run, 6200);
     K.onEnter(fr, () => { n = 0; fr.querySelector("#skN").textContent = 0; run(); });
   } };
 
@@ -1219,7 +1115,7 @@ A["moat-1a"] = { html: () => {
     fr.querySelector("#rcGap").addEventListener("click", () => fr.querySelector("#rcSay").innerHTML = "<b>The gap:</b> more chips, bigger clusters and 3D stacking paid for the difference.");
     K.onEnter(fr, () => { t = 0; fr.querySelector("#rcSay").innerHTML = ""; });
     K.raf(fr, dt => {
-      if (t > 14) return; t = Math.min(14, t + dt / 380);
+      if (t > 14) return; t = Math.min(14, t + dt / 170);
       const ys = []; for (let y = 0; y <= t; y += .1) ys.push(y); ys.push(t);
       const lo = y => y * Math.log10(4), hi = y => y * Math.log10(5), mid = y => (lo(y) + hi(y)) / 2, mo = y => y / 2 * Math.log10(2);
       fr.querySelector("#rcAi").setAttribute("d", "M" + ys.map(y => `${X(2010 + y).toFixed(1)} ${Y(mid(y)).toFixed(1)}`).join(" L"));
@@ -1558,49 +1454,7 @@ A["quantum-2a"] = { html: () => {
 // ---------------------------------------------------------- slide 3
 
 
-A["quantum-3b"] = { html: () => `<div class="k-col qm"><svg viewBox="0 0 460 170" class="k-svg" aria-label="A timeline from 2026. Encrypted traffic is recorded until the switch to post-quantum, each secret must stay secret for its shelf life, and if the quantum computer arrives before that, recorded secrets can be read.">
-      <line x1="20" x2="450" y1="132" y2="132" stroke="var(--rule)" stroke-width="2"/>
-      ${[2026, 2030, 2035, 2040, 2045, 2050].map(y => `<line x1="${20 + (y - 2026) / 24 * 430}" x2="${20 + (y - 2026) / 24 * 430}" y1="128" y2="136" stroke="var(--rule)"/><text x="${20 + (y - 2026) / 24 * 430}" y="152" text-anchor="middle" font-size="11">${y}</text>`).join("")}
-      <g class="qm-dl"><line x1="${20 + 3 / 24 * 430}" x2="${20 + 3 / 24 * 430}" y1="20" y2="132" stroke="var(--faint)" stroke-dasharray="2 4"/><text x="${20 + 3 / 24 * 430 - 3}" y="28" text-anchor="end" font-size="10">Google 2029</text>
-      <line x1="${20 + 4 / 24 * 430}" x2="${20 + 4 / 24 * 430}" y1="34" y2="132" stroke="var(--faint)" stroke-dasharray="2 4"/><text x="${20 + 4 / 24 * 430 + 3}" y="42" font-size="10">NSA 2030</text></g>
-      <rect id="qmY" x="20" y="56" height="18" rx="3" fill="var(--amber)" fill-opacity=".85"/><text id="qmYt" y="69" font-size="11" font-weight="800" style="fill:var(--ink)">switching</text>
-      <rect id="qmX" y="84" height="18" rx="3" fill="var(--violet)" fill-opacity=".55"/><text id="qmXt" y="97" font-size="11" font-weight="800" style="fill:var(--ink)">must stay secret</text>
-      <rect id="qmO" y="84" height="18" fill="url(#qmH)"/>
-      <defs><pattern id="qmH" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="6" fill="var(--coral)"/></pattern></defs>
-      <g id="qmZ"><line y1="44" y2="132" stroke="var(--coral)" stroke-width="2"/><circle cy="44" r="5" fill="var(--coral)"/><text y="36" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--coral)">Q-day</text></g>
-      <text x="410" y="88" text-anchor="middle" font-size="10.5" style="fill:var(--beat)">recorded traffic</text><g id="qmV" transform="translate(410 112)"><rect x="-14" y="-12" width="28" height="22" rx="3" fill="var(--ink-3)" stroke="var(--faint)"/><path id="qmLk" d="M-7 -12 V-17 A7 7 0 0 1 7 -17 V-12" fill="none" stroke="var(--faint)" stroke-width="2"/></g>
-      <g id="qmR"></g>
-      <line id="qmPh" y1="50" y2="132" stroke="var(--paper)" stroke-opacity=".5"/>
-    </svg>
-    <label class="k-row"><span>Secrets must last</span><input type="range" id="qmXr" min="0" max="25" value="10"><b id="qmXv"></b></label>
-    <label class="k-row"><span>Your switch takes</span><input type="range" id="qmYr" min="1" max="10" value="4"><b id="qmYv"></b></label>
-    <label class="k-row"><span>Q-day arrives in</span><input type="range" id="qmZr" min="2" max="24" value="9"><b id="qmZv"></b></label>
-    <p class="kc-v" id="qmVd"></p></div>${cap("Mosca’s rule (Michele Mosca, 2015): if shelf life plus switch time is longer than the time to a key-breaking machine, recorded secrets get read. Q-day is your guess; nobody knows the year.")}`,
-  init: fr => {
-    const $ = s => fr.querySelector(s), Xy = y => 20 + y / 24 * 430;
-    let x = 10, y = 4, z = 9, ph = 0, rec = [];
-    const draw = () => {
-      $("#qmXv").textContent = x + " yr"; $("#qmYv").textContent = y + " yr"; $("#qmZv").textContent = (2026 + z);
-      $("#qmY").setAttribute("width", f1(Xy(y) - 20)); $("#qmYt").setAttribute("x", f1(24)); $("#qmYt").style.opacity = y >= 2 ? 1 : 0;
-      $("#qmX").setAttribute("x", f1(Xy(y))); $("#qmX").setAttribute("width", f1(Math.max(0, Math.min(Xy(24), Xy(y + x)) - Xy(y))));
-      $("#qmXt").setAttribute("x", f1(Xy(y) + 4)); $("#qmXt").style.opacity = x >= 6 ? 1 : 0;
-      const o0 = Math.max(z, y), o1 = Math.min(24, y + x); $("#qmO").setAttribute("x", f1(Xy(Math.min(o0, 24)))); $("#qmO").setAttribute("width", f1(Math.max(0, Xy(o1) - Xy(o0))));
-      $("#qmZ").setAttribute("transform", `translate(${f1(Xy(z))} 0)`);
-      const v = $("#qmVd"), bad = x + y > z;
-      v.className = "kc-v " + (bad ? "no" : "ok");
-      v.innerHTML = !bad ? `<b>${x} + ${y} ≤ ${z}.</b> Everything sent before your switch stops mattering before Q-day.` : z <= y ? `<b>${x} + ${y} &gt; ${z}.</b> Q-day lands before your switch is done. Everything recorded so far can be read.` : `<b>${x} + ${y} &gt; ${z}.</b> A secret sent just before your ${2026 + y} switch can be read in ${2026 + z}, while it still matters.`;
-    };
-    [["#qmXr", v => x = v], ["#qmYr", v => y = v], ["#qmZr", v => z = v]].forEach(([s, f]) => K.slider(fr, s, v => { f(v); draw(); }));
-    K.onEnter(fr, () => { ph = 0; rec = []; });
-    K.raf(fr, dt => { ph = (ph + dt / 260) % 30; const yr = Math.min(24, ph);
-      $("#qmPh").setAttribute("x1", f1(Xy(yr))); $("#qmPh").setAttribute("x2", f1(Xy(yr)));
-      if (yr < y && Math.random() < dt / 90) rec.push({ x: Xy(yr), y: 64 + (Math.random() - .5) * 8, u: 0 });
-      if (ph < .1) rec = [];
-      const open = yr >= z; $("#qmLk").setAttribute("transform", open ? "rotate(-30 7 -12) translate(0 -3)" : ""); $("#qmLk").style.stroke = open ? "var(--coral)" : "var(--faint)";
-      rec.forEach(r => { r.u = Math.min(1, r.u + dt / 1400); });
-      $("#qmR").innerHTML = rec.slice(-60).map(r => { const fx = K.lerp(r.x, 410, r.u), fy = K.lerp(r.y, 112, r.u) - Math.sin(r.u * Math.PI) * 18; const spill = open && r.u >= 1; return `<rect x="${f1(spill ? 380 + (r.x % 40) : fx - 2)}" y="${f1(spill ? 118 + (r.x % 9) : fy - 2)}" width="4" height="4" rx="1" fill="${spill ? "var(--coral)" : "var(--beat)"}"/>`; }).join(""); });
-    draw();
-  } };
+
 
 
 })();
@@ -1815,7 +1669,7 @@ A["custom-1a"] = { html: () => {
       </svg>
       <div class="cst-m" aria-hidden="true"><span class="c" id="cstC"></span><span class="p" id="cstP"></span><span class="s" id="cstS"></span></div>
       <div class="cst-k"><span class="c">customer</span><span class="p">design partner</span><span class="s">cheaper second partner</span></div>
-      <div class="cst-ctl"><button type="button" class="k-b go" id="cstGo">Play</button><input type="range" id="cstR" min="1" max="4" step="1" value="2" aria-label="Stage of insourcing"><b id="cstRv"></b></div>
+      <div class="cst-ctl"><input type="range" id="cstR" min="1" max="4" step="1" value="2" aria-label="Stage of insourcing"><b id="cstRv"></b></div>
       <p class="cst-read" id="cstRd"></p>
     </div>${cap("Drag through four stages. Most of today’s deals sit at stage 2 or 3; stage 4 is the threat. The meter counts the five regions, not dollars.")}`;
   },
@@ -1824,10 +1678,9 @@ A["custom-1a"] = { html: () => {
     const set = s => { r.value = s; regs.forEach(g => g.setAttribute("data-o", OWN[s][g.dataset.r])); fr.querySelector("#cstRd").innerHTML = STAGE[s]; fr.querySelector("#cstRv").textContent = s + " / 4";
       const n = { c: 0, p: 0, s: 0 }; Object.values(OWN[s]).forEach(v => n[v]++);
       ["c", "p", "s"].forEach(k => { const el = fr.querySelector("#cst" + k.toUpperCase()); el.style.flexGrow = n[k]; el.textContent = n[k] ? `${n[k]} of 5` : ""; }); };
-    r.addEventListener("input", () => { play = false; fr.querySelector("#cstGo").textContent = "Play"; set(+r.value); });
-    fr.querySelector("#cstGo").addEventListener("click", e => { play = !play; e.target.textContent = play ? "Pause" : "Play"; acc = 1e9; });
-    K.onEnter(fr, () => { set(1); play = true; acc = 0; fr.querySelector("#cstGo").textContent = "Pause"; });
-    K.raf(fr, dt => { if (!play) return; acc += dt; if (acc > 1900) { acc = 0; const s = +r.value; if (s >= 4) { play = false; fr.querySelector("#cstGo").textContent = "Play"; } else set(s + 1); } });
+    r.addEventListener("input", () => { play = false; set(+r.value); });
+    K.onEnter(fr, () => { set(1); play = true; acc = 0; });
+    K.raf(fr, dt => { if (!play) return; acc += dt; if (acc > 1900) { acc = 0; const s = +r.value; if (s >= 4) play = false; else set(s + 1); } });
     set(2);
   } };
 
@@ -1846,7 +1699,7 @@ A["custom-2a"] = { html: () => {
       ${PA.map(([n, y, c], i) => `<g class="cmp-n" data-p="${i}" tabindex="0" role="button"><rect x="330" y="${y - 16}" width="116" height="32" rx="4" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5"/><text x="388" y="${y + 5}" text-anchor="middle" font-size="13.5" class="t-strong" style="fill:${c}">${n}</text></g>`).join("")}
       <text x="70" y="294" text-anchor="middle" font-size="11">customers</text><text x="388" y="294" text-anchor="middle" font-size="11">design partners</text>
     </svg>
-    <div class="cmp-c"><p class="cmp-read" id="cmpRd">Tap a name to see its links.</p><button type="button" class="k-b go" id="cmpSw">Replay the switch</button></div></div>${cap("Tom’s Hardware (May 2026); Broadcom’s Q3 call (Sept 2026); Benchmark via Yahoo Finance on Trainium3 and 4 (Dec 2025, not confirmed by the companies). Dotted: indirect.")}`;
+    <div class="cmp-c"><p class="cmp-read" id="cmpRd">Tap a name to see its links.</p></div></div>${cap("Tom’s Hardware (May 2026); Broadcom’s Q3 call (Sept 2026); Benchmark via Yahoo Finance on Trainium3 and 4 (Dec 2025, not confirmed by the companies). Dotted: indirect.")}`;
   },
   init: fr => {
     const es = [...fr.querySelectorAll(".cmp-e")], rd = fr.querySelector("#cmpRd");
@@ -1861,7 +1714,7 @@ A["custom-2a"] = { html: () => {
       al.classList.add("gone"); mv.classList.add("hot"); rd.innerHTML = "Amazon’s Trainium2: designed with <b>Marvell</b>…";
       setTimeout(() => { mv.classList.remove("hot"); mv.classList.add("fade"); al.classList.remove("gone"); al.classList.add("draw"); rd.innerHTML = "…Trainium3 and 4: reportedly <b>Alchip</b>, a cheaper second partner. Marvell keeps Trainium2."; }, 1600);
       setTimeout(() => { mv.classList.remove("fade"); al.classList.remove("draw"); }, 4200); };
-    fr.querySelector("#cmpSw").addEventListener("click", sw);
+    let tk = 0; K.onEnter(fr, () => { const my = ++tk; setTimeout(() => { if (my === tk && K.active(fr) && !sel) sw(); }, K.paused() ? 0 : 1400); });
   } };
 
 
@@ -1947,27 +1800,7 @@ A["tokens-1a"] = { html: () => `<div class="k-col tkl"><svg viewBox="0 0 460 236
 
 
 // ---------------------------------------------------------- slide 2
-A["tokens-2a"] = { html: () => `<div class="k-col tka"><div class="tka-two">
-      <div class="tka-col"><p class="tka-h">Commodity aisle <span>GPU-hours</span></p>
-        <div class="tka-sh">${[1, 2, 3, 4, 5].map(i => `<div class="tka-pv"><b>1 GPU-hour</b><small>provider ${i}</small><i class="tka-tag">re-bid</i></div>`).join("")}</div>
-        <div class="tka-fl" id="tkaC"></div>
-        <p class="tka-n">Customers keep <b>3–5 providers</b> and re-bid every month. CoreWeave earns about <b>$8–12M a year per megawatt</b>.</p></div>
-      <div class="tka-col tka-pd"><p class="tka-h">Product aisle <span>tokens</span></p>
-        <div class="tka-big"><b>Token Factory</b><ul><li>40+ open models</li><li>fine-tuning</li><li>distillation</li><li>dedicated endpoints</li><li>99.9% uptime SLA</li></ul></div>
-        <div class="tka-fl" id="tkaP"></div>
-        <p class="tka-n">Prosus: up to <b>200B tokens a day</b>, costs up to <b>26× lower</b> than proprietary models.</p></div>
-    </div><div class="tka-c"><button type="button" class="k-b go" id="tkaGo">Next month</button><p class="k-out"><b id="tkaM">Month 1</b><span>switches: <b class="tka-s" id="tkaS">0</b> in the commodity aisle, <b class="tka-s" id="tkaS2">0</b> in the product aisle</span></p></div></div>${cap("Field interviews and figures as cited in the betteresearch framework; Prosus figures as Nebius reported them. Shoppers are illustrative.")}`,
-  init: fr => {
-    const $ = s => fr.querySelector(s), C = $("#tkaC"), P = $("#tkaP"), N = 7; let m = 1, sw = 0, at = [], acc = 0;
-    C.innerHTML = Array.from({ length: N }, (_, i) => `<i style="--h:${(i * 47) % 360}"></i>`).join(""); P.innerHTML = Array.from({ length: N }, (_, i) => `<i style="--h:${(i * 47 + 20) % 360}"><em></em></i>`).join("");
-    const cs = [...C.children], ps = [...P.children];
-    const place = () => { cs.forEach((c, i) => { c.style.left = `calc(${at[i] * 20 + 10}% - 7px)`; c.style.top = (6 + (i % 3) * 14) + "px"; }); ps.forEach((p, i) => { p.style.left = `calc(${(i + .5) / N * 100}% - 7px)`; p.style.top = "20px"; }); };
-    const month = () => { m++; at = at.map(a => { const n = Math.floor(Math.random() * 5); if (n !== a) sw++; return n; }); place(); $("#tkaM").textContent = "Month " + m; $("#tkaS").textContent = sw; };
-    const reset = () => { m = 1; sw = 0; at = cs.map(() => Math.floor(Math.random() * 5)); place(); $("#tkaM").textContent = "Month 1"; $("#tkaS").textContent = 0; };
-    $("#tkaGo").addEventListener("click", () => { acc = 0; month(); });
-    K.onEnter(fr, reset);
-    K.raf(fr, dt => { acc += dt; if (acc > 1800 && m < 24) { acc = 0; month(); } });
-  } };
+
 
 
 
@@ -2097,86 +1930,17 @@ A["factory-3a"] = { html: () => `<div class="k-col fmt"><svg viewBox="0 0 460 25
       <path d="M178 186 C200 140 230 90 262 50" fill="none" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="4 4" id="fmtArc" opacity="0"/><text x="205" y="106" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--amber);font-family:var(--display)" id="fmtX" opacity="0">7×</text>
       <text x="352" y="86" font-size="12" class="t-strong">Gemini app</text><text x="352" y="102" font-size="12"><tspan id="fmtU">400</tspan>M monthly users</text>
     </svg>
-    <div class="fmt-c"><p class="k-out"><b id="fmtT">0</b><span>tokens Google processed since you opened this slide, at May 2026’s average pace</span></p><button type="button" class="k-b go" id="fmtRe">Replay</button></div></div>${cap("Google I/O keynotes, May 2025 and May 2026. The month-by-month climb between them is drawn smoothly; Google reported the two endpoints. The ticker assumes 3.2 quadrillion spread evenly over 30 days.")}`,
+    <div class="fmt-c"><p class="k-out"><b id="fmtT">0</b><span>tokens Google processed since you opened this slide, at May 2026’s average pace</span></p></div></div>${cap("Google I/O keynotes, May 2025 and May 2026. The month-by-month climb between them is drawn smoothly; Google reported the two endpoints. The ticker assumes 3.2 quadrillion spread evenly over 30 days.")}`,
   init: fr => {
     const $ = s => fr.querySelector(s), MO = ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"]; let u = 1, tk = 0;
     const draw = () => { const v = 4.8 * Math.pow(32 / 4.8, u), n = Math.round(v), mi = Math.round(u * 12);
       $("#fmtS").innerHTML = Array.from({ length: n }, (_, i) => `<rect x="276" y="${f1(222 - (i + 1) * 5.6)}" width="58" height="4.5" rx="1" fill="var(--amber)"/>`).join("");
       $("#fmtM").textContent = `${MO[mi]} ${mi >= 8 ? 2026 : 2025}`; $("#fmtV").setAttribute("y", f1(222 - n * 5.6 - 8)); $("#fmtV").textContent = v >= 10 ? (v / 10).toFixed(1) + "Q" : Math.round(v * 100) + "T";
       $("#fmtArc").setAttribute("opacity", u >= 1 ? 1 : 0); $("#fmtX").setAttribute("opacity", u >= 1 ? 1 : 0); $("#fmtU").textContent = Math.round(400 + 500 * u) + (u >= 1 ? "+" : ""); };
-    const go = () => { u = 0; }; $("#fmtRe").addEventListener("click", go); K.onEnter(fr, () => { go(); tk = 0; });
+    const go = () => { u = 0; }; K.onEnter(fr, () => { go(); tk = 0; });
     K.raf(fr, dt => { if (u < 1) { u = Math.min(1, u + dt / 4200); draw(); } tk += dt / 1000 * 3.2e15 / (30 * 86400); $("#fmtT").textContent = Math.round(tk).toLocaleString("en-US"); });
     draw();
   } };
-
-
-
-
-})();
-
-// 23 · Every GPU name is a scientist and a year.
-(() => {
-const A = window.AX, cap = t => `<p class="cap">${t}</p>`, f1 = v => (+v).toFixed(1);
-const TREE = [[2017, "Vo", "Volta", "V100", "dc", "Alessandro Volta, who built the first battery"], [2018, "Tu", "Turing", "T4 · RTX 20", "gx", "Alan Turing, who founded computer science"], [2020, "Am", "Ampere", "A100 · RTX 30", "both", "André-Marie Ampère, who founded electrodynamics"], [2022, "Lo", "Lovelace", "L40S · RTX 40", "gx", "Ada Lovelace, who published the first computer program"], [2022, "Ho", "Hopper", "H100 · H200", "dc", "Grace Hopper, who built the first compiler"], [2024, "Bl", "Blackwell", "B200 · B300 · RTX 50", "both", "David Blackwell, statistician and game theorist"], [2026, "Ru", "Rubin", "Vera Rubin NVL72", "dc", "Vera Rubin, whose work on galaxies gave key evidence for dark matter"], [2028, "Fe", "Feynman", "due 2028", "dc", "Richard Feynman, who proposed quantum computers in 1981"]];
-// spec facts: memory per chip (GB), bandwidth (TB/s), chips that act as one
-const SPEC = [["H100", 80, 3.35, 8, "HBM3"], ["B200", 192, 8, 8, "HBM3e"], ["GB200 NVL72", 186, 8, 72, "HBM3e"], ["B300", 288, 8, 8, "HBM3e"], ["Vera Rubin NVL72", 288, 22, 72, "HBM4"], ["TPU v5p", 95, 2.77, 8960, "HBM"], ["Ironwood", 192, 7.37, 9216, "HBM"], ["TPU 8t", 216, 6.53, 9600, "HBM3e"], ["TPU 8i", 288, 8.6, 1152, "HBM3e"]];
-const lg = v => Math.log10(v) / Math.log10(9600);
-
-// ---------------------------------------------------------- slide 1
-A["chipnames-1a"] = { html: () => {
-    const X = y => 34 + (y - 2017) * 36.5;
-    const tile = ([yr, sym, name, chips, lane], i) => { const x = X(yr), both = lane === "both", y = lane === "gx" ? 168 : 72, h = both ? 168 : 72;
-      return `<g class="cfm-t${yr >= 2026 ? " fut" : ""}" data-i="${i}" data-y="${yr}" tabindex="0" role="button"><rect x="${f1(x - 25)}" y="${y}" width="50" height="${h}" rx="4"/><text x="${f1(x - 20)}" y="${y + 13}" font-size="9.5" class="cfm-yr">${yr}</text><text x="${f1(x)}" y="${y + (both ? 92 : 46)}" text-anchor="middle" font-size="22" class="cfm-sym">${sym}</text><text x="${f1(x)}" y="${y + h + 14}" text-anchor="middle" font-size="10">${name}</text></g>`; };
-    return `<div class="k-col cfm"><svg viewBox="0 0 460 280" class="k-svg" aria-label="Nvidia's architectures by year on two lanes, data center and graphics: Volta, Turing, Ampere, Lovelace and Hopper after the 2022 split, Blackwell reuniting them, then Rubin and Feynman.">
-      <text x="14" y="22" class="t-strong" font-size="16">Nvidia’s family tree</text>
-      <text x="14" y="58" font-size="10.5" class="cfm-lane">DATA CENTER</text><text x="14" y="270" font-size="10.5" class="cfm-lane">GRAPHICS &amp; CHEAPER INFERENCE</text>
-      <line x1="14" y1="160" x2="446" y2="160" stroke="var(--grid)" stroke-dasharray="3 5"/>
-      <path class="cfm-split" d="M${X(2020) + 25} 120 C${X(2021) + 10} 120 ${X(2022) - 40} 108 ${X(2022) - 25} 108 M${X(2020) + 25} 200 C${X(2021) + 10} 200 ${X(2022) - 40} 204 ${X(2022) - 25} 204" fill="none" stroke="var(--coral)" stroke-width="1.6" stroke-dasharray="3 3"/>
-      <text x="${X(2021) + 4}" y="164" text-anchor="middle" font-size="10.5" class="cfm-split" style="fill:var(--coral)" font-weight="800">split</text>
-      <path class="cfm-join" d="M${X(2022) + 25} 108 C${X(2023)} 108 ${X(2023) + 6} 140 ${X(2024) - 25} 140 M${X(2022) + 25} 204 C${X(2023)} 204 ${X(2023) + 6} 180 ${X(2024) - 25} 180" fill="none" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="3 3"/>
-      ${TREE.map(tile).join("")}
-      <g class="cfm-yearly">${[2025, 2026, 2027].map(y => `<circle cx="${X(y + .5)}" cy="64" r="2.5" fill="var(--amber)"/>`).join("")}<text x="${X(2026) + 10}" y="56" text-anchor="middle" font-size="10" style="fill:var(--amber)" font-weight="800">a new one every year</text></g>
-      <line id="cfmPh" y1="40" y2="252" stroke="var(--paper)" stroke-opacity=".55"/>
-    </svg><p class="cfm-read" id="cfmRd">Tap a tile.</p></div>${cap("Named for Volta, Turing, Ampère, Lovelace, Hopper, Blackwell, Rubin and Feynman. Year = first launch.")}`;
-  },
-  init: fr => {
-    const X = y => 34 + (y - 2017) * 36.5, ts = [...fr.querySelectorAll(".cfm-t")], rd = fr.querySelector("#cfmRd"); let y = 2016.5, play = false;
-    const pick = i => { const [yr, , name, chips, , who] = TREE[i]; ts.forEach((t, k) => t.classList.toggle("on", k === i)); rd.innerHTML = `<b>${name} (${yr}).</b> Named for ${who}. Chips: ${chips}.`; };
-    ts.forEach((t, i) => { t.addEventListener("click", () => pick(i)); t.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(i); } }); });
-    const draw = () => { ts.forEach(t => t.classList.toggle("in", +t.dataset.y <= y)); fr.querySelector(".cfm").classList.toggle("s1", y >= 2022); fr.querySelector(".cfm").classList.toggle("s2", y >= 2024); fr.querySelector(".cfm").classList.toggle("s3", y >= 2026);
-      const ph = fr.querySelector("#cfmPh"); ph.setAttribute("x1", f1(X(Math.min(2028.6, y)))); ph.setAttribute("x2", f1(X(Math.min(2028.6, y)))); ph.style.opacity = y > 2028.5 ? 0 : 1; };
-    K.onEnter(fr, () => { y = K.paused() ? 2029 : 2016.5; play = true; draw(); });
-    K.raf(fr, dt => { if (play) { y += dt / 520; if (y > 2029) { play = false; pick(5); } draw(); } });
-    draw();
-  } };
-
-
-
-
-
-// ---------------------------------------------------------- slide 2
-const DEC = {
-  "T4": [[["T", "Turing (2018), after Alan Turing"], ["4", "the small, low-power tier"]], "for low-power, low-traffic inference", "", 16, "GDDR6", .32, 1],
-  "A100": [[["A", "Ampere (2020), after André-Marie Ampère"], ["100", "the flagship tier"]], "the flagship behind early ChatGPT-era training", "", 80, "HBM2e", 2.04, 8],
-  "L40S": [[["L", "Ada Lovelace (2022)"], ["40", "the mid tier, graphics and inference"], ["S", "a boosted L40"]], "mid-tier graphics and inference", "", 48, "GDDR6", .86, 1],
-  "H100": [[["H", "Hopper (2022), after Grace Hopper"], ["100", "the flagship tier"]], "the flagship for deep learning, training and inference", "", 80, "HBM3", 3.35, 8],
-  "H200": [[["H", "still Hopper: the same chip"], ["200", "the refresh, with more and faster memory"]], "faster memory, same chip", "", 141, "HBM3e", 4.8, 8],
-  "B200": [[["B", "Blackwell (2024), after David Blackwell"], ["200", "the flagship: two dies in one package"]], "the flagship, with two dies in one package", "2.5× H100’s FP8 compute", 192, "HBM3e", 8, 8],
-  "GB200 NVL72": [[["G", "a Grace CPU, one for every two GPUs"], ["B200", "Blackwell GPUs"], ["NVL72", "72 GPUs on one NVLink network"]], "72 Blackwell GPUs + 36 Grace CPUs in one rack", "30× faster LLM inference than H100", 186, "HBM3e", 8, 72],
-  "B300": [[["B", "still Blackwell"], ["300", "Blackwell Ultra, the mid-cycle upgrade"]], "for reasoning models and agent pipelines", "+50% memory and FP4 compute over B200", 288, "HBM3e", 8, 8],
-  "Vera Rubin NVL72": [[["Vera", "the Vera CPU, which replaces Grace"], ["Rubin", "Rubin GPUs (2026), after Vera Rubin"], ["NVL72", "72 Rubin GPUs and 36 Vera CPUs per rack"]], "72 Rubin GPUs + 36 Vera CPUs as one machine", "10× tokens per megawatt vs GB200", 288, "HBM4", 22, 72],
-  "TPU v4": [[["TPU", "Tensor Processing Unit, Google’s own chip"], ["v4", "the fourth generation"]], "linked 4,096 chips in one pod", "", 32, "HBM", 1.2, 4096],
-  "TPU7x Ironwood": [[["TPU7x", "the seventh generation"], ["Ironwood", "named for a tree"]], "192 GB per chip, 9,216 chips per pod", "", 192, "HBM", 7.37, 9216],
-  "TPU 8i": [[["TPU", "Tensor Processing Unit"], ["8", "the eighth generation, split in two"], ["i", "inference"]], "built to serve models and agents", "", 288, "HBM3e", 8.6, 1152]
-};
-
-
-
-
-
-
-// ---------------------------------------------------------- slide 3
-
 
 
 
@@ -2189,28 +1953,7 @@ const A = window.AX, cap = t => `<p class="cap">${t}</p>`, f1 = v => (+v).toFixe
 const CLAW = `<svg viewBox="-12 -12 24 24" aria-hidden="true"><path d="M-4 6 C-8 -4 -4 -10 6 -11 C9 -5 7 -2 2 -1 C7 0 10 3 8 8 C3 11 -1 9 -4 6 Z" fill="#f4977a"/></svg>`;
 
 // ---------------------------------------------------------- slide 1
-A["openclaw-1a"] = { html: () => `<div class="k-col owl"><div class="owl-ph">
-      <div class="owl-top">${CLAW}<b>OpenClaw</b><span>on your own machine</span></div>
-      <div class="owl-th" id="owlT"></div>
-      <div class="owl-btns" id="owlB"><button type="button" class="k-b" id="owlR">Review first</button><button type="button" class="k-b go" id="owlS">Send</button></div>
-    </div><button type="button" class="k-b owl-re" id="owlRe">Replay</button></div>${cap("An illustrative errand. Lead research, site audits and CRM updates are among the best-documented uses. The send button stays with you.")}`,
-  init: fr => {
-    const T = fr.querySelector("#owlT"), B = fr.querySelector("#owlB"); let tok = 0;
-    const add = (cls, html) => { const p = document.createElement("div"); p.className = "owl-m " + cls; p.innerHTML = html; T.appendChild(p); T.scrollTop = T.scrollHeight; return p; };
-    const wait = (ms, my) => new Promise(r => setTimeout(() => r(my === tok), K.paused() ? 0 : ms));
-    const count = (el, to, ms) => new Promise(r => { if (K.paused()) { el.textContent = to; return r(); } const t0 = performance.now(); const f = n => { const k = Math.min(1, (n - t0) / ms); el.textContent = Math.round(to * k); k < 1 ? requestAnimationFrame(f) : r(); }; requestAnimationFrame(f); });
-    const run = async () => { const my = ++tok; T.innerHTML = ""; B.classList.remove("on");
-      add("me", "Find 20 dental clinics in Austin with no online booking. Audit their sites and add them to our CRM.");
-      if (!await wait(700, my)) return; const ty = add("bot typing", "<i></i><i></i><i></i>");
-      if (!await wait(900, my)) return; ty.remove(); add("bot", "On it. Skills: web search, site audit, CRM.");
-      if (!await wait(500, my)) return; const s1 = add("bot tool", `<span class="owl-k">web search</span>Found <b class="n">0</b> clinics`); await count(s1.querySelector(".n"), 20, 900); s1.classList.add("done");
-      if (!await wait(300, my)) return; const s2 = add("bot tool", `<span class="owl-k">site audit</span>Audited <b class="n">0</b>/20 sites<i class="owl-bar"><u></u></i>`); const u = s2.querySelector("u"); u.style.transition = "width 1.2s linear"; requestAnimationFrame(() => u.style.width = "100%"); await count(s2.querySelector(".n"), 20, 1200); s2.insertAdjacentHTML("beforeend", `<small>14 load slowly on phones</small>`); s2.classList.add("done");
-      if (!await wait(300, my)) return; const s3 = add("bot tool", `<span class="owl-k">CRM skill</span>Added <b class="n">0</b> leads<div class="owl-rows">${"<i></i>".repeat(10)}</div>`); s3.querySelectorAll(".owl-rows i").forEach((r, i) => r.style.animationDelay = (i * 80) + "ms"); await count(s3.querySelector(".n"), 20, 800); s3.classList.add("done");
-      if (!await wait(500, my)) return; add("bot", "Drafted 20 intro emails. Send them?"); B.classList.add("on"); };
-    fr.querySelector("#owlR").addEventListener("click", () => { add("bot draft", "<b>Draft 1 of 20</b>Hi Dr. Lee, your site takes 6 seconds to load on a phone, and patients can’t book online. We fix both in a week. Worth a call?"); });
-    fr.querySelector("#owlS").addEventListener("click", () => { B.classList.remove("on"); add("me", "Send."); setTimeout(() => add("bot", "Sent 20. I’ll flag replies here."), 500); });
-    fr.querySelector("#owlRe").addEventListener("click", run); K.onEnter(fr, run);
-  } };
+
 
 
 
@@ -2302,73 +2045,7 @@ A["race-2a"] = { html: () => `<div class="k-col rcu"><div class="rcu-top"><div c
     K.slider(fr, "#rcuR", v => { g = v / 100; $("#rcuRv").textContent = v + "%"; t = 0; draw(); });
     K.tabs(fr, ".rcu .k-b", v => { R0 = +v; t = 0; draw(); }, "7.52");
     K.onEnter(fr, () => { t = 0; });
-    K.raf(fr, dt => { const end = g > 0 ? Math.min(14, Math.log(R0) / Math.log(1 + g) + 1.5) : 14; if (t < end) { t = Math.min(end, t + dt / 700); draw(); } });
-  } };
-
-
-
-
-
-// ---------------------------------------------------------- slide 3
-
-
-
-
-
-})();
-
-// 26 · Software can be patched. Silicon has to be outlived.
-(() => {
-const A = window.AX, cap = t => `<p class="cap">${t}</p>`, f1 = v => (+v).toFixed(1);
-
-// ---------------------------------------------------------- slide 1
-A["silicon-1a"] = { html: () => `<div class="k-col spo"><label class="k-row"><span>Flaw found</span><input type="range" id="spoR" min="0" max="6" step=".25" value="1.5"><b id="spoRv"></b></label>
-      <svg viewBox="0 0 460 210" class="k-svg" aria-label="Two lanes over a six-year service life. A software bug is patched about ten weeks after it is found. A silicon flaw stays in every chip until the fleet is replaced."><g id="spoC"></g><g id="spoF"></g><line id="spoPh" y1="18" y2="168" stroke="var(--paper)" stroke-opacity=".5"/></svg>
-      <p class="k-out"><b class="c" id="spoN"></b><span id="spoS"></span></p></div>${cap("Illustrative: a six-year service life, about how long hyperscalers depreciate servers. PHP2Shell went from first report to patch in about ten weeks. GPUHammer hit Nvidia’s A6000 almost five years after it launched.")}`,
-  init: fr => {
-    const $ = s => fr.querySelector(s), X = t => 110 + t * 55; let f = 1.5, t = 0;
-    const base = () => { $("#spoC").innerHTML = `<defs><pattern id="spoH" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--coral)" fill-opacity=".55"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--ink)" stroke-opacity=".55" stroke-width="2"/></pattern></defs>` +
-      `<text x="8" y="50" font-size="12.5" class="t-strong">Software bug</text><text x="8" y="120" font-size="12.5" class="t-strong">Silicon flaw</text>` +
-      [0, 1, 2, 3, 4, 5, 6].map(k => `<line x1="${X(k)}" y1="164" x2="${X(k)}" y2="168" stroke="var(--rule)"/><text x="${X(k)}" y="182" text-anchor="middle" font-size="11">${k ? "yr " + k : "deploy"}</text>`).join("") +
-      `<path d="M${X(4.75)} 190 l-4 7 h8 z" fill="var(--violet)"/><text x="${X(4.75) - 8}" y="204" text-anchor="end" font-size="10.5" style="fill:var(--violet)">GPUHammer hit the A6000 ~4.75 years in</text>` +
-      `<line x1="${X(f)}" y1="18" x2="${X(f)}" y2="150" stroke="var(--coral)" stroke-dasharray="3 3"/><text x="${Math.min(Math.max(X(f), 140), 420)}" y="14" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--coral)">flaw found</text>`; };
-    const chips = () => { const cur = Math.min(6, t), p = Math.min(6, f + .2); let h = "";
-      [[30, "sw"], [100, "hw"]].forEach(([y, k]) => { for (let i = 0; i < 20; i++) { const x = X(0) + i * 16.5, life = cur, st = life < f ? "ok" : k === "sw" ? (life < p ? "bad" : "ok") : "tax";
-        h += `<rect x="${f1(x)}" y="${y + (i % 2) * 14}" width="13" height="12" rx="2" fill="${st === "ok" ? "var(--amber)" : st === "bad" ? "var(--coral)" : "url(#spoH)"}" stroke="${st === "tax" ? "var(--coral)" : "none"}" opacity="${t > 6 ? .35 : 1}"/>`; } });
-      if (t > 6) h += `<text x="${X(3)}" y="96" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--amber)">retired, replaced ↻</text>`;
-      $("#spoF").innerHTML = h; $("#spoPh").setAttribute("x1", f1(X(Math.min(6, t)))); $("#spoPh").setAttribute("x2", f1(X(Math.min(6, t)))); };
-    const out = () => { $("#spoRv").textContent = `${f} yr`; $("#spoN").textContent = f >= 6 ? "0 years" : `${(6 - f).toFixed(2).replace(/\.?0+$/, "")} years`; $("#spoS").textContent = f >= 6 ? "Found at retirement: the fleet outlived it." : "with the flaw in every chip. The software bug was patched in about ten weeks."; };
-    K.slider(fr, "#spoR", v => { f = v; base(); out(); t = 0; });
-    K.onEnter(fr, () => { t = 0; });
-    K.raf(fr, dt => { t += dt / 900; if (t > 7.4) t = 0; chips(); });
-  } };
-
-
-
-
-
-// ---------------------------------------------------------- slide 2
-A["silicon-2a"] = { html: () => `<div class="k-col sbf"><div class="sbf-top"><p class="k-out"><span>One weight in an image model:</span><b id="sbfV">0.0127</b></p><button type="button" class="k-b" id="sbfR">Reset</button></div>
-      <div class="sbf-bits" id="sbfB">${Array.from({ length: 16 }, (_, i) => `<button type="button" class="sbf-b${i === 1 ? " hint" : ""}" data-i="${i}">0</button>`).join("")}</div>
-      <div class="sbf-lab"><span style="flex:1">sign</span><span style="flex:5">exponent</span><span style="flex:10">fraction</span></div>
-      <div class="sbf-m"><div class="sbf-g" id="sbfG">${Array.from({ length: 50 }, () => "<i></i>").join("")}</div><div class="sbf-acc"><span>Model accuracy</span><b id="sbfA">80%</b><svg class="sbf-hm" id="sbfH" viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="6" width="22" height="11" rx="2" fill="var(--faint)"/><rect x="16" y="15" width="5" height="22" rx="2" fill="#c9a45a"/></svg></div></div>
-    </div>${cap("A half-precision (FP16) weight. Flipping the exponent’s top bit multiplies it by 65,536. GPUHammer (2025) did this through the memory of an Nvidia A6000: ResNet-50 fell from 80% to 0.08% accuracy. The image grid is illustrative.")}`,
-  init: fr => {
-    const ORIG = [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1]; let bits = [...ORIG];
-    const bs = [...fr.querySelectorAll(".sbf-b")], gs = [...fr.querySelectorAll("#sbfG i")], R = K.rng(5), ok80 = gs.map(() => R() < .8);
-    const val = b => { const s = b[0] ? -1 : 1, e = parseInt(b.slice(1, 6).join(""), 2), m = parseInt(b.slice(6).join(""), 2); if (e === 31) return m ? NaN : s * Infinity; return e === 0 ? s * Math.pow(2, -14) * (m / 1024) : s * Math.pow(2, e - 15) * (1 + m / 1024); };
-    const v0 = val(ORIG), fmt = v => !isFinite(v) ? (isNaN(v) ? "NaN" : v > 0 ? "∞" : "−∞") : Math.abs(v) >= 100 ? Math.round(v).toLocaleString("en-US") : Math.abs(v) >= 1 ? v.toFixed(2) : v.toPrecision(3);
-    const upd = hit => { bs.forEach((b, i) => { b.textContent = bits[i]; b.classList.toggle("flip", bits[i] !== ORIG[i]); });
-      const v = val(bits), k = Math.abs(v / v0), broke = !isFinite(v) || k >= 256;
-      fr.querySelector("#sbfV").textContent = fmt(v); fr.querySelector("#sbfV").classList.toggle("bad", broke);
-      gs.forEach((g, i) => { g.className = broke ? (i === 7 ? "ok" : "no") : ok80[i] ? "ok" : "no"; g.style.transitionDelay = (i * 18) + "ms"; });
-      const only = bits.every((b, i) => (i === 1 ? b !== ORIG[i] : b === ORIG[i]));
-      fr.querySelector("#sbfA").textContent = broke ? (only ? "0.08%" : "~0%") : "80%"; fr.querySelector("#sbfA").classList.toggle("bad", broke);
-      if (hit && broke) { const h = fr.querySelector("#sbfH"); h.classList.remove("go"); void h.offsetWidth; h.classList.add("go"); } };
-    bs.forEach((b, i) => b.addEventListener("click", () => { bits[i] ^= 1; bs[1].classList.remove("hint"); upd(true); }));
-    fr.querySelector("#sbfR").addEventListener("click", () => { bits = [...ORIG]; upd(); });
-    K.onEnter(fr, () => { bits = [...ORIG]; upd(); });
-    upd();
+    K.raf(fr, dt => { const end = g > 0 ? Math.min(14, Math.log(R0) / Math.log(1 + g) + 1.5) : 14; if (t < end) { t = Math.min(end, t + dt / 300); draw(); } });
   } };
 
 
@@ -2385,7 +2062,7 @@ A["silicon-2a"] = { html: () => `<div class="k-col sbf"><div class="sbf-top"><p 
 
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"1":"weights-1a","2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a","2":"molecules-2a","3":"molecules-3a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a","3":"quantum-3b"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","2":"tokens-2a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a","3":"factory-3a"},"chipnames":{"1":"chipnames-1a"},"openclaw":{"1":"openclaw-1a","2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"},"silicon":{"1":"silicon-1a","2":"silicon-2a"}};
+  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a","3":"factory-3a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];

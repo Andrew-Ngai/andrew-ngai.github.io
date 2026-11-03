@@ -1668,7 +1668,7 @@ const VIZ = {
         <svg class="nt-net" viewBox="0 0 460 70" aria-hidden="true">${Array.from({ length: 23 }, (_, i) => `<line x1="${10 + i * 20}" y1="0" x2="${150 + i * 7}" y2="60"/>`).join("")}<rect x="140" y="58" width="180" height="10" rx="3"/></svg>
         <p class="nt-w">The weights score every possible next token</p>
         <ol class="nt-cands" id="ntCands"></ol>
-        <div class="nt-ctrl"><button type="button" id="ntStep">Next token</button><button type="button" id="ntPlay" aria-label="Pause">❚❚</button><button type="button" id="ntReset">Start over</button></div>
+        <div class="nt-ctrl"><button type="button" id="ntStep">Next token</button><button type="button" id="ntPlay" aria-label="Pause">❚❚</button></div>
       </div><p class="cap">Illustrative probabilities. Real models pick from tens of thousands of tokens on every pass.</p></div>
       <div class="frame f2">${F2}<p class="cap">Costs: Cottier et al., Epoch AI. File size is arithmetic: 10¹² weights at 2 bytes each.</p></div>
       <div class="frame f3">${F3}<p class="cap">RAND, “Securing AI Model Weights” (2024). The attacker gets past rings that don’t exist yet.</p></div>
@@ -2377,7 +2377,6 @@ const VIZ = {
         <p class="bf-grp" aria-hidden="true"><span class="s">sign</span><span class="e">exponent</span><span class="m">fraction</span></p>
         <div class="bf-acc"><span class="bf-acc-l">Model accuracy</span><span class="bf-bar"><i id="bfBar"></i></span><b id="bfAcc">80%</b></div>
         <p class="sx-out bf-out" id="bfOut" aria-live="polite"></p>
-        <div><button type="button" class="tk-r bf-reset" id="bfReset">Reset the weight</button></div>
       </div>`;
 
     // ---- frame 3: where each attack has to stand, from anywhere online down to the memory bus
@@ -2875,7 +2874,6 @@ const VIZ_INIT = {
         : `<b>×${k < 10 ? k.toFixed(k < 1 ? 3 : 2).replace(/\.?0+$/, "") : Math.round(k)}</b><span>A nudge the model can mostly absorb. The danger is the top of the exponent.</span>`;
     };
     btns.forEach((b, i) => b.addEventListener("click", () => { bits[i] ^= 1; btns[1].classList.remove("hint"); upd(); }));
-    $("#bfReset", root).addEventListener("click", () => { bits = [...ORIG]; upd(); });
     upd();
   },
   neocloud(root) {
@@ -2984,7 +2982,6 @@ const VIZ_INIT = {
     const setPlay = v => { playing = v; $("#ntPlay", root).textContent = v ? "❚❚" : "▶"; $("#ntPlay", root).setAttribute("aria-label", v ? "Pause" : "Play"); };
     $("#ntStep", root).addEventListener("click", () => { setPlay(false); step(); });
     $("#ntPlay", root).addEventListener("click", () => setPlay(!playing));
-    $("#ntReset", root).addEventListener("click", () => { n = 0; busy = false; draw(); });
     setPlay(playing); draw();
     const timer = setInterval(() => {
       if (!root.contains(row) || memo.hidden) return clearInterval(timer);
