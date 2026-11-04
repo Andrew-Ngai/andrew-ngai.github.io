@@ -63,6 +63,9 @@ const SRC = {
   sherwood: "https://sherwood.news/tech/alphabet-amazon-microsoft-meta-plan-more-than-700-billion-on-capex-this-year/",
   wmedia: "https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/",
   skh: "https://news.skhynix.com/en/q2-2026-business-results/",
+  skhQ3: "https://www.koreatimes.co.kr/business/companies/20261028/sk-hynix-logs-record-q3-operating-profit-of-628-bil",
+  gevQ3: "https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance",
+  bloomQ3: "https://bloomenergy.com/news/bloom-energy-reports-record-third-quarter-2026-financial-results-and-raises-full-year-2026-guidance/",
   trend: "https://www.trendforce.com/news/2026/06/15/news-tsmc-cowos-supply-demand-gap-reportedly-seen-narrowing-from-20-to-10-by-end-2026-as-capacity-expands/",
   sg: "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
   stat: "https://www.statnews.com/2023/05/02/loneliness-surgeon-general/",
@@ -143,6 +146,7 @@ const SRC = {
   mrvlHigh: "https://www.fool.com/investing/2026/06/18/marvell-stock-just-hit-a-new-high-a-quiet-amazon-d/",
   mrvlQ2: "https://pulse2.com/marvell-data-center-revenue-growth-accelerates-to-46-as-ai-demand-drives-record-2-74-billion-quarter/",
   mrvlLite: "https://www.fool.com/investing/2026/10/29/why-marvell-stock-is-down-today/",
+  mrvlDeal: "https://techcrunch.com/2026/11/02/in-one-of-the-largest-deals-in-tech-history-marvell-buys-lumentum-for-115b/",
   nbFrame: "https://betteresearch.com/posts/nebius-investment-framework",
   nbTf: "https://nebius.com/newsroom/nebius-launches-nebius-token-factory-to-deliver-production-ai-inference-at-scale",
   amodeiMlg: "https://www.darioamodei.com/essay/machines-of-loving-grace",
@@ -289,12 +293,13 @@ const THESES = [
       <p>He was right about power. The gas was never the hard part.</p>`,
     takes: [
       ["The fuel isn’t the constraint. The conversion is.", "Gas in the ground does nothing until a turbine, a transformer and a substation turn it into power at the rack."],
-      ["The queue is measured in years.", "GE Vernova’s gas turbine backlog reached 116 GW in Q2 2026, and it’s taking reservations for 2031 deliveries. A well takes months. A turbine slot takes about five years."],
+      ["The queue is measured in years.", "GE Vernova’s gas turbine backlog and slot reservations reached 122 GW in Q3 2026, and it expects at least 130 GW by year-end. It’s taking reservations for 2031 deliveries. A well takes months. A turbine slot takes about five years."],
       ["Chips are already waiting on power.", "In late 2025, Satya Nadella said Microsoft’s problem had shifted from getting enough chips to having chips it couldn’t plug in."]
     ],
     bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
-    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take2"], why: "GE Vernova reported its third quarter on October 28: gas turbine backlog and slot reservations grew from 116 GW to 122 GW, and it expects at least 130 GW by year-end. Take 2 and slide 2 cited the Q2 figure of 116 GW." }],
+    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["GE Vernova Q3 2026 results (Oct 2026)", SRC.gevQ3], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
     viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
   {
@@ -309,13 +314,14 @@ const THESES = [
       <p>That’s Nvidia explaining why its racks move to 800-volt DC with Kyber in 2027. Today, power reaches a data center as AC, gets stepped down and converted several times, and arrives at the chips as DC.</p>
       <p>A fuel cell makes DC in the first place. Bloom Energy builds them, and it already wins on speed.</p>`,
     takes: [
-      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue passed $1 billion for the first time in Q2 2026, up 166%."],
+      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue has topped $1 billion two quarters running: $1.24 billion in Q3 2026, up 138%."],
       ["It scales like compute, not like a power plant.", "Each Energy Server is a 325 kW block about 9 meters long, so capacity grows as racks arrive, and Bloom planned to double production capacity to 2 GW a year by the end of 2026. No combustion, almost no NOx, no water in normal operation. The catch: it runs mostly on natural gas, and efficiency fades from 65% to 53% as the cells age."],
       ["DC is the sleeper.", "A fuel cell can feed DC straight to the row, skipping transformers and switchgear that are themselves backlogged. Bloom says that cuts non-compute capex for a 1 GW site by $3.6 billion, about 27%. That’s the company’s own math, but the direction is right."]
     ],
-    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back it, and the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
+    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
-    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
+    updates: [{ on: "Oct 22, 2026", short: "Oct 22", parts: ["take1"], why: "Bloom reported its third quarter on October 22: revenue of $1.24 billion, up 138%. Take 1 said quarterly revenue had passed $1 billion for the first time in Q2, up 166%. It now cites both quarters." }],
+    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q3 2026 results (Oct 2026)", SRC.bloomQ3], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
     viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
   {
@@ -413,7 +419,7 @@ const THESES = [
     takes: [
       ["You don’t have to pick the winning lab.", "Every lab’s scaling plan buys the same four things: chips, memory, datacenters and power. Owning the builders is a bet on scaling itself."],
       ["Bankruptcies don’t break it.", "The 1990s telecom boom put over $500 billion, mostly debt, into fiber and networks. WorldCom and Global Crossing collapsed and bondholders got back about 20 cents on the dollar. The fiber stayed in the ground and carried the internet’s next decade."],
-      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software. Adobe is the example I watch."]
+      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software."]
     ],
     bet: "For venture, I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
     wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
@@ -448,22 +454,23 @@ const THESES = [
     h2: "The bottleneck moved | below the GPU.",
     short: "Below the GPU",
     hook: "The GPU is the brand. Memory is the moat.",
-    ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q2 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
+    ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q3 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
     signal: `<p>Everyone tracks who makes the best GPU. 2026’s numbers say the choke points sit beside and beneath it: the HBM memory stacked next to the die, and the packaging that joins them.</p>
       <p>The GPU is the brand. Memory is the moat.</p>`,
     takes: [
-      ["Memory is where the margin went.", "SK hynix posted a 76% operating margin in Q2 2026 and has long-term agreements with about ten major customers. Buyers are paying for guaranteed supply."],
-      ["Packaging is loosening first.", "TrendForce expects TSMC’s CoWoS shortfall to narrow from about 20% to about 10% by the end of 2026. That bottleneck has a visible end. Memory’s doesn’t yet."],
+      ["Memory is where the margin went.", "SK hynix posted an 80% operating margin in Q3 2026, and says more than half of its 2027 and 2028 production capacity is already covered by long-term agreements. Buyers are paying for guaranteed supply."],
+      ["CoWoS is loosening first.", "TrendForce expects TSMC’s CoWoS shortfall to narrow from about 20% to about 10% by the end of 2026. That bottleneck has a visible end. Memory’s doesn’t yet."],
       ["Agents are memory-bound.", "Long-running agents hold long contexts, and the KV cache grows with every token they keep in mind. SK hynix itself says agentic AI is widening demand for every kind of memory."]
     ],
     bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
     wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
-    receipts: [["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take1"], why: "SK hynix reported its third quarter on October 28: an 80% operating margin, up from 76% in Q2, and more than half of its 2027 and 2028 capacity already covered by long-term agreements. Take 1 and slide 2 cited Q2’s 76% and about ten customers on long-term agreements." }],
+    receipts: [["Korea Times on SK hynix’s Q3 2026 results (Oct 2026)", SRC.skhQ3], ["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
     viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
   {
     id: "backend", die: [0, 3], stance: "build",
-    layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in CoWoS capacity, not wafers."],
+    layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in packaging capacity, not wafers."],
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
     h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
     short: "The back end is the bottleneck",
@@ -476,8 +483,8 @@ const THESES = [
       ["Bigger packages, more ways to fail.", "An AI package holds a GPU and its HBM stacks on an interposer, and the GPU silicon alone has roughly doubled, from Hopper’s 814 mm² die to about 1,700 mm² across Blackwell’s two. One bad die scraps the whole package, so testing before assembly decides the yield. Even the substrate’s glass cloth is short: Nittobo makes about 90% of the specialist low-expansion cloth, and new supply lands in mid-2027."],
       ["A US chip isn’t made in the US until it’s packaged.", "The first US-made Blackwell wafer came off TSMC’s Arizona line in October 2025 and still flew to Taiwan for CoWoS. TSMC has started building an Arizona packaging plant for CoWoS before 2029, and Amkor raised its Arizona campus to about $12 billion, alongside a $1.5 billion multiyear Nvidia deal that includes a prepayment."]
     ],
-    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. Back the back end: packaging and test houses taking on CoWoS work, substrate materials, and the bonding and inspection tools that make big packages yield. The first US packaging lines at scale are worth more than they look.",
-    wrong: "CoWoS supply catches up with demand in 2027 and stays caught up while AI chip shipments keep growing.",
+    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. As CoWoS slots loosen, the squeeze moves to what surrounds them: substrates, test and US capacity. Back the back end: packaging and test houses, substrate materials, and the bonding and inspection tools that make big packages yield.",
+    wrong: "By 2028, CoWoS, substrates and test all keep up with demand while AI chip shipments keep growing, and wafer starts are the limit again.",
     receipts: [["Chip War (2022)", SRC.chipwar], ["TrendForce on CoWoS supply (June 2026)", SRC.trend], ["TrendForce on CoWoS outsourcing (Aug 2026)", SRC.cowosOut], ["Tom’s Hardware on T-glass (Mar 2026)", SRC.tglass], ["DCD on the Arizona Blackwell wafer (Oct 2025)", SRC.bwWafer], ["DCD on TSMC’s Arizona packaging (Apr 2026)", SRC.tsmcAp], ["AZ Big Media on Amkor (Sept 2026)", SRC.amkor], ["Yahoo Finance on Amkor and Nvidia (July 2026)", SRC.amkorNv]],
     viz: "backend", echo: { pose: "pickplace", acc: "pickplace", name: "Packager" }
   },
@@ -600,12 +607,14 @@ const THESES = [
     takes: [
       ["Custom wins on the job, not the spec sheet.", "A GPU is built to run anything. A custom accelerator, or ASIC, is built for one company’s models, trading flexibility for cost and power. Custom ASIC shipments were projected to grow 44.6% in 2026 against 16.1% for GPUs, and Broadcom and Marvell co-design about 95% of them. Anthropic alone plans to add 5 GW of Google’s TPU v8i in 2027, per Broadcom."],
       ["The insourcing threat is real, and partial.", "Google brought in MediaTek as a second design partner for TPU v7. Amazon designs Trainium in-house at Annapurna Labs, and in December 2025 Benchmark said it was highly confident Marvell had lost Trainium3 and Trainium4 to Taiwan’s Alchip. What customers keep buying is the hard periphery: high-speed I/O, the memory interface, packaging and a slice of TSMC’s scarce CoWoS capacity, where Broadcom holds about 15%."],
-      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. Marvell’s stock more than tripled in the first half of 2026, partly on optical networking, then fell about 13% on October 29 after Bloomberg reported it was in advanced talks to buy Lumentum, an optical-parts maker worth about $83 billion, likely in stock."]
+      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. On November 2, Marvell agreed to buy Lumentum, which makes the lasers and optical parts that carry data between AI chips, in an all-stock deal valued at about $115 billion including debt. It’s expected to close in the first half of 2028."]
     ],
-    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell is betting optics becomes its moat, and a Lumentum deal would make that bet in one move.",
+    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell just made the same bet in one move: optics as its moat, bought with $115 billion of stock.",
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
-    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["Motley Fool on the Lumentum talks (Oct 2026)", SRC.mrvlLite]],
+    published: "Nov 1, 2026",
+    updates: [{ on: "Nov 2, 2026", short: "Nov 2", parts: ["take3", "bet"], why: "Marvell signed its deal to buy Lumentum on November 2. When this thesis went up on November 1, take 3 and the bet described the talks. They now describe the signed deal: about $115 billion in stock, closing in the first half of 2028." }],
+    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["TechCrunch on Marvell’s Lumentum deal (Nov 2026)", SRC.mrvlDeal]],
     viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
   {
@@ -1101,7 +1110,7 @@ const VIZ = {
       </svg><p class="cap">Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).</p></div>
       <div class="frame f2"><svg viewBox="0 0 520 280" role="img" aria-label="A conveyor line of gas turbines waiting their turn. An order placed now gets a slot around 2031, while the fuel is drilled in under a year.">
         <text x="24" y="32" class="t-strong" font-size="17">Gas turbine delivery slot</text>
-        <text x="24" y="52" font-size="13">GE Vernova’s backlog: 116 GW</text>
+        <text x="24" y="52" font-size="13">GE Vernova’s backlog: 122 GW</text>
         <g transform="translate(318 18)" class="ml-fuel"><rect width="182" height="28" rx="14"/><path d="M14 14 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="18.5" font-size="12.5" class="t-strong">Fuel: drilled in under a year</text></g>
         <path d="M${X(2026.75)} 104 V96 H${X(2031) + 2} V104" fill="none" stroke="var(--coral)" stroke-width="1.5"/>
         <text x="${(X(2026.75) + X(2031)) / 2}" y="88" text-anchor="middle" font-size="14" class="t-strong ml-wait">about five years in line</text>
@@ -1112,7 +1121,7 @@ const VIZ = {
         <g transform="translate(${(86 + 10 * 39.4 - 30).toFixed(1)} 118)"><g class="ml-ticket"><path d="M0 0 H60 V12 a4 4 0 0 0 0 8 V32 H0 V20 a4 4 0 0 0 0 -8 Z"/><text x="30" y="13" text-anchor="middle" font-size="9" class="ml-tk-k">YOUR SLOT</text><text x="30" y="27" text-anchor="middle" font-size="13" class="ml-tk-v">2031</text></g></g>
         <line class="ax" x1="60" y1="236" x2="500" y2="236"/>
         ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="ax" x1="${X(y)}" y1="232" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="258" text-anchor="middle" font-size="13">${y}</text>`).join("")}
-      </svg><p class="cap">Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.</p></div>
+      </svg><p class="cap">Machines: GE Vernova’s gas turbine backlog and slot reservations hit 122 GW in Q3 2026, and it’s taking reservations for 2031.</p></div>
       <div class="frame f3"><svg viewBox="0 0 520 240" role="img" aria-label="Chain from gas well to turbine, transformer, substation and rack. The queue sits in the middle three.">
         <path d="M110 58 V46 H410 V58" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="260" y="36" text-anchor="middle" font-size="16" style="fill:var(--coral);font-weight:700">the queue lives here</text>
         <line class="ax" x1="50" y1="120" x2="470" y2="120"/>
@@ -1192,7 +1201,7 @@ const VIZ = {
       </div>
       <div>
         <div class="pkg-legend"><span><i style="background:var(--amber)"></i>HBM stacks</span><span><i style="background:var(--beat)"></i>Logic die</span><span><i style="background:var(--violet)"></i>Interposer (CoWoS)</span><span><i style="background:#2a4d70"></i>Substrate</span></div>
-        <div class="cap-set" style="margin-top:calc(8 * var(--u))"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran a 76% operating margin in Q2 2026.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
+        <div class="cap-set" style="margin-top:calc(8 * var(--u))"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran an 80% operating margin in Q3 2026, and more than half of its 2027–28 capacity is under long-term agreements.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
       </div>
     </div></div>`;
   },
@@ -1764,7 +1773,7 @@ const VIZ = {
       </svg>
       <div class="ep-read" id="epRead"></div>
     </div><p class="cap">Simplified Blackwell-style package, not to scale. TrendForce (2026), Tom’s Hardware (Mar 2026).</p></div>
-      <div class="frame f3"><svg viewBox="0 0 460 300" class="hg" aria-label="An hourglass. Wafer starts pour into the top and crowd toward a narrow neck, CoWoS packaging capacity, where only a trickle of AI chips gets through to the bottom. Through 2028, count the neck.">
+      <div class="frame f3"><svg viewBox="0 0 460 300" class="hg" aria-label="An hourglass. Wafer starts pour into the top and crowd toward a narrow neck, packaging capacity, where only a trickle of AI chips gets through to the bottom. Through 2028, count the neck.">
       <defs><clipPath id="hgClip"><path d="M110 40 H250 C250 100 196 128 188 150 C196 172 250 200 250 260 H110 C110 200 164 172 172 150 C164 128 110 100 110 40 Z"/></clipPath></defs>
       <text x="14" y="22" class="t-strong" font-size="15">Through 2028, count the neck</text>
       <path d="M110 40 H250 C250 100 196 128 188 150 C196 172 250 200 250 260 H110 C110 200 164 172 172 150 C164 128 110 100 110 40 Z" fill="var(--ink-2)"/>
@@ -1781,7 +1790,7 @@ const VIZ = {
       <rect x="100" y="34" width="160" height="7" rx="3" fill="var(--rule)"/><rect x="100" y="259" width="160" height="7" rx="3" fill="var(--rule)"/>
       <line x1="236" y1="70" x2="262" y2="70" stroke="var(--beat)" stroke-width="1.5"/><text x="268" y="66" class="t-strong" font-size="13">Wafer starts</text><text x="268" y="82" font-size="11.5" style="fill:var(--beat)">plenty</text>
       <text x="180" y="282" text-anchor="middle" font-size="12" style="fill:var(--amber)">AI chips shipped: a trickle</text>
-      <line x1="196" y1="150" x2="262" y2="150" stroke="var(--coral)" stroke-width="1.5"/><text x="268" y="146" class="t-strong" font-size="13">CoWoS capacity</text><text x="268" y="162" font-size="11.5" style="fill:var(--coral)" class="hg-lab">the neck</text>
+      <line x1="196" y1="150" x2="262" y2="150" stroke="var(--coral)" stroke-width="1.5"/><text x="268" y="146" class="t-strong" font-size="13">Packaging capacity</text><text x="268" y="162" font-size="11.5" style="fill:var(--coral)" class="hg-lab">the neck</text>
       <text x="300" y="196" font-size="12" style="fill:var(--amber)" font-weight="700">BACK THE BACK END</text>
       <g class="hg-b" style="animation-delay:0.4s"><rect x="300" y="206" width="8" height="8" fill="var(--amber)"/><text x="314" y="214" font-size="12.5" style="fill:var(--paper)">Packaging and test houses</text></g><g class="hg-b" style="animation-delay:0.7s"><rect x="300" y="230" width="8" height="8" fill="var(--amber)"/><text x="314" y="238" font-size="12.5" style="fill:var(--paper)">Substrate materials</text></g><g class="hg-b" style="animation-delay:1.0s"><rect x="300" y="254" width="8" height="8" fill="var(--amber)"/><text x="314" y="262" font-size="12.5" style="fill:var(--paper)">Bonding and inspection tools</text></g>
     </svg><p class="cap">The bet: AI chip supply is set by packaging capacity, not wafer starts, through 2028.</p></div>
@@ -3250,7 +3259,7 @@ function renderHome() {
 
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).short}</span>` : ""}</a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
@@ -3544,13 +3553,18 @@ function setType(root) {
   });
 }
 
+// theses revised after they went up carry an update log: a dated note on what changed and why
+const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
+const updTag = (t, part) => { const u = (t.updates || []).filter(x => x.parts.includes(part)).pop(); return u ? ` <button type="button" class="upd-tag" aria-controls="memoUpd">Updated ${u.short}</button>` : ""; };
+
 function memoHTML(t) {
   const b = BINS[t.stance];
+  const u = lastUpd(t);
   const idx = THESES.indexOf(t);
   const next = THESES[(idx + 1) % THESES.length];
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
-      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>
+      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.short}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <div class="memo-src">
         <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
@@ -3559,6 +3573,7 @@ function memoHTML(t) {
           <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
         </div>
       </div>
+      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.on}</b><span>${x.why}</span></li>`).join("")}</ul>${t.published ? `<p class="upd-pub">First published ${t.published}.</p>` : ""}</div>` : ""}
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
@@ -3570,14 +3585,13 @@ function memoHTML(t) {
         </section>
         <section class="slide" aria-label="Slide 2 of 3, my take">
           <p class="slide-k">My take</p>
-          <ol class="takes">${t.takes.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join("")}</ol>
+          <ol class="takes">${t.takes.map(([h, p], i) => `<li><b>${h}${updTag(t, "take" + (i + 1))}</b><span>${p}</span></li>`).join("")}</ol>
         </section>
         <section class="slide" aria-label="Slide 3 of 3, the bet">
-          <p class="slide-k">The bet</p>
+          <p class="slide-k">The bet${updTag(t, "bet")}</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}</div>
-          ${t.note ? `<p class="memo-note">${t.note}</p>` : ""}
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
       <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
@@ -3711,9 +3725,16 @@ function openMemo(id) {
 
   // Receipts: a menu in the top bar, so the sources are one click away on every slide
   const srcBtn = $("#memoSrcBtn"), srcPanel = $("#memoSrc");
-  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); };
+  const updBtn = $("#memoUpdBtn"), updPanel = $("#memoUpd");
+  const setUpd = open => { if (!updPanel) return; updPanel.hidden = !open; updBtn.setAttribute("aria-expanded", String(open)); };
+  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); if (open) setUpd(false); };
   srcBtn.addEventListener("click", () => setSrc(srcPanel.hidden));
   [...memo.children].forEach(el => el.addEventListener("click", e => { if (!srcPanel.hidden && !e.target.closest(".memo-src")) setSrc(false); }));
+  if (updPanel) {
+    updBtn.addEventListener("click", () => { setUpd(updPanel.hidden); if (!updPanel.hidden) setSrc(false); });
+    memo.querySelectorAll(".upd-tag").forEach(b => b.addEventListener("click", () => { setSrc(false); setUpd(true); }));
+    [...memo.children].forEach(el => el.addEventListener("click", e => { if (!updPanel.hidden && !e.target.closest(".m-upd, .upd-tag, .memo-upd-panel")) setUpd(false); }));
+  }
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
@@ -3722,6 +3743,7 @@ function openMemo(id) {
   memoKeys = e => {
     if (memo.hidden) return;
     if (e.key === "Escape" && !srcPanel.hidden) { setSrc(false); srcBtn.focus(); }
+    else if (e.key === "Escape" && updPanel && !updPanel.hidden) { setUpd(false); updBtn.focus(); }
     else if (e.key === "Escape") closeMemo(true);
     else if (e.target === slides && ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(e.key)) {
       e.preventDefault();

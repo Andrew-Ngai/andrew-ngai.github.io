@@ -155,7 +155,7 @@ A["automate-3a"] = { html: () => {
         <g><circle cx="${X(NOW)}" cy="110" r="5" fill="var(--paper)" class="k-throb"/><text x="${X(NOW)}" y="140" text-anchor="middle" font-size="10.5" style="fill:var(--paper)">today</text></g>
         <g class="k-pop" style="--d:2.1s"><circle cx="${X(2028.2)}" cy="110" r="10" fill="none" stroke="var(--coral)" stroke-width="2.5" class="k-throb"/><text x="${X(2028.2)}" y="88" text-anchor="end" font-size="11.5" class="t-strong">Mar 2028</text><text x="${X(2028.2)}" y="74" text-anchor="end" font-size="10.5">automated AI researcher: target</text></g>
       </svg>
-      <div class="cd"><div><b id="cdD">—</b><span>days to the March 2028 target</span></div><div><b id="cdP">—</b><span>of the way from intern to researcher</span></div></div>
+      <div class="cd"><div><b id="cdD">—</b><span>days to the March 2028 target</span></div><div><b id="cdP">—</b><span>of the time to the target has passed</span></div></div>
     </div>${cap("OpenAI’s stated milestones, September 6, 2026. The countdown runs to March 1, 2028.")}`; },
   init: fr => {
     const now = new Date(), tgt = new Date(2028, 2, 1), start = new Date(2026, 8, 6);
@@ -1037,7 +1037,7 @@ const pkg = (id, hl = "") => `<div class="p3" id="${id}" data-hl="${hl}"><div cl
     <div class="p3-l sub" data-k="sub"></div><div class="p3-l int" data-k="int"></div><div class="p3-l die" data-k="die"><i></i></div>
     ${HBM.map(([x, y]) => `<div class="p3-h" data-k="hbm" style="left:${x}px;top:${y}px">${Array.from({ length: 8 }, (_, i) => `<b style="--i:${i}"></b>`).join("")}</div>`).join("")}
   </div></div>`;
-const LEG = [["hbm", "HBM stacks", "var(--amber)", "Eight memory dies stacked and wired through with TSVs. SK hynix ran a 76% operating margin on this in Q2 2026."], ["die", "Logic die", "var(--beat)", "The GPU itself. Everyone tracks it; it’s the brand."], ["int", "Interposer (CoWoS)", "var(--paper)", "The silicon slab that wires memory to the GPU. TSMC’s CoWoS capacity is the packaging bottleneck."], ["sub", "Substrate", "#2a4d70", "The organic base that connects the package to the board."]];
+const LEG = [["hbm", "HBM stacks", "var(--amber)", "Eight memory dies stacked and wired through with TSVs. SK hynix ran an 80% operating margin on this in Q3 2026."], ["die", "Logic die", "var(--beat)", "The GPU itself. Everyone tracks it; it’s the brand."], ["int", "Interposer (CoWoS)", "var(--paper)", "The silicon slab that wires memory to the GPU. TSMC’s CoWoS capacity is the packaging bottleneck."], ["sub", "Substrate", "#2a4d70", "The organic base that connects the package to the board."]];
 const wire3d = (fr, sel) => {
   const P = fr.querySelector(sel); if (!P) return;
   let rz = -38, rx = 58, trz = -38, trx = 58, drag = false;
@@ -1063,10 +1063,10 @@ A["memory-1a"] = { html: () => `<div class="k-col p3w">${pkg("p3a")}${legend()}<
 
 // ---------------------------------------------------------- slide 2
 A["memory-2a"] = { html: () => `<div class="k-col mg"><div class="mg-w">${pkg("p3b", "hbm")}
-      <div class="mg-r"><svg viewBox="0 0 160 100" class="mg-dial" aria-label="A dial at 76 percent."><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--ink-2)" stroke-width="14" stroke-linecap="round"/><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--amber)" stroke-width="14" stroke-linecap="round" pathLength="100" class="mg-arc"/><text x="80" y="82" text-anchor="middle" class="mg-v"><tspan data-to="76" data-dur="1600">0</tspan>%</text></svg>
-        <p class="mg-k">SK hynix operating margin, Q2 2026</p>
-        <div class="mg-lta">${Array.from({ length: 10 }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div><p class="mg-k">~10 major customers on long-term agreements</p></div></div>
-    </div>${cap("Memory: SK hynix ran a 76% operating margin in Q2 2026, with long-term agreements with about ten major customers.")}`,
+      <div class="mg-r"><svg viewBox="0 0 160 100" class="mg-dial" aria-label="A dial at 80 percent."><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--ink-2)" stroke-width="14" stroke-linecap="round"/><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--amber)" stroke-width="14" stroke-linecap="round" pathLength="100" class="mg-arc"/><text x="80" y="82" text-anchor="middle" class="mg-v"><tspan data-to="80" data-dur="1600">0</tspan>%</text></svg>
+        <p class="mg-k">SK hynix operating margin, Q3 2026</p>
+        <div class="mg-lta" aria-label="2027–28 production capacity: more than half under long-term agreements">${Array.from({ length: 10 }, (_, i) => `<i style="--i:${i}"${i < 5 ? ' class="on"' : ""}></i>`).join("")}</div><p class="mg-k">More than half of 2027–28 capacity under long-term agreements</p></div></div>
+    </div>${cap("Memory: SK hynix ran an 80% operating margin in Q3 2026, and more than half of its 2027–28 capacity is under long-term agreements.")}`,
   init: fr => { wire3d(fr, "#p3b"); fr.querySelector("#p3b").style.setProperty("--e", .75); } };
 
 
@@ -2001,31 +2001,31 @@ const MET = { inv: ["Private AI investment, 2025", 285.9, 12.4, v => `$${v}B`, "
 
 
 // ---------------------------------------------------------- slide 2
-A["race-2a"] = { html: () => `<div class="k-col rcu"><div class="rcu-top"><div class="k-seg"><button type="button" class="k-b" data-v="7.52">Today’s US lead: 7.5×</button><button type="button" class="k-b" data-v="2">If the lead were 2×</button></div></div>
-      <label class="k-row"><span>China’s compute grows faster by</span><input type="range" id="rcuR" min="0" max="60" value="30"><b id="rcuRv"></b></label>
-      <div class="rcu-m"><svg viewBox="0 0 340 170" class="k-svg" id="rcuC" aria-label="The US-to-China compute ratio falling over time toward parity."></svg>
-        <svg viewBox="0 0 110 170" class="k-svg" aria-label="Columns of US and China compute."><rect x="14" width="34" rx="3" fill="var(--beat)" id="rcuU"/><rect x="62" width="34" rx="3" fill="var(--coral)" id="rcuK"/><text x="31" y="164" text-anchor="middle" font-size="11" class="t-strong">US</text><text x="79" y="164" text-anchor="middle" font-size="11" class="t-strong">China</text><text x="55" y="12" text-anchor="middle" font-size="12" class="t-strong" id="rcuY">2026</text></svg></div>
-      <p class="k-out"><b id="rcuN"></b><span id="rcuS"></span></p></div>${cap("Illustrative. Starts from Epoch AI’s count of the world’s AI compute (US 72.2%, China 9.6%, Q2 2026). The US took 78% of new compute in the first half of 2026, so for now the gap is widening.")}`,
+
+
+A["race-2b"] = { html: () => `<div class="k-col rcm"><svg viewBox="0 0 460 230" class="k-svg" aria-label="Of all AI compute, the US holds 72.2 percent and China 9.6 percent. Of new compute added in the first half of 2026, 78 percent went to the US.">
+      <g id="rcmBk"></g><g id="rcmR"></g>
+      ${[["United States", 80, "var(--beat)"], ["China", 230, "var(--coral)"], ["Everyone else", 380, "var(--violet)"]].map(([n, x, c]) => `<rect x="${x - 62}" y="80" width="124" height="130" rx="4" fill="none" stroke="${c}" stroke-opacity=".5"/><text x="${x}" y="226" text-anchor="middle" font-size="12" class="t-strong" style="fill:${c}">${n}</text>`).join("")}
+      <text x="80" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--beat);font-family:var(--display)" id="rcmU"></text><text x="230" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--coral);font-family:var(--display)" id="rcmC"></text><text x="380" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--violet);font-family:var(--display)" id="rcmO"></text>
+      <text x="230" y="20" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--faint);letter-spacing:.1em" id="rcmT"></text>
+    </svg><div class="k-seg"><button type="button" class="k-b" data-v="stock">All AI compute today</button><button type="button" class="k-b" data-v="flow">New compute, H1 2026</button></div><p class="k-out"><b class="b">78%</b><span>of the new AI compute added in the first half of 2026 went to the US, above its 72% share of all of it. The US share is still growing.</span></p></div>${cap("Epoch AI: US 72.2% and China 9.6% of the world’s AI compute (Q2 2026). The US added 78% of the world’s new AI compute in the first half of 2026; the flow view doesn’t split the remaining 22%.")}`,
   init: fr => {
-    const $ = s => fr.querySelector(s); let R0 = 7.52, g = .3, t = 0;
-    const X = t => 30 + t * (300 / 14), Y = v => 14 + (3 - Math.log2(Math.max(v, .5))) * 34;
-    const draw = () => { const pts = []; for (let s = 0; s <= 14.001; s += .25) { const v = R0 / Math.pow(1 + g, s); if (v < .5) break; pts.push(`${f1(X(s))},${f1(Y(v))}`); }
-      const cross = g > 0 ? Math.log(R0) / Math.log(1 + g) : Infinity, v = R0 / Math.pow(1 + g, t);
-      $("#rcuC").innerHTML = `<rect x="30" y="${Y(1)}" width="300" height="${f1(Y(.5) - Y(1))}" fill="var(--coral)" fill-opacity=".08"/>` + [8, 4, 2, 1].map(v => `<line x1="30" x2="330" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="24" y="${Y(v) + 4}" text-anchor="end" font-size="10.5">${v}×</text>`).join("") +
-        `<line x1="30" x2="330" y1="${Y(1)}" y2="${Y(1)}" stroke="var(--coral)" stroke-dasharray="4 3"/><text x="328" y="${Y(1) - 5}" text-anchor="end" font-size="10.5" style="fill:var(--coral)">parity</text>` + [2026, 2030, 2035, 2040].map(y => `<text x="${f1(X(y - 2026))}" y="166" text-anchor="middle" font-size="10.5">${y}</text>`).join("") +
-        `<polyline points="${pts.join(" ")}" fill="none" stroke="var(--beat)" stroke-width="2.6"/>` + (cross <= 14 ? `<circle cx="${f1(X(cross))}" cy="${Y(1)}" r="5" fill="var(--ink)" stroke="var(--coral)" stroke-width="2.2"/>` : "") +
-        (v >= .5 ? `<circle cx="${f1(X(t))}" cy="${f1(Y(v))}" r="6" fill="var(--paper)"/>` : "");
-      const H = 130, cn = R0 / v, mx = Math.max(R0, cn), hu = H * R0 / mx, hk = Math.max(2, H * cn / mx);
-      $("#rcuU").setAttribute("height", f1(hu)); $("#rcuU").setAttribute("y", f1(150 - hu)); $("#rcuK").setAttribute("height", f1(hk)); $("#rcuK").setAttribute("y", f1(150 - hk));
-      $("#rcuY").textContent = Math.floor(2026 + t);
-      $("#rcuN").textContent = g === 0 ? "Never" : `${cross.toFixed(cross < 10 ? 1 : 0)} years`; $("#rcuS").textContent = g === 0 ? "At the same growth rate, the ratio holds." : `to catch up, around ${Math.round(2026 + cross)}. Now playing ${Math.floor(2026 + t)}: the US has ${v.toFixed(1)}× China’s compute.`; };
-    K.slider(fr, "#rcuR", v => { g = v / 100; $("#rcuRv").textContent = v + "%"; t = 0; draw(); });
-    K.tabs(fr, ".rcu .k-b", v => { R0 = +v; t = 0; draw(); }, "7.52");
-    K.onEnter(fr, () => { t = 0; });
-    K.raf(fr, dt => { const end = g > 0 ? Math.min(14, Math.log(R0) / Math.log(1 + g) + 1.5) : 14; if (t < end) { t = Math.min(end, t + dt / 300); draw(); } });
+    const $ = s => fr.querySelector(s); let mode = "stock", drops = [], placed = [0, 0, 0], tgt = [72, 10, 18], acc = 0;
+    const bx = [80, 230, 380];
+    const cell = (b, i) => `<rect x="${bx[b] - 58 + (i % 10) * 11.6}" y="${204 - Math.floor(i / 10) * 12.4}" width="10" height="10.8" rx="1.5" fill="${["var(--beat)", "var(--coral)", "var(--violet)"][b]}"/>`;
+    let picked = false, wait = 0;
+    const tabs = K.tabs(fr, ".rcm .k-b", v => { mode = v; drops = []; placed = [0, 0, 0]; tgt = v === "stock" ? [72, 10, 18] : [78, 0, 22]; $("#rcmT").textContent = v === "stock" ? "OF EVERY 100 UNITS OF AI COMPUTE" : "OF EVERY 100 NEW UNITS, H1 2026";
+      $("#rcmU").textContent = v === "stock" ? "72.2%" : "78%"; $("#rcmC").textContent = v === "stock" ? "9.6%" : "—"; $("#rcmO").textContent = v === "stock" ? "18.2%" : "22%"; fr.querySelector(".rcm").dataset.m = v; }, "stock");
+    const bs = [...fr.querySelectorAll(".rcm .k-b")];
+    bs.forEach(b => b.addEventListener("click", () => { picked = true; }));
+    K.onEnter(fr, () => { drops = []; placed = [0, 0, 0]; wait = 0; if (!picked && mode !== "stock") tabs(bs[0]); });
+    K.raf(fr, dt => { acc += dt; const tot = placed[0] + placed[1] + placed[2] + drops.length;
+      if (!picked && mode === "stock" && placed[0] + placed[1] + placed[2] >= 100 && (wait += dt) > 1800) tabs(bs[1]);
+      while (acc > 22 && tot < 100) { acc -= 22; const need = tgt.map((t, b) => Math.max(0, t - placed[b] - drops.filter(d => d.b === b).length)), sum = need[0] + need[1] + need[2]; if (!sum) break; let r = Math.random() * sum, b = 0; while (r >= need[b]) r -= need[b++]; drops.push({ b, i: placed[b] + drops.filter(d => d.b === b).length, y: 80 }); break; }
+      drops.forEach(d => d.y += dt * .5); const land = drops.filter(d => d.y >= 204 - Math.floor(d.i / 10) * 12.4); land.forEach(d => placed[d.b]++); drops = drops.filter(d => !land.includes(d));
+      $("#rcmBk").innerHTML = [0, 1, 2].map(b => Array.from({ length: placed[b] }, (_, i) => cell(b, i)).join("")).join("");
+      $("#rcmR").innerHTML = drops.map(d => `<rect x="${bx[d.b] - 58 + (d.i % 10) * 11.6}" y="${f1(d.y)}" width="10" height="10.8" rx="1.5" fill="${["var(--beat)", "var(--coral)", "var(--violet)"][d.b]}" opacity=".8"/>`).join(""); });
   } };
-
-
 
 
 
@@ -2039,7 +2039,7 @@ A["race-2a"] = { html: () => `<div class="k-col rcu"><div class="rcu-top"><div c
 
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"}};
+  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
