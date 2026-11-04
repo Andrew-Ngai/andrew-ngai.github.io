@@ -281,6 +281,7 @@ html.paused .die-echo.land{animation:none}
 .l-real small{display:block;margin-top:6px;font-family:var(--label);font-size:15px;color:var(--faint)}
 .l-real small a{color:var(--dim)}
 .l-real .l-upd{display:block;margin-top:4px;font-weight:700;letter-spacing:.02em;color:var(--upd)}
+.l-real .l-was{display:block;color:var(--beat)}
 .stamp{justify-self:start;display:inline-block;font-family:var(--label);font-weight:800;font-size:17px;letter-spacing:.08em;text-transform:uppercase;color:var(--bin);border:2.5px solid var(--bin);padding:6px 10px 5px;transform:rotate(-4deg);border-radius:3px;line-height:1.1;text-align:center;opacity:.92;box-shadow:inset 0 0 0 1px rgba(7,16,29,.4)}
 .l-row:nth-child(odd) .stamp{transform:rotate(3deg)}
 .stamp-link{display:block;margin-top:12px;font-family:var(--label);font-size:16px;color:var(--dim)}
@@ -530,18 +531,17 @@ blockquote.pull .qc{color:var(--bin)}
 .memo-src-panel a{display:block;padding:9px 0;font-family:var(--label);font-weight:600;font-size:18px;line-height:1.25;color:var(--paper);text-decoration:underline;text-decoration-color:rgba(238,244,248,.28);text-underline-offset:3px}
 .memo-src-panel a:hover{text-decoration-color:var(--bin)}
 /* update log: a dated pill in the header and beside each revised part, opening one note on what changed */
-.m-upd,.upd-tag{appearance:none;font-family:var(--label);font-weight:700;letter-spacing:.03em;text-transform:none;color:var(--upd);background:none;border:1px solid rgba(255,217,138,.55);border-radius:999px;cursor:pointer;white-space:nowrap}
+.m-upd{appearance:none;font-family:var(--label);font-weight:700;letter-spacing:.03em;text-transform:none;color:var(--upd);background:none;border:1px solid rgba(255,217,138,.55);border-radius:999px;cursor:pointer;white-space:nowrap}
 .m-upd{font-size:13px;padding:1px 9px 2px;margin-left:12px;vertical-align:1px}
-.upd-tag{font-size:12.5px;padding:0 8px 1px;margin-left:8px;vertical-align:3px}
-.m-upd:hover,.upd-tag:hover,.m-upd[aria-expanded="true"]{background:rgba(255,217,138,.12);border-color:var(--upd)}
-.m-upd:focus-visible,.upd-tag:focus-visible{outline:2px solid var(--upd);outline-offset:2px}
+.m-upd:hover,.m-upd[aria-expanded="true"]{background:rgba(255,217,138,.12);border-color:var(--upd)}
+.m-upd:focus-visible{outline:2px solid var(--upd);outline-offset:2px}
 .memo-upd-panel{position:absolute;top:calc(100% + 12px);left:var(--gutter);z-index:4;width:min(460px,calc(100vw - 2 * var(--gutter)));padding:16px 20px 14px;background:var(--ink-2);border:1px solid rgba(255,217,138,.45);border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.55)}
 .upd-k{font-family:var(--label);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--upd);margin:0 0 8px}
 .memo-upd-panel ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .memo-upd-panel li{display:grid;gap:4px}
 .memo-upd-panel li b{font-family:var(--label);font-weight:700;font-size:16px;color:var(--paper)}
 .memo-upd-panel li span{font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--dim)}
-.upd-pub{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);font-family:var(--label);font-size:14px;color:var(--faint)}
+.memo-upd-panel li .upd-was{font-family:var(--label);font-size:15px;line-height:1.35;color:var(--beat)}
 .t-item .t-upd{grid-column:2;justify-self:start;font-family:var(--label);font-weight:700;font-size:14px;letter-spacing:.03em;color:var(--upd);border:1px solid rgba(255,217,138,.5);border-radius:999px;padding:1px 9px 2px}
 @media (max-width:520px){.t-item .t-upd{grid-column:1}}
 /* A slide taller than its window: fade the bottom edge and show "More" */

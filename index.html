@@ -254,6 +254,7 @@ html.paused .die-echo.land{animation:none}
 .l-real small{display:block;margin-top:calc(6*var(--u));font-family:var(--label);font-size:calc(15*var(--u));color:var(--faint)}
 .l-real small a{color:var(--dim)}
 .l-real .l-upd{display:block;margin-top:calc(4*var(--u));font-weight:700;letter-spacing:.02em;color:var(--upd)}
+.l-real .l-was{display:block;color:var(--beat)}
 .stamp{justify-self:start;display:inline-block;font-family:var(--label);font-weight:800;font-size:calc(17*var(--u));letter-spacing:.08em;text-transform:uppercase;color:var(--bin);border:calc(2.5*var(--u)) solid var(--bin);padding:calc(6*var(--u)) calc(10*var(--u)) calc(5*var(--u));transform:rotate(-4deg);border-radius:calc(3*var(--u));line-height:1.1;text-align:center;opacity:.92;box-shadow:inset 0 0 0 calc(1*var(--u)) rgba(7,16,29,.4)}
 .l-row:nth-child(odd) .stamp{transform:rotate(3deg)}
 .stamp-link{display:block;margin-top:calc(12*var(--u));font-family:var(--label);font-size:calc(16*var(--u));color:var(--dim)}
@@ -485,18 +486,17 @@ blockquote.pull .qc{color:var(--bin)}
 .memo-src-panel li + li{border-top:calc(1*var(--u)) solid var(--rule)}
 .memo-src-panel a{display:block;padding:calc(9*var(--u)) 0;font-family:var(--label);font-weight:600;font-size:calc(18*var(--u));line-height:1.25;color:var(--paper);text-decoration:underline;text-decoration-color:rgba(238,244,248,.28);text-underline-offset:calc(3*var(--u))}
 .memo-src-panel a:hover{text-decoration-color:var(--bin)}
-.m-upd,.upd-tag{appearance:none;font-family:var(--label);font-weight:700;letter-spacing:.03em;text-transform:none;color:var(--upd);background:none;border:calc(1*var(--u)) solid rgba(255,217,138,.55);border-radius:calc(999*var(--u));cursor:pointer;white-space:nowrap}
+.m-upd{appearance:none;font-family:var(--label);font-weight:700;letter-spacing:.03em;text-transform:none;color:var(--upd);background:none;border:calc(1*var(--u)) solid rgba(255,217,138,.55);border-radius:calc(999*var(--u));cursor:pointer;white-space:nowrap}
 .m-upd{font-size:calc(13*var(--u));padding:calc(1*var(--u)) calc(9*var(--u)) calc(2*var(--u));margin-left:calc(12*var(--u));vertical-align:calc(1*var(--u))}
-.upd-tag{font-size:calc(12.5*var(--u));padding:0 calc(8*var(--u)) calc(1*var(--u));margin-left:calc(8*var(--u));vertical-align:calc(3*var(--u))}
-.m-upd:hover,.upd-tag:hover,.m-upd[aria-expanded="true"]{background:rgba(255,217,138,.12);border-color:var(--upd)}
-.m-upd:focus-visible,.upd-tag:focus-visible{outline:calc(2*var(--u)) solid var(--upd);outline-offset:calc(2*var(--u))}
+.m-upd:hover,.m-upd[aria-expanded="true"]{background:rgba(255,217,138,.12);border-color:var(--upd)}
+.m-upd:focus-visible{outline:calc(2*var(--u)) solid var(--upd);outline-offset:calc(2*var(--u))}
 .memo-upd-panel{position:absolute;top:calc(100% + calc(12*var(--u)));left:var(--gutter);z-index:4;width:min(calc(460*var(--u)),calc(100vw - 2 * var(--gutter)));padding:calc(16*var(--u)) calc(20*var(--u)) calc(14*var(--u));background:var(--ink-2);border:calc(1*var(--u)) solid rgba(255,217,138,.45);border-radius:calc(4*var(--u));box-shadow:0 calc(20*var(--u)) calc(50*var(--u)) rgba(0,0,0,.55)}
 .upd-k{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.12em;text-transform:uppercase;color:var(--upd);margin:0 0 calc(8*var(--u))}
 .memo-upd-panel ul{list-style:none;margin:0;padding:0;display:grid;gap:calc(12*var(--u))}
 .memo-upd-panel li{display:grid;gap:calc(4*var(--u))}
 .memo-upd-panel li b{font-family:var(--label);font-weight:700;font-size:calc(16*var(--u));color:var(--paper)}
 .memo-upd-panel li span{font-family:var(--serif);font-size:calc(17*var(--u));line-height:1.45;color:var(--dim)}
-.upd-pub{margin:calc(12*var(--u)) 0 0;padding-top:calc(10*var(--u));border-top:calc(1*var(--u)) solid var(--rule);font-family:var(--label);font-size:calc(14*var(--u));color:var(--faint)}
+.memo-upd-panel li .upd-was{font-family:var(--label);font-size:calc(15*var(--u));line-height:1.35;color:var(--beat)}
 .t-item .t-upd{grid-column:2;justify-self:start;font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.03em;color:var(--upd);border:calc(1*var(--u)) solid rgba(255,217,138,.5);border-radius:calc(999*var(--u));padding:calc(1*var(--u)) calc(9*var(--u)) calc(2*var(--u))}
 @media (max-width:520px){.t-item .t-upd{grid-column:1}}
 .slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent);mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent)}
@@ -3483,7 +3483,7 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
         <div class="l-row l-headrow" role="row"><span role="columnheader">The call (2024)</span><span role="columnheader">What happened</span><span role="columnheader">My grade</span></div>
         <div class="l-row" role="row" style="--bin:var(--beat)">
           <p class="l-call" role="cell">Power becomes the binding constraint.</p>
-          <p class="l-real" role="cell">GE Vernova’s gas turbine backlog and slot reservations reached 122&nbsp;GW in Q3 2026, and it’s already taking reservations for 2031 deliveries.<small><a href="https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance" target="_blank" rel="noopener">GE Vernova, October 2026</a>, <a href="https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/" target="_blank" rel="noopener">Utility Dive, July 2026</a><span class="l-upd">Updated Oct 28, 2026: Q3 results. It was 116 GW in Q2.</span></small></p>
+          <p class="l-real" role="cell">GE Vernova’s gas turbine backlog and slot reservations reached 122&nbsp;GW in Q3 2026, and it’s already taking reservations for 2031 deliveries.<small><a href="https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance" target="_blank" rel="noopener">GE Vernova, October 2026</a>, <a href="https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/" target="_blank" rel="noopener">Utility Dive, July 2026</a><span class="l-upd">Updated Oct 28, 2026 with GE Vernova’s Q3 results.</span><span class="l-was">Originally written with Q2 results, when it was 116 GW.</span></small></p>
           <div role="cell"><span class="stamp">Confirmed</span></div>
         </div>
         <div class="l-row" role="row" style="--bin:var(--beat)">
@@ -3886,7 +3886,7 @@ const THESES = [
     ],
     bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
-    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take2"], why: "GE Vernova reported its third quarter on October 28: gas turbine backlog and slot reservations grew from 116 GW to 122 GW, and it expects at least 130 GW by year-end. Take 2 and slide 2 cited the Q2 figure of 116 GW." }],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", why: "GE Vernova’s Q3 results: gas turbine backlog and slot reservations rose to 122 GW, with at least 130 GW expected by year-end. Take 2 and slide 2 now use them.", was: "Originally written with Q2 results, when it was 116 GW." }],
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["GE Vernova Q3 2026 results (Oct 2026)", SRC.gevQ3], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
     viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
@@ -3908,7 +3908,7 @@ const THESES = [
     ],
     bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
-    updates: [{ on: "Oct 22, 2026", short: "Oct 22", parts: ["take1"], why: "Bloom reported its third quarter on October 22: revenue of $1.24 billion, up 138%. Take 1 said quarterly revenue had passed $1 billion for the first time in Q2, up 166%. It now cites both quarters." }],
+    updates: [{ on: "Oct 22, 2026", short: "Oct 22", why: "Bloom’s Q3 results: revenue of $1.24 billion, up 138%. Take 1 now cites two straight quarters above $1 billion.", was: "Originally written with Q2 results, Bloom’s first $1 billion quarter, up 166%." }],
     receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q3 2026 results (Oct 2026)", SRC.bloomQ3], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
     viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
@@ -4052,7 +4052,7 @@ const THESES = [
     ],
     bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
     wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
-    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take1"], why: "SK hynix reported its third quarter on October 28: an 80% operating margin, up from 76% in Q2, and more than half of its 2027 and 2028 capacity already covered by long-term agreements. Take 1 and slide 2 cited Q2’s 76% and about ten customers on long-term agreements." }],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", why: "SK hynix’s Q3 results: an 80% operating margin, and more than half of 2027–28 capacity under long-term agreements. Take 1 and slide 2 now use them.", was: "Originally written with Q2 results: a 76% margin and about ten customers on long-term agreements." }],
     receipts: [["Korea Times on SK hynix’s Q3 2026 results (Oct 2026)", SRC.skhQ3], ["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
     viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
@@ -4200,8 +4200,7 @@ const THESES = [
     bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell just made the same bet in one move: optics as its moat, bought with $115 billion of stock.",
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
-    published: "Nov 1, 2026",
-    updates: [{ on: "Nov 2, 2026", short: "Nov 2", parts: ["take3", "bet"], why: "Marvell signed its deal to buy Lumentum on November 2. When this thesis went up on November 1, take 3 and the bet described the talks. They now describe the signed deal: about $115 billion in stock, closing in the first half of 2028." }],
+    updates: [{ on: "Nov 2, 2026", short: "Nov 2", why: "Marvell signed its deal to buy Lumentum: about $115 billion in stock, closing in the first half of 2028. Take 3 and the bet now describe the signed deal.", was: "Originally written while the two were still in talks." }],
     receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["TechCrunch on Marvell’s Lumentum deal (Nov 2026)", SRC.mrvlDeal]],
     viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
@@ -8467,7 +8466,6 @@ function setType(root) {
   });
 }
 const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
-const updTag = (t, part) => { const u = (t.updates || []).filter(x => x.parts.includes(part)).pop(); return u ? ` <button type="button" class="upd-tag" aria-controls="memoUpd">Updated ${u.short}</button>` : ""; };
 function memoHTML(t) {
   const b = BINS[t.stance];
   const u = lastUpd(t);
@@ -8484,7 +8482,7 @@ function memoHTML(t) {
           <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
         </div>
       </div>
-      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.on}</b><span>${x.why}</span></li>`).join("")}</ul>${t.published ? `<p class="upd-pub">First published ${t.published}.</p>` : ""}</div>` : ""}
+      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.on}</b><span>${x.why}</span>${x.was ? `<span class="upd-was">${x.was}</span>` : ""}</li>`).join("")}</ul></div>` : ""}
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
@@ -8496,10 +8494,10 @@ function memoHTML(t) {
         </section>
         <section class="slide" aria-label="Slide 2 of 3, my take">
           <p class="slide-k">My take</p>
-          <ol class="takes">${t.takes.map(([h, p], i) => `<li><b>${h}${updTag(t, "take" + (i + 1))}</b><span>${p}</span></li>`).join("")}</ol>
+          <ol class="takes">${t.takes.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join("")}</ol>
         </section>
         <section class="slide" aria-label="Slide 3 of 3, the bet">
-          <p class="slide-k">The bet${updTag(t, "bet")}</p>
+          <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
           <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
@@ -8623,8 +8621,7 @@ function openMemo(id) {
   [...memo.children].forEach(el => el.addEventListener("click", e => { if (!srcPanel.hidden && !e.target.closest(".memo-src")) setSrc(false); }));
   if (updPanel) {
     updBtn.addEventListener("click", () => { setUpd(updPanel.hidden); if (!updPanel.hidden) setSrc(false); });
-    memo.querySelectorAll(".upd-tag").forEach(b => b.addEventListener("click", () => { setSrc(false); setUpd(true); }));
-    [...memo.children].forEach(el => el.addEventListener("click", e => { if (!updPanel.hidden && !e.target.closest(".m-upd, .upd-tag, .memo-upd-panel")) setUpd(false); }));
+    [...memo.children].forEach(el => el.addEventListener("click", e => { if (!updPanel.hidden && !e.target.closest(".m-upd, .memo-upd-panel")) setUpd(false); }));
   }
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
