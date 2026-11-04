@@ -37,6 +37,7 @@
   --beat:#6aa8ff;
   --coral:#f4977a;
   --violet:#d4e3f0;
+  --upd:#ffd98a;
   --grid:rgba(212,227,240,.07);
   --glass:rgba(7,16,29,.82);
   --bezel:#040a14;
@@ -237,7 +238,7 @@ html.paused .die-echo.land{animation:none}
 @keyframes llflow{to{stroke-dashoffset:-14}}
 @media (max-width:900px){.link-line,.die-tag,.die-echo{display:none}}
 .t-item.probe .t-title{color:var(--faint)}
-@media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin{grid-column:1}.t-item .t-die{padding-top:0}}
+@media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin,.t-item .t-upd{grid-column:1}.t-item .t-die{padding-top:0}}
 .score{padding-block:clamp(calc(72*var(--u)),10vw,calc(120*var(--u)));background:var(--ink-2);border-block:calc(1*var(--u)) solid var(--rule);position:relative;overflow:hidden}
 .score::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) calc(1*var(--u)),transparent calc(1*var(--u))),linear-gradient(90deg,var(--grid) calc(1*var(--u)),transparent calc(1*var(--u)));background-size:calc(40*var(--u)) calc(40*var(--u));pointer-events:none}
 .score-head{position:relative;display:grid;grid-template-columns:minmax(0,1fr) calc(150*var(--u));gap:calc(32*var(--u));align-items:end;margin-bottom:calc(44*var(--u))}
@@ -252,6 +253,7 @@ html.paused .die-echo.land{animation:none}
 .l-real{font-size:calc(18*var(--u))}
 .l-real small{display:block;margin-top:calc(6*var(--u));font-family:var(--label);font-size:calc(15*var(--u));color:var(--faint)}
 .l-real small a{color:var(--dim)}
+.l-real .l-upd{display:block;margin-top:calc(4*var(--u));font-weight:700;letter-spacing:.02em;color:var(--upd)}
 .stamp{justify-self:start;display:inline-block;font-family:var(--label);font-weight:800;font-size:calc(17*var(--u));letter-spacing:.08em;text-transform:uppercase;color:var(--bin);border:calc(2.5*var(--u)) solid var(--bin);padding:calc(6*var(--u)) calc(10*var(--u)) calc(5*var(--u));transform:rotate(-4deg);border-radius:calc(3*var(--u));line-height:1.1;text-align:center;opacity:.92;box-shadow:inset 0 0 0 calc(1*var(--u)) rgba(7,16,29,.4)}
 .l-row:nth-child(odd) .stamp{transform:rotate(3deg)}
 .stamp-link{display:block;margin-top:calc(12*var(--u));font-family:var(--label);font-size:calc(16*var(--u));color:var(--dim)}
@@ -466,6 +468,7 @@ blockquote.pull .qc{color:var(--bin)}
 .bet-echo{margin:0;display:grid;justify-items:center;gap:calc(2*var(--u));flex:0 0 auto}
 .bet-echo figcaption{font-family:var(--label);font-weight:600;font-size:calc(13*var(--u));color:var(--faint)}
 .memo-note{font-family:var(--label);font-size:calc(15*var(--u));color:var(--dim)}
+.bet-row .memo-note{margin:0 0 calc(6*var(--u))}
 .viz-pane{position:relative;border-left:calc(1*var(--u)) solid var(--rule);display:grid;grid-template:minmax(0,1fr)/minmax(0,1fr);place-items:center;padding:clamp(calc(18*var(--u)),3vw,calc(40*var(--u)));overflow:hidden;min-height:0}
 .memo-foot{position:relative;display:flex;justify-content:space-between;align-items:center;gap:calc(12*var(--u));padding:calc(12*var(--u)) var(--gutter);border-top:calc(1*var(--u)) solid var(--rule)}
 .memo-foot .count{font-family:var(--label);font-size:calc(16*var(--u));color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -482,6 +485,20 @@ blockquote.pull .qc{color:var(--bin)}
 .memo-src-panel li + li{border-top:calc(1*var(--u)) solid var(--rule)}
 .memo-src-panel a{display:block;padding:calc(9*var(--u)) 0;font-family:var(--label);font-weight:600;font-size:calc(18*var(--u));line-height:1.25;color:var(--paper);text-decoration:underline;text-decoration-color:rgba(238,244,248,.28);text-underline-offset:calc(3*var(--u))}
 .memo-src-panel a:hover{text-decoration-color:var(--bin)}
+.m-upd,.upd-tag{appearance:none;font-family:var(--label);font-weight:700;letter-spacing:.03em;text-transform:none;color:var(--upd);background:none;border:calc(1*var(--u)) solid rgba(255,217,138,.55);border-radius:calc(999*var(--u));cursor:pointer;white-space:nowrap}
+.m-upd{font-size:calc(13*var(--u));padding:calc(1*var(--u)) calc(9*var(--u)) calc(2*var(--u));margin-left:calc(12*var(--u));vertical-align:calc(1*var(--u))}
+.upd-tag{font-size:calc(12.5*var(--u));padding:0 calc(8*var(--u)) calc(1*var(--u));margin-left:calc(8*var(--u));vertical-align:calc(3*var(--u))}
+.m-upd:hover,.upd-tag:hover,.m-upd[aria-expanded="true"]{background:rgba(255,217,138,.12);border-color:var(--upd)}
+.m-upd:focus-visible,.upd-tag:focus-visible{outline:calc(2*var(--u)) solid var(--upd);outline-offset:calc(2*var(--u))}
+.memo-upd-panel{position:absolute;top:calc(100% + calc(12*var(--u)));left:var(--gutter);z-index:4;width:min(calc(460*var(--u)),calc(100vw - 2 * var(--gutter)));padding:calc(16*var(--u)) calc(20*var(--u)) calc(14*var(--u));background:var(--ink-2);border:calc(1*var(--u)) solid rgba(255,217,138,.45);border-radius:calc(4*var(--u));box-shadow:0 calc(20*var(--u)) calc(50*var(--u)) rgba(0,0,0,.55)}
+.upd-k{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.12em;text-transform:uppercase;color:var(--upd);margin:0 0 calc(8*var(--u))}
+.memo-upd-panel ul{list-style:none;margin:0;padding:0;display:grid;gap:calc(12*var(--u))}
+.memo-upd-panel li{display:grid;gap:calc(4*var(--u))}
+.memo-upd-panel li b{font-family:var(--label);font-weight:700;font-size:calc(16*var(--u));color:var(--paper)}
+.memo-upd-panel li span{font-family:var(--serif);font-size:calc(17*var(--u));line-height:1.45;color:var(--dim)}
+.upd-pub{margin:calc(12*var(--u)) 0 0;padding-top:calc(10*var(--u));border-top:calc(1*var(--u)) solid var(--rule);font-family:var(--label);font-size:calc(14*var(--u));color:var(--faint)}
+.t-item .t-upd{grid-column:2;justify-self:start;font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.03em;color:var(--upd);border:calc(1*var(--u)) solid rgba(255,217,138,.5);border-radius:calc(999*var(--u));padding:calc(1*var(--u)) calc(9*var(--u)) calc(2*var(--u))}
+@media (max-width:520px){.t-item .t-upd{grid-column:1}}
 .slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent);mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent)}
 .slides-more{position:absolute;z-index:2;left:var(--gutter);bottom:calc(14*var(--u));display:inline-flex;align-items:center;gap:calc(6*var(--u));font-family:var(--label);font-weight:700;font-size:calc(15*var(--u));letter-spacing:.03em;color:var(--paper);background:rgba(12,26,43,.94);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));padding:calc(6*var(--u)) calc(14*var(--u)) calc(7*var(--u));cursor:pointer}
 .slides-more span{color:var(--bin)}
@@ -2944,17 +2961,20 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .p3-say{margin:0;min-height:2.7em;font-size:calc(15*var(--u));line-height:1.35;color:var(--dim)}
 .p3-say b{color:var(--paper)}
 .mg-w{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:calc(12*var(--u));align-items:center}
-.mg-r{display:grid;gap:calc(6*var(--u))}
+.mg-r{display:grid;gap:calc(6*var(--u));position:relative;z-index:2}
+@media (min-width:861px){.mg .p3-rot{scale:.84}}
 .mg-dial{width:100%;max-width:calc(220*var(--u))}
 .mg-arc{stroke-dasharray:0 100}
 .viz[data-step="2"] .f2 .mg-arc{animation:mg-arc 1.6s var(--ease) .2s forwards}
-@keyframes mg-arc{to{stroke-dasharray:76 100}}
+@keyframes mg-arc{to{stroke-dasharray:80 100}}
 .mg-v{font-family:var(--display);font-weight:900;font-size:calc(40*var(--u));fill:var(--paper)}
 .mg-k{margin:0;font-size:calc(12.5*var(--u));color:var(--faint)}
 .mg-lta{display:grid;grid-template-columns:repeat(5,1fr);gap:calc(5*var(--u));max-width:calc(220*var(--u))}
 .mg-lta i{aspect-ratio:1;border-radius:50%;border:calc(2*var(--u)) solid var(--amber);opacity:0}
 .viz[data-step="2"] .f2 .mg-lta i{animation:mg-lock .4s cubic-bezier(.3,1.5,.5,1) calc(1s + var(--i) * .12s) forwards}
 @keyframes mg-lock{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none;background:rgba(63,214,200,.35)}}
+.viz[data-step="2"] .f2 .mg-lta i:not(.on){animation-name:mg-open}
+@keyframes mg-open{from{opacity:0;transform:scale(.3)}to{opacity:.45;transform:none}}
 .gs{gap:calc(10*var(--u))}
 .gs-bar i.lt{animation:k-pop .35s}
 .gs-bar i.spot{background:#2fd27a}
@@ -3377,10 +3397,8 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .viz[data-step="1"] .f1 .rsc-d{animation:k-pop .5s cubic-bezier(.3,1.5,.5,1) calc(var(--d) + .6s) both}
 .viz[data-step="1"] .f1 .rsc-m text{animation:k-fade .4s ease calc(var(--d) + .7s) both}
 .rsc-m.on .rsc-d{stroke:var(--paper);stroke-width:3}
-.rcu{gap:calc(7*var(--u))}
-.rcu-m{display:grid;grid-template-columns:minmax(0,3.1fr) minmax(0,1fr);gap:calc(10*var(--u));align-items:end}
 .rcu .k-row{grid-template-columns:auto minmax(0,1fr) 3.2em}
-#rcuU,#rcuK{transition:height .2s,y .2s}
+.rcm{gap:calc(8*var(--u))}
 .rdc-g i.on{background:var(--beat)}
 .rfl-g i.d{background:rgba(63,214,200,.55)}
 .rfl-g i.a{background:rgba(244,151,122,.55)}
@@ -3391,7 +3409,6 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .rfl-st.a{color:var(--coral)}
 .rfl-k .d::before{background:var(--amber)}
 .rfl-k .a::before{background:var(--coral)}
-@media (max-width:860px){.rcu-m{gap:calc(4*var(--u))}}
 
 </style>
 </head>
@@ -3466,7 +3483,7 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
         <div class="l-row l-headrow" role="row"><span role="columnheader">The call (2024)</span><span role="columnheader">What happened</span><span role="columnheader">My grade</span></div>
         <div class="l-row" role="row" style="--bin:var(--beat)">
           <p class="l-call" role="cell">Power becomes the binding constraint.</p>
-          <p class="l-real" role="cell">GE Vernova’s gas turbine backlog reached 116 GW in Q2 2026, and it’s already taking reservations for 2031 deliveries.<small><a href="https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/" target="_blank" rel="noopener">Utility Dive, July 2026</a></small></p>
+          <p class="l-real" role="cell">GE Vernova’s gas turbine backlog and slot reservations reached 122&nbsp;GW in Q3 2026, and it’s already taking reservations for 2031 deliveries.<small><a href="https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance" target="_blank" rel="noopener">GE Vernova, October 2026</a>, <a href="https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/" target="_blank" rel="noopener">Utility Dive, July 2026</a><span class="l-upd">Updated Oct 28, 2026: Q3 results. It was 116 GW in Q2.</span></small></p>
           <div role="cell"><span class="stamp">Confirmed</span></div>
         </div>
         <div class="l-row" role="row" style="--bin:var(--beat)">
@@ -3637,6 +3654,9 @@ const SRC = {
   sherwood: "https://sherwood.news/tech/alphabet-amazon-microsoft-meta-plan-more-than-700-billion-on-capex-this-year/",
   wmedia: "https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/",
   skh: "https://news.skhynix.com/en/q2-2026-business-results/",
+  skhQ3: "https://www.koreatimes.co.kr/business/companies/20261028/sk-hynix-logs-record-q3-operating-profit-of-628-bil",
+  gevQ3: "https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance",
+  bloomQ3: "https://bloomenergy.com/news/bloom-energy-reports-record-third-quarter-2026-financial-results-and-raises-full-year-2026-guidance/",
   trend: "https://www.trendforce.com/news/2026/06/15/news-tsmc-cowos-supply-demand-gap-reportedly-seen-narrowing-from-20-to-10-by-end-2026-as-capacity-expands/",
   sg: "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
   stat: "https://www.statnews.com/2023/05/02/loneliness-surgeon-general/",
@@ -3717,6 +3737,7 @@ const SRC = {
   mrvlHigh: "https://www.fool.com/investing/2026/06/18/marvell-stock-just-hit-a-new-high-a-quiet-amazon-d/",
   mrvlQ2: "https://pulse2.com/marvell-data-center-revenue-growth-accelerates-to-46-as-ai-demand-drives-record-2-74-billion-quarter/",
   mrvlLite: "https://www.fool.com/investing/2026/10/29/why-marvell-stock-is-down-today/",
+  mrvlDeal: "https://techcrunch.com/2026/11/02/in-one-of-the-largest-deals-in-tech-history-marvell-buys-lumentum-for-115b/",
   nbFrame: "https://betteresearch.com/posts/nebius-investment-framework",
   nbTf: "https://nebius.com/newsroom/nebius-launches-nebius-token-factory-to-deliver-production-ai-inference-at-scale",
   amodeiMlg: "https://www.darioamodei.com/essay/machines-of-loving-grace",
@@ -3860,12 +3881,13 @@ const THESES = [
       <p>He was right about power. The gas was never the hard part.</p>`,
     takes: [
       ["The fuel isn’t the constraint. The conversion is.", "Gas in the ground does nothing until a turbine, a transformer and a substation turn it into power at the rack."],
-      ["The queue is measured in years.", "GE Vernova’s gas turbine backlog reached 116 GW in Q2 2026, and it’s taking reservations for 2031 deliveries. A well takes months. A turbine slot takes about five years."],
+      ["The queue is measured in years.", "GE Vernova’s gas turbine backlog and slot reservations reached 122 GW in Q3 2026, and it expects at least 130 GW by year-end. It’s taking reservations for 2031 deliveries. A well takes months. A turbine slot takes about five years."],
       ["Chips are already waiting on power.", "In late 2025, Satya Nadella said Microsoft’s problem had shifted from getting enough chips to having chips it couldn’t plug in."]
     ],
     bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
-    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take2"], why: "GE Vernova reported its third quarter on October 28: gas turbine backlog and slot reservations grew from 116 GW to 122 GW, and it expects at least 130 GW by year-end. Take 2 and slide 2 cited the Q2 figure of 116 GW." }],
+    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["GE Vernova Q3 2026 results (Oct 2026)", SRC.gevQ3], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
     viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
   {
@@ -3880,13 +3902,14 @@ const THESES = [
       <p>That’s Nvidia explaining why its racks move to 800-volt DC with Kyber in 2027. Today, power reaches a data center as AC, gets stepped down and converted several times, and arrives at the chips as DC.</p>
       <p>A fuel cell makes DC in the first place. Bloom Energy builds them, and it already wins on speed.</p>`,
     takes: [
-      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue passed $1 billion for the first time in Q2 2026, up 166%."],
+      ["Speed is the product.", "Bloom delivered a working fuel cell system to Oracle in 55 days, more than a month early. A gas turbine ordered today ships around 2031. Oracle has since agreed to buy up to 2.8 GW, and Bloom’s quarterly revenue has topped $1 billion two quarters running: $1.24 billion in Q3 2026, up 138%."],
       ["It scales like compute, not like a power plant.", "Each Energy Server is a 325 kW block about 9 meters long, so capacity grows as racks arrive, and Bloom planned to double production capacity to 2 GW a year by the end of 2026. No combustion, almost no NOx, no water in normal operation. The catch: it runs mostly on natural gas, and efficiency fades from 65% to 53% as the cells age."],
       ["DC is the sleeper.", "A fuel cell can feed DC straight to the row, skipping transformers and switchgear that are themselves backlogged. Bloom says that cuts non-compute capex for a 1 GW site by $3.6 billion, about 27%. That’s the company’s own math, but the direction is right."]
     ],
-    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back it, and the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
+    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
-    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
+    updates: [{ on: "Oct 22, 2026", short: "Oct 22", parts: ["take1"], why: "Bloom reported its third quarter on October 22: revenue of $1.24 billion, up 138%. Take 1 said quarterly revenue had passed $1 billion for the first time in Q2, up 166%. It now cites both quarters." }],
+    receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q3 2026 results (Oct 2026)", SRC.bloomQ3], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
     viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
   {
@@ -3984,7 +4007,7 @@ const THESES = [
     takes: [
       ["You don’t have to pick the winning lab.", "Every lab’s scaling plan buys the same four things: chips, memory, datacenters and power. Owning the builders is a bet on scaling itself."],
       ["Bankruptcies don’t break it.", "The 1990s telecom boom put over $500 billion, mostly debt, into fiber and networks. WorldCom and Global Crossing collapsed and bondholders got back about 20 cents on the dollar. The fiber stayed in the ground and carried the internet’s next decade."],
-      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software. Adobe is the example I watch."]
+      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software."]
     ],
     bet: "For venture, I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
     wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
@@ -4019,22 +4042,23 @@ const THESES = [
     h2: "The bottleneck moved | below the GPU.",
     short: "Below the GPU",
     hook: "The GPU is the brand. Memory is the moat.",
-    ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q2 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
+    ref: { k: "Reference design", label: "My own read of 2026 supplier results: SK hynix’s Q3 2026 report and TrendForce’s CoWoS tracking", href: SRC.skh },
     signal: `<p>Everyone tracks who makes the best GPU. 2026’s numbers say the choke points sit beside and beneath it: the HBM memory stacked next to the die, and the packaging that joins them.</p>
       <p>The GPU is the brand. Memory is the moat.</p>`,
     takes: [
-      ["Memory is where the margin went.", "SK hynix posted a 76% operating margin in Q2 2026 and has long-term agreements with about ten major customers. Buyers are paying for guaranteed supply."],
-      ["Packaging is loosening first.", "TrendForce expects TSMC’s CoWoS shortfall to narrow from about 20% to about 10% by the end of 2026. That bottleneck has a visible end. Memory’s doesn’t yet."],
+      ["Memory is where the margin went.", "SK hynix posted an 80% operating margin in Q3 2026, and says more than half of its 2027 and 2028 production capacity is already covered by long-term agreements. Buyers are paying for guaranteed supply."],
+      ["CoWoS is loosening first.", "TrendForce expects TSMC’s CoWoS shortfall to narrow from about 20% to about 10% by the end of 2026. That bottleneck has a visible end. Memory’s doesn’t yet."],
       ["Agents are memory-bound.", "Long-running agents hold long contexts, and the KV cache grows with every token they keep in mind. SK hynix itself says agentic AI is widening demand for every kind of memory."]
     ],
     bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
     wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
-    receipts: [["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
+    updates: [{ on: "Oct 28, 2026", short: "Oct 28", parts: ["take1"], why: "SK hynix reported its third quarter on October 28: an 80% operating margin, up from 76% in Q2, and more than half of its 2027 and 2028 capacity already covered by long-term agreements. Take 1 and slide 2 cited Q2’s 76% and about ten customers on long-term agreements." }],
+    receipts: [["Korea Times on SK hynix’s Q3 2026 results (Oct 2026)", SRC.skhQ3], ["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
     viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
   {
     id: "backend", die: [0, 3], stance: "build",
-    layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in CoWoS capacity, not wafers."],
+    layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in packaging capacity, not wafers."],
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
     h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
     short: "The back end is the bottleneck",
@@ -4047,8 +4071,8 @@ const THESES = [
       ["Bigger packages, more ways to fail.", "An AI package holds a GPU and its HBM stacks on an interposer, and the GPU silicon alone has roughly doubled, from Hopper’s 814 mm² die to about 1,700 mm² across Blackwell’s two. One bad die scraps the whole package, so testing before assembly decides the yield. Even the substrate’s glass cloth is short: Nittobo makes about 90% of the specialist low-expansion cloth, and new supply lands in mid-2027."],
       ["A US chip isn’t made in the US until it’s packaged.", "The first US-made Blackwell wafer came off TSMC’s Arizona line in October 2025 and still flew to Taiwan for CoWoS. TSMC has started building an Arizona packaging plant for CoWoS before 2029, and Amkor raised its Arizona campus to about $12 billion, alongside a $1.5 billion multiyear Nvidia deal that includes a prepayment."]
     ],
-    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. Back the back end: packaging and test houses taking on CoWoS work, substrate materials, and the bonding and inspection tools that make big packages yield. The first US packaging lines at scale are worth more than they look.",
-    wrong: "CoWoS supply catches up with demand in 2027 and stays caught up while AI chip shipments keep growing.",
+    bet: "Through 2028, AI chip supply will be counted in packaging capacity, not wafer starts. As CoWoS slots loosen, the squeeze moves to what surrounds them: substrates, test and US capacity. Back the back end: packaging and test houses, substrate materials, and the bonding and inspection tools that make big packages yield.",
+    wrong: "By 2028, CoWoS, substrates and test all keep up with demand while AI chip shipments keep growing, and wafer starts are the limit again.",
     receipts: [["Chip War (2022)", SRC.chipwar], ["TrendForce on CoWoS supply (June 2026)", SRC.trend], ["TrendForce on CoWoS outsourcing (Aug 2026)", SRC.cowosOut], ["Tom’s Hardware on T-glass (Mar 2026)", SRC.tglass], ["DCD on the Arizona Blackwell wafer (Oct 2025)", SRC.bwWafer], ["DCD on TSMC’s Arizona packaging (Apr 2026)", SRC.tsmcAp], ["AZ Big Media on Amkor (Sept 2026)", SRC.amkor], ["Yahoo Finance on Amkor and Nvidia (July 2026)", SRC.amkorNv]],
     viz: "backend", echo: { pose: "pickplace", acc: "pickplace", name: "Packager" }
   },
@@ -4171,12 +4195,14 @@ const THESES = [
     takes: [
       ["Custom wins on the job, not the spec sheet.", "A GPU is built to run anything. A custom accelerator, or ASIC, is built for one company’s models, trading flexibility for cost and power. Custom ASIC shipments were projected to grow 44.6% in 2026 against 16.1% for GPUs, and Broadcom and Marvell co-design about 95% of them. Anthropic alone plans to add 5 GW of Google’s TPU v8i in 2027, per Broadcom."],
       ["The insourcing threat is real, and partial.", "Google brought in MediaTek as a second design partner for TPU v7. Amazon designs Trainium in-house at Annapurna Labs, and in December 2025 Benchmark said it was highly confident Marvell had lost Trainium3 and Trainium4 to Taiwan’s Alchip. What customers keep buying is the hard periphery: high-speed I/O, the memory interface, packaging and a slice of TSMC’s scarce CoWoS capacity, where Broadcom holds about 15%."],
-      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. Marvell’s stock more than tripled in the first half of 2026, partly on optical networking, then fell about 13% on October 29 after Bloomberg reported it was in advanced talks to buy Lumentum, an optical-parts maker worth about $83 billion, likely in stock."]
+      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. On November 2, Marvell agreed to buy Lumentum, which makes the lasers and optical parts that carry data between AI chips, in an all-stock deal valued at about $115 billion including debt. It’s expected to close in the first half of 2028."]
     ],
-    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell is betting optics becomes its moat, and a Lumentum deal would make that bet in one move.",
+    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell just made the same bet in one move: optics as its moat, bought with $115 billion of stock.",
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
-    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["Motley Fool on the Lumentum talks (Oct 2026)", SRC.mrvlLite]],
+    published: "Nov 1, 2026",
+    updates: [{ on: "Nov 2, 2026", short: "Nov 2", parts: ["take3", "bet"], why: "Marvell signed its deal to buy Lumentum on November 2. When this thesis went up on November 1, take 3 and the bet described the talks. They now describe the signed deal: about $115 billion in stock, closing in the first half of 2028." }],
+    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["TechCrunch on Marvell’s Lumentum deal (Nov 2026)", SRC.mrvlDeal]],
     viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
   {
@@ -4621,7 +4647,7 @@ const VIZ = {
       </svg><p class="cap">Fuel: about 1,200 new wells, under a year of drilling, could supply 100 GW (Aschenbrenner, 2024).</p></div>
       <div class="frame f2"><svg viewBox="0 0 520 280" role="img" aria-label="A conveyor line of gas turbines waiting their turn. An order placed now gets a slot around 2031, while the fuel is drilled in under a year.">
         <text x="24" y="32" class="t-strong" font-size="17">Gas turbine delivery slot</text>
-        <text x="24" y="52" font-size="13">GE Vernova’s backlog: 116 GW</text>
+        <text x="24" y="52" font-size="13">GE Vernova’s backlog: 122 GW</text>
         <g transform="translate(318 18)" class="ml-fuel"><rect width="182" height="28" rx="14"/><path d="M14 14 l4 4 l8 -9" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="18.5" font-size="12.5" class="t-strong">Fuel: drilled in under a year</text></g>
         <path d="M${X(2026.75)} 104 V96 H${X(2031) + 2} V104" fill="none" stroke="var(--coral)" stroke-width="1.5"/>
         <text x="${(X(2026.75) + X(2031)) / 2}" y="88" text-anchor="middle" font-size="14" class="t-strong ml-wait">about five years in line</text>
@@ -4632,7 +4658,7 @@ const VIZ = {
         <g transform="translate(${(86 + 10 * 39.4 - 30).toFixed(1)} 118)"><g class="ml-ticket"><path d="M0 0 H60 V12 a4 4 0 0 0 0 8 V32 H0 V20 a4 4 0 0 0 0 -8 Z"/><text x="30" y="13" text-anchor="middle" font-size="9" class="ml-tk-k">YOUR SLOT</text><text x="30" y="27" text-anchor="middle" font-size="13" class="ml-tk-v">2031</text></g></g>
         <line class="ax" x1="60" y1="236" x2="500" y2="236"/>
         ${[2026, 2027, 2028, 2029, 2030, 2031].map(y => `<line class="ax" x1="${X(y)}" y1="232" x2="${X(y)}" y2="240"/><text x="${X(y)}" y="258" text-anchor="middle" font-size="13">${y}</text>`).join("")}
-      </svg><p class="cap">Machines: GE Vernova’s gas turbine backlog hit 116 GW in Q2 2026, and it’s taking reservations for 2031.</p></div>
+      </svg><p class="cap">Machines: GE Vernova’s gas turbine backlog and slot reservations hit 122 GW in Q3 2026, and it’s taking reservations for 2031.</p></div>
       <div class="frame f3"><svg viewBox="0 0 520 240" role="img" aria-label="Chain from gas well to turbine, transformer, substation and rack. The queue sits in the middle three.">
         <path d="M110 58 V46 H410 V58" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="260" y="36" text-anchor="middle" font-size="16" style="fill:var(--coral);font-weight:700">the queue lives here</text>
         <line class="ax" x1="50" y1="120" x2="470" y2="120"/>
@@ -4708,7 +4734,7 @@ const VIZ = {
       </div>
       <div>
         <div class="pkg-legend"><span><i style="background:var(--amber)"></i>HBM stacks</span><span><i style="background:var(--beat)"></i>Logic die</span><span><i style="background:var(--violet)"></i>Interposer (CoWoS)</span><span><i style="background:#2a4d70"></i>Substrate</span></div>
-        <div class="cap-set" style="margin-top:calc(8 * var(--u))"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran a 76% operating margin in Q2 2026.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
+        <div class="cap-set" style="margin-top:calc(8 * var(--u))"><p class="cap c1">An AI accelerator package, assembled. Move your pointer to turn it.</p><p class="cap c2">Memory: SK hynix ran an 80% operating margin in Q3 2026, and more than half of its 2027–28 capacity is under long-term agreements.</p><p class="cap c3">Packaging: TrendForce sees the CoWoS shortfall narrowing from ~20% to ~10% by end-2026.</p></div>
       </div>
     </div></div>`;
   },
@@ -5235,7 +5261,7 @@ const VIZ = {
       </svg>
       <div class="ep-read" id="epRead"></div>
     </div><p class="cap">Simplified Blackwell-style package, not to scale. TrendForce (2026), Tom’s Hardware (Mar 2026).</p></div>
-      <div class="frame f3"><svg viewBox="0 0 460 300" class="hg" aria-label="An hourglass. Wafer starts pour into the top and crowd toward a narrow neck, CoWoS packaging capacity, where only a trickle of AI chips gets through to the bottom. Through 2028, count the neck.">
+      <div class="frame f3"><svg viewBox="0 0 460 300" class="hg" aria-label="An hourglass. Wafer starts pour into the top and crowd toward a narrow neck, packaging capacity, where only a trickle of AI chips gets through to the bottom. Through 2028, count the neck.">
       <defs><clipPath id="hgClip"><path d="M110 40 H250 C250 100 196 128 188 150 C196 172 250 200 250 260 H110 C110 200 164 172 172 150 C164 128 110 100 110 40 Z"/></clipPath></defs>
       <text x="14" y="22" class="t-strong" font-size="15">Through 2028, count the neck</text>
       <path d="M110 40 H250 C250 100 196 128 188 150 C196 172 250 200 250 260 H110 C110 200 164 172 172 150 C164 128 110 100 110 40 Z" fill="var(--ink-2)"/>
@@ -5252,7 +5278,7 @@ const VIZ = {
       <rect x="100" y="34" width="160" height="7" rx="3" fill="var(--rule)"/><rect x="100" y="259" width="160" height="7" rx="3" fill="var(--rule)"/>
       <line x1="236" y1="70" x2="262" y2="70" stroke="var(--beat)" stroke-width="1.5"/><text x="268" y="66" class="t-strong" font-size="13">Wafer starts</text><text x="268" y="82" font-size="11.5" style="fill:var(--beat)">plenty</text>
       <text x="180" y="282" text-anchor="middle" font-size="12" style="fill:var(--amber)">AI chips shipped: a trickle</text>
-      <line x1="196" y1="150" x2="262" y2="150" stroke="var(--coral)" stroke-width="1.5"/><text x="268" y="146" class="t-strong" font-size="13">CoWoS capacity</text><text x="268" y="162" font-size="11.5" style="fill:var(--coral)" class="hg-lab">the neck</text>
+      <line x1="196" y1="150" x2="262" y2="150" stroke="var(--coral)" stroke-width="1.5"/><text x="268" y="146" class="t-strong" font-size="13">Packaging capacity</text><text x="268" y="162" font-size="11.5" style="fill:var(--coral)" class="hg-lab">the neck</text>
       <text x="300" y="196" font-size="12" style="fill:var(--amber)" font-weight="700">BACK THE BACK END</text>
       <g class="hg-b" style="animation-delay:0.4s"><rect x="300" y="206" width="8" height="8" fill="var(--amber)"/><text x="314" y="214" font-size="12.5" style="fill:var(--paper)">Packaging and test houses</text></g><g class="hg-b" style="animation-delay:0.7s"><rect x="300" y="230" width="8" height="8" fill="var(--amber)"/><text x="314" y="238" font-size="12.5" style="fill:var(--paper)">Substrate materials</text></g><g class="hg-b" style="animation-delay:1.0s"><rect x="300" y="254" width="8" height="8" fill="var(--amber)"/><text x="314" y="262" font-size="12.5" style="fill:var(--paper)">Bonding and inspection tools</text></g>
     </svg><p class="cap">The bet: AI chip supply is set by packaging capacity, not wafer starts, through 2028.</p></div>
@@ -6592,7 +6618,7 @@ A["automate-3a"] = { html: () => {
         <g><circle cx="${X(NOW)}" cy="110" r="5" fill="var(--paper)" class="k-throb"/><text x="${X(NOW)}" y="140" text-anchor="middle" font-size="10.5" style="fill:var(--paper)">today</text></g>
         <g class="k-pop" style="--d:2.1s"><circle cx="${X(2028.2)}" cy="110" r="10" fill="none" stroke="var(--coral)" stroke-width="2.5" class="k-throb"/><text x="${X(2028.2)}" y="88" text-anchor="end" font-size="11.5" class="t-strong">Mar 2028</text><text x="${X(2028.2)}" y="74" text-anchor="end" font-size="10.5">automated AI researcher: target</text></g>
       </svg>
-      <div class="cd"><div><b id="cdD">—</b><span>days to the March 2028 target</span></div><div><b id="cdP">—</b><span>of the way from intern to researcher</span></div></div>
+      <div class="cd"><div><b id="cdD">—</b><span>days to the March 2028 target</span></div><div><b id="cdP">—</b><span>of the time to the target has passed</span></div></div>
     </div>${cap("OpenAI’s stated milestones, September 6, 2026. The countdown runs to March 1, 2028.")}`; },
   init: fr => {
     const now = new Date(), tgt = new Date(2028, 2, 1), start = new Date(2026, 8, 6);
@@ -7258,7 +7284,7 @@ const pkg = (id, hl = "") => `<div class="p3" id="${id}" data-hl="${hl}"><div cl
     <div class="p3-l sub" data-k="sub"></div><div class="p3-l int" data-k="int"></div><div class="p3-l die" data-k="die"><i></i></div>
     ${HBM.map(([x, y]) => `<div class="p3-h" data-k="hbm" style="left:${x}px;top:${y}px">${Array.from({ length: 8 }, (_, i) => `<b style="--i:${i}"></b>`).join("")}</div>`).join("")}
   </div></div>`;
-const LEG = [["hbm", "HBM stacks", "var(--amber)", "Eight memory dies stacked and wired through with TSVs. SK hynix ran a 76% operating margin on this in Q2 2026."], ["die", "Logic die", "var(--beat)", "The GPU itself. Everyone tracks it; it’s the brand."], ["int", "Interposer (CoWoS)", "var(--paper)", "The silicon slab that wires memory to the GPU. TSMC’s CoWoS capacity is the packaging bottleneck."], ["sub", "Substrate", "#2a4d70", "The organic base that connects the package to the board."]];
+const LEG = [["hbm", "HBM stacks", "var(--amber)", "Eight memory dies stacked and wired through with TSVs. SK hynix ran an 80% operating margin on this in Q3 2026."], ["die", "Logic die", "var(--beat)", "The GPU itself. Everyone tracks it; it’s the brand."], ["int", "Interposer (CoWoS)", "var(--paper)", "The silicon slab that wires memory to the GPU. TSMC’s CoWoS capacity is the packaging bottleneck."], ["sub", "Substrate", "#2a4d70", "The organic base that connects the package to the board."]];
 const wire3d = (fr, sel) => {
   const P = fr.querySelector(sel); if (!P) return;
   let rz = -38, rx = 58, trz = -38, trx = 58, drag = false;
@@ -7276,10 +7302,10 @@ A["memory-1a"] = { html: () => `<div class="k-col p3w">${pkg("p3a")}${legend()}<
     K.onEnter(fr, () => { auto = true; let t = 0; const r = fr.querySelector("#p3E"); const iv = setInterval(() => { if (!auto || !K.active(fr) || t > 1) return clearInterval(iv); t += .03; r.value = Math.sin(Math.min(1, t) * Math.PI / 2); r.dispatchEvent(new Event("input")); }, 30); });
   } };
 A["memory-2a"] = { html: () => `<div class="k-col mg"><div class="mg-w">${pkg("p3b", "hbm")}
-      <div class="mg-r"><svg viewBox="0 0 160 100" class="mg-dial" aria-label="A dial at 76 percent."><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--ink-2)" stroke-width="14" stroke-linecap="round"/><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--amber)" stroke-width="14" stroke-linecap="round" pathLength="100" class="mg-arc"/><text x="80" y="82" text-anchor="middle" class="mg-v"><tspan data-to="76" data-dur="1600">0</tspan>%</text></svg>
-        <p class="mg-k">SK hynix operating margin, Q2 2026</p>
-        <div class="mg-lta">${Array.from({ length: 10 }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div><p class="mg-k">~10 major customers on long-term agreements</p></div></div>
-    </div>${cap("Memory: SK hynix ran a 76% operating margin in Q2 2026, with long-term agreements with about ten major customers.")}`,
+      <div class="mg-r"><svg viewBox="0 0 160 100" class="mg-dial" aria-label="A dial at 80 percent."><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--ink-2)" stroke-width="14" stroke-linecap="round"/><path d="M15 90 A65 65 0 0 1 145 90" fill="none" stroke="var(--amber)" stroke-width="14" stroke-linecap="round" pathLength="100" class="mg-arc"/><text x="80" y="82" text-anchor="middle" class="mg-v"><tspan data-to="80" data-dur="1600">0</tspan>%</text></svg>
+        <p class="mg-k">SK hynix operating margin, Q3 2026</p>
+        <div class="mg-lta" aria-label="2027–28 production capacity: more than half under long-term agreements">${Array.from({ length: 10 }, (_, i) => `<i style="--i:${i}"${i < 5 ? ' class="on"' : ""}></i>`).join("")}</div><p class="mg-k">More than half of 2027–28 capacity under long-term agreements</p></div></div>
+    </div>${cap("Memory: SK hynix ran an 80% operating margin in Q3 2026, and more than half of its 2027–28 capacity is under long-term agreements.")}`,
   init: fr => { wire3d(fr, "#p3b"); fr.querySelector("#p3b").style.setProperty("--e", .75); } };
 A["memory-3a"] = { html: () => `<div class="k-col lo"><div class="mg-w">${pkg("p3c", "int")}
       <div class="lo-r"><p class="k-k">CoWoS shortfall</p><p class="lo-n"><b id="loV">20</b>%</p><div class="lo-bar"><i id="loB"></i></div><p class="lo-m" id="loM">Jan 2026</p><p class="mg-k">TrendForce: about 20% short, narrowing to about 10% by the end of 2026</p></div></div>
@@ -8002,32 +8028,32 @@ A["openclaw-3a"] = { html: orig => `<div class="owd">${orig.replace(/<p class="c
 (() => {
 const A = window.AX, cap = t => `<p class="cap">${t}</p>`, f1 = v => (+v).toFixed(1);
 const MET = { inv: ["Private AI investment, 2025", 285.9, 12.4, v => `$${v}B`, "China’s figure likely misses state guidance funds."], comp: ["Share of the world’s AI compute", 72.2, 9.6, v => `${v}%`, "Epoch AI, Q2 2026."], bots: ["Industrial robots installed last year", 34.2, 295, v => `${v}K`, "China leads where AI meets the factory floor."] };
-A["race-2a"] = { html: () => `<div class="k-col rcu"><div class="rcu-top"><div class="k-seg"><button type="button" class="k-b" data-v="7.52">Today’s US lead: 7.5×</button><button type="button" class="k-b" data-v="2">If the lead were 2×</button></div></div>
-      <label class="k-row"><span>China’s compute grows faster by</span><input type="range" id="rcuR" min="0" max="60" value="30"><b id="rcuRv"></b></label>
-      <div class="rcu-m"><svg viewBox="0 0 340 170" class="k-svg" id="rcuC" aria-label="The US-to-China compute ratio falling over time toward parity."></svg>
-        <svg viewBox="0 0 110 170" class="k-svg" aria-label="Columns of US and China compute."><rect x="14" width="34" rx="3" fill="var(--beat)" id="rcuU"/><rect x="62" width="34" rx="3" fill="var(--coral)" id="rcuK"/><text x="31" y="164" text-anchor="middle" font-size="11" class="t-strong">US</text><text x="79" y="164" text-anchor="middle" font-size="11" class="t-strong">China</text><text x="55" y="12" text-anchor="middle" font-size="12" class="t-strong" id="rcuY">2026</text></svg></div>
-      <p class="k-out"><b id="rcuN"></b><span id="rcuS"></span></p></div>${cap("Illustrative. Starts from Epoch AI’s count of the world’s AI compute (US 72.2%, China 9.6%, Q2 2026). The US took 78% of new compute in the first half of 2026, so for now the gap is widening.")}`,
+A["race-2b"] = { html: () => `<div class="k-col rcm"><svg viewBox="0 0 460 230" class="k-svg" aria-label="Of all AI compute, the US holds 72.2 percent and China 9.6 percent. Of new compute added in the first half of 2026, 78 percent went to the US.">
+      <g id="rcmBk"></g><g id="rcmR"></g>
+      ${[["United States", 80, "var(--beat)"], ["China", 230, "var(--coral)"], ["Everyone else", 380, "var(--violet)"]].map(([n, x, c]) => `<rect x="${x - 62}" y="80" width="124" height="130" rx="4" fill="none" stroke="${c}" stroke-opacity=".5"/><text x="${x}" y="226" text-anchor="middle" font-size="12" class="t-strong" style="fill:${c}">${n}</text>`).join("")}
+      <text x="80" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--beat);font-family:var(--display)" id="rcmU"></text><text x="230" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--coral);font-family:var(--display)" id="rcmC"></text><text x="380" y="70" text-anchor="middle" font-size="18" font-weight="900" style="fill:var(--violet);font-family:var(--display)" id="rcmO"></text>
+      <text x="230" y="20" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--faint);letter-spacing:.1em" id="rcmT"></text>
+    </svg><div class="k-seg"><button type="button" class="k-b" data-v="stock">All AI compute today</button><button type="button" class="k-b" data-v="flow">New compute, H1 2026</button></div><p class="k-out"><b class="b">78%</b><span>of the new AI compute added in the first half of 2026 went to the US, above its 72% share of all of it. The US share is still growing.</span></p></div>${cap("Epoch AI: US 72.2% and China 9.6% of the world’s AI compute (Q2 2026). The US added 78% of the world’s new AI compute in the first half of 2026; the flow view doesn’t split the remaining 22%.")}`,
   init: fr => {
-    const $ = s => fr.querySelector(s); let R0 = 7.52, g = .3, t = 0;
-    const X = t => 30 + t * (300 / 14), Y = v => 14 + (3 - Math.log2(Math.max(v, .5))) * 34;
-    const draw = () => { const pts = []; for (let s = 0; s <= 14.001; s += .25) { const v = R0 / Math.pow(1 + g, s); if (v < .5) break; pts.push(`${f1(X(s))},${f1(Y(v))}`); }
-      const cross = g > 0 ? Math.log(R0) / Math.log(1 + g) : Infinity, v = R0 / Math.pow(1 + g, t);
-      $("#rcuC").innerHTML = `<rect x="30" y="${Y(1)}" width="300" height="${f1(Y(.5) - Y(1))}" fill="var(--coral)" fill-opacity=".08"/>` + [8, 4, 2, 1].map(v => `<line x1="30" x2="330" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="24" y="${Y(v) + 4}" text-anchor="end" font-size="10.5">${v}×</text>`).join("") +
-        `<line x1="30" x2="330" y1="${Y(1)}" y2="${Y(1)}" stroke="var(--coral)" stroke-dasharray="4 3"/><text x="328" y="${Y(1) - 5}" text-anchor="end" font-size="10.5" style="fill:var(--coral)">parity</text>` + [2026, 2030, 2035, 2040].map(y => `<text x="${f1(X(y - 2026))}" y="166" text-anchor="middle" font-size="10.5">${y}</text>`).join("") +
-        `<polyline points="${pts.join(" ")}" fill="none" stroke="var(--beat)" stroke-width="2.6"/>` + (cross <= 14 ? `<circle cx="${f1(X(cross))}" cy="${Y(1)}" r="5" fill="var(--ink)" stroke="var(--coral)" stroke-width="2.2"/>` : "") +
-        (v >= .5 ? `<circle cx="${f1(X(t))}" cy="${f1(Y(v))}" r="6" fill="var(--paper)"/>` : "");
-      const H = 130, cn = R0 / v, mx = Math.max(R0, cn), hu = H * R0 / mx, hk = Math.max(2, H * cn / mx);
-      $("#rcuU").setAttribute("height", f1(hu)); $("#rcuU").setAttribute("y", f1(150 - hu)); $("#rcuK").setAttribute("height", f1(hk)); $("#rcuK").setAttribute("y", f1(150 - hk));
-      $("#rcuY").textContent = Math.floor(2026 + t);
-      $("#rcuN").textContent = g === 0 ? "Never" : `${cross.toFixed(cross < 10 ? 1 : 0)} years`; $("#rcuS").textContent = g === 0 ? "At the same growth rate, the ratio holds." : `to catch up, around ${Math.round(2026 + cross)}. Now playing ${Math.floor(2026 + t)}: the US has ${v.toFixed(1)}× China’s compute.`; };
-    K.slider(fr, "#rcuR", v => { g = v / 100; $("#rcuRv").textContent = v + "%"; t = 0; draw(); });
-    K.tabs(fr, ".rcu .k-b", v => { R0 = +v; t = 0; draw(); }, "7.52");
-    K.onEnter(fr, () => { t = 0; });
-    K.raf(fr, dt => { const end = g > 0 ? Math.min(14, Math.log(R0) / Math.log(1 + g) + 1.5) : 14; if (t < end) { t = Math.min(end, t + dt / 300); draw(); } });
+    const $ = s => fr.querySelector(s); let mode = "stock", drops = [], placed = [0, 0, 0], tgt = [72, 10, 18], acc = 0;
+    const bx = [80, 230, 380];
+    const cell = (b, i) => `<rect x="${bx[b] - 58 + (i % 10) * 11.6}" y="${204 - Math.floor(i / 10) * 12.4}" width="10" height="10.8" rx="1.5" fill="${["var(--beat)", "var(--coral)", "var(--violet)"][b]}"/>`;
+    let picked = false, wait = 0;
+    const tabs = K.tabs(fr, ".rcm .k-b", v => { mode = v; drops = []; placed = [0, 0, 0]; tgt = v === "stock" ? [72, 10, 18] : [78, 0, 22]; $("#rcmT").textContent = v === "stock" ? "OF EVERY 100 UNITS OF AI COMPUTE" : "OF EVERY 100 NEW UNITS, H1 2026";
+      $("#rcmU").textContent = v === "stock" ? "72.2%" : "78%"; $("#rcmC").textContent = v === "stock" ? "9.6%" : "—"; $("#rcmO").textContent = v === "stock" ? "18.2%" : "22%"; fr.querySelector(".rcm").dataset.m = v; }, "stock");
+    const bs = [...fr.querySelectorAll(".rcm .k-b")];
+    bs.forEach(b => b.addEventListener("click", () => { picked = true; }));
+    K.onEnter(fr, () => { drops = []; placed = [0, 0, 0]; wait = 0; if (!picked && mode !== "stock") tabs(bs[0]); });
+    K.raf(fr, dt => { acc += dt; const tot = placed[0] + placed[1] + placed[2] + drops.length;
+      if (!picked && mode === "stock" && placed[0] + placed[1] + placed[2] >= 100 && (wait += dt) > 1800) tabs(bs[1]);
+      while (acc > 22 && tot < 100) { acc -= 22; const need = tgt.map((t, b) => Math.max(0, t - placed[b] - drops.filter(d => d.b === b).length)), sum = need[0] + need[1] + need[2]; if (!sum) break; let r = Math.random() * sum, b = 0; while (r >= need[b]) r -= need[b++]; drops.push({ b, i: placed[b] + drops.filter(d => d.b === b).length, y: 80 }); break; }
+      drops.forEach(d => d.y += dt * .5); const land = drops.filter(d => d.y >= 204 - Math.floor(d.i / 10) * 12.4); land.forEach(d => placed[d.b]++); drops = drops.filter(d => !land.includes(d));
+      $("#rcmBk").innerHTML = [0, 1, 2].map(b => Array.from({ length: placed[b] }, (_, i) => cell(b, i)).join("")).join("");
+      $("#rcmR").innerHTML = drops.map(d => `<rect x="${bx[d.b] - 58 + (d.i % 10) * 11.6}" y="${f1(d.y)}" width="10" height="10.8" rx="1.5" fill="${["var(--beat)", "var(--coral)", "var(--violet)"][d.b]}" opacity=".8"/>`).join(""); });
   } };
 })();
 (function () {
-  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2a"}};
+  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"spacex":{"2":"spacex-2a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"ledger":{"1":"ledger-1a","2":"ledger-2b","3":"ledger-3a"},"custom":{"1":"custom-1a","2":"custom-2a","3":"custom-3a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
@@ -8179,7 +8205,7 @@ function renderHome() {
   addEventListener("resize", () => { cancelAnimationFrame(spanRaf); spanRaf = requestAnimationFrame(fitSpan); });
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).short}</span>` : ""}</a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
   const pins = [
     CONFIG.email && { tag: "@", name: "Email", handle: CONFIG.email, role: "The direct line.", href: `mailto:${CONFIG.email}` },
@@ -8440,13 +8466,16 @@ function setType(root) {
     ).join("<br>");
   });
 }
+const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
+const updTag = (t, part) => { const u = (t.updates || []).filter(x => x.parts.includes(part)).pop(); return u ? ` <button type="button" class="upd-tag" aria-controls="memoUpd">Updated ${u.short}</button>` : ""; };
 function memoHTML(t) {
   const b = BINS[t.stance];
+  const u = lastUpd(t);
   const idx = THESES.indexOf(t);
   const next = THESES[(idx + 1) % THESES.length];
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
-      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span></span><span class="m-title" id="memoTitle">${t.title}</span></div>
+      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.short}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <div class="memo-src">
         <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
@@ -8455,6 +8484,7 @@ function memoHTML(t) {
           <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
         </div>
       </div>
+      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.on}</b><span>${x.why}</span></li>`).join("")}</ul>${t.published ? `<p class="upd-pub">First published ${t.published}.</p>` : ""}</div>` : ""}
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
@@ -8466,14 +8496,13 @@ function memoHTML(t) {
         </section>
         <section class="slide" aria-label="Slide 2 of 3, my take">
           <p class="slide-k">My take</p>
-          <ol class="takes">${t.takes.map(([h, p]) => `<li><b>${h}</b><span>${p}</span></li>`).join("")}</ol>
+          <ol class="takes">${t.takes.map(([h, p], i) => `<li><b>${h}${updTag(t, "take" + (i + 1))}</b><span>${p}</span></li>`).join("")}</ol>
         </section>
         <section class="slide" aria-label="Slide 3 of 3, the bet">
-          <p class="slide-k">The bet</p>
+          <p class="slide-k">The bet${updTag(t, "bet")}</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}</div>
-          ${t.note ? `<p class="memo-note">${t.note}</p>` : ""}
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
       <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
@@ -8587,9 +8616,16 @@ function openMemo(id) {
   requestAnimationFrame(markMore);
   setTimeout(markMore, 700);
   const srcBtn = $("#memoSrcBtn"), srcPanel = $("#memoSrc");
-  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); };
+  const updBtn = $("#memoUpdBtn"), updPanel = $("#memoUpd");
+  const setUpd = open => { if (!updPanel) return; updPanel.hidden = !open; updBtn.setAttribute("aria-expanded", String(open)); };
+  const setSrc = open => { srcPanel.hidden = !open; srcBtn.setAttribute("aria-expanded", String(open)); if (open) setUpd(false); };
   srcBtn.addEventListener("click", () => setSrc(srcPanel.hidden));
   [...memo.children].forEach(el => el.addEventListener("click", e => { if (!srcPanel.hidden && !e.target.closest(".memo-src")) setSrc(false); }));
+  if (updPanel) {
+    updBtn.addEventListener("click", () => { setUpd(updPanel.hidden); if (!updPanel.hidden) setSrc(false); });
+    memo.querySelectorAll(".upd-tag").forEach(b => b.addEventListener("click", () => { setSrc(false); setUpd(true); }));
+    [...memo.children].forEach(el => el.addEventListener("click", e => { if (!updPanel.hidden && !e.target.closest(".m-upd, .upd-tag, .memo-upd-panel")) setUpd(false); }));
+  }
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
@@ -8597,6 +8633,7 @@ function openMemo(id) {
   memoKeys = e => {
     if (memo.hidden) return;
     if (e.key === "Escape" && !srcPanel.hidden) { setSrc(false); srcBtn.focus(); }
+    else if (e.key === "Escape" && updPanel && !updPanel.hidden) { setUpd(false); updBtn.focus(); }
     else if (e.key === "Escape") closeMemo(true);
     else if (e.target === slides && ["ArrowDown", "ArrowUp", "PageDown", "PageUp", " ", "Home", "End"].includes(e.key)) {
       e.preventDefault();

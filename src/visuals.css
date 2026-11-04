@@ -627,17 +627,20 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .p3-say{margin:0;min-height:2.7em;font-size:15px;line-height:1.35;color:var(--dim)}
 .p3-say b{color:var(--paper)}
 .mg-w{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12px;align-items:center}
-.mg-r{display:grid;gap:6px}
+.mg-r{display:grid;gap:6px;position:relative;z-index:2}
+@media (min-width:861px){.mg .p3-rot{scale:.84}}
 .mg-dial{width:100%;max-width:220px}
 .mg-arc{stroke-dasharray:0 100}
 .viz[data-step="2"] .f2 .mg-arc{animation:mg-arc 1.6s var(--ease) .2s forwards}
-@keyframes mg-arc{to{stroke-dasharray:76 100}}
+@keyframes mg-arc{to{stroke-dasharray:80 100}}
 .mg-v{font-family:var(--display);font-weight:900;font-size:40px;fill:var(--paper)}
 .mg-k{margin:0;font-size:12.5px;color:var(--faint)}
 .mg-lta{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:220px}
 .mg-lta i{aspect-ratio:1;border-radius:50%;border:2px solid var(--amber);opacity:0}
 .viz[data-step="2"] .f2 .mg-lta i{animation:mg-lock .4s cubic-bezier(.3,1.5,.5,1) calc(1s + var(--i) * .12s) forwards}
 @keyframes mg-lock{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none;background:rgba(63,214,200,.35)}}
+.viz[data-step="2"] .f2 .mg-lta i:not(.on){animation-name:mg-open}
+@keyframes mg-open{from{opacity:0;transform:scale(.3)}to{opacity:.45;transform:none}}
 .gs{gap:10px}
 .gs-bar i.lt{animation:k-pop .35s}
 .gs-bar i.spot{background:#2fd27a}
@@ -1060,10 +1063,8 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .viz[data-step="1"] .f1 .rsc-d{animation:k-pop .5s cubic-bezier(.3,1.5,.5,1) calc(var(--d) + .6s) both}
 .viz[data-step="1"] .f1 .rsc-m text{animation:k-fade .4s ease calc(var(--d) + .7s) both}
 .rsc-m.on .rsc-d{stroke:var(--paper);stroke-width:3}
-.rcu{gap:7px}
-.rcu-m{display:grid;grid-template-columns:minmax(0,3.1fr) minmax(0,1fr);gap:10px;align-items:end}
 .rcu .k-row{grid-template-columns:auto minmax(0,1fr) 3.2em}
-#rcuU,#rcuK{transition:height .2s,y .2s}
+.rcm{gap:8px}
 .rdc-g i.on{background:var(--beat)}
 .rfl-g i.d{background:rgba(63,214,200,.55)}
 .rfl-g i.a{background:rgba(244,151,122,.55)}
@@ -1074,4 +1075,3 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .rfl-st.a{color:var(--coral)}
 .rfl-k .d::before{background:var(--amber)}
 .rfl-k .a::before{background:var(--coral)}
-@media (max-width:860px){.rcu-m{gap:4px}}
