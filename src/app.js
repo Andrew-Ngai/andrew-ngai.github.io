@@ -298,7 +298,7 @@ const THESES = [
     ],
     bet: "The scarcest asset in AI infrastructure is a delivery slot. Back what shortens the path from molecule to rack: modular and behind-the-meter generation, faster grid interconnection, and anything that squeezes more tokens per watt out of sites that already have power.",
     wrong: "Turbine lead times fall under two years by 2028 while AI capex keeps rising.",
-    updates: [{ on: "Oct 28, 2026", short: "Oct 28", why: "GE Vernova’s Q3 results: gas turbine backlog and slot reservations rose to 122 GW, with at least 130 GW expected by year-end. Take 2 and slide 2 now use them.", was: "Originally written with Q2 results, when it was 116 GW." }],
+    updates: [{ on: "Oct 28, 2026", tag: "post-Q3", why: "GE Vernova’s Q3 results: gas turbine backlog and slot reservations rose to 122 GW, with at least 130 GW expected by year-end. Take 2 and slide 2 now use them.", was: "Originally written with Q2 results, when it was 116 GW." }],
     receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["GE Vernova Q3 2026 results (Oct 2026)", SRC.gevQ3], ["Utility Dive on GE Vernova (July 2026)", SRC.utility], ["Tom’s Hardware on Nadella (Nov 2025)", SRC.nadella]],
     viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
@@ -320,7 +320,7 @@ const THESES = [
     ],
     bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
-    updates: [{ on: "Oct 22, 2026", short: "Oct 22", why: "Bloom’s Q3 results: revenue of $1.24 billion, up 138%. Take 1 now cites two straight quarters above $1 billion.", was: "Originally written with Q2 results, Bloom’s first $1 billion quarter, up 166%." }],
+    updates: [{ on: "Oct 22, 2026", tag: "post-Q3", why: "Bloom’s Q3 results: revenue of $1.24 billion, up 138%. Take 1 now cites two straight quarters above $1 billion.", was: "Originally written with Q2 results, Bloom’s first $1 billion quarter, up 166%." }],
     receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q3 2026 results (Oct 2026)", SRC.bloomQ3], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
     viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
@@ -464,7 +464,7 @@ const THESES = [
     ],
     bet: "Back bandwidth per watt between memory and compute: the HBM supply chain (hybrid bonding and TSV tools), CXL memory pooling, co-packaged optics, and inference chips that need less HBM per token.",
     wrong: "HBM prices fall sharply in 2027 while AI capex is still rising.",
-    updates: [{ on: "Oct 28, 2026", short: "Oct 28", why: "SK hynix’s Q3 results: an 80% operating margin, and more than half of 2027–28 capacity under long-term agreements. Take 1 and slide 2 now use them.", was: "Originally written with Q2 results: a 76% margin and about ten customers on long-term agreements." }],
+    updates: [{ on: "Oct 28, 2026", tag: "post-Q3", why: "SK hynix’s Q3 results: an 80% operating margin, and more than half of 2027–28 capacity under long-term agreements. Take 1 and slide 2 now use them.", was: "Originally written with Q2 results: a 76% margin and about ten customers on long-term agreements." }],
     receipts: [["Korea Times on SK hynix’s Q3 2026 results (Oct 2026)", SRC.skhQ3], ["SK hynix Q2 2026 results", SRC.skh], ["TrendForce on CoWoS (June 2026)", SRC.trend]],
     viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
@@ -612,7 +612,7 @@ const THESES = [
     bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell just made the same bet in one move: optics as its moat, bought with $115 billion of stock.",
     wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
     note: "Not investment advice.",
-    updates: [{ on: "Nov 2, 2026", short: "Nov 2", why: "Marvell signed its deal to buy Lumentum: about $115 billion in stock, closing in the first half of 2028. Take 3 and the bet now describe the signed deal.", was: "Originally written while the two were still in talks." }],
+    updates: [{ on: "Nov 2, 2026", tag: "post-signing", why: "Marvell signed its deal to buy Lumentum: about $115 billion in stock, closing in the first half of 2028. Take 3 and the bet now describe the signed deal.", was: "Originally written while the two were still in talks." }],
     receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["TechCrunch on Marvell’s Lumentum deal (Nov 2026)", SRC.mrvlDeal]],
     viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
@@ -3258,7 +3258,7 @@ function renderHome() {
 
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).short}</span>` : ""}</a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).tag}</span>` : ""}</a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
@@ -3552,7 +3552,7 @@ function setType(root) {
   });
 }
 
-// theses revised after they went up carry an update log: one dated pill in the top bar, opening a note on what changed and what it was first written with
+// theses revised after they went up carry an update log: one pill in the top bar naming what prompted it (e.g. post-Q3), opening a note on what changed and what it was first written with
 const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
 
 function memoHTML(t) {
@@ -3562,7 +3562,7 @@ function memoHTML(t) {
   const next = THESES[(idx + 1) % THESES.length];
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
-      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.short}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
+      <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.tag}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
       <div class="memo-src">
         <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
@@ -3571,7 +3571,7 @@ function memoHTML(t) {
           <ul>${t.receipts.map(([l, h]) => `<li><a href="${h}" target="_blank" rel="noopener">${l}</a></li>`).join("")}</ul>
         </div>
       </div>
-      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.on}</b><span>${x.why}</span>${x.was ? `<span class="upd-was">${x.was}</span>` : ""}</li>`).join("")}</ul></div>` : ""}
+      ${u ? `<div class="memo-upd-panel" id="memoUpd" hidden><p class="upd-k">What changed</p><ul>${t.updates.slice().reverse().map(x => `<li><b>Updated ${x.tag} · ${x.on}</b><span>${x.why}</span>${x.was ? `<span class="upd-was">${x.was}</span>` : ""}</li>`).join("")}</ul></div>` : ""}
     </div>
     <div class="memo-body" style="--bin:${b.css}">
       <div class="slides" id="slides" tabindex="0" aria-label="Thesis slides. Use the arrow keys to move between them.">
