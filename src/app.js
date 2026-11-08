@@ -103,21 +103,6 @@ const SRC = {
   nowQ2: "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm",
   intercom: "https://www.intercom.com/pricing",
   gartner26: "https://www.gartner.com/en/newsroom/press-releases/2026-04-22-gartner-forecasts-worldwide-it-spending-to-grow-13-point-5-percent-in-2026-totaling-6-point-31-trillion-dollars",
-  spxIpo: "https://www.businessday.co.za/world/international-companies/2026-06-11-spacex-raises-75bn-in-blockbuster-ipo/",
-  spxCursor: "https://www.sec.gov/Archives/edgar/data/0001181412/000162828026056945/spcx-20260814.htm",
-  spxExercise: "https://www.capitalbrief.com/briefing/spacex-exercises-option-to-buy-cursor-for-usd60b-9f3721c7-1276-4772-9451-e3bf32acbab9/",
-  cursor4b: "https://dealroom.co/news/134107-cursor-tops-4b-annualized-revenue/",
-  spxFin: "https://www.satellitetoday.com/finance/2026/05/20/spacexs-ipo-filing-gives-first-look-into-companys-financials/",
-  spxQ2: "https://abc7.com/post/elon-musk-face-tough-questions-during-spacexs-first-earnings-call-public-company/19623672/",
-  spxLeaseTc: "https://techcrunch.com/2026/05/28/how-long-is-anthropics-lease-with-spacex-opinions-vary/",
-  cursorCo: "https://en.wikipedia.org/wiki/Cursor_(company)",
-  spxCap: "https://stockanalysis.com/stocks/spcx/statistics/",
-  spxF14: "https://aiaa.org/2026/09/28/starship-reaches-orbit-for-first-time-on-flight-14/",
-  spxF14b: "https://www.satellitetoday.com/launch/2026/09/28/spacexs-starship-reaches-orbit-cuts-10-hour-mission-short-after-engine-issue/",
-  pgGillette: "https://www.sec.gov/Archives/edgar/data/41499/000095010305000139/jan2705_ex9901.htm",
-  rklbQ2: "https://www.sec.gov/Archives/edgar/data/0001819994/000181999426000061/rklb-08102026ex991.htm",
-  rklbIrdm: "https://www.manufacturingdive.com/news/rocket-lab-iridium-communications-space-spectrum-network-acquisition/824006/",
-  neutron: "https://spaceflightnow.com/2026/08/10/window-for-2026-launch-debut-of-rocket-labs-neutron-rocket-is-narrowing-as-development-continues/",
   burry: "https://www.streetinsider.com/General+News/Michael+Burry+warns+of+%24176+billion+depreciation+understatement+by+tech+giants/25584209.html",
   burry60s: "https://www.benzinga.com/markets/equities/26/10/62129119/michael-burry-just-pulled-a-1960s-market-bubble-into-nvidias-ai-debate-we-have-all-been-here-before",
   depDj: "https://www.itiger.com/news/2589331119",
@@ -136,17 +121,6 @@ const SRC = {
   qIbm: "https://www.datacenterdynamics.com/en/news/ibm-updates-quantum-computing-roadmap-to-deliver-starling-system-by-2029/",
   qNvq: "https://quantumcomputingreport.com/nvidias-nvqlink-unites-quantum-ecosystem-for-real-time-error-correction/",
   btcExposed: "https://forklog.com/en/news/glassnode-assesses-bitcoin-with-exposed-public-keys",
-  btcPaper: "https://bitcoin.org/bitcoin.pdf",
-  kinexys: "https://catenaa.com/markets/global-markets/jpmorgan-blockchain-payments-kinexys-mitsubishi",
-  occGenius: "https://occ.gov/news-issuances/bulletins/2026/bulletin-2026-50.html",
-  avgoQ3: "https://pulse2.com/broadcom-q3-fiscal-2026-revenue-jumps-86-to-29-6-billion-as-ai-semiconductor-revenue-reaches-16-7-billion/",
-  avgoCall: "https://www.nasdaq.com/articles/broadcom-q3-earnings-call-highlights",
-  asicState: "https://tomshardware.com/tech-industry/semiconductors/custom-ai-asics-examined-from-broadcom-to-mtia",
-  mrvlBench: "https://finance.yahoo.com/news/marvell-mrvl-stock-downgraded-concerns-092046712.html",
-  mrvlHigh: "https://www.fool.com/investing/2026/06/18/marvell-stock-just-hit-a-new-high-a-quiet-amazon-d/",
-  mrvlQ2: "https://pulse2.com/marvell-data-center-revenue-growth-accelerates-to-46-as-ai-demand-drives-record-2-74-billion-quarter/",
-  mrvlLite: "https://www.fool.com/investing/2026/10/29/why-marvell-stock-is-down-today/",
-  mrvlDeal: "https://techcrunch.com/2026/11/02/in-one-of-the-largest-deals-in-tech-history-marvell-buys-lumentum-for-115b/",
   nbFrame: "https://betteresearch.com/posts/nebius-investment-framework",
   nbTf: "https://nebius.com/newsroom/nebius-launches-nebius-token-factory-to-deliver-production-ai-inference-at-scale",
   amodeiMlg: "https://www.darioamodei.com/essay/machines-of-loving-grace",
@@ -318,7 +292,7 @@ const THESES = [
       ["It scales like compute, not like a power plant.", "Each Energy Server is a 325 kW block about 9 meters long, so capacity grows as racks arrive, and Bloom planned to double production capacity to 2 GW a year by the end of 2026. No combustion, almost no NOx, no water in normal operation. The catch: it runs mostly on natural gas, and efficiency fades from 65% to 53% as the cells age."],
       ["DC is the sleeper.", "A fuel cell can feed DC straight to the row, skipping transformers and switchgear that are themselves backlogged. Bloom says that cuts non-compute capex for a 1 GW site by $3.6 billion, about 27%. That’s the company’s own math, but the direction is right."]
     ],
-    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Bloom is the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
+    bet: "Onsite power stops being a stopgap and becomes how AI campuses are designed: factory-built, modular and DC from the start. Fuel cells are the clearest early winner. Back the DC stack around it: 800 V distribution, solid-state transformers, DC protection, and storage that smooths GPU load swings.",
     wrong: "By 2028, turbine and grid lead times fall back under two years, fuel-cell power still costs more per MWh, and Bloom goes back to being backup power.",
     updates: [{ on: "Oct 22, 2026", tag: "post-Q3", why: "Bloom’s Q3 results: revenue of $1.24 billion, up 138%. Take 1 now cites two straight quarters above $1 billion.", was: "Originally written with Q2 results, Bloom’s first $1 billion quarter, up 166%." }],
     receipts: [["NVIDIA on 800 VDC (May 2025)", SRC.nv800], ["Bloom and Oracle (Apr 2026)", SRC.bloomOracle], ["Bloom Q3 2026 results (Oct 2026)", SRC.bloomQ3], ["Bloom Q2 2026 results (July 2026)", SRC.bloomQ2], ["Utility Dive on Bloom’s 2 GW plan (Oct 2025)", SRC.bloomCap], ["Energy Server 6.5 datasheet (Feb 2026)", SRC.bloomSheet], ["Bloom on 800 V DC power (Sept 2026)", SRC.bloomDC], ["Utility Dive on GE Vernova (July 2026)", SRC.utility]],
@@ -360,7 +334,7 @@ const THESES = [
       ["The market priced old GPUs, and the price went up.", "Silicon Data’s H100 rental index rose from $2.00 an hour in December 2025 to $2.82 today, and SemiAnalysis found some H100 contracts being renewed for four years, through 2028. In late 2025, H100 systems in their third year resold for about 45% of the price of a new one. Burry’s reply is that a chip can rent and still depreciate fast. True, but rent above running cost is what pays the capex back."],
       ["Power is the real clock, and it runs slow.", "Burry’s sharpest point is opportunity cost: a megawatt of old chips could hold ten times the tokens. But Rubin needs liquid-cooled racks that most air-cooled H100 halls can’t take without major upgrades, and this spring, on-demand capacity for every GPU type sold out anyway. So old GPUs keep their power until the building turns over. Electricity for an H100, server and cooling included, runs roughly 15 to 20 cents an hour. The chip rents for $2.82."]
     ],
-    bet: "Treat a GPU like an airplane, not a phone. Jets fly flagship routes, then regional ones, then cargo, then go to a second airline, and lessors price every stage. GPUs are getting the same ladder. The neoclouds worth owning sign contracts that pay back the chip before the next generation lands, then run it down the menu. Nebius depreciates its servers over five years (four until this year) and signed Microsoft for five, so the contract covers the whole book life. Back the plumbing of a GPU’s second and third lives: rental and residual-value indexes, compute futures, schedulers that send cheap work to old chips, refurbishing and resale, and lenders who underwrite GPUs on contracted cash instead of book value.",
+    bet: "Treat a GPU like an airplane, not a phone. Jets fly flagship routes, then regional ones, then cargo, then go to a second airline, and lessors price every stage. GPUs are getting the same ladder. The neoclouds built to last sign contracts that pay back the chip before the next generation lands, then run it down the menu. Nebius depreciates its servers over five years (four until this year) and signed Microsoft for five, so the contract covers the whole book life. Back the plumbing of a GPU’s second and third lives: rental and residual-value indexes, compute futures, schedulers that send cheap work to old chips, refurbishing and resale, and lenders who underwrite GPUs on contracted cash instead of book value.",
     wrong: "H100 rental prices fall below $1 an hour by 2028 while the newest chips are still sold out, or neoclouds start selling old GPUs for parts. Then the second life was a shortage, not a market.",
     receipts: [["StreetInsider on Burry’s $176B estimate (Nov 2025)", SRC.burry], ["Benzinga on Burry’s 1960s comparison (Oct 2026)", SRC.burry60s], ["Dow Jones on GPU useful lives and resale (Dec 2025)", SRC.depDj], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["TheStreet on Huang and CoreWeave’s A100s (Sept 2026)", SRC.a100Huang], ["Benzinga on A100 values (Sept 2026)", SRC.a100Val], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Silicon Data on the H100 spike (Jan 2026)", SRC.h100Spike], ["SemiAnalysis, The Great GPU Shortage (Apr 2026)", SRC.semiShort], ["Nebius H1 2026 results on useful lives (Aug 2026)", SRC.nbDep], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["NVIDIA DGX H100 guide (power)", SRC.dgxH100]],
     viz: "gpulife", echo: { pose: "idle", acc: "waiter", name: "Maître d’" }
@@ -381,7 +355,7 @@ const THESES = [
       ["Agents need a rulebook, and SaaS holds it.", "A model guesses. A company’s books can’t. On August 26, Salesforce and Anthropic, whose plug-ins had deepened the sell-off, announced Claudeforce: Claude works on Salesforce data, and its actions are routed back through Salesforce “to help ensure business rules are always enforced.” That quarter, Salesforce’s filing showed about $2.7 billion of unrealized gains on its Anthropic stake. The software company owns a piece of the AI lab."],
       ["The meter moves from seats to work.", "The real risk is that one agent does the work of ten people who each had a license. So vendors are charging for the work. Intercom charges from $0.99 per outcome for its Fin agent. Salesforce sells Agentforce partly by the action, and its Agentforce revenue run rate passed $1.5 billion, up more than 240%. Marc Benioff told investors, “Our seats were supposed to decline,” then said its sales, service and Slack products all grew instead. ServiceNow’s AI annual contract value crossed $1 billion, and Gartner expects software spending to grow about 15% this year. A seat is priced against the IT budget. Finished work is priced against the labor budget, which is far bigger."]
     ],
-    bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents (CrowdStrike, Fortinet and Palo Alto Networks have all more than doubled this year), and the metering and billing that outcome pricing needs.",
+    bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents, and the metering and billing that outcome pricing needs.",
     wrong: "By 2028, big companies are moving their core records, like CRM, ERP and HR, off SaaS and onto in-house systems built with AI, the way Klarna did, and revenue from existing customers at the big system-of-record vendors starts shrinking.",
     receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Intercom pricing (Oct 2026)", SRC.intercom], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
     viz: "saas", echo: { pose: "chomp", acc: "chomp", name: "Record keeper" }
@@ -531,28 +505,6 @@ const THESES = [
     viz: "screen", echo: { pose: "giftclock", acc: "giftclock", name: "Timekeeper" }
   },
   {
-    id: "spacex", die: [3, 2], stance: "original",
-    layer: "F", tldr: ["SpaceX’s strongest engine is its stock", "$1.77T IPO, then Cursor for $60B in stock four days later."],
-    title: "SpaceX’s strongest engine is its stock.",
-    h2: "SpaceX’s | strongest engine | is its stock.",
-    short: "The stock is the engine",
-    hook: "SpaceX sells launches, internet and AI. Its most useful product might be the shares it pays with.",
-    ref: { label: "My own read of SpaceX’s IPO and its $60 billion all-stock purchase of Cursor (June 2026)", href: SRC.spxCursor },
-    signal: `<p class="claim">Four days after its IPO, | SpaceX agreed | to buy an AI company | with its own stock.</p>
-      <p>SpaceX listed on Nasdaq on June 12, 2026, at $135 a share, a $1.77 trillion valuation. On June 16, it exercised its option to buy Cursor, the AI coding startup, for $60 billion, paid in about 389 million new SpaceX shares rather than cash. The deal closed August 14.</p>
-      <p>SpaceX lost $4.9 billion last year, so it has no P/E to speak of. At the IPO price it was valued at about 95 times its 2025 revenue, and still more than 50 times its current run rate. Cursor cost 15 to 20 times its reported run rate. That gap is a business model.</p>`,
-    takes: [
-      ["The rockets still have to work.", "The space bet rests on Starship making orbit cheap. On September 28, it reached orbit for the first time and deployed 26 Starlink V3 satellites, though an engine shut down early and the flight was cut short. Starlink is the cash engine: $11.4 billion of SpaceX’s $18.7 billion in 2025 revenue. The AI side is less certain. Anthropic’s $1.25 billion a month for compute runs through May 2029 on paper, but either side can walk away on 90 days’ notice."],
-      ["The stock is a currency.", "When your shares trade at 50 to 95 times revenue and the company you’re buying sells for 15 to 20, paying in stock adds more revenue per share than it gives away. Cursor cost SpaceX about 3% more shares and brought $3 billion to $4 billion of run-rate revenue, a sixth to a fifth of SpaceX’s 2025 revenue. P&G built its house of brands with stock too, paying for Gillette in 2005 with about $57 billion of its own shares, but it leaned on cost savings, not a rich multiple. SpaceX’s edge is the multiple itself. Musk holds about 82% of the votes, so no one can block the next deal."],
-      ["Rocket Lab is running it smaller.", "Rocket Lab has spent years buying satellite suppliers, most recently Mynaric and Motiv, and on June 28 agreed to buy Iridium for about $8 billion in cash and stock. “If you want to do big things in space, you need spectrum,” Peter Beck said. Its backlog hit a record $2.36 billion. But its bigger rocket, Neutron, slipped after a fuel tank ruptured in testing in January, and it’s now aiming for the pad by the end of 2026."]
-    ],
-    bet: "SpaceX becomes the P&G of AI and space: a house of brands held together by Starlink’s reach, xAI’s compute and one very expensive stock. As long as its shares trade far above what it pays, every stock deal adds revenue per share, and the deals can keep getting bigger. That changes the exit map for founders and VCs. The likeliest buyer for a fast-growing AI or space startup may be a stock swap with SpaceX, not an IPO. Build what plugs into Starlink, xAI or Cursor, and know the window lasts only as long as the multiple.",
-    wrong: "SpaceX’s stock falls to roughly what it paid for Cursor, 15 to 20 times revenue, so stock deals stop adding revenue per share. Or Starship misses routine reuse through 2028 and the core business needs the cash.",
-    note: "Not investment advice.",
-    receipts: [["SpaceX 8-K closing the Cursor deal (Aug 2026)", SRC.spxCursor], ["Capital Brief on the option exercise (June 2026)", SRC.spxExercise], ["Dealroom on Cursor’s $4B run rate (June 2026)", SRC.cursor4b], ["Wikipedia, Cursor (company)", SRC.cursorCo], ["Reuters on the IPO (June 2026)", SRC.spxIpo], ["Via Satellite on SpaceX’s 2025 financials (May 2026)", SRC.spxFin], ["AP on SpaceX’s Q2 (2026)", SRC.spxQ2], ["Stock Analysis, SPCX statistics (Oct 2026)", SRC.spxCap], ["AIAA on Starship Flight 14 (Sept 2026)", SRC.spxF14], ["Via Satellite on Flight 14 (Sept 2026)", SRC.spxF14b], ["TechCrunch on the Anthropic lease (May 2026)", SRC.spxLeaseTc], ["P&G and Gillette merger release (Jan 2005)", SRC.pgGillette], ["Rocket Lab Q2 2026 results (Aug 2026)", SRC.rklbQ2], ["Manufacturing Dive on Rocket Lab and Iridium (June 2026)", SRC.rklbIrdm], ["Spaceflight Now on Neutron (Aug 2026)", SRC.neutron]],
-    viz: "spacex", echo: { pose: "float", acc: "jet", name: "Dealmaker" }
-  },
-  {
     id: "quantum", die: [6, 1], stance: "build",
     layer: "S", tldr: ["Quantum’s first job: breaking keys", "Google: < 500K qubits could break Bitcoin-grade keys in minutes. Migrate before Q-day."],
     title: "Quantum’s first big job is breaking keys, not training models.",
@@ -568,53 +520,10 @@ const THESES = [
       ["AI helps quantum more than quantum helps AI.", "Training a frontier model means pushing trillions of tokens through matrix math, and quantum computers have no known edge at either. They can’t even load that much data. The help runs the other way: error correction needs a classical computer to read the qubits and decide fixes within microseconds, so Nvidia’s NVQLink, launched in October 2025, wires GPUs to quantum processors from 17 builders with a round trip under 4 µs. Quantum’s eventual gift to AI is data: simulations of molecules and materials no GPU can run, for drugs, batteries and chips."],
       ["The AI race meets the quantum clock at the locks.", "About 6.26 million bitcoin, 31% of supply, sit in addresses whose public keys are already visible, including roughly 1.1 million attributed to Satoshi. Anything encrypted today can be recorded now and read later, which is why Google set itself a 2029 deadline to move to post-quantum cryptography and the NSA wants national security systems there by 2030. The first key-breaking machine would open years of other people’s secrets, including the ones that guard AI labs."]
     ],
-    bet: `Quantum’s first trillion-dollar consequence is a migration, not a computer. Back the post-quantum switchover: tools that find everywhere a company uses breakable encryption, post-quantum libraries and hardware security modules, wallet and custody upgrades for crypto, and the GPU-side control stack (decoders and low-latency links) that every quantum builder needs, whichever qubit type wins. The blockchain half of this story is in <a href="#ledger">Banks won’t mine</a>.`,
+    bet: `Quantum’s first trillion-dollar consequence is a migration, not a computer. Back the post-quantum switchover: tools that find everywhere a company uses breakable encryption, post-quantum libraries and hardware security modules, wallet and custody upgrades for crypto, and the GPU-side control stack (decoders and low-latency links) that every quantum builder needs, whichever qubit type wins.`,
     wrong: "A quantum computer trains or serves a frontier AI model faster than GPUs before any quantum computer breaks a 256-bit elliptic-curve key.",
     receipts: [["Google Quantum AI on cryptocurrency (Mar 2026)", SRC.qGoogle], ["Forbes on Google’s paper (Mar 2026)", SRC.qForbes], ["The Quantum Insider on Quantum Echoes (Oct 2025)", SRC.qEchoes], ["Caltech’s 6,100-qubit array (Sept 2025)", SRC.qCaltech], ["Quantum Zeitgeist logical-qubit leaderboard (2026)", SRC.qBoard], ["DCD on IBM’s Starling roadmap (2025)", SRC.qIbm], ["Quantum Computing Report on NVQLink (Oct 2025)", SRC.qNvq], ["ForkLog on Glassnode’s exposed-key count (Oct 2026)", SRC.btcExposed]],
     viz: "quantum", echo: { pose: "superpose", acc: "qubit", name: "Qubit" }
-  },
-  {
-    id: "ledger", die: [4, -8], stance: "build",
-    layer: "A", tldr: ["Banks won’t mine, but they’ll share the ledger", "Proof of work → a guest list. Deposit tokens on shared books."],
-    title: "Banks won’t mine. They’ll still share the ledger.",
-    h2: "Banks won’t mine. | They’ll still | share the ledger.",
-    short: "Banks will share the ledger",
-    hook: "Bitcoin built a ledger nobody owns and anyone can check. Banks want the second half without the first.",
-    ref: { label: "Satoshi Nakamoto, “Bitcoin: A Peer-to-Peer Electronic Cash System” (2008)", href: SRC.btcPaper },
-    signal: `<blockquote class="pull">…a record that | cannot be changed | without redoing | the proof-of-work.</blockquote>
-      <p>That’s the whole trick. Every block holds its data, its own hash (a fingerprint of everything in it) and the hash of the block before it. Change anything in an old block and its fingerprint changes, which breaks the link to every block after it. Only the first block, the genesis block, points to nothing.</p>`,
-    takes: [
-      ["Tampering doesn’t fail. It gets outworked.", "A forger can rewrite a block and make the chain look valid again, but only by redoing the proof of work for that block and every block after it, then outrunning everyone still adding honest ones. Bitcoin tunes that work so a block lands about every 10 minutes. Satoshi did the math: an attacker with 10% of the network’s computing power, six blocks behind, catches up about 0.02% of the time. Waiting for confirmations is waiting for that number to shrink."],
-      ["Everyone keeps a copy, so nobody reconciles.", "Every participant holds the whole ledger and checks each new block, so agreement comes from consensus instead of a back office matching two banks’ books after the fact. That’s what banks are buying. JPMorgan’s Kinexys moves about $5 billion a day and has handled more than $3 trillion since 2020, and its JPM Coin deposit token runs on Coinbase’s Base network."],
-      ["Banks swap the work for a guest list.", "Proof of work burns electricity so strangers can trust each other. Banks know who’s on their network, so their chains use proof of authority or stake: identified validators vote, and blocks settle in seconds. The rules are arriving too. The OCC’s final GENIUS Act rule for payment stablecoins, issued October 21, takes effect January 18, 2027. What none of them can swap yet is the signature math: Shor’s algorithm on a big enough quantum computer breaks the elliptic-curve keys (ECDSA) behind Bitcoin and most chains."]
-    ],
-    bet: `Within five years, most money moving between big banks will move on shared ledgers: deposit tokens, tokenized Treasurys and stablecoins from bank subsidiaries. Banks still reconciling separate books will be slower and costlier than the ones that aren’t. Back the plumbing: bridges between bank chains and public ones, identity and compliance built into the token, custody, and post-quantum signatures before the ledgers are valuable enough to attack. The quantum side is in <a href="#quantum">Quantum’s first big job</a>.`,
-    wrong: "By 2031, the biggest US banks still settle almost all of their payments with each other on legacy rails, and their chains are still pilots.",
-    receipts: [["Satoshi Nakamoto, Bitcoin white paper (2008)", SRC.btcPaper], ["Catenaa on Kinexys and Mitsubishi (Apr 2026)", SRC.kinexys], ["OCC Bulletin 2026-50, GENIUS Act final rule (Oct 2026)", SRC.occGenius], ["Google Quantum AI on elliptic-curve keys (Mar 2026)", SRC.qGoogle]],
-    viz: "ledger", echo: { pose: "mint", acc: "chain", name: "Ledger" }
-  },
-  {
-    id: "custom", die: [-3, -2], stance: "original",
-    layer: "C", tldr: ["The chip is custom. The moat is around it.", "Broadcom AI chips: $16.7B a quarter, 73% custom."],
-    title: "The chip is custom. The moat is everything around it.",
-    h2: "The chip is custom. | The moat is | everything around it.",
-    short: "The moat around the chip",
-    hook: "Hyperscalers can learn to design their own AI chips. The wires, the packaging and the supply are much harder to bring in-house.",
-    ref: { k: "Reference design", label: "My own read of Broadcom’s and Marvell’s 2026 results and the custom-chip deals behind them", href: SRC.avgoCall },
-    signal: `<p class="claim">$16.7 billion of AI chips | in one quarter, | up 221%.</p>
-      <p>That was Broadcom’s AI semiconductor revenue in its fiscal third quarter, reported September 3. Custom accelerators were 73% of it, led by Google’s TPUs and OpenAI’s first chip, which shipped that quarter. Meta’s MTIA follows in the fourth. Broadcom expects about $115 billion of AI revenue in fiscal 2027 and about $230 billion in 2028.</p>
-      <p>Every one of those customers is also learning to design chips without it.</p>`,
-    takes: [
-      ["Custom wins on the job, not the spec sheet.", "A GPU is built to run anything. A custom accelerator, or ASIC, is built for one company’s models, trading flexibility for cost and power. Custom ASIC shipments were projected to grow 44.6% in 2026 against 16.1% for GPUs, and Broadcom and Marvell co-design about 95% of them. Anthropic alone plans to add 5 GW of Google’s TPU v8i in 2027, per Broadcom."],
-      ["The insourcing threat is real, and partial.", "Google brought in MediaTek as a second design partner for TPU v7. Amazon designs Trainium in-house at Annapurna Labs, and in December 2025 Benchmark said it was highly confident Marvell had lost Trainium3 and Trainium4 to Taiwan’s Alchip. What customers keep buying is the hard periphery: high-speed I/O, the memory interface, packaging and a slice of TSMC’s scarce CoWoS capacity, where Broadcom holds about 15%."],
-      ["So the vendors are moving to what can’t be insourced.", "Broadcom sells the network with the chips. Its AI networking revenue grew more than 2.5× in a year, and it says it has secured supply for fiscal 2027. On November 2, Marvell agreed to buy Lumentum, which makes the lasers and optical parts that carry data between AI chips, in an all-stock deal valued at about $115 billion including debt. It’s expected to close in the first half of 2028."]
-    ],
-    bet: "The design fee is the part that gets competed away. Back the layers customers can’t easily build: high-speed SerDes and optical interconnect, co-packaged optics, advanced packaging capacity, and the networking that makes a million chips act as one. Broadcom already sells most of that stack alongside its chips. Marvell just made the same bet in one move: optics as its moat, bought with $115 billion of stock.",
-    wrong: "By 2028, a top hyperscaler ships its flagship AI chip with no outside design partner, using its own high-speed I/O and packaging flow, and Broadcom’s AI revenue stops growing faster than Nvidia’s.",
-    note: "Not investment advice.",
-    updates: [{ on: "Nov 2, 2026", tag: "post-signing", why: "Marvell signed its deal to buy Lumentum: about $115 billion in stock, closing in the first half of 2028. Take 3 and the bet now describe the signed deal.", was: "Originally written while the two were still in talks." }],
-    receipts: [["Nasdaq on Broadcom’s Q3 call (Sept 2026)", SRC.avgoCall], ["Pulse 2.0 on Broadcom’s Q3 results (Sept 2026)", SRC.avgoQ3], ["Tom’s Hardware, custom AI ASIC state of play (May 2026)", SRC.asicState], ["Yahoo Finance on Benchmark’s Marvell downgrade (Dec 2025)", SRC.mrvlBench], ["Motley Fool on Marvell’s new high (June 2026)", SRC.mrvlHigh], ["Pulse 2.0 on Marvell’s Q2 (Aug 2026)", SRC.mrvlQ2], ["TechCrunch on Marvell’s Lumentum deal (Nov 2026)", SRC.mrvlDeal]],
-    viz: "custom", echo: { pose: "inspect", acc: "goggles", name: "Chip designer" }
   },
   {
     id: "tokens", die: [6, -3], stance: "agree",
@@ -632,7 +541,7 @@ const THESES = [
       ["The token is a product.", "Token Factory serves more than 40 open models with fine-tuning, distillation and dedicated endpoints at a 99.9% uptime SLA. Prosus runs up to 200 billion tokens a day on it and reports costs up to 26× lower than with proprietary models. Then Nebius bought ways to get more out of each GPU and each customer: Eigen AI ($643 million) for model-level inference tuning, Clarifai’s team and patents for system-level orchestration, and Tavily for agent search, with about 700,000 developers. A customer wired into an API is harder to re-bid than a rack."],
       ["The spread is real, and it’s melting.", "Token prices fall 30% to 50% a year across providers, so over four years the 17–150× spread shrinks to roughly 2–20×. Together AI, Fireworks, Groq and open engines like vLLM chase the same margin. The framework gives the window two to four years, and Nebius hasn’t yet broken out Token Factory revenue. Its scenarios show the stakes: about 11× for shareholders if tokens become a software-class business, a loss of 70% or more if Nebius stays a GPU landlord in a glut."]
     ],
-    bet: `Neoclouds that stay landlords earn landlord returns. The ones worth owning turn more of every megawatt into tokens sold by the million, and keep customers through APIs, fine-tuned models and agents rather than price. This extends my take in <a href="#neocloud">The clouds are renting from the neoclouds</a>: renting GPU-hours wholesale is the floor, and tokens are the upside. The tell is the share of Nebius’s revenue that comes from Token Factory, which it hasn’t disclosed yet.`,
+    bet: `Neoclouds that stay landlords earn landlord returns. The ones that win turn more of every megawatt into tokens sold by the million, and keep customers through APIs, fine-tuned models and agents rather than price. This extends my take in <a href="#neocloud">The clouds are renting from the neoclouds</a>: renting GPU-hours wholesale is the floor, and tokens are the upside. The tell is the share of Nebius’s revenue that comes from Token Factory, which it hasn’t disclosed yet.`,
     wrong: "By the end of 2027, Nebius earns no more revenue per megawatt than CoreWeave, or token prices fall faster than its cost per token, so selling tokens pays no better than renting GPUs.",
     note: "Not investment advice.",
     receipts: [["betteresearch, Nebius Investment Framework (May 2026)", SRC.nbFrame], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft]],
@@ -745,10 +654,8 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [2, 8], title: "The datacenter became a bond.", hook: "Meta’s $27B Hyperion deal was the biggest private-credit deal ever. The risk moved off the balance sheet, not away." },
   { die: [8, -1], title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
-  { die: [-8, -5], title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?",
-    note: "My bet: a Tesla–SpaceX merger is close to inevitable by the end of Q1 2027. Both boards set up special committees to study it in October, and many Tesla shareholders are counting on it to hold up the valuation." }
+  { die: [-8, -5], title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" }
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
@@ -764,7 +671,6 @@ const DOODLES = {
   agent: "<path d=\"M18 40 C8 30 16 13 31 16 C35 5 52 5 56 13 C68 9 79 21 73 32 C81 41 72 55 59 51 H28 C17 53 12 46 18 40 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M45 12 V50 M30 28 Q37 25 36 34 M58 24 Q52 28 58 34\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M60 51 L80 70 L98 60\" stroke=\"#1f5fbf\" stroke-width=\"4.4\" /><path d=\"M98 60 L106 52 M98 60 L108 64\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M100 70 h16 l-2 18 h-12 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M103 70 q5 -8 10 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"36\" y=\"76\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">brain</text><text x=\"78\" y=\"96\" fill=\"#1f5fbf\" font-size=\"17\" text-anchor=\"middle\">body</text>",
   openclaw: "<path d=\"M20 70 C10 55 14 32 30 26 C40 22 46 32 40 40 C50 34 58 40 54 50 C48 62 36 74 20 70 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M40 40 L30 50\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M72 22 L84 8 L96 22\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M66 22 h38 v50 h-38 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M76 34 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M74 54 H96 M74 62 H90\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"85\" y=\"92\" fill=\"#1f5fbf\" font-size=\"18\" text-anchor=\"middle\">ID</text>",
   saas: "<path d=\"M14 26 h26 v26 h-26 Z M10 56 h34 M27 56 v18 M15 82 l12 -8 l12 8\" stroke=\"#26303a\" stroke-width=\"3.2\" /><path d=\"M40 26 a5 5 0 0 0 -2 9 a5 5 0 0 0 2 9\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><text x=\"28\" y=\"18\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">seat</text><path d=\"M66 26 v48 a20 7 0 0 0 40 0 v-48\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 26 a20 7 0 0 0 40 0 a20 7 0 0 0 -40 0\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 42 a20 7 0 0 0 40 0 M66 58 a20 7 0 0 0 40 0\" stroke=\"#1d8a5c\" stroke-width=\"2\" /><path d=\"M78 88 l6 6 l12 -14\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><text x=\"86\" y=\"18\" fill=\"#1d8a5c\" font-size=\"16\" text-anchor=\"middle\">record</text>",
-  ledger: "<path d=\"M4 40 l14 -8 l14 8 l-14 8 Z M4 40 v18 l14 8 v-18 M32 40 v18 l-14 8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"18\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#a1</text><path d=\"M44 40 l14 -8 l14 8 l-14 8 Z M44 40 v18 l14 8 v-18 M72 40 v18 l-14 8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"58\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#b7</text><path d=\"M84 40 l14 -8 l14 8 l-14 8 Z M84 40 v18 l14 8 v-18 M112 40 v18 l-14 8\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><text x=\"98\" y=\"84\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">#c9</text><path d=\"M32 50 h12 M72 50 h12\" stroke=\"#26303a\" stroke-width=\"2.2\" stroke-dasharray=\"3 4\"/>",
   screentime: "<path d=\"M30 30 a8 8 0 1 0 0.1 0 M30 46 V70 M30 54 L18 62 M30 54 L42 60 M30 70 L22 88 M30 70 L38 88\" stroke=\"#1f5fbf\" stroke-width=\"3.2\" /><path d=\"M84 30 a8 8 0 1 0 0.1 0 M84 46 V70 M84 54 L72 60 M84 54 L96 62 M84 70 L76 88 M84 70 L92 88\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M43 60 Q57 52 71 60\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M57 4 a12 12 0 1 0 0.1 0 M57 10 V16 L61 19\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M42 10 q-4 8 3 12\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><path d=\"M45 22 l-1 -6 l-5 3\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" />",
   automate: "<path d=\"M60 14 A36 36 0 0 1 96 50\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M90 44 L96 52 L102 44\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><path d=\"M96 58 A36 36 0 0 1 40 82\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M46 76 L38 84 L48 88\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><path d=\"M28 72 A36 36 0 0 1 48 16\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><path d=\"M42 14 L50 14 L46 22\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><text x=\"60\" y=\"10\" fill=\"#26303a\" font-size=\"18\" text-anchor=\"middle\">AI</text><text x=\"108\" y=\"70\" fill=\"#26303a\" font-size=\"16\" text-anchor=\"middle\">research</text><text x=\"18\" y=\"90\" fill=\"#26303a\" font-size=\"16\" text-anchor=\"middle\">better AI</text><path d=\"M50 42 h20 v14 h-20 Z M54 56 l-2 6 M66 56 l2 6\" stroke=\"#6b4fd8\" stroke-width=\"2.4\" /><path d=\"M55 48 h2 M63 48 h2\" stroke=\"#6b4fd8\" stroke-width=\"2.4\" />",
   race: "<path d=\"M0 50 Q8 47 16 50 T32 50 T48 50 T64 50 T80 50 T96 50 T112 50 T120 50\" stroke=\"#1f5fbf\" stroke-width=\"2\" /><path d=\"M18 50 L28 30 L34 36 L40 24 L50 50\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M70 50 L80 31 L86 36 L91 26 L100 50\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M14 52 L6 66 L12 88 L32 98 L52 90 L58 70 L52 52\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M78 52 L76 58 L84 62 L92 57 L91 52\" stroke=\"#d23c3c\" stroke-width=\"3\" /><text x=\"32\" y=\"80\" fill=\"#1f5fbf\" font-size=\"15\" text-anchor=\"middle\">$286B</text><text x=\"86\" y=\"76\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">$12B</text><text x=\"34\" y=\"18\" fill=\"#1f5fbf\" font-size=\"14\" text-anchor=\"middle\">1,503</text><text x=\"86\" y=\"20\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">1,464</text>",
@@ -779,18 +685,16 @@ const DOODLES = {
   backend: "<path d=\"M6 80 h108 v10 h-108 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M16 70 h88 v10 h-88 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><path d=\"M44 50 h32 v20 h-32 Z\" stroke=\"#26303a\" stroke-width=\"2.8\" /><path d=\"M22 70 v-20 M22 65 h12 M22 60 h12 M22 55 h12 M34 70 v-20\" stroke=\"#e8822a\" stroke-width=\"2\" /><path d=\"M86 70 v-20 M86 65 h12 M86 60 h12 M86 55 h12 M98 70 v-20\" stroke=\"#e8822a\" stroke-width=\"2\" /><text x=\"60\" y=\"64\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">die</text><text x=\"60\" y=\"104\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">CoWoS</text><text x=\"60\" y=\"32\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">1963 → offshore</text><path d=\"M20 38 q40 -20 80 0\" stroke=\"#d23c3c\" stroke-width=\"2.2\" stroke-dasharray=\"3 4\"/>",
   heat: "<path d=\"M20 84 h70 l6 -6 h-70 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M23 74 h64 l6 -6 h-64 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M26 64 h58 l6 -6 h-58 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M29 54 h52 l6 -6 h-52 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M32 44 h46 l6 -6 h-46 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M40 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M54 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M68 30 q-4 -6 0 -12 q4 -6 0 -12\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M104 30 v34 a6 6 0 1 0 6 0 v-34 a3 3 0 0 0 -6 0\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><circle cx=\"107\" cy=\"70\" r=\"4\" fill=\"#d23c3c\"/><text x=\"60\" y=\"100\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">stack up, heat up</text>",
   moat: "<path d=\"M6 92 Q60 90 80 60 T112 10\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M6 92 H116\" stroke=\"#26303a\" stroke-width=\"1.8\" /><path d=\"M30 88 v-12 l8 4 l-8 4\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><path d=\"M66 72 v-12 l8 4 l-8 4\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><path d=\"M92 38 v-12 l8 4 l-8 4\" stroke=\"#d23c3c\" stroke-width=\"2.2\" /><path d=\"M20 84 l-4 8 M20 84 l4 8 M20 84 v-8 a3 3 0 1 1 0.1 0\" stroke=\"#26303a\" stroke-width=\"2\" /><text x=\"34\" y=\"60\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">harder</text><text x=\"36\" y=\"74\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">every step</text><text x=\"84\" y=\"98\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">few left</text>",
-  custom: "<path d=\"M10 92 V40 H18 V32 H28 V40 H38 V32 H48 V40 H72 V32 H82 V40 H92 V32 H102 V40 H110 V92 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M44 54 h32 v28 h-32 Z M40 60 h4 M40 68 h4 M40 76 h4 M76 60 h4 M76 68 h4 M76 76 h4\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><text x=\"60\" y=\"72\" fill=\"#1f5fbf\" font-size=\"13\" text-anchor=\"middle\">ASIC</text><text x=\"60\" y=\"20\" fill=\"#1d8a5c\" font-size=\"13\" text-anchor=\"middle\">SerDes · packaging · supply</text><path d=\"M4 98 Q60 106 116 98\" stroke=\"#1f5fbf\" stroke-width=\"2\" stroke-dasharray=\"4 4\"/>",
   molecules: "<path d=\"M10 92 L22 40 L34 92 M14 72 H30 M17 58 H27 M22 40 V30\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"22\" y=\"22\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">gas</text><path d=\"M40 70 L56 70 M47.9 73.9 L56 70 L47.9 66.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M62 70 a16 16 0 1 0 32 0 a16 16 0 1 0 -32 0 M78 54 V86 M62 70 H94\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M70 20 h16 l-8 10 l8 10 h-16 l8 -10 Z\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M98 70 L108 70 M99.9 73.9 L108 70 L99.9 66.1\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M108 50 h10 v40 h-10 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"78\" y=\"104\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">queue = years</text>",
   bloom: "<path d=\"M8 50 h56 v28 h-56 Z M64 58 h18 l10 10 v10 h-28 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><circle cx=\"22\" cy=\"82\" r=\"6\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.4\"/><circle cx=\"76\" cy=\"82\" r=\"6\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.4\"/><path d=\"M18 56 h36 v16 h-36 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><text x=\"36\" y=\"69\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">fuel cell</text><path d=\"M100 14 L90 36 H100 L92 56\" stroke=\"#e8822a\" stroke-width=\"3\" /><text x=\"102\" y=\"74\" fill=\"#e8822a\" font-size=\"16\" text-anchor=\"middle\">DC</text><path d=\"M54 16 h22 v18 h-22 Z\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M50 12 L80 38 M80 12 L50 38\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"65\" y=\"8\" fill=\"#26303a\" font-size=\"11\" text-anchor=\"middle\">transformer</text>",
   weights: "<path d=\"M60 50 m-40 0 a40 40 0 1 0 80 0 a40 40 0 1 0 -80 0\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M60 50 m-30 0 a30 30 0 1 0 60 0 a30 30 0 1 0 -60 0\" stroke=\"#26303a\" stroke-width=\"1.6\" /><path d=\"M48 38 h18 l8 8 v22 h-26 Z M66 38 v8 h8\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M52 56 h16 M52 62 h12\" stroke=\"#1f5fbf\" stroke-width=\"2\" /><path d=\"M46 30 l4 -10 l6 6 l5 -9 l5 9 l6 -6 l4 10 Z\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"102\" y=\"98\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">SL5</text>",
   silicon: "<path d=\"M30 30 h60 v50 h-60 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M42 30 v-8 M42 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M54 30 v-8 M54 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M66 30 v-8 M66 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M78 30 v-8 M78 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M44 36 L56 50 L50 56 L64 66 L60 74\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M36 70 L84 40\" stroke=\"#d9a072\" stroke-width=\"9\" /><path d=\"M54 59 L66 51\" stroke=\"#b9814f\" stroke-width=\"9\" /><text x=\"60\" y=\"100\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">patch ≠ fix</text>",
   quantum: "<path d=\"M30 46 V34 a18 18 0 0 1 36 0 V46\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M24 46 h48 v40 h-48 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M48 60 v12\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M40 50 L52 64 L46 70 L56 82\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><path d=\"M98 34 m-16 0 a16 16 0 1 0 32 0 a16 16 0 1 0 -32 0 M82 34 a16 6 0 0 0 32 0\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><path d=\"M98 34 L108 22 M105.8 30.7 L108 22 L99.8 25.7\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><text x=\"98\" y=\"70\" fill=\"#1f5fbf\" font-size=\"14\" text-anchor=\"middle\">qubits</text><text x=\"48\" y=\"100\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">minutes / key</text>",
   builders: "<path d=\"M20 88 L60 40 M14 46 Q30 30 48 34 M48 34 Q44 50 60 40\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M100 88 L66 44 M60 40 l12 -6 l6 14 l-12 6 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M26 12 Q60 -6 94 12 Q77 8 60 12 Q43 8 26 12 Z M26 12 L54 34 M94 12 L66 34\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">picks & shovels</text>",
-  spacex: "<path d=\"M84 16 L100 8 L96 26 L62 60 L52 50 Z M62 60 L58 72 L50 64 M52 50 L40 54 L48 46\" stroke=\"#26303a\" stroke-width=\"2.8\" /><circle cx=\"84\" cy=\"26\" r=\"4\" fill=\"none\" stroke=\"#26303a\" stroke-width=\"2.2\"/><path d=\"M8 94 L18 86 L24 90 L32 78 L38 82 L46 68\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M40 74 L50 62 M47.8 70.7 L50 62 L41.8 65.7\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"30\" y=\"104\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">stock = fuel</text>"
 };
 
 // Some doodles spill past their 120 x 100 box (a long label, a wide arrow); these boxes are widened to fit them, measured once
-const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "custom": "-16.8 0 153.6 106", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5", "spacex": "-7.9 0 127.9 114.5"};
+const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5"};
 const doodleVB = id => DOODLE_VB[id] || "0 0 120 100";
 
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
@@ -1578,59 +1482,6 @@ const VIZ = {
     </div>`;
   },
 
-  spacex() {
-    // ---- frame 1: the exchange counter. Share certificates slide across; no cash changes hands
-    const cert = (x, y, s = 1, cls = "") => `<g class="${cls}" transform="translate(${x} ${y}) scale(${s})"><rect x="-26" y="-17" width="52" height="34" rx="3" fill="#f7fafc" stroke="#3fd6c8" stroke-width="1.6"/><rect x="-21" y="-12" width="42" height="24" rx="2" fill="none" stroke="#a6eee6"/><path d="M-12 5 L-9 -6 L-6 5 Z" fill="#d4e3f0"/><text x="7" y="1" text-anchor="middle" font-size="9" font-weight="900" style="fill:#0b1828">SPCX</text><path d="M-2 6 H16" stroke="#c9d8e6"/></g>`;
-    const flow = Array.from({ length: 4 }, (_, i) => `<g opacity="0"><g transform="scale(.55)">${cert(0, 0)}</g><animateMotion dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite" path="M150 92 C200 60 260 60 312 92"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="2.8s" begin="-${(i * .7).toFixed(2)}s" repeatCount="indefinite"/></g>`).join("");
-    const TL = [["Apr 21", "option to buy"], ["Jun 12", "IPO at $135"], ["Jun 16", "exercised"], ["Aug 14", "closed"]];
-    const tl = TL.map(([d, l], i) => { const x = 60 + i * 113; return `<circle cx="${x}" cy="226" r="${i === 2 ? 8 : 6}" fill="${i === 2 ? "var(--violet)" : "var(--ink-2)"}" stroke="var(--violet)" stroke-width="2"/><text x="${x}" y="254" text-anchor="middle" class="t-strong" font-size="13">${d}</text><text x="${x}" y="271" text-anchor="middle" font-size="12">${l}</text>`; }).join("");
-    const F1 = `<svg viewBox="0 0 460 290" role="img" aria-label="An exchange counter. SpaceX pays for Cursor with about 389 million new shares worth 60 billion dollars and no cash. Timeline: an option to buy on April 21, the IPO at 135 dollars on June 12, the option exercised four days later on June 16, and the deal closed on August 14, 2026.">
-        <text x="230" y="22" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--violet);letter-spacing:.18em">EXCHANGE COUNTER</text>
-        ${cert(78, 104, 1.5)}${cert(72, 96, 1.5)}${cert(66, 88, 1.5)}
-        <text x="74" y="150" text-anchor="middle" class="t-strong" font-size="14">~389M new shares</text><text x="74" y="167" text-anchor="middle" font-size="12">SpaceX Class A</text>
-        <path d="M150 92 C200 60 260 60 312 92" fill="none" stroke="var(--rule)" stroke-dasharray="4 5"/>
-        ${flow}
-        <g transform="translate(372 96)"><path d="M-54 -26 L-40 -40 H54 L40 -26 Z" fill="#12253b" stroke="var(--violet)"/><rect x="-54" y="-26" width="94" height="58" rx="3" fill="var(--ink-2)" stroke="var(--violet)" stroke-width="1.6"/><path d="M40 -26 L54 -40 V18 L40 32 Z" fill="#0b1828" stroke="var(--violet)"/>
-          <text x="-7" y="2" text-anchor="middle" class="t-strong" font-size="16">CURSOR</text><text x="-7" y="20" text-anchor="middle" font-size="12">AI coding</text></g>
-        <text x="372" y="150" text-anchor="middle" class="t-strong" font-size="14" style="fill:var(--amber)">$60B, all stock</text><text x="372" y="167" text-anchor="middle" font-size="12">cash paid: $0</text>
-        <line class="ax" x1="40" y1="226" x2="420" y2="226"/>
-        <path d="M173 204 V198 H286 V204" fill="none" stroke="var(--violet)"/><text x="230" y="192" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--violet)">+4 days</text>
-        ${tl}
-      </svg>`;
-
-    // ---- frame 2: mission control's go / no-go poll for the whole bet
-    const POLL = [["go", "Starship reaches orbit", "Sept 28, Flight 14"], ["next", "Ship caught by the tower", "maybe Flight 15"], ["go", "Starlink pays the bills", "$11.4B in 2025"], ["hold", "AI compute renters stay", "90-day outs"], ["hold", "The stock stays expensive", "more lock-ups end Oct–Dec"], ["next", "Neutron reaches the pad", "target: end of 2026"], ["next", "Rocket Lab closes Iridium", "expected mid-2027"]];
-    const WORD = { go: "GO", hold: "HOLD", next: "NEXT" };
-    const F2 = `<div class="gng">
-        <p class="nc-k sx-k">Go / no-go: what the space bet needs</p>
-        <ol class="gng-list">${POLL.map(([st, sys, ev], i) => `<li class="${st}" style="--i:${i}"><span class="sys">${sys}</span><span class="ev">${ev}</span><span class="st">${WORD[st]}</span></li>`).join("")}</ol>
-      </div>`;
-
-    // ---- frame 3: the house of brands, and the exchange rate that funds it
-    const BRANDS = [["Launch", 46], ["Starlink", 62], ["xAI", 52], ["X", 40], ["Cursor", 56]];
-    let bx = 100;
-    const shelf = BRANDS.map(([n, h], i) => { const w = Math.max(30, n.length * 7 + 18), x = bx; bx += w + 6; const isNew = n === "Cursor"; return `<g class="${isNew ? "sx-new" : ""}"><rect x="${x}" y="${84 - h}" width="${w}" height="${h}" rx="3" fill="${isNew ? "rgba(63,214,200,.16)" : "var(--ink-2)"}" stroke="${isNew ? "var(--amber)" : "var(--violet)"}" stroke-width="1.4"/><text x="${x + w / 2}" y="${80 - h / 2 + 4}" text-anchor="middle" class="t-strong" font-size="13">${n}</text>${isNew ? `<text x="${x + w / 2}" y="${76 - h}" text-anchor="middle" font-size="10" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">NEW</text>` : ""}</g>`; }).join("") +
-      `<g class="sx-next"><rect x="${bx}" y="34" width="50" height="50" rx="3" fill="none" stroke="var(--faint)" stroke-dasharray="5 4"/><text x="${bx + 25}" y="64" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--faint)">next?</text></g>`;
-    const F3 = `<div class="sxcalc">
-        <svg class="sx-shelf" viewBox="0 0 460 110" role="img" aria-label="A store shelf labeled SpaceX and Co. holding Launch, Starlink, xAI, X and the newest product, Cursor, with an empty slot marked next.">
-          <text x="14" y="52" class="t-strong" font-size="14">SPACEX</text><text x="14" y="70" font-size="12">&amp; Co.</text>
-          ${shelf}
-          <rect x="92" y="84" width="358" height="7" rx="2" fill="var(--violet)" opacity=".7"/><path d="M110 91 V104 M432 91 V104" stroke="var(--violet)" stroke-width="3" opacity=".5"/>
-        </svg>
-        <label class="oc-l" for="sxRange">SpaceX trades at <b id="sxM">95×</b> its 2025 revenue</label>
-        <div class="sx-rw"><input class="oc-range sx-range" type="range" id="sxRange" min="10" max="130" step="5" value="95">
-          <div class="sx-ticks" aria-hidden="true"><span style="--p:${(10 / 120 * 100).toFixed(1)}%">Cursor 20×</span><span style="--p:${(85 / 120 * 100).toFixed(1)}%">IPO 95×</span><span class="end" style="--p:${(115 / 120 * 100).toFixed(1)}%">Oct 6 ~125×</span></div></div>
-        <div class="nc-bills" id="sxBills"></div>
-        <p class="sx-out" id="sxOut"></p>
-      </div>`;
-
-    return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">The Cursor deal, as SpaceX paid for it. New shares based on SpaceX’s volume-weighted average price.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Status as of October 6, 2026.</p></div>
-      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Simplified: SpaceX’s 2025 revenue ($18.7B) as the base; Cursor at $60B with $3B of run-rate revenue (later reports said $4B, which flatters the deal). Revenue, not profit. Ignores costs, debt and synergies.</span><span class="cap-s">Simplified: SpaceX’s 2025 revenue as the base; Cursor at $60B and ~$3B run rate.</span></p></div>
-    </div>`;
-  },
-
   weights() {
     // ---- frame 2: compute in, one file out, three ways out
     const yr = [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
@@ -1994,113 +1845,6 @@ const VIZ = {
     </div>`;
   },
 
-  ledger() {
-    // ---- frame 1: the whiteboard, live. Four blocks, real SHA-256, tamper and re-mine
-    const F1 = `<div class="lgc">
-        <p class="nc-k lg-k">The whiteboard, live: edit any block</p>
-        <div class="lg-row" id="lgRow"></div>
-        <div class="lg-ctl"><button class="btn lg-btn" id="lgTamper" type="button">Tamper with block 1</button><button class="btn lg-btn primary" id="lgMine" type="button">Redo the work</button></div>
-        <p class="lg-msg" id="lgMsg" aria-live="polite"></p>
-      </div>`;
-
-    // ---- frame 2: Satoshi's catch-up race
-    const F2 = `<div class="lgcalc">
-        <p class="nc-k lg-k">Can a forger catch up?</p>
-        <label class="oc-l" for="lgQ">Forger’s share of the network’s computing power: <b id="lgQv">10%</b></label>
-        <input class="oc-range lg-range" type="range" id="lgQ" min="1" max="49" step="1" value="10">
-        <label class="oc-l" for="lgZ">Blocks you wait before trusting a payment: <b id="lgZv">6</b></label>
-        <input class="oc-range lg-range" type="range" id="lgZ" min="0" max="12" step="1" value="6">
-        <svg class="lg-chart" id="lgChart" viewBox="0 0 460 130" role="img" aria-label="Chance the forger ever catches up, for each number of blocks waited."></svg>
-        <p class="sx-out lg-out" id="lgOut"></p>
-      </div>`;
-
-    // ---- frame 3: three ways to agree, and where banks land
-    const COLS = [
-      [82, "Proof of work", "anyone with machines", "electricity spent", "~10 min", "Bitcoin", "var(--coral)", 3.2],
-      [230, "Proof of stake", "anyone who stakes coins", "a deposit at risk", "seconds", "Ethereum", "var(--beat)", 1.1],
-      [378, "Proof of authority", "known, vetted members", "a name and a license", "seconds", "bank networks", "var(--amber)", .9]
-    ];
-    const col = ([x, h, who, why, spd, ex, c, dur], i) => `<g>
-        <rect x="${x - 68}" y="56" width="136" height="178" rx="6" fill="var(--ink-2)" stroke="${c}" stroke-opacity=".7"/>
-        <text x="${x}" y="80" text-anchor="middle" class="t-strong" font-size="14.5">${h}</text>
-        <text x="${x - 58}" y="104" font-size="10.5" class="lg-lab">WHO ADDS BLOCKS</text><text x="${x - 58}" y="120" font-size="12.5" class="t-strong">${who}</text>
-        <text x="${x - 58}" y="144" font-size="10.5" class="lg-lab">WHAT KEEPS THEM HONEST</text><text x="${x - 58}" y="160" font-size="12.5" class="t-strong">${why}</text>
-        <text x="${x - 58}" y="184" font-size="10.5" class="lg-lab">NEW BLOCK EVERY</text><text x="${x - 58}" y="200" font-size="12.5" class="t-strong">${spd}</text>
-        <text x="${x}" y="224" text-anchor="middle" font-size="11.5" style="fill:${c}" font-weight="700">${ex}</text>
-        <g class="lg-drop" style="--dur:${dur}s;animation-delay:${(i * .3).toFixed(1)}s"><rect x="${x - 9}" y="34" width="18" height="14" rx="2.5" fill="${c}"/></g>
-      </g>`;
-    const F3 = `<svg viewBox="0 0 460 300" role="img" aria-label="Three ways a network agrees on the next block. Proof of work: anyone with machines, kept honest by electricity spent, a block about every 10 minutes, Bitcoin. Proof of stake: anyone who stakes coins, kept honest by a deposit at risk, seconds, Ethereum. Proof of authority: known, vetted members, kept honest by their name and license, seconds, bank networks. Banks land on stake and authority. All three still rely on elliptic-curve signatures, which a large quantum computer could break.">
-        <text x="14" y="24" class="t-strong" font-size="16">Three ways to agree on the next block</text>
-        ${col(COLS[0], 0)}${col(COLS[1], 1)}${col(COLS[2], 2)}
-        <path d="M230 248 V256 H378 V248" fill="none" stroke="var(--amber)" stroke-width="1.4"/>
-        <text x="304" y="272" text-anchor="middle" font-size="12" class="t-strong" style="fill:var(--amber)">Where banks land</text>
-        <text x="304" y="287" text-anchor="middle" font-size="11">Kinexys: ~$5B a day · JPM Coin on Base</text>
-        <g transform="translate(46 262)"><path d="M-6 0 V-5 A6 6 0 0 1 6 -5 V0" fill="none" stroke="var(--coral)" stroke-width="2"/><rect x="-9" y="-1" width="18" height="14" rx="2.5" fill="var(--coral)"/></g>
-        <text x="62" y="268" font-size="11.5" class="t-strong">All three sign with</text><text x="62" y="283" font-size="11.5" class="t-strong">elliptic-curve keys</text>
-      </svg>`;
-
-    return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Real SHA-256 hashes, shortened to their first six characters. Here a block counts as “mined” when its hash starts with 00, about 256 tries on average.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Satoshi’s formula, section 11 of the white paper. Bitcoin users traditionally wait six confirmations, about an hour.</p></div>
-      <div class="frame f3">${F3}<p class="cap">Banks keep the shared ledger and replace mining with known validators. Signatures are the part none of them have replaced yet.</p></div>
-    </div>`;
-  },
-
-  custom() {
-    // ---- frame 1: who designs which part of the chip, as customers take more of it in-house
-    const cores = Array.from({ length: 16 }, (_, i) => `<rect x="${178 + (i % 4) * 27}" y="${86 + Math.floor(i / 4) * 24}" width="21" height="18" rx="2"/>`).join("");
-    const hbm = [[118, 70], [118, 150], [322, 70], [322, 150]].map(([x, y]) => `<g class="cu-r" data-r="mem"><rect x="${x}" y="${y}" width="20" height="62" rx="3"/>${[1, 2, 3, 4, 5].map(k => `<line x1="${x}" y1="${y + k * 10.3}" x2="${x + 20}" y2="${y + k * 10.3}" class="cu-ln"/>`).join("")}</g>`).join("");
-    const F1 = `<div class="cu">
-        <svg viewBox="0 0 460 250" role="img" aria-label="A custom AI chip in its package. Regions: the compute cores, the memory interface and HBM stacks, the high-speed I/O ring, the package and its CoWoS supply, and the network beyond the chip. Drag the slider to see which of these the customer designs at each stage.">
-          <g class="cu-r" data-r="pkg"><rect x="96" y="44" width="268" height="190" rx="8" class="cu-pkg"/><text x="230" y="226" text-anchor="middle" font-size="11.5" class="cu-t">Packaging &amp; CoWoS supply</text></g>
-          ${hbm}
-          <text x="128" y="62" text-anchor="middle" font-size="11" class="cu-t">HBM</text><text x="332" y="62" text-anchor="middle" font-size="11" class="cu-t">HBM</text>
-          <g class="cu-r" data-r="io"><rect x="152" y="62" width="156" height="146" rx="5" class="cu-ring"/></g>
-          <text x="230" y="78" text-anchor="middle" font-size="10.5" class="cu-t">high-speed I/O ring</text>
-          <g class="cu-r" data-r="core">${cores}</g>
-          <text x="230" y="202" text-anchor="middle" font-size="11" class="cu-t">compute cores</text>
-          <g class="cu-r" data-r="net"><path d="M364 139 H392" class="cu-wire"/><rect x="392" y="100" width="58" height="78" rx="6"/><path d="M402 118 H440 M402 132 H440 M402 146 H440 M402 160 H440" class="cu-ln"/></g>
-          <text x="421" y="196" text-anchor="middle" font-size="11" class="cu-t">network &amp;</text><text x="421" y="209" text-anchor="middle" font-size="11" class="cu-t">optics</text>
-          <text x="40" y="132" text-anchor="middle" font-size="11" class="cu-t">memory</text><text x="40" y="145" text-anchor="middle" font-size="11" class="cu-t">interface</text><path d="M62 139 H116" class="cu-wire"/>
-        </svg>
-        <div class="cu-leg" aria-hidden="true"><span class="c">customer</span><span class="p">design partner</span><span class="s">cheaper second partner</span></div>
-        <input class="oc-range cu-range" type="range" id="cuRange" min="1" max="4" step="1" value="2" aria-label="Stage of insourcing">
-        <p class="cu-read" id="cuRead"></p>
-      </div>`;
-
-    // ---- frame 2: who designs whose chip (2026)
-    const C = [["Google", 50], ["Anthropic", 92], ["Meta", 134], ["OpenAI", 176], ["Amazon", 218], ["Microsoft", 260]];
-    const P = [["Broadcom", 64, "var(--amber)"], ["MediaTek", 116, "var(--coral)"], ["Marvell", 168, "var(--beat)"], ["Alchip", 216, "var(--coral)"], ["In-house", 262, "var(--violet)"]];
-    const E = [[0, 0, "TPU"], [0, 1, "TPU v7"], [1, 0, "via TPUs", 1], [2, 0, "MTIA"], [3, 0, "first chip"], [4, 2, "Trainium2"], [4, 3, "Trn3/4, reported"], [4, 4, "Annapurna"], [5, 2, "Maia 200"]];
-    const edge = ([ci, pi, lab, dash], k) => { const y0 = C[ci][1], y1 = P[pi][1]; return `<path class="cu-e" style="--c:${P[pi][2]};animation-delay:${(k * .15).toFixed(2)}s" d="M126 ${y0} C230 ${y0} 230 ${y1} 330 ${y1}" ${dash ? `stroke-dasharray="3 5"` : ""}/>`; };
-    const F2 = `<svg viewBox="0 0 460 300" role="img" aria-label="Who designs whose custom AI chip in 2026. Google works with Broadcom and, for TPU v7, MediaTek. Anthropic uses Google's TPUs. Meta's MTIA and OpenAI's first chip are with Broadcom. Amazon used Marvell for Trainium2, reportedly Alchip for Trainium3 and 4, and designs in-house at Annapurna Labs. Microsoft's Maia 200 is with Marvell.">
-        <text x="14" y="24" class="t-strong" font-size="16">Who designs whose chip, 2026</text>
-        ${E.map(edge).join("")}
-        ${C.map(([n, y]) => `<g><rect x="14" y="${y - 15}" width="112" height="30" rx="15" fill="var(--ink-2)" stroke="var(--rule)"/><text x="70" y="${y + 5}" text-anchor="middle" font-size="13.5" class="t-strong">${n}</text></g>`).join("")}
-        ${P.map(([n, y, c]) => `<g><rect x="330" y="${y - 16}" width="116" height="32" rx="4" fill="var(--ink-2)" stroke="${c}" stroke-width="1.5"/><text x="388" y="${y + 5}" text-anchor="middle" font-size="13.5" class="t-strong" style="fill:${c}">${n}</text></g>`).join("")}
-        <text x="70" y="294" text-anchor="middle" font-size="11">customers</text><text x="388" y="294" text-anchor="middle" font-size="11">design partners</text>
-        <text x="230" y="294" text-anchor="middle" font-size="11" style="fill:var(--faint)">dashed: indirect</text>
-      </svg>`;
-
-    // ---- frame 3: Broadcom's AI revenue outlook
-    const Y = v => 238 - v * .78;
-    const bars = [["FY2026", 58, "forecast"], ["FY2027", 115, "outlook"], ["FY2028", 230, "outlook"]].map(([l, v, s], i) => { const x = 70 + i * 92; return `<rect class="cu-bar" style="animation-delay:${(.2 + i * .25).toFixed(2)}s" x="${x}" y="${Y(v).toFixed(1)}" width="62" height="${(238 - Y(v)).toFixed(1)}" rx="3"/><text x="${x + 31}" y="${(Y(v) - 8).toFixed(1)}" text-anchor="middle" font-size="15" class="t-strong">~$${v}B</text><text x="${x + 31}" y="256" text-anchor="middle" font-size="12.5" class="t-strong">${l}</text><text x="${x + 31}" y="271" text-anchor="middle" font-size="11">${s}</text>`; }).join("");
-    const F3 = `<svg viewBox="0 0 460 290" role="img" aria-label="Broadcom's AI revenue: about 58 billion dollars forecast for fiscal 2026, about 115 billion for fiscal 2027 and about 230 billion for fiscal 2028. In fiscal Q3 2026, custom accelerators were 73 percent of 16.7 billion dollars of AI revenue.">
-        <text x="14" y="24" class="t-strong" font-size="16">Broadcom AI revenue, by fiscal year</text>
-        <text x="14" y="42" font-size="12">Doubling a year, if the outlook holds</text>
-        <line class="ax" x1="50" y1="238" x2="330" y2="238"/>${bars}
-        <g transform="translate(352 74)"><text x="45" y="0" text-anchor="middle" font-size="12" class="t-strong">FQ3 2026</text><text x="45" y="16" text-anchor="middle" font-size="12">$16.7B</text>
-          <rect x="22" y="26" width="46" height="150" rx="3" fill="var(--ink-3)"/><rect class="cu-xpu" x="22" y="${(26 + 150 * .27).toFixed(1)}" width="46" height="${(150 * .73).toFixed(1)}" rx="3" fill="var(--amber)"/>
-          <text x="45" y="${(26 + 150 * .27 + 58).toFixed(1)}" text-anchor="middle" font-size="16" font-weight="900" style="fill:var(--ink)">73%</text><text x="45" y="${(26 + 150 * .27 + 74).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" style="fill:var(--ink)">custom</text><text x="45" y="48" text-anchor="middle" font-size="10.5">network</text><text x="45" y="61" text-anchor="middle" font-size="10.5">&amp; other</text></g>
-      </svg>`;
-
-    return `<div class="viz" data-step="1">
-      <div class="frame f1">${F1}<p class="cap">Drag through four stages. Most of today’s deals sit at stage 2 or 3; stage 4 is the threat.</p></div>
-      <div class="frame f2">${F2}<p class="cap">Tom’s Hardware (May 2026); Broadcom’s Q3 call (Sept 2026); Benchmark via Yahoo Finance on Trainium3 and 4 (Dec 2025, not confirmed by the companies).</p></div>
-      <div class="frame f3">${F3}<p class="cap">Broadcom’s fiscal year ends around November. FY2026 forecast and FY2027–28 outlook from its Q3 call; 73% custom share for fiscal Q3.</p></div>
-    </div>`;
-  },
-
   tokens() {
     // frame 1: sell the tap, or bottle it. GPU-hours are metered water; tokens are the same water, bottled and labeled
     // frame 2: the commodity aisle (GPU-hours, re-bid monthly) next to the product aisle (Token Factory)
@@ -2428,155 +2172,6 @@ const VIZ_INIT = {
       $("#quT", root).textContent = `${t} minute${t > 1 ? "s" : ""}`;
       svg.innerHTML = base + `<line x1="${X(t)}" y1="${Y(p)}" x2="${X(t)}" y2="116" stroke="var(--paper)" stroke-opacity=".5"/><circle cx="${X(t)}" cy="${Y(p)}" r="6" fill="var(--coral)" stroke="var(--ink)" stroke-width="2"/>`;
       $("#quOut", root).innerHTML = `<b class="${p > .2 ? "dn" : "up"}">${Math.round(p * 100)}%</b><span>chance the thief breaks your key before your transaction confirms.</span>`;
-    };
-    r.addEventListener("input", upd);
-    upd();
-  },
-  ledger(root) {
-    const row = $("#lgRow", root);
-    if (!row) return;
-    // SHA-256, small and synchronous, so mining can animate a nonce counter frame by frame
-    const frac = x => (x - Math.floor(x)) * 4294967296 | 0;
-    const primes = []; for (let n = 2; primes.length < 64; n++) if (primes.every(p => n % p)) primes.push(n);
-    const K = primes.map(p => frac(Math.cbrt(p))), H0 = primes.slice(0, 8).map(p => frac(Math.sqrt(p)));
-    const enc = new TextEncoder(), w = new Int32Array(64);
-    const sha = str => {
-      const b = enc.encode(str), l = b.length, n = ((l + 9 + 63) >> 6) << 6, m = new Uint8Array(n);
-      m.set(b); m[l] = 0x80;
-      const dv = new DataView(m.buffer);
-      dv.setUint32(n - 4, l * 8 >>> 0); dv.setUint32(n - 8, Math.floor(l / 536870912));
-      const h = H0.slice();
-      for (let o = 0; o < n; o += 64) {
-        for (let i = 0; i < 16; i++) w[i] = dv.getInt32(o + i * 4);
-        for (let i = 16; i < 64; i++) {
-          const a = w[i - 15], c = w[i - 2];
-          w[i] = (w[i - 16] + ((a >>> 7 | a << 25) ^ (a >>> 18 | a << 14) ^ (a >>> 3)) + w[i - 7] + ((c >>> 17 | c << 15) ^ (c >>> 19 | c << 13) ^ (c >>> 10))) | 0;
-        }
-        let [A, B, C, D, E, F, G, Hh] = h;
-        for (let i = 0; i < 64; i++) {
-          const t1 = (Hh + ((E >>> 6 | E << 26) ^ (E >>> 11 | E << 21) ^ (E >>> 25 | E << 7)) + ((E & F) ^ (~E & G)) + K[i] + w[i]) | 0;
-          const t2 = (((A >>> 2 | A << 30) ^ (A >>> 13 | A << 19) ^ (A >>> 22 | A << 10)) + ((A & B) ^ (A & C) ^ (B & C))) | 0;
-          Hh = G; G = F; F = E; E = (D + t1) | 0; D = C; C = B; B = A; A = (t1 + t2) | 0;
-        }
-        [A, B, C, D, E, F, G, Hh].forEach((v, i) => (h[i] = (h[i] + v) | 0));
-      }
-      return h.map(v => (v >>> 0).toString(16).padStart(8, "0")).join("");
-    };
-    const DATA = ["Genesis", "Alice pays Bob 5", "Bob pays Cara 2", "Cara pays Dev 1"];
-    const B = DATA.map((d, i) => ({ i, data: d, nonce: 0, hash: "" }));
-    const hashOf = (b, prev) => sha(`${b.i}|${prev}|${b.data}|${b.nonce}`);
-    const prevOf = i => (i ? B[i - 1].hash : "0".repeat(64));
-    const mineSync = i => { const prev = prevOf(i), b = B[i]; b.nonce = 0; while (!(b.hash = hashOf(b, prev)).startsWith("00")) b.nonce++; };
-    B.forEach((_, i) => mineSync(i));
-    // what each block points to is the hash it had when it was mined (stored); tampering changes what it hashes to now
-    const stored = B.map(b => b.hash);
-    row.innerHTML = B.map((b, i) => `<div class="lg-b" data-i="${i}">
-        <span class="lg-h">${i ? `Block ${i}` : "Block 0 · genesis"}</span>
-        <label class="lg-f"><i>Data</i><input type="text" value="${b.data}" data-i="${i}" spellcheck="false" aria-label="Data in block ${i}"></label>
-        <span class="lg-f"><i>Prev hash</i><code class="lg-prev"></code></span>
-        <span class="lg-f"><i>Nonce</i><code class="lg-n"></code></span>
-        <span class="lg-f"><i>Hash</i><code class="lg-hash"></code></span>
-        <span class="lg-ok"></span>
-      </div>`).join("");
-    const cards = $$(".lg-b", row), msg = $("#lgMsg", root);
-    const short = h => (h === "0".repeat(64) ? "none" : h.slice(0, 6).toUpperCase());
-    let busy = false;
-    const draw = (note) => {
-      // each block's stored hash is what the next block points to; recompute what each block's hash is now
-      const now = B.map((b, i) => hashOf(b, i ? stored[i - 1] : "0".repeat(64)));
-      let firstBad = -1;
-      cards.forEach((c, i) => {
-        const linked = i === 0 || stored[i - 1] === now[i - 1];
-        // valid only if it carries the work, still matches what it was mined as, points at the block before, and that block is valid
-        const ok = firstBad < 0 && now[i].startsWith("00") && now[i] === stored[i] && linked;
-        if (!ok && firstBad < 0) firstBad = i;
-        c.classList.toggle("bad", !ok);
-        $(".lg-prev", c).textContent = short(i ? stored[i - 1] : "0".repeat(64));
-        $(".lg-prev", c).classList.toggle("x", !linked);
-        $(".lg-n", c).textContent = B[i].nonce;
-        $(".lg-hash", c).textContent = short(now[i]);
-        $(".lg-hash", c).classList.toggle("x", !now[i].startsWith("00"));
-        $(".lg-ok", c).textContent = ok ? "✓ valid" : "✕ invalid";
-      });
-      msg.innerHTML = note || (firstBad < 0 ? `All four blocks are valid. Each hash starts with <b>00</b>, and each block points at the one before it.`
-        : `Block ${firstBad} no longer matches its fingerprint, so every block after it points at a hash that doesn’t exist. Press <b>Redo the work</b> to re-mine from block ${firstBad}.`);
-      $("#lgMine", root).disabled = firstBad < 0 || busy;
-      return firstBad;
-    };
-    $$("input", row).forEach(inp => inp.addEventListener("input", () => { if (busy) return; B[+inp.dataset.i].data = inp.value; draw(); }));
-    $("#lgTamper", root).addEventListener("click", () => {
-      if (busy) return;
-      const inp = $$("input", row)[1];
-      inp.value = B[1].data === "Alice pays Bob 500" ? "Alice pays Bob 5" : "Alice pays Bob 500";
-      B[1].data = inp.value; draw();
-    });
-    $("#lgMine", root).addEventListener("click", () => {
-      const start = draw();
-      if (start < 0 || busy) return;
-      busy = true; $("#lgMine", root).disabled = true;
-      let i = start, tries = 0;
-      const step = () => {
-        const prev = i ? stored[i - 1] : "0".repeat(64), b = B[i];
-        // try a handful of nonces per frame so the counter visibly spins
-        for (let k = 0; k < (calm || motionPaused ? 1e6 : 9); k++) {
-          const h = hashOf(b, prev); tries++;
-          if (h.startsWith("00")) { stored[i] = h; i++; break; }
-          b.nonce++;
-        }
-        draw(`Mining block ${Math.min(i, B.length - 1)}… nonce <b>${B[Math.min(i, B.length - 1)].nonce}</b>`);
-        if (i < B.length) requestAnimationFrame(step);
-        else { busy = false; draw(`Valid again, after <b>${tries.toLocaleString("en-US")}</b> tries across ${B.length - start} block${B.length - start > 1 ? "s" : ""}. On Bitcoin, you’d also have to outrun every honest miner.`); }
-      };
-      B[start].nonce = 0;
-      requestAnimationFrame(step);
-    });
-    draw();
-
-    // frame 2: Satoshi's catch-up probability (white paper, section 11)
-    const q = $("#lgQ", root), z = $("#lgZ", root), chart = $("#lgChart", root);
-    const catchUp = (qq, zz) => {
-      const p = 1 - qq, lam = zz * (qq / p);
-      let sum = 1, pois = Math.exp(-lam);
-      for (let k = 0; k <= zz; k++) { if (k > 0) pois *= lam / k; sum -= pois * (1 - Math.pow(qq / p, zz - k)); }
-      return Math.max(0, Math.min(1, sum));
-    };
-    const pct = v => (v >= .1 ? `${(v * 100).toFixed(0)}%` : v >= .001 ? `${(v * 100).toFixed(1)}%` : v >= .00001 ? `${(v * 100).toFixed(3)}%` : "<0.001%");
-    const upd = () => {
-      const qq = +q.value / 100, zz = +z.value;
-      $("#lgQv", root).textContent = `${q.value}%`; $("#lgZv", root).textContent = zz;
-      const bw = 400 / 13;
-      chart.innerHTML = `<line class="ax" x1="42" y1="104" x2="444" y2="104"/>` + Array.from({ length: 13 }, (_, k) => {
-        // log scale, 100% down to one in a million, so small odds stay visible
-        const v = catchUp(qq, k), h = Math.max(1.5, (6 + Math.log10(Math.max(v, 1e-6))) / 6 * 88), x = 44 + k * bw;
-        return `<rect x="${x.toFixed(1)}" y="${(104 - h).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${h.toFixed(1)}" rx="2" fill="${k === zz ? "var(--coral)" : "var(--ink-3)"}" stroke="${k === zz ? "var(--coral)" : "var(--rule)"}"/><text x="${(x + bw / 2 - 3).toFixed(1)}" y="120" text-anchor="middle" font-size="11" ${k === zz ? `class="t-strong"` : ""}>${k}</text>`;
-      }).join("") + [["100%", 0], ["1%", 2], ["0.01%", 4], ["0.0001%", 6]].map(([t, e]) => `<text x="38" y="${(16 + e / 6 * 88 + 4).toFixed(1)}" text-anchor="end" font-size="10.5">${t}</text><line class="gridl" x1="42" y1="${(16 + e / 6 * 88).toFixed(1)}" x2="444" y2="${(16 + e / 6 * 88).toFixed(1)}"/>`).join("");
-      const v = catchUp(qq, zz);
-      $("#lgOut", root).innerHTML = `<b class="${v > .01 ? "dn" : "up"}">${pct(v)}</b><span>chance a forger with ${q.value}% of the power ever catches up from ${zz} block${zz === 1 ? "" : "s"} behind.</span>`;
-    };
-    q.addEventListener("input", upd); z.addEventListener("input", upd);
-    upd();
-  },
-  custom(root) {
-    const r = $("#cuRange", root);
-    if (!r) return;
-    const regions = $$(".cu-r", root);
-    // who designs each region at each stage: c = customer, p = design partner, s = cheaper second partner
-    const OWN = {
-      1: { core: "p", mem: "p", io: "p", pkg: "p", net: "p" },
-      2: { core: "c", mem: "p", io: "p", pkg: "p", net: "p" },
-      3: { core: "c", mem: "s", io: "s", pkg: "s", net: "p" },
-      4: { core: "c", mem: "c", io: "c", pkg: "c", net: "p" }
-    };
-    const TXT = {
-      1: "<b>1. Turnkey.</b> The partner builds the whole chip from the customer’s requirements.",
-      2: "<b>2. Today’s norm.</b> The customer designs the compute; Broadcom or Marvell does the high-speed I/O, memory interface, packaging and supply.",
-      3: "<b>3. Price pressure.</b> A cheaper second partner takes the back end: MediaTek on TPU v7, and reportedly Alchip on Trainium3 and 4.",
-      4: "<b>4. Full insourcing, the threat.</b> The customer does it all. What’s left to sell is the network and the optics around the chip."
-    };
-    const upd = () => {
-      const s = +r.value;
-      regions.forEach(g => g.setAttribute("data-o", OWN[s][g.dataset.r]));
-      $("#cuRead", root).innerHTML = TXT[s];
     };
     r.addEventListener("input", upd);
     upd();
@@ -2923,20 +2518,6 @@ const VIZ_INIT = {
       $("#glOut", root).innerHTML = pay >= 0
         ? `<b class="up">Pays back in year ${pay + 1}</b><span>and returns ${(total / COST).toFixed(1)}× its cost by year 6. Break-even is about ${beTxt} a year.</span>`
         : `<b class="dn">Never pays back</b><span>It recovers ${Math.round(total / COST * 100)}% of its cost. Break-even is about ${beTxt} a year.</span>`;
-    };
-    r.addEventListener("input", upd);
-    upd();
-  },
-  spacex(root) {
-    const r = $("#sxRange", root);
-    if (!r) return;
-    const REV = 18.7, PRICE = 60, ADD = 3, SCALE = 35;
-    const upd = () => {
-      const m = +r.value, f = PRICE / (m * REV), add = ADD / REV, rps = (1 + add) / (1 + f) - 1;
-      $("#sxM", root).textContent = `${m}×`;
-      $("#sxBills", root).innerHTML = [["New shares", f, "var(--coral)"], ["Revenue added", add, "var(--beat)"]].map(([l, v, c]) => `<div class="nc-bill" style="--c:${c};--w:${Math.min(100, v * 100 / SCALE * 100).toFixed(1)}%"><span class="l">${l}</span><span class="b"><i></i></span><b>+${(v * 100).toFixed(1)}%</b></div>`).join("");
-      const pct = (rps * 100).toFixed(1).replace("-0.0", "0.0");
-      $("#sxOut", root).innerHTML = `Revenue per share: <b class="${rps > .0005 ? "up" : rps < -.0005 ? "dn" : ""}">${rps > .0005 ? "+" : ""}${pct.replace("-", "−")}%</b><span>${rps > .0005 ? "The deal pays for itself in stock." : rps < -.0005 ? "Below 20×, buying Cursor in stock shrinks each share’s slice." : "At 20×, the trade is even."}</span>`;
     };
     r.addEventListener("input", upd);
     upd();
@@ -4157,7 +3738,7 @@ const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<
 
 // The periodic table of my theses: each thesis an element, numbered in the order I published it.
 // Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", spacex: "Sx", quantum: "Qu", ledger: "Lg", custom: "Cu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
