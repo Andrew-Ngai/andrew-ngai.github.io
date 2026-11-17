@@ -3170,7 +3170,7 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
       <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
@@ -3319,7 +3319,7 @@ function openMemo(id) {
 
   if (memoKeys) document.removeEventListener("keydown", memoKeys);
   memoKeys = e => {
-    if (memo.hidden) return;
+    if (memo.hidden || (theater && !theater.hidden)) return;
     if (e.key === "Escape" && !srcPanel.hidden) { setSrc(false); srcBtn.focus(); }
     else if (e.key === "Escape" && updPanel && !updPanel.hidden) { setUpd(false); updBtn.focus(); }
     else if (e.key === "Escape") closeMemo(true);
@@ -3870,6 +3870,7 @@ function boardHTML() {
   return `<div class="bd-head">
       <button class="btn" id="boardClose" type="button">Close</button>
       <div class="bd-meta"><span class="bd-k">TL;DR</span><span class="bd-t" id="boardTitle">${v.t}</span></div>
+      <a class="bd-watch" href="#watch/field-trip"><span class="bd-wp" aria-hidden="true"></span><span class="bd-wt"><small>Watch the stack</small><b>Echo’s field trip</b></span><span class="bd-wl">${FILMS[0].len}</span></a>
       <div class="bd-view">
         <button type="button" class="bd-vbtn" id="bdView" aria-haspopup="true" aria-expanded="false" aria-controls="bdMenu"><span class="bd-vi" id="bdViewI">${viewIcon(v.k)}</span><span class="bd-vt"><small>View</small><b id="bdViewN">${v.n}</b></span><i class="bd-chev" aria-hidden="true"></i></button>
         <div class="bd-menu" id="bdMenu" hidden>
@@ -3955,11 +3956,212 @@ function closeBoard(updateUrl) {
   }
 }
 
+
+/* ---------------------------------------------------------------- films: Echo's field trips, and the theater that plays them */
+// Each stop is [seconds, thesis id or label, floor]. A thesis stop jumps to its moment and links to its memo,
+// so the theater doubles as a map from a thesis to where it shows up on screen.
+const FILMS = [
+  {
+    id: "field-trip", title: "Echo’s Field Trip", short: "Field Trip", kind: "The feature", len: "2:43",
+    src: "media/echo-field-trip.mp4", poster: "media/echo-field-trip.webp", preview: "media/echo-field-trip-preview.mp4",
+    tag: "What is one second of AI made of? Echo rides one answer all the way down.",
+    log: "You ask a chatbot something, and a second later there’s an answer. Echo dives into that second and rides it down, floor by floor, from the group chat to the gas well.",
+    stops: [
+      [0, "The question", "Up top"],
+      [9.6, "molecules", "Ground floor · power"], [16, "bloom"],
+      [21.8, "moat", "Chips"], [28, "heat"], [33.8, "chipnames"], [39.6, "memory"], [45.4, "backend"],
+      [51.6, "ooms", "Infra"], [57.8, "fleet"], [63.8, "neocloud"], [69.6, "gpulife"], [75.2, "tokens"], [81.2, "factory"],
+      [87.4, "automate", "The lab"], [93.6, "race"],
+      [99.6, "weights", "The vault"], [105.6, "silicon"], [111.4, "quantum"],
+      [117, "agent", "Top floor · apps"], [123.4, "openclaw"], [129.4, "saas"],
+      [135.4, "builders", "Step back"], [142.6, "screentime", "The campsite"]
+    ]
+  },
+  {
+    id: "zoom-out", title: "Zoom Out", short: "Zoom Out", kind: "Short film", len: "1:04",
+    src: "media/zoom-out.mp4", poster: "media/zoom-out.webp", preview: "media/zoom-out-preview.mp4",
+    tag: "From a transistor to a continent, in one unbroken shot.",
+    log: "One continuous pull-back, from a transistor gate to the whole map. Fourteen orders of magnitude in about a minute.",
+    stops: [
+      [0, "The title"], [2.73, "moat", "Transistor"], [10.91, "memory", "Chip"], [19.09, "heat", "Rack"],
+      [27.27, "ooms", "Campus"], [35.45, "molecules", "Region"], [38.35, "bloom"], [43.64, "fleet", "Continent"], [49.09, "×100,000,000,000,000", "The count"]
+    ]
+  },
+  {
+    id: "one-circle", title: "One Circle", short: "One Circle", kind: "Short film", len: "1:11",
+    src: "media/one-circle.mp4", poster: "media/one-circle.webp", preview: "media/one-circle-preview.mp4",
+    tag: "One ring turns into eleven things, from the send button to the moon.",
+    log: "One ring never leaves the screen. It turns into eleven things, from the send button to the moon, over a waltz, because it goes round.",
+    stops: [
+      [2.73, "Send", "The button"], [8.18, "moat", "The lens"], [13.64, "backend", "The wafer"], [19.09, "heat", "The fan, retired"],
+      [24.55, "molecules", "The turbine"], [30, "bloom", "The stopwatch"], [35.45, "tokens", "The coin"], [40.91, "weights", "The vault"],
+      [46.36, "quantum", "The lock"], [51.82, "screentime", "The clock"], [57.27, "Time back", "The moon"]
+    ]
+  },
+  {
+    id: "the-drop", title: "The Drop", short: "The Drop", kind: "Short · vertical", len: "0:27", tall: true,
+    src: "media/the-drop.mp4", poster: "media/the-drop.webp", preview: "media/the-drop-preview.mp4",
+    tag: "How deep does one AI answer go? Five floors in twenty seconds.",
+    log: "How deep does one AI answer go? Echo jumps through the glass and falls five floors, then lands hard.",
+    stops: [
+      [0, "The question", "The hook"], [2, "agent", "Floor −1 · apps"], [6, "weights", "Floor −2 · models"], [10, "ooms", "Floor −3 · infra"],
+      [14, "moat", "Floor −4 · chips"], [18, "molecules", "Floor −5 · power"], [22, "The landing", "The bottom"]
+    ]
+  }
+];
+const filmBy = id => FILMS.find(f => f.id === id) || FILMS[0];
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+const stopName = k => byId[k] ? (byId[k].tldr || [byId[k].title])[0] : k;
+// a thesis's first stop on the field trip, for the "see it on the field trip" link in its memo
+const tripAt = id => { const s = FILMS[0].stops.find(x => x[1] === id); return s ? s[0] : null; };
+const watchLink = id => { const t = tripAt(id); return t === null ? "" : `<a class="memo-watch" href="#watch/field-trip/${t}"><span class="mw-p" aria-hidden="true"></span><span>See it on Echo’s field trip <b>${mmss(t)}</b></span></a>`; };
+
+const theater = $("#theater");
+let thFocus = null, thKeys = null, routeHash = "";
+function theaterHTML(f) {
+  const rows = f.stops.map(([t, k, g]) => {
+    const th = byId[k], n = stopName(k);
+    return `<li class="th-row" data-t="${t}">${g ? `<span class="th-gk">${g}</span>` : ""}<div class="th-line">
+        <button type="button" class="th-jump" data-t="${t}"><span class="th-time">${mmss(t)}</span><span class="th-n">${n}</span></button>
+        ${th ? `<a class="th-read" href="#${k}">Read<span class="sr"> the thesis: ${n}</span></a>` : ""}</div></li>`;
+  }).join("");
+  return `<div class="th-head">
+      <button class="btn" id="thClose" type="button">Close</button>
+      <div class="th-meta"><span class="th-k">Now showing · ${f.kind}</span><span class="th-t" id="thTitle">${f.title}</span></div>
+      <div class="th-reels" role="group" aria-label="Pick a film">${FILMS.map(x => `<button type="button" class="th-reel" data-film="${x.id}" aria-pressed="${x === f}"><b>${x.short}</b><small>${x.len}</small></button>`).join("")}</div>
+    </div>
+    <div class="th-body${f.tall ? " tall" : ""}">
+      <div class="th-stage">
+        <div class="th-screen"><video id="thVideo" controls playsinline preload="metadata" poster="${f.poster}"><source src="${f.src}" type="video/mp4"></video></div>
+        <p class="th-log">${f.log}</p>
+      </div>
+      <aside class="th-stops" aria-label="Stops in ${f.title}">
+        <p class="th-sk">Stops on this trip<small>Pick one to jump there. Each thesis opens from its stop.</small></p>
+        <ol class="th-list" id="thList">${rows}</ol>
+      </aside>
+    </div>`;
+}
+
+function openTheater(id, at = 0) {
+  if (!theater) return;
+  const f = filmBy(id);
+  if (theater.hidden) thFocus = document.activeElement;
+  theater.innerHTML = theaterHTML(f);
+  theater.hidden = false;
+  document.documentElement.style.overflow = "hidden";
+  if (wafer) wafer.hold(true);
+  const v = $("#thVideo", theater), list = $("#thList", theater), rows = $$(".th-row", list);
+  const go = s => {
+    const play = () => { try { v.currentTime = s; } catch (e) {} v.play().catch(() => {}); };
+    if (v.readyState >= 1) play(); else v.addEventListener("loadedmetadata", play, { once: true });
+  };
+  $$(".th-jump", list).forEach(b => b.addEventListener("click", () => go(+b.dataset.t)));
+  $$(".th-read", list).forEach(a => a.addEventListener("click", () => closeTheater(false)));
+  $$(".th-reel", theater).forEach(b => b.addEventListener("click", () => {
+    if (b.getAttribute("aria-pressed") === "true") return;
+    try { history.replaceState(null, "", `#watch/${b.dataset.film}`); } catch (e) {}
+    openTheater(b.dataset.film);
+    const r = $(`.th-reel[data-film="${b.dataset.film}"]`, theater); if (r) r.focus({ preventScroll: true });
+  }));
+  // light up the stop that's on screen, and keep it in view in the list
+  let on = -1;
+  v.addEventListener("timeupdate", () => {
+    let k = -1;
+    rows.forEach((r, i) => { if (v.currentTime + .05 >= +r.dataset.t) k = i; });
+    if (k === on) return;
+    if (on >= 0) rows[on].classList.remove("on");
+    on = k;
+    if (k < 0) return;
+    const r = rows[k];
+    r.classList.add("on");
+    if (list.scrollHeight > list.clientHeight + 4 && (r.offsetTop < list.scrollTop || r.offsetTop + r.offsetHeight > list.scrollTop + list.clientHeight))
+      list.scrollTo({ top: r.offsetTop - list.clientHeight / 3, behavior: calm ? "auto" : "smooth" });
+  });
+  $("#thClose", theater).addEventListener("click", () => closeTheater(true));
+  if (thKeys) document.removeEventListener("keydown", thKeys, true);
+  thKeys = e => {
+    if (theater.hidden || e.key !== "Escape") return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    closeTheater(true);
+  };
+  document.addEventListener("keydown", thKeys, true);
+  go(at);
+  $("#thClose", theater).focus({ preventScroll: true });
+}
+
+function closeTheater(updateUrl) {
+  if (!theater || theater.hidden) return;
+  const v = $("#thVideo", theater);
+  if (v) { v.pause(); v.removeAttribute("src"); $$("source", v).forEach(x => x.remove()); v.load(); }
+  theater.hidden = true;
+  theater.innerHTML = "";
+  if (thKeys) { document.removeEventListener("keydown", thKeys, true); thKeys = null; }
+  if (memo.hidden && (!board || board.hidden)) { document.documentElement.style.overflow = ""; if (wafer) wafer.hold(false); }
+  if (updateUrl) { try { history.replaceState(null, "", routeHash || location.pathname + location.search); } catch (e) {} }
+  if (thFocus && document.contains(thFocus)) thFocus.focus({ preventScroll: true });
+}
+
+// The home section: the feature in a lit marquee, the shorts as tickets. Previews play on hover only,
+// so the chosen poster is what everyone sees first.
+function hangBulbs(m) {
+  let box = $(".bulbs", m);
+  if (!box) { box = document.createElement("span"); box.className = "bulbs"; box.setAttribute("aria-hidden", "true"); m.prepend(box); }
+  const z = zoom(), inset = 9 * z, W = m.clientWidth - 2 * inset, H = m.clientHeight - 2 * inset;
+  const P = 2 * (W + H), n = Math.max(8, Math.round(P / (26 * z))), step = P / n;
+  let out = "";
+  for (let i = 0; i < n; i++) {
+    let d = i * step, x, y;
+    if (d < W) { x = d; y = 0; } else if ((d -= W) < H) { x = W; y = d; } else if ((d -= H) < W) { x = W - d; y = H; } else { x = 0; y = H - (d - W); }
+    out += `<i style="left:${(x + inset).toFixed(1)}px;top:${(y + inset).toFixed(1)}px"></i>`;
+  }
+  box.innerHTML = out;
+}
+function renderFilms() {
+  const grid = $("#filmsGrid");
+  if (!grid) return;
+  const [feat, ...rest] = FILMS;
+  grid.innerHTML = `<div class="marquee">
+      <button type="button" class="feature" data-film="${feat.id}" aria-label="Play ${feat.title}, ${feat.len}">
+        <span class="ft-screen"><img src="${feat.poster}" alt="" width="1280" height="720" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${feat.preview}" aria-hidden="true"></video><span class="ft-play" aria-hidden="true"></span></span>
+        <span class="ft-cap"><small>${feat.kind} · ${feat.len}</small><b>${feat.title}</b><span>${feat.tag}</span></span>
+      </button>
+    </div>
+    <ul class="tickets" aria-label="Short films">${rest.map(f => `<li><button type="button" class="ticket${f.tall ? " tall" : ""}" data-film="${f.id}" aria-label="Play ${f.title}, ${f.len}">
+        <span class="tk-in"><span class="tk-stub" aria-hidden="true"><b>Admit one</b><i>${f.len}</i></span>
+        <span class="tk-thumb"><img src="${f.poster}" alt="" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${f.preview}" aria-hidden="true"></video><span class="tk-play" aria-hidden="true"></span></span>
+        <span class="tk-tx"><small>${f.kind}</small><b>${f.title}</b><span>${f.tag}</span></span></span>
+      </button></li>`).join("")}</ul>`;
+  $$("[data-film]", grid).forEach(b => b.addEventListener("click", () => { location.hash = `watch/${b.dataset.film}`; }));
+  const hover = matchMedia("(hover: hover) and (pointer: fine)");
+  $$("[data-film]", grid).forEach(b => {
+    const v = $(".pv", b);
+    v.addEventListener("playing", () => v.classList.add("on"));
+    v.addEventListener("pause", () => v.classList.remove("on"));
+    const start = () => { if (!hover.matches || calm || motionPaused) return; if (v.preload === "none") v.preload = "auto"; v.play().catch(() => {}); };
+    const stop = () => { v.pause(); };
+    b.addEventListener("pointerenter", start); b.addEventListener("pointerleave", stop);
+    b.addEventListener("focus", start); b.addEventListener("blur", stop);
+  });
+  const m = $(".marquee", grid);
+  hangBulbs(m);
+  let rq = 0;
+  addEventListener("resize", () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(() => hangBulbs(m)); });
+  if ("ResizeObserver" in window) new ResizeObserver(() => { cancelAnimationFrame(rq); rq = requestAnimationFrame(() => hangBulbs(m)); }).observe(m);
+}
+
 /* ---------------------------------------------------------------- router */
 const nav = $("#nav");
 
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
+  // #watch/<film>/<seconds> opens the theater on top of whatever is open, and closing it puts that back
+  if (h === "watch" || h.startsWith("watch/")) {
+    const [, id, at] = h.split("/");
+    openTheater(id, parseFloat(at) || 0);
+    return;
+  }
+  closeTheater(false);
+  routeHash = location.hash;
   if (h === "tldr") {
     boardBack = false;
     closeMemo(false);
@@ -4460,10 +4662,12 @@ function setMotion(paused, save) {
   if (wafer) wafer.sync();
   $$("svg", memo).forEach(s => (paused || calm ? freezeSvg(s) : s.unpauseAnimations && s.unpauseAnimations()));
   if (buildLine.wake) buildLine.wake();
+  if (paused) $$(".films .pv").forEach(v => v.pause());
 }
 
 /* ---------------------------------------------------------------- boot */
 renderHome();
+renderFilms();
 buildMap();
 buildLine();
 mountEchoes();
