@@ -2670,6 +2670,9 @@ html.paused .btn-tour::before,html.paused .bt-p::after{animation:none}
 .memo-watch{display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;padding:6px 14px 7px 6px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);font-family:var(--label);font-weight:700;font-size:16px;color:var(--paper);text-decoration:none;transition:border-color .2s,box-shadow .2s}
 .memo-watch:hover,.memo-watch:focus-visible{border-color:var(--amber);box-shadow:0 0 24px -8px var(--amber)}
 .memo-watch b{color:var(--amber);font-variant-numeric:tabular-nums}
+.memo-model{display:inline-flex;align-items:center;gap:10px;margin-bottom:4px;padding:6px 14px 7px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);font-family:var(--label);font-weight:700;font-size:16px;color:var(--paper);text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.memo-model:hover,.memo-model:focus-visible{border-color:var(--amber);box-shadow:0 0 24px -8px var(--amber)}
+.mm-c{width:18px;height:18px;flex:none;background:linear-gradient(135deg,transparent 46%,var(--amber) 46% 54%,transparent 54%),conic-gradient(from 210deg at 50% 50%,rgba(63,214,200,.55) 0 120deg,rgba(63,214,200,.25) 120deg 240deg,rgba(63,214,200,.85) 240deg);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
 .mw-p{position:relative;width:24px;height:24px;border-radius:3px;background:linear-gradient(135deg,#6aa8ff,#3fd6c8);flex:none}
 .mw-p::after{content:"";position:absolute;left:9px;top:6.5px;border-left:8px solid var(--ink);border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
 

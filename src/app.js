@@ -3170,7 +3170,7 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}${modelLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
       <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
@@ -4053,6 +4053,9 @@ const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2
 const stopName = k => byId[k] ? (byId[k].tldr || [byId[k].title])[0] : k;
 // a thesis's first stop on the field trip, for the "see it on the field trip" link in its memo
 const tripAt = id => { const s = FILMS[0].stops.find(x => x[1] === id); return s ? s[0] : null; };
+// theses whose numbers the 3D model runs, and the scenario each one opens with
+const MODEL = { ooms: "", molecules: "?src=7ha", bloom: "?t=1e12&src=bloom" };
+const modelLink = id => id in MODEL ? `<a class="memo-model" href="model/${MODEL[id]}"><span class="mm-c" aria-hidden="true"></span><span>Run the numbers in 3D</span></a>` : "";
 const watchLink = id => { const t = tripAt(id); return t === null ? "" : `<a class="memo-watch" href="#watch/field-trip/${t}"><span class="mw-p" aria-hidden="true"></span><span>See it on Echo’s field trip <b>${mmss(t)}</b></span></a>`; };
 
 const theater = $("#theater");
