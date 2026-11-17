@@ -6,7 +6,7 @@ import {
   BoxGeometry, CylinderGeometry, SphereGeometry, LatheGeometry, PlaneGeometry, CapsuleGeometry, TubeGeometry, BufferGeometry, Float32BufferAttribute,
   MeshStandardMaterial, MeshBasicMaterial, LineBasicMaterial, ShaderMaterial, SpriteMaterial,
   InstancedMesh, Mesh, Points, LineSegments, Sprite, Group, Object3D,
-  Vector2, Vector3, Box3, Raycaster, EdgesGeometry, CatmullRomCurve3, CanvasTexture, SRGBColorSpace, ACESFilmicToneMapping,
+  Vector2, Vector3, Box3, Sphere, Raycaster, EdgesGeometry, MeshToonMaterial, DataTexture, RedFormat, NearestFilter, CircleGeometry, CatmullRomCurve3, CanvasTexture, SRGBColorSpace, ACESFilmicToneMapping,
   AdditiveBlending, DoubleSide, BackSide, RepeatWrapping, DynamicDrawUsage
 } from "three";
 import { OrbitControls } from "three-addons/controls/OrbitControls.js";
@@ -698,6 +698,7 @@ function makeWorld() {
     // where the camera can find things
     site.heroRack = new Vector3(ix + hr.x, .2, iz + hr.z);
     site.heroFace = hr.face;
+    site.heroHall = { ix, iz, inW: H.inW, inD: H.inD, racks: H.racks, heroX: hr.x, lines: H.lines };
     site.hall = { c: new Vector3(ix - GAL / 2, 0, iz), w: H.w, d: H.d };
     person.position.set(site.heroRack.x + 1.9, .2, site.heroRack.z + hr.face * (RK.d / 2 + 1));
     person.rotation.y = -.7;
@@ -877,7 +878,7 @@ function makeWorld() {
       const sx = r.p.shape === "turbine" ? 21 : 8, sy = r.p.shape === "turbine" ? 38 : 16.6;
       pos.slice(0, small ? 10 : 28).forEach(([px, pz]) => emit.heat.push(new Vector3(px + sx, sy, pz)));
     }
-    site.plant = { c: new Vector3((P.minX + P.maxX) / 2, 0, (P.minZ + P.maxZ) / 2), w: P.maxX - P.minX, d: P.maxZ - P.minZ, h: S.h, k: blk.k, n };
+    site.plant = { c: new Vector3((P.minX + P.maxX) / 2, 0, (P.minZ + P.maxZ) / 2), w: P.maxX - P.minX, d: P.maxZ - P.minZ, h: S.h, k: blk.k, n }; site.P = P;
     plantLight.position.set(site.plant.c.x, S.h * 1.4, site.plant.c.z); plantLight.intensity = ghost || r.p.shape === "cell" ? 0 : Math.min(2.4e4, 70 * Math.sqrt(n) * S.h * S.h / 10);
     return { g, P };
   }
@@ -888,7 +889,7 @@ function makeWorld() {
     const tx = P.maxX - 40, tz = P.maxZ + 10;
     inst(G.box, M.truck, [[tx, .9, tz, 13.6, 3.1, 2.6]], g); inst(G.box, M.steel, [[tx + 8.6, .6, tz, 2.6, 3.2, 2.5]], g);
     inst(G.box, M.dark, [[tx + 2, 0, tz, 17, .9, 2.4]], g); inst(G.box, M.coral, [[tx - 6.85, 1.3, tz + .9, .08, .25, .3], [tx - 6.85, 1.3, tz - .9, .08, .25, .3]], g);
-    site.truck = new Vector3(tx + 2, 4.5, tz);
+    site.truck = new Vector3(tx + 2, 4.5, tz); site.truckTop = new Vector3(tx - 3.5, 4, tz + .2);
     // an American football field, 120 yards with end zones
     const C = Lc.campus;
     const fx = Lc.nb ? C.maxX - 55 - 10 : C.maxX + 80, fz = Lc.nb ? C.maxZ + 52 : 0;
@@ -896,7 +897,7 @@ function makeWorld() {
     boxEdges(f, fx - Lf / 2, .08, fz - Wf / 2, fx + Lf / 2, .08, fz + Wf / 2);
     for (let i = 0; i <= 10; i++) { const x = fx - 45.72 + i * 9.144; f.push(x, .08, fz - Wf / 2, x, .08, fz + Wf / 2); }
     lines(f.slice(0, 24 * 1).concat(f.slice(24 * 3)), L.field, g);
-    site.field = new Vector3(fx, 2.5, fz);
+    site.field = new Vector3(fx, 2.5, fz); site.fieldC = Lc.nb ? new Vector3(fx, 0, fz) : null;
     // a road from the plant to the campus
     inst(G.box, M.road, [[(P.maxX + C.minX) / 2, 0, (Lc.nb ? C.maxZ : 6) + 8, C.minX - P.maxX + 40, .05, 7]], g);
     return g;
@@ -916,7 +917,7 @@ function makeWorld() {
     const c = r.c, p = r.p;
     const t = (id, html, pos) => { LB[id].el.innerHTML = html; if (pos) LB[id].p.copy(pos); LB[id].on = !!pos; };
     t("token", `<b>1 token</b><small>${joules(r.jTok)} at the wall</small>`, heroToken.position.clone().add(new Vector3(0, .3, 0)));
-    t("rack", `<b>${sig(c.kw * c.rack, 3)} kW</b><small>one ${c.n} rack, ${c.rack} GPUs</small>`, site.heroRack.clone().add(new Vector3(0, RK.h + .25, 0)));
+    t("rack", `<b>${sig(c.kw * c.rack, 3)} kW</b><small>one ${c.n} rack, ${c.rack} GPUs</small>`, site.heroRack.clone().add(new Vector3(-.55, RK.h + .05, site.heroFace * .3)));
     t("person", `<b>1.8 m</b><small>a person, for scale</small>`, person.position.clone().add(new Vector3(0, 1.95, 0)));
     t("hall", Lc.nb ? `<b>${count(r.racks)} racks</b><small>${count(r.chips)} chips${r.halls > 1 ? ` in ${int(r.halls)} halls` : ""}</small>` : `<b>${sig(r.chips, 2)} chips</b><small>less than one rack</small>`,
       Lc.nb ? site.hall.c.clone().add(new Vector3(0, HALL_H + 5, 0)) : site.heroRack.clone().add(new Vector3(0, 4.2, 0)));
@@ -965,6 +966,342 @@ function makeWorld() {
     });
   }
 
+  /* ------------------------------------------------ Echo, EchoTempo's mascot, in 3D */
+  // One rig, built from Echo's drawing: a gumdrop shell, a white belly, a visor of teeth with a heartbeat, paddle fins
+  // and two round feet. Each copy gets a job and an outfit for the part of the build it lives in.
+  const ECHO = (() => {
+    const gm = new DataTexture(new Uint8Array([86, 160, 255]), 3, 1, RedFormat); gm.minFilter = gm.magFilter = NearestFilter; gm.needsUpdate = true;
+    const toon = (color, em, k) => new MeshToonMaterial({ color, gradientMap: gm, emissive: em, emissiveIntensity: k });
+    const mat = {
+      shell: toon(0x8f76ff, 0x3b2a9e, .42), belly: toon(0xeeebf8, 0x7d78a8, .26), feet: toon(0xd9cdfa, 0x4a3d8a, .3), fin: toon(0x7a5ff6, 0x34238f, .42),
+      eye: new MeshBasicMaterial({ color: 0x140f24 }), shine: new MeshBasicMaterial({ color: 0xffffff }),
+      hat: toon(0x3fd6c8, 0x1b7a70, .55), brim: toon(0x2aa99d, 0x0f4d47, .55), lamp: new MeshBasicMaterial({ color: new Color(0xfff2dc).multiplyScalar(2.6) }),
+      ball: toon(0x8f5434, 0x3a1e10, .45), lace: new MeshBasicMaterial({ color: 0xf2efe8 }), shadow: new MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: .32, depthWrite: false }),
+      cart: toon(0x22384f, 0x0c1a28, .5), cartTrim: new MeshBasicMaterial({ color: new Color(0x3fd6c8).multiplyScalar(1.6) }), tire: toon(0x0d141c, 0x000000, 0),
+      crate: toon(0x2c4560, 0x10233a, .5), tray: toon(0x182636, 0x0a141e, .4), off: new MeshBasicMaterial({ color: 0x1a2a3a }),
+      on: new MeshBasicMaterial({ color: new Color(0x3fd6c8).multiplyScalar(2) }), crateGlow: new MeshBasicMaterial({ color: new Color(0x3fd6c8).multiplyScalar(.9) }),
+      fan: toon(0xf4977a, 0x7a3a28, .45), blush: toon(0xffd3dc, 0xa04a5e, .45), rope: new LineBasicMaterial({ color: 0xc9d6e2, transparent: true, opacity: .55 })
+    };
+    // the shell's outline, from the drawing: flat feet line, straight sides, a domed top. Height 1.
+    const prof = [[0, 0], [.3, 0], [.4, .012], [.445, .05], [.458, .12], [.463, .64]];
+    for (let i = 1; i <= 18; i++) { const a = i / 18 * Math.PI / 2; prof.push([.463 * Math.cos(a), .64 + .36 * Math.sin(a)]); }
+    const bodyG = new LatheGeometry(prof.map(([x, y]) => new Vector2(Math.max(x, 1e-4), y)), 44);
+    const rb = y => y <= .64 ? .463 : .463 * Math.cos(Math.asin(Math.min(1, (y - .64) / .36)));
+    const ZS = .82, BX = .9, BZ = .74, BO = .075;   // shell depth, belly width and depth, how far the belly sits forward
+    const frontZ = (x, y) => { const r = rb(y), rx = BX * r; return BO + BZ * r * Math.sqrt(Math.max(0, 1 - (x / rx) * (x / rx))); };
+    // the visor: a grid bent onto the belly, so it hugs the curve; the drawing goes on as a texture
+    const visorG = (() => {
+      const g = new PlaneGeometry(.58, .34, 24, 10), p = g.attributes.position;
+      for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i) + .69; p.setXYZ(i, x, y, frontZ(x * .97, y) + .006); }
+      g.computeVertexNormals(); return g;
+    })();
+    const visorTex = (sleep, glowOnly) => canvasTex(512, 300, (g, w, h) => {
+      const rr = (x, y, ww, hh, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + ww, y, x + ww, y + hh, r); g.arcTo(x + ww, y + hh, x, y + hh, r); g.arcTo(x, y + hh, x, y, r); g.arcTo(x, y, x + ww, y, r); g.closePath(); };
+      const y0 = sleep ? h * .27 : 0, hh = sleep ? h * .46 : h;
+      const beat = (lw, a) => { g.strokeStyle = `rgba(255,255,255,${a})`; g.lineWidth = lw; g.lineJoin = g.lineCap = "round"; g.beginPath();
+        const m = y0 + hh / 2, u = hh / 300 * 3.4;
+        [[.16, 0], [.37, 0], [.405, -9], [.455, 9], [.505, -13], [.55, 6], [.585, 0], [.84, 0]].forEach(([x, dy], i) => i ? g.lineTo(x * w, m + dy * u) : g.moveTo(x * w, m + dy * u)); g.stroke(); };
+      if (glowOnly) { beat(18, .25); beat(7, 1); return; }
+      rr(0, y0, w, hh, hh * .32); g.fillStyle = "#241a3a"; g.fill();
+      // the teeth: a white band along the top and bottom, scalloped toward the middle
+      const teeth = (top) => {
+        const L = w * .14, R = w * .86, n = 4, seg = (R - L) / n, edge = top ? y0 + hh * .05 : y0 + hh * .95, dep = hh * (top ? .19 : -.19), sc = hh * (top ? .08 : -.08);
+        g.beginPath(); g.moveTo(L + seg * .2, edge);
+        g.quadraticCurveTo(L, edge, L, edge + dep * .45);
+        for (let i = 0; i < n; i++) { const x0 = L + i * seg; g.lineTo(x0, edge + dep); g.quadraticCurveTo(x0 + seg / 2, edge + dep + sc, x0 + seg, edge + dep); }
+        g.quadraticCurveTo(R, edge, R - seg * .2, edge); g.closePath(); g.fillStyle = "#ffffff"; g.fill();
+      };
+      teeth(true); teeth(false);
+      beat(5, .55);
+    });
+    const TEX = { awake: visorTex(false), sleep: visorTex(true), glow: visorTex(false, true), glowSleep: (() => { const t = visorTex(true, true); return t; })() };
+    const sphere = new SphereGeometry(1, 20, 14), half = new SphereGeometry(1, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2);
+    const disc = new CircleGeometry(1, 28); disc.rotateX(-Math.PI / 2);
+    const cylG = new CylinderGeometry(1, 1, 1, 18);
+    const m = (geo, mt, x, y, z, sx, sy, sz, parent) => { const o = new Mesh(geo, mt); o.position.set(x, y, z); o.scale.set(sx, sy ?? sx, sz ?? sx); parent && parent.add(o); return o; };
+
+    function make(o = {}) {
+      const root = new Group(), body = new Group(); root.add(body);
+      if (o.shadow !== false) m(disc, mat.shadow, 0, .004, .04, .44, 1, .4, root);
+      const shell = m(bodyG, mat.shell, 0, 0, 0, 1, 1, ZS, body);
+      m(bodyG, mat.belly, 0, .008, BO, BX, .985, BZ, body);
+      void shell;
+      const visor = new Mesh(visorG, new MeshBasicMaterial({ map: o.sleep ? TEX.sleep : TEX.awake, color: 0xc9c6d6, transparent: true, alphaTest: .35 })); body.add(visor);
+      const pulse = new Mesh(visorG, new MeshBasicMaterial({ map: o.sleep ? TEX.glowSleep : TEX.glow, color: new Color(0x4fd2ff).multiplyScalar(1.45), transparent: true, depthWrite: false, blending: AdditiveBlending }));
+      pulse.position.z = .003; body.add(pulse);
+      // eyes sit at the edge of the belly, as in the drawing, a little forward so they read in 3D
+      const eyes = new Group(); eyes.position.y = .8; body.add(eyes);
+      [-1, 1].forEach(s => {
+        const a = .9, r = rb(.8), x = s * Math.sin(a) * r, z = Math.cos(a) * r * ZS + .03;
+        const e = m(sphere, mat.eye, x, 0, z, .05, .058, .04, eyes); e.lookAt(x * 3, 0, z * 3 + 1.4);
+        m(sphere, mat.shine, x - s * .012, .02, z + .03, .015, .015, .015, eyes);
+      });
+      // fins hang from the shoulders; each one turns about its top
+      const fin = s => { const p = new Group(); p.position.set(s * .452, .6, .02); body.add(p); m(sphere, mat.fin, 0, -.22, 0, .07, .26, .13, p); p.rotation.z = s * .14; return p; };
+      const finL = fin(-1), finR = fin(1);
+      // feet turn about a knee at the front of the base, so they can dangle and kick
+      const foot = s => { const p = new Group(); p.position.set(s * .215, .06, .1); body.add(p); m(sphere, mat.feet, 0, -.015, .03, .19, .11, .21, p); return p; };
+      const footL = foot(-1), footR = foot(1);
+      let hat = null, lamp = null;
+      if (o.hat) {
+        hat = new Group(); hat.position.set(0, .9, .02); body.add(hat);
+        m(half, mat.hat, 0, 0, 0, .36, .26, .34, hat); m(cylG, mat.brim, 0, .005, .06, .44, .025, .44, hat);
+        m(cylG, mat.hat, 0, .2, 0, .05, .14, .05, hat);
+        lamp = m(sphere, mat.lamp, 0, .12, .33, .045, .045, .03, hat);
+      }
+      let ball = null;
+      if (o.ball) { ball = m(sphere, mat.ball, 0, -.46, .12, .1, .065, .065, finR); m(cylG, mat.lace, 0, -.46 + .06, .12, .004, .02, .05, finR).rotation.z = Math.PI / 2; }
+      return { root, body, visor, pulse, eyes, finL, finR, footL, footR, hat, lamp, ball, o, seed: Math.random() * 20, hop: -1, mode: o.mode || "stand", sleep: !!o.sleep };
+    }
+    const setSleep = (e, on) => { if (e.sleep === on) return; e.sleep = on; e.visor.material.map = on ? TEX.sleep : TEX.awake; e.pulse.material.map = on ? TEX.glowSleep : TEX.glow; e.visor.material.needsUpdate = e.pulse.material.needsUpdate = true; };
+    return { make, mat, m, sphere, cylG, setSleep };
+  })();
+
+  // a little cart for the aisle, a GPU tray for the technician, and the rope for the balloons
+  function cartOf() {
+    const g = new Group(), M_ = ECHO.mat, m = ECHO.m;
+    m(new BoxGeometry(1, 1, 1), M_.cart, 0, .3, 0, .78, .22, 1.25, g);
+    m(new BoxGeometry(1, 1, 1), M_.cartTrim, 0, .3, .63, .8, .04, .02, g);
+    m(new BoxGeometry(1, 1, 1), M_.crate, 0, .58, .28, .62, .34, .5, g);
+    m(new BoxGeometry(1, 1, 1), M_.crateGlow, 0, .76, .28, .5, .02, .38, g);
+    [[-.4, .45], [.4, .45], [-.4, -.42], [.4, -.42]].forEach(([x, z]) => { const w = m(ECHO.cylG, M_.tire, x, .14, z, .14, .08, .14, g); w.rotation.z = Math.PI / 2; });
+    m(ECHO.sphere, M_.lamp, 0, .34, .66, .06, .045, .02, g);
+    const pole = m(ECHO.cylG, M_.cart, -.3, .85, -.5, .015, .9, .015, g); void pole;
+    const beacon = m(ECHO.sphere, M.beacon, -.3, 1.32, -.5, .05, .05, .05, g);
+    return { g, beacon };
+  }
+  const ECHOS = {};
+  const echoGroup = new Group(); scene.add(echoGroup);
+  const ropeG = new BufferGeometry(); ropeG.setAttribute("position", new Float32BufferAttribute(new Float32Array(6 * 3 * 2), 3).setUsage(DynamicDrawUsage));
+  const ropes = new LineSegments(ropeG, ECHO.mat.rope); ropes.frustumCulled = false; scene.add(ropes);
+  {
+    const add = (k, o) => { const e = ECHO.make(o); e.k = k; echoGroup.add(e.root); ECHOS[k] = e; return e; };
+    add("sitter", { mode: "sit", shadow: false });
+    const tech = add("tech", { mode: "tech", hat: true });
+    tech.tray = new Group(); tech.root.add(tech.tray);
+    ECHO.m(new BoxGeometry(1, 1, 1), ECHO.mat.tray, 0, 0, 0, .5, .05, .62, tech.tray);
+    tech.led = ECHO.m(new BoxGeometry(1, 1, 1), ECHO.mat.off, 0, .0, -.315, .42, .025, .012, tech.tray);
+    const cart = add("cart", { mode: "cart", shadow: false });
+    cart.cart = cartOf(); cart.root.add(cart.cart.g); cart.body.position.set(0, .41, -.38); cart.body.scale.setScalar(.82);
+    add("campus", { mode: "balloon", shadow: false });
+    add("plant", { mode: "balloon", hat: true, shadow: false });
+    add("rider", { mode: "sit", shadow: false });
+    add("runner", { mode: "run", ball: true });
+    const hot = add("hot", { mode: "hot" });
+    hot.fan = new Group(); hot.fan.position.set(0, -.44, .1); hot.finL.add(hot.fan);
+    const fg = new CircleGeometry(1, 18, 0, Math.PI); const fm = new Mesh(fg, ECHO.mat.fan); fm.material.side = DoubleSide; fm.scale.setScalar(.22); fm.rotation.y = Math.PI / 2; hot.fan.add(fm);
+    ECHO.m(ECHO.cylG, ECHO.mat.fan, 0, -.06, 0, .012, .14, .012, hot.fan);
+    // Zzz over the plant balloon when there's nothing to build
+    const zTex = canvasTex(64, 64, (g) => { g.fillStyle = "#fff"; g.font = `900 52px "Big Shoulders Display","Arial Narrow",sans-serif`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("z", 32, 34); });
+    ECHOS.plant.zs = [0, 1, 2].map(i => { const sp = new Sprite(new SpriteMaterial({ map: zTex, color: new Color(0xcfe3ff), transparent: true, depthWrite: false })); sp.visible = false; scene.add(sp); return sp; });
+  }
+  // put each Echo where its job is, for the build on screen
+  function placeEchos(r) {
+    const E = ECHOS, hr = site.heroRack, f = site.heroFace || 1;
+    // on top of the hero rack, feet over the front edge, watching the token
+    E.sitter.root.position.set(hr.x, hr.y + RK.h, hr.z + f * (RK.d / 2 - .26)); E.sitter.root.rotation.y = f > 0 ? 0 : Math.PI; E.sitter.root.scale.setScalar(.78);
+    // the technician works six racks down the front row, if the row is that long
+    const hh = site.heroHall;
+    const techRack = hh && (hh.racks.find(k => k.line === 0 && Math.abs(k.x - (hh.heroX + 7.2)) < .31) || hh.racks.find(k => k.line === 0 && Math.abs(k.x - (hh.heroX + 3.6)) < .31));
+    E.tech.root.visible = !!techRack;
+    if (techRack) { E.tech.root.position.set(hh.ix + techRack.x, .2, hh.iz + techRack.z + f * (RK.d / 2 + .78)); E.tech.root.rotation.y = f > 0 ? Math.PI : 0; E.tech.root.scale.setScalar(1.05); }
+    // the cart runs the spine aisle, front to back, if the hall has more than a row or two
+    E.cart.root.visible = !!(hh && hh.lines >= 3);
+    if (hh) { E.cart.path = { x: hh.ix, z0: hh.iz + hh.inD / 2 - MARGIN - 2 * RK.d - HOT - 1, z1: hh.iz - hh.inD / 2 + 1.6 }; E.cart.root.scale.setScalar(1); }
+    // a parade balloon over the campus; under one rack it's a party balloon tied to the rack's pad
+    const C = lay.campus, big = lay.nb > 0;
+    E.campus.anchor = big ? new Vector3(C.minX + (C.maxX - C.minX) * .62, 0, C.minZ - 6) : new Vector3(hr.x - 1.4, .2, hr.z - .9);
+    E.campus.size = big ? Math.min(46, 30 + (C.maxX - C.minX) * .02) : 1.15;
+    E.campus.lift = big ? 30 + E.campus.size * .5 : 4.4;
+    E.campus.drift = big ? new Vector3(4, 0, -10) : new Vector3(-.5, 0, .4);
+    // and one in a hard hat over the plant; if the load needs less than one plant, this Echo is asleep
+    const pl = site.plant, P = site.P;
+    E.plant.anchor = new Vector3(P.maxX - 8, 0, P.minZ + 8);
+    E.plant.size = r.p.shape === "reactor" ? 56 : r.p.shape === "cell" ? 12 : r.p.shape === "aero" ? 20 : 30;
+    E.plant.lift = pl.h + E.plant.size * 1.1 + (r.p.shape === "cell" ? 8 : 14);
+    E.plant.drift = new Vector3(-E.plant.size * .5, 0, E.plant.size * .4);
+    ECHO.setSleep(E.plant, !r.many);
+    // fanning itself on a hall roof among the chillers, or on the open hall's gallery roof
+    E.hot.root.visible = !!hh;
+    if (hh) {
+      const second = lay.halls[1];
+      if (second) E.hot.root.position.set(second.x - lay.bw / 2 + 12 + (lay.bw - 20) / 6 * .5, HALL_H + .06, second.z);
+      else E.hot.root.position.set(hh.ix - hh.inW / 2 - GAL / 2, CUT + .2, hh.iz + 2);
+      E.hot.root.rotation.y = .5; E.hot.root.scale.setScalar(1.1);
+    }
+    E.hot.pue = state.pue;
+    E.hot.body.children[1].material = state.pue >= 1.3 ? ECHO.mat.blush : ECHO.mat.belly;
+    // riding on the truck's trailer
+    E.rider.root.position.copy(site.truckTop); E.rider.root.rotation.y = 0; E.rider.root.scale.setScalar(1.05);
+    // running the football field with a ball
+    E.runner.root.visible = !!site.fieldC;
+    if (site.fieldC) E.runner.path = { x0: site.fieldC.x - 46, x1: site.fieldC.x + 46, z: site.fieldC.z + 6 };
+    echoBubble.k && placeBubble();
+  }
+  const beat = t => { const u = t % 1.4 / 1.4; return u < .1 ? .55 + u * 4.5 : u < .2 ? 1 - (u - .1) * 3 : u < .32 ? .7 + (u - .2) * 2 : u < .5 ? .94 - (u - .32) * 2.2 : .55; };
+  const vtmp = new Vector3();
+  function animateEchos(t, dt) {
+    const E = ECHOS, s = t / 1000, still = calm;
+    let ri = 0; const rp = ropeG.attributes.position.array;
+    Object.values(E).forEach(e => {
+      if (!e.root.visible) return;
+      const tt = still ? e.seed : s + e.seed;
+      e.eyes.scale.y = e.sleep ? .12 : (tt % 4.3 < .13 ? .12 : 1);
+      e.pulse.material.opacity = still ? .8 : beat(tt * (e.sleep ? .45 : 1));
+      let bob = Math.sin(tt * 2.4) * .012, finA = Math.sin(tt * 1.9) * .06;
+      e.finL.rotation.set(0, 0, -.14 - finA); e.finR.rotation.set(0, 0, .14 + finA);
+      if (e.mode === "sit") {
+        // sitting: feet swing over the edge; every few seconds a fin reaches for the token
+        e.footL.position.set(-.2, .05, .34); e.footR.position.set(.2, .05, .34);
+        e.footL.rotation.x = .9 + Math.sin(tt * 3.2) * .45; e.footR.rotation.x = .9 + Math.sin(tt * 3.2 + 2.2) * .45;
+        const reach = e.k === "sitter" ? Math.max(0, Math.sin(tt * .9)) ** 6 : 0;
+        e.finR.rotation.set(-.9 * reach, 0, .14 + finA + 1.5 * reach);
+        if (e.k === "rider") { const w = Math.max(0, Math.sin(tt * .7)) ** 4; e.finL.rotation.set(0, 0, -.14 - 2.4 * w + Math.sin(tt * 9) * .25 * w); }
+        e.body.rotation.y = e.k === "sitter" ? .25 + Math.sin(tt * .5) * .12 + reach * .2 : 0;
+        bob *= .5;
+      } else if (e.mode === "tech") {
+        // pull a tray out, look it over, slide it home, and watch its light come on
+        const c = (tt % 6) / 6, k = c < .2 ? c / .2 : c < .45 ? 1 : c < .65 ? 1 - (c - .45) / .2 : 0;   // 1 = pulled out
+        e.tray.position.set(0, .56, .62 - .34 * (1 - k) + .05);
+        e.tray.visible = true;
+        e.finL.rotation.set(-1.25, 0, -.32); e.finR.rotation.set(-1.25, 0, .32);
+        e.body.rotation.x = .1 - .12 * k; e.body.position.z = -.12 * k;
+        e.led.material = k < .02 && c > .6 ? ECHO.mat.on : ECHO.mat.off;
+        if (e.lamp) e.lamp.material = ECHO.mat.lamp;
+      } else if (e.mode === "cart") {
+        // drive the aisle, turn around at each end
+        const P = e.path; if (P) {
+          const len = Math.abs(P.z1 - P.z0), sp = 2.4, cyc = 2 * (len / sp + 1.2), u = (still ? .3 : (s * 1 + e.seed) % cyc), leg = len / sp + 1.2;
+          let z, dir;
+          if (u < leg) { const v = Math.min(1, u / (len / sp)); z = P.z0 + (P.z1 - P.z0) * v; dir = Math.sign(P.z1 - P.z0); if (u > len / sp) dir *= Math.cos(Math.min(1, (u - len / sp) / 1.2) * Math.PI); }
+          else { const v = Math.min(1, (u - leg) / (len / sp)); z = P.z1 + (P.z0 - P.z1) * v; dir = Math.sign(P.z0 - P.z1); if (u - leg > len / sp) dir *= Math.cos(Math.min(1, (u - leg - len / sp) / 1.2) * Math.PI); }
+          e.root.position.set(P.x + .2, .2, z);
+          e.root.rotation.y = dir >= 0 ? 0 : Math.PI;
+        }
+        e.finL.rotation.set(-1.1, 0, -.2); e.finR.rotation.set(-1.1, 0, .2);
+        e.cart.beacon.visible = still || Math.sin(s * 9) > 0;
+        bob = Math.abs(Math.sin(tt * 7)) * .01;
+      } else if (e.mode === "balloon") {
+        // floating on its tether, swaying in the wind; the plant's balloon dozes when there is nothing to build
+        const S = e.size || 20;
+        const sway = still ? 0 : Math.sin(tt * .35) * .5, sway2 = still ? 0 : Math.sin(tt * .27 + 1) * .5;
+        e.root.scale.setScalar(S);
+        e.root.position.set(e.anchor.x + e.drift.x * (1 + sway * .15), e.anchor.y + e.lift + (still ? 0 : Math.sin(tt * .6) * S * .04), e.anchor.z + e.drift.z * (1 + sway2 * .15));
+        e.root.rotation.set(sway * .06, .5 + sway * .25, sway2 * .05);
+        e.root.updateMatrixWorld();
+        e.finL.rotation.set(0, 0, -.25 - Math.sin(tt * .8) * .12); e.finR.rotation.set(0, 0, .25 + Math.sin(tt * .8 + 1) * .12);
+        e.footL.rotation.x = e.footR.rotation.x = .25;
+        bob = 0;
+        if (e.zs) e.zs.forEach((z, i) => {
+          z.visible = e.sleep;
+          if (!e.sleep) return;
+          const u = ((still ? .3 * i : s * .35 + i / 3) % 1);
+          vtmp.set(.32 + u * .5, 1.05 + u * .7, .1).applyMatrix4(e.root.matrixWorld);
+          z.position.copy(vtmp); z.scale.setScalar(S * (.14 + u * .16)); z.material.opacity = Math.sin(Math.PI * u) * .9;
+        });
+        // three tethers from the base down to the anchor
+        [[-.3, .2], [.3, .2], [0, -.28]].forEach(([x, z], i) => {
+          vtmp.set(x, .02, z).applyMatrix4(e.root.matrixWorld);
+          const ax = e.anchor.x + (i - 1) * S * .06, az = e.anchor.z + (i === 2 ? -S * .05 : S * .03);
+          rp.set([vtmp.x, vtmp.y, vtmp.z, ax, e.anchor.y + .05, az], ri); ri += 6;
+        });
+      } else if (e.mode === "hot") {
+        // the higher the PUE, the faster the fan
+        const sp = 3 + (e.pue - 1) * 40;
+        e.finL.rotation.set(-.6, 0, -.9 - Math.abs(Math.sin(tt * sp * .5)) * .5);
+        e.fan.rotation.set(0, 0, Math.sin(tt * sp) * .5);
+        e.body.rotation.z = Math.sin(tt * .8) * .03;
+      } else if (e.mode === "run") {
+        // run the length of the field and back, ball tucked in
+        const P = e.path; if (P) {
+          const len = P.x1 - P.x0, sp = 5.2, leg = len / sp, u = still ? .2 : (s + e.seed) % (2 * leg), out = u < leg, v = out ? u / leg : (u - leg) / leg;
+          e.root.position.set(out ? P.x0 + len * v : P.x1 - len * v, 0, P.z);
+          e.root.rotation.y = out ? Math.PI / 2 : -Math.PI / 2;
+        }
+        const st = tt * 11;
+        e.footL.rotation.x = Math.sin(st) * .7; e.footR.rotation.x = -Math.sin(st) * .7;
+        e.finL.rotation.set(Math.sin(st) * .6, 0, -.25);
+        e.finR.rotation.set(-.5, 0, .55);
+        e.body.rotation.x = .16;
+        bob = Math.abs(Math.sin(st)) * .06;
+      } else {
+        e.footL.rotation.x = e.footR.rotation.x = 0;
+      }
+      // a tap makes Echo hop
+      let hop = 0;
+      if (e.hop >= 0) { const u = (t - e.hop) / 650; if (u >= 1) e.hop = -1; else { hop = Math.sin(Math.PI * u) * .32; e.body.scale.set(1 + .06 * Math.sin(Math.PI * u * 2), 1 - .05 * Math.sin(Math.PI * u * 2), 1); } }
+      if (e.hop < 0) e.body.scale.setScalar(e.mode === "cart" ? .82 : 1);
+      e.body.position.y = (e.mode === "cart" ? .41 : 0) + bob + hop;
+    });
+    for (let i = ri; i < rp.length; i++) rp[i] = 0;
+    ropeG.attributes.position.needsUpdate = true;
+  }
+
+  // what Echo says when you tap it
+  const bubbleEl = document.createElement("div"); bubbleEl.className = "bubble3d"; bubbleEl.setAttribute("role", "status"); labelBox.parentNode.appendChild(bubbleEl);
+  const echoBubble = { k: null, until: 0 };
+  function echoLine(k) {
+    const r = last, p = r.p, kW = sig(r.c.kw * r.c.rack, 3);
+    return {
+      sitter: `That token cost ${joules(r.jTok)}. Worth it.`,
+      tech: `Hot swap! This rack draws ${kW} kW.`,
+      cart: `Delivering ${words(r.tps)} tokens a second.`,
+      campus: lay.nb ? `${power(r.facMW)} and counting!` : `It’s a party: ${sig(r.chips, 2)} chips’ worth.`,
+      plant: r.many ? `${int(r.build)} ${r.build === 1 ? p.one : p.many}, coming up.` : `I only need ${answerBig(r)} of this one. Zzz.`,
+      hot: state.pue >= 1.3 ? `PUE ${state.pue.toFixed(2)}. It’s getting hot up here.` : `PUE ${state.pue.toFixed(2)}. Cooling adds ${Math.round((state.pue - 1) * 100)}%.`,
+      rider: p.gas ? "Next stop: the turbine queue." : "Special delivery!",
+      runner: "110 meters. I paced it out."
+    }[k];
+  }
+  function sayEcho(k, text, ms = 3200) {
+    const e = ECHOS[k]; if (!e) return;
+    echoBubble.k = k; echoBubble.until = performance.now() + ms;
+    bubbleEl.textContent = text || echoLine(k);
+    bubbleEl.classList.add("on");
+    if (!calm) e.hop = performance.now();
+  }
+  function placeBubble() {
+    const k = echoBubble.k; if (!k) return;
+    const e = ECHOS[k];
+    if (performance.now() > echoBubble.until || !e.root.visible) { bubbleEl.classList.remove("on"); if (performance.now() > echoBubble.until + 400) echoBubble.k = null; return; }
+    vtmp.set(0, 1.12, 0).applyMatrix4(e.root.matrixWorld).project(camera);
+    const x = (vtmp.x + 1) / 2 * W, y = (1 - vtmp.y) / 2 * H;
+    const off = vtmp.z > 1 || x < -60 || x > W + 60 || y < -40 || y > H + 40;
+    bubbleEl.style.opacity = off ? "0" : "";
+    const bw = bubbleEl.offsetWidth, bh = bubbleEl.offsetHeight;
+    let bx = Math.min(W - bw - 12, Math.max(12, x - 18)), by = y;
+    for (let i = 0; i < 3; i++) {
+      const hit = textBoxes.find(b => bx + bw > b.l && bx < b.r && by > b.t && by - bh < b.b);
+      if (!hit) break;
+      // under the headline: drop below it; on the card or dock: lift above it
+      by = hit.t < H / 2 ? hit.b + bh + 10 : hit.t - 10;
+    }
+    bubbleEl.style.transform = `translate(${bx.toFixed(1)}px,${by.toFixed(1)}px) translate(0,-100%)`;
+  }
+  function echoView(k) {
+    const e = ECHOS[k], s = e.root.scale.x;
+    e.root.updateMatrixWorld();
+    const c = new Vector3(0, .55, 0).applyMatrix4(e.root.matrixWorld);
+    const az = e.mode === "tech" ? (site.heroFace > 0 ? 1.3 : Math.PI + 1.3) : e.mode === "cart" ? e.root.rotation.y + .25 : e.mode === "run" ? e.root.rotation.y + .75 : e.root.rotation.y + .38;
+    const dist = e.mode === "balloon" ? s * 3.4 : e.mode === "cart" ? 5.5 : e.mode === "run" ? 7 : e.mode === "hot" ? 6 : Math.max(3.2, s * 4.2);
+    return { target: c, dist, az, el: e.mode === "balloon" ? .05 : e.mode === "cart" ? .3 : .16, follow: e.mode === "cart" || e.mode === "run" ? k : null };
+  }
+  function screenSize(k) {
+    const e = ECHOS[k], s = e.root.scale.x;
+    const d = camera.position.distanceTo(vtmp.set(0, .5, 0).applyMatrix4(e.root.matrixWorld));
+    return s / (2 * d * Math.tan(camera.fov * Math.PI / 360)) * H;
+  }
+  function pickEcho(rayIn) {
+    let best = null, bd = Infinity;
+    Object.values(ECHOS).forEach(e => {
+      if (!e.root.visible) return;
+      const s = e.root.scale.x, c = vtmp.set(0, .5, 0).applyMatrix4(e.root.matrixWorld);
+      const sp = new Sphere(c.clone(), .62 * s * (e.mode === "cart" ? 1.4 : 1));
+      if (rayIn.intersectsSphere(sp)) { const d = rayIn.origin.distanceTo(c); if (d < bd) { bd = d; best = e.k; } }
+    });
+    return best;
+  }
+
   /* ------------------------------------------------ the camera: chapters, flights and the scale bar */
   function view(k) {
     const sv = (target, dist, az, el) => ({ target, dist, az, el });
@@ -972,7 +1309,7 @@ function makeWorld() {
     if (site.field && lay.nb) all.expandByPoint(site.field.clone().add(new Vector3(60, 0, 30)));
     const sz = all.getSize(new Vector3()), ctr = all.getCenter(new Vector3());
     const tall = small ? 1.25 : 1, fit = document.body.classList.contains("open") && wide() ? 1.14 : 1;
-    if (k === "token") return sv(heroToken.position.clone().add(new Vector3(.18, -.12, 0)), 2.1 * tall, -.36, .05);
+    if (k === "token") return sv(heroToken.position.clone().add(new Vector3(-.02, .62, 0)), (small ? 4.8 : 3.7), -.3, .06);
     if (k === "rack") return small ? sv(site.heroRack.clone().add(new Vector3(1.05, 1.75, .9)), 8.6, -.22, .1) : sv(site.heroRack.clone().add(new Vector3(.75, 1.05, .9)), 6.4, -.5, .14);
     if (k === "hall") return lay.nb ? sv(site.hall.c.clone().add(new Vector3(0, 1, 0)), (Math.max(site.hall.w, site.hall.d) * 1.12 + 16) * tall, .45, .66) : sv(site.heroRack.clone().add(new Vector3(0, 1, 0)), 14 * tall, .6, .5);
     if (k === "campus") {
@@ -986,19 +1323,27 @@ function makeWorld() {
   }
   const offsetOf = v => new Vector3(Math.sin(v.az) * Math.cos(v.el), Math.sin(v.el), Math.cos(v.az) * Math.cos(v.el)).multiplyScalar(v.dist);
   function snap(v) { controls.target.copy(v.target); camera.position.copy(v.target).add(offsetOf(v)); camera.lookAt(v.target); controls.update(); }
-  let flight = null, intro = false, moved = false;
+  let flight = null, intro = false, moved = false, follow = null;
   function fly(v, dur, isIntro = false) {
     if (calm) { snap(v); return; }
     const off = camera.position.clone().sub(controls.target);
     const d0 = off.length(), az0 = Math.atan2(off.x, off.z), el0 = Math.asin(Math.min(1, off.y / d0));
     let daz = v.az - az0; daz = ((daz + Math.PI) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2) - Math.PI;
     flight = { t0: performance.now(), dur: dur ?? Math.min(4200, 1200 + 520 * Math.abs(Math.log10(v.dist / d0))), from: { t: controls.target.clone(), d: d0, az: az0, el: el0 }, to: v, daz };
-    intro = isIntro; controls.enabled = false; controls.autoRotate = false;
+    intro = isIntro; controls.enabled = false; controls.autoRotate = false; follow = null;
   }
   const ease = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+  const fc = new Vector3();
+  function stepFollow() {
+    if (!follow || flight) return;
+    const e = ECHOS[follow]; if (!e || !e.root.visible) { follow = null; return; }
+    fc.set(0, .55, 0).applyMatrix4(e.root.matrixWorld).sub(controls.target);
+    controls.target.add(fc); camera.position.add(fc);
+  }
   function stepFlight(now) {
     if (!flight) return;
     const f = flight, u = Math.min(1, (now - f.t0) / f.dur), e = ease(u);
+    if (f.to.follow) { const ec = ECHOS[f.to.follow]; f.to.target.set(0, .55, 0).applyMatrix4(ec.root.matrixWorld); }
     const d = Math.exp(Math.log(f.from.d) + (Math.log(f.to.dist) - Math.log(f.from.d)) * e);
     // the target follows the distance, so zooming out keeps the start in frame and zooming in arrives before it descends
     const span = f.to.dist - f.from.d;
@@ -1017,6 +1362,8 @@ function makeWorld() {
     if (u >= 1) {
       flight = null; controls.enabled = true; controls.update();
       if (intro) { intro = false; document.body.classList.remove("intro"); chapter = "all"; showCard("all"); }
+      if (f.done) f.done();
+      if (f.to.follow) follow = f.to.follow;
       controls.autoRotate = !calm && chapter === "all" && !moved;
     }
   }
@@ -1063,6 +1410,7 @@ function makeWorld() {
       buildPulses(r);
       keys.p = kp; keys.g = kg; changed = true;
     }
+    if (changed) placeEchos(r);
     if (changed && growNext) growT = performance.now();
     growNext = false;
     setLabels(r, lay);
@@ -1091,7 +1439,7 @@ function makeWorld() {
       strip(.12, M.coral); strip(RK.h - .1, M.coral);
     }
     void H;
-    site.heroRack = new Vector3(0, .2, 0); site.heroFace = 1;
+    site.heroRack = new Vector3(0, .2, 0); site.heroFace = 1; site.heroHall = null;
     site.hall = { c: new Vector3(0, 0, 0), w: 5, d: 5 };
     emit.racks = [{ x: 0, z: 0 }]; emit.roofs = [];
     person.position.set(1.4, .2, RK.d / 2 + 1); person.rotation.y = -.7;
@@ -1129,6 +1477,7 @@ function makeWorld() {
     const b = canvas.getBoundingClientRect();
     ndc.set((ev.clientX - b.left) / b.width * 2 - 1, -((ev.clientY - b.top) / b.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
+    const ek = pickEcho(ray.ray); if (ek) return "echo:" + ek;
     const box = (c, w, h, d) => new Box3(new Vector3(c.x - w / 2, 0, c.z - d / 2), new Vector3(c.x + w / 2, h, c.z + d / 2));
     const tests = [
       ["rack", box(site.heroRack, 1.4, 2.6, 2), 0], ["hall", lay.nb ? box(site.hall.c, site.hall.w, HALL_H, site.hall.d) : null, 0],
@@ -1148,6 +1497,12 @@ function makeWorld() {
     down = null;
     if (!still) return;
     const k = pick(e);
+    if (k && k.startsWith("echo:")) {
+      const ek = k.slice(5);
+      if (screenSize(ek) < 70) { fly(echoView(ek)); flight && (flight.done = () => sayEcho(ek)); if (!flight) sayEcho(ek); }
+      else sayEcho(ek);
+      return;
+    }
     if (k && k !== chapter) go(k); else if (k) go(k === "hall" ? "rack" : k === "campus" ? "hall" : k);
   });
   let hoverQ = false;
@@ -1155,7 +1510,7 @@ function makeWorld() {
     if (down || hoverQ || e.pointerType !== "mouse") return;
     hoverQ = true; requestAnimationFrame(() => { hoverQ = false; canvas.style.cursor = pick(e) ? "pointer" : ""; });
   });
-  controls.addEventListener("start", () => { moved = true; controls.autoRotate = false; stage.classList.add("touched"); });
+  controls.addEventListener("start", () => { moved = true; follow = null; controls.autoRotate = false; stage.classList.add("touched"); });
   canvas.addEventListener("wheel", () => { moved = true; controls.autoRotate = false; }, { passive: true });
 
   /* ------------------------------------------------ sizing */
@@ -1254,6 +1609,7 @@ function makeWorld() {
     const dt = Math.min(.05, (now - lastT) / 1000); lastT = now; frameN++;
     if (pending) { update(pending); pending = null; }
     stepFlight(now);
+    stepFollow();
     if (!flight) controls.update();
     ox += (oxWant - ox) * Math.min(1, dt * 6);
     camera.setViewOffset(W, H, ox, small ? H * .06 : -H * .045, W, H);
@@ -1264,7 +1620,9 @@ function makeWorld() {
     ground.position.set(Math.round(camera.position.x / 1000) * 1000, 0, Math.round(camera.position.z / 1000) * 1000);
     if (bloom) bloom.strength = (small ? .5 : .62) * Math.min(1, .45 + d / 160);
     animate(dt, now);
+    animateEchos(now, dt);
     placeLabels(dt);
+    placeBubble();
     if (frameN % 3 === 0) updateScale();
     if (composer) composer.render(); else renderer.render(scene, camera);
   }
@@ -1285,7 +1643,8 @@ function makeWorld() {
       if (calm || location.hash === "#all") { document.body.classList.remove("intro"); chapter = "all"; showCard("all"); snap(view("all")); controls.autoRotate = false; }
       else {
         chapter = "token"; showCard("token"); snap(view("token"));
-        setTimeout(() => { if (!moved) fly(view("all"), 8200, true); else document.body.classList.remove("intro"); }, 1400);
+        setTimeout(() => sayEcho("sitter", "Hi, I’m Echo! 👋 Follow this token.", 2600), 450);
+        setTimeout(() => { if (!moved) fly(view("all"), 8200, true); else document.body.classList.remove("intro"); }, 2700);
       }
       requestAnimationFrame(tick);
     }
