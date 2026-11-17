@@ -48,6 +48,9 @@ button{font:inherit;color:inherit}
 .lb::after{content:"";position:absolute;left:50%;bottom:4px;width:1px;height:22px;background:linear-gradient(var(--edge),rgba(141,232,223,.8))}
 .lb::before{content:"";position:absolute;left:calc(50% - 3px);bottom:0;width:7px;height:7px;border-radius:50%;background:var(--teal-hi);box-shadow:0 0 10px var(--teal)}
 .lb b,.lb small{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.bubble3d{position:absolute;left:0;top:0;z-index:4;max-width:260px;padding:9px 14px 10px;border-radius:16px 16px 16px 4px;background:#fff;color:#0b1a2c;font-family:var(--label);font-weight:800;font-size:16px;line-height:1.2;box-shadow:0 12px 30px rgba(0,0,0,.4);pointer-events:none;opacity:0;transition:opacity .25s}
+.bubble3d.on{opacity:1}
+.bubble3d::after{content:"";position:absolute;left:12px;bottom:-7px;width:14px;height:14px;background:#fff;clip-path:polygon(0 0,100% 0,0 100%)}
 .lb.flip{padding:26px 0 0}
 .lb.flip::after{top:4px;bottom:auto;background:linear-gradient(rgba(141,232,223,.8),var(--edge))}
 .lb.flip::before{top:0;bottom:auto}
@@ -230,7 +233,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
     <nav class="chaps" id="chaps" aria-label="Fly to a scale"></nav>
     <button class="tune" id="tune" type="button" aria-controls="console" aria-expanded="false">Tune the numbers</button>
   </div>
-  <p class="hint">Drag to look around. Scroll or pinch to zoom. Tap a building to fly to it.</p>
+  <p class="hint">Drag to look around. Scroll or pinch to zoom. Tap a building, or any Echo, to fly to it.</p>
   <aside class="console" id="console" aria-label="Inputs and the math">
     <div class="console-h"><h2>Tune the numbers</h2><button type="button" id="close" aria-label="Close">×</button></div>
     <div class="panel" id="panel"></div>
@@ -270,7 +273,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
       </ul>
     </div>
   </section>
-  <footer class="foot">Defaults marked “my estimate” or “my scenario” are mine; the rest are sourced above. Not investment advice. <a href="../">Back to the theses</a></footer>
+  <footer class="foot">Defaults marked “my estimate” or “my scenario” are mine; the rest are sourced above. Not investment advice. Echo appears courtesy of <a href="https://echotempo.github.io/" target="_blank" rel="noopener">EchoTempo</a>. <a href="../">Back to the theses</a></footer>
 </main>
 <script type="module" src="model.js"></script>
 </body>
