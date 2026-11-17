@@ -6,6 +6,7 @@
   <nav class="nav-links" aria-label="Sections">
     <a href="#theses">Theses</a>
     <a href="#tldr" class="nav-tldr" aria-label="TL;DR: every thesis on one page, a work in progress">TL;DR</a>
+    <a href="#films" class="nav-watch">Watch</a>
     <a data-href="echotempoSite" target="_blank" rel="noopener">EchoTempo</a>
     <a href="#scorecard" class="wide">Scorecard</a>
     <a href="#contact" class="wide">Contact</a>
@@ -26,11 +27,26 @@
       <div class="ctas">
         <a class="btn primary" href="#theses">Read the theses</a>
         <a class="btn" href="#scorecard">See the scorecard</a>
+        <a class="btn btn-watch" href="#watch/field-trip"><span class="bw-p" aria-hidden="true"></span>Watch the tour<small>2:43</small></a>
       </div>
     </div>
     <div class="feat-wrap">
       <div class="feat-head"><b>Featured theses</b><span class="feat-hint">Fresh off the line. Click a chip to open it.</span><span class="feat-swipe">Swipe for more →</span></div>
       <ul class="feats" id="receipts" aria-label="Featured theses"></ul>
+    </div>
+  </section>
+
+  <section class="films" id="films" aria-labelledby="films-h">
+    <div class="wrap">
+      <div class="films-head">
+        <div>
+          <p class="films-k"><i aria-hidden="true"></i>Now showing</p>
+          <h2 class="big" id="films-h">Field trips with Echo</h2>
+          <p class="films-sub">Animated tours of the stack these notes cover, with Echo as the guide. Start with the feature; the shorts run about a minute. Every stop in the theater links to its thesis.</p>
+        </div>
+        <div class="films-usher" aria-hidden="true"><span class="films-say">Right this way!</span><div data-echo="guard" data-acc="guard"></div></div>
+      </div>
+      <div class="films-grid" id="filmsGrid"></div>
     </div>
   </section>
 
@@ -180,3 +196,4 @@
 
 <div class="memo" id="memo" role="dialog" aria-modal="true" aria-labelledby="memoTitle" hidden></div>
 <div class="board" id="board" role="dialog" aria-modal="true" aria-labelledby="boardTitle" hidden></div>
+<div class="theater" id="theater" role="dialog" aria-modal="true" aria-labelledby="thTitle" hidden></div>
