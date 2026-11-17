@@ -516,6 +516,7 @@ blockquote.pull .qc{color:var(--bin)}
   .memo-foot .count{display:none}
   .memo-prog{display:flex;position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(-2*var(--u));gap:calc(4*var(--u))}
   .memo-prog i{flex:1;width:auto;height:calc(3*var(--u))}
+  .memo-body{grid-template-rows:minmax(calc(220*var(--u)),40svh) minmax(0,1fr)}
 }
 @media (max-width:380px){
   .memo-foot{gap:calc(8*var(--u))}
@@ -2542,7 +2543,7 @@ html.paused .k-in,html.paused .k-pop,html.paused .k-fade,html.paused .k-grow-x,h
 html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 @media (prefers-reduced-motion:reduce){.k-pop,.k-fade,.k-grow-x,.k-grow-y{animation:none!important;opacity:1}
 .k-draw{animation:none!important;stroke-dashoffset:0}}
-.k-col{display:grid;gap:calc(12*var(--u));align-content:center;min-height:0;font-family:var(--label)}
+.k-col{display:grid;grid-template-columns:minmax(0,1fr);gap:calc(12*var(--u));align-content:center;min-height:0;font-family:var(--label)}
 .k-k{margin:0;font-family:var(--label);font-weight:800;font-size:calc(13*var(--u));letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .k-seg{display:flex;flex-wrap:wrap;gap:calc(6*var(--u))}
 .k-b{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));line-height:1.1;padding:calc(6*var(--u)) calc(11*var(--u)) calc(7*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));background:var(--ink-2);color:var(--dim);cursor:pointer;transition:border-color .2s,background .2s,color .2s}
@@ -8069,6 +8070,39 @@ function hideStuckMovers(root) {
     if (m && pm && Math.abs(m.e - pm.e) < .01 && Math.abs(m.f - pm.f) < .01) el.style.visibility = "hidden";
   }), 700);
 }
+function shapeSvgs(root) {
+  $$(".viz .frame svg[viewBox]", root).forEach(s => {
+    if (s.parentElement.classList.contains("frame") || s.closest("[data-flex]") || s.style.aspectRatio) return;
+    const vb = s.viewBox.baseVal;
+    if (vb && vb.width && vb.height) s.style.aspectRatio = `${vb.width} / ${vb.height}`;
+  });
+}
+function sizePane(root) {
+  const mb = $(".memo-body", root), pane = $(".viz-pane", root);
+  if (!mb || !pane) return;
+  if (!matchMedia("(max-width: 860px)").matches) { mb.style.removeProperty("grid-template-rows"); return; }
+  const H = innerHeight, cap = Math.round(H * .48), soft = H * .34;
+  mb.style.gridTemplateRows = `${cap}px minmax(0,1fr)`;
+  const ps = getComputedStyle(pane), padY = parseFloat(ps.paddingTop) + parseFloat(ps.paddingBottom);
+  let need = 0;
+  $$(".viz .frame", pane).forEach(fr => {
+    const body = fr.firstElementChild, capEl = fr.querySelector(":scope > .cap");
+    if (!body) return;
+    const capH = capEl && capEl !== body ? capEl.getBoundingClientRect().height + 10 : 0;
+    let h;
+    if (body.matches("svg")) { const vb = body.viewBox && body.viewBox.baseVal; h = Math.min(soft, vb && vb.width ? fr.clientWidth * vb.height / vb.width : soft); }
+    else if (body.matches("[data-flex]")) h = soft;
+    else {
+      ["transform", "transform-origin", "width", "height", "align-self"].forEach(k => body.style.removeProperty(k));
+      body.style.height = "auto"; body.style.alignSelf = "start";
+      h = body.getBoundingClientRect().height;
+      body.style.removeProperty("height"); body.style.removeProperty("align-self");
+    }
+    need = Math.max(need, h + capH);
+  });
+  const rows = Math.round(Math.max(Math.min(220, cap), Math.min(cap, need + padY + 4)));
+  mb.style.gridTemplateRows = `${rows}px minmax(0,1fr)`;
+}
 function fitFrames(root) {
   $$(".viz .frame", root).forEach(fr => {
     const body = fr.firstElementChild;
@@ -8084,12 +8118,13 @@ function fitFrames(root) {
     let need = natural();
     if (!slot || need <= slot + 1) return;
     let s = 1;
+    const floor = innerWidth < 600 ? .42 : .5;
     for (let k = 0; k < 4; k++) {
-      s = Math.max(.5, Math.min(1, slot / need));
+      s = Math.max(floor, Math.min(1, slot / need));
       body.style.width = (100 / s).toFixed(3) + "%";
       need = natural();
     }
-    s = Math.max(.5, Math.min(1, slot / need));
+    s = Math.max(floor, Math.min(1, slot / need));
     body.style.width = (100 / s).toFixed(3) + "%";
     body.style.height = (slot / s).toFixed(1) + "px";
     body.style.transformOrigin = "0 0";
@@ -8113,7 +8148,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
   if (x + w + pad > max) { t.setAttribute("textLength", max - x - pad); t.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
   r.setAttribute("width", Math.ceil(Math.min(x + w + pad, max)));
 });
-const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); hugPills(root); };
+const fitViz = root => { setType(root); shapeSvgs(root); sizePane(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
 addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
 function openMemo(id) {

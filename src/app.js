@@ -3203,6 +3203,44 @@ function hideStuckMovers(root) {
 
 // On a short screen, a frame built from HTML rather than SVG can be taller than its slot and spill onto its caption.
 // Shrink it to fit, the way an SVG chart already does: lay it out a little wider, then scale it down to the slot.
+// Safari can lay out a full-width chart SVG shorter than it draws, so the slider or tabs under it ride up over the drawing.
+// Giving each chart SVG its shape from the viewBox makes every browser reserve the same height.
+function shapeSvgs(root) {
+  $$(".viz .frame svg[viewBox]", root).forEach(s => {
+    if (s.parentElement.classList.contains("frame") || s.closest("[data-flex]") || s.style.aspectRatio) return;
+    const vb = s.viewBox.baseVal;
+    if (vb && vb.width && vb.height) s.style.aspectRatio = `${vb.width} / ${vb.height}`;
+  });
+}
+// On a phone the chart sits above the slide. Give it the height its busiest frame needs, up to a bit over half the screen,
+// so a chart with a slider and tabs isn't squeezed into the same box as a simple one.
+function sizePane(root) {
+  const mb = $(".memo-body", root), pane = $(".viz-pane", root);
+  if (!mb || !pane) return;
+  if (!matchMedia("(max-width: 860px)").matches) { mb.style.removeProperty("grid-template-rows"); return; }
+  const H = innerHeight, cap = Math.round(H * .48), soft = H * .34;
+  mb.style.gridTemplateRows = `${cap}px minmax(0,1fr)`;
+  const ps = getComputedStyle(pane), padY = parseFloat(ps.paddingTop) + parseFloat(ps.paddingBottom);
+  let need = 0;
+  $$(".viz .frame", pane).forEach(fr => {
+    const body = fr.firstElementChild, capEl = fr.querySelector(":scope > .cap");
+    if (!body) return;
+    const capH = capEl && capEl !== body ? capEl.getBoundingClientRect().height + 10 : 0;
+    let h;
+    // a bare SVG or a self-fitting chart scales down cleanly, so it only asks for a modest share
+    if (body.matches("svg")) { const vb = body.viewBox && body.viewBox.baseVal; h = Math.min(soft, vb && vb.width ? fr.clientWidth * vb.height / vb.width : soft); }
+    else if (body.matches("[data-flex]")) h = soft;
+    else {
+      ["transform", "transform-origin", "width", "height", "align-self"].forEach(k => body.style.removeProperty(k));
+      body.style.height = "auto"; body.style.alignSelf = "start";
+      h = body.getBoundingClientRect().height;
+      body.style.removeProperty("height"); body.style.removeProperty("align-self");
+    }
+    need = Math.max(need, h + capH);
+  });
+  const rows = Math.round(Math.max(Math.min(220, cap), Math.min(cap, need + padY + 4)));
+  mb.style.gridTemplateRows = `${rows}px minmax(0,1fr)`;
+}
 function fitFrames(root) {
   $$(".viz .frame", root).forEach(fr => {
     const body = fr.firstElementChild;
@@ -3219,12 +3257,13 @@ function fitFrames(root) {
     let need = natural();
     if (!slot || need <= slot + 1) return;
     let s = 1;
+    const floor = innerWidth < 600 ? .42 : .5;
     for (let k = 0; k < 4; k++) {
-      s = Math.max(.5, Math.min(1, slot / need));
+      s = Math.max(floor, Math.min(1, slot / need));
       body.style.width = (100 / s).toFixed(3) + "%";
       need = natural();
     }
-    s = Math.max(.5, Math.min(1, slot / need));
+    s = Math.max(floor, Math.min(1, slot / need));
     body.style.width = (100 / s).toFixed(3) + "%";
     body.style.height = (slot / s).toFixed(1) + "px";
     body.style.transformOrigin = "0 0";
@@ -3252,7 +3291,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
   if (x + w + pad > max) { t.setAttribute("textLength", max - x - pad); t.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
   r.setAttribute("width", Math.ceil(Math.min(x + w + pad, max)));
 });
-const fitViz = root => { setType(root); fitFrames(root); fitPkg(root); hugPills(root); };
+const fitViz = root => { setType(root); shapeSvgs(root); sizePane(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
 addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
 
