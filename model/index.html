@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tokens to turbines · Andrew Ngai</title>
+<meta name="description" content="A 3D model that turns a day of AI tokens into chips, racks, megawatts and power plants. Every input is a dial; every default is sourced.">
+<meta name="theme-color" content="#07101d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How many turbines does a token need?">
+<meta property="og:description" content="Turn a day of AI tokens into chips, racks, megawatts and power plants, then push my numbers.">
+<meta property="og:url" content="https://andrew-ngai.github.io/model/">
+<meta property="og:image" content="https://andrew-ngai.github.io/model/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233b7fe0'/%3E%3Cstop offset='.5' stop-color='%233fd6c8'/%3E%3Cstop offset='1' stop-color='%23d4e3f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Big+Shoulders+Text:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+:root{
+  --ink:#07101d;--ink-2:#0c1a2b;--ink-3:#14283f;--rule:#22405c;--paper:#eef4f8;--dim:#9fb3c4;--faint:#62798d;
+  --teal:#3fd6c8;--teal-hi:#8de8df;--beat:#6aa8ff;--coral:#f4977a;--grid:rgba(212,227,240,.07);
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif;--label:"Big Shoulders Text","Arial Narrow",sans-serif;--serif:"Newsreader",Georgia,serif;
+  --gutter:clamp(16px,3vw,40px);--top:56px;--ease:cubic-bezier(.2,.7,.2,1)
+}
+*{box-sizing:border-box}
+html{background:var(--ink);color:var(--paper);-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--serif);font-size:17px;line-height:1.5}
+a{color:var(--teal);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+.top{position:sticky;top:0;z-index:20;height:var(--top);display:flex;align-items:center;gap:20px;padding:0 var(--gutter);background:rgba(7,16,29,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);font-family:var(--label)}
+.back{display:inline-flex;align-items:center;gap:10px;color:var(--paper);text-decoration:none;font-weight:800;font-size:20px}
+.back svg{width:24px;height:24px}
+.crumb{color:var(--faint);font-weight:600;font-size:17px}
+.crumb::before{content:"/";margin-right:14px;color:var(--rule)}
+.top .how{margin-left:auto;font-weight:700;font-size:17px;color:var(--dim);text-decoration:none}
+.top .how:hover{color:var(--paper)}
+
+.lab{display:grid;grid-template-columns:minmax(0,1fr) 420px;height:calc(100svh - var(--top));min-height:560px}
+.stage{position:relative;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 45% 62%,rgba(63,214,200,.07),transparent 70%),radial-gradient(ellipse 60% 50% at 20% 30%,rgba(106,168,255,.06),transparent 70%),var(--ink)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+.labels{position:absolute;inset:0;pointer-events:none}
+.lb{position:absolute;left:0;top:0;display:grid;justify-items:center;padding:5px 10px 6px;border:1px solid var(--rule);border-radius:3px;background:rgba(7,16,29,.78);font-family:var(--label);font-weight:600;font-size:15px;color:var(--dim);white-space:nowrap;transition:opacity .3s;will-change:transform}
+.lb b{color:var(--paper);font-weight:800}
+.lb small{font-weight:600;font-size:12.5px;color:var(--faint)}
+.lb::after{content:"";position:absolute;left:50%;bottom:-7px;width:1px;height:7px;background:var(--rule)}
+#lbT b{color:var(--teal-hi)}#lbY b{color:var(--coral)}
+
+.head{position:absolute;left:var(--gutter);top:clamp(18px,3.5vh,40px);max-width:min(560px,56%);pointer-events:none}
+.head h1{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(38px,4.6vw,68px);line-height:.88;letter-spacing:-.005em;text-shadow:0 4px 30px rgba(7,16,29,.8)}
+.answer{margin-top:22px;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;align-items:end;pointer-events:auto}
+#aBig{font-family:var(--display);font-weight:900;font-size:clamp(64px,7.4vw,112px);line-height:.8;color:var(--coral);text-shadow:0 0 40px rgba(244,151,122,.25)}
+#aWhat{font-family:var(--label);font-weight:800;font-size:clamp(19px,1.7vw,24px);line-height:1.05;padding-bottom:4px}
+#aSub{grid-column:1/-1;margin:12px 0 0;font-size:16px;line-height:1.45;color:var(--dim);max-width:30rem;text-shadow:0 2px 12px rgba(7,16,29,.9)}
+.hint{position:absolute;right:16px;bottom:12px;margin:0;font-family:var(--label);font-weight:600;font-size:14px;color:var(--faint);transition:opacity .6s;pointer-events:none}
+.stage.touched .hint{opacity:0}
+.no-gl .stage canvas,.no-gl .labels,.no-gl .hint{display:none}
+.no-gl .stage::after{content:"Your browser didn’t start 3D, so here are the numbers on their own.";position:absolute;left:var(--gutter);bottom:24px;font-family:var(--label);color:var(--faint)}
+
+.panel{overflow:auto;overscroll-behavior:contain;border-left:1px solid var(--rule);background:linear-gradient(180deg,var(--ink-2),var(--ink) 60%);padding:6px 24px 28px;font-family:var(--label)}
+.ctl{padding:18px 0;border-bottom:1px solid rgba(34,64,92,.6)}
+.ctl.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ctl-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.ctl h2{margin:0;font-weight:800;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.ctl output{font-weight:800;font-size:20px;color:var(--paper);font-variant-numeric:tabular-nums;text-align:right}
+#oC{font-weight:600;font-size:15px;color:var(--dim)}
+.note{margin:10px 0 0;font-family:var(--serif);font-size:14.5px;line-height:1.45;color:var(--faint)}
+.note a{color:var(--dim)}
+.note em{color:var(--dim)}
+.link{border:0;background:none;padding:0;color:var(--teal);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-family:var(--serif);font-size:14.5px}
+
+input[type=range]{--f:50%;-webkit-appearance:none;appearance:none;width:100%;height:28px;margin:0;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--teal) var(--f),var(--rule) var(--f))}
+input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--teal) var(--f),var(--rule) var(--f))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-8px;border-radius:50%;background:var(--paper);border:3px solid var(--teal);box-shadow:0 0 0 4px rgba(63,214,200,.15)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--teal)}
+.scale{display:flex;justify-content:space-between;font-weight:600;font-size:12.5px;color:var(--faint)}
+.rail-wrap{position:relative;padding-bottom:44px}
+.ticks{position:absolute;left:10px;right:10px;top:26px;height:30px}
+.ticks i{position:absolute;top:0;width:1px;height:6px;background:var(--faint)}
+.ticks span{position:absolute;top:8px;left:0;transform:translateX(-50%);white-space:nowrap;font-style:normal;font-weight:600;font-size:12px;color:var(--faint)}
+.ticks i.lo{height:20px}
+.ticks i.lo span{top:22px}
+.ticks i:last-child span{transform:translateX(-85%)}
+
+.presets{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.presets button,.srcs button{display:grid;gap:2px;text-align:left;padding:8px 10px 9px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.presets b,.srcs b{font-weight:800;font-size:15.5px;line-height:1.1}
+.presets small,.srcs small{font-weight:600;font-size:12.5px;line-height:1.25;color:var(--faint)}
+.presets button:hover,.srcs button:hover,.seg button:hover{border-color:var(--dim)}
+.presets [aria-pressed=true],.srcs [aria-pressed=true]{border-color:var(--teal);box-shadow:inset 3px 0 0 var(--teal);background:rgba(63,214,200,.07)}
+.srcs [aria-pressed=true]{border-color:var(--coral);box-shadow:inset 3px 0 0 var(--coral);background:rgba(244,151,122,.07)}
+.srcs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:3px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2)}
+.seg button{border:1px solid transparent;border-radius:2px;background:none;padding:7px 4px 8px;font-weight:800;font-size:15px;color:var(--dim);cursor:pointer;white-space:nowrap}
+.seg [aria-pressed=true]{background:rgba(63,214,200,.13);color:var(--paper);box-shadow:inset 0 -2px 0 var(--teal)}
+
+.bom{padding:20px 0 6px}
+.bom h2{margin:0 0 6px;font-weight:800;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+.bom ol{list-style:none;margin:0;padding:0}
+.bom li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;padding:9px 0 10px 18px;border-bottom:1px dashed rgba(34,64,92,.7)}
+.bom li::before{content:"";position:absolute;left:4px;top:17px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.bom li:not(:last-child)::after{content:"";position:absolute;left:6.5px;top:26px;bottom:-12px;width:1px;background:var(--rule)}
+.bom li:nth-child(n+5)::before{background:var(--coral)}
+.bom .k{font-weight:700;font-size:16px;color:var(--dim)}
+.bom b{font-weight:800;font-size:18px;color:var(--paper);font-variant-numeric:tabular-nums;text-align:right}
+.bom .n{grid-column:1/-1;font-weight:600;font-size:13px;color:var(--faint)}
+.acts{display:flex;gap:8px;margin-top:16px}
+.acts button{flex:1;padding:10px 12px 11px;border:1px solid var(--teal);border-radius:3px;background:var(--teal);color:var(--ink);font-weight:800;font-size:16px;cursor:pointer}
+.acts .quiet{flex:none;background:none;border-color:var(--rule);color:var(--dim)}
+
+.notes{max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,96px) var(--gutter) 64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px)}
+.notes h2{margin:0 0 14px;font-family:var(--display);font-weight:800;font-size:clamp(34px,3.6vw,52px);line-height:.95}
+.notes h3{margin:30px 0 8px;font-family:var(--label);font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.notes p{margin:0 0 14px;color:var(--dim);max-width:38rem}
+.notes p b{color:var(--paper);font-weight:500}
+.math{margin:18px 0 0;padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--teal);background:var(--ink-2);font-family:var(--label);font-weight:600;font-size:17px;line-height:1.7;color:var(--paper)}
+.math span{color:var(--faint)}
+.src{list-style:none;margin:0;padding:0;font-family:var(--label);font-size:15.5px;line-height:1.4}
+.src li{padding:9px 0;border-bottom:1px solid rgba(34,64,92,.6)}
+.src li span{display:block;color:var(--faint);font-weight:600;font-size:13.5px}
+.src a{color:var(--paper);text-decoration-color:var(--rule)}
+.src a:hover{color:var(--teal)}
+.ask{margin-top:28px;padding:18px 20px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2)}
+.ask p{margin:0 0 10px;color:var(--paper)}
+.ask a{font-family:var(--label);font-weight:800;font-size:17px}
+.foot{max-width:1200px;margin:0 auto;padding:22px var(--gutter) 40px;border-top:1px solid var(--rule);font-family:var(--label);font-size:15px;color:var(--faint)}
+.foot a{color:var(--dim)}
+
+@media (max-width:1100px){.lab{grid-template-columns:minmax(0,1fr) 360px}.panel{padding:4px 18px 24px}.ctl.two{grid-template-columns:1fr;gap:16px}}
+@media (max-width:860px){
+  :root{--top:52px}
+  .crumb{display:none}
+  .lab{display:block;height:auto;min-height:0}
+  .stage{height:min(62svh,560px);min-height:380px}
+  .head{position:relative;left:auto;top:auto;max-width:none;padding:18px var(--gutter) 0;pointer-events:auto}
+  .stage .head{position:absolute;inset:0 0 auto 0;padding:14px var(--gutter) 0;pointer-events:none}
+  .head h1{font-size:clamp(30px,8.6vw,46px)}
+  .answer{margin-top:12px}
+  #aBig{font-size:clamp(52px,15vw,76px)}
+  #aSub{font-size:14.5px;max-width:22rem}
+  .lb{font-size:13.5px;padding:4px 8px 5px}.lb small{font-size:11.5px}
+  .hint{left:var(--gutter);right:auto}
+  .panel{border-left:0;border-top:1px solid var(--rule);overflow:visible;padding:4px var(--gutter) 28px}
+  .ctl.two{grid-template-columns:1fr 1fr;gap:16px}
+  .notes{grid-template-columns:1fr}
+}
+@media (max-width:480px){.ctl.two{grid-template-columns:1fr}.presets,.srcs{grid-template-columns:1fr 1fr}.seg button{font-size:13.5px}.top .how{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.lb,.hint{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="back" href="../"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b7fe0"/><stop offset=".5" stop-color="#3fd6c8"/><stop offset="1" stop-color="#d4e3f0"/></linearGradient></defs><circle cx="16" cy="16" r="14" fill="url(#mk)"/><path d="M8 9.5h16M6.5 13.5h19M6 17.5h20M6.6 21.5h18.8M9 25.5h14M10 6v20M14 4.5v23M18 4.5v23M22 6v20" stroke="#07101d" stroke-width="1.1" opacity=".55"/></svg>Andrew Ngai</a>
+  <span class="crumb">Tokens to turbines</span>
+  <a class="how" href="#math">How the math works</a>
+</header>
+<main>
+  <div class="lab">
+    <div class="stage" id="stage">
+      <canvas id="cv" aria-label="A 3D model: token traffic falls into a data hall of server racks, fed by a yard of power plants. Drag to turn it."></canvas>
+      <div class="labels" id="labels" aria-hidden="true"></div>
+      <div class="head">
+        <h1>How many turbines does a token need?</h1>
+        <div class="answer" aria-live="polite"><span id="aBig"></span><span id="aWhat"></span><p id="aSub"></p></div>
+      </div>
+      <p class="hint">Drag to turn. Scroll or pinch to zoom.</p>
+    </div>
+    <aside class="panel" id="panel" aria-label="Inputs and the math"></aside>
+  </div>
+
+  <section class="notes" id="math">
+    <div>
+      <h2>How the math works</h2>
+      <p>Every AI answer is a run of tokens, and every token is a few hundred millijoules of electricity once you count the chip, its server and the building around it. Set how many tokens a day you want to serve. The model works out how many chips that takes at a given speed and load, what they draw, and how many power plants of one kind you’d need to build to feed them.</p>
+      <div class="math">chips <span>=</span> tokens a second <span>÷</span> (tokens a second per chip <span>×</span> average load)<br>
+        facility MW <span>=</span> chips <span>×</span> kW per chip <span>×</span> PUE <span>÷</span> 1,000<br>
+        plants <span>=</span> facility MW <span>÷</span> MW per plant</div>
+      <h3>What it leaves out</h3>
+      <p><b>Training.</b> This is serving only. Training runs need their own campuses.</p>
+      <p><b>The token mix.</b> Google counts tokens processed, in and out. Reading a prompt is far cheaper than writing an answer, so raise the per-chip speed for traffic that’s mostly long prompts.</p>
+      <p><b>The chips Google actually uses.</b> Most of Google’s traffic runs on its own TPUs. The Google scenarios ask what the same traffic would take on NVIDIA hardware.</p>
+      <p><b>Spares.</b> Real sites carry backup generation and derate turbines on hot days. Building whole plants, rounded up, is the only margin in here.</p>
+      <div class="ask"><p>If you build or invest in any layer of this, tell me which dial I have wrong.</p><a href="../#contact">Tell me I’m wrong</a></div>
+    </div>
+    <div>
+      <h3>Sources for the defaults</h3>
+      <ul class="src">
+        <li><a href="https://gigazine.net/gsc_news/en/20260520-google-monthly-tokens-processed/">Google processes 3.2 quadrillion tokens a month</a><span>Sundar Pichai at Google I/O, May 20, 2026 (Gigazine)</span></li>
+        <li><a href="https://ppc.land/gemini-app-gains-350m-users-in-a-year-to-pass-1bn-alphabet-says/">Google’s API at nearly 32 billion tokens a minute</a><span>Alphabet Q3 2026 results, Oct 28, 2026 (PPC Land)</span></li>
+        <li><a href="https://blogs.nvidia.com/blog/blackwell-inferencemax-benchmark-results">B200: 60,000 tokens a second per GPU on gpt-oss; 10,000 on Llama 3.3 70B at 50 a second per user</a><span>NVIDIA on SemiAnalysis InferenceMAX v1</span></li>
+        <li><a href="https://developer.nvidia.com/blog/nvidia-blackwell-leads-on-new-semianalysis-inferencemax-benchmarks">30,000 tokens a second per GPU at 100 a second per user, with speculative decoding</a><span>NVIDIA developer blog</span></li>
+        <li><a href="https://www.theregister.com/2024/03/27/nvidia_blackwell_efficiency/">DGX H100 10.2 kW, DGX B200 14.3 kW, GB200 NVL72 120 kW</a><span>The Register, system power figures</span></li>
+        <li><a href="https://gpusolutions.hrp.hu/wp-content/uploads/2026/05/datasheet_SuperCluster_GB300_NVL72.pdf">GB300 NVL72 operating power 132–140 kW a rack</a><span>Supermicro datasheet</span></li>
+        <li><a href="https://www.datacenterdynamics.com/en/news/googles-electricity-use-grew-37-percent-in-2025-largest-annual-rise-to-date/">Google fleet PUE of 1.09 in 2025</a><span>Google Environmental Report 2026 (DCD)</span></li>
+        <li><a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference">0.24 Wh for the median Gemini text prompt</a><span>Google Cloud, Aug 2025</span></li>
+        <li><a href="https://www.gevernova.com/gas-power/products/gas-turbines/7ha">7HA.03: 430 MW</a><span>GE Vernova, simple cycle</span></li>
+        <li><a href="https://www.gevernova.com/power/gas/gas-turbines/lm6000">LM6000PF+ Sprint: 56.9 MW</a><span>GE Vernova</span></li>
+        <li><a href="https://www.bloomenergy.com/wp-content/uploads/bloom-energy-server-datasheet-feb-2026.pdf">Bloom Energy Server 6.5: 325 kW</a><span>Bloom Energy datasheet, Feb 2026</span></li>
+        <li><a href="https://www.world-nuclear.org/reactor/default.aspx/VOGTLE-3">AP1000 at Vogtle 3: 1,117 MW net</a><span>World Nuclear Association</span></li>
+        <li><a href="https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand">Stargate Abilene planned at 1.2 GW</a><span>Epoch AI, Apr 2026</span></li>
+      </ul>
+    </div>
+  </section>
+  <footer class="foot">Defaults marked “my estimate” or “my scenario” are mine; the rest are sourced above. Not investment advice. <a href="../">Back to the theses</a></footer>
+</main>
+<script type="module" src="model.js"></script>
+</body>
+</html>

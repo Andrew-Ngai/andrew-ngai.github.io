@@ -2583,6 +2583,9 @@ html.paused .btn-tour::before,html.paused .bt-p::after{animation:none}
 .memo-watch{display:inline-flex;align-items:center;gap:calc(10*var(--u));margin-bottom:calc(4*var(--u));padding:calc(6*var(--u)) calc(14*var(--u)) calc(7*var(--u)) calc(6*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));background:var(--ink-2);font-family:var(--label);font-weight:700;font-size:calc(16*var(--u));color:var(--paper);text-decoration:none;transition:border-color .2s,box-shadow .2s}
 .memo-watch:hover,.memo-watch:focus-visible{border-color:var(--amber);box-shadow:0 0 calc(24*var(--u)) calc(-8*var(--u)) var(--amber)}
 .memo-watch b{color:var(--amber);font-variant-numeric:tabular-nums}
+.memo-model{display:inline-flex;align-items:center;gap:calc(10*var(--u));margin-bottom:calc(4*var(--u));padding:calc(6*var(--u)) calc(14*var(--u)) calc(7*var(--u)) calc(8*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));background:var(--ink-2);font-family:var(--label);font-weight:700;font-size:calc(16*var(--u));color:var(--paper);text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.memo-model:hover,.memo-model:focus-visible{border-color:var(--amber);box-shadow:0 0 calc(24*var(--u)) calc(-8*var(--u)) var(--amber)}
+.mm-c{width:calc(18*var(--u));height:calc(18*var(--u));flex:none;background:linear-gradient(135deg,transparent 46%,var(--amber) 46% 54%,transparent 54%),conic-gradient(from 210deg at 50% 50%,rgba(63,214,200,.55) 0 120deg,rgba(63,214,200,.25) 120deg 240deg,rgba(63,214,200,.85) 240deg);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
 .mw-p{position:relative;width:calc(24*var(--u));height:calc(24*var(--u));border-radius:calc(3*var(--u));background:linear-gradient(135deg,#6aa8ff,#3fd6c8);flex:none}
 .mw-p::after{content:"";position:absolute;left:calc(9*var(--u));top:calc(6.5*var(--u));border-left:calc(8*var(--u)) solid var(--ink);border-top:calc(5.5*var(--u)) solid transparent;border-bottom:calc(5.5*var(--u)) solid transparent}
 .theater{--u:clamp(1px,min(100vw / 960,100svh / 840),var(--u-max));position:fixed;inset:0;z-index:70;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);background:#03070d;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:memo-in .45s var(--ease)}
@@ -4232,6 +4235,7 @@ html.paused .son-c{animation:none!important}
     <a href="#tldr" class="nav-tldr" aria-label="TL;DR: every thesis on one page, a work in progress">TL;DR</a>
     <a href="#films" class="nav-watch">Watch</a>
     <a data-href="echotempoSite" target="_blank" rel="noopener">EchoTempo</a>
+    <a href="model/" class="wide">Model</a>
     <a href="#scorecard" class="wide">Scorecard</a>
     <a href="#contact" class="wide">Contact</a>
     <span class="pads">
@@ -10008,7 +10012,7 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
-          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
+          <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}${modelLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
       <button class="slides-more" id="slidesMore" type="button" tabindex="-1" aria-hidden="true" hidden>More <span>↓</span></button>
@@ -10819,6 +10823,8 @@ const filmBy = id => FILMS.find(f => f.id === id) || FILMS[0];
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 const stopName = k => byId[k] ? (byId[k].tldr || [byId[k].title])[0] : k;
 const tripAt = id => { const s = FILMS[0].stops.find(x => x[1] === id); return s ? s[0] : null; };
+const MODEL = { ooms: "", molecules: "?src=7ha", bloom: "?t=1e12&src=bloom" };
+const modelLink = id => id in MODEL ? `<a class="memo-model" href="model/${MODEL[id]}"><span class="mm-c" aria-hidden="true"></span><span>Run the numbers in 3D</span></a>` : "";
 const watchLink = id => { const t = tripAt(id); return t === null ? "" : `<a class="memo-watch" href="#watch/field-trip/${t}"><span class="mw-p" aria-hidden="true"></span><span>See it on Echo’s field trip <b>${mmss(t)}</b></span></a>`; };
 const theater = $("#theater");
 let thFocus = null, thKeys = null, routeHash = "";
