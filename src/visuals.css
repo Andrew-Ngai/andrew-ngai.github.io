@@ -30,7 +30,7 @@ html.paused .k-in,html.paused .k-pop,html.paused .k-fade,html.paused .k-grow-x,h
 html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 @media (prefers-reduced-motion:reduce){.k-pop,.k-fade,.k-grow-x,.k-grow-y{animation:none!important;opacity:1}
 .k-draw{animation:none!important;stroke-dashoffset:0}}
-.k-col{display:grid;gap:12px;align-content:center;min-height:0;font-family:var(--label)}
+.k-col{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-content:center;min-height:0;font-family:var(--label)}
 .k-k{margin:0;font-family:var(--label);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .k-seg{display:flex;flex-wrap:wrap;gap:6px}
 .k-b{font-family:var(--label);font-weight:700;font-size:14px;line-height:1.1;padding:6px 11px 7px;border:1px solid var(--rule);border-radius:3px;background:var(--ink-2);color:var(--dim);cursor:pointer;transition:border-color .2s,background .2s,color .2s}
