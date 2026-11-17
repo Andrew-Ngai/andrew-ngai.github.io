@@ -4027,7 +4027,7 @@ function theaterHTML(f) {
   }).join("");
   return `<div class="th-head">
       <button class="btn" id="thClose" type="button">Close</button>
-      <div class="th-meta"><span class="th-k">Now showing · ${f.kind}</span><span class="th-t" id="thTitle">${f.title}</span></div>
+      <div class="th-meta"><span class="th-k">Now playing · ${f.kind}</span><span class="th-t" id="thTitle">${f.title}</span></div>
       <div class="th-reels" role="group" aria-label="Pick a film">${FILMS.map(x => `<button type="button" class="th-reel" data-film="${x.id}" aria-pressed="${x === f}"><b>${x.short}</b><small>${x.len}</small></button>`).join("")}</div>
     </div>
     <div class="th-body${f.tall ? " tall" : ""}">
@@ -4101,52 +4101,61 @@ function closeTheater(updateUrl) {
   if (thFocus && document.contains(thFocus)) thFocus.focus({ preventScroll: true });
 }
 
-// The home section: the feature in a lit marquee, the shorts as tickets. Previews play on hover only,
+// The home section: the feature on a scope with a strip of stops, the shorts as cards. Previews play on hover only,
 // so the chosen poster is what everyone sees first.
-function hangBulbs(m) {
-  let box = $(".bulbs", m);
-  if (!box) { box = document.createElement("span"); box.className = "bulbs"; box.setAttribute("aria-hidden", "true"); m.prepend(box); }
-  const z = zoom(), inset = 9 * z, W = m.clientWidth - 2 * inset, H = m.clientHeight - 2 * inset;
-  const P = 2 * (W + H), n = Math.max(8, Math.round(P / (26 * z))), step = P / n;
-  let out = "";
-  for (let i = 0; i < n; i++) {
-    let d = i * step, x, y;
-    if (d < W) { x = d; y = 0; } else if ((d -= W) < H) { x = W; y = d; } else if ((d -= H) < W) { x = W - d; y = H; } else { x = 0; y = H - (d - W); }
-    out += `<i style="left:${(x + inset).toFixed(1)}px;top:${(y + inset).toFixed(1)}px"></i>`;
-  }
-  box.innerHTML = out;
+const filmSecs = f => { const [m, x] = f.len.split(":"); return m * 60 + +x; };
+const stopBin = k => byId[k] ? BINS[byId[k].stance].css : "var(--faint)";
+const stopAttr = k => stopName(k).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+function ticksHTML(f, live) {
+  const d = filmSecs(f);
+  return f.stops.map(([t, k]) => {
+    const at = `left:${(t / d * 100).toFixed(2)}%;--bin:${stopBin(k)}`;
+    return live ? `<a href="#watch/${f.id}/${t}" style="${at}" data-t="${mmss(t)}" data-n="${stopAttr(k)}" aria-label="Play from ${mmss(t)}: ${stopAttr(k)}"></a>` : `<i style="${at}"></i>`;
+  }).join("");
 }
 function renderFilms() {
   const grid = $("#filmsGrid");
   if (!grid) return;
   const [feat, ...rest] = FILMS;
-  grid.innerHTML = `<div class="marquee">
-      <button type="button" class="feature" data-film="${feat.id}" aria-label="Play ${feat.title}, ${feat.len}">
-        <span class="ft-screen"><img src="${feat.poster}" alt="" width="1280" height="720" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${feat.preview}" aria-hidden="true"></video><span class="ft-play" aria-hidden="true"></span></span>
-        <span class="ft-cap"><small>${feat.kind} · ${feat.len}</small><b>${feat.title}</b><span>${feat.tag}</span></span>
+  const no = i => String(i + 1).padStart(2, "0");
+  const meta = $("#filmsMeta");
+  if (meta) meta.textContent = `${FILMS.length} films · ${mmss(FILMS.reduce((a, f) => a + filmSecs(f), 0))} of footage · sound on`;
+  grid.innerHTML = `<article class="scope" data-card>
+      <div class="sc-head"><span>Trip 01 · ${feat.kind}</span><span>${feat.len} · ${feat.stops.length} stops</span></div>
+      <button type="button" class="sc-open" data-film="${feat.id}" aria-label="Play ${feat.title}, ${feat.len}">
+        <span class="sc-screen"><img src="${feat.poster}" alt="" width="1280" height="720" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${feat.preview}" aria-hidden="true"></video><span class="sc-fid" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sc-play" aria-hidden="true"></span></span>
       </button>
-    </div>
-    <ul class="tickets" aria-label="Short films">${rest.map(f => `<li><button type="button" class="ticket${f.tall ? " tall" : ""}" data-film="${f.id}" aria-label="Play ${f.title}, ${f.len}">
-        <span class="tk-in"><span class="tk-stub" aria-hidden="true"><b>Admit one</b><i>${f.len}</i></span>
-        <span class="tk-thumb"><img src="${f.poster}" alt="" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${f.preview}" aria-hidden="true"></video><span class="tk-play" aria-hidden="true"></span></span>
-        <span class="tk-tx"><small>${f.kind}</small><b>${f.title}</b><span>${f.tag}</span></span></span>
+      <div class="sc-strip"><div class="ticks">${ticksHTML(feat, true)}</div></div>
+      <p class="sc-read" aria-hidden="true"><b></b><span></span></p>
+      <div class="sc-cap"><b>${feat.title}</b><span>${feat.tag}</span><em class="sc-go">Play the feature <i>→</i></em></div>
+    </article>
+    <ul class="reels" aria-label="Short films">${rest.map((f, i) => `<li><button type="button" class="reel${f.tall ? " tall" : ""}" data-card data-film="${f.id}" aria-label="Play ${f.title}, ${f.len}">
+        <span class="rl-thumb"><img src="${f.poster}" alt="" loading="lazy"><video class="pv" muted loop playsinline preload="none" src="${f.preview}" aria-hidden="true"></video><span class="rl-play" aria-hidden="true"></span></span>
+        <span class="rl-tx"><small><em>Trip ${no(i + 1)}</em> · ${f.len}${f.tall ? " · vertical" : ""}</small><b>${f.title}</b><span class="rl-tag">${f.tag}</span><span class="ticks" aria-hidden="true">${ticksHTML(f, false)}</span></span>
       </button></li>`).join("")}</ul>`;
   $$("[data-film]", grid).forEach(b => b.addEventListener("click", () => { location.hash = `watch/${b.dataset.film}`; }));
   const hover = matchMedia("(hover: hover) and (pointer: fine)");
-  $$("[data-film]", grid).forEach(b => {
-    const v = $(".pv", b);
+  $$("[data-card]", grid).forEach(c => {
+    const v = $(".pv", c);
     v.addEventListener("playing", () => v.classList.add("on"));
     v.addEventListener("pause", () => v.classList.remove("on"));
     const start = () => { if (!hover.matches || calm || motionPaused) return; if (v.preload === "none") v.preload = "auto"; v.play().catch(() => {}); };
     const stop = () => { v.pause(); };
-    b.addEventListener("pointerenter", start); b.addEventListener("pointerleave", stop);
-    b.addEventListener("focus", start); b.addEventListener("blur", stop);
+    c.addEventListener("pointerenter", start); c.addEventListener("pointerleave", stop);
+    c.addEventListener("focusin", start); c.addEventListener("focusout", stop);
   });
-  const m = $(".marquee", grid);
-  hangBulbs(m);
-  let rq = 0;
-  addEventListener("resize", () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(() => hangBulbs(m)); });
-  if ("ResizeObserver" in window) new ResizeObserver(() => { cancelAnimationFrame(rq); rq = requestAnimationFrame(() => hangBulbs(m)); }).observe(m);
+  const read = $(".sc-read", grid), [rb, rs] = read.children;
+  const idle = () => {
+    read.classList.remove("live"); read.style.removeProperty("--bin");
+    rb.textContent = `${feat.stops.length} stops`;
+    rs.textContent = hover.matches ? "Hover a tick for the stop. Click it to start there." : "One for every thesis.";
+  };
+  idle();
+  $$(".sc-strip a", grid).forEach(a => {
+    const show = () => { read.classList.add("live"); read.style.setProperty("--bin", a.style.getPropertyValue("--bin")); rb.textContent = a.dataset.t; rs.textContent = a.dataset.n; };
+    a.addEventListener("pointerenter", show); a.addEventListener("pointerleave", idle);
+    a.addEventListener("focus", show); a.addEventListener("blur", idle);
+  });
 }
 
 /* ---------------------------------------------------------------- router */
