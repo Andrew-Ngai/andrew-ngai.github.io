@@ -240,7 +240,7 @@ html.paused .die-echo.land{animation:none}
 @keyframes llflow{to{stroke-dashoffset:-14}}
 @media (max-width:900px){.link-line,.die-tag,.die-echo{display:none}}
 .t-item.probe .t-title{color:var(--faint)}
-@media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin,.t-item .t-upd{grid-column:1}.t-item .t-die{padding-top:0}}
+@media (max-width:520px){.t-item{grid-template-columns:1fr}.t-item .t-hook,.t-item .bin{grid-column:1}.t-item .t-die{padding-top:0}}
 .score{padding-block:clamp(calc(72*var(--u)),10vw,calc(120*var(--u)));background:var(--ink-2);border-block:calc(1*var(--u)) solid var(--rule);position:relative;overflow:hidden}
 .score::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) calc(1*var(--u)),transparent calc(1*var(--u))),linear-gradient(90deg,var(--grid) calc(1*var(--u)),transparent calc(1*var(--u)));background-size:calc(40*var(--u)) calc(40*var(--u));pointer-events:none}
 .score-head{position:relative;display:grid;grid-template-columns:minmax(0,1fr) calc(150*var(--u));gap:calc(32*var(--u));align-items:end;margin-bottom:calc(44*var(--u))}
@@ -499,8 +499,10 @@ blockquote.pull .qc{color:var(--bin)}
 .memo-upd-panel li b{font-family:var(--label);font-weight:700;font-size:calc(16*var(--u));color:var(--paper)}
 .memo-upd-panel li span{font-family:var(--serif);font-size:calc(17*var(--u));line-height:1.45;color:var(--dim)}
 .memo-upd-panel li .upd-was{font-family:var(--label);font-size:calc(15*var(--u));line-height:1.35;color:var(--beat)}
-.t-item .t-upd{grid-column:2;justify-self:start;font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.03em;color:var(--upd);border:calc(1*var(--u)) solid var(--upd-line);border-radius:calc(999*var(--u));padding:calc(1*var(--u)) calc(9*var(--u)) calc(2*var(--u))}
-@media (max-width:520px){.t-item .t-upd{grid-column:1}}
+.t-item .t-die{grid-row:1 / span 2;align-self:start}
+.t-item .t-upd{display:block;width:fit-content;max-width:100%;margin-top:calc(10*var(--u));font-family:var(--label);font-weight:600;font-size:calc(13*var(--u));line-height:1.2;letter-spacing:.03em;color:var(--upd);border:calc(1*var(--u)) solid var(--upd-line);border-radius:calc(7*var(--u));padding:calc(3*var(--u)) calc(8*var(--u)) calc(4*var(--u));font-variant-numeric:normal}
+.t-item .t-upd-k{display:block}
+@media (max-width:520px){.t-item .t-die{grid-row:auto}.t-item .t-upd{display:inline-block;margin:0 0 0 calc(10*var(--u));padding:calc(1*var(--u)) calc(8*var(--u)) calc(2*var(--u));border-radius:calc(999*var(--u));white-space:nowrap;vertical-align:calc(1*var(--u))}.t-item .t-upd-k{display:inline}}
 .slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent);mask-image:linear-gradient(#000 calc(100% - calc(72*var(--u))),transparent)}
 .slides-more{position:absolute;z-index:2;left:var(--gutter);bottom:calc(14*var(--u));display:inline-flex;align-items:center;gap:calc(6*var(--u));font-family:var(--label);font-weight:700;font-size:calc(15*var(--u));letter-spacing:.03em;color:var(--paper);background:rgba(12,26,43,.94);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));padding:calc(6*var(--u)) calc(14*var(--u)) calc(7*var(--u));cursor:pointer}
 .slides-more span{color:var(--bin)}
@@ -7766,7 +7768,7 @@ function renderHome() {
   addEventListener("resize", () => { cancelAnimationFrame(spanRaf); spanRaf = requestAnimationFrame(fitSpan); });
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).tag}</span>` : ""}</a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}${lastUpd(t) ? `<span class="t-upd"><span class="t-upd-k">Updated </span>${lastUpd(t).tag}</span>` : ""}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
   const pins = [
     CONFIG.email && { tag: "@", name: "Email", handle: CONFIG.email, role: "The direct line.", href: `mailto:${CONFIG.email}` },

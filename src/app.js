@@ -2853,7 +2853,7 @@ function renderHome() {
 
   $("#tlist").innerHTML = THESES.map(t => {
     const b = BINS[t.stance];
-    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span>${lastUpd(t) ? `<span class="t-upd">Updated ${lastUpd(t).tag}</span>` : ""}</a></li>`;
+    return `<li><a class="t-item" href="#${t.id}" data-id="${t.id}" style="--bin:${b.css}"><span class="t-die">Die ${dieLabel(t.die)}${lastUpd(t) ? `<span class="t-upd"><span class="t-upd-k">Updated </span>${lastUpd(t).tag}</span>` : ""}</span><span class="t-title">${sentences(t.h2 || t.title)}</span><span class="t-hook">${t.hook}</span><span class="bin">${b.label}</span></a></li>`;
   }).join("") + PROBES.map((p, i) => `<li><div class="t-item probe" data-id="probe${i}" tabindex="0"><span class="t-die">Die ${dieLabel(p.die)}</span><span class="t-title">${p.title}</span><span class="t-hook">${p.hook}</span>${p.note ? `<span class="t-hook t-note">${p.note}</span>` : ""}<span class="bin probe">In probe</span></div></li>`).join("");
 
   // contact
