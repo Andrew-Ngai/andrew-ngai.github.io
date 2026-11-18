@@ -787,7 +787,7 @@ A["gpulife-1a"] = { html: () => {
 const MENU = [["Rubin", 2026], ["Blackwell", 2024], ["H200", 2024], ["H100", 2022], ["A100", 2020]];
 A["gpulife-2a"] = { html: () => `<div class="k-col mn">
       <div class="mn-card"><p class="mn-t">Today’s compute menu</p>
-        <div class="mn-rows" id="mnRows">${[["Frontier training", "MP"], ["Frontier serving", "MP"], ["Everyday inference, fine-tuning", "$2.82"], ["Batch jobs, research, second owners", "$1.29"]].map(([t, p], i) => `<div class="mn-r" data-i="${i}"><span class="mn-n">${t}</span><span class="mn-c" id="mnC${i}"></span><i></i><b id="mnP${i}">${p}</b></div>`).join("")}</div>
+        <div class="mn-rows" id="mnRows">${[["Frontier training", "MP"], ["Frontier serving", "MP"], ["Everyday inference, fine-tuning", "$3.06"], ["Batch jobs, research, second owners", "$1.29"]].map(([t, p], i) => `<div class="mn-r" data-i="${i}"><span class="mn-n">${t}</span><span class="mn-c" id="mnC${i}"></span><i></i><b id="mnP${i}">${p}</b></div>`).join("")}</div>
         <p class="mn-f">Per GPU-hour, Silicon Data indexes. MP = market price.</p></div>
       <div class="k-seg"><button type="button" class="k-b go" id="mnGo">Next generation lands</button><button type="button" class="k-b" id="mnRe">Today</button></div>
     </div>${cap("The newest chips sell at whatever the market bears. Older ones move down to cheaper work, and still get paid.")}`,
@@ -799,12 +799,12 @@ A["gpulife-2a"] = { html: () => `<div class="k-col mn">
       const names = gen === 0 ? CH.map(c => c[0]) : NEXT[Math.min(gen, 2) - 1];
       names.forEach((n, i) => { const c = fr.querySelector("#mnC" + i); if (anim) { c.classList.remove("mn-sl"); void c.offsetWidth; c.classList.add("mn-sl"); } c.textContent = n; });
       fr.querySelector("#mnGo").disabled = gen >= 2;
-      if (gen) { fr.querySelector("#mnP2").textContent = "lower"; fr.querySelector("#mnP3").textContent = "lower still"; } else { fr.querySelector("#mnP2").textContent = "$2.82"; fr.querySelector("#mnP3").textContent = "$1.29"; }
+      if (gen) { fr.querySelector("#mnP2").textContent = "lower"; fr.querySelector("#mnP3").textContent = "lower still"; } else { fr.querySelector("#mnP2").textContent = "$3.06"; fr.querySelector("#mnP3").textContent = "$1.29"; }
       fr.querySelector(".mn-t").textContent = gen ? `The menu, ${gen} generation${gen > 1 ? "s" : ""} later` : "Today’s compute menu";
     };
     fr.querySelector("#mnGo").addEventListener("click", () => { gen = Math.min(2, gen + 1); draw(true); });
     fr.querySelector("#mnRe").addEventListener("click", () => { gen = 0; draw(true); });
-    K.onEnter(fr, () => { gen = 0; draw(); K.count(fr.querySelector("#mnP2"), 2.82, { from: 2, dur: 1800, fmt: v => "$" + v.toFixed(2) }); });
+    K.onEnter(fr, () => { gen = 0; draw(); K.count(fr.querySelector("#mnP2"), 3.06, { from: 2, dur: 1800, fmt: v => "$" + v.toFixed(2) }); });
     draw();
   } };
 
@@ -818,11 +818,11 @@ A["gpulife-3a"] = { html: () => `<div class="k-col pb">
       <label class="k-row"><span>Rent changes</span><input type="range" id="pbR" min="-60" max="10" step="1" value="-25"><b id="pbRv"></b></label>
       <svg viewBox="0 0 460 200" class="k-svg" id="pbS" aria-label="Cash earned each year by one H100 and the running total against its cost."></svg>
       <p class="pb-v" id="pbV"></p>
-    </div>${cap("Illustrative: $35,000 all-in per H100, starting at today’s $2.82 index rate, 70% utilized, about 40 cents an hour for power and data-center space.")}`,
+    </div>${cap("Illustrative: $35,000 all-in per H100, starting at the $3.06 index rate of November 10, 70% utilized, about 40 cents an hour for power and data-center space.")}`,
   init: fr => {
     const S = fr.querySelector("#pbS"), X = i => 50 + i * 66, Y = v => 170 - v / 50000 * 140;
     let g = -.25, shown = 0;
-    const calc = () => { const out = []; let cum = 0; for (let y = 0; y < 6; y++) { const r = 2.82 * Math.pow(1 + g, y), net = Math.max(0, r - .4) * 8760 * .7; cum += net; out.push([net, cum]); } return out; };
+    const calc = () => { const out = []; let cum = 0; for (let y = 0; y < 6; y++) { const r = 3.06 * Math.pow(1 + g, y), net = Math.max(0, r - .4) * 8760 * .7; cum += net; out.push([net, cum]); } return out; };
     const draw = () => {
       const d = calc(), pay = d.findIndex(x => x[1] >= 35000), k = Math.floor(shown);
       S.innerHTML = `<line x1="40" x2="440" y1="${Y(35000)}" y2="${Y(35000)}" stroke="var(--coral)" stroke-dasharray="5 5"/><text x="44" y="${Y(35000) - 6}" font-size="11.5" style="fill:var(--coral)" font-weight="700">cost $35K</text>
@@ -913,7 +913,7 @@ A["saas-3a"] = { html: () => `<div class="k-col so3">
       <div class="so3-g" id="soG">${Array.from({ length: 100 }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div>
       <div class="so3-key"><span class="s">a person’s seat</span><span class="o">work done by agents</span></div>
       ${[["Seats only", "a"], ["Seats + outcomes", "b"]].map(([n, k]) => `<div class="so3-b ${k}"><span>${n}</span><div><i id="soB${k}"></i></div><b id="soV${k}"></b></div>`).join("")}
-    </div>${cap("Illustrative: 100 people, 1,000 conversations each. Intercom list prices: $85 a seat a month, from $0.99 per outcome.")}`,
+    </div>${cap("Illustrative: 100 people, 1,000 conversations each. Fin (formerly Intercom) list prices: $85 a seat a month, from $0.99 per outcome.")}`,
   init: fr => {
     const cells = [...fr.querySelectorAll("#soG i")];
     K.slider(fr, "#soR", v => {
@@ -944,7 +944,7 @@ const rack = (x, y, w, h, n = 5) => `<rect x="${x}" y="${y}" width="${w}" height
 
 
 // ---------------------------------------------------------- slide 2
-const PR = [["AWS, on demand", 6.88, "var(--coral)"], ["Nebius, Oct 2026", 4.5, "#f2b84b"], ["Nebius, May 2026", 2.95, "var(--beat)"], ["Neocloud average", 2.82, "var(--amber)"]];
+const PR = [["AWS, on demand", 6.88, "var(--coral)"], ["Nebius, Oct 2026", 4.5, "#f2b84b"], ["Nebius, May 2026", 2.95, "var(--beat)"], ["Neocloud average", 3.06, "var(--amber)"]];
 A["neocloud-2a"] = { html: () => `<div class="k-col rc">
       <div class="rc-in"><label class="k-row"><span>H100s</span><input type="range" id="rcG" min="8" max="10000" step="8" value="1000"><b id="rcGv"></b></label><label class="k-row"><span>Days</span><input type="range" id="rcD" min="1" max="90" step="1" value="30"><b id="rcDv"></b></label></div>
       <div class="rc-bars">${PR.map(([n, p, c], i) => `<div class="rc-b" style="--c:${c}"><span>${n}<small>$${p.toFixed(2)}/hr</small></span><div><i id="rcB${i}"></i></div><b id="rcV${i}"></b></div>`).join("")}</div>
@@ -954,7 +954,7 @@ A["neocloud-2a"] = { html: () => `<div class="k-col rc">
     let g = 1000, d = 30;
     const fmt = v => v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" : "$" + Math.round(v / 1000) + "K";
     const draw = () => { const H = g * d * 24, mx = H * 6.88; PR.forEach(([, p], i) => { fr.querySelector("#rcB" + i).style.width = (H * p / mx * 100) + "%"; fr.querySelector("#rcV" + i).textContent = fmt(H * p); });
-      fr.querySelector("#rcS").innerHTML = `Neocloud average saves <b>${fmt(H * (6.88 - 2.82))}</b> against AWS on demand, <b>${Math.round((1 - 2.82 / 6.88) * 100)}%</b> off.`; };
+      fr.querySelector("#rcS").innerHTML = `Neocloud average saves <b>${fmt(H * (6.88 - 3.06))}</b> against AWS on demand, <b>${Math.round((1 - 3.06 / 6.88) * 100)}%</b> off.`; };
     K.slider(fr, "#rcG", v => { g = v; fr.querySelector("#rcGv").textContent = v.toLocaleString("en-US"); draw(); });
     K.slider(fr, "#rcD", v => { d = v; fr.querySelector("#rcDv").textContent = v; draw(); });
   } };
@@ -990,21 +990,22 @@ A["neocloud-3a"] = { html: () => {
 // 11 · Back the builders. Survive the bust.
 (() => {
 const A = window.AX, cap = t => `<p class="cap">${t}</p>`;
-const F = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2]];
+const F = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2], ["Nov ’26", 1.6]];
 const LAYERS = [["Chips", "TSMC", "var(--beat)"], ["Memory", "Micron, SanDisk", "var(--violet)"], ["Datacenters", "CoreWeave, IREN, Nebius", "var(--amber)"], ["Power", "Bloom Energy", "#f2b84b"]];
 
 // ---------------------------------------------------------- slide 1
 A["builders-1a"] = { html: () => {
-    const X = i => 50 + i * 58, Y = v => 230 - v / 21 * 200;
-    return `<div class="k-col fl1"><svg viewBox="0 0 460 280" class="k-svg" aria-label="Situational Awareness LP's disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026.">
+    const X = i => 50 + i * 52, Y = v => 230 - v / 21 * 200;
+    return `<div class="k-col fl1"><svg viewBox="0 0 460 280" class="k-svg" aria-label="Situational Awareness LP's disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026, then falling to $1.6 billion in November 2026 after a forced sale.">
       ${[0, 5, 10, 15, 20].map(v => `<line x1="40" x2="440" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--rule)" stroke-width=".6"/><text x="34" y="${Y(v) + 4}" text-anchor="end" font-size="11">$${v}B</text>`).join("")}
       ${F.map(([d, v], i) => `<g class="fl1-b" data-i="${i}"><rect x="${X(i) - 18}" y="${Y(v).toFixed(1)}" width="36" height="${(230 - Y(v)).toFixed(1)}" rx="3" fill="var(--amber)" opacity="${(.4 + i * .1).toFixed(2)}" class="k-grow-y" style="--d:${(.15 + i * .3).toFixed(2)}s"/><text x="${X(i)}" y="${(Y(v) - 8).toFixed(1)}" text-anchor="middle" font-size="12.5" class="t-strong k-fade" style="--d:${(.45 + i * .3).toFixed(2)}s">$${v >= 1 ? v.toFixed(1) : v.toFixed(2)}B</text><text x="${X(i)}" y="248" text-anchor="middle" font-size="11">${d}</text></g>`).join("")}
       <g class="k-fade" style="--d:1.9s"><rect x="60" y="82" width="150" height="22" rx="11" fill="var(--violet)"/><text x="135" y="97" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--ink)">May ’26: memory leads</text></g>
       <g class="k-fade" style="--d:2.3s"><rect x="60" y="110" width="150" height="22" rx="11" fill="var(--coral)"/><text x="135" y="125" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--ink)">Aug ’26: hedges gone</text></g>
-      <text x="60" y="44" class="fl1-x"><tspan id="fl1X">1</tspan>×</text><text x="60" y="64" font-size="12">the first filing</text>
+      <g class="k-fade" style="--d:2.7s"><rect x="60" y="138" width="150" height="22" rx="11" fill="none" stroke="var(--coral)" stroke-width="1.5"/><text x="135" y="153" text-anchor="middle" font-size="11" font-weight="800" style="fill:var(--coral)">Nov ’26: forced sale</text></g>
+      <text x="60" y="44" class="fl1-x"><tspan id="fl1X">1</tspan>×</text><text x="60" y="64" font-size="12">the first filing, at the peak</text>
     </svg><p class="fl1-say" id="fl1S">Tap a bar.</p></div>${cap("US positions disclosed in each 13F filing, by filing date. Not total assets; shorts and non-US holdings aren’t shown.")}`; },
   init: fr => {
-    const S = ["<b>First filing, February 2025:</b> about $255 million of US positions.", "<b>May 2025:</b> about $1.0 billion.", "<b>August 2025:</b> about $2.1 billion.", "<b>November 2025:</b> about $4.1 billion.", "<b>February 2026:</b> about $5.5 billion.", "<b>May 2026:</b> $13.7 billion, led by memory makers SanDisk and Micron.", "<b>August 2026:</b> about $20 billion. Builders like Bloom Energy, CoreWeave and IREN across its 2026 filings, and the large semiconductor hedges gone."];
+    const S = ["<b>First filing, February 2025:</b> about $255 million of US positions.", "<b>May 2025:</b> about $1.0 billion.", "<b>August 2025:</b> about $2.1 billion.", "<b>November 2025:</b> about $4.1 billion.", "<b>February 2026:</b> about $5.5 billion.", "<b>May 2026:</b> $13.7 billion, led by memory makers SanDisk and Micron.", "<b>August 2026:</b> about $20 billion. Builders like Bloom Energy, CoreWeave and IREN across its 2026 filings, and the large semiconductor hedges gone.", "<b>November 2026:</b> $1.6 billion, mostly options. After margin calls in July, the fund sold most of its stock portfolio to Citadel on July 30."];
     fr.querySelectorAll(".fl1-b").forEach(g => g.addEventListener("click", () => { fr.querySelectorAll(".fl1-b").forEach(x => x.classList.toggle("sel", x === g)); fr.querySelector("#fl1S").innerHTML = S[+g.dataset.i]; }));
     K.onEnter(fr, () => setTimeout(() => K.active(fr) && K.count(fr.querySelector("#fl1X"), 20.2 / .25, { dur: 2200 }), 300));
   } };

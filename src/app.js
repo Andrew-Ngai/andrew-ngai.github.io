@@ -86,6 +86,13 @@ const SRC = {
   f13: "https://13f.info/manager/0002045724-situational-awareness-lp",
   scrivner: "https://www.danielscrivner.com/leopold-aschenbrenner-trades-and-holdings-q2-2026/",
   telecom: "https://en.wikipedia.org/wiki/Telecoms_crash",
+  saCitadel: "https://cointelegraph.com/markets/citadel-situational-awareness-stock-portfolio-ai-rout-reports",
+  capexQ3: "https://www.hl.co.uk/news/ai-hyperscalers-are-expected-to-finish-the-year-spending-a-whopping-828-billion-on-capex",
+  capexTrack: "https://walnutinvest.com/stats/ai-capex-statistics",
+  h100Nov: "https://rillor.com/insights/h100-rental-price-history-2023-to-2026",
+  finBuy: "https://www.salesforce.com/news/press-releases/2026/06/15/salesforce-signs-definitive-agreement-to-acquire-fin",
+  finClose: "https://www.salesforce.com/news/?p=95171",
+  nbQ3: "https://nebius.com/newsroom/nebius-reports-third-quarter-2026-financial-results",
   bea: "https://www.anthropic.com/engineering/building-effective-agents",
   harness: "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
   cpulse: "https://openai.com/index/introducing-chatgpt-pulse/",
@@ -309,13 +316,14 @@ const THESES = [
     signal: `<p>Aschenbrenner’s ladder puts one cluster on each rung, ten times bigger every two years: about 1 GW around 2026, 10 GW around 2028, and 100 GW around 2030, more than a fifth of US electricity.</p>
       <p>Two years in, the spending is tracking that curve. The shape of what’s getting built isn’t.</p>`,
     takes: [
-      ["The money is on pace.", "Amazon, Alphabet, Microsoft and Meta planned more than $700B of 2026 capex, and Alphabet raised its own guide to as much as $205B in July. A trillion a year by 2027 no longer sounds crazy."],
+      ["The money is on pace.", "After Q3 earnings, Amazon, Alphabet, Microsoft and Meta guided to about $730B of 2026 capex between them, and all four said spending rises again in 2027. A trillion a year by 2027 no longer sounds crazy."],
       ["The sites are splitting.", "Stargate is seven US sites aiming for 9+ GW by 2029. OpenAI moved Abilene’s planned expansion to other sites instead of making one campus bigger. Compute goes where power is."],
       ["Inference eats training.", "Every agent-workday is inference. When one lab runs 3.1 agent-workdays per human workday, demand shifts toward serving models, and serving doesn’t need one building."]
     ],
     bet: "The next winners run fleets: software that places training and inference across sites by power price and availability, long-haul links between datacenters, and training methods that tolerate distance.",
     wrong: "Someone builds a single 5 GW+ training campus and its models clearly beat fleet-trained rivals.",
-    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["OpenAI (Sept 2026)", SRC.openai]],
+    updates: [{ on: "Oct 29, 2026", tag: "post-Q3", why: "Q3 earnings from Amazon, Alphabet, Microsoft and Meta: about $730 billion of combined 2026 capex guidance, with all four guiding higher for 2027. Take 1 now uses it.", was: "Originally written with mid-year plans of more than $700 billion, and Alphabet’s July guide of up to $205 billion." }],
+    receipts: [["Situational Awareness, ch. IIIa", SRC.saIIIa], ["Epoch AI on Stargate (Apr 2026)", SRC.epoch], ["Sherwood News on 2026 capex", SRC.sherwood], ["W.Media on Alphabet’s guide", SRC.wmedia], ["Hargreaves Lansdown on Q3 capex (Oct 2026)", SRC.capexQ3], ["Walnut capex tracker (Nov 2026)", SRC.capexTrack], ["OpenAI (Sept 2026)", SRC.openai]],
     viz: "fleet", echo: { pose: "lookout", acc: "lookout", name: "Captain" }
   },
   {
@@ -331,12 +339,13 @@ const THESES = [
       <p>Nvidia keeps making his point for him. It says Vera Rubin, ramping now, gets 10 times the throughput per megawatt of Blackwell. When power is the bottleneck, that sounds like a death sentence for every older chip.</p>`,
     takes: [
       ["A GPU has more than one life.", "When the next generation lands, the old one doesn’t go to a landfill. It moves down the menu: from training frontier models, to serving them, to cheaper work like fine-tuning and batch jobs, to a second owner. CoreWeave signed an A100 contract that runs through 2029, nine years after the chip launched, and Silicon Data values six-year-old A100s at about $5,000 each, roughly flat since late 2025."],
-      ["The market priced old GPUs, and the price went up.", "Silicon Data’s H100 rental index rose from $2.00 an hour in December 2025 to $2.82 today, and SemiAnalysis found some H100 contracts being renewed for four years, through 2028. In late 2025, H100 systems in their third year resold for about 45% of the price of a new one. Burry’s reply is that a chip can rent and still depreciate fast. True, but rent above running cost is what pays the capex back."],
-      ["Power is the real clock, and it runs slow.", "Burry’s sharpest point is opportunity cost: a megawatt of old chips could hold ten times the tokens. But Rubin needs liquid-cooled racks that most air-cooled H100 halls can’t take without major upgrades, and this spring, on-demand capacity for every GPU type sold out anyway. So old GPUs keep their power until the building turns over. Electricity for an H100, server and cooling included, runs roughly 15 to 20 cents an hour. The chip rents for $2.82."]
+      ["The market priced old GPUs, and the price went up.", "Silicon Data’s H100 rental index rose from $2.00 an hour in December 2025 to $3.06 on November 10, 2026, up 53%, and SemiAnalysis found some H100 contracts being renewed for four years, through 2028. In late 2025, H100 systems in their third year resold for about 45% of the price of a new one. Burry’s reply is that a chip can rent and still depreciate fast. True, but rent above running cost is what pays the capex back."],
+      ["Power is the real clock, and it runs slow.", "Burry’s sharpest point is opportunity cost: a megawatt of old chips could hold ten times the tokens. But Rubin needs liquid-cooled racks that most air-cooled H100 halls can’t take without major upgrades, and this spring, on-demand capacity for every GPU type sold out anyway. So old GPUs keep their power until the building turns over. Electricity for an H100, server and cooling included, runs roughly 15 to 20 cents an hour. The chip rents for about $3."]
     ],
     bet: "Treat a GPU like an airplane, not a phone. Jets fly flagship routes, then regional ones, then cargo, then go to a second airline, and lessors price every stage. GPUs are getting the same ladder. The neoclouds built to last sign contracts that pay back the chip before the next generation lands, then run it down the menu. Nebius depreciates its servers over five years (four until this year) and signed Microsoft for five, so the contract covers the whole book life. Back the plumbing of a GPU’s second and third lives: rental and residual-value indexes, compute futures, schedulers that send cheap work to old chips, refurbishing and resale, and lenders who underwrite GPUs on contracted cash instead of book value.",
     wrong: "H100 rental prices fall below $1 an hour by 2028 while the newest chips are still sold out, or neoclouds start selling old GPUs for parts. Then the second life was a shortage, not a market.",
-    receipts: [["StreetInsider on Burry’s $176B estimate (Nov 2025)", SRC.burry], ["Benzinga on Burry’s 1960s comparison (Oct 2026)", SRC.burry60s], ["Dow Jones on GPU useful lives and resale (Dec 2025)", SRC.depDj], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["TheStreet on Huang and CoreWeave’s A100s (Sept 2026)", SRC.a100Huang], ["Benzinga on A100 values (Sept 2026)", SRC.a100Val], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Silicon Data on the H100 spike (Jan 2026)", SRC.h100Spike], ["SemiAnalysis, The Great GPU Shortage (Apr 2026)", SRC.semiShort], ["Nebius H1 2026 results on useful lives (Aug 2026)", SRC.nbDep], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["NVIDIA DGX H100 guide (power)", SRC.dgxH100]],
+    updates: [{ on: "Nov 10, 2026", tag: "Nov index", why: "Silicon Data’s H100 index read $3.06 on November 10, up 53% from $2.00 last December, so the price kept going up. Takes 2 and 3 and the charts now use it.", was: "Originally written with the October reading of $2.82." }],
+    receipts: [["StreetInsider on Burry’s $176B estimate (Nov 2025)", SRC.burry], ["Benzinga on Burry’s 1960s comparison (Oct 2026)", SRC.burry60s], ["Dow Jones on GPU useful lives and resale (Dec 2025)", SRC.depDj], ["NVIDIA on Vera Rubin (July 2026)", SRC.rubin], ["TheStreet on Huang and CoreWeave’s A100s (Sept 2026)", SRC.a100Huang], ["Benzinga on A100 values (Sept 2026)", SRC.a100Val], ["Silicon Data H100 index (Nov 2026)", SRC.h100idx], ["Rillor on H100 price history (Nov 2026)", SRC.h100Nov], ["Silicon Data on the H100 spike (Jan 2026)", SRC.h100Spike], ["SemiAnalysis, The Great GPU Shortage (Apr 2026)", SRC.semiShort], ["Nebius H1 2026 results on useful lives (Aug 2026)", SRC.nbDep], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["NVIDIA DGX H100 guide (power)", SRC.dgxH100]],
     viz: "gpulife", echo: { pose: "idle", acc: "waiter", name: "Maître d’" }
   },
   {
@@ -353,11 +362,12 @@ const THESES = [
     takes: [
       ["The screen collapses. The record doesn’t.", "Nadella is half right. Agents don’t need menus and forms, so software that was mostly a screen gets squeezed. But an agent still has to read and write the record: who the customer is, what was promised, who can approve a discount. Klarna, the poster child for ripping out Salesforce, moved its data into its own in-house system, and its CEO said, “we did not replace SaaS with an LLM.”"],
       ["Agents need a rulebook, and SaaS holds it.", "A model guesses. A company’s books can’t. On August 26, Salesforce and Anthropic, whose plug-ins had deepened the sell-off, announced Claudeforce: Claude works on Salesforce data, and its actions are routed back through Salesforce “to help ensure business rules are always enforced.” That quarter, Salesforce’s filing showed about $2.7 billion of unrealized gains on its Anthropic stake. The software company owns a piece of the AI lab."],
-      ["The meter moves from seats to work.", "The real risk is that one agent does the work of ten people who each had a license. So vendors are charging for the work. Intercom charges from $0.99 per outcome for its Fin agent. Salesforce sells Agentforce partly by the action, and its Agentforce revenue run rate passed $1.5 billion, up more than 240%. Marc Benioff told investors, “Our seats were supposed to decline,” then said its sales, service and Slack products all grew instead. ServiceNow’s AI annual contract value crossed $1 billion, and Gartner expects software spending to grow about 15% this year. A seat is priced against the IT budget. Finished work is priced against the labor budget, which is far bigger."]
+      ["The meter moves from seats to work.", "The real risk is that one agent does the work of ten people who each had a license. So vendors are charging for the work. Fin, the agent company formerly called Intercom, charges from $0.99 per outcome, and in September Salesforce closed a $3.6 billion deal to buy it: the system of record bought the outcome-priced agent. Salesforce sells Agentforce partly by the action, and its Agentforce revenue run rate passed $1.5 billion, up more than 240%. Marc Benioff told investors, “Our seats were supposed to decline,” then said its sales, service and Slack products all grew instead. ServiceNow’s AI annual contract value crossed $1 billion, and Gartner expects software spending to grow about 15% this year. A seat is priced against the IT budget. Finished work is priced against the labor budget, which is far bigger."]
     ],
     bet: "Over the next decade, AI and SaaS both win by splitting the job. Labs sell reasoning by the token. Software companies sell the trusted record, the rules and the finished work, priced by the outcome. The losers are thin tools whose whole product was a screen. Back systems of record in regulated industries like healthcare and finance, security for a world full of agents, and the metering and billing that outcome pricing needs.",
     wrong: "By 2028, big companies are moving their core records, like CRM, ERP and HR, off SaaS and onto in-house systems built with AI, the way Klarna did, and revenue from existing customers at the big system-of-record vendors starts shrinking.",
-    receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Intercom pricing (Oct 2026)", SRC.intercom], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
+    updates: [{ on: "Sep 10, 2026", tag: "post Fin deal", why: "Salesforce closed its $3.6 billion acquisition of Fin, the customer-service agent company formerly called Intercom. Take 3 and the pricing chart now name Fin and its new owner.", was: "Originally cited Intercom’s own pricing for its Fin agent." }],
+    receipts: [["Cloud Wars on Nadella’s BG2 remarks (May 2025)", SRC.saasNadella], ["Reuters on the Cowork sell-off (Feb 2026)", SRC.saasSell], ["Reuters on software’s 2026 highs (Oct 2026)", SRC.saasHigh], ["TechCrunch on Klarna (Mar 2025)", SRC.klarna], ["Salesforce and Anthropic on Claudeforce (Aug 2026)", SRC.claudeforce], ["Reuters on Salesforce’s Q2 (Aug 2026)", SRC.crmQ2], ["Nasdaq on Salesforce’s Anthropic gains (Aug 2026)", SRC.crmStake], ["Salesforce Q2 FY27 call (Aug 2026)", SRC.crmCall], ["ServiceNow Q2 2026 results (July 2026)", SRC.nowQ2], ["Fin (formerly Intercom) pricing (Oct 2026)", SRC.intercom], ["Salesforce agrees to buy Fin (June 2026)", SRC.finBuy], ["Salesforce completes the Fin deal (Sept 2026)", SRC.finClose], ["Gartner IT spending forecast (Apr 2026)", SRC.gartner26]],
     viz: "saas", echo: { pose: "chomp", acc: "chomp", name: "Record keeper" }
   },
   {
@@ -372,33 +382,36 @@ const THESES = [
       <p>The hyperscalers aren’t only competing with the neoclouds. They’re buying from them.</p>`,
     takes: [
       ["A neocloud sells one thing: the GPU-hour.", "It builds or leases data center space and power, fills it with Nvidia GPUs and the networking and software to run them, and rents the result by the hour. Nebius, which grew out of Yandex’s international business in 2024, owns its Finnish site, is building its own campus in Missouri, and leases space elsewhere. Revenue grew 454% to $582 million in Q2 2026, and its annualized run rate hit $3 billion by the end of June."],
-      ["Cheaper than the big clouds, even in a shortage.", "AWS lists an H100 at about $6.88 an hour on demand. Silicon Data’s index of what neoclouds actually charge sits near $2.82 (October 2026), less than half. Nebius runs at the premium end: $2.95 in early May 2026, then $4.50 from October as demand outran supply, still about a third below AWS. A cloud built only for GPUs carries less overhead into the price."],
+      ["Cheaper than the big clouds, even in a shortage.", "AWS lists an H100 at about $6.88 an hour on demand. Silicon Data’s index of what neoclouds actually charge read $3.06 on November 10, 2026, still less than half. Nebius runs at the premium end: $2.95 in early May 2026, then $4.50 from October as demand outran supply, still about a third below AWS. A cloud built only for GPUs carries less overhead into the price."],
       ["The hyperscalers are customers, not just rivals.", "Microsoft and Meta account for about $32 billion of Nebius’s $40 billion-plus in contracted revenue, and Microsoft pays whether or not it uses the capacity. Renting lets a hyperscaler add GPUs faster than it can build them. By October 2025, Microsoft had reportedly signed $33 billion of neocloud deals, using that capacity for its own AI teams while selling its own data centers’ capacity to customers."]
     ],
     bet: "Neoclouds become the wholesale layer of AI compute. Hyperscalers keep the customers and the software; neoclouds build and run GPU capacity fastest and sell it to anyone, hyperscalers included. Back the ones with take-or-pay contracts from investment-grade buyers and their own power pipeline. Nebius is targeting 5 GW of contracted power by the end of 2026.",
     wrong: "When the shortage ends, the hyperscalers stop renewing, pull their workloads back in-house, and GPU-hour prices fall below what the neoclouds’ GPU-backed debt needs.",
-    receipts: [["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["Investing.com on the Meta deal (Mar 2026)", SRC.nbMeta], ["DCD, “Becoming Nebius” (May 2025)", SRC.nbDcd], ["DCD on Nebius in Missouri (May 2026)", SRC.nbMo], ["Nebius Q2 2026 call (Aug 2026)", SRC.nbQ2], ["Motley Fool on Nebius pricing (Sept 2026)", SRC.nbPrice], ["AWS EC2 on-demand pricing", SRC.awsPrice], ["AWS on its P5 price cut (June 2025)", SRC.awsCut], ["Silicon Data H100 index (Oct 2026)", SRC.h100idx], ["Motley Fool on customer concentration (Oct 2026)", SRC.nbConc], ["Yahoo Finance on Microsoft’s neocloud deals (Oct 2025)", SRC.msftNeo]],
+    updates: [{ on: "Nov 10, 2026", tag: "Nov index", why: "Silicon Data’s neocloud H100 index read $3.06 on November 10. Take 2 and the price board now use it; it’s still less than half of AWS’s list price.", was: "Originally written with the October reading of $2.82." }],
+    receipts: [["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft], ["Investing.com on the Meta deal (Mar 2026)", SRC.nbMeta], ["DCD, “Becoming Nebius” (May 2025)", SRC.nbDcd], ["DCD on Nebius in Missouri (May 2026)", SRC.nbMo], ["Nebius Q2 2026 call (Aug 2026)", SRC.nbQ2], ["Motley Fool on Nebius pricing (Sept 2026)", SRC.nbPrice], ["AWS EC2 on-demand pricing", SRC.awsPrice], ["AWS on its P5 price cut (June 2025)", SRC.awsCut], ["Silicon Data H100 index (Nov 2026)", SRC.h100idx], ["Rillor on H100 price history (Nov 2026)", SRC.h100Nov], ["Motley Fool on customer concentration (Oct 2026)", SRC.nbConc], ["Yahoo Finance on Microsoft’s neocloud deals (Oct 2025)", SRC.msftNeo]],
     viz: "neocloud", echo: { pose: "forrent", acc: "forrent", name: "Neocloud" }
   },
   {
     id: "builders", die: [-1, 9], stance: "build",
-    layer: "F", tldr: ["Back the builders. Survive the bust.", "Situational Awareness fund: $255M → ~$20B. Bankruptcies don’t break the thesis. Leverage does."],
+    layer: "F", tldr: ["Back the builders. Survive the bust.", "Situational Awareness fund: $255M → ~$20B → $1.6B. Bankruptcies don’t break the thesis. Leverage does."],
     title: "Back the builders. Survive the bust.",
     h2: "Back the builders. Survive the bust.",
     short: "Back the builders",
     hook: "Aschenbrenner turned his paper into a fund with the simplest possible thesis. A bust can’t break it. Leverage can.",
     ref: { label: "Situational Awareness LP, Leopold Aschenbrenner’s fund, as disclosed in its 13F filings (2025–2026)", href: SRC.f13 },
     signal: `<p class="claim">If AI keeps scaling, | someone has to build it. Sometimes the simple thesis | is the best one.</p>
-      <p>That’s the trade Aschenbrenner’s fund makes in public. Its disclosed US positions went from $255 million in its first filing to about $20 billion in August 2026, led by memory makers SanDisk and Micron, with builders like Bloom Energy, CoreWeave and IREN across its 2026 filings. By August, its large semiconductor hedges were gone.</p>`,
+      <p>That’s the trade Aschenbrenner’s fund makes in public. Its disclosed US positions went from $255 million in its first filing to about $20 billion in August 2026, led by memory makers SanDisk and Micron, with builders like Bloom Energy, CoreWeave and IREN across its 2026 filings. By August, its large semiconductor hedges were gone.</p>
+      <p>Then leverage caught up with it. After margin calls in July’s AI sell-off, the fund sold most of its stock portfolio to Citadel on July 30. Its September filing reported $1.6 billion, mostly options.</p>`,
     takes: [
       ["You don’t have to pick the winning lab.", "Every lab’s scaling plan buys the same four things: chips, memory, datacenters and power. Owning the builders is a bet on scaling itself."],
       ["Bankruptcies don’t break it.", "The 1990s telecom boom put over $500 billion, mostly debt, into fiber and networks. WorldCom and Global Crossing collapsed and bondholders got back about 20 cents on the dollar. The fiber stayed in the ground and carried the internet’s next decade."],
-      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. The mirror image is shorting businesses AI could eat, like parts of software."]
+      ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. This summer the fund itself showed it: the builders kept posting records while its borrowed book was sold in a single night. The mirror image is shorting businesses AI could eat, like parts of software."]
     ],
     bet: "For venture, I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
     wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
     note: "Not investment advice.",
-    receipts: [["13F filing history", SRC.f13], ["Daniel Scrivner on the Q2 2026 13F", SRC.scrivner], ["Wikipedia, Telecoms crash", SRC.telecom]],
+    updates: [{ on: "Nov 16, 2026", tag: "post Q3 13F", why: "Situational Awareness LP’s Q3 13F: reported US positions fell from $20.2 billion at June 30 to $1.58 billion at September 30, after margin calls forced the fund to sell most of its stock portfolio to Citadel on July 30. The signal, take 3 and the chart now say so.", was: "Originally written with the June 30 filing, when it reported about $20 billion." }],
+    receipts: [["13F filing history", SRC.f13], ["Cointelegraph on the sale to Citadel (July 2026)", SRC.saCitadel], ["Daniel Scrivner on the Q2 2026 13F", SRC.scrivner], ["Wikipedia, Telecoms crash", SRC.telecom]],
     viz: "builders", echo: { pose: "bricks", acc: "bricks", name: "Parachute" }
   },
   {
@@ -539,12 +552,13 @@ const THESES = [
     takes: [
       ["The GPU-hour is a commodity.", "Raw rental is priced against every other operator with the same Nvidia chips. Field interviews the framework cites found bare-metal customers keep three to five providers and re-bid every month. CoreWeave, which mostly rents GPU-hours, brings in about $8 million to $12 million a year per megawatt. That’s what a strong neocloud earns. It isn’t a software business."],
       ["The token is a product.", "Token Factory serves more than 40 open models with fine-tuning, distillation and dedicated endpoints at a 99.9% uptime SLA. Prosus runs up to 200 billion tokens a day on it and reports costs up to 26× lower than with proprietary models. Then Nebius bought ways to get more out of each GPU and each customer: Eigen AI ($643 million) for model-level inference tuning, Clarifai’s team and patents for system-level orchestration, and Tavily for agent search, with about 700,000 developers. A customer wired into an API is harder to re-bid than a rack."],
-      ["The spread is real, and it’s melting.", "Token prices fall 30% to 50% a year across providers, so over four years the 17–150× spread shrinks to roughly 2–20×. Together AI, Fireworks, Groq and open engines like vLLM chase the same margin. The framework gives the window two to four years, and Nebius hasn’t yet broken out Token Factory revenue. Its scenarios show the stakes: about 11× for shareholders if tokens become a software-class business, a loss of 70% or more if Nebius stays a GPU landlord in a glut."]
+      ["The spread is real, and it’s melting.", "Token prices fall 30% to 50% a year across providers, so over four years the 17–150× spread shrinks to roughly 2–20×. Together AI, Fireworks, Groq and open engines like vLLM chase the same margin. The framework gives the window two to four years. Nebius still hasn’t broken out Token Factory revenue, though its Q3 letter says the business is approaching a multi-hundred-million-dollar run rate, with contract value up 17× in a quarter. Its scenarios show the stakes: about 11× for shareholders if tokens become a software-class business, a loss of 70% or more if Nebius stays a GPU landlord in a glut."]
     ],
-    bet: `Neoclouds that stay landlords earn landlord returns. The ones that win turn more of every megawatt into tokens sold by the million, and keep customers through APIs, fine-tuned models and agents rather than price. This extends my take in <a href="#neocloud">The clouds are renting from the neoclouds</a>: renting GPU-hours wholesale is the floor, and tokens are the upside. The tell is the share of Nebius’s revenue that comes from Token Factory, which it hasn’t disclosed yet.`,
+    bet: `Neoclouds that stay landlords earn landlord returns. The ones that win turn more of every megawatt into tokens sold by the million, and keep customers through APIs, fine-tuned models and agents rather than price. This extends my take in <a href="#neocloud">The clouds are renting from the neoclouds</a>: renting GPU-hours wholesale is the floor, and tokens are the upside. The tell is the share of Nebius’s revenue that comes from Token Factory, which it hasn’t disclosed yet beyond a run-rate range.`,
     wrong: "By the end of 2027, Nebius earns no more revenue per megawatt than CoreWeave, or token prices fall faster than its cost per token, so selling tokens pays no better than renting GPUs.",
     note: "Not investment advice.",
-    receipts: [["betteresearch, Nebius Investment Framework (May 2026)", SRC.nbFrame], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft]],
+    updates: [{ on: "Nov 12, 2026", tag: "post-Q3", why: "Nebius’s Q3 shareholder letter: Token Factory is approaching a multi-hundred-million-dollar run rate, with contract value up 17× quarter over quarter, but still no revenue figure. Take 3 and the bet now say so.", was: "Originally written before Nebius gave any Token Factory figure." }],
+    receipts: [["betteresearch, Nebius Investment Framework (May 2026)", SRC.nbFrame], ["Nebius Q3 2026 results (Nov 2026)", SRC.nbQ3], ["Nebius launches Token Factory (Nov 2025)", SRC.nbTf], ["DCD on Microsoft and Nebius (Sept 2025)", SRC.nbMsft]],
     viz: "tokens", echo: { pose: "sell", acc: "tokens", name: "Token seller" }
   },
   {
@@ -1183,7 +1197,7 @@ const VIZ = {
   },
 
   builders() {
-    const D = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2]];
+    const D = [["Feb ’25", .25], ["May ’25", 1.0], ["Aug ’25", 2.1], ["Nov ’25", 4.1], ["Feb ’26", 5.5], ["May ’26", 13.7], ["Aug ’26", 20.2], ["Nov ’26", 1.6]];
     const Y = v => 270 - v * 10;
     // slide 2: every lab's plan lands on the same four-layer stack, drawn in isometric
     const SW = 176, SH = 62, ST = 16, CX = 168, CY = [108, 154, 200, 246];
@@ -1202,10 +1216,10 @@ const VIZ = {
     const LABS = ["Lab A", "Lab B", "Lab C"];
     const FLOWS = [`M98 58 Q100 70 ${CX - 22} ${CY[0] - SH / 2 + 12}`, `M${CX} 58 V${CY[0] - SH / 2 + 2}`, `M238 58 Q236 70 ${CX + 22} ${CY[0] - SH / 2 + 12}`];
     return `<div class="viz" data-step="1">
-      <div class="frame f1"><svg viewBox="0 0 460 310" role="img" aria-label="Situational Awareness LP’s disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026.">
+      <div class="frame f1"><svg viewBox="0 0 460 310" role="img" aria-label="Situational Awareness LP’s disclosed US positions by 13F filing date, rising from about $0.25 billion in February 2025 to $20.2 billion in August 2026, then falling to $1.6 billion in November 2026 after a forced sale.">
         ${[0, 5, 10, 15, 20].map(v => `<line class="gridl" x1="56" y1="${Y(v)}" x2="440" y2="${Y(v)}"/><text x="48" y="${Y(v) + 5}" text-anchor="end" font-size="13">${v ? "$" + v + "B" : "$0"}</text>`).join("")}
         <line class="ax" x1="56" y1="${Y(0)}" x2="440" y2="${Y(0)}"/>
-        ${D.map(([l, v], i) => { const x = 66 + i * 54; return `<rect x="${x}" y="${Y(v)}" width="38" height="${(v * 10).toFixed(1)}" fill="var(--amber)" opacity="${(0.5 + i * 0.08).toFixed(2)}"/><text x="${x + 19}" y="${Y(v) - 8}" text-anchor="middle" class="t-strong" font-size="13">${v < 1 ? "$0.25B" : "$" + v.toFixed(1) + "B"}</text><text x="${x + 19}" y="292" text-anchor="middle" font-size="12">${l}</text>`; }).join("")}
+        ${D.map(([l, v], i) => { const x = 66 + i * 47; return `<rect x="${x}" y="${Y(v)}" width="38" height="${(v * 10).toFixed(1)}" fill="var(--amber)" opacity="${(0.5 + i * 0.08).toFixed(2)}"/><text x="${x + 19}" y="${Y(v) - 8}" text-anchor="middle" class="t-strong" font-size="13">${v < 1 ? "$0.25B" : "$" + v.toFixed(1) + "B"}</text><text x="${x + 19}" y="292" text-anchor="middle" font-size="12">${l}</text>`; }).join("")}
       </svg><p class="cap">US positions disclosed in each 13F filing, by filing date. Not total assets; shorts and non-US holdings aren’t shown.</p></div>
       <div class="frame f2"><svg viewBox="0 0 460 300" role="img" aria-label="Three rival labs all feed into the same four-layer stack: chips, memory, datacenters and power, with example companies from the fund’s filings.">
         <text x="16" y="17" class="t-strong" font-size="15">Whoever wins the lab race…</text>
@@ -1345,7 +1359,7 @@ const VIZ = {
       </svg>`;
 
     // ---- frame 2: the price board and a cluster bill calculator
-    const ROWS = [["AWS, on demand", 6.88, "var(--coral)"], ["Nebius, Oct 2026", 4.50, "var(--violet)"], ["Nebius, May 2026", 2.95, "var(--violet)"], ["Neocloud average", 2.82, "var(--beat)"]];
+    const ROWS = [["AWS, on demand", 6.88, "var(--coral)"], ["Nebius, Oct 2026", 4.50, "var(--violet)"], ["Nebius, May 2026", 2.95, "var(--violet)"], ["Neocloud average", 3.06, "var(--beat)"]];
     const board = ROWS.map(([n, v, c], i) => `<li style="--w:${(v / 6.88 * 100).toFixed(1)}%;--c:${c}"><span class="n">${n}</span><span class="b"><i></i></span><span class="v">$${v.toFixed(2)}</span></li>`).join("");
     const F2 = `<div class="nccalc">
         <p class="nc-k">One H100, one hour</p>
@@ -1430,7 +1444,7 @@ const VIZ = {
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Graph: the S&amp;P 500 software and services index in 2026, drawn as a schematic from Reuters figures. Down 26%+ from late January to the April low, up 5% on the year by October 6.</p></div>
       <div class="frame f2">${F2}<p class="cap">Nadella’s half: agents skip the screen. My half: they hit the record and its rules far more often than people ever did.</p></div>
-      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: 100 people, 1,000 conversations each, and every conversation an agent resolves billed as one outcome. Intercom list prices: $85 a seat a month (Advanced, billed annually), from $0.99 per Fin outcome.</span><span class="cap-s">Illustrative. Intercom list prices: $85 a seat a month, from $0.99 per outcome.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: 100 people, 1,000 conversations each, and every conversation an agent resolves billed as one outcome. Fin (formerly Intercom) list prices: $85 a seat a month (Advanced, billed annually), from $0.99 per Fin outcome.</span><span class="cap-s">Illustrative. Fin (formerly Intercom) list prices: $85 a seat a month, from $0.99 per outcome.</span></p></div>
     </div>`;
   },
 
@@ -1455,7 +1469,7 @@ const VIZ = {
       </svg>`;
 
     // ---- frame 2: the compute menu. A chip works its way down from the specials to the value menu
-    const MENU = [["Frontier training", "Rubin, Blackwell", "MP"], ["Frontier serving", "Blackwell, H200", "MP"], ["Everyday inference, fine-tuning", "H100, age 3–4", "$2.82"], ["Batch jobs, research, second owners", "A100, age 6", "$1.29"]];
+    const MENU = [["Frontier training", "Rubin, Blackwell", "MP"], ["Frontier serving", "Blackwell, H200", "MP"], ["Everyday inference, fine-tuning", "H100, age 3–4", "$3.06"], ["Batch jobs, research, second owners", "A100, age 6", "$1.29"]];
     const F2 = `<div class="gm">
         <div class="gm-board">
           <p class="gm-h">Today’s compute menu</p>
@@ -1478,7 +1492,7 @@ const VIZ = {
     return `<div class="viz" data-step="1">
       <div class="frame f1">${F1}<p class="cap">Straight-line book value versus market evidence. Resale from Silicon Data via Dow Jones (Dec 2025); A100 contract from CoreWeave (Aug 2026).</p></div>
       <div class="frame f2">${F2}<p class="cap">The newest chips sell at whatever the market bears. Older ones move down to cheaper work, and still get paid.</p></div>
-      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: $35,000 all-in per H100 (chip plus its share of server and network), starting at today’s $2.82 index rate, 70% utilized, about 40 cents an hour for power and data-center space.</span><span class="cap-s">Illustrative: $35K all-in, $2.82/hr start, 70% utilized.</span></p></div>
+      <div class="frame f3">${F3}<p class="cap"><span class="cap-l">Illustrative: $35,000 all-in per H100 (chip plus its share of server and network), starting at the $3.06 index rate of November 10, 70% utilized, about 40 cents an hour for power and data-center space.</span><span class="cap-s">Illustrative: $35K all-in, $3.06/hr start, 70% utilized.</span></p></div>
     </div>`;
   },
 
@@ -2482,7 +2496,7 @@ const VIZ_INIT = {
   neocloud(root) {
     const r = $("#ncRange", root);
     if (!r) return;
-    const RATES = [["AWS, on demand", 6.88, "var(--coral)", "AWS"], ["Nebius, Oct 2026", 4.50, "var(--violet)", "Nebius"], ["Neocloud average", 2.82, "var(--beat)", "Neoclouds"]];
+    const RATES = [["AWS, on demand", 6.88, "var(--coral)", "AWS"], ["Nebius, Oct 2026", 4.50, "var(--violet)", "Nebius"], ["Neocloud average", 3.06, "var(--beat)", "Neoclouds"]];
     const fmt = v => v >= 1e6 ? `$${(v / 1e6).toFixed(v >= 1e7 ? 0 : 1)}M` : `$${Math.round(v / 1e3)}K`;
     const upd = () => {
       const n = +r.value, hours = n * 24 * 30;
@@ -2498,7 +2512,7 @@ const VIZ_INIT = {
   gpulife(root) {
     const r = $("#glRange", root), svg = $("#glChart", root);
     if (!r || !svg) return;
-    const COST = 35000, START = 2.82, RUN = .40, HOURS = .7 * 8760, MAX = 100000;
+    const COST = 35000, START = 3.06, RUN = .40, HOURS = .7 * 8760, MAX = 100000;
     const run = g => { let cum = 0; return Array.from({ length: 6 }, (_, i) => { const net = Math.max(0, START * Math.pow(1 + g, i) - RUN) * HOURS; cum += net; return [net, cum]; }); };
     let lo = -.9, hi = 0;
     for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; run(mid)[5][1] >= COST ? (hi = mid) : (lo = mid); }
