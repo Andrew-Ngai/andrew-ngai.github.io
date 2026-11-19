@@ -215,10 +215,39 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .wm-edge{fill:none;stroke:var(--rule);stroke-width:2}
 .wm-excl{fill:none;stroke:var(--grid);stroke-width:1}
 #probe{transition:transform .45s var(--ease)}
+/* islands: a shaded field per layer, named by a glowing sign with its own small loop */
+.wm-field{pointer-events:none}
+.wm-field rect{fill:var(--lc);fill-opacity:.1;stroke:var(--lc);stroke-opacity:.5;stroke-width:1;stroke-dasharray:3 3;transition:fill-opacity .25s,stroke-opacity .25s}
+.wm-field path{fill:none;stroke:var(--lc);stroke-width:2.2;transition:stroke-width .25s}
+.wm-field.on rect{fill-opacity:.2;stroke-opacity:.95}
+.wm-field.on path{stroke-width:3}
 .wm-isle{pointer-events:none}
-.wm-isle rect{fill:var(--ink);fill-opacity:.86;stroke:var(--violet);stroke-opacity:.6;stroke-width:1;transition:stroke-opacity .2s,fill-opacity .2s}
-.wm-isle text{fill:var(--violet);font-family:var(--label);font-weight:800;letter-spacing:.1em;text-anchor:middle}
-.wm-isle.on rect{stroke-opacity:1;stroke-width:1.6;fill-opacity:1}
+.wm-isle text{font-family:var(--label);font-weight:800;letter-spacing:.14em;text-anchor:middle}
+.wm-isle .wi-halo{fill:none;stroke:var(--ink);stroke-width:4.5;stroke-linejoin:round}
+.wm-isle .wi-glow,.wm-isle .wi-t{fill:var(--lc)}
+.wm-isle .wi-glow{opacity:.8;transition:opacity .25s}
+.wm-isle.on .wi-glow{opacity:1;stroke:var(--lc);stroke-width:1.6}
+.wi-fx *{fill:var(--lc)}
+.wi-ping{fill:none!important;stroke:var(--lc);transform-box:fill-box;transform-origin:center;animation:wi-ping 2.6s ease-out infinite}
+@keyframes wi-ping{0%{transform:scale(.5);opacity:.85}100%{transform:scale(1.8);opacity:0}}
+.wi-link{fill:none!important;stroke:var(--lc);stroke-opacity:.6}
+.wi-node{opacity:.4;animation:wi-fire 2.4s ease-in-out var(--d) infinite}
+@keyframes wi-fire{0%,40%,100%{opacity:.4;fill:var(--lc)}15%{opacity:1;fill:#fff}}
+.wi-led{opacity:.2;animation:wi-led 1.6s linear var(--d) infinite}
+@keyframes wi-led{0%,40%,100%{opacity:.2}12%{opacity:1}}
+.wi-pin{opacity:.5;animation:wi-pin 2.8s steps(1,end) var(--d) infinite}
+@keyframes wi-pin{0%{opacity:1}12%,100%{opacity:.5}}
+.wi-flick{animation:wi-flick 5s steps(1,end) infinite}
+@keyframes wi-flick{0%,60%,64%,70%,100%{opacity:1}62%{opacity:.3}66%{opacity:.25}}
+.wi-bolt{transform-box:fill-box;transform-origin:center;animation:wi-surge 2.2s ease-in-out var(--d) infinite}
+@keyframes wi-surge{0%,100%{opacity:.55;transform:scale(.88)}50%{opacity:1;transform:scale(1.12)}}
+.wi-brk{fill:none!important;stroke:var(--lc);stroke-width:1.3}
+.wi-scan{fill:url(#wmScan)!important;opacity:.9;animation:wi-scan 3.2s ease-in-out infinite alternate}
+@keyframes wi-scan{from{transform:translateY(0)}to{transform:translateY(var(--sy))}}
+.wi-spark{fill:#eafff2!important;transform-box:fill-box;transform-origin:center;animation:wi-twinkle 2.4s ease-in-out var(--d) infinite}
+@keyframes wi-twinkle{0%,100%{transform:scale(.45);opacity:.35}50%{transform:scale(1);opacity:1}}
+.wi-glint{fill:#f4fff8;opacity:.85;animation:wi-glint 4.2s ease-in-out infinite}
+@keyframes wi-glint{0%{transform:translateX(0)}45%,100%{transform:translateX(var(--gx))}}
 #probe line{stroke:var(--amber);stroke-width:1.2}
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}
 .readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:4.2em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}

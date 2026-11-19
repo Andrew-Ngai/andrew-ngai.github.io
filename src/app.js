@@ -3005,35 +3005,92 @@ function buildMap() {
       hits += `<g class="wm-probe-die" data-id="probe${k.i}" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
     }
   }
-  svg.innerHTML = `<circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}${hits}
-    <circle cx="0" cy="${R}" r="10" fill="var(--ink)"/><path d="M-10 ${R} A10 10 0 0 1 10 ${R}" fill="none" stroke="var(--rule)" stroke-width="2"/>
-    <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>${isles()}`;
-
-  // each layer sits on its own island of dies; name it just above its top die
-  function isles() {
-    const NAME = { A: "APPS", M: "MODELS", I: "INFRA", C: "CHIPS", E: "ENERGY", S: "SECURITY", F: "MONEY" };
+  // Each layer's dies form an island: a shaded field in the layer's colour with corner marks, named by a glowing
+  // sign that loops its own small motion.
+  const ISLE = { A: ["APPS", "#b49cff"], M: ["MODELS", "#ff86c8"], I: ["INFRA", "#59c8ff"], C: ["CHIPS", "#b9c6d3"], E: ["ENERGY", "#ffa04d"], S: ["SECURITY", "#ff6170"], F: ["MONEY", "#69e39a"] };
+  const ISL = {};
+  {
     const by = {};
     [...THESES, ...PROBES].forEach(t => (by[t.layer] = by[t.layer] || []).push(t.die));
-    return `<g aria-hidden="true">${Object.keys(NAME).filter(k => by[k]).map(k => {
-      const d = by[k], cx = d.reduce((a, p) => a + p[0], 0) / d.length * ds, top = Math.max(...d.map(p => p[1]));
-      return `<g class="wm-isle" data-layer="${k}" transform="translate(${cx.toFixed(1)} ${-top * ds})"><rect/><text>${NAME[k]}</text></g>`;
-    }).join("")}</g>`;
+    Object.keys(ISLE).filter(k => by[k]).forEach(k => {
+      const xs = by[k].map(q => q[0]), ys = by[k].map(q => q[1]), p = .74;
+      const f = { x0: (Math.min(...xs) - p) * ds, x1: (Math.max(...xs) + p) * ds, y0: -(Math.max(...ys) + p) * ds, y1: -(Math.min(...ys) - p) * ds };
+      f.cx = (f.x0 + f.x1) / 2;
+      ISL[k] = f;
+    });
   }
-  // keep the island names readable at any map size: never under ~9.5px on screen
+  const fields = Object.entries(ISL).map(([k, f]) => {
+    const c = 8, marks = `M${f.x0} ${f.y0 + c}V${f.y0}H${f.x0 + c}M${f.x1 - c} ${f.y0}H${f.x1}V${f.y0 + c}M${f.x1} ${f.y1 - c}V${f.y1}H${f.x1 - c}M${f.x0 + c} ${f.y1}H${f.x0}V${f.y1 - c}`;
+    return `<g class="wm-field" data-layer="${k}" style="--lc:${ISLE[k][1]}"><rect x="${f.x0}" y="${f.y0}" width="${f.x1 - f.x0}" height="${f.y1 - f.y0}" rx="5"/><path d="${marks}"/></g>`;
+  }).join("");
+  svg.innerHTML = `<defs><filter id="wmGlow" x="-40%" y="-120%" width="180%" height="340%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="wmScan" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#ffe3e6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="wmGlintClip"></clipPath></defs>
+    <circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}<g aria-hidden="true">${fields}</g>${hits}
+    <circle cx="0" cy="${R}" r="10" fill="var(--ink)"/><path d="M-10 ${R} A10 10 0 0 1 10 ${R}" fill="none" stroke="var(--rule)" stroke-width="2"/>
+    <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g><g class="wm-isles" aria-hidden="true"></g>`;
+
+  // The signs sit just above their island. Rebuilt when the map changes size, so the names never drop under ~9.5px on screen.
+  let isleFs = 0;
   function sizeIsles() {
     const k = svg.getBoundingClientRect().width / 620;
     if (!k) return;
     const fs = Math.max(11, 9.5 / k);
-    svg.querySelectorAll(".wm-isle").forEach(g => {
-      const t = g.querySelector("text"), r = g.querySelector("rect");
-      t.setAttribute("font-size", fs.toFixed(1));
-      const w = t.getBBox().width + fs * 1.5, h = fs * 1.75, cy = -(ds / 2 + h / 2 + 1);
-      t.setAttribute("y", (cy + fs * .36).toFixed(1));
-      Object.entries({ x: -w / 2, y: cy - h / 2, width: w, height: h, rx: h / 2 }).forEach(([a, v]) => r.setAttribute(a, v.toFixed(1)));
+    if (Math.abs(fs - isleFs) < .05) return;
+    isleFs = fs;
+    const nf = fs * 1.15, wrap = svg.querySelector(".wm-isles"), lit = wrap.querySelector(".wm-isle.on");
+    const on = lit && lit.dataset.layer, n = v => v.toFixed(1);
+    wrap.innerHTML = "";
+    Object.entries(ISL).forEach(([L, f]) => {
+      const [name, col] = ISLE[L], cx = f.cx, cy = f.y0 - fs * 1.2, y = n(cy + nf * .36);
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", "wm-isle" + (L === on ? " on" : ""));
+      g.dataset.layer = L;
+      g.style.setProperty("--lc", col);
+      const word = L === "E" ? `ENE<tspan class="wi-flick">R</tspan>GY` : name;
+      const T = (c, extra = "") => `<text class="${c}" x="${n(cx)}" y="${y}" font-size="${n(nf)}"${extra}>${word}</text>`;
+      g.innerHTML = T("wi-halo") + T("wi-glow", ` filter="url(#wmGlow)"`) + T("wi-t");
+      wrap.appendChild(g);
+      const bb = g.lastChild.getBBox(), lx = bb.x, rx = bb.x + bb.width;
+      let fx = "", top = "";
+      if (L === "A") { // a notification ping pulses out
+        const bx = n(rx + fs * .75), by = n(cy - fs * .55);
+        fx = `<circle class="wi-ping" cx="${bx}" cy="${by}" r="${n(fs * .62)}"/><circle class="wi-dot" cx="${bx}" cy="${by}" r="${n(fs * .3)}"/>`;
+      }
+      if (L === "M") { // three nodes fire in turn
+        const ny = cy - fs * 1.05, s = fs * 1.1;
+        fx = `<path class="wi-link" d="M${n(cx - s)} ${n(ny)}L${n(cx)} ${n(ny - fs * .35)}L${n(cx + s)} ${n(ny)}"/>` +
+          [[-s, 0], [0, -fs * .35], [s, 0]].map(([dx, dy], i) => `<circle class="wi-node" style="--d:${i * .5}s" cx="${n(cx + dx)}" cy="${n(ny + dy)}" r="${n(fs * .2)}"/>`).join("");
+      }
+      if (L === "I") { // LEDs chase underneath
+        for (let i = 0; i < 5; i++) fx += `<rect class="wi-led" style="--d:${(i * .2).toFixed(1)}s" x="${n(cx - fs * 1.6 + i * fs * .75)}" y="${n(cy + fs * .75)}" width="${n(fs * .45)}" height="${n(fs * .2)}" rx=".8"/>`;
+      }
+      if (L === "C") { // pins blink like a chip under test
+        for (let x = lx + 1, i = 0; x < rx - 1; x += fs * .62, i++) [[cy - fs * .95, 0], [cy + fs * .62, 1.4]].forEach(([py, d]) =>
+          fx += `<rect class="wi-pin" style="--d:${(i * .14 + d).toFixed(2)}s" x="${n(x)}" y="${n(py)}" width="${n(fs * .2)}" height="${n(fs * .3)}"/>`);
+      }
+      if (L === "E") { // the sign flickers and its bolts surge
+        const s = fs / 11, bolt = (x, d) => `<path class="wi-bolt" style="--d:${d}s" d="M${n(x + 3 * s)} ${n(cy - 7 * s)}L${n(x - 2 * s)} ${n(cy + s)}H${n(x + s)}L${n(x - s)} ${n(cy + 7 * s)}L${n(x + 4 * s)} ${n(cy - s)}H${n(x + s)}Z"/>`;
+        fx = bolt(lx - fs * .75, 0) + bolt(rx + fs * .55, 1.1);
+      }
+      if (L === "S") { // a scan line sweeps inside the brackets
+        const c = fs * .45, x0 = lx - fs * .5, x1 = rx + fs * .5, y0 = cy - fs, y1 = cy + fs * .8;
+        fx = `<path class="wi-brk" d="M${n(x0)} ${n(y0 + c)}V${n(y0)}H${n(x0 + c)}M${n(x1 - c)} ${n(y0)}H${n(x1)}V${n(y0 + c)}M${n(x1)} ${n(y1 - c)}V${n(y1)}H${n(x1 - c)}M${n(x0 + c)} ${n(y1)}H${n(x0)}V${n(y1 - c)}"/>` +
+          "";
+        // the scan line passes behind the letters, so it reads as a sweep rather than a strike-through
+        g.insertAdjacentHTML("afterbegin", `<rect class="wi-scan" filter="url(#wmGlow)" style="--sy:${n(y1 - y0 - 6)}px" x="${n(x0 + 2)}" y="${n(y0 + 2)}" width="${n(x1 - x0 - 4)}" height="1.6"/>`);
+      }
+      if (L === "F") { // a glint slides across, and two sparkles twinkle
+        const star = (x, yy, r, d) => `<path class="wi-spark" style="--d:${d}s" d="M${n(x)} ${n(yy - r)}Q${n(x)} ${n(yy)} ${n(x + r)} ${n(yy)}Q${n(x)} ${n(yy)} ${n(x)} ${n(yy + r)}Q${n(x)} ${n(yy)} ${n(x - r)} ${n(yy)}Q${n(x)} ${n(yy)} ${n(x)} ${n(yy - r)}Z"/>`;
+        fx = star(rx + fs * .3, cy - fs * .7, fs * .38, 0) + star(lx - fs * .25, cy + fs * .4, fs * .26, 1.2);
+        svg.querySelector("#wmGlintClip").innerHTML = T("wi-clip").replace("<text", `<text style="font-family:var(--label);font-weight:800;letter-spacing:.14em;text-anchor:middle"`);
+        const gx = lx - fs * 1.4, w = fs * .8, sk = fs * .5;
+        top = `<g clip-path="url(#wmGlintClip)"><path class="wi-glint" style="--gx:${n(bb.width + fs * 2.6)}px" d="M${n(gx + sk)} ${n(cy - nf)}h${n(w)}L${n(gx + w)} ${n(cy + nf)}h${n(-w)}Z"/></g>`;
+      }
+      g.insertAdjacentHTML("beforeend", `<g class="wi-fx" filter="url(#wmGlow)">${fx}</g>${top}`);
     });
   }
   sizeIsles();
-  if (document.fonts) document.fonts.ready.then(sizeIsles);
+  if (document.fonts) document.fonts.ready.then(() => { isleFs = 0; sizeIsles(); });
   if (window.ResizeObserver) new ResizeObserver(sizeIsles).observe(svg);
 
   const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap"), decho = $("#dieEcho");
@@ -3131,7 +3188,7 @@ function buildMap() {
       offTimer = setTimeout(() => {
         active = null;
         $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.remove("on", "scan"));
-        svg.querySelectorAll(".wm-isle").forEach(g => g.classList.remove("on"));
+        svg.querySelectorAll(".wm-isle, .wm-field").forEach(g => g.classList.remove("on"));
         readout.innerHTML = idle; probe.style.opacity = ".35"; tag.classList.remove("show"); line.innerHTML = "";
         decho.classList.remove("show"); echoFor = null;
       }, 120);
@@ -3142,7 +3199,7 @@ function buildMap() {
     active = id;
     const { t, isProbe, bin } = info(id);
     $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", el.dataset.id === id));
-    svg.querySelectorAll(".wm-isle").forEach(g => g.classList.toggle("on", g.dataset.layer === t.layer));
+    svg.querySelectorAll(".wm-isle, .wm-field").forEach(g => g.classList.toggle("on", g.dataset.layer === t.layer));
     if (changed && from === "die") {
       const it = itemEl(id);
       if (it) { it.classList.remove("scan"); void it.offsetWidth; it.classList.add("scan"); }
