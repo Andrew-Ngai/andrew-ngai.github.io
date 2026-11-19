@@ -218,8 +218,6 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .wm-isle{pointer-events:none}
 .wm-isle rect{fill:var(--ink);fill-opacity:.86;stroke:var(--violet);stroke-opacity:.6;stroke-width:1;transition:stroke-opacity .2s,fill-opacity .2s}
 .wm-isle text{fill:var(--violet);font-family:var(--label);font-weight:800;letter-spacing:.1em;text-anchor:middle}
-.wm-isle.sec rect{stroke:var(--coral)}.wm-isle.sec text{fill:var(--coral)}
-.wm-isle.fund rect{stroke:#7ee0a1}.wm-isle.fund text{fill:#7ee0a1}
 .wm-isle.on rect{stroke-opacity:1;stroke-width:1.6;fill-opacity:1}
 #probe line{stroke:var(--amber);stroke-width:1.2}
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}

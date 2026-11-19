@@ -3016,7 +3016,7 @@ function buildMap() {
     [...THESES, ...PROBES].forEach(t => (by[t.layer] = by[t.layer] || []).push(t.die));
     return `<g aria-hidden="true">${Object.keys(NAME).filter(k => by[k]).map(k => {
       const d = by[k], cx = d.reduce((a, p) => a + p[0], 0) / d.length * ds, top = Math.max(...d.map(p => p[1]));
-      return `<g class="wm-isle${k === "S" ? " sec" : k === "F" ? " fund" : ""}" data-layer="${k}" transform="translate(${cx.toFixed(1)} ${-top * ds})"><rect/><text>${NAME[k]}</text></g>`;
+      return `<g class="wm-isle" data-layer="${k}" transform="translate(${cx.toFixed(1)} ${-top * ds})"><rect/><text>${NAME[k]}</text></g>`;
     }).join("")}</g>`;
   }
   // keep the island names readable at any map size: never under ~9.5px on screen
