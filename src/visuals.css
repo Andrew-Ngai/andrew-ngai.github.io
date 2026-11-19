@@ -1075,3 +1075,112 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .rfl-st.a{color:var(--coral)}
 .rfl-k .d::before{background:var(--amber)}
 .rfl-k .a::before{background:var(--coral)}
+/* paycheck: a time machine for one trade, payday plinko, the moat */
+.viz .pc1-odo{font-family:var(--display);font-weight:900;font-size:40px;fill:var(--paper);font-variant-numeric:tabular-nums}
+.pc1-dev{opacity:0;transform:translateY(10px) scale(.94);transform-box:fill-box;transform-origin:50% 100%;transition:opacity .45s ease,transform .55s var(--ease)}
+.pc1-dev.on{opacity:1;transform:none}
+.pc1-ring{animation:pc1-ring .9s ease-in-out infinite}
+@keyframes pc1-ring{50%{opacity:.15}}
+.pc1-tick{stroke-dasharray:130;stroke-dashoffset:130;animation:pc1-tick 2.4s linear infinite}
+@keyframes pc1-tick{60%,100%{stroke-dashoffset:0}}
+.pc1-c{opacity:0;transform:translateY(-18px);transition:opacity .22s ease calc((19 - var(--i)) * 16ms),transform .32s var(--ease) calc((19 - var(--i)) * 16ms)}
+.pc1-c.on{opacity:1;transform:none;transition-delay:calc(var(--i) * 24ms)}
+.pc1-empty,.pc1-over,.pc1-today{opacity:0;transition:opacity .4s ease}
+.pc1[data-e="7"] .pc1-empty{opacity:1}
+.pc1[data-e="0"] .pc1-over{opacity:1;animation:k-pulse 1.4s ease-in-out infinite}
+.pc1[data-e="7"] .pc1-today{opacity:1;transition-delay:.25s}
+.viz .pc1-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;fill:var(--paper);font-size:10px}
+.viz .pc1-px{font-family:var(--display);font-weight:900;font-size:34px;fill:#e0b25a;font-variant-numeric:tabular-nums;transition:fill .3s}
+.viz .pc1[data-e="7"] .pc1-px{fill:var(--amber)}
+.pc1-stamp{opacity:0;transform:scale(1.9);transform-box:fill-box;transform-origin:center;transition:opacity .2s,transform .35s cubic-bezier(.3,1.5,.5,1)}
+.pc1[data-e="7"] .pc1-stamp{opacity:1;transform:none;transition-delay:.4s}
+.pc1-ticks{display:flex;justify-content:space-between;padding:0 9px;margin-top:-8px;font-family:var(--label);font-size:12px;color:var(--faint)}
+.pc1-ticks span{width:0;display:flex;justify-content:center;white-space:nowrap}
+.pc1-say,.pc2-say,.pc3-say,.ct3-say{margin:0;font-family:var(--label);font-size:15px;line-height:1.35;color:var(--dim);min-height:2.7em}
+.pc1-say b,.pc2-say b,.pc3-say b,.ct3-say b{color:var(--paper)}
+.pc2-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pc2-n{font-family:var(--label);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.pc2-env{transform-box:fill-box;transform-origin:center;animation:pc2-env 2.4s ease-in-out infinite}
+@keyframes pc2-env{50%{transform:translateY(-3px) rotate(-2deg)}}
+.viz .pc2-peg{fill:var(--ink-3);stroke:var(--violet);stroke-opacity:.6;stroke-width:1.2}
+.viz .pc2-peg.hit{animation:pc2-hit .45s ease-out}
+@keyframes pc2-hit{0%{fill:var(--amber);stroke:var(--amber);stroke-opacity:1}100%{fill:var(--ink-3)}}
+.pc2-pin{fill:var(--rule)}
+.pc2-coin{fill:#e0b25a;stroke:#b8862f;stroke-width:1}
+.pc2-fill{transition:y .3s var(--ease),height .3s var(--ease)}
+.pc2-b{cursor:pointer;outline:none}
+.pc2-b.sel .t-strong,.pc2-b:focus-visible .t-strong{fill:var(--amber)}
+.pc3-seg{justify-content:center}
+.pc3-wave{animation:pc3-wave 3s linear infinite}
+.pc3-wave.b{animation-duration:4.4s;animation-direction:reverse}
+@keyframes pc3-wave{to{transform:translateX(40px)}}
+.pc3-plank{transform-box:fill-box;transform-origin:center;transition:transform .7s var(--ease) calc(var(--i) * .16s)}
+.pc3[data-m="hand"] .pc3-plank{transform:translate(var(--hx),var(--hy)) rotate(var(--hr))}
+.pc3-bob{transform-box:fill-box;transform-origin:center}
+.pc3[data-m="hand"] .pc3-bob{animation:pc3-bob 2.6s ease-in-out infinite}
+@keyframes pc3-bob{50%{transform:translateY(3px) rotate(3deg)}}
+.pc3-drone{offset-path:path('M130 150 C170 116 290 116 330 150 C290 184 170 184 130 150');offset-rotate:0deg;animation:pc3-fly 5s linear infinite;opacity:0;transition:opacity .4s}
+.pc3[data-m="agent"] .pc3-drone{opacity:1}
+@keyframes pc3-fly{from{offset-distance:0%}to{offset-distance:100%}}
+.pc3-hover{animation:pc3-hov 1.2s ease-in-out infinite}
+@keyframes pc3-hov{50%{transform:translateY(-3px)}}
+.pc3-prop{transform-box:fill-box;transform-origin:center;animation:pc3-prop .25s linear infinite}
+@keyframes pc3-prop{50%{transform:scaleX(.2)}}
+.pc3-coin{offset-path:path('M60 213 L106 213 L354 213 L400 213');offset-rotate:0deg;offset-distance:0%;transition:offset-distance 1.7s var(--ease) 1.4s}
+.pc3[data-m="hand"] .pc3-coin{animation:pc3-stuck 1.9s ease-in-out infinite}
+.pc3[data-m="agent"] .pc3-coin{offset-distance:100%}
+@keyframes pc3-stuck{0%,100%{offset-distance:0%}40%{offset-distance:9%}55%{offset-distance:7.5%}}
+.pc3-castle.r .pc3-flag{opacity:.3;transition:opacity .4s ease}
+.pc3[data-m="agent"] .pc3-castle.r .pc3-flag{opacity:1;transition-delay:3.1s}
+.pc3-ask{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.pc3[data-m="agent"] .pc3-ask{opacity:1;transform:none}
+/* contracts: a prism, a truth machine, the plumbing */
+.ct1-band,.ct1-lab{cursor:pointer}
+.ct1-fan{opacity:.3;transition:opacity .35s}
+.ct1-glow{opacity:0;transition:opacity .35s}
+.ct1-band.sel .ct1-fan{opacity:.78}
+.ct1-band.sel .ct1-glow{opacity:.5}
+.ct1-lab{opacity:.6;transition:opacity .3s}
+.viz .ct1-lab text{paint-order:stroke;stroke:#07101d;stroke-width:4px;stroke-linejoin:round}
+.ct1-lab.sel{opacity:1}
+.ct1-gloss{animation:ct1-gloss 3.2s ease-in-out infinite}
+@keyframes ct1-gloss{0%,100%{stroke-opacity:.1}50%{stroke-opacity:.5}}
+.ct1-card{padding:10px 14px;border:1px solid var(--rule);border-left:3px solid var(--c,var(--amber));border-radius:3px;background:var(--ink-2);font-family:var(--label);font-size:15px;line-height:1.35;color:var(--dim);min-height:4em}
+.ct1-card b{color:var(--c,var(--amber))}
+.ct2-q{margin:0;font-family:var(--label);font-weight:800;font-size:17px;line-height:1.2;color:var(--paper)}
+.ct2-q span{display:block;margin-bottom:3px;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.ct2-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center}
+.ct2-px{display:grid;text-align:center;font-family:var(--label)}
+.ct2-px b{font-family:var(--display);font-weight:900;font-size:38px;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.ct2-px span{font-size:12.5px;color:var(--dim)}
+.k-b.ct2-y{border-color:var(--amber);color:var(--amber)}
+.k-b.ct2-y:hover{background:var(--amber);color:var(--ink)}
+.k-b.ct2-n{border-color:var(--coral);color:var(--coral)}
+.k-b.ct2-n:hover{background:var(--coral);color:var(--ink)}
+.ct2-vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ct2-vs p{margin:0;padding:8px 10px;border-radius:4px;font-family:var(--label);font-size:13px;line-height:1.3;color:var(--dim)}
+.ct2-vs b{display:block;margin-bottom:2px;font-size:15px;color:var(--paper)}
+.ct2-vs .poll{border:1px dashed var(--rule);opacity:.75}
+.ct2-vs .live{border:1px solid var(--amber)}
+.ct2-vs .live b{color:var(--amber)}
+.ct2-fall{fill:#e0b25a;stroke:#b8862f}
+.viz .ct3-big{font-family:var(--display);font-weight:900;font-size:24px;fill:var(--amber);font-variant-numeric:tabular-nums}
+.ct3-pipe{fill:none;stroke:#22405c;stroke-linecap:round;stroke-width:8;transition:stroke-width .6s var(--ease)}
+.ct3-core{fill:none;stroke:var(--amber);stroke-opacity:.55;stroke-linecap:round;stroke-width:3;transition:stroke-width .6s var(--ease)}
+.ct3-pipe.thin{stroke-width:6}
+.ct3-core.thin{stroke-width:2;stroke:var(--coral)}
+.ct3-dot{fill:#fff}
+#ct3Bar{transition:width .6s var(--ease)}
+.ct3[data-live="0"] #ctB{stroke-dasharray:3 6}
+.ct3[data-live="0"] .ctBd{opacity:0}
+.ct3-plan{fill:none;stroke:var(--amber);stroke-width:2;stroke-dasharray:5 5;animation:ct3-plan 1.2s linear infinite}
+@keyframes ct3-plan{to{stroke-dashoffset:-20}}
+@media (max-width:860px){.pc1-say,.pc2-say,.pc3-say,.ct3-say{font-size:12.5px;min-height:2.5em}
+.pc1-ticks{font-size:10px;padding:0 7px}
+.pc2-n{font-size:11px}
+.ct1-card{padding:6px 10px;font-size:12.5px;min-height:3.8em}
+.ct2-q{font-size:14px}
+.ct2-q span{font-size:10px}
+.ct2-px b{font-size:26px}
+.ct2-px span{font-size:10.5px}
+.ct2-vs{display:none}}

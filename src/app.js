@@ -169,7 +169,27 @@ const SRC = {
   gpuHammer: "https://arxiv.org/abs/2507.08166",
   teeFail: "https://www.securityweek.com/new-attack-targets-ddr5-memory-to-steal-keys-from-intel-and-amd-tees/",
   meltdownPerf: "https://access.redhat.com/articles/3307751",
-  stuxnet: "https://www.isis-online.org/uploads/isis-reports/documents/stuxnet_FEP_22Dec2010.pdf"
+  stuxnet: "https://www.isis-online.org/uploads/isis-reports/documents/stuxnet_FEP_22Dec2010.pdf",
+  uncapped: "https://pocketcasts.com/podcast/uncapped-with-jack-altman/1cb8a9b0-e260-013d-1b09-0acc26574db2/uncapped-33-vlad-tenev-from-robinhood/6b4f8300-adfb-450b-8eb9-29beccba93f0",
+  uncappedTx: "https://ulisten.ai/channels/uncapped/robinhoods-vlad-tenev-on-ai-prediction-markets-and-the-futur_3Gh7Yr4n4kA/transcript",
+  hoodQ3: "https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-third-quarter-2026-results",
+  hoodQ2: "https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-second-quarter-2026-results",
+  hoodOpts: "https://robinhood.com/us/en/support/articles/360001214663",
+  hoodEvt: "https://robinhood.com/us/en/support/articles/event-contracts-overview/",
+  hoodJv: "https://robinhood.com/us/en/newsroom/robinhood-prediction-markets-joint-venture",
+  zeroCom: "https://fortune.com/2019/10/03/zero-commissions-stock-trading-fees-as-brokerages-drop-wave-consolidation-follow/",
+  aaii: "https://www.aaii.com/journal/article/comparison-on-line-discount-brokers-2005",
+  schwabFee: "https://www.schwab.com/compare-us",
+  revAr: "https://www.revolut.com/en-AT/news/revolut_reports_record_profit_of_2_3bn_for_2025_as_revenue_surges_to_6bn/",
+  revVal: "https://sifted.eu/articles/revolut-115-valuation-secondary-share-sale/",
+  revOcc: "https://fintech.global/2026/09/09/revolut-clears-us-hurdle-on-path-to-national-bank/",
+  revPrimary: "https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/7/uk-fintech-revolut-must-bulk-up-balance-sheet-to-take-on-traditional-banks-103297538",
+  cboe0dte: "https://www.cboe.com/insights/posts/market-metrics-that-matter-derivatives-july-2026-volume-highlights",
+  kalshiG: "https://www.institutionalinvestor.com/article/hedge-funds-bet-kalshi",
+  kalshiNext: "https://defirate.com/news/kalshi-raises-1b-40b-valuation-pushes-beyond-prediction/",
+  polyVal: "https://defirate.com/news/polymarket-21b-valuation-new-funding-round/",
+  icePoly: "https://defirate.com/news/ice-posts-record-earnings-doubles-down-polymarket-data-onchain-markets/",
+  pmCourts: "https://wjla.com/news/nation-world/conflicting-court-rulings-deepen-fight-over-how-prediction-markets-are-regulated-cftc-commodity-exchange-act-kalshi-polymarket-supreme-court"
 };
 
 const BINS = {
@@ -664,6 +684,50 @@ const THESES = [
     wrong: "By 2028, a new generation of AI accelerators goes two years with no publicly demonstrated hardware attack, and serious AI-found software flaws get rarer, not more common.",
     receipts: [["Business Today on Altman’s India AI Impact Summit keynote (Feb 2026)", SRC.altmanSI], ["The Information on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Wiz Research on the PHP2Shell flaws (Oct 2026)", SRC.phpWiz], ["Al Jazeera on the PHP shutdowns (Oct 2026)", SRC.phpAj], ["NSA, CISA, FBI, DOE and EPA advisory on Siemens S7 PLCs (Aug 2026)", SRC.plcAi], ["Institute for Science and International Security on Stuxnet at Natanz (Dec 2010)", SRC.stuxnet], ["Red Hat on Meltdown and Spectre performance costs (2018, updated 2019)", SRC.meltdownPerf], ["GPUHammer paper, University of Toronto (2025)", SRC.gpuHammer], ["SecurityWeek on TEE.fail (Oct 2025)", SRC.teeFail]],
     viz: "silicon", echo: { pose: "patch", acc: "patch", name: "Patcher" }
+  },
+  {
+    id: "paycheck", die: [4, -5], stance: "build",
+    layer: "F", tldr: ["Trades went free. The paycheck is the prize.", "One trade: a few hundred dollars → $0. Robinhood Banking: ~$5B in year one. Revolut: 68M customers, $115B."],
+    title: "Trades went free. Now the fight is for your paycheck.",
+    h2: "Trades went free. | Now the fight is | for your paycheck.",
+    short: "The paycheck is the prize",
+    hook: "When a trade costs nothing, the business is the balance. That’s why Robinhood wants your direct deposit.",
+    ref: { label: "Vlad Tenev, Robinhood’s co-founder and CEO, on Uncapped with Jack Altman, episode 33 (Nov 2025)", href: SRC.uncapped },
+    signal: `<blockquote class="pull">…we wanna be your primary | and your secondary | financial account.</blockquote>
+      <p>Vlad Tenev said that on Uncapped the month Robinhood Banking began rolling out. Robinhood doesn’t think of itself as a trading app anymore, he said. It’s becoming a financial super app, and the prize is the direct deposit: once the paycheck lands, the money is Robinhood’s to lose.</p>
+      <p>A year in, Robinhood Banking holds nearly $5 billion from more than 350,000 customers, about 40% of them on direct deposit. Across every account, Robinhood held $396 billion for 28.7 million funded customers at the end of September.</p>`,
+    takes: [
+      ["Free was the hook. The balance is the business.", "Before May Day 1975, commissions were fixed, and a retail trade could run a few hundred dollars. Discounters cut that to about $70, online brokers to $14.95, and it was still $7 to $10 when Robinhood started. Its app launched at $0 in 2015, and Schwab, TD Ameritrade and E*Trade went to $0 within a day of each other in 2019. With the commission gone, the money comes from what customers keep: in Q3 2026, 29% of Robinhood’s revenue was interest."],
+      ["The paycheck is the moat.", "People don’t graduate from trading to index funds, Vlad says. They add buckets: retirement, a card, savings, and a little they still pick themselves. The paycheck is the bucket that fills the others. Robinhood now has 14 business lines past $100 million a year, its Gold Card has 1.3 million customers, and its retirement accounts hold $36.6 billion. Each gets easier to sell once the paycheck lands in the same app."],
+      ["Revolut is the same app, built from the other end.", "Revolut launched in 2015 to move and exchange money, then added trading. Robinhood launched with trading, then added the bank. Revolut ended 2025 with 68.3 million retail customers, $6.0 billion of revenue and $2.3 billion of pre-tax profit, from 11 product lines each above £100 million. Customers using it as their main bank grew 45%. In 2026 it won a full UK banking licence, a $115 billion valuation and conditional approval for a US national bank."]
+    ],
+    bet: `The next great consumer finance company starts where people already open the app every day, then earns the paycheck. I’d back the ones that win deposits with product, not friction. Vlad expects AI agents to move bank and brokerage accounts for people, so the stickiest thing in finance is about to get less sticky. When switching takes one sentence to an agent, the moat is being the best place for the money. It’s the money side of <a href="#agent">An agent is a brain with a body</a>.`,
+    wrong: "By the end of 2028, Robinhood Banking still holds under $25 billion, about 6% of what Robinhood holds today, and fewer than half its banking customers have their paycheck sent there.",
+    note: "Not investment advice. Revolut’s valuation is from a secondary share sale.",
+    receipts: [["Uncapped #33, Vlad Tenev from Robinhood (Nov 2025)", SRC.uncapped], ["Episode transcript", SRC.uncappedTx], ["Robinhood Q3 2026 results", SRC.hoodQ3], ["Fortune on May Day 1975 and the 2019 move to $0", SRC.zeroCom], ["AAII on online commissions, 1991–2005", SRC.aaii], ["Robinhood on options fees", SRC.hoodOpts], ["Schwab on its options contract fee", SRC.schwabFee], ["Revolut 2025 annual results", SRC.revAr], ["S&P Global on Revolut’s primary-bank customers (Jul 2026)", SRC.revPrimary], ["Sifted on Revolut’s $115B share sale (Jul 2026)", SRC.revVal], ["FinTech Global on Revolut’s OCC approval (Sep 2026)", SRC.revOcc]],
+    viz: "paycheck", echo: { pose: "teller", acc: "teller", name: "Teller" }
+  },
+  {
+    id: "contracts", die: [4, -8], stance: "agree",
+    layer: "F", tldr: ["Every opinion is becoming a contract", "Robinhood: 16.4B event contracts in Q3, 7× a year ago. Same-day options: 66% of S&P 500 volume. Kalshi: $40B."],
+    title: "Every opinion is becoming a contract.",
+    h2: "Every opinion | is becoming | a contract.",
+    short: "Every opinion, a contract",
+    hook: "Prediction markets and same-day options are one idea: trade the exact thing you believe, not a stock that only partly tracks it.",
+    ref: { label: "Vlad Tenev on Uncapped with Jack Altman, episode 33 (Nov 2025): prediction markets as “truth machines,” and why contracts keep getting more granular", href: SRC.uncapped },
+    signal: `<blockquote class="pull">…people want more granular ways | to express their opinion | about things.</blockquote>
+      <p>Vlad Tenev, on the same episode. His example: a company blows out its earnings estimates and the stock falls anyway. If your view is about the quarter, a contract on EPS or revenue lets you trade the view itself. Options already let a long-term holder bet on one quarter. Zero-day contracts take it to the extreme: one day, no time decay.</p>
+      <p>A year later, Robinhood customers traded a record 16.4 billion event contracts in Q3 2026, more than seven times a year earlier, and earnings contracts are now in its prediction markets hub.</p>`,
+    takes: [
+      ["A stock is a bundle of bets. Contracts unbundle it.", "A share is a bet on everything at once: this quarter, the next decade, rates, the CEO. Options split it by date and price, zero-day options by the day, event contracts by the outcome. Same-day contracts hit a record 66.2% of S&P 500 options volume in July. My read: when each piece trades on its own, each gets its own price, and prices carry more of what people know. A holder who fears one bad quarter can hedge that quarter instead of selling."],
+      ["A price, not a poll.", "Vlad calls prediction markets truth machines: the number comes from people with skin in the game, and it moves with every trade. In 2016, he notes, Betfair had Trump near 95% shortly after 7 p.m. Pacific, before the networks called the race. Wall Street now buys the number. ICE, which owns the New York Stock Exchange, committed up to $2 billion to Polymarket and sells its probabilities to institutions as a data feed."],
+      ["The app wants to own the exchange.", "Robinhood began by routing orders to other exchanges, mostly Kalshi. Then, with Susquehanna, it bought 90% of the old LedgerX exchange and relaunched it as Rothera, which passed $100 million in annualized revenue in its first full quarter. Event contracts brought Robinhood $173 million in Q3, more than crypto. The venues are priced to match: Kalshi raised at $40 billion in October and says it trades over $1 trillion a year, annualized. Polymarket’s latest round was reported at $21 billion."]
+    ],
+    bet: `Back the plumbing of granular markets: exchanges and clearinghouses that can list a new contract in days, market makers that can price thousands at once, and data businesses that sell the probabilities. The volume that lasts will be economic: earnings, rates, weather and, next, compute. Kalshi plans markets tied to the price of computing power. A GPU-hour you can hedge is where the money theses meet <a href="#neocloud">The clouds are renting from the neoclouds</a>.`,
+    wrong: "The Supreme Court, where the split over sports contracts is headed, lets states treat them as gambling, and the non-sports markets never grow into the gap. Then it was a sportsbook with better branding.",
+    note: "Not investment advice. Kalshi’s volume is annualized, as the company reports it.",
+    receipts: [["Uncapped #33, Vlad Tenev from Robinhood (Nov 2025)", SRC.uncapped], ["Episode transcript", SRC.uncappedTx], ["Robinhood Q3 2026 results", SRC.hoodQ3], ["Robinhood Q2 2026 results", SRC.hoodQ2], ["Robinhood on event contract fees", SRC.hoodEvt], ["Robinhood and Susquehanna’s exchange joint venture", SRC.hoodJv], ["Cboe July 2026 volume: 0DTE at 66.2% of SPX", SRC.cboe0dte], ["Institutional Investor on Kalshi’s Series G (Nov 2026)", SRC.kalshiG], ["DeFi Rate on Kalshi’s plans, including compute markets", SRC.kalshiNext], ["DeFi Rate on Polymarket’s reported $21B round", SRC.polyVal], ["DeFi Rate on ICE and Polymarket’s data feed", SRC.icePoly], ["The National News Desk on the court split", SRC.pmCourts]],
+    viz: "contracts", echo: { pose: "oracle", acc: "oracle", name: "Oracle" }
   }
 ];
 
@@ -705,6 +769,8 @@ const DOODLES = {
   silicon: "<path d=\"M30 30 h60 v50 h-60 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M42 30 v-8 M42 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M54 30 v-8 M54 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M66 30 v-8 M66 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M78 30 v-8 M78 80 v8\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M44 36 L56 50 L50 56 L64 66 L60 74\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M36 70 L84 40\" stroke=\"#d9a072\" stroke-width=\"9\" /><path d=\"M54 59 L66 51\" stroke=\"#b9814f\" stroke-width=\"9\" /><text x=\"60\" y=\"100\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">patch ≠ fix</text>",
   quantum: "<path d=\"M30 46 V34 a18 18 0 0 1 36 0 V46\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M24 46 h48 v40 h-48 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M48 60 v12\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M40 50 L52 64 L46 70 L56 82\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><path d=\"M98 34 m-16 0 a16 16 0 1 0 32 0 a16 16 0 1 0 -32 0 M82 34 a16 6 0 0 0 32 0\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><path d=\"M98 34 L108 22 M105.8 30.7 L108 22 L99.8 25.7\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" /><text x=\"98\" y=\"70\" fill=\"#1f5fbf\" font-size=\"14\" text-anchor=\"middle\">qubits</text><text x=\"48\" y=\"100\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">minutes / key</text>",
   builders: "<path d=\"M20 88 L60 40 M14 46 Q30 30 48 34 M48 34 Q44 50 60 40\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M100 88 L66 44 M60 40 l12 -6 l6 14 l-12 6 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M26 12 Q60 -6 94 12 Q77 8 60 12 Q43 8 26 12 Z M26 12 L54 34 M94 12 L66 34\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">picks & shovels</text>",
+  paycheck: "<path d=\"M6 34 h34 v22 h-34 Z M6 34 l17 12 l17 -12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"23\" y=\"72\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">pay</text><path d=\"M44 45 C52 40 58 40 66 44 M59.6 39.4 L66.5 44 L59.4 48.6\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><path d=\"M74 10 h28 a4 4 0 0 1 4 4 v60 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 v-60 a4 4 0 0 1 4 -4 Z M83 72 h10\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><text x=\"88\" y=\"52\" fill=\"#1d8a5c\" font-size=\"28\" text-anchor=\"middle\">$</text><text x=\"60\" y=\"97\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">direct deposit</text>",
+  contracts: "<path d=\"M26 52 V31 A21 21 0 1 0 47 52 Z M26 52 L11.2 37.2 M26 52 L11.2 66.8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M31 47 V26 A21 21 0 0 1 52 47 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><path d=\"M62 30 h50 v40 h-50 Z M87 30 v40\" stroke=\"#1f5fbf\" stroke-width=\"2.8\" /><text x=\"74.5\" y=\"46\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">YES</text><text x=\"74.5\" y=\"63\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">62¢</text><text x=\"99.5\" y=\"46\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">NO</text><text x=\"99.5\" y=\"63\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">38¢</text><path d=\"M52 38 C55 36 57 37 60 39 M56.2 35.6 L60.4 39.2 L55.2 41\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"97\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">one view, one price</text>",
 };
 
 // Some doodles spill past their 120 x 100 box (a long label, a wide arrow); these boxes are widened to fit them, measured once
@@ -927,6 +993,20 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       [[-10, 84, "#ff6b80", 0], [-3, 82, "#4fd2ff", .5], [2, 86, "#ff6b80", 1]].map(([x, y, c, j]) => `<rect class="echo-glitch" style="animation-delay:${(j * -.06).toFixed(2)}s" x="${x}" y="${y}" width="2.8" height="2.8" fill="${c}"/>`).join("") +
       `<g class="echo-fixed"><circle cx="-5" cy="74" r="5" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-7.4 74 L-5.6 75.8 L-2.4 72.4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
       `<g class="echo-warn"><circle cx="-5" cy="74" r="5" fill="#ff6b80" stroke="#fff" stroke-width="1"/><path d="M-5 71 V75" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="-5" cy="77.3" r=".95" fill="#fff"/></g></g>`;
+  } else if (acc === "teller") {
+    // Teller: an old-school green eyeshade; feeds a paycheck into the phone in the other fin, the balance bar fills, the deposit checks in
+    accIn = `<path d="M21 -1.5 Q50 -7 79 -1.5 L89 10.5 Q50 3.5 11 10.5 Z" fill="#2fb87a" fill-opacity=".72" stroke="#1d8a5c" stroke-width="1"/><path d="M13 7.5 Q50 -1.5 87 7.5" stroke="#1d8a5c" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M30 -1 Q40 -3.6 50 -3.8" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" fill="none" stroke-linecap="round"/>` +
+      `<g class="echo-hand-l"><g class="xtl-env"><g transform="rotate(-10 4 73)"><rect x="-7.5" y="65.5" width="23" height="14.5" rx="1.6" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-7.5 66 L4 73.4 L15.5 66" stroke="#b8a6ff" stroke-width="1" fill="none" stroke-linejoin="round"/><rect x="-4.6" y="74.6" width="17" height="4" rx="1" fill="#e6f7ef"/><text x="4" y="77.9" text-anchor="middle" font-size="3.8" font-weight="900" fill="#1d8a5c" textLength="13" lengthAdjust="spacingAndGlyphs">PAYDAY</text></g></g>${mitt(5, 80, 20)}</g>` +
+      `<g class="echo-hand-r"><g transform="rotate(-6 98.5 72)"><rect x="89" y="55.5" width="19" height="32.5" rx="3.6" fill="#211a32" stroke="#9b83ff" stroke-width="1"/><rect x="91" y="59" width="15" height="23" rx="1.6" fill="#0f2638"/><text x="98.5" y="67" text-anchor="middle" font-size="7" font-weight="900" fill="#3fd6c8">$</text><rect x="93" y="70.4" width="11" height="3" rx="1.5" fill="#22405c"/><rect class="xtl-fill" x="93" y="70.4" width="11" height="3" rx="1.5" fill="#3fd6c8"/><rect x="93" y="75.4" width="7.5" height="1.8" rx=".9" fill="#22405c"/><rect x="93" y="78.4" width="5" height="1.8" rx=".9" fill="#22405c"/><circle cx="98.5" cy="85" r="1.2" fill="#9b83ff"/></g>${mitt(95.5, 84)}</g>`;
+    accExtra = `<g class="xtl-ding"><circle cx="107" cy="51" r="5.2" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M104.5 51 l1.8 1.8 l3.3 -3.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
+      [[94, 50, 0], [101, 44, .12], [88, 45, .24]].map(([x, y, d]) => `<g class="xtl-coin" style="animation-delay:${d}s"><ellipse cx="${x}" cy="${y}" rx="3.2" ry="3.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".7"/><path d="M${x} ${y - 1.6} V${y + 1.6}" stroke="#d98a12" stroke-width=".8"/></g>`).join("");
+  } else if (acc === "oracle") {
+    // Oracle: a starry hood and a crystal ball that clouds and clears; the YES ticket in the other fin reprices as the ball reads the room
+    accDefs = `<radialGradient id="${k}cb" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#a6e9ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient>`;
+    accIn = `<path d="M8 22 C6 -4 26 -14 50 -14 C74 -14 94 -4 92 22 C86 6 70 0 50 0 C30 0 14 6 8 22 Z" fill="#2b2142" stroke="#4a3f86" stroke-width="1"/><path d="M50 -14 C56 -20 64 -21 70 -17" stroke="#2b2142" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="71" cy="-16.5" r="2.6" fill="#ffd98a"/>` +
+      [[30, -6, .9], [50, -9, .7], [66, -4, .8], [41, -2, .5]].map(([x, y, s]) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 -3.5 L1 -1 L3.5 0 L1 1 L0 3.5 L-1 1 L-3.5 0 L-1 -1 Z" fill="#ffd98a"/>`).join("") +
+      `<g class="echo-hand-r"><g transform="rotate(8 99 70)"><rect x="86" y="59" width="27" height="20" rx="2.4" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><path d="M86 66.4 H113" stroke="#cfc6f5" stroke-width=".8" stroke-dasharray="1.6 1.4"/><text x="90" y="64.6" font-size="4.6" font-weight="900" fill="#1d8a5c">YES</text><text class="xor-p xor-p1" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">62¢</text><text class="xor-p xor-p2" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">71¢</text><path class="xor-up" d="M89.6 75 l2.6 -3.6 l2.6 3.6 Z" fill="#2fb87a"/></g>${mitt(95.5, 82)}</g>`;
+    accExtra = `<path d="M-14.5 106 h22 l-3.6 -7 h-14.8 Z" fill="#c79a5b" stroke="#9c7440" stroke-width=".8"/><g class="xor-ball"><circle cx="-3.5" cy="88" r="11.5" fill="url(#${k}cb)" stroke="#d4e3f0" stroke-width="1"/><g class="xor-mist"><path d="M-12 90 Q-8 84 -3 88 T6 87" stroke="#fff" stroke-opacity=".7" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M-10 84 Q-6 80 -1 83" stroke="#fff" stroke-opacity=".5" stroke-width="1.1" fill="none" stroke-linecap="round"/></g><ellipse cx="-7.5" cy="83" rx="3.2" ry="1.8" fill="#fff" opacity=".8" transform="rotate(-30 -7.5 83)"/></g><circle class="xor-glow" cx="-3.5" cy="88" r="15" fill="#a6e9ff" opacity=".0"/>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -2164,7 +2244,11 @@ const VIZ = {
       <div class="frame f2">${F2}<p class="cap"><span class="cap-l">A half-precision (FP16) weight. Flipping the exponent’s top bit multiplies it by 65,536. GPUHammer (2025) did this through the memory of an Nvidia A6000: ResNet-50 fell from 80% to 0.08% accuracy.</span><span class="cap-s">FP16 weight. GPUHammer (2025): 80% → 0.08% accuracy.</span></p></div>
       <div class="frame f3">${F3}<p class="cap">The closer an attack gets to the chip, the fewer people can reach it, and the less software can do about it. Intel and AMD say physical attacks are outside their threat model.</p></div>
     </div>`;
-  }
+  },
+
+  // the two money theses draw all three slides in visuals.js; these are the empty frames it fills
+  paycheck() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  contracts() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 
 /* interactive bits inside a memo's visual */
@@ -3427,7 +3511,7 @@ const BOARD = {
   ],
   side: [
     { k: "S", n: "Secure it", s: "the race is won or lost at the vault", c: "#d23c3c" },
-    { k: "F", n: "Fund it", s: "who pays for the buildout", c: "#1d8a5c" }
+    { k: "F", n: "Fund it", s: "who pays for the buildout, and where the money moves", c: "#1d8a5c" }
   ],
   marks: { agree: ["✔", "#1f5fbf"], build: ["+", "#1d8a5c"], push: ["✗", "#d23c3c"], original: ["★", "#26303a"] },
   idea: ["Value moves to whatever is scarce:", "power slots → packaging → memory → badges for agents → people’s time"],
@@ -3791,7 +3875,7 @@ const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<
 
 // The periodic table of my theses: each thesis an element, numbered in the order I published it.
 // Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }

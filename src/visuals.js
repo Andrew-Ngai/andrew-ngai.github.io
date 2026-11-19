@@ -1710,9 +1710,308 @@ A["race-2b"] = { html: () => `<div class="k-col rcm"><svg viewBox="0 0 460 230" 
 
 })();
 
+// 26 · Trades went free. Now the fight is for your paycheck.
+(() => {
+const A = window.AX, cap = t => `<p class="cap">${t}</p>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// ---------------------------------------------------------- slide 1: a time machine for the price of one trade
+// [odometer, $ (for the coin stack), price on the receipt, device, how you placed it, note]
+const ERAS = [
+  ["1974", 100, "$100s", "rotary", "by phone, to a broker", "<b>Before May 1, 1975:</b> commissions are fixed by the exchange, as they have been for 183 years. A retail trade can run a few hundred dollars."],
+  ["1975", 70, "$70.00", "rotary", "by phone, discounter", "<b>After May Day 1975:</b> rates go free, and discounters like Schwab charge about $70 a trade."],
+  ["1995", 40, "$40.00", "crt", "online, over dial-up", "<b>1995:</b> the average minimum online commission is about $40."],
+  ["1998", 20, "$20.00", "crt", "online, price war", "<b>1998:</b> online competition halves it, to about $20."],
+  ["2005", 17.5, "$17.50", "laptop", "in a browser", "<b>2005:</b> the average online trade is $17.50."],
+  ["2013", 8.5, "$7–10", "laptop", "in a browser", "<b>2013:</b> still $7 to $10 a trade when Robinhood starts. Its app launches at $0 in 2015."],
+  ["2019", 4.95, "$4.95", "mobile", "in an app", "<b>Mid-2019:</b> about $4.95 at the big online brokers."],
+  ["Today", 0, "$0.00", "mobile", "in an app, any time", "<b>October 2019 on:</b> Schwab goes to $0, and TD Ameritrade and E*Trade follow within a day. Now 29% of Robinhood’s revenue is interest on what customers keep."]
+];
+const DEV = {
+  rotary: `<g><path d="M44 196 L58 150 H152 L166 196 Z" fill="#1a2c44" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.6"/><path d="M40 140 C40 124 60 122 66 132 H144 C150 122 170 124 170 140 C170 150 160 152 152 146 H58 C50 152 40 150 40 140 Z" fill="#22405c" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.6"/><circle cx="105" cy="174" r="17" fill="#0c1a2b" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.4"/>${Array.from({ length: 10 }, (_, i) => { const a = (i * 30 - 200) * Math.PI / 180; return `<circle cx="${(105 + 11.5 * Math.cos(a)).toFixed(1)}" cy="${(174 + 11.5 * Math.sin(a)).toFixed(1)}" r="2.4" fill="var(--ink)" stroke="var(--dim)" stroke-width=".7"/>`; }).join("")}<circle cx="105" cy="174" r="4" fill="var(--coral)"/><path class="pc1-ring" d="M176 120 q8 8 0 16 M184 114 q12 14 0 28" stroke="var(--coral)" stroke-width="1.8" fill="none" stroke-linecap="round"/></g>`,
+  crt: `<g><rect x="50" y="92" width="110" height="86" rx="7" fill="#1a2c44" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.6"/><rect x="60" y="101" width="90" height="62" rx="5" fill="#06140f" stroke="#2c5a48"/><path class="pc1-tick" d="M66 148 l10 -6 l8 4 l10 -10 l8 3 l10 -9 l8 2 l10 -8 l8 4" stroke="#7ee0a1" stroke-width="1.6" fill="none"/><text x="66" y="114" font-size="8" style="fill:#7ee0a1" font-family="ui-monospace,Menlo,monospace">CONNECT 28800</text><rect x="92" y="178" width="26" height="8" fill="#14283f"/><rect x="40" y="186" width="130" height="14" rx="3" fill="#1a2c44" stroke="var(--violet)" stroke-opacity=".6"/><path d="M48 193 H162" stroke="var(--violet)" stroke-opacity=".35" stroke-dasharray="3 2"/></g>`,
+  laptop: `<g><rect x="56" y="104" width="98" height="68" rx="5" fill="#1a2c44" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.6"/><rect x="62" y="110" width="86" height="56" rx="2" fill="#0c1a2b"/><rect x="62" y="110" width="86" height="9" fill="#22405c"/><circle cx="67" cy="114.5" r="1.6" fill="var(--coral)"/><circle cx="72" cy="114.5" r="1.6" fill="var(--amber)"/><rect x="78" y="112.6" width="64" height="4" rx="2" fill="#0c1a2b"/><rect x="68" y="126" width="40" height="5" rx="1" fill="var(--rule)"/><rect x="68" y="135" width="30" height="5" rx="1" fill="var(--rule)"/><rect x="112" y="146" width="30" height="13" rx="2" fill="var(--beat)" opacity=".8"/><text x="127" y="155.5" text-anchor="middle" font-size="7.5" font-weight="900" style="fill:var(--ink)">BUY</text><path d="M44 172 H166 L158 182 H52 Z" fill="#22405c" stroke="var(--violet)" stroke-opacity=".7" stroke-width="1.4"/></g>`,
+  mobile: `<g><rect x="76" y="88" width="58" height="108" rx="10" fill="#1a2c44" stroke="var(--amber)" stroke-width="1.8"/><rect x="82" y="98" width="46" height="84" rx="3" fill="#0c1a2b"/><rect x="97" y="91.5" width="16" height="3" rx="1.5" fill="var(--rule)"/><path d="M86 150 l7 -5 l6 3 l7 -9 l6 2 l7 -8" stroke="var(--amber)" stroke-width="1.6" fill="none"/><rect x="86" y="160" width="38" height="14" rx="7" fill="var(--amber)"/><text x="105" y="170" text-anchor="middle" font-size="8.5" font-weight="900" style="fill:var(--ink)">BUY · $0</text><text x="105" y="118" text-anchor="middle" font-size="9" class="t-strong">ACME</text></g>`
+};
+A["paycheck-1a"] = { html: () => {
+    // a coin is $5; twenty coins is the fixed-rate era, and it spills over the top
+    const coin = i => `<g class="pc1-c" data-i="${i}" style="--i:${i}"><rect x="216" y="${(226 - i * 6).toFixed(1)}" width="52" height="6" fill="#b8862f"/><ellipse cx="242" cy="${(226 - i * 6).toFixed(1)}" rx="26" ry="6.5" fill="#e0b25a" stroke="#b8862f" stroke-width=".8"/><ellipse cx="242" cy="${(226 - i * 6).toFixed(1)}" rx="15" ry="3.4" fill="none" stroke="#f3d08a" stroke-width=".8"/></g>`;
+    return `<div class="k-col pc1">
+      <svg viewBox="0 0 460 262" class="k-svg" aria-label="A time machine for the price of one stock trade. Before May 1975 it ran a few hundred dollars by phone; about $70 at discounters after May Day 1975; about $40 online in 1995, $20 in 1998, $17.50 in 2005, $7 to $10 in 2013, $4.95 in mid-2019, and $0 from October 2019 in an app.">
+        <text x="14" y="16" font-size="11" font-weight="800" style="letter-spacing:.14em;fill:var(--amber)">WHAT ONE STOCK TRADE COST</text>
+        <text x="14" y="58" class="pc1-odo" id="pc1Odo">1974</text>
+        ${Object.entries(DEV).map(([k, d]) => `<g class="pc1-dev" data-d="${k}">${d}</g>`).join("")}
+        <ellipse cx="242" cy="234" rx="34" ry="8" fill="#000" opacity=".25"/>
+        <ellipse class="pc1-empty" cx="242" cy="226" rx="26" ry="6.5" fill="none" stroke="var(--amber)" stroke-width="1.4" stroke-dasharray="3 3"/>
+        ${Array.from({ length: 20 }, (_, i) => coin(i)).join("")}
+        <g class="pc1-over"><path d="M232 96 l10 -10 l10 10 M232 106 l10 -10 l10 10" stroke="#e0b25a" stroke-width="2" fill="none" stroke-linecap="round"/><text x="242" y="78" text-anchor="middle" font-size="11" style="fill:#e0b25a" font-weight="800">and up</text></g>
+        <text x="242" y="254" text-anchor="middle" font-size="11">one coin = $5</text>
+        <g class="pc1-rcpt"><path d="M300 34 H448 V242 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 l-6 6 l-6 -6 Z" fill="var(--ink-2)" stroke="var(--rule)"/>
+          <text x="374" y="54" text-anchor="middle" font-size="10" font-weight="800" style="letter-spacing:.14em">TRADE CONFIRMATION</text>
+          <path d="M312 64 H436" stroke="var(--rule)" stroke-dasharray="3 3"/>
+          <text x="312" y="82" class="pc1-mono">BUY 100 SH ACME</text><text x="312" y="98" class="pc1-mono" id="pc1Via">by phone, to a broker</text>
+          <text x="312" y="124" font-size="10" font-weight="800" style="letter-spacing:.12em">COMMISSION</text>
+          <text x="436" y="160" text-anchor="end" class="pc1-px" id="pc1Px">$100s</text>
+          <g class="pc1-today"><path d="M312 172 H436" stroke="var(--rule)" stroke-dasharray="3 3"/><text x="312" y="188" class="pc1-mono">OPTION CONTRACT</text><text x="436" y="188" text-anchor="end" font-size="11.5" class="t-strong">$0</text><text x="312" y="201" font-size="9.5">Schwab, Fidelity: $0.65</text><text x="312" y="218" class="pc1-mono">EVENT CONTRACT</text><text x="436" y="232" text-anchor="end" font-size="11.5" class="t-strong">1¢ + about 1¢</text></g>
+          <g transform="translate(410 118) rotate(-10)"><g class="pc1-stamp"><rect x="-27" y="-11" width="54" height="22" rx="3" fill="rgba(7,16,29,.7)" stroke="var(--amber)" stroke-width="2"/><text y="4.5" text-anchor="middle" font-size="12" font-weight="900" style="fill:var(--amber);letter-spacing:.12em">FREE</text></g></g>
+        </g>
+      </svg>
+      <input class="oc-range pc1-r" type="range" id="pc1R" min="0" max="7" step="1" value="0" aria-label="Year">
+      <div class="pc1-ticks" aria-hidden="true">${ERAS.map(e => `<span>${e[0]}</span>`).join("")}</div>
+      <p class="pc1-say" id="pc1Say"></p>
+    </div>${capLS("One retail stock trade. Fortune (1975, 1990s, 2019), AAII averages (1995–2005), Vlad Tenev on Uncapped (2013). Today: Robinhood, Schwab and Fidelity fee pages; Robinhood’s Q3 2026 results.", "Fortune, AAII, Uncapped; fee pages; Robinhood Q3 2026.")}`; },
+  init: fr => {
+    const v = fr.querySelector(".pc1"), r = fr.querySelector("#pc1R"), coins = [...fr.querySelectorAll(".pc1-c")];
+    let auto = true, at = 0, hold = 1;
+    const show = i => {
+      const [odo, usd, px, dev, via, note] = ERAS[i], n = Math.round(usd / 5);
+      fr.querySelector("#pc1Odo").textContent = odo; fr.querySelector("#pc1Px").textContent = px; fr.querySelector("#pc1Via").textContent = via; fr.querySelector("#pc1Say").innerHTML = note;
+      fr.querySelectorAll(".pc1-dev").forEach(g => g.classList.toggle("on", g.dataset.d === dev));
+      coins.forEach((c, k) => c.classList.toggle("on", k < n));
+      v.dataset.e = i; r.value = i;
+    };
+    r.addEventListener("input", () => { auto = false; show(+r.value); });
+    // linger on the fixed-rate era, then run the clock forward to today
+    K.onEnter(fr, () => { auto = true; at = 0; hold = 1; show(0); });
+    K.loop(fr, () => { if (!auto) return; if (hold) { hold--; return; } at = Math.min(7, at + 1); show(at); if (at === 7) auto = false; }, 1100);
+    show(0);
+  } };
+
+// ---------------------------------------------------------- slide 2: payday plinko
+const BK = [
+  ["Bank", "~$5B", "<b>Robinhood Banking:</b> nearly $5 billion from more than 350,000 customers, about 40% of them on direct deposit.", "var(--amber)", .3],
+  ["Card", "1.3M", "<b>Gold Card:</b> 1.3 million customers and over $19 billion a year of spending, annualized in Q3 2026.", "var(--beat)", .2],
+  ["Retirement", "$36.6B", "<b>Retirement:</b> $36.6 billion, up 51% in a year.", "var(--violet)", .2],
+  ["Managed", "$2B+", "<b>Robinhood Strategies:</b> 350,000 customers and over $2 billion under management.", "#9fe7ff", .15],
+  ["My picks", "yours", "<b>And a little they pick themselves.</b> People always keep some money they make the calls on, Vlad says.", "var(--coral)", .15]
+];
+const PEG_Y = r => 80 + r * 34, PEG_X = (r, j) => 230 + 42 * (2 * j - r);
+A["paycheck-2a"] = { html: () => `<div class="k-col pc2">
+      <div class="pc2-top"><button type="button" class="k-b go" id="pc2Go">Drop a paycheck</button><span class="pc2-n" id="pc2N">Payday 0</span></div>
+      <svg viewBox="0 0 460 300" class="k-svg" aria-label="Payday plinko: a paycheck lands by direct deposit and its coins bounce through pegs into five buckets: banking, nearly $5 billion; the Gold Card, 1.3 million customers; retirement, $36.6 billion; Robinhood Strategies, over $2 billion; and a little money people still pick themselves.">
+        <g class="pc2-env"><rect x="190" y="6" width="80" height="40" rx="4" fill="#eef4f8"/><path d="M190 8 L230 30 L270 8" stroke="#9fb3c4" stroke-width="1.4" fill="none" stroke-linejoin="round"/><rect x="198" y="32" width="64" height="11" rx="2" fill="#dff7f3"/><text x="230" y="40.6" text-anchor="middle" font-size="8.5" font-weight="900" style="fill:#07101d;letter-spacing:.12em">PAYCHECK</text></g>
+        <text x="282" y="22" font-size="11" style="fill:var(--amber)" font-weight="800">direct deposit</text><text x="282" y="37" font-size="11">fills the other buckets</text>
+        <path d="M36 66 L188 52 M424 66 L272 52" stroke="var(--rule)" stroke-width="1.4"/>
+        ${[0, 1, 2, 3].map(r => Array.from({ length: r + 1 }, (_, j) => `<circle class="pc2-peg" data-p="${r}-${j}" cx="${PEG_X(r, j)}" cy="${PEG_Y(r)}" r="4.2"/>`).join("")).join("")}
+        ${[0, 1, 2].map(r => Array.from({ length: r + 2 }, (_, j) => `<circle class="pc2-pin" cx="${PEG_X(r + 1, j) + 0}" cy="${PEG_Y(r) + 17}" r="1.6"/>`).join("")).join("")}
+        ${BK.map(([n, v, , c], k) => `<g class="pc2-b" data-i="${k}" tabindex="0" role="button" aria-label="${n}: ${v}"><rect x="${20 + k * 84}" y="208" width="80" height="92" fill="transparent"/><path d="M${20 + k * 84} 208 V256 H${100 + k * 84} V208" fill="none" stroke="var(--rule)" stroke-width="1.6"/><rect class="pc2-fill" id="pc2F${k}" x="${22 + k * 84}" y="256" width="76" height="0" fill="${c}" opacity=".85"/><text x="${60 + k * 84}" y="274" text-anchor="middle" font-size="12.5" class="t-strong">${n}</text><text x="${60 + k * 84}" y="291" text-anchor="middle" font-size="13" font-weight="800" style="fill:${c}">${v}</text></g>`).join("")}
+        <g id="pc2Coins"></g>
+      </svg>
+      <p class="pc2-say" id="pc2Say"><b>14</b> Robinhood business lines now pass $100 million a year. Drop a paycheck, or tap a bucket.</p>
+    </div>${capLS("Illustrative: where coins land isn’t to scale. Figures from Robinhood’s Q3 2026 results; “buckets” is Vlad Tenev’s word.", "Illustrative. Robinhood Q3 2026 figures.")}`,
+  init: fr => {
+    const g = fr.querySelector("#pc2Coins"), say = fr.querySelector("#pc2Say"), bs = [...fr.querySelectorAll(".pc2-b")], NS = "http://www.w3.org/2000/svg";
+    const fill = [0, 0, 0, 0, 0], live = [], rnd = K.rng(11);
+    let paydays = 0;
+    const pickBin = () => { let x = rnd(), k = 0; while (k < 4 && x > BK[k][4]) { x -= BK[k][4]; k++; } return k; };
+    const drop = () => {
+      paydays++; fr.querySelector("#pc2N").textContent = "Payday " + paydays;
+      for (let c = 0; c < 16; c++) setTimeout(() => {
+        if (!fr.isConnected) return;
+        const k = pickBin(), steps = Array.from({ length: 4 }, (_, i) => i < k).sort(() => rnd() - .5);
+        const pts = [[230 + (rnd() - .5) * 20, 44]]; let x = 230, j = 0;
+        for (let r = 0; r < 4; r++) { pts.push([PEG_X(r, j), PEG_Y(r) - 7, `${r}-${j}`]); if (steps[r]) j++; }
+        pts.push([60 + k * 84 + (rnd() - .5) * 30, 250, null, k]);
+        const el = document.createElementNS(NS, "circle"); el.setAttribute("r", "6"); el.setAttribute("class", "pc2-coin"); g.appendChild(el);
+        live.push({ el, pts, s: 0, t: 0 });
+      }, c * 140);
+    };
+    K.raf(fr, dt => {
+      for (let i = live.length - 1; i >= 0; i--) {
+        const c = live[i]; c.t += dt / (c.s === 0 ? 260 : 210);
+        if (c.t >= 1) {
+          c.s++; c.t = 0;
+          const hit = c.pts[c.s] && c.pts[c.s][2]; if (hit) { const p = fr.querySelector(`.pc2-peg[data-p="${hit}"]`); if (p) { p.classList.remove("hit"); void p.getBoundingClientRect(); p.classList.add("hit"); } }
+          if (c.s >= c.pts.length - 1) { const k = c.pts[c.s][3]; fill[k] = Math.min(46, fill[k] + 3.5); const f = fr.querySelector("#pc2F" + k); f.setAttribute("y", 256 - fill[k]); f.setAttribute("height", fill[k]); c.el.remove(); live.splice(i, 1); continue; }
+        }
+        const [x0, y0] = c.pts[c.s], [x1, y1] = c.pts[c.s + 1], t = c.t, hop = c.s === 0 ? 0 : 12;
+        c.el.setAttribute("cx", (x0 + (x1 - x0) * t).toFixed(1)); c.el.setAttribute("cy", (y0 + (y1 - y0) * t * t - hop * Math.sin(Math.PI * t)).toFixed(1));
+      }
+    });
+    fr.querySelector("#pc2Go").addEventListener("click", drop);
+    const pick = b => { bs.forEach(x => x.classList.toggle("sel", x === b)); say.innerHTML = BK[+b.dataset.i][2]; };
+    bs.forEach(b => { b.addEventListener("click", () => pick(b)); b.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(b); } }); });
+    K.onEnter(fr, () => setTimeout(() => K.active(fr) && drop(), 500));
+  } };
+
+// ---------------------------------------------------------- slide 3: the moat, and the agent that bridges it
+const CHORES = [["Payroll", "the payroll form"], ["Autopay", "bills and autopay"], ["Cards", "cards on file"], ["Transfers", "transfers"], ["Sign-up", "a new account"]];
+const castle = (x, w, k) => {
+  const c = k ? "var(--amber)" : "var(--violet)", t = 22, h = 112, y = 134;
+  const cren = (x0, x1, yy) => { let d = ""; for (let xx = x0; xx < x1 - 1; xx += 10) d += `M${xx} ${yy} v-7 h5 v7 `; return d; };
+  return `<g class="pc3-castle${k ? " r" : ""}"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#0c1a2b" stroke="${c}" stroke-opacity=".75" stroke-width="1.6"/>
+    <rect x="${x - 4}" y="${y - 30}" width="${t}" height="${h + 30}" fill="#0c1a2b" stroke="${c}" stroke-opacity=".75" stroke-width="1.6"/><rect x="${x + w - t + 4}" y="${y - 30}" width="${t}" height="${h + 30}" fill="#0c1a2b" stroke="${c}" stroke-opacity=".75" stroke-width="1.6"/>
+    <path d="${cren(x + t - 2, x + w - t + 4, y)}${cren(x - 4, x + t - 4, y - 30)}${cren(x + w - t + 4, x + w + 4, y - 30)}" fill="none" stroke="${c}" stroke-opacity=".75" stroke-width="1.4"/>
+    <path d="M${x + w / 2 - 15} ${y + h} V${y + h - 28} a15 15 0 0 1 30 0 V${y + h}" fill="#07101d" stroke="${c}" stroke-opacity=".75" stroke-width="1.4"/>
+    ${[0, 1].map(i => `<rect x="${x + 4 + i * (w - t)}" y="${y - 10}" width="6" height="12" rx="3" fill="${c}" opacity=".35"/>`).join("")}
+    <path d="M${x + 7} ${y - 37} V${y - 62}" stroke="${c}" stroke-width="1.4"/><path class="pc3-flag" d="M${x + 7} ${y - 62} L${x + 29} ${y - 56} L${x + 7} ${y - 50} Z" fill="${c}"/>
+    <text x="${x + w / 2}" y="${y + 34}" text-anchor="middle" font-size="11" font-weight="800" style="fill:${c}">${k ? "pays more" : ""}</text><text x="${x + w / 2}" y="${y + 49}" text-anchor="middle" font-size="11" font-weight="800" style="fill:${c}">${k ? "does more" : ""}</text></g>`;
+};
+A["paycheck-3a"] = { html: () => `<div class="k-col pc3">
+      <div class="k-seg pc3-seg"><button type="button" class="k-b pc3-t" data-v="hand">Switch by hand</button><button type="button" class="k-b pc3-t" data-v="agent">Switch by an agent</button></div>
+      <svg viewBox="0 0 460 300" class="k-svg pc3-s" aria-label="Two castles, your app and a better offer, with a moat between them. Five chores float in the moat: the payroll form, autopay, cards on file, transfers and a new account. Switched by an agent, the chores become planks in a bridge and the paycheck rolls across.">
+        <text x="230" y="18" text-anchor="middle" font-size="13" class="t-strong">Robinhood came from trading. Revolut came from payments.</text>
+        <text x="230" y="35" text-anchor="middle" font-size="13" style="fill:var(--amber)" font-weight="800">Both are building the same castle, and both want the paycheck.</text>
+        ${castle(12, 96, 0)}${castle(352, 96, 1)}
+        <rect x="104" y="236" width="252" height="36" fill="#0b2236"/>
+        <path class="pc3-wave" d="M60 244 q10 -5 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" stroke="#6aa8ff" stroke-opacity=".45" stroke-width="1.4" fill="none"/>
+        <path class="pc3-wave b" d="M60 258 q10 -5 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" stroke="#6aa8ff" stroke-opacity=".3" stroke-width="1.4" fill="none"/>
+        <rect x="0" y="236" width="104" height="36" fill="var(--ink)"/><rect x="356" y="236" width="104" height="36" fill="var(--ink)"/>
+        <path d="M0 236 H104 V272 M356 272 V236 H460" stroke="var(--rule)" stroke-width="1.4" fill="none"/>
+        <text x="230" y="290" text-anchor="middle" font-size="11" style="letter-spacing:.14em" font-weight="800">THE MOAT</text>
+        ${CHORES.map(([n], i) => `<g class="pc3-plank" style="--i:${i};--hx:${[-6, 8, -2, -12, -2][i]}px;--hy:${[24, 33, 20, 31, 22][i]}px;--hr:${[-14, 9, -6, 12, -10][i]}deg"><g class="pc3-bob" style="animation-delay:${(i * -.4).toFixed(1)}s"><rect x="${106 + i * 50}" y="224" width="48" height="13" rx="2" fill="#5a4026" stroke="#c79a5b" stroke-width="1.2"/><text x="${130 + i * 50}" y="234" text-anchor="middle" font-size="9.5" font-weight="800" style="fill:#f3e2c4">${n}</text></g></g>`).join("")}
+        <g class="pc3-drone"><g class="pc3-hover"><path d="M-14 -16 H14" stroke="var(--violet)" stroke-width="2" stroke-linecap="round" class="pc3-prop"/><path d="M0 -16 V-11" stroke="var(--violet)" stroke-width="1.6"/><rect x="-13" y="-11" width="26" height="20" rx="8" fill="#8f76ff" stroke="#cfc6f5" stroke-width="1"/><rect x="-9" y="-7" width="18" height="10" rx="4" fill="#1b1530"/><path d="M-6 -2 h2 l2 -3 l2 5 l2 -2 h2" stroke="#4fd2ff" stroke-width="1.2" fill="none"/></g></g>
+        <g class="pc3-coin"><circle r="11" fill="var(--amber)" stroke="var(--ink)" stroke-width="2"/><text y="4.5" text-anchor="middle" font-size="13" font-weight="900" style="fill:var(--ink)">$</text></g>
+        <g class="pc3-ask"><rect x="118" y="48" width="224" height="26" rx="13" fill="rgba(106,168,255,.14)" stroke="var(--beat)"/><text x="230" y="65" text-anchor="middle" font-size="11.5" style="fill:var(--beat)" font-weight="800">“Move my paycheck to whichever pays more.”</text></g>
+        <text x="60" y="290" text-anchor="middle" font-size="12" class="t-strong">Your app</text><text x="400" y="290" text-anchor="middle" font-size="12" class="t-strong">A better offer</text>
+      </svg>
+      <p class="pc3-say" id="pc3Say"></p>
+    </div>${cap("Illustrative. On Uncapped, Vlad Tenev says AI agents could move bank and brokerage accounts for people and update the bills linked to them.")}`,
+  init: fr => {
+    const v = fr.querySelector(".pc3"), say = fr.querySelector("#pc3Say");
+    const T = { hand: `<b>Five chores</b> float in the moat between your paycheck and a better offer: ${CHORES.map(c => c[1]).join(", ")}. That moat is why Vlad calls a direct deposit Robinhood’s to lose.`, agent: "<b>One sentence</b> to an agent, and the chores become the bridge. Vlad expects agents to switch accounts for people. Then the moat is being the best castle, not the hardest one to leave." };
+    K.tabs(fr, ".pc3-t", m => { v.dataset.m = m; say.innerHTML = T[m]; });
+    K.onEnter(fr, () => { const b = fr.querySelector('.pc3-t[data-v="hand"]'); b && b.click(); setTimeout(() => { if (K.active(fr) && v.dataset.m === "hand") { const a = fr.querySelector('.pc3-t[data-v="agent"]'); a && a.click(); } }, 2600); });
+  } };
+})();
+
+// 27 · Every opinion is becoming a contract.
+(() => {
+const A = window.AX, cap = t => `<p class="cap">${t}</p>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// ---------------------------------------------------------- slide 1: a share goes into a prism; four contracts come out
+const BANDS = [
+  ["A year", "a long-dated option", "<b>A long-dated option:</b> pick a price and a date about a year out. Rates and the whole market still ride along.", "#6aa8ff"],
+  ["A quarter", "an option past earnings", "<b>An option past earnings:</b> a long-term holder can bet on one quarter without selling, Vlad’s example.", "#3fd6c8"],
+  ["A day", "a zero-day option", "<b>A zero-day option:</b> one day, no time decay. Same-day contracts were a record 66.2% of S&P 500 options volume in July 2026.", "#f4977a"],
+  ["One number", "an event contract", "<b>An event contract:</b> “Will EPS beat the estimate?” It pays $1 if yes, even when the stock falls on the beat.", "#b8a6ff"]
+];
+A["contracts-1a"] = { html: () => {
+    const ex = [254, 150], yc = i => 58 + i * 64, end = 452;
+    const band = (i, w) => `${ex[0]},${ex[1] - 3 + i * 2} ${end},${yc(i) - w} ${end},${yc(i) + w} ${ex[0]},${ex[1] - 1 + i * 2}`;
+    return `<div class="k-col ct1">
+      <svg viewBox="0 0 460 300" class="k-svg" aria-label="A prism. One share goes in as a beam of white light carrying everything at once: the next decade, rates, the CEO, this quarter, the day and EPS. Four contracts come out: a long-dated option on a year, an option past earnings on a quarter, a zero-day option on a day, and an event contract on one number.">
+        <defs><linearGradient id="ctBeam" x1="0" x2="1"><stop offset="0" stop-color="#eef4f8" stop-opacity=".25"/><stop offset="1" stop-color="#eef4f8" stop-opacity=".95"/></linearGradient>
+          <linearGradient id="ctGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4e3f0" stop-opacity=".16"/><stop offset="1" stop-color="#6aa8ff" stop-opacity=".05"/></linearGradient>
+          <linearGradient id="ctIn" x1="0" x2="1"><stop offset="0" stop-color="#eef4f8"/><stop offset=".55" stop-color="#3fd6c8"/><stop offset="1" stop-color="#b8a6ff"/></linearGradient>
+          <filter id="ctGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">One share in. Four contracts out.</text>
+        <polygon points="0,141 198,147 198,153 0,159" fill="url(#ctBeam)" filter="url(#ctGlow)" opacity=".7"/>
+        <polygon points="0,143 198,148 198,152 0,157" fill="url(#ctBeam)"/>
+        ${[0, 1, 2].map(k => `<circle r="2.4" fill="#fff" class="k-flow" style="offset-path:path('M0 150 H198');--t:1.6s;--d:${(k * .53).toFixed(2)}s"/>`).join("")}
+        <text x="14" y="128" font-size="12.5" class="t-strong">A share</text>
+        <text x="14" y="178" font-size="10.5">the next decade, rates, the CEO,</text><text x="14" y="192" font-size="10.5">this quarter, the day, EPS: all at once</text>
+        <polygon points="198,148 254,144 254,156 198,152" fill="url(#ctIn)" opacity=".85"/>
+        ${BANDS.map(([, , , c], i) => `<g class="ct1-band" data-i="${i}"><polygon class="ct1-glow" points="${band(i, 26)}" fill="${c}" filter="url(#ctGlow)"/><polygon class="ct1-fan" points="${band(i, 22)}" fill="${c}"/><circle r="2.2" fill="#fff" class="k-flow" style="offset-path:path('M${ex[0]} ${ex[1]} L${end} ${yc(i)}');--t:1.4s;--d:${(i * .3).toFixed(2)}s"/><circle r="2.2" fill="#fff" class="k-flow" style="offset-path:path('M${ex[0]} ${ex[1]} L${end} ${yc(i)}');--t:1.4s;--d:${(.7 + i * .3).toFixed(2)}s"/></g>`).join("")}
+        <polygon class="ct1-prism" points="226,64 168,236 284,236" fill="url(#ctGlass)" stroke="#d4e3f0" stroke-opacity=".75" stroke-width="1.6" stroke-linejoin="round"/>
+        <path class="ct1-gloss" d="M220 84 L184 196" stroke="#fff" stroke-opacity=".35" stroke-width="2.4" stroke-linecap="round"/>
+        ${BANDS.map(([n, inst, , c], i) => `<g class="ct1-lab" data-i="${i}"><text x="${end - 6}" y="${yc(i) - 1}" text-anchor="end" font-size="13.5" font-weight="900" style="fill:${c}">${n}</text><text x="${end - 6}" y="${yc(i) + 13}" text-anchor="end" font-size="10.5" class="t-strong">${inst}</text></g>`).join("")}
+        <text x="226" y="258" text-anchor="middle" font-size="11" style="letter-spacing:.12em" font-weight="800">THE MARKET, GOING GRANULAR</text>
+      </svg>
+      <div class="ct1-card" id="ct1Card"></div>
+    </div>${capLS("Illustrative. The quarter and the beat are Vlad Tenev’s examples on Uncapped; same-day share from Cboe, July 2026. Tap a color.", "Illustrative, after Vlad Tenev. Cboe, July 2026. Tap a color.")}`; },
+  init: fr => {
+    const bands = [...fr.querySelectorAll(".ct1-band")], labs = [...fr.querySelectorAll(".ct1-lab")], card = fr.querySelector("#ct1Card");
+    let auto = true, at = 3;
+    const pick = i => { bands.forEach((b, k) => b.classList.toggle("sel", k === i)); labs.forEach((b, k) => b.classList.toggle("sel", k === i)); card.innerHTML = BANDS[i][2]; card.style.setProperty("--c", BANDS[i][3]); };
+    [...bands, ...labs].forEach(b => b.addEventListener("click", () => { auto = false; pick(+b.dataset.i); }));
+    K.onEnter(fr, () => { auto = true; at = 0; pick(0); });
+    K.loop(fr, () => { if (!auto) return; at = (at + 1) % 4; pick(at); }, 2300);
+    pick(0);
+  } };
+
+// ---------------------------------------------------------- slide 2: the truth machine; a price, not a poll
+A["contracts-2a"] = { html: () => `<div class="k-col ct2">
+      <p class="ct2-q"><span>Event contract · pays $1 if yes</span>Will ACME beat its EPS estimate this quarter?</p>
+      <svg viewBox="0 0 460 238" class="k-svg" aria-label="A balance scale. Money bet on Yes sits in the left pan and money on No in the right. The beam tips toward whichever side has more, and a needle reads the Yes price, which is the crowd's odds.">
+        <path d="M154.8 90.6 A80 80 0 0 1 305.2 90.6" fill="none" stroke="var(--rule)" stroke-width="10" stroke-linecap="round"/>
+        <path d="M154.8 90.6 A80 80 0 0 1 305.2 90.6" fill="none" stroke="url(#ct2Dial)" stroke-width="3" stroke-linecap="round"/>
+        ${[-28, -14, 0, 14, 28].map(a => { const r = a * Math.PI / 180; return `<path d="M${(230 + 84 * Math.sin(r)).toFixed(1)} ${(118 - 84 * Math.cos(r)).toFixed(1)} L${(230 + 92 * Math.sin(r)).toFixed(1)} ${(118 - 92 * Math.cos(r)).toFixed(1)}" stroke="var(--dim)" stroke-width="1.2"/>`; }).join("")}
+        <defs><linearGradient id="ct2Dial" x1="0" x2="1"><stop offset="0" stop-color="#3fd6c8"/><stop offset=".5" stop-color="#d4e3f0"/><stop offset="1" stop-color="#f4977a"/></linearGradient></defs>
+        <text x="146" y="92" text-anchor="end" font-size="10.5" style="fill:var(--amber)" font-weight="800">YES</text><text x="314" y="92" font-size="10.5" style="fill:var(--coral)" font-weight="800">NO</text><text x="230" y="20" text-anchor="middle" font-size="10">50/50</text>
+        <rect x="225" y="118" width="10" height="96" rx="2" fill="#22405c"/><path d="M176 226 H284 L270 214 H190 Z" fill="#22405c"/>
+        <g id="ct2Beam"><path d="M230 118 L230 46" stroke="var(--paper)" stroke-width="2.4" stroke-linecap="round"/><circle cx="230" cy="46" r="4" fill="var(--paper)"/><rect x="100" y="113" width="260" height="10" rx="5" fill="#9fb3c4"/></g>
+        <circle cx="230" cy="118" r="8" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+        ${["l", "r"].map(s => `<g id="ct2P${s}"><path d="M0 0 L-38 62 M0 0 L38 62" stroke="#9fb3c4" stroke-width="1.2"/><path d="M-46 62 H46 Q40 82 0 82 Q-40 82 -46 62 Z" fill="${s === "l" ? "rgba(63,214,200,.22)" : "rgba(244,151,122,.2)"}" stroke="${s === "l" ? "var(--amber)" : "var(--coral)"}" stroke-width="1.6"/><g class="ct2-stack" id="ct2S${s}"></g><text y="100" text-anchor="middle" font-size="12" font-weight="900" style="fill:${s === "l" ? "var(--amber)" : "var(--coral)"}">${s === "l" ? "YES" : "NO"}</text></g>`).join("")}
+        <g id="ct2Drop"></g>
+      </svg>
+      <div class="ct2-row"><button type="button" class="k-b ct2-y" data-s="l">+ Money on Yes</button><div class="ct2-px"><b id="ct2Px">62¢</b><span>the Yes price, and the crowd’s odds</span></div><button type="button" class="k-b ct2-n" data-s="r">+ Money on No</button></div>
+      <div class="ct2-vs"><p class="poll"><b>Poll · 58%</b>Asked 1,000 people last week. It won’t move until the next one.</p><p class="live"><b>Price · <span id="ct2Px2">62¢</span></b>Moves with every trade, and being wrong costs money. One Yes costs <span id="ct2C">64¢</span> on Robinhood with fees.</p></div>
+    </div>${capLS("Illustrative contract, poll and trading. Fees from Robinhood’s event contracts page: 1¢ a contract, and exchanges typically add about 1¢.", "Illustrative. Robinhood: 1¢ a contract, plus about 1¢ to the exchange.")}`,
+  init: fr => {
+    const NS = "http://www.w3.org/2000/svg", rnd = K.rng(5), beam = fr.querySelector("#ct2Beam"), P = { l: fr.querySelector("#ct2Pl"), r: fr.querySelector("#ct2Pr") }, S = { l: fr.querySelector("#ct2Sl"), r: fr.querySelector("#ct2Sr") }, drop = fr.querySelector("#ct2Drop");
+    const W = { l: 31, r: 19 };
+    let ang = 0, shown = { l: -1, r: -1 };
+    const price = () => Math.round(W.l / (W.l + W.r) * 100);
+    const stack = s => { const n = Math.min(9, Math.max(1, Math.round(W[s] / 4))); if (n === shown[s]) return; shown[s] = n; S[s].innerHTML = Array.from({ length: n }, (_, i) => `<ellipse cx="${((i % 3) - 1) * 16}" cy="${74 - Math.floor(i / 3) * 6}" rx="8" ry="3.4" fill="#e0b25a" stroke="#b8862f" stroke-width=".7"/>`).join(""); };
+    const read = () => { const p = K.clamp(price(), 1, 99); fr.querySelector("#ct2Px").textContent = p + "¢"; fr.querySelector("#ct2Px2").textContent = p + "¢"; fr.querySelector("#ct2C").textContent = (p + 2) + "¢"; stack("l"); stack("r"); };
+    const add = (s, w) => { W[s] += w; W.l *= .992; W.r *= .992; read(); };
+    const toss = s => { const c = document.createElementNS(NS, "ellipse"); c.setAttribute("rx", 8); c.setAttribute("ry", 3.4); c.setAttribute("class", "ct2-fall"); const ex = s === "l" ? 100 : 360; c.setAttribute("cx", ex); c.setAttribute("cy", 0); drop.appendChild(c); let t = 0; const go = () => { t += .06; const y = (Math.sin(ang * Math.PI / 180) * (s === "l" ? -130 : 130) + 118 + 74) * Math.min(1, t * t); c.setAttribute("cy", y.toFixed(1)); if (t < 1 && c.isConnected) requestAnimationFrame(go); else c.remove(); }; requestAnimationFrame(go); };
+    fr.querySelectorAll(".ct2-y,.ct2-n").forEach(b => b.addEventListener("click", () => { toss(b.dataset.s); setTimeout(() => add(b.dataset.s, 4), 280); }));
+    K.raf(fr, dt => {
+      const target = -(W.l / (W.l + W.r) - .5) * 56;
+      ang += (target - ang) * Math.min(1, dt / 260);
+      beam.setAttribute("transform", `rotate(${ang.toFixed(2)} 230 118)`);
+      const a = ang * Math.PI / 180;
+      [["l", -130], ["r", 130]].forEach(([s, L]) => P[s].setAttribute("transform", `translate(${(230 + L * Math.cos(a)).toFixed(1)} ${(118 + L * Math.sin(a)).toFixed(1)})`));
+    });
+    // the crowd keeps trading: most money lands on Yes about 62% of the time, so the price drifts back after a push
+    K.loop(fr, () => add(rnd() < .62 ? "l" : "r", 1), 700);
+    read();
+  } };
+
+// ---------------------------------------------------------- slide 3: the plumbing, quarter by quarter
+const Q = [["Q2 ’25", 1.0, "~1B"], ["Q3 ’25", 2.3, "2.3B"], ["Q4 ’25", 8.5, "8.5B"], ["Q1 ’26", 8.8, "8.8B"], ["Q2 ’26", 13.6, "13.6B"], ["Q3 ’26", 16.4, "16.4B"]];
+const ROTHERA = [["—", "not built yet"], ["—", "not built yet"], ["coming", "deal set, Nov ’25"], ["coming", "deal closed, Jan ’26"], ["open", "since June ’26"], ["$100M+", "a year, first full qtr"]];
+const NOTE = ["<b>Q2 2025:</b> nearly 1 billion contracts on Robinhood, more than double Q1, routed to other exchanges, mostly Kalshi.", "<b>Q3 2025:</b> 2.3 billion. Prediction markets pass $100 million a year in revenue.", "<b>Q4 2025:</b> 8.5 billion. Robinhood and Susquehanna agree to buy 90% of the old LedgerX exchange.", "<b>Q1 2026:</b> 8.8 billion. The deal closes in January, and the exchange becomes Rothera.", "<b>Q2 2026:</b> 13.6 billion. Rothera opens in June, and event contracts out-earn crypto for the first time: $156 million to $100 million.", "<b>Q3 2026:</b> 16.4 billion, more than 7× a year earlier, and $173 million of revenue. Rothera passes $100 million a year. Earnings contracts arrive."];
+A["contracts-3a"] = { html: () => {
+    const pipe = (id, d, extra = "") => `<path class="ct3-pipe" id="${id}" d="${d}" ${extra}/><path class="ct3-core" id="${id}c" d="${d}"/>${[0, 1, 2].map(k => `<circle r="2.6" class="k-flow ct3-dot ${id}d" style="offset-path:path('${d}');--d:${(k * .55).toFixed(2)}s"/>`).join("")}`;
+    const box = (x, y, w, h, n, a, b, c, id) => `<g class="ct3-box" ${id ? `id="${id}"` : ""}><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="#0c1a2b" stroke="${c}" stroke-width="1.6"/><text x="${x + 10}" y="${y + 18}" font-size="12.5" class="t-strong">${n}</text><text x="${x + 10}" y="${y + 34}" font-size="13" font-weight="900" style="fill:${c};font-family:var(--display)" ${id ? `id="${id}a"` : ""}>${a}</text><text x="${x + 10}" y="${y + 48}" font-size="10" ${id ? `id="${id}b"` : ""}>${b}</text></g>`;
+    return `<div class="k-col ct3">
+      <svg viewBox="0 0 460 278" class="k-svg" aria-label="The plumbing of prediction markets. Robinhood routes event contracts to exchanges: Kalshi, valued at $40 billion, and Rothera, its own exchange with Susquehanna, which opened in June 2026. Polymarket runs its own exchange, and ICE sells its odds to institutions as data. A pipe to compute is planned. The pipes swell as Robinhood's quarterly contracts grow from about 1 billion to 16.4 billion.">
+        <text x="14" y="16" font-size="11" font-weight="800" style="letter-spacing:.14em;fill:var(--amber)">THE PLUMBING</text>
+        <text x="14" y="34" font-size="10.5">APPS</text><text x="186" y="34" font-size="10.5">EXCHANGES + CLEARING</text><text x="352" y="34" font-size="10.5">DATA · NEXT</text>
+        ${pipe("ctA", "M108 104 C150 104 150 66 186 66")}
+        ${pipe("ctB", "M108 116 C150 116 150 140 186 140")}
+        ${pipe("ctC", "M296 206 H352")}
+        <path class="ct3-plan" d="M178 259 H352"/>
+        <g class="ct3-app"><rect x="14" y="66" width="94" height="88" rx="12" fill="#0c1a2b" stroke="var(--amber)" stroke-width="1.8"/><text x="61" y="90" text-anchor="middle" font-size="12.5" class="t-strong">Robinhood</text><text x="61" y="118" text-anchor="middle" class="ct3-big" id="ct3N">16.4B</text><text x="61" y="134" text-anchor="middle" font-size="10" id="ct3Q">contracts, Q3 ’26</text><rect x="26" y="142" width="70" height="4" rx="2" fill="var(--ink-3)"/><rect x="26" y="142" width="70" height="4" rx="2" fill="var(--amber)" id="ct3Bar"/></g>
+        <g><rect x="14" y="184" width="94" height="44" rx="12" fill="#0c1a2b" stroke="var(--rule)" stroke-width="1.4"/><text x="61" y="204" text-anchor="middle" font-size="12" class="t-strong">Polymarket</text><text x="61" y="219" text-anchor="middle" font-size="10">its own app</text></g>
+        <path d="M108 206 H186" class="ct3-pipe thin"/><path d="M108 206 H186" class="ct3-core thin"/>${[0, 1].map(k => `<circle r="2.2" class="k-flow ct3-dot" style="offset-path:path('M108 206 H186');--t:1.6s;--d:${(k * .8).toFixed(1)}s"/>`).join("")}
+        ${box(186, 44, 110, 56, "Kalshi", "$40B", "Oct ’26 · $1T+/yr*", "var(--amber)")}
+        ${box(186, 116, 110, 56, "Rothera", "$100M+", "with Susquehanna", "var(--beat)", "ct3Ro")}
+        ${box(186, 184, 110, 50, "Polymarket", "$21B", "reported, Aug ’26", "var(--coral)")}
+        ${box(352, 184, 94, 50, "ICE", "data feed", "Polymarket’s odds", "var(--violet)")}
+        <g class="ct3-next"><rect x="352" y="244" width="94" height="30" rx="6" fill="none" stroke="var(--amber)" stroke-dasharray="4 3" stroke-width="1.4"/><text x="399" y="263" text-anchor="middle" font-size="11.5" font-weight="900" style="fill:var(--amber)">compute</text><path d="M257 265 l8 -15 l8 15 Z M259.6 260 h10.8" fill="#d98a12" stroke="#ffb86b" stroke-width=".8"/><text x="14" y="256" font-size="10.5" style="fill:var(--amber)" font-weight="800">Next pipe,</text><text x="14" y="270" font-size="10.5" style="fill:var(--amber)">in Kalshi’s plans</text></g>
+        <text x="352" y="90" font-size="10.5">Kalshi’s next:</text><text x="352" y="104" font-size="10.5" class="t-strong">stock perps,</text><text x="352" y="118" font-size="10.5" class="t-strong">indices, compute</text>
+      </svg>
+      <label class="k-row"><span>Quarter</span><input type="range" id="ct3R" min="0" max="5" step="1" value="5"><b id="ct3V">Q3 ’26</b></label>
+      <p class="ct3-say" id="ct3Say"></p>
+    </div>${capLS("Robinhood’s quarterly results; Q2 2025 is “nearly 1 billion,” from its earnings call. Pipe widths are illustrative. *Kalshi’s volume is annualized, as it reports it; Polymarket’s round as reported.", "Robinhood results; pipes illustrative. *Kalshi, annualized.")}`; },
+  init: fr => {
+    const r = fr.querySelector("#ct3R"), say = fr.querySelector("#ct3Say");
+    const set = i => {
+      const [q, v, l] = Q[i], live = i >= 4, w = 3 + v / 16.4 * 13;
+      fr.querySelector("#ct3V").textContent = q; fr.querySelector("#ct3N").textContent = l; fr.querySelector("#ct3Q").textContent = "contracts, " + q;
+      fr.querySelector("#ct3Bar").setAttribute("width", (70 * v / 16.4).toFixed(1));
+      const A = fr.querySelector("#ctA"), Ac = fr.querySelector("#ctAc"), B = fr.querySelector("#ctB"), Bc = fr.querySelector("#ctBc");
+      A.style.strokeWidth = (live ? w * .72 : w).toFixed(1); Ac.style.strokeWidth = ((live ? w * .72 : w) * .35).toFixed(1);
+      B.style.strokeWidth = (live ? w * .5 : 2).toFixed(1); Bc.style.strokeWidth = (live ? w * .18 : 0).toFixed(1);
+      fr.querySelector(".ct3").dataset.live = live ? 1 : 0;
+      fr.querySelectorAll(".ctAd,.ctBd").forEach(d => d.style.setProperty("--t", (2.6 - v / 16.4 * 1.6).toFixed(2) + "s"));
+      fr.querySelector("#ct3Roa").textContent = ROTHERA[i][0]; fr.querySelector("#ct3Rob").textContent = ROTHERA[i][1];
+      say.innerHTML = NOTE[i]; r.value = i;
+    };
+    r.addEventListener("input", () => set(+r.value));
+    K.onEnter(fr, () => { let i = 0; set(0); const iv = setInterval(() => { if (!K.active(fr) || +r.value !== i) return clearInterval(iv); i++; set(i); if (i >= 5) clearInterval(iv); }, 900); });
+    set(5);
+  } };
+})();
+
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];

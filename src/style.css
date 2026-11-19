@@ -1299,6 +1299,37 @@ html.paused .gng-list li{animation:none!important}
 @keyframes echo-warn{0%,49%{opacity:0;transform:scale(.5)}54%{opacity:1;transform:scale(1.25)}58%,84%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(1)}}
 .echo-glitch{opacity:0;animation:echo-glitch 3.6s steps(2,end) infinite}
 @keyframes echo-glitch{0%,50%{opacity:0;transform:translate(0,0)}54%{opacity:1;transform:translate(0,0)}60%{opacity:1;transform:translate(2px,-4px)}66%{opacity:1;transform:translate(-1.5px,-9px)}74%{opacity:1;transform:translate(2px,-13px)}84%,100%{opacity:0;transform:translate(0,-18px)}}
+/* Teller: winds up, feeds the paycheck across into the phone, the balance bar fills, the deposit checks in and a few coins pop */
+.echo-teller .echo-all{animation:echo-teller 4s ease-in-out infinite}
+.echo-teller .echo-fin-l,.echo-teller .echo-hand-l{animation:echo-teller-l 4s ease-in-out infinite}
+.echo-teller .echo-fin-r,.echo-teller .echo-hand-r{animation:echo-teller-r 4s ease-in-out infinite}
+@keyframes echo-teller{0%,100%{transform:translateY(0) rotate(0)}18%{transform:translateY(-1.5px) rotate(-2deg)}34%{transform:translateY(0) rotate(2.5deg)}52%,66%{transform:translateY(-3px) rotate(0)}80%{transform:translateY(0) rotate(0)}}
+@keyframes echo-teller-l{0%,100%{transform:rotate(-2deg)}18%{transform:rotate(-14deg)}32%,40%{transform:rotate(22deg)}52%{transform:rotate(4deg)}}
+@keyframes echo-teller-r{0%,28%,100%{transform:rotate(2deg)}40%{transform:rotate(-8deg)}54%,66%{transform:rotate(-14deg)}80%{transform:rotate(0)}}
+.xtl-env{transform-origin:4px 73px;animation:xtl-env 4s ease-in-out infinite}
+@keyframes xtl-env{0%,26%{opacity:1;transform:translate(0,0) scale(1)}40%{opacity:1;transform:translate(52px,-8px) scale(.62)}46%{opacity:0;transform:translate(78px,-10px) scale(.4)}82%{opacity:0;transform:translate(0,6px) scale(.8)}92%,100%{opacity:1;transform:translate(0,0) scale(1)}}
+.xtl-fill{transform-origin:93px 72px;transform:scaleX(.22);animation:xtl-fill 4s ease-out infinite}
+@keyframes xtl-fill{0%,44%{transform:scaleX(.22)}58%,88%{transform:scaleX(1)}96%,100%{transform:scaleX(.22)}}
+.xtl-ding{opacity:0;transform-origin:107px 51px;animation:xtl-ding 4s infinite}
+@keyframes xtl-ding{0%,48%{opacity:0;transform:scale(.4)}54%{opacity:1;transform:scale(1.2)}60%,80%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(1)}}
+.xtl-coin{opacity:0;animation:xtl-coin 4s ease-out infinite}
+@keyframes xtl-coin{0%,50%{opacity:0;transform:translateY(8px)}56%{opacity:1;transform:translateY(0)}72%{opacity:1;transform:translateY(-7px)}80%,100%{opacity:0;transform:translateY(-10px)}}
+/* Oracle: peers into the ball, the mist swirls and clears, the ball flashes, and the YES ticket in the other fin reprices from 62¢ to 71¢ */
+.echo-oracle .echo-all{animation:echo-oracle 4.4s ease-in-out infinite}
+.echo-oracle .echo-fin-l{animation:echo-oracle-l 4.4s ease-in-out infinite}
+.echo-oracle .echo-fin-r,.echo-oracle .echo-hand-r{animation:echo-oracle-r 4.4s ease-in-out infinite}
+@keyframes echo-oracle{0%,100%{transform:translateY(0) rotate(0)}20%,40%{transform:translateY(1px) rotate(-5deg)}52%{transform:translateY(-3px) rotate(0)}64%,82%{transform:translateY(-1px) rotate(2deg)}}
+@keyframes echo-oracle-l{0%,100%{transform:rotate(-2deg)}20%{transform:rotate(-16deg)}30%{transform:rotate(-8deg)}40%{transform:rotate(-16deg)}52%{transform:rotate(0)}}
+@keyframes echo-oracle-r{0%,48%,100%{transform:rotate(2deg)}58%,80%{transform:rotate(-18deg)}}
+.xor-mist{transform-origin:-3.5px 88px;animation:echo-spin 2.2s linear infinite}
+.xor-glow{transform-origin:-3.5px 88px;animation:xor-glow 4.4s ease-out infinite}
+@keyframes xor-glow{0%,44%{opacity:0;transform:scale(.6)}50%{opacity:.55;transform:scale(1.15)}62%,100%{opacity:0;transform:scale(1.3)}}
+.xor-p1{animation:xor-p1 4.4s steps(1,end) infinite}
+.xor-p2{opacity:0;animation:xor-p2 4.4s steps(1,end) infinite}
+@keyframes xor-p1{0%,52%{opacity:1}53%,96%{opacity:0}97%,100%{opacity:1}}
+@keyframes xor-p2{0%,52%{opacity:0}53%,96%{opacity:1}97%,100%{opacity:0}}
+.xor-up{opacity:0;animation:xor-up 4.4s infinite}
+@keyframes xor-up{0%,52%{opacity:0;transform:translateY(2px)}56%,92%{opacity:1;transform:translateY(0)}96%,100%{opacity:0}}
 
 [data-depth]{will-change:transform}
 
