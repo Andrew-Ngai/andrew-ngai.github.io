@@ -202,7 +202,7 @@ const BINS = {
 /* ---------------------------------------------------------------- theses */
 const THESES = [
   {
-    id: "automate", die: [0, 6], stance: "agree",
+    id: "automate", die: [6, 5], stance: "agree",
     layer: "M", tldr: ["Automate the researcher, not the economy", "OpenAI: 3.1 agent-workdays per human workday. Experiment compute is the speed limit; taste is the scarce input."],
     title: "Automate the researcher, not the economy.",
     h2: "Automate the researcher, | not the economy.",
@@ -222,7 +222,7 @@ const THESES = [
     viz: "automate", echo: { pose: "labcoat", acc: "labcoat", name: "Researcher" }
   },
   {
-    id: "agent", die: [4, 8], stance: "build",
+    id: "agent", die: [0, 8], stance: "build",
     layer: "A", tldr: ["An agent is a brain with a body", "Model = the brain. Harness = the body: tools, memory, permissions, the confirm button."],
     title: "An agent is a brain with a body.",
     h2: "An agent is | a brain with a body.",
@@ -242,7 +242,7 @@ const THESES = [
     viz: "agent", echo: { pose: "trail", acc: "trail", name: "Camper" }
   },
   {
-    id: "weights", die: [-2, -6], stance: "agree",
+    id: "weights", die: [-6, -5], stance: "agree",
     layer: "S", tldr: ["Weights are the new crown jewels", "A billion-dollar training run in one file. SL5 security is 5+ years away."],
     title: "Weights are the new crown jewels.",
     h2: "Weights are | the new crown jewels.",
@@ -263,7 +263,7 @@ const THESES = [
     viz: "weights", echo: { pose: "guard", acc: "guard", name: "Keeper" }
   },
   {
-    id: "ooms", die: [0, -3], stance: "build",
+    id: "ooms", die: [0, 0], stance: "build",
     layer: "I", tldr: ["The computer is now the building", "Every OOM lands somewhere physical. Back the glue: optics + power delivery."],
     title: "The computer is now the building.",
     h2: "The computer is | now the building.",
@@ -283,7 +283,7 @@ const THESES = [
     viz: "ooms", echo: { pose: "rackup", acc: "rackup", name: "Rack" }
   },
   {
-    id: "molecules", die: [7, 5], stance: "build",
+    id: "molecules", die: [0, -8], stance: "build",
     layer: "E", tldr: ["Molecules are easy. Machines are hard.", "The gas exists: ~1,200 wells ≈ 100 GW. Turbines, transformers and grid hookups take years. The scarce asset is a delivery slot."],
     title: "Molecules are easy. Machines are hard.",
     h2: "Molecules are easy. Machines are hard.",
@@ -304,7 +304,7 @@ const THESES = [
     viz: "molecules", echo: { pose: "machinist", acc: "machinist", name: "Hard hat" }
   },
   {
-    id: "bloom", die: [-9, 2], stance: "build",
+    id: "bloom", die: [0, -10], stance: "build",
     layer: "E", tldr: ["The power plant that ships like a server", "Fuel cells skip the turbine queue. 800 V DC racks could let them skip the transformer too."],
     title: "The power plant that ships like a server.",
     h2: "The power plant | that ships like a server.",
@@ -326,7 +326,7 @@ const THESES = [
     viz: "bloom", echo: { pose: "plugin", acc: "plugin", name: "Power plant" }
   },
   {
-    id: "fleet", die: [-3, 2], stance: "push",
+    id: "fleet", die: [-2, 0], stance: "push",
     layer: "I", tldr: ["A fleet, not a cluster", "$ on pace for 1 → 10 → 100 GW, but sites split. Inference eats training."],
     title: "A fleet, not a cluster.",
     h2: "A fleet, | not a cluster.",
@@ -347,7 +347,7 @@ const THESES = [
     viz: "fleet", echo: { pose: "lookout", acc: "lookout", name: "Captain" }
   },
   {
-    id: "gpulife", die: [4, 5], stance: "push",
+    id: "gpulife", die: [2, 0], stance: "push",
     layer: "I", tldr: ["Old GPUs move down the menu", "Treat a GPU like a jet, not a phone. Power is the real clock."],
     title: "Old GPUs don’t die. They move down the menu.",
     h2: "Old GPUs don’t die. They move | down the menu.",
@@ -369,7 +369,7 @@ const THESES = [
     viz: "gpulife", echo: { pose: "idle", acc: "waiter", name: "Maître d’" }
   },
   {
-    id: "saas", die: [3, -2], stance: "push",
+    id: "saas", die: [0, 6], stance: "push",
     layer: "A", tldr: ["AI eats the seat, not the software", "The screen collapses. The record + rulebook don’t. Price moves from seats to work."],
     title: "AI eats the seat, not the software.",
     h2: "AI eats the seat, | not the software.",
@@ -391,7 +391,7 @@ const THESES = [
     viz: "saas", echo: { pose: "chomp", acc: "chomp", name: "Record keeper" }
   },
   {
-    id: "neocloud", die: [-6, -7], stance: "build",
+    id: "neocloud", die: [0, -2], stance: "build",
     layer: "I", tldr: ["The clouds rent from the neoclouds", "Microsoft → Nebius $17.4B. Meta up to $27B. Cheapest GPU-hour wins."],
     title: "The clouds are renting from the neoclouds.",
     h2: "The clouds are renting | from the neoclouds.",
@@ -412,7 +412,7 @@ const THESES = [
     viz: "neocloud", echo: { pose: "forrent", acc: "forrent", name: "Neocloud" }
   },
   {
-    id: "builders", die: [-1, 9], stance: "build",
+    id: "builders", die: [-6, 5], stance: "build",
     layer: "F", tldr: ["Back the builders. Survive the bust.", "Situational Awareness fund: $255M → ~$20B → $1.6B. Bankruptcies don’t break the thesis. Leverage does."],
     title: "Back the builders. Survive the bust.",
     h2: "Back the builders. Survive the bust.",
@@ -435,7 +435,7 @@ const THESES = [
     viz: "builders", echo: { pose: "bricks", acc: "bricks", name: "Parachute" }
   },
   {
-    id: "moat", die: [-1, -9], stance: "build",
+    id: "moat", die: [6, -5], stance: "build",
     layer: "C", tldr: ["The slowdown is the moat", "Each harder step removes a competitor. “3 nm” gates sit ~45 nm apart."],
     title: "The slowdown is the moat.",
     h2: "The slowdown | is the moat.",
@@ -455,7 +455,7 @@ const THESES = [
     viz: "moat", echo: { pose: "croc", acc: "croc", name: "Moat keeper" }
   },
   {
-    id: "memory", die: [-6, 7], stance: "original",
+    id: "memory", die: [4, -5], stance: "original",
     layer: "C", tldr: ["The bottleneck moved below the GPU", "HBM is where the margin went. Agents are memory-bound."],
     title: "The bottleneck moved below the GPU.",
     h2: "The bottleneck moved | below the GPU.",
@@ -476,7 +476,7 @@ const THESES = [
     viz: "memory", echo: { pose: "stacker", acc: "stacker", name: "HBM stack" }
   },
   {
-    id: "backend", die: [0, 3], stance: "build",
+    id: "backend", die: [6, -7], stance: "build",
     layer: "C", tldr: ["Packaging: first job offshored, now the bottleneck", "Through 2028, count chips in packaging capacity, not wafers."],
     title: "Packaging was the first job we sent offshore. Now it’s the bottleneck.",
     h2: "Packaging was | the first job | we sent offshore. Now it’s | the bottleneck.",
@@ -496,7 +496,7 @@ const THESES = [
     viz: "backend", echo: { pose: "pickplace", acc: "pickplace", name: "Packager" }
   },
   {
-    id: "heat", die: [7, -5], stance: "build",
+    id: "heat", die: [6, -3], stance: "build",
     layer: "C", tldr: ["Going 3D saved Moore’s law. Heat is the bill.", "Every layer traps heat. Cooling moves inside the chip."],
     title: "Going 3D saved Moore’s law. Heat is the bill.",
     h2: "Going 3D | saved Moore’s law. Heat is the bill.",
@@ -517,7 +517,7 @@ const THESES = [
     viz: "heat", echo: { pose: "overheat", acc: "overheat", name: "Thermometer" }
   },
   {
-    id: "screentime", die: [9, 0], stance: "original",
+    id: "screentime", die: [-2, 8], stance: "original",
     layer: "A", tldr: ["Give people their time back", "Time with friends: 60 → 20 min/day (2003 → 2020). Count plans that happen."],
     title: "The best consumer AI will give you your time back.",
     h2: "The best consumer AI | will give you | your time back.",
@@ -538,7 +538,7 @@ const THESES = [
     viz: "screen", echo: { pose: "giftclock", acc: "giftclock", name: "Timekeeper" }
   },
   {
-    id: "quantum", die: [6, 1], stance: "build",
+    id: "quantum", die: [-8, -5], stance: "build",
     layer: "S", tldr: ["Quantum’s first job: breaking keys", "Google: < 500K qubits could break Bitcoin-grade keys in minutes. Migrate before Q-day."],
     title: "Quantum’s first big job is breaking keys, not training models.",
     h2: "Quantum’s first big job | is breaking keys, | not training models.",
@@ -559,7 +559,7 @@ const THESES = [
     viz: "quantum", echo: { pose: "superpose", acc: "qubit", name: "Qubit" }
   },
   {
-    id: "tokens", die: [6, -3], stance: "agree",
+    id: "tokens", die: [0, 2], stance: "agree",
     layer: "I", tldr: ["Rent GPUs to survive. Sell tokens to win.", "$0.10–0.30 to make 1M tokens; $5–15 to sell. The spread is melting."],
     title: "Rent GPUs to survive. Sell tokens to win.",
     h2: "Rent GPUs to survive. | Sell tokens to win.",
@@ -582,7 +582,7 @@ const THESES = [
     viz: "tokens", echo: { pose: "sell", acc: "tokens", name: "Token seller" }
   },
   {
-    id: "factory", die: [-4, 5], stance: "build",
+    id: "factory", die: [-2, -2], stance: "build",
     layer: "I", tldr: ["A token factory = a country of experts on a meter", "Google: 3.2 quadrillion tokens a month, up 7× in a year."],
     title: "A token factory is a country of experts on a meter.",
     h2: "A token factory | is a country of experts | on a meter.",
@@ -603,7 +603,7 @@ const THESES = [
     viz: "factory", echo: { pose: "foreman", acc: "hivis", name: "Foreman" }
   },
   {
-    id: "chipnames", die: [2, -6], stance: "original",
+    id: "chipnames", die: [8, -5], stance: "original",
     layer: "C", tldr: ["Every GPU name = a scientist + a year", "T4 → A100 → H100 → B200 → Rubin. Then read memory, bandwidth and how many act as one."],
     title: "Every GPU name is a scientist and a year.",
     h2: "Every GPU name | is a scientist and a year.",
@@ -624,7 +624,7 @@ const THESES = [
     viz: "chipnames", echo: { pose: "introduce", acc: "nametag", name: "Name tag" }
   },
   {
-    id: "openclaw", die: [-5, -3], stance: "build",
+    id: "openclaw", die: [2, 8], stance: "build",
     layer: "A", tldr: ["OpenClaw needs a badge", "0 → 391.8K GitHub stars in under a year. ~12% of audited skills were malicious."],
     title: "OpenClaw gave the brain a body. Now it needs a badge.",
     h2: "OpenClaw gave | the brain a body. | Now it needs a badge.",
@@ -644,7 +644,7 @@ const THESES = [
     viz: "openclaw", echo: { pose: "snap", acc: "claw", name: "Claw" }
   },
   {
-    id: "race", die: [-6, 1], stance: "agree",
+    id: "race", die: [6, 3], stance: "agree",
     layer: "M", tldr: ["America can’t afford 2nd place in AI", "Best models 2.7% apart. Investment 23× apart. Compute 7.5× apart. Models converge; inputs compound."],
     title: "America can’t afford second place in AI.",
     h2: "America can’t afford | second place in AI.",
@@ -665,7 +665,7 @@ const THESES = [
     viz: "race", echo: { pose: "sprint", acc: "baton", name: "Relay" }
   },
   {
-    id: "silicon", die: [-9, -2], stance: "original",
+    id: "silicon", die: [-6, -3], stance: "original",
     layer: "S", tldr: ["Software can be patched. Silicon has to be outlived.", "GPUHammer: 1 flipped bit, 80% → 0.08% accuracy. The trust boundary moves to the building."],
     title: "Software can be patched. Silicon has to be outlived.",
     h2: "Software can be patched. | Silicon has to be outlived.",
@@ -686,7 +686,7 @@ const THESES = [
     viz: "silicon", echo: { pose: "patch", acc: "patch", name: "Patcher" }
   },
   {
-    id: "paycheck", die: [4, -5], stance: "build",
+    id: "paycheck", die: [-8, 5], stance: "build",
     layer: "F", tldr: ["Trades went free. The paycheck is the prize.", "One trade: a few hundred dollars → $0. Robinhood Banking: ~$5B in year one. Revolut: 68M customers, $115B."],
     title: "Trades went free. Now the fight is for your paycheck.",
     h2: "Trades went free. | Now the fight is | for your paycheck.",
@@ -708,7 +708,7 @@ const THESES = [
     viz: "paycheck", echo: { pose: "teller", acc: "teller", name: "Teller" }
   },
   {
-    id: "contracts", die: [4, -8], stance: "agree",
+    id: "contracts", die: [-6, 3], stance: "agree",
     layer: "F", tldr: ["Every opinion is becoming a contract", "Robinhood: 16.4B event contracts in Q3, 7× a year ago. Same-day options: 66% of S&P 500 volume. Kalshi: $40B."],
     title: "Every opinion is becoming a contract.",
     h2: "Every opinion | is becoming | a contract.",
@@ -732,8 +732,8 @@ const THESES = [
 ];
 
 const PROBES = [
-  { die: [8, -1], title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
-  { die: [-8, -5], title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" }
+  { die: [-2, -8], layer: "E", title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
+  { die: [4, -7], layer: "C", title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" }
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
@@ -3007,7 +3007,34 @@ function buildMap() {
   }
   svg.innerHTML = `<circle class="wm-edge" r="${R}" fill="var(--ink-2)"/><circle class="wm-excl" r="${lim}" stroke-dasharray="2 6"/>${base}${hits}
     <circle cx="0" cy="${R}" r="10" fill="var(--ink)"/><path d="M-10 ${R} A10 10 0 0 1 10 ${R}" fill="none" stroke="var(--rule)" stroke-width="2"/>
-    <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>`;
+    <g id="probe" style="transform:translate(0px,0px);opacity:.35"><circle r="19"/><line x1="-34" y1="0" x2="-22" y2="0"/><line x1="22" y1="0" x2="34" y2="0"/><line x1="0" y1="-34" x2="0" y2="-22"/><line x1="0" y1="22" x2="0" y2="34"/></g>${isles()}`;
+
+  // each layer sits on its own island of dies; name it just above its top die
+  function isles() {
+    const NAME = { A: "APPS", M: "MODELS", I: "INFRA", C: "CHIPS", E: "ENERGY", S: "SECURITY", F: "MONEY" };
+    const by = {};
+    [...THESES, ...PROBES].forEach(t => (by[t.layer] = by[t.layer] || []).push(t.die));
+    return `<g aria-hidden="true">${Object.keys(NAME).filter(k => by[k]).map(k => {
+      const d = by[k], cx = d.reduce((a, p) => a + p[0], 0) / d.length * ds, top = Math.max(...d.map(p => p[1]));
+      return `<g class="wm-isle${k === "S" ? " sec" : k === "F" ? " fund" : ""}" data-layer="${k}" transform="translate(${cx.toFixed(1)} ${-top * ds})"><rect/><text>${NAME[k]}</text></g>`;
+    }).join("")}</g>`;
+  }
+  // keep the island names readable at any map size: never under ~9.5px on screen
+  function sizeIsles() {
+    const k = svg.getBoundingClientRect().width / 620;
+    if (!k) return;
+    const fs = Math.max(11, 9.5 / k);
+    svg.querySelectorAll(".wm-isle").forEach(g => {
+      const t = g.querySelector("text"), r = g.querySelector("rect");
+      t.setAttribute("font-size", fs.toFixed(1));
+      const w = t.getBBox().width + fs * 1.5, h = fs * 1.75, cy = -(ds / 2 + h / 2 + 1);
+      t.setAttribute("y", (cy + fs * .36).toFixed(1));
+      Object.entries({ x: -w / 2, y: cy - h / 2, width: w, height: h, rx: h / 2 }).forEach(([a, v]) => r.setAttribute(a, v.toFixed(1)));
+    });
+  }
+  sizeIsles();
+  if (document.fonts) document.fonts.ready.then(sizeIsles);
+  if (window.ResizeObserver) new ResizeObserver(sizeIsles).observe(svg);
 
   const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap"), decho = $("#dieEcho");
   const grid = $(".index-grid"), col = $(".map-col"), line = $("#linkLine");
@@ -3104,6 +3131,7 @@ function buildMap() {
       offTimer = setTimeout(() => {
         active = null;
         $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.remove("on", "scan"));
+        svg.querySelectorAll(".wm-isle").forEach(g => g.classList.remove("on"));
         readout.innerHTML = idle; probe.style.opacity = ".35"; tag.classList.remove("show"); line.innerHTML = "";
         decho.classList.remove("show"); echoFor = null;
       }, 120);
@@ -3114,6 +3142,7 @@ function buildMap() {
     active = id;
     const { t, isProbe, bin } = info(id);
     $$(".wm-hit, .t-item, .wm-probe-die").forEach(el => el.classList.toggle("on", el.dataset.id === id));
+    svg.querySelectorAll(".wm-isle").forEach(g => g.classList.toggle("on", g.dataset.layer === t.layer));
     if (changed && from === "die") {
       const it = itemEl(id);
       if (it) { it.classList.remove("scan"); void it.offsetWidth; it.classList.add("scan"); }
@@ -3315,7 +3344,8 @@ function shapeSvgs(root) {
 function sizePane(root) {
   const mb = $(".memo-body", root), pane = $(".viz-pane", root);
   if (!mb || !pane) return;
-  if (!matchMedia("(max-width: 860px)").matches) { mb.style.removeProperty("grid-template-rows"); return; }
+  // a phone held sideways (any width) is laid out side by side (see style.css), so the chart takes the full height there too
+  if (!matchMedia("(max-width: 860px)").matches || matchMedia("(orientation: landscape) and (max-height: 520px)").matches) { mb.style.removeProperty("grid-template-rows"); return; }
   const H = innerHeight, cap = Math.round(H * .48), soft = H * .34;
   mb.style.gridTemplateRows = `${cap}px minmax(0,1fr)`;
   const ps = getComputedStyle(pane), padY = parseFloat(ps.paddingTop) + parseFloat(ps.paddingBottom);
@@ -3355,13 +3385,25 @@ function fitFrames(root) {
     let need = natural();
     if (!slot || need <= slot + 1) return;
     let s = 1;
-    const floor = innerWidth < 600 ? .42 : .5;
+    // a phone held sideways has a short chart pane, so a busy chart may shrink further rather than spill onto its caption
+    const floor = innerWidth < 600 ? .42 : innerHeight < 520 ? .3 : .5;
     for (let k = 0; k < 4; k++) {
       s = Math.max(floor, Math.min(1, slot / need));
       body.style.width = (100 / s).toFixed(3) + "%";
       need = natural();
     }
     s = Math.max(floor, Math.min(1, slot / need));
+    // Widening only helps text that rewraps. A drawing with a fixed shape just grows taller as it widens, so on a short pane
+    // (a phone held sideways) the widened version can still spill. Then scale the chart as laid out instead, centered: same
+    // drawing, smaller, never over its caption. Use whichever way leaves it bigger.
+    body.style.width = "";
+    const asIs = natural(), s2 = Math.min(1, slot / asIs);
+    if (need * s > slot + 1 || s2 > s) {
+      body.style.height = (slot / s2).toFixed(1) + "px";
+      body.style.transformOrigin = "50% 0";
+      body.style.transform = `scale(${s2.toFixed(4)})`;
+      return;
+    }
     body.style.width = (100 / s).toFixed(3) + "%";
     body.style.height = (slot / s).toFixed(1) + "px";
     body.style.transformOrigin = "0 0";

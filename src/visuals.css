@@ -1184,3 +1184,5 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .ct2-px b{font-size:26px}
 .ct2-px span{font-size:10.5px}
 .ct2-vs{display:none}}
+/* a phone held sideways: the chart pane is short, so drop the helper lines under the money visuals (the slide carries them) */
+@media (orientation:landscape) and (max-height:520px){.pc1-say,.pc2-say,.pc3-say,.ct3-say,.ct1-card{display:none}}

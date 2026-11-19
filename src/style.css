@@ -215,6 +215,12 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,6.4vw,92p
 .wm-edge{fill:none;stroke:var(--rule);stroke-width:2}
 .wm-excl{fill:none;stroke:var(--grid);stroke-width:1}
 #probe{transition:transform .45s var(--ease)}
+.wm-isle{pointer-events:none}
+.wm-isle rect{fill:var(--ink);fill-opacity:.86;stroke:var(--violet);stroke-opacity:.6;stroke-width:1;transition:stroke-opacity .2s,fill-opacity .2s}
+.wm-isle text{fill:var(--violet);font-family:var(--label);font-weight:800;letter-spacing:.1em;text-anchor:middle}
+.wm-isle.sec rect{stroke:var(--coral)}.wm-isle.sec text{fill:var(--coral)}
+.wm-isle.fund rect{stroke:#7ee0a1}.wm-isle.fund text{fill:#7ee0a1}
+.wm-isle.on rect{stroke-opacity:1;stroke-width:1.6;fill-opacity:1}
 #probe line{stroke:var(--amber);stroke-width:1.2}
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}
 .readout{font-family:var(--label);font-size:17px;line-height:1.35;color:var(--dim);min-height:4.2em;border-top:1px solid var(--rule);padding-top:12px;display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
@@ -549,7 +555,7 @@ blockquote.pull .qc{color:var(--bin)}
 .t-item .t-upd-k{display:block}
 @media (max-width:520px){.t-item .t-die{grid-row:auto}.t-item .t-upd{display:inline-block;margin:0 0 0 10px;padding:1px 8px 2px;border-radius:999px;white-space:nowrap;vertical-align:1px}.t-item .t-upd-k{display:inline}}
 /* A slide taller than its window: fade the bottom edge and show "More" */
-.slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 72px),transparent);mask-image:linear-gradient(#000 calc(100% - 72px),transparent)}
+.slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 54px));mask-image:linear-gradient(#000 calc(100% - 104px),transparent calc(100% - 54px))}
 .slides-more{position:absolute;z-index:2;left:var(--gutter);bottom:14px;display:inline-flex;align-items:center;gap:6px;font-family:var(--label);font-weight:700;font-size:15px;letter-spacing:.03em;color:var(--paper);background:rgba(12,26,43,.94);border:1px solid var(--rule);border-radius:999px;padding:6px 14px 7px;cursor:pointer}
 .slides-more span{color:var(--bin)}
 .slides-more:hover{border-color:var(--paper)}
@@ -572,6 +578,37 @@ blockquote.pull .qc{color:var(--bin)}
 @media (max-width:380px){
   .memo-foot{gap:8px}
   .memo-foot .btn,.memo-src-btn,.memo-close{font-size:15px;padding:8px 11px 9px}
+}
+/* A phone turned sideways: too short to stack the chart over the slide, so go back to side by side, as on a laptop,
+   with slimmer bars and type so the slide and the chart each get the full height */
+@media (orientation:landscape) and (max-height:520px){
+  .memo-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  .viz-pane{order:0;border-left:1px solid var(--rule);border-bottom:0;padding:8px 14px 8px 12px}
+  .memo-head{gap:12px;padding:6px var(--gutter)}
+  .memo-meta .m-die{font-size:13px}
+  .memo-meta .m-title{font-size:17px}
+  .memo-prog{display:flex;position:absolute;left:var(--gutter);right:var(--gutter);bottom:-2px;gap:4px}
+  .memo-prog i{flex:1;width:auto;height:3px}
+  .memo-foot{padding:6px var(--gutter);gap:8px}
+  .memo-foot .count{display:none}
+  .memo-foot .btn,.memo-src-btn,.memo-close{font-size:14px;padding:6px 11px 7px}
+  .slide{padding:14px var(--gutter) 30px;gap:14px}
+  .slide.more{-webkit-mask-image:linear-gradient(#000 calc(100% - 78px),transparent calc(100% - 40px));mask-image:linear-gradient(#000 calc(100% - 78px),transparent calc(100% - 40px))}
+  .slide-k{font-size:14px}
+  .slide h2{font-size:clamp(22px,4vw,30px)}
+  blockquote.pull,blockquote.pull.q-m,blockquote.pull.q-l{font-size:clamp(19px,3.2vw,26px)}
+  .claim{font-size:clamp(19px,3.2vw,26px)}
+  .slide p,.takes li,.wrong{font-size:15px}
+  .takes{gap:14px}
+  .takes li{grid-template-columns:28px minmax(0,1fr);gap:2px 10px}
+  .takes li::before{font-size:30px}
+  .takes b{font-size:17px}
+  .bet{font-size:17px}
+  .ref{padding:8px 12px 10px}
+  .ref a,.ref span.ref-src{font-size:15px}
+  .bet-row .echo{width:84px}
+  .slides-more{bottom:8px;font-size:13px;padding:4px 11px 5px}
+  .viz .cap{font-size:12px}
 }
 
 /* viz frames */
