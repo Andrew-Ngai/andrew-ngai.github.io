@@ -1394,6 +1394,30 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xor-p2{0%,52%{opacity:0}53%,96%{opacity:1}97%,100%{opacity:0}}
 .xor-up{opacity:0;animation:xor-up 4.4s infinite}
 @keyframes xor-up{0%,52%{opacity:0;transform:translateY(2px)}56%,92%{opacity:1;transform:translateY(0)}96%,100%{opacity:0}}
+.echo-signal .echo-all,.echo-locksmith .echo-all,.echo-conductor .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-signal .echo-fin-l,.echo-signal .echo-hand-l,.echo-locksmith .echo-fin-r,.echo-locksmith .echo-hand-r,.echo-conductor .echo-fin-l,.echo-conductor .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
+.echo-signal .echo-fin-r,.echo-signal .echo-hand-r{animation:echo-signal-r 3.2s ease-in-out infinite}
+@keyframes echo-signal-r{0%,100%{transform:rotate(0)}30%,60%{transform:rotate(-10deg)}}
+.xsg-led{animation:xsg-led 1.2s steps(1,end) infinite}
+@keyframes xsg-led{0%,60%{opacity:1}61%,100%{opacity:.25}}
+.xsg-lens{filter:drop-shadow(0 0 3px #ff6b6b);animation:k-pulse 1s ease-in-out infinite}
+.xsg-ph{offset-path:path('M107 69 C114 96 74 108 50 107 C26 106 6 99 6 86');offset-rotate:0deg;animation:xsg-ph 1.5s linear infinite}
+@keyframes xsg-ph{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.echo-locksmith .echo-fin-l,.echo-locksmith .echo-hand-l{animation:echo-lock-l 3.6s ease-in-out infinite}
+@keyframes echo-lock-l{0%,100%{transform:rotate(0)}40%,60%{transform:rotate(8deg)}}
+.xlk-key{transform-origin:96px 72px;animation:xlk-key 3.6s ease-in-out infinite}
+@keyframes xlk-key{0%,30%,100%{transform:rotate(0)}42%,58%{transform:rotate(-24deg)}}
+.xlk-shackle{animation:xlk-open 3.6s ease-in-out infinite}
+@keyframes xlk-open{0%,44%{transform:translateY(0)}52%,80%{transform:translateY(-4.5px)}90%,100%{transform:translateY(0)}}
+.xlk-spark{opacity:0;animation:xlk-spark 3.6s ease-out infinite}
+@keyframes xlk-spark{0%,46%{opacity:0;transform:scale(.6)}54%{opacity:1;transform:scale(1)}72%,100%{opacity:0;transform:scale(1.1)}}
+.xlk-spark{transform-box:fill-box;transform-origin:center}
+.echo-conductor .echo-fin-r,.echo-conductor .echo-hand-r{animation:echo-cond-r 2.6s ease-in-out infinite}
+@keyframes echo-cond-r{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
+.xcd-car{offset-rotate:0deg;animation:xcd-car 4.8s linear infinite}
+@keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
+.xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
+@keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
 
 [data-depth]{will-change:transform}
 

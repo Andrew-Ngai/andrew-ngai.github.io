@@ -2009,9 +2009,426 @@ A["contracts-3a"] = { html: () => {
   } };
 })();
 
+// 28 · Silicon can’t make light. Follow the laser.
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const LT2SAY = { plug: "<b>Who gets paid:</b> module makers and assemblers, the laser makers inside each module, and signal-chip makers. Every module is a razor blade.", cpo: "<b>Who gets paid:</b> the switch chipmaker and its packager take the optics. The laser makers keep their blade: a module you still pull and replace." };
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// ---------------------------------------------------------- slide 1: the fiber bundle; optics outgrow the spending that buys them
+// Ethernet transceiver sales, indexed to 2023: doubled in 2024, +~90% in 2025, +120% expected in 2026
+const YRS = [["2023", 1, "1×", "", 86], ["2024", 2, "2×", "+100%", 170], ["2025", 3.8, "3.8×", "+90%", 268], ["2026", 8.36, "8.4×", "+120% est.", 384]];
+A["light-1a"] = { html: () => {
+    const TOP = 74, BASE = 222, per = 5, gap = 3.1;
+    const bundle = ([y, v, , , cx], yi) => {
+      const n = Math.round(v * per), w = (n - 1) * gap, x0 = cx - w / 2;
+      let s = "";
+      for (let i = 0; i < n; i++) {
+        const xt = x0 + i * gap, xb = cx + (xt - cx) * .22, d = `M${xb.toFixed(1)} ${BASE} C${xb.toFixed(1)} ${BASE - 60} ${xt.toFixed(1)} ${TOP + 70} ${xt.toFixed(1)} ${TOP}`;
+        s += `<path class="lt1-s" d="${d}"/>`;
+        if (i % 3 === yi % 3) s += `<circle r="1.7" class="k-flow lt1-p" style="offset-path:path('M${xb.toFixed(1)} ${BASE} C${xb.toFixed(1)} ${BASE - 60} ${xt.toFixed(1)} ${TOP + 70} ${xt.toFixed(1)} ${TOP}');--t:${(1.6 + (i % 5) * .25).toFixed(2)}s;--d:${((i * .37) % 2).toFixed(2)}s"/>`;
+        s += `<circle class="lt1-tip" cx="${xt.toFixed(1)}" cy="${TOP}" r="1.6"/>`;
+      }
+      return `<g class="lt1-b k-grow-y" data-i="${yi}" style="--d:${(.15 + yi * .35).toFixed(2)}s">${s}<rect x="${(cx - 7).toFixed(1)}" y="${BASE - 4}" width="14" height="12" rx="2" class="lt1-ferrule"/></g>`;
+    };
+    const ghostN = Math.round(3.8 * 1.7 * per), gw = (ghostN - 1) * gap;
+    return `<div class="k-col lt1">
+      <svg viewBox="0 0 460 290" class="k-svg" aria-label="Ethernet optical transceiver sales drawn as fiber bundles, one strand per fifth of 2023 sales. 2023: 5 strands. 2024: 10, double. 2025: 19, up about 90%. 2026: about 42, up 120% by LightCounting's estimate. A dashed outline shows the 2026 bundle if optics had grown only as fast as cloud capex, near 70%: about 32 strands.">
+        <defs><filter id="lt1Glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">The nerves outgrow the brain</text>
+        <text x="14" y="34" font-size="10.5">Ethernet transceiver sales. One strand = a fifth of 2023’s sales.</text>
+        <path class="lt1-ghost" d="M${(384 - gw / 2).toFixed(1)} ${TOP - 6} H${(384 + gw / 2).toFixed(1)} L${(384 + gw / 2 * .22).toFixed(1)} ${BASE} H${(384 - gw / 2 * .22).toFixed(1)} Z"/>
+        <text x="384" y="${TOP - 12}" text-anchor="middle" font-size="10" class="lt1-gl">if optics grew with capex (~70%)</text>
+        <g filter="url(#lt1Glow)" opacity=".55">${YRS.map((y, i) => `<g class="lt1-halo" data-i="${i}">${[...Array(Math.round(y[1] * per))].map((_, k) => { const n = Math.round(y[1] * per), xt = y[4] - (n - 1) * gap / 2 + k * gap; return `<circle cx="${xt.toFixed(1)}" cy="${TOP}" r="2.6"/>`; }).join("")}</g>`).join("")}</g>
+        ${YRS.map(bundle).join("")}
+        <path d="M30 ${BASE + 8} H448" stroke="var(--rule)" stroke-width="1.4"/>
+        ${YRS.map(([y, , x, g, cx], i) => `<g class="k-fade" style="--d:${(.3 + i * .35).toFixed(2)}s"><text x="${cx}" y="${BASE + 26}" text-anchor="middle" font-size="12.5" class="t-strong">${y}</text><text x="${cx}" y="${BASE + 44}" text-anchor="middle" class="lt1-x">${x}</text>${g ? `<text x="${cx}" y="${BASE + 59}" text-anchor="middle" font-size="10.5" class="lt1-g">${g}</text>` : ""}</g>`).join("")}
+      </svg>
+    </div>${capLS("Ethernet optical transceiver sales from LightCounting: doubled in 2024, up almost 90% in 2025, and 120% growth expected in 2026, its estimate. Strands to scale. Capex growth near 70% per forecasters including Nvidia.", "LightCounting; 2026 is its estimate. Strands to scale.")}`; },
+  init: fr => {
+    const bs = [...fr.querySelectorAll(".lt1-b")], hs = [...fr.querySelectorAll(".lt1-halo")];
+    K.loop(fr, n => { const i = n % 4; bs.forEach((b, k) => b.classList.toggle("hot", k === i)); hs.forEach((b, k) => b.classList.toggle("hot", k === i)); }, 1400);
+  } };
+
+// ---------------------------------------------------------- slide 2: where the razor blade goes when the optics move into the package
+const ENG = [[178, 92], [210, 92], [242, 92], [266, 118], [266, 150], [242, 176], [210, 176], [178, 176]];
+A["light-2a"] = { html: () => {
+    const mods = ENG.map(([ex, ey], i) => {
+      const my = 54 + i * 21, tx = ex - 409, ty = ey - my;
+      return `<g class="lt2-mod" style="--tx:${tx}px;--ty:${ty}px"><rect x="403" y="${my - 7}" width="34" height="15" rx="2.5" class="lt2-mb"/><circle cx="431" cy="${my + .5}" r="2.4" class="lt2-ld"/><rect x="408" y="${my - 3}" width="9" height="7" rx="1" class="lt2-dsp"/></g>`;
+    }).join("");
+    const traces = ENG.map((_, i) => { const my = 54 + i * 21, sy = 112 + i * 8; const d = `M252 ${sy} H${300 + i * 6} V${my + .5} H403`; return `<path class="lt2-cu" d="${d}"/><g class="lt2-sig"><circle r="2" class="k-flow" style="offset-path:path('${d}');--t:2.4s;--d:${(i * .27).toFixed(2)}s"/></g>`; }).join("");
+    const fibers = ENG.map(([ex, ey], i) => { const ls = i < 4 ? 92 : 192; const d = `M403 ${ls} C340 ${ls} ${ex + 30} ${ey} ${ex + 6} ${ey}`; return `<path class="lt2-fib" d="${d}" pathLength="100"/><g class="lt2-ph"><circle r="1.8" class="k-flow" style="offset-path:path('${d}');--t:1.3s;--d:${(i * .16).toFixed(2)}s"/></g>`; }).join("");
+    return `<div class="k-col lt2" data-m="plug">
+      <div class="k-seg"><button type="button" class="k-b" data-v="plug">Pluggable</button><button type="button" class="k-b" data-v="cpo">Co-packaged</button></div>
+      <svg viewBox="0 0 460 244" class="k-svg" aria-label="A switch seen from above. Pluggable: eight transceivers sit in the front panel, each with its own laser and signal chip, and copper traces carry the signal across the board to them. Co-packaged: the optical engines move beside the switch chip, the copper disappears, and the front panel keeps only two pluggable laser modules that feed light to the engines over fiber.">
+        <rect x="18" y="36" width="424" height="196" rx="8" class="lt2-box"/>
+        <text x="30" y="27" font-size="11" font-weight="800" style="letter-spacing:.12em">SWITCH, FROM ABOVE</text><text x="420" y="27" text-anchor="end" font-size="11" font-weight="800" style="letter-spacing:.12em">FRONT PANEL</text>
+        <rect x="398" y="40" width="44" height="188" class="lt2-panel"/>
+        ${traces}
+        <rect x="168" y="82" width="108" height="104" rx="6" class="lt2-pkg"/>
+        <rect x="186" y="100" width="64" height="68" rx="4" class="lt2-asic"/>
+        <text x="218" y="131" text-anchor="middle" font-size="11.5" class="t-strong">switch</text><text x="218" y="145" text-anchor="middle" font-size="11.5" class="t-strong">chip</text>
+        ${fibers}
+        <g class="lt2-els">${[92, 192].map(y => `<rect x="403" y="${y - 12}" width="34" height="24" rx="3" class="lt2-elsb"/><circle cx="420" cy="${y}" r="5" class="lt2-elsl"/>`).join("")}<text x="396" y="68" text-anchor="end" font-size="10.5" class="lt2-lab">laser</text><text x="396" y="80" text-anchor="end" font-size="10.5" class="lt2-lab">modules</text></g>
+        ${mods}
+        <text x="50" y="208" font-size="10.5" class="lt2-cap lt2-cap-p">copper crosses the board to each module</text><text x="50" y="208" font-size="10.5" class="lt2-cap lt2-cap-c">optics sit beside the chip; light comes in by fiber</text>
+      </svg>
+      <div class="lt2-grid">
+        <p><span>Signal path</span><b class="lt2-v" data-p="across the board" data-c="millimeters">across the board</b></p>
+        <p><span>Power</span><b class="lt2-v" data-p="baseline" data-c="3.5× less*">baseline</b></p>
+        <p><span>What you swap</span><b class="lt2-v" data-p="the whole module" data-c="just the laser">the whole module</b></p>
+      </div>
+      ${sayStack("lt2-say", "lt2Say", Object.values(LT2SAY))}
+    </div>${capLS("Schematic. *Nvidia’s figure for its co-packaged switches; Broadcom says its Bailly cuts power by up to 70%. Lasers sit in front-panel pluggable modules in both designs.", "Schematic. *Nvidia’s claim; Broadcom says up to 70%.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lt2"), say = fr.querySelector("#lt2Say");
+    let auto = true;
+    const set = m => { col.dataset.m = m; fr.querySelectorAll(".lt2-v").forEach(b => b.textContent = b.dataset[m === "cpo" ? "c" : "p"]); say.innerHTML = LT2SAY[m]; };
+    const tabs = K.tabs(fr, ".k-b", v => set(v), "plug");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="plug"]')); });
+    K.loop(fr, n => { if (!auto) return; tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "cpo" : "plug"}"]`)); }, 3200);
+  } };
+
+// ---------------------------------------------------------- slide 3: silicon can’t make light; the laser is sold out
+A["light-3a"] = { html: () => {
+    const Q0 = 2026, cols = 18, x0 = 22, cw = 23;
+    // a crystal drawn like a die field on the wafer map: tinted faces, crisp edges, a lattice of dies on top, crystal planes down the sides, corner marks
+    const cube = x => {
+      const P = (u, v) => [x + 40 * u + 40 * v, 70 - 18 * u + 18 * v], pt = a => a.map(n => n.toFixed(1)).join(" ");
+      let dies = "";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { const a = (i + .14) / 4, b = (i + .86) / 4, c = (j + .14) / 4, e = (j + .86) / 4; dies += `<path class="lt3-die" style="--d:${(((i + j) % 4) * .3 + (i * 7 + j * 3) % 5 * .08).toFixed(2)}s" d="M${pt(P(a, c))} L${pt(P(b, c))} L${pt(P(b, e))} L${pt(P(a, e))} Z"/>`; }
+      const planes = [1, 2, 3].map(k => `<path class="lt3-pl" d="M${x} ${70 + 11 * k} L${x + 40} ${88 + 11 * k} L${x + 80} ${70 + 11 * k}"/>`).join("");
+      const mk = (cx, cy, dx, dy) => `<path class="lt3-mk" d="M${cx + dx * 7} ${cy} H${cx} V${cy + dy * 7}"/>`;
+      return `<path d="M${x} 70 v44 l40 18 v-44 Z" class="lt3-f l"/><path d="M${x + 80} 70 v44 l-40 18 v-44 Z" class="lt3-f r"/>${planes}<path d="M${x} 70 l40 -18 l40 18 l-40 18 Z" class="lt3-f t"/>${dies}${mk(x - 9, 44, 1, 1)}${mk(x + 89, 44, -1, 1)}${mk(x - 9, 136, 1, -1)}${mk(x + 89, 136, -1, -1)}`;
+    };
+    const cells = [...Array(cols)].map((_, i) => { const yr = Q0 + Math.floor(i / 4), q = i % 4, x = x0 + i * cw; const sold = i <= 12; return `<rect class="lt3-q${sold ? " sold" : ""}" style="--d:${(i * .06).toFixed(2)}s" x="${x}" y="212" width="${cw - 3}" height="22" rx="2"/>${q === 0 ? `<text x="${x}" y="250" font-size="10.5" class="t-strong">${yr}</text>` : ""}`; }).join("");
+    return `<div class="k-col lt3">
+      <svg viewBox="0 0 460 262" class="k-svg" aria-label="Two crystals with current running into them. Silicon turns the energy into heat and stays dark. Indium phosphide turns it into light and fires a beam. Below, a calendar of quarters from 2026 to 2030: Lumentum's laser capacity is sold out through early 2029. In April 2026 the line was the end of 2028.">
+        <defs><linearGradient id="lt3Beam" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="#ff8a7a"/><stop offset="1" stop-color="#ff6b6b" stop-opacity="0"/></linearGradient>
+          <filter id="lt3Glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">Same current. Only one makes light.</text>
+        <g class="lt3-si" style="--lc:#b9c6d3">
+          ${cube(30)}
+          ${[0, 1, 2].map(k => `<circle r="2.2" class="k-flow lt3-e" style="offset-path:path('M14 96 H62');--t:1.2s;--d:${(k * .4).toFixed(1)}s"/>`).join("")}
+          ${[0, 1, 2].map(k => `<path class="lt3-heat" style="--d:${(k * .5).toFixed(1)}s" d="M${56 + k * 14} 60 q4 -6 0 -12 q-4 -6 0 -12"/>`).join("")}
+          <text x="70" y="152" text-anchor="middle" font-size="13" class="t-strong">Silicon</text><text x="70" y="167" text-anchor="middle" font-size="10.5">energy leaves as heat</text>
+        </g>
+        <g class="lt3-inp" style="--lc:#ff8a7a">
+          ${cube(210)}
+          ${[0, 1, 2].map(k => `<circle r="2.2" class="k-flow lt3-e" style="offset-path:path('M194 96 H242');--t:1.2s;--d:${(k * .4).toFixed(1)}s"/>`).join("")}
+          <rect class="lt3-beam" x="270" y="88" width="182" height="10" rx="5" fill="url(#lt3Beam)" filter="url(#lt3Glow)"/><rect class="lt3-beam" x="270" y="91" width="182" height="4" rx="2" fill="url(#lt3Beam)"/>
+          <text x="250" y="152" text-anchor="middle" font-size="13" class="t-strong">Indium phosphide</text><text x="250" y="167" text-anchor="middle" font-size="10.5">energy leaves as light</text>
+        </g>
+        <text x="${x0}" y="202" font-size="11" font-weight="800" style="letter-spacing:.12em;fill:var(--coral)">LUMENTUM’S LASER CAPACITY, BY QUARTER</text>
+        ${cells}
+        <path class="lt3-was" d="M${x0 + 12 * cw - 1.5} 206 V240"/><text x="${x0 + 12 * cw - 4}" y="${x0 ? 262 : 262}" text-anchor="end" font-size="10" class="lt3-wl">Apr: “through 2028”</text>
+        <path class="lt3-now" d="M${x0 + 13 * cw - 1.5} 204 V242"/><text x="${x0 + 13 * cw + 2}" y="262" font-size="10" class="lt3-nl">Oct: “early 2029”</text>
+      </svg>
+      <div class="lt3-stats"><p><b>~70%</b>of demand it can’t meet for some products next year</p><p><b>$2B</b>each from Nvidia into Lumentum and Coherent, March 2026</p><p><b>5</b>indium phosphide fabs at Lumentum, still short</p></div>
+    </div>${capLS("Schematic crystals. Silicon’s bandgap is indirect, so it can guide and switch light but not emit it. Sold-out dates and unmet demand from Lumentum’s CEO on Bloomberg TV, Oct 9, 2026; Nvidia’s stakes per TrendForce.", "Schematic. Lumentum’s CEO, Oct 2026; TrendForce.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lt3");
+    K.onEnter(fr, () => { col.classList.remove("on"); setTimeout(() => col.classList.add("on"), 500); });
+    col.classList.add("on");
+  } };
+})();
+
+// 29 · The CUDA moat is deepest where the money isn’t.
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// Illustrative: switching = $500M of rewrites, retraining and one risky run, whatever your size
+const SPEND = [["$10M", 1e7], ["$100M", 1e8], ["$1B", 1e9], ["$10B", 1e10], ["$50B", 5e10]];
+const COST = 5e8;
+const VERDICT = ["Fatal. That’s 50 years of your compute.", "Fatal. Five years of compute just to leave.", "Painful: half a year’s compute.", "A rounding error: 5% for a second supplier.", "1%. The bridge pays for itself."];
+
+// ---------------------------------------------------------- slide 2: the departures board
+const FLIGHTS = [
+  ["2025", "GOOGLE", "Gemini 3 training", "TPU", "DEPARTED", "Trained Gemini 3 on its own TPUs, not Nvidia GPUs."],
+  ["2025", "ANTHROPIC", "Claude", "TPU · TRAINIUM", "DEPARTED", "Claude Opus 4.5 ran mostly on Google’s TPUs and Amazon’s Trainium. Anthropic’s TPU deal covers up to a million chips."],
+  ["FEB 26", "META", "model training", "TPU, RENTED", "BOARDING", "One of Nvidia’s biggest buyers reportedly signed a multibillion-dollar deal to rent Google’s TPUs for training."],
+  ["FEB 26", "META", "up to $60B", "AMD", "BOARDING", "Days earlier, AMD said it would sell Meta up to $60 billion of AI chips."],
+  ["2H 26", "OPENAI", "first gigawatt", "AMD MI450", "BOARDING", "Its 6-gigawatt deal with AMD starts with 1 gigawatt of MI450s in the second half of 2026."]
+];
+A["cuda-2a"] = { html: () => `<div class="k-col cu2">
+      <div class="cu2-board" role="table" aria-label="Departures from Nvidia: big buyers moving work to other chips">
+        <div class="cu2-h" role="row"><span>When</span><span>Buyer</span><span>To</span><span>Status</span></div>
+        ${FLIGHTS.map(([w, b, sub, to, st], i) => `<div class="cu2-r" role="row" data-i="${i}" tabindex="0"><span class="cu2-f" data-t="${w}">${w}</span><span><span class="cu2-f" data-t="${b}">${b}</span><small>${sub}</small></span><span class="cu2-f" data-t="${to}">${to}</span><span class="cu2-f cu2-st ${st === "DEPARTED" ? "cu2-gone" : "cu2-boarding"}" data-t="${st}">${st}</span></div>`).join("")}
+      </div>
+      ${sayStack("cu2-say", "cu2Say", FLIGHTS.map(f => `<b>${f[1]}:</b> ${f[5]}`))}
+      <p class="cu2-q"><b>Jensen Huang’s retort:</b> TPU growth is “100% Anthropic.” One buyer with the right engineers is enough.</p>
+    </div>${capLS("Departures are workloads moving off Nvidia, not buyers leaving it: Meta and OpenAI still buy Nvidia too. Sources: VentureBeat, SemiAnalysis, Reuters, SiliconANGLE, OpenAI, AIM.", "Work moving off Nvidia; all still buy Nvidia too.")}`,
+  init: fr => {
+    const rows = [...fr.querySelectorAll(".cu2-r")], say = fr.querySelector("#cu2Say");
+    const CH = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$";
+    const flap = el => { const t = el.dataset.t; let n = 0; const iv = setInterval(() => { n++; el.textContent = [...t].map((c, i) => c === " " || c === "·" || c === "," || n > 6 + i * .6 ? c : CH[(Math.random() * CH.length) | 0]).join(""); if (n > 8 + t.length * .6) { el.textContent = t; clearInterval(iv); } }, 45); };
+    let auto = true, at = 0;
+    const pick = i => { rows.forEach((r, k) => r.classList.toggle("sel", k === i)); say.innerHTML = `<b>${FLIGHTS[i][1]}:</b> ${FLIGHTS[i][5]}`; };
+    rows.forEach((r, i) => { const go = () => { auto = false; pick(i); }; r.addEventListener("click", go); r.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }); });
+    K.onEnter(fr, () => { auto = true; at = 0; pick(0); if (!K.paused()) rows.forEach((r, i) => setTimeout(() => r.querySelectorAll(".cu2-f").forEach(flap), i * 180)); });
+    K.loop(fr, () => { if (!auto) return; at = (at + 1) % rows.length; pick(at); }, 2600);
+    pick(0);
+  } };
+
+// ---------------------------------------------------------- slide 1: a sonar sweep of the moat
+// Above the waterline, Nvidia's sales (areas to scale); below it, the moat's depth for each size of buyer.
+const SON = [[62, 120, "50 yrs"], [146, 92, "5 yrs"], [230, 64, "½ yr"], [314, 36, "5%"], [398, 15, "1%"]];
+const SY = 108;
+const smooth = p => p.slice(1).map((q, i) => { const a = p[i - 1] || p[i], b = p[i], c = q, d = p[i + 2] || q; return `C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)} ${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (d[0] - b[0]) / 6).toFixed(1)} ${(c[1] - (d[1] - b[1]) / 6).toFixed(1)} ${c[0]} ${c[1]}`; }).join(" ");
+A["cuda-1c"] = { html: () => {
+    const bed = [[26, SY + 124], ...SON.map(([x, d]) => [x, SY + d]), [434, SY + 13]];
+    const water = `M26 ${SY} L26 ${SY + 124} ${smooth(bed)} L434 ${SY} Z`;
+    const ground = `M26 ${SY + 124} ${smooth(bed)} L434 252 L26 252 Z`;
+    return `<div class="k-col son">
+      <svg viewBox="0 0 460 252" class="k-svg" aria-label="A sonar cross-section of the moat. Above the waterline sit Nvidia's sales, areas to scale: a thin layer spread across everyone else, 56%, and one tall pile for its top three buyers, 44%. Below the waterline, the moat's depth for each size of buyer, measured as an illustrative $500 million switch against a year of its compute: 50 years at $10 million a year, 5 years at $100 million, half a year at $1 billion, 5% at $10 billion and 1% at $50 billion. The moat is deepest under the small buyers and shallowest under the pile of money.">
+        <defs><linearGradient id="sonWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6aa0"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
+          <pattern id="sonCoin" width="7" height="4" patternUnits="userSpaceOnUse"><rect width="7" height="4" fill="#8f6a2e"/><path d="M0 .3H7" stroke="#c9a24a" stroke-width=".7"/><path d="M3.5 0V4" stroke="#6e5022" stroke-width=".5"/></pattern>
+          <clipPath id="sonClip"><path d="${water}"/></clipPath></defs>
+        <text x="14" y="17" font-size="13" class="t-strong">Deepest where the money isn’t</text>
+        <text x="14" y="32" font-size="10.5">Nvidia’s sales above the waterline. The moat below, by buyer size.</text>
+        <path d="${ground}" class="son-ground"/>
+        <path d="${water}" fill="url(#sonWater)" class="son-water"/>
+        <g clip-path="url(#sonClip)"><g id="sonPing" class="son-ping">${[0, 1, 2].map(k => `<circle r="10" style="--d:${(k * .7).toFixed(1)}s"/>`).join("")}</g>
+          ${[0, 1, 2, 3, 4, 5].map(k => `<path class="son-wave" d="M${26 + k * 70} ${SY + 3} q8 -3 16 0 t16 0" style="--d:${(k * .4).toFixed(1)}s"/>`).join("")}</g>
+        ${SON.map(([x, d, l], i) => `<g class="son-snd" data-i="${i}"><circle cx="${x}" cy="${SY + d}" r="2.6"/><text x="${x}" y="${d < 45 ? SY + d + 15 : SY + d - 7}" text-anchor="middle" font-size="10.5">${l}</text></g>`).join("")}
+        <path d="M26 ${SY} H434" class="son-surf"/>
+        <rect x="30" y="${SY - 22}" width="400" height="6" fill="url(#sonCoin)" class="son-band"/>
+        <rect x="378" y="${SY - 65}" width="44" height="43" fill="url(#sonCoin)" class="son-pile"/><ellipse cx="400" cy="${SY - 65}" rx="22" ry="3" class="son-top"/>
+        <text x="372" y="${SY - 50}" text-anchor="end" font-size="11.5" class="t-strong">Top 3 buyers · 44%</text><text x="372" y="${SY - 37}" text-anchor="end" font-size="10">of Nvidia’s sales</text>
+        <text x="30" y="${SY - 27}" font-size="10.5">Everyone else · 56%</text>
+        <g id="sonBoat" class="son-boat"><rect x="-1" y="5" width="2" height="1" class="son-line" id="sonLine"/><path d="M-15 -3 H15 L10 5 H-10 Z" class="son-hull"/><path d="M-4 -3 V-9 H5 V-3" class="son-cab"/><circle cx="0" cy="5" r="2" class="son-dome"/></g>
+        ${SON.map(([x], i) => `<text x="${x}" y="246" text-anchor="middle" font-size="10.5" class="son-ax" data-i="${i}">${SPEND[i][0]}</text>`).join("")}
+      </svg>
+      <label class="k-row"><span>Buyer’s compute a year</span><input type="range" id="sonR" min="0" max="4" step="1" value="0"><b id="sonV">$10M</b></label>
+      <p class="k-out cu1-out"><span>Switching ≈</span><b id="sonX">50×</b><span id="sonSay"></span></p>
+    </div>${capLS("Illustrative: switching priced at $500M of rewrites, retraining and one risky run, at any size. Money areas to scale; the 44% is The Information’s count from Nvidia’s filings.", "Illustrative $500M switch. The 44%: The Information.")}`; },
+  init: fr => {
+    const r = fr.querySelector("#sonR"), boat = fr.querySelector("#sonBoat"), ping = fr.querySelector("#sonPing"), line = fr.querySelector("#sonLine");
+    const snd = [...fr.querySelectorAll(".son-snd")], ax = [...fr.querySelectorAll(".son-ax")];
+    const set = i => {
+      const [x, d] = SON[i], [lab, sp] = SPEND[i], k = COST / sp;
+      boat.style.transform = `translate(${x}px,${SY - 3}px)`;
+      ping.style.transform = `translate(${x}px,${SY + 3}px)`;
+      line.style.transform = `scaleY(${d - 6})`;
+      snd.forEach((s, j) => s.classList.toggle("on", j === i)); ax.forEach((s, j) => s.classList.toggle("on", j === i));
+      fr.querySelector("#sonV").textContent = lab;
+      const X = fr.querySelector("#sonX"); X.textContent = k >= 1 ? Math.round(k) + "×" : Math.round(k * 100) + "%"; X.classList.toggle("c", k >= .5);
+      fr.querySelector("#sonSay").textContent = (k >= 1 ? "a year of its compute" : "of a year’s compute") + ". " + VERDICT[i].replace(/^1%\. /, "");
+      r.value = i;
+    };
+    r.addEventListener("input", () => set(+r.value));
+    K.onEnter(fr, () => { let i = 0; set(0); const iv = setInterval(() => { if (!K.active(fr) || +r.value !== i) return clearInterval(iv); i++; set(i); if (i >= 4) clearInterval(iv); }, 1300); });
+    set(0);
+  } };
+
+// ---------------------------------------------------------- slide 3: the universal adapter
+const SOCK = [
+  ["nv", "Nvidia", "<b>Nvidia:</b> the model still runs where it always did. A translator doesn’t close the home socket; it opens the others."],
+  ["tpu", "Google TPU", "<b>Google TPU:</b> Google built its own stack for this, and a Google team open-sourced an agent that writes TPU kernels."],
+  ["amd", "AMD", "<b>AMD:</b> AMD runs agents that write and tune kernels for its GPUs, and Claude Code ported a CUDA backend to AMD’s ROCm in about 30 minutes."],
+  ["trn", "Trainium", "<b>Amazon Trainium:</b> Anthropic trains and serves across TPUs, Trainium and GPUs. The few built their translators in-house; the bet is selling one to the many."]
+];
+// each chip's socket, face on: the holes, and the prongs the translator grows to fit them
+const PINS = {
+  nv: [["r", -10, -9, 4.5, 18], ["r", 5.5, -9, 4.5, 18]],
+  tpu: [["r", -2.2, -13, 4.4, 11], ["r", -13, 4, 10, 4.4], ["r", 3, 4, 10, 4.4]],
+  amd: [["c", -8, 0, 4.4], ["c", 8, 0, 4.4]],
+  trn: [["l", -12, -10, -5, -1], ["l", 12, -10, 5, -1], ["l", 0, 5, 0, 13]]
+};
+const pinSvg = (k, cls) => PINS[k].map(p => p[0] === "r" ? `<rect class="${cls}" x="${p[1]}" y="${p[2]}" width="${p[3]}" height="${p[4]}" rx="1"/>` : p[0] === "c" ? `<circle class="${cls}" cx="${p[1]}" cy="${p[2]}" r="${p[3]}"/>` : `<path class="${cls} ln" d="M${p[1]} ${p[2]} L${p[3]} ${p[4]}"/>`).join("");
+const AX3 = [190, 262, 334, 406], AY = 178, HY = 112;
+A["cuda-3b"] = { html: () => `<div class="k-col ad">
+      <svg viewBox="0 0 460 244" class="k-svg" aria-label="A universal travel adapter for AI chips. On the left, your model, written for CUDA. Its cable runs into a translator that hops along a power strip with four different sockets: Nvidia, Google's TPU, AMD and Amazon's Trainium. At each socket the translator grows the prongs that fit, plugs in, and the socket lights up: the same model runs on every chip. Inside the translator: kernel agents, compilers and inference runtimes.">
+        <text x="14" y="17" font-size="13" class="t-strong">The next CUDA is a translator</text>
+        <text x="14" y="32" font-size="10.5">One model in. Any chip out.</text>
+        <g class="ad-model"><rect x="14" y="58" width="104" height="52" rx="6"/><text x="26" y="77" font-size="9.5" class="ad-k">YOUR MODEL</text><text x="26" y="94" font-size="11.5" class="t-strong">written for CUDA</text><circle cx="118" cy="84" r="3.4" class="ad-port"/></g>
+        <path id="adCable" class="ad-cable" d="M118 84 C160 84 190 60 190 86"/><path id="adCur" class="ad-cur k-ants" d="M118 84 C160 84 190 60 190 86"/>
+        <rect x="156" y="148" width="284" height="60" rx="10" class="ad-strip"/>
+        ${SOCK.map(([k, n], i) => `<g class="ad-sock" data-i="${i}"><rect x="${AX3[i] - 23}" y="${AY - 23}" width="46" height="46" rx="8" class="ad-plate"/><g transform="translate(${AX3[i]} ${AY})">${pinSvg(k, "ad-hole")}</g><text x="${AX3[i]}" y="225" text-anchor="middle" font-size="11" class="ad-n">${n}</text><text x="${AX3[i]}" y="238" text-anchor="middle" font-size="10" class="ad-ok">runs</text></g>`).join("")}
+        <g id="adT" class="ad-t" style="transform:translate(${AX3[0]}px,${HY}px)"><rect x="-27" y="-27" width="54" height="54" rx="9" class="ad-body"/><circle r="17" class="ad-dial"/>${SOCK.map(([k]) => `<g class="ad-face" data-k="${k}">${pinSvg(k, "ad-pin")}</g>`).join("")}<text x="-31" y="-31" text-anchor="end" font-size="10.5" class="ad-tl">translator</text></g>
+        <text x="14" y="140" font-size="10" class="ad-in"><tspan x="14" class="ad-ink">INSIDE IT</tspan><tspan x="14" dy="14">kernel agents</tspan><tspan x="14" dy="13">compilers</tspan><tspan x="14" dy="13">inference runtimes</tspan></text>
+      </svg>
+      ${sayStack("cu3-say", "adSay", SOCK.map(s => s[2]))}
+    </div>${capLS("Schematic. Examples: Google’s TPU stack and MaxKernel, AMD’s GEAK kernel agents, a Claude Code port to ROCm (Jan 2026), Anthropic’s mix of TPUs, Trainium and GPUs.", "Schematic. MaxKernel, GEAK, a Claude Code port to ROCm.")}`,
+  init: fr => {
+    const t = fr.querySelector("#adT"), cab = fr.querySelector("#adCable"), cur = fr.querySelector("#adCur"), say = fr.querySelector("#adSay");
+    const socks = [...fr.querySelectorAll(".ad-sock")], faces = [...fr.querySelectorAll(".ad-face")];
+    let at = 0, x = AX3[0], y = HY, timers = [], auto = true;
+    const put = (nx, ny) => { x = nx; y = ny; t.style.transform = `translate(${nx}px,${ny}px)`; };
+    const go = i => {
+      timers.forEach(clearTimeout); timers = []; at = i;
+      socks.forEach(s => s.classList.remove("on")); cur.classList.remove("on"); say.innerHTML = SOCK[i][2];
+      const quick = K.paused();
+      put(x, HY);
+      timers.push(setTimeout(() => { put(AX3[i], HY); faces.forEach(f => f.classList.toggle("on", f.dataset.k === SOCK[i][0])); }, quick ? 0 : 380));
+      timers.push(setTimeout(() => { put(AX3[i], AY); }, quick ? 0 : 1000));
+      timers.push(setTimeout(() => { socks[i].classList.add("on"); cur.classList.add("on"); }, quick ? 0 : 1450));
+    };
+    // the cable follows the translator as it moves
+    K.raf(fr, () => { const m = new DOMMatrix(getComputedStyle(t).transform), cx = m.e, cy = m.f - 27; const d = `M118 84 C${(118 + cx) / 2 + 10} 84 ${cx} ${Math.min(cy - 40, 60)} ${cx} ${cy}`; cab.setAttribute("d", d); cur.setAttribute("d", d); });
+    socks.forEach((s, i) => { s.addEventListener("click", () => { auto = false; go(i); }); });
+    K.onEnter(fr, () => { auto = true; go(0); });
+    K.loop(fr, () => { if (auto) go((at + 1) % 4); }, 3200);
+    go(0);
+  } };
+
+})();
+
+// 30 · Every buildout runs in a circle. Look for the exit.
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const CF1 = {
+  now: ["The loop has doors", "<b>2026:</b> money comes in from outside. Anthropic booked $33.2 billion of revenue in nine months, OpenAI reports 50 million paying subscribers, and the IPO brought public investors in. Debt is real too, but it isn’t the only way in."],
+  then: ["2000: a loop with no exit", "<b>2000:</b> Lucent committed about $8.1 billion of loans to startups buying its gear. The subscribers meant to repay them hadn’t arrived, so the only money coming in was borrowed, and in 2001 the borrowers went under."]
+};
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// ---------------------------------------------------------- slide 1: the loop and its doors
+A["circular-1a"] = { html: () => {
+    const C = [222, 136], R = 82, ring = `M${C[0]} ${C[1] - R} A${R} ${R} 0 1 1 ${C[0] - .1} ${C[1] - R}`;
+    const st = (x, y, a, b, cls = "") => `<g class="cf1-st ${cls}"><rect x="${x - 50}" y="${y - 19}" width="100" height="38" rx="6"/><text x="${x}" y="${y - 3}" text-anchor="middle" font-size="12.5" class="t-strong">${a}</text><text x="${x}" y="${y + 12}" text-anchor="middle" font-size="10">${b}</text></g>`;
+    const pin = (d, cls, n, t) => [...Array(n)].map((_, k) => `<circle r="4" class="k-flow ${cls}" style="offset-path:path('${d}');--t:${t}s;--d:${(k * t / n).toFixed(2)}s"/>`).join("");
+    const dIn = "M452 236 C410 236 392 214 330 198", dIpo = "M330 262 C330 244 320 230 304 214", dDebt = "M10 236 C60 236 84 214 128 200";
+    return `<div class="k-col cf1" data-m="now">
+      <div class="k-seg"><button type="button" class="k-b" data-v="now">2026: customers pay</button><button type="button" class="k-b" data-v="then">2000: they didn’t yet</button></div>
+      <svg viewBox="0 0 460 266" class="k-svg" aria-label="The money loop. Chipmakers invest in AI labs, labs buy compute from clouds, clouds buy chips, and the money comes back around. Doors in from outside: customers paying the labs, public investors buying shares, and borrowed money flowing into the clouds. Switch to 2000 and the customer door closes: only borrowed money comes in, and it piles up with no way out.">
+        <path d="${ring}" class="cf1-ring"/>
+        <g class="cf1-coins">${pin(ring, "cf1-coin", 7, 6)}</g>
+        ${st(C[0], C[1] - R, "Chips", "Nvidia, AMD, Amazon")}
+        ${st(C[0] + 72, C[1] + 44, "AI labs", "OpenAI, Anthropic", "lab")}
+        ${st(C[0] - 72, C[1] + 44, "Clouds", "Oracle, neoclouds", "cloud")}
+        <text x="${C[0] + 74}" y="${C[1] - 58}" font-size="10.5" class="cf1-e">invest</text>
+        <text x="${C[0]}" y="${C[1] + 102}" text-anchor="middle" font-size="10.5" class="cf1-e">buy compute</text>
+        <text x="${C[0] - 74}" y="${C[1] - 58}" text-anchor="end" font-size="10.5" class="cf1-e">buy chips</text>
+        <g class="cf1-door in"><path d="${dIn}" class="cf1-pipe"/>${pin(dIn, "cf1-in", 4, 2.2)}<text x="452" y="252" text-anchor="end" font-size="11" class="cf1-dl">customers pay</text><text x="452" y="264" text-anchor="end" font-size="10">$20 a month, API bills</text></g>
+        <g class="cf1-door ipo"><path d="${dIpo}" class="cf1-pipe"/>${pin(dIpo, "cf1-in", 3, 2.4)}<text x="338" y="246" font-size="10.5" class="cf1-dl">IPO</text></g>
+        <g class="cf1-door debt"><path d="${dDebt}" class="cf1-pipe d"/>${pin(dDebt, "cf1-dt", 3, 2.6)}<text x="10" y="252" font-size="11" class="cf1-dl d">borrowed money</text></g>
+        <g class="cf1-pile">${[0, 1, 2, 3, 4, 5].map(i => `<ellipse cx="${118 + (i % 3) * 14}" cy="${238 - Math.floor(i / 3) * 6}" rx="7" ry="3" style="--d:${(i * .25).toFixed(2)}s"/>`).join("")}<text x="150" y="258" text-anchor="middle" font-size="10.5" class="cf1-pl">debt, no way out</text></g>
+        <text x="14" y="18" font-size="13" class="t-strong" id="cf1T"></text>
+      </svg>
+      ${sayStack("cf1-say", "cf1Say", Object.values(CF1).map(m => m[1]))}
+    </div>${capLS("Schematic. Who invests in whom: Nvidia’s $30B into OpenAI, AMD’s warrants to OpenAI, Amazon’s stake in Anthropic (CRS). The door in: Anthropic’s $33.2B of revenue in nine months, OpenAI’s 50M+ subscribers, the IPO.", "Schematic. CRS on the deals; Anthropic and OpenAI on revenue.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".cf1"), say = fr.querySelector("#cf1Say"), t = fr.querySelector("#cf1T");
+    let auto = true;
+    const set = m => { col.dataset.m = m; t.textContent = CF1[m][0]; say.innerHTML = CF1[m][1]; };
+    const tabs = K.tabs(fr, ".k-b", set, "now");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="now"]')); });
+    K.loop(fr, n => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "then" : "now"}"]`)); }, 4200);
+  } };
+
+// the five eras, shared by the train set
+const ERAS = [
+  { k: "1850s", sup: "British iron makers", cus: "US railroads", how: "took railroad bonds for rails", pay: "freight and fares", out: "The rails got built.", ok: 1, icon: "rail" },
+  { k: "1919", sup: "GM’s own lender", cus: "dealers and buyers", how: "lent them the money for its cars", pay: "buyers’ paychecks", out: "Car loans became normal.", ok: 1, icon: "car" },
+  { k: "2000", sup: "Lucent, Nortel, Cisco", cus: "phone startups", how: "Lucent alone: ~$8.1B of loans", pay: "subscribers not there yet", out: "The lenders lost. Winstar went under.", ok: 0, icon: "phone" },
+  { k: "2024", sup: "Ericsson, Nokia", cus: "Reliance Jio", how: "~$3.6B of export-backed credit", pay: "Jio’s subscribers", out: "The fastest 5G rollout anywhere, per Sweden’s agency.", ok: 1, icon: "tower" },
+  { k: "2026", sup: "Nvidia, AMD, Amazon", cus: "OpenAI, Anthropic", how: "stakes, warrants, guarantees", pay: "Claude and ChatGPT customers", out: "The exit is open. Watch it.", ok: 2, icon: "chip" }
+];
+const ICON = {
+  rail: '<path d="M-22 10 H22 M-22 -4 H22 M-16 -10 V16 M-6 -10 V16 M4 -10 V16 M14 -10 V16"/>',
+  car: '<path d="M-22 6 V-2 L-14 -2 L-8 -10 H8 L14 -2 H22 V6 Z"/><circle cx="-12" cy="8" r="4"/><circle cx="12" cy="8" r="4"/>',
+  phone: '<path d="M-8 -16 H8 V16 H-8 Z M-3 11 H3"/><path d="M12 -12 q6 6 0 12 M16 -16 q10 10 0 20"/>',
+  tower: '<path d="M0 -16 L-10 16 M0 -16 L10 16 M-6 4 H6 M-8 10 H8"/><path d="M-10 -14 q-6 6 0 12 M10 -14 q6 6 0 12"/>',
+  chip: '<path d="M-12 -12 H12 V12 H-12 Z M-6 -6 H6 V6 H-6 Z M-6 -18 V-12 M0 -18 V-12 M6 -18 V-12 M-6 12 V18 M0 12 V18 M6 12 V18 M-18 -6 H-12 M-18 0 H-12 M-18 6 H-12 M12 -6 H18 M12 0 H18 M12 6 H18"/>'
+};
+
+// ---------------------------------------------------------- slide 2: a train set; the loop, its stations and the exit spur
+const TRSAY = [
+  "<b>The rails got built.</b> British iron makers took American railroad bonds as part payment for rails. Freight and fares paid them off.",
+  "<b>Car loans became normal.</b> GM set up its own lender, GMAC, so dealers could stock its cars and buyers could finance them. Buyers’ paychecks paid it back.",
+  "<b>The lenders lost.</b> Lucent committed about $8.1 billion of loans to carriers buying its gear. The subscribers hadn’t arrived, and Winstar went bankrupt in 2001.",
+  "<b>The fastest 5G rollout anywhere,</b> per Sweden’s export agency: Ericsson’s and Nokia’s gear for Reliance Jio came with about $3.6 billion of export-backed credit, repaid by a carrier with paying subscribers.",
+  "<b>The exit is open. Watch it.</b> Nvidia, AMD and Amazon invest in the labs that buy their chips, and at the end Claude and ChatGPT customers pay."
+];
+const LOAD = ["#9fb3c4", "#6aa8ff", "#c79bff", "#3fd6c8", "#76b900"];
+A["circular-2b"] = { html: () => {
+    const stad = r => `M88 ${124 - r} H268 A${r} ${r} 0 0 1 268 ${124 + r} H88 A${r} ${r} 0 0 1 88 ${124 - r} Z`, track = stad(60), spur = "M328 124 H378";
+    const car = (cls, d) => `<g class="trn-car ${cls}" style="offset-path:path('${track}');--d:${d}s">${cls === "loco" ? `<rect x="-12" y="-6.5" width="22" height="13" rx="3" class="trn-loco"/><rect x="-12" y="-7.5" width="8" height="15" rx="2" class="trn-cab"/><circle cx="8" cy="0" r="2.6" class="trn-lamp"/>` : `<rect x="-10" y="-6" width="20" height="12" rx="2" class="trn-wag"/><rect x="-6.5" y="-3.6" width="13" height="7.2" rx="1.2" class="trn-load"/>`}</g>`;
+    return `<div class="k-col trn" data-ok="1" style="--ld:${LOAD[0]}">
+      <div class="k-seg trn-tix">${ERAS.map((e, i) => `<button type="button" class="k-b trn-tk" data-v="${i}">${e.k}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 238" class="k-svg" aria-label="A model train runs around a loop of track between two stations: the lender and the buyer of the gear. A spur leaves the loop to a terminal where someone pays at the end. Pick an era. 1850s: British iron makers lend to US railroads, freight and fares pay. 1919: GM's lender and car buyers, paychecks pay. 2000: Lucent, Nortel and Cisco lend to phone startups, but the spur is broken: subscribers weren't there yet. 2024: Ericsson and Nokia with Reliance Jio, subscribers pay. 2026: Nvidia, AMD and Amazon with OpenAI and Anthropic, customers pay, and the signal says watch it.">
+        <path d="${track}" class="trn-ties"/><path d="${stad(56.5)}" class="trn-rail"/><path d="${stad(63.5)}" class="trn-rail"/>
+        <path d="${spur}" class="trn-ties"/><path d="M326 120.5 H378 M328 127.5 H378" class="trn-rail"/>
+        <g class="trn-brk"><rect x="335" y="112" width="16" height="24" class="trn-hole"/><path d="M335 114 V134 M351 114 V134" class="trn-stop"/></g>
+        <g class="trn-cash">${[0, 1, 2].map(k => `<circle r="4.2" class="k-flow trn-coin" style="offset-path:path('M378 124 H330');--t:1.8s;--d:${(k * .6).toFixed(1)}s"/>`).join("")}</g>
+        <g class="trn-st"><rect x="112" y="16" width="132" height="38" rx="6"/><text x="178" y="30" text-anchor="middle" font-size="9.5" class="trn-k">LENDS</text><text x="178" y="46" text-anchor="middle" font-size="12" class="t-strong" id="trnS"></text></g>
+        <g class="trn-st"><rect x="112" y="194" width="132" height="38" rx="6"/><text x="178" y="208" text-anchor="middle" font-size="9.5" class="trn-k">BUYS THE GEAR</text><text x="178" y="224" text-anchor="middle" font-size="12" class="t-strong" id="trnC"></text></g>
+        <g id="trnIcon" class="cf2-icon" transform="translate(178 104) scale(1.15)"></g>
+        <text x="178" y="148" text-anchor="middle" font-size="10.5" class="trn-how" id="trnHow"></text>
+        <g class="trn-sig"><path d="M365 120 V98" class="trn-post"/><rect x="357" y="78" width="16" height="22" rx="4" class="trn-head"/><circle cx="365" cy="89" r="5" class="trn-lampsig"/></g>
+        <g class="trn-term"><rect x="378" y="86" width="74" height="76" rx="7"/><text x="415" y="102" text-anchor="middle" font-size="9.5" class="trn-k">PAYS AT</text><text x="415" y="114" text-anchor="middle" font-size="9.5" class="trn-k">THE END</text><text x="415" y="140" text-anchor="middle" font-size="22" font-weight="900" id="trnP" class="trn-p">$</text></g>
+        <text x="415" y="178" text-anchor="middle" font-size="10.5" id="trnPay" class="trn-pay"></text>
+        <g class="trn-train">${car("w2", 0)}${car("w1", -.34)}${car("loco", -.68)}</g>
+      </svg>
+      ${sayStack("cf1-say", "trnSay", TRSAY)}
+    </div>${capLS("Schematic. 1850s: American rails history; 1919: GMAC; 2000: Lucent’s commitments and Winstar’s 2001 bankruptcy; 2024: Sweden’s EKN and Finland’s Finnvera on Jio; 2026: the CRS report and Anthropic’s results.", "Rails, GMAC, Lucent, EKN and Finnvera, CRS.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".trn"), say = fr.querySelector("#trnSay");
+    const wrap = (s, n) => { const w = s.split(" "), out = [""]; w.forEach(x => { if ((out[out.length - 1] + " " + x).trim().length > n) out.push(x); else out[out.length - 1] = (out[out.length - 1] + " " + x).trim(); }); return out; };
+    let auto = true, at = 0;
+    const set = i => {
+      const e = ERAS[i]; at = i; col.dataset.ok = e.ok; col.style.setProperty("--ld", LOAD[i]);
+      fr.querySelector("#trnS").textContent = e.sup; fr.querySelector("#trnC").textContent = e.cus;
+      fr.querySelector("#trnHow").textContent = e.how; fr.querySelector("#trnIcon").innerHTML = ICON[e.icon];
+      fr.querySelector("#trnP").textContent = e.ok ? "$" : "?";
+      fr.querySelector("#trnPay").innerHTML = wrap(e.pay, 13).map((l, k) => `<tspan x="415" dy="${k ? 12 : 0}">${l}</tspan>`).join("");
+      say.innerHTML = TRSAY[i];
+    };
+    const tabs = K.tabs(fr, ".trn-tk", v => set(+v), 0);
+    fr.querySelectorAll(".trn-tk").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelectorAll(".trn-tk")[0]); });
+    K.loop(fr, () => { if (auto) tabs(fr.querySelectorAll(".trn-tk")[(at + 1) % ERAS.length]); }, 3600);
+  } };
+
+// ---------------------------------------------------------- slide 3: Jenga; pull one contract and only the leverage falls
+const JG = {
+  calm: "<b>Separate the loop from the leverage.</b> Most of this tower stands on customers who pay out of their own budgets. One corner of the middle stands on a single contract.",
+  pull: "<b>One contract slips:</b> the borrowed middle falls. The customers, the chips and the labs are still standing. Busts break leverage, not the network."
+};
+A["circular-3c"] = { html: () => {
+    const X = 128, W = 150, B = 214, H = 20, e3 = W / 3;
+    const long = (i, cls, t, dx = 0, w = W) => `<g class="jg-blk ${cls}"><rect x="${X + dx}" y="${B - (i + 1) * H}" width="${w}" height="${H - 1.5}" rx="2"/><text x="${X + dx + w / 2}" y="${B - i * H - 6}" text-anchor="middle" font-size="10.5">${t}</text></g>`;
+    const ends = (i, cls, ts) => ts.map((t, k) => cls[k] === "none" ? "" : `<g class="jg-blk ${cls[k] || cls[0]}"${cls[k] === "ct" ? ' id="jgC"' : ""}><rect x="${(X + k * e3 + 1).toFixed(1)}" y="${B - (i + 1) * H}" width="${(e3 - 2).toFixed(1)}" height="${H - 1.5}" rx="2"/><text x="${(X + k * e3 + e3 / 2).toFixed(1)}" y="${B - i * H - 6}" text-anchor="middle" font-size="10">${t}</text></g>`).join("");
+    return `<div class="k-col jg" data-m="calm">
+      <div class="k-seg"><button type="button" class="k-b" data-v="calm">Calm</button><button type="button" class="k-b" data-v="pull">Pull one contract</button></div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="A Jenga tower of the AI loop. The bottom two layers are outside money: paying customers, subscriptions, API bills and IPO investors. The middle layers are the loop: chips, labs and clouds, and suppliers' stakes and orders. Up top on the right, striped blocks of borrowed money, neocloud debt and project company debt, hang over the edge, resting on a single block: one customer's contract. Pull that block and only the borrowed blocks fall. The tower stands.">
+        <defs><pattern id="jgStripe" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#4a2620"/><rect width="3" height="6" fill="#6e3428"/></pattern></defs>
+        <text x="14" y="17" font-size="13" class="t-strong">Separate the loop from the leverage</text>
+        <path d="M14 ${B} H446" class="jg-floor"/>
+        ${long(0, "out", "Paying customers")}${ends(1, ["out"], ["$20/month", "API bills", "IPO"])}
+        ${long(2, "loop", "Chips → labs → clouds")}${ends(3, ["loop"], ["chips", "labs", "clouds"])}
+        ${long(4, "loop", "Stakes and orders")}${ends(5, ["loop", "none", "ct"], ["stakes", "", "contract"])}
+        <g class="jg-fall">${long(6, "debt", "Neocloud debt", 65, 120)}${long(7, "debt", "Project co. debt", 75, 100)}</g>
+        ${long(6, "loop", "Labs", 0, 58)}
+        <path d="M118 ${B - 2} V${B - 2 * H + 1}" class="jg-br out"/><text x="112" y="${B - 24}" text-anchor="end" font-size="11" class="jg-l out">outside money</text><text x="112" y="${B - 11}" text-anchor="end" font-size="10" class="jg-l out">back this</text>
+        <path d="M118 ${B - 2 * H - 2} V${B - 7 * H + 1}" class="jg-br loop"/><text x="112" y="${B - 4.5 * H}" text-anchor="end" font-size="11" class="jg-l loop">the loop</text>
+        <text x="300" y="${B - 8 * H - 22}" font-size="11" class="jg-l debt">the borrowed middle</text><text x="300" y="${B - 8 * H - 9}" font-size="10" class="jg-l debt">works only if one contract does</text>
+        <text x="${X + W / 2}" y="${B + 16}" text-anchor="middle" font-size="11" class="jg-ok">Busts break leverage, not the network.</text>
+      </svg>
+      ${sayStack("cf3-say", "jgSay", Object.values(JG))}
+    </div>${capLS("Schematic. The line between the loop and the leverage follows the CRS report: suppliers funding customers out of cash flow, versus debt that rests on one customer’s contract.", "Schematic, after the CRS report.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".jg"), say = fr.querySelector("#jgSay");
+    let auto = true;
+    const tabs = K.tabs(fr, ".k-b", m => { col.dataset.m = m; say.innerHTML = JG[m]; }, "calm");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="calm"]')); });
+    K.loop(fr, n => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "pull" : "calm"}"]`)); }, 3400);
+  } };
+})();
+
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];

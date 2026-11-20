@@ -189,7 +189,43 @@ const SRC = {
   kalshiNext: "https://defirate.com/news/kalshi-raises-1b-40b-valuation-pushes-beyond-prediction/",
   polyVal: "https://defirate.com/news/polymarket-21b-valuation-new-funding-round/",
   icePoly: "https://defirate.com/news/ice-posts-record-earnings-doubles-down-polymarket-data-onchain-markets/",
-  pmCourts: "https://wjla.com/news/nation-world/conflicting-court-rulings-deepen-fight-over-how-prediction-markets-are-regulated-cftc-commodity-exchange-act-kalshi-polymarket-supreme-court"
+  pmCourts: "https://wjla.com/news/nation-world/conflicting-court-rulings-deepen-fight-over-how-prediction-markets-are-regulated-cftc-commodity-exchange-act-kalshi-polymarket-supreme-court",
+  leoVid: "https://www.youtube.com/watch?v=U99ILZc11HE",
+  leoTx: "https://thetranscriptdesk.substack.com/p/whos-making-trillions-off-the-ai",
+  lc120: "https://www.lightwaveonline.com/home/news/55410716/ethernet-optical-transceiver-set-to-grow-120-in-2026",
+  cpoShip: "https://www.trendforce.com/presscenter/news/20260727-13151.html",
+  nvCpo: "https://developer.nvidia.com/blog/a-new-era-in-data-center-networking-with-nvidia-silicon-photonics-based-network-switching/",
+  elsLite: "https://www.lumentum.com/en/blog/how-optical-connectivity-evolving-scale-out-ai-networks",
+  inpShort: "https://www.tomshardware.com/tech-industry/semiconductors/lumentum-ceo-says-the-indium-phosphide-shortage-will-become-worse-than-memory",
+  liteSold: "https://www.tikr.com/blog/lumentum-stock-jumps-ai-optical-components-sold-out-2029",
+  nvInp: "https://trendforce.com/news/2026/08/06/news-inp-shortage-emerges-as-ai-optical-interconnect-bottleneck/",
+  tpuV7: "https://newsletter.semianalysis.com/p/tpuv7-google-takes-a-swing-at-the",
+  vbTpu: "https://venturebeat.com/ai/how-googles-tpus-are-reshaping-the-economics-of-large-scale-ai",
+  metaTpu: "https://siliconangle.com/2026/02/26/google-meta-reportedly-strike-new-multibillion-dollar-ai-chip-deal/",
+  metaAmd: "https://www.freemalaysiatoday.com/category/business/2026/02/27/meta-signs-multi-billion-dollar-deal-to-rent-google-ai-chips",
+  oaAmd: "https://openai.com/index/openai-amd-strategic-partnership",
+  nvTop3: "https://biz.heraldcorp.com/article/10872762",
+  tpuAnt: "https://analyticsindiamag.com/global-tech/is-nvidias-golden-ageand-monopolycoming-to-an-end",
+  tpuEng: "https://analyticsindiamag.com/global-tech/what-is-protecting-nvidia-from-googles-tpus",
+  geak: "https://rocm.blogs.amd.com/artificial-intelligence/kernel-optimization-agent/README.html",
+  maxKernel: "https://huggingface.co/papers/2609.04523",
+  ccRocm: "https://wccftech.com/the-claude-code-has-managed-to-port-nvidia-cuda-backend-to-rocm-in-just-30-minutes/",
+  crsCirc: "https://www.everycrsreport.com/reports/IF13349.html",
+  imfCirc: "https://thenextweb.com/news/imf-circular-ai-deals-financial-stability-report",
+  semisDown: "https://www.thestar.com.my/tech/tech-news/2026/11/17/shaky-semiconductor-trade-faces-big-week-as-investors-look-for-bottom",
+  h100Rent: "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+  ant9m: "https://www.calcalistech.com/ctechnews/article/ddyq1vva9",
+  antIpo: "https://fortune.com/2026/11/18/anthropic-prices-ipo-83-per-share-1-5-trillion/",
+  nvOai30: "https://www.business-standard.com/technology/tech-news/nvidia-30bn-openai-investment-after-shelving-100bn-deal-126022000503_1.html",
+  nvBackstop: "https://thenextweb.com/news/nvidia-openai-backstop-halved-13f-spacex-intel",
+  kress: "https://www.onmanorama.com/news/world/2026/11/13/colette-kress-cfo-who-challenged-jensen-huang-s-bets-named-nvidia-interim-ceo.html",
+  rails: "https://en.wikipedia.org/wiki/American_rails",
+  gmac: "https://wardsauto.com/finance-insurance/auto-financing-changed-industry-and-society",
+  lucent: "https://tomtunguz.com/nvidia_nortel_vendor_financing_comparison/",
+  winstar: "https://www.eweek.com/news/vendor-financing-backfires/",
+  jioEkn: "https://www.ekn.se/en/magazine/digitalisation/record-deal-behind-record-time-5g-rollout-in-india/",
+  jioFinn: "https://finnvera.fi/eng/finnvera/newsroom/news/finnvera-guarantees-nokias-5g-deliveries-for-a-large-order-from-indias-leading-telecom-operator-the",
+  oaSubs: "https://aimagazine.com/news/openais-billion-users-us-852bn-valuation-and-stargate"
 };
 
 const BINS = {
@@ -728,6 +764,72 @@ const THESES = [
     note: "Not investment advice. Kalshi’s volume is annualized, as the company reports it.",
     receipts: [["Uncapped #33, Vlad Tenev from Robinhood (Nov 2025)", SRC.uncapped], ["Episode transcript", SRC.uncappedTx], ["Robinhood Q3 2026 results", SRC.hoodQ3], ["Robinhood Q2 2026 results", SRC.hoodQ2], ["Robinhood on event contract fees", SRC.hoodEvt], ["Robinhood and Susquehanna’s exchange joint venture", SRC.hoodJv], ["Cboe July 2026 volume: 0DTE at 66.2% of SPX", SRC.cboe0dte], ["Institutional Investor on Kalshi’s Series G (Nov 2026)", SRC.kalshiG], ["DeFi Rate on Kalshi’s plans, including compute markets", SRC.kalshiNext], ["DeFi Rate on Polymarket’s reported $21B round", SRC.polyVal], ["DeFi Rate on Intercontinental Exchange and Polymarket’s data feed", SRC.icePoly], ["The National News Desk on the court split", SRC.pmCourts]],
     viz: "contracts", echo: { pose: "oracle", acc: "oracle", name: "Oracle" }
+  },
+  {
+    id: "light", die: [2, -2], stance: "build",
+    layer: "I", tldr: ["Silicon can’t make light. Follow the laser.", "AI’s nerves are outgrowing its brain: optics sales on track for +120% this year. Co-packaged optics swallows the transceiver but leaves the laser outside, and lasers are sold out into 2029."],
+    title: "Silicon can’t make light. Follow the laser.",
+    h2: "Silicon can’t | make light. | Follow the laser.",
+    short: "Follow the laser",
+    hook: "The video calls transceivers the razor blades of the data center. Co-packaged optics folds the blade into the switch, all but one part: the laser, the one thing silicon can’t make.",
+    ref: { label: "Leo Jiang, “Who’s Making Trillions Off the AI Boom?” (2026): the optics chapter, from Coherent and Lumentum to co-packaged optics", href: SRC.leoVid },
+    signal: `<p class="claim">Between racks, | AI talks in light. | Silicon can’t make light.</p>
+      <p>Inside a rack, GPUs talk over copper. Between racks, the signal turns into light in a transceiver at each end of every fiber. Ethernet transceiver sales doubled in 2024 and rose almost 90% in 2025. LightCounting expected 2026 to slow down; instead, the first nine months pushed its forecast to 120% growth.</p>
+      <p>This year the light started moving into the chip package. Nvidia began shipping co-packaged optics switches to select partners, and Broadcom’s 51.2-terabit Bailly switch entered volume manufacturing. Both designs leave one part outside: the laser.</p>`,
+    takes: [
+      ["The nerves are outgrowing the brain.", "A bigger cluster means more racks talking to each other, and every link between racks is light. So optics are growing faster than the spending that pays for them: LightCounting expects 120% growth in Ethernet transceiver sales this year, while forecasters including Nvidia put cloud capex growth near 70%. Transceivers are the razor blades: one at each end of every fiber, replaced every upgrade cycle."],
+      ["Co-packaging eats the transceiver, not the laser.", "A pluggable transceiver sits on the switch’s front panel, and the signal burns power crossing the board to reach it. Co-packaged optics puts the optical engines right beside the switch chip. Nvidia says its switches use 3.5× less power, and Broadcom’s cut up to 70% and passed validation at Meta. But lasers hate heat and are the part you most want to swap, so both designs move them to the front panel as pluggable laser modules, replaceable while the switch stays sealed. The razor blade shrinks to the laser."],
+      ["The laser is the choke point.", "Silicon can guide, split and switch light, but it can’t emit it. Every silicon photonics platform in production, Nvidia’s and Broadcom’s included, still needs a laser made of indium phosphide. Lumentum, which runs five indium phosphide fabs, says it is sold out into early 2029 and can’t meet about 70% of demand for some products next year. Nvidia put $2 billion each into Lumentum and Coherent in March to lock up supply, and Lumentum’s CEO expects the shortage to get worse than memory’s."]
+    ],
+    bet: `For venture: back what the light path still needs after co-packaging. Laser capacity and the materials under it, fiber attach and optical testing at wafer scale, and the tools that keep a sealed switch serviceable. Be wary of businesses whose whole value is assembling pluggable modules: co-packaging moves that work into the chipmaker’s package. It’s the same pattern as <a href="#memory">The bottleneck moved below the GPU</a>: value moves to whatever is scarce.`,
+    wrong: "Lasers move onto the silicon itself at volume, or pluggables keep winning because they’re easier to fix. Then the laser stops being its own toll booth, and the razor blade stays a commodity.",
+    note: "Not investment advice. Transceiver growth is LightCounting’s estimate; the power savings are Nvidia’s and Broadcom’s claims.",
+    receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["Edited transcript of the video", SRC.leoTx], ["Lightwave on LightCounting: Ethernet transceivers +120% in 2026", SRC.lc120], ["TrendForce: Nvidia and Broadcom begin shipping CPO switches (Jul 2026)", SRC.cpoShip], ["Nvidia on its silicon photonics switches: 3.5× less power, front-panel lasers", SRC.nvCpo], ["Lumentum on external laser sources", SRC.elsLite], ["Tom’s Hardware: Lumentum’s CEO on the indium phosphide squeeze", SRC.inpShort], ["TIKR: Lumentum sold out through early 2029 (Oct 2026)", SRC.liteSold], ["TrendForce: Nvidia’s $2B stakes and the InP shortage", SRC.nvInp]],
+    viz: "light", echo: { pose: "signal", acc: "signal", name: "Signalman" }
+  },
+  {
+    id: "cuda", die: [4, -3], stance: "push",
+    layer: "C", tldr: ["The CUDA moat is deepest where the money isn’t.", "Switching costs are fixed costs. Nvidia’s top three customers are 44% of its sales, and buyers that size already build bridges: Gemini 3 trained on TPUs, Meta rents TPUs, OpenAI is turning on AMD."],
+    title: "The CUDA moat is deepest where the money isn’t.",
+    h2: "The CUDA moat | is deepest | where the money isn’t.",
+    short: "Where the money isn’t",
+    hook: "The video calls CUDA a 20-year trap: rewrite the code, retrain the engineers, risk the training run. True for the many. But those costs barely change with size, and most of Nvidia’s money comes from the few who can pay them.",
+    ref: { label: "Leo Jiang, “Who’s Making Trillions Off the AI Boom?” (2026): CUDA’s 20 years of trained developers, and why switching is so hard", href: SRC.leoVid },
+    signal: `<p class="claim">A moat stops armies | that can’t afford | a bridge.</p>
+      <p>The case for CUDA is real. Nvidia has trained developers on it for about 20 years, every framework is tuned for it first, and leaving means rewriting code, retraining engineers and risking a training run that costs hundreds of millions of dollars.</p>
+      <p>But the money is concentrated. Nvidia’s three biggest customers were 44% of its sales in the first half of fiscal 2027, by The Information’s count from its filings. Buyers that size can build bridges, and this year they did: Meta reportedly signed to rent Google’s TPUs for training, OpenAI’s first gigawatt of AMD chips is due in the second half of 2026, and Gemini 3 and Claude Opus 4.5 were trained mostly off Nvidia.</p>`,
+    takes: [
+      ["Switching costs are fixed costs.", "Rewriting kernels, retraining a team and de-risking one big run cost about the same whether you spend $10 million a year on compute or $10 billion. For a startup that bill is fatal. For a lab spending tens of billions it’s a rounding error, and the payoff, a second supplier and leverage on price, grows with the spend. Anthropic hired former Google TPU and compiler engineers, and now trains and serves across TPUs, Amazon’s Trainium and GPUs."],
+      ["The few have already left once.", "Google trained Gemini 3 on its own TPUs, and Anthropic’s deal covers up to a million of them. Meta, one of Nvidia’s biggest buyers, reportedly signed in February to rent TPUs for training, the same week AMD said it would sell Meta up to $60 billion of chips. OpenAI’s 6-gigawatt AMD deal starts with a gigawatt this half. Jensen Huang’s retort was that TPU growth was “100% Anthropic.” That’s the point: one buyer with the right engineers is enough to make a second ecosystem real."],
+      ["Agents are eating two of the three costs.", "The video’s three costs of switching are rewriting code, retraining engineers and risking the run. Coding agents now chip away at the first two. AMD runs agents that write and tune kernels for its GPUs, a Google team open-sourced one that writes TPU kernels, and in January a developer used Claude Code to port a CUDA backend to AMD’s ROCm in about 30 minutes: simple kernels, but a sign of where this goes. What’s left is the risk of the run, and that lives in the whole system: racks, networking, supply. My read: Nvidia’s moat is moving from the software to the rack."]
+    ],
+    bet: `For venture: the next CUDA is a translator. Back what makes chips interchangeable, like kernel agents, compilers and inference runtimes that run one model on any hardware. They sell the many what the few built in-house. Be wary of startups whose only edge is knowing one vendor’s stack best. And if the moat is moving into the rack, follow it into the wiring: <a href="#light">Silicon can’t make light</a>.`,
+    wrong: "OpenAI’s AMD gigawatt slips, Meta’s TPUs stay a pilot, and the next frontier model trains only on Nvidia because nothing else keeps up. Then the moat held even at the top.",
+    note: "Not investment advice. The 44% is The Information’s count from Nvidia’s filings; the switching cost on the slide is illustrative.",
+    receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["The Information, via Herald Corp: Nvidia’s top three customers at 44% of sales", SRC.nvTop3], ["SemiAnalysis: TPUv7 and the Anthropic deal", SRC.tpuV7], ["VentureBeat: Gemini 3 and Claude Opus 4.5 trained on TPUs", SRC.vbTpu], ["SiliconANGLE: Meta to rent Google TPUs (Feb 2026)", SRC.metaTpu], ["Reuters, via Free Malaysia Today: Meta’s AMD and Google deals", SRC.metaAmd], ["OpenAI and AMD: 6 gigawatts, the first in 2H 2026", SRC.oaAmd], ["AIM: Jensen Huang on TPU growth", SRC.tpuAnt], ["AIM: Anthropic’s TPU and compiler engineers", SRC.tpuEng], ["AMD’s GEAK kernel agents", SRC.geak], ["MaxKernel: agentic kernel generation for TPUs", SRC.maxKernel], ["Wccftech: Claude Code ports a CUDA backend to ROCm", SRC.ccRocm]],
+    viz: "cuda", echo: { pose: "locksmith", acc: "locksmith", name: "Locksmith" }
+  },
+  {
+    id: "circular", die: [-8, 3], stance: "push",
+    layer: "F", tldr: ["Every buildout runs in a circle. Look for the exit.", "Rails were paid for partly in railroad bonds; 5G gear still sells on vendor credit. Lucent’s loop failed because nobody paid at the end. This one has a payer: Anthropic alone booked $33B in nine months."],
+    title: "Every buildout runs in a circle. Look for the exit.",
+    h2: "Every buildout | runs in a circle. | Look for the exit.",
+    short: "Look for the exit",
+    hook: "Suppliers funding their customers isn’t a scandal. It’s how big networks get built. The question is never whether the money loops. It’s whether a paying customer sits at the end.",
+    ref: { label: "Congressional Research Service, “The Role of Circular Finance in Funding AI Investment” (Nov 16, 2026): the worried case, in full", href: SRC.crsCirc },
+    signal: `<p class="claim">Money going in circles | isn’t the warning. | Money with no way out is.</p>
+      <p>The worry peaked this month. The IMF counts $1.4 trillion of future revenue promised in 14 circular AI deals since 2023, financed with about $650 billion of debt and $300 billion of equity. The chip index is down 34% from its June high, and Nvidia’s CEO, the driving force behind its customer financing, resigned on November 12.</p>
+      <p>Underneath, the meter kept running. A one-year rental of an H100, a 2022 chip, rose almost 40% between October 2025 and March 2026. Anthropic booked $33.2 billion of revenue in the first nine months of 2026, up from $2.5 billion a year earlier, and went public this week.</p>`,
+    takes: [
+      ["Not new, and not a trick.", "Early American railroads often paid British iron makers for rails partly in railroad bonds. In 1919, GM set up its own lender, GMAC, so dealers could stock its cars and buyers could finance them, and car loans became normal. A supplier funding its customer is betting that the customer’s customers will show up, and it’s often the best-placed lender: it knows the gear and sees the demand first. Even the Congressional Research Service’s worried report makes that point."],
+      ["Telecom shows how the loop works, and where it breaks.", "An equipment maker lends a carrier the money for its gear, the carrier builds the network, and subscribers’ bills repay the loan. Around 2000, Lucent committed about $8.1 billion this way, roughly a quarter of its revenue, and Nortel and Cisco did the same on a smaller scale. It broke where borrowers had no subscribers yet: Winstar, which one finance professor gave “absolutely no chance of survival,” went bankrupt in 2001 after drawing on a $2 billion credit line from Lucent. The tool never left. In 2023 and 2024, Ericsson’s and Nokia’s 5G gear for India’s Reliance Jio came with about $3.6 billion of credit backed by Sweden’s and Finland’s export agencies, part of what Sweden’s agency calls the fastest 5G rollout anywhere."],
+      ["This loop has an exit, and it’s tightening in public.", "The end of this loop pays. Anthropic’s revenue grew more than 13-fold in a year, OpenAI has reported over 50 million paying subscribers, and the oldest chips in the loop rent for more, not less. Whenever a number looked too big, it shrank before anything broke: Nvidia’s $100 billion OpenAI letter of intent became a $30 billion equity check, and its proposed guarantee for OpenAI’s 10-gigawatt data center project fell from $250 billion to under $120 billion within three weeks, once investors asked what it was worth. Then Anthropic’s IPO brought in about $68 billion from public investors who sell it nothing, alongside $26 billion from partners including Google and Nvidia."]
+    ],
+    bet: `For venture, separate the loop from the leverage. Back the businesses where outside money enters: products that people and companies pay for out of their own budgets, and suppliers that fund customers out of cash flow. Be wary of the borrowed middle, like a neocloud or project company whose debt only works if one customer’s contract does. It’s the same line as <a href="#builders">Back the builders</a>: busts break leverage, not the network.`,
+    wrong: "The exit narrows: Anthropic’s and OpenAI’s revenue goes flat for two quarters while their compute commitments keep climbing, and rents for older chips start to fall. Then the loop has no way out, and it’s Lucent with bigger numbers.",
+    note: "Not investment advice. The IMF’s $1.4 trillion is future revenue promised in the deals, not money invested.",
+    receipts: [["Congressional Research Service: The Role of Circular Finance in Funding AI Investment (Nov 2026)", SRC.crsCirc], ["TNW on the IMF’s Global Financial Stability Report (Oct 2026)", SRC.imfCirc], ["Reuters, via The Star: the chip slide and Nvidia’s financing deals", SRC.semisDown], ["SemiAnalysis: H100 one-year rentals up almost 40%", SRC.h100Rent], ["Calcalist: Anthropic’s nine-month revenue", SRC.ant9m], ["Fortune: Anthropic prices its IPO (Nov 18, 2026)", SRC.antIpo], ["Business Standard on the FT: Nvidia’s $30B in place of $100B", SRC.nvOai30], ["TNW on the WSJ: Nvidia halves its OpenAI guarantee", SRC.nvBackstop], ["Onmanorama on Reuters: Colette Kress and the financing deals", SRC.kress], ["American rails: bonds paid for British iron", SRC.rails], ["Ward’s Auto: a century of GM’s car loans", SRC.gmac], ["Tomasz Tunguz: Lucent, Nortel and Cisco’s vendor loans", SRC.lucent], ["eWeek (2001): Vendor financing backfires", SRC.winstar], ["EKN: the export credit behind Jio’s 5G with Ericsson", SRC.jioEkn], ["Finnvera: $1.5B guarantee for Nokia’s 5G deliveries to Jio", SRC.jioFinn], ["AI Magazine: OpenAI’s paying subscribers", SRC.oaSubs]],
+    viz: "circular", echo: { pose: "conductor", acc: "conductor", name: "Conductor" }
   }
 ];
 
@@ -771,6 +873,9 @@ const DOODLES = {
   builders: "<path d=\"M20 88 L60 40 M14 46 Q30 30 48 34 M48 34 Q44 50 60 40\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M100 88 L66 44 M60 40 l12 -6 l6 14 l-12 6 Z\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M26 12 Q60 -6 94 12 Q77 8 60 12 Q43 8 26 12 Z M26 12 L54 34 M94 12 L66 34\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"100\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">picks & shovels</text>",
   paycheck: "<path d=\"M6 34 h34 v22 h-34 Z M6 34 l17 12 l17 -12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><text x=\"23\" y=\"72\" fill=\"#26303a\" font-size=\"14\" text-anchor=\"middle\">pay</text><path d=\"M44 45 C52 40 58 40 66 44 M59.6 39.4 L66.5 44 L59.4 48.6\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><path d=\"M74 10 h28 a4 4 0 0 1 4 4 v60 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 v-60 a4 4 0 0 1 4 -4 Z M83 72 h10\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><text x=\"88\" y=\"52\" fill=\"#1d8a5c\" font-size=\"28\" text-anchor=\"middle\">$</text><text x=\"60\" y=\"97\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">direct deposit</text>",
   contracts: "<path d=\"M26 52 V31 A21 21 0 1 0 47 52 Z M26 52 L11.2 37.2 M26 52 L11.2 66.8\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M31 47 V26 A21 21 0 0 1 52 47 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><path d=\"M62 30 h50 v40 h-50 Z M87 30 v40\" stroke=\"#1f5fbf\" stroke-width=\"2.8\" /><text x=\"74.5\" y=\"46\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">YES</text><text x=\"74.5\" y=\"63\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">62¢</text><text x=\"99.5\" y=\"46\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">NO</text><text x=\"99.5\" y=\"63\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">38¢</text><path d=\"M52 38 C55 36 57 37 60 39 M56.2 35.6 L60.4 39.2 L55.2 41\" stroke=\"#e8822a\" stroke-width=\"2.4\" /><text x=\"60\" y=\"97\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">one view, one price</text>",
+  light: "<path d=\"M8 28 h40 v40 h-40 Z M8 41 h40 M8 55 h40 M21 28 v40 M35 28 v40\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M55 40 h16 v16 h-16 Z\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><path d=\"M71 48 H112 M104 42 L112 48 L104 54\" stroke=\"#1f5fbf\" stroke-width=\"2.8\" stroke-dasharray=\"5 4\" /><path d=\"M63 32 l-3 -8 M71 34 l4 -7 M55 34 l-6 -6\" stroke=\"#d23c3c\" stroke-width=\"2.2\" /><text x=\"28\" y=\"82\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">silicon</text><text x=\"63\" y=\"74\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">InP</text><text x=\"60\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">follow the laser</text>",
+  cuda: "<path d=\"M30 62 V34 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 V62 Z M50 62 v-12 a4 4 0 0 1 8 0 v12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M8 70 q8 -5 16 0 t16 0 t16 0 t16 0 t16 0 t16 0\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M84 72 C92 60 104 58 112 66 M86 66 h4 M94 62 h4 M102 61 h4\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"25\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">CUDA</text><text x=\"60\" y=\"97\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">the few build bridges</text>",
+  circular: "<path d=\"M60 18 A26 26 0 1 1 34.2 46.8 M30 38 L34.4 47.4 L42.6 41\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"52\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M84 52 C96 56 102 64 106 74 M99 70 L106.4 75 L108 66\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><text x=\"108\" y=\"88\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">exit</text><text x=\"56\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">look for the exit</text>",
 };
 
 // Some doodles spill past their 120 x 100 box (a long label, a wide arrow); these boxes are widened to fit them, measured once
@@ -1007,6 +1112,27 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       [[30, -6, .9], [50, -9, .7], [66, -4, .8], [41, -2, .5]].map(([x, y, s]) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 -3.5 L1 -1 L3.5 0 L1 1 L0 3.5 L-1 1 L-3.5 0 L-1 -1 Z" fill="#ffd98a"/>`).join("") +
       `<g class="echo-hand-r"><g transform="rotate(8 99 70)"><rect x="86" y="59" width="27" height="20" rx="2.4" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><path d="M86 66.4 H113" stroke="#cfc6f5" stroke-width=".8" stroke-dasharray="1.6 1.4"/><text x="90" y="64.6" font-size="4.6" font-weight="900" fill="#1d8a5c">YES</text><text class="xor-p xor-p1" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">62¢</text><text class="xor-p xor-p2" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">71¢</text><path class="xor-up" d="M89.6 75 l2.6 -3.6 l2.6 3.6 Z" fill="#2fb87a"/></g>${mitt(95.5, 82)}</g>`;
     accExtra = `<path d="M-14.5 106 h22 l-3.6 -7 h-14.8 Z" fill="#c79a5b" stroke="#9c7440" stroke-width=".8"/><g class="xor-ball"><circle cx="-3.5" cy="88" r="11.5" fill="url(#${k}cb)" stroke="#d4e3f0" stroke-width="1"/><g class="xor-mist"><path d="M-12 90 Q-8 84 -3 88 T6 87" stroke="#fff" stroke-opacity=".7" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M-10 84 Q-6 80 -1 83" stroke="#fff" stroke-opacity=".5" stroke-width="1.1" fill="none" stroke-linecap="round"/></g><ellipse cx="-7.5" cy="83" rx="3.2" ry="1.8" fill="#fff" opacity=".8" transform="rotate(-30 -7.5 83)"/></g><circle class="xor-glow" cx="-3.5" cy="88" r="15" fill="#a6e9ff" opacity=".0"/>`;
+  } else if (acc === "signal") {
+    // Signalman: a lineman's cap with a blinking status light; a pluggable laser module in one fin feeds light down a fiber to the coil in the other
+    accIn = `<path d="M18 6 C18 -14 82 -14 82 6 Z" fill="#22405c"/><rect x="12" y="2.5" width="76" height="6.5" rx="3.2" fill="#14283f"/><path d="M62 7 Q80 5 93 11.5 L86 13 Q72 9.6 62 10.6 Z" fill="#0c1a2b"/><circle class="xsg-led" cx="50" cy="-3.5" r="3.4" fill="#ff6b6b"/><path d="M28 -1 Q32 -6 40 -7.4" stroke="#fff" stroke-opacity=".3" stroke-width="2" fill="none" stroke-linecap="round"/>` +
+      `<path class="xsg-fiber" d="M107 69 C114 96 74 108 50 107 C26 106 6 99 6 86" fill="none" stroke="#4fd2ff" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round"/>` +
+      [0, .5, 1].map(d => `<circle class="xsg-ph" style="animation-delay:${d}s" r="1.9" fill="#fff"/>`).join("") +
+      `<g class="echo-hand-l"><g transform="rotate(-8 4 80)"><ellipse cx="4" cy="80" rx="10" ry="7" fill="none" stroke="#4fd2ff" stroke-width="2"/><ellipse cx="4" cy="80" rx="7" ry="4.6" fill="none" stroke="#4fd2ff" stroke-opacity=".7" stroke-width="1.6"/><ellipse cx="4" cy="80" rx="4" ry="2.4" fill="none" stroke="#4fd2ff" stroke-opacity=".5" stroke-width="1.3"/></g>${mitt(5, 82, 20)}</g>` +
+      `<g class="echo-hand-r"><g transform="rotate(-10 99 68)"><rect x="89" y="61" width="20" height="14" rx="2.4" fill="#3a1f2a" stroke="#ff6b6b" stroke-width="1.2"/><rect x="91.5" y="64" width="8" height="8" rx="1" fill="#211a32"/><circle class="xsg-lens" cx="104.5" cy="68" r="2.6" fill="#ff6b6b"/></g>${mitt(95.5, 80)}</g>`;
+  } else if (acc === "locksmith") {
+    // Locksmith: a flat cap, a big key in one fin and a padlock marked CUDA in the other; every few seconds the shackle pops open
+    accIn = `<path d="M16 6 C16 -12 84 -12 84 4 L90 8 Q70 3 50 3 Q30 3 16 6 Z" fill="#7a5a32"/><path d="M18 2 Q50 -4 82 1" stroke="#5a4024" stroke-width="2" fill="none"/><path d="M84 4 Q94 6 97 10 Q90 9.4 84 8.6 Z" fill="#5a4024"/>` +
+      `<g class="echo-hand-l"><g class="xlk-lock"><path class="xlk-shackle" d="M-6 66 V60 a7 7 0 0 1 14 0 V66" fill="none" stroke="#9fb3c4" stroke-width="3" stroke-linecap="round"/><rect x="-10" y="65" width="22" height="18" rx="3" fill="#1b2d22" stroke="#76b900" stroke-width="1.2"/><text x="1" y="76.5" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#76b900">CUDA</text><circle cx="1" cy="79.4" r="1.3" fill="#76b900"/></g>${mitt(5, 84, 20)}</g>` +
+      `<g class="echo-hand-r"><g class="xlk-key"><circle cx="96" cy="72" r="5.2" fill="none" stroke="#ffb23f" stroke-width="2.6"/><path d="M100 68 L114 54 M110.4 57.6 l3.2 3.2 M107.4 60.6 l2.6 2.6" stroke="#ffb23f" stroke-width="2.6" stroke-linecap="round"/></g>${mitt(95.5, 74)}</g>`;
+    accExtra = `<g class="xlk-spark">${[[-12, 50], [12, 48], [0, 44]].map(([x, y]) => `<path d="M${x} ${y - 3.5} L${x + 1} ${y - 1} L${x + 3.5} ${y} L${x + 1} ${y + 1} L${x} ${y + 3.5} L${x - 1} ${y + 1} L${x - 3.5} ${y} L${x - 1} ${y - 1} Z" fill="#ffd98a"/>`).join("")}</g>`;
+  } else if (acc === "conductor") {
+    // Conductor: a conductor's cap with a toy train circling above it, coins for cargo; an EXIT sign in one fin and a lantern in the other
+    const loop = "M18 -13 A32 4 0 1 0 82 -13 A32 4 0 1 0 18 -13";
+    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#22305a"/><rect x="21.5" y="-1.5" width="57" height="5.6" fill="#ffb23f"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#141c38"/><circle cx="50" cy="-5" r="2.6" fill="#ffd98a"/>` +
+      `<path d="${loop}" fill="none" stroke="#b8864a" stroke-width="1.4" stroke-dasharray="2 1.6"/>` +
+      [[0, "loco"], [.36, "car"], [.72, "car"]].map(([d, t]) => `<g class="xcd-car" style="offset-path:path('${loop}');animation-delay:-${(d * 4.8).toFixed(2)}s">${t === "loco" ? `<rect x="-6" y="-4" width="12" height="7" rx="1.6" fill="#c94a5e" stroke="#8a2f3e" stroke-width=".7"/><rect x="2" y="-6.4" width="3" height="3" fill="#3a3f4a"/>` : `<rect x="-5" y="-2" width="10" height="5" rx="1" fill="#6b4fd8" stroke="#4a3f86" stroke-width=".6"/><circle cy="-2.4" r="2.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".6"/>`}</g>`).join("") +
+      `<g class="echo-hand-l"><g transform="rotate(-8 2 68)"><rect x="-10" y="62" width="24" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="-1" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">EXIT</text><path d="M7.6 68 h4 m-1.8 -2 l2 2 l-2 2" stroke="#fff" stroke-width="1" fill="none"/></g>${mitt(5, 80, 20)}</g>` +
+      `<g class="echo-hand-r"><g class="xcd-lamp"><path d="M99 58 a4 3 0 0 1 8 0" stroke="#9fb3c4" stroke-width="1.4" fill="none"/><rect x="97" y="60" width="12" height="15" rx="2" fill="#2b2142" stroke="#9fb3c4"/><rect class="xcd-flame" x="99.5" y="62.5" width="7" height="10" rx="1.6" fill="#ffd98a"/></g>${mitt(95.5, 78)}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -2248,7 +2374,11 @@ const VIZ = {
 
   // the two money theses draw all three slides in visuals.js; these are the empty frames it fills
   paycheck() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  contracts() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  contracts() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  // optics, CUDA and circular financing draw all three slides in visuals.js too
+  light() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  cuda() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 
 /* interactive bits inside a memo's visual */
@@ -3974,7 +4104,7 @@ const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<
 
 // The periodic table of my theses: each thesis an element, numbered in the order I published it.
 // Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
