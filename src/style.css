@@ -2891,3 +2891,9 @@ html.paused .theater{animation:none}
 @keyframes xgd-helix{0%,100%{transform:scaleX(1)}50%{transform:scaleX(-1)}}
 .xgd-drop{animation:xgd-drop 1.8s ease-in infinite}
 @keyframes xgd-drop{0%,40%{opacity:0;transform:translateY(-4px)}50%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(12px)}100%{opacity:0;transform:translateY(14px)}}
+.echo-clockmaker .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-clockmaker .echo-fin-l,.echo-clockmaker .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xck-hand{transform-origin:2px 68px;animation:xck-hand 3s linear infinite reverse}
+@keyframes xck-hand{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.xck-glass{transform-origin:99px 65px;animation:xck-glass 4s ease-in-out infinite}
+@keyframes xck-glass{0%,40%{transform:rotate(0)}55%,90%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}

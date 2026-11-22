@@ -1887,3 +1887,63 @@ html.paused .h2-l.bad,html.paused .h2-fix,html.paused .h2-edit,html.paused .h2-b
 html.paused .h2-fix{opacity:1}html.paused .h2-l.bad{opacity:0}html.paused .h2-edit{transform:translate(224px,84px)}
 html.paused .h2-cap:nth-child(n){transform:translate(120px,197px)}html.paused .h3-ball{offset-distance:20%}
 .viz .h1-bo{fill:var(--coral);font-weight:700}
+
+/* 37 · aging: ring by ring, one root, the rewrite */
+.viz .g-k{fill:var(--violet);letter-spacing:.06em;font-weight:700}.viz .g-k.a{fill:var(--amber)}
+.viz .g-dim{fill:var(--dim)}
+.g1-bark{fill:#2a2018;stroke:#5a4024;stroke-width:3}
+.g1-wood{fill:#1d1712}
+.g1-crack{stroke:#0e0b08;stroke-width:1.4;opacity:.7}
+.g1-ring{fill:none;stroke-width:2.2;stroke-dasharray:1;stroke-dashoffset:1;opacity:.9}
+.viz[data-step="1"] .g1-ring{animation:g-draw 1s ease-out var(--d) forwards}
+@keyframes g-draw{to{stroke-dashoffset:0}}
+.g1-pith{fill:#d4e3f0}
+.g1-row{opacity:.25}
+.viz[data-step="1"] .g1-row{animation:g-in .4s ease-out var(--d) forwards}
+@keyframes g-in{to{opacity:1}}
+.viz .g1-row text{fill:var(--paper)}.viz .g1-yr{font-weight:900}
+.g1-stamp{opacity:0}
+.viz[data-step="1"] .g1-stamp{animation:g-stamp .35s cubic-bezier(.3,1.6,.5,1) 3.4s forwards}
+@keyframes g-stamp{from{opacity:0;transform:rotate(-14deg) scale(1.6)}to{opacity:1}}
+.g1-stamp{transform-box:fill-box;transform-origin:center}
+.g1-stamp rect{fill:rgba(10,16,26,.82);stroke:var(--coral);stroke-width:2.4}.viz .g1-stamp text{fill:var(--coral);font-weight:900;letter-spacing:.12em}
+.viz .g1-st{fill:var(--coral);font-weight:700}
+.g2-soil{stroke:#5a4024;stroke-width:2;stroke-dasharray:6 4}
+.g2-rt{fill:none;stroke:#8a6a4a;stroke-width:1.6}
+.g2-tip{fill:var(--coral)}
+.viz .g2-rl{fill:var(--coral);opacity:.85}
+.g2-rootglow ellipse{fill:var(--amber);opacity:0;filter:blur(10px);animation:g2-glow 10s ease-in-out infinite}
+@keyframes g2-glow{0%,52%{opacity:0}60%,88%{opacity:.22}96%,100%{opacity:0}}
+.g2-trunk{stroke:#8a6a4a;stroke-width:7;stroke-linecap:round}
+.viz .g2-tl{fill:#c79a5b;font-weight:700}
+.g2-br{fill:none;stroke:#8a6a4a;stroke-width:2.4}
+.g2-lf{fill:#10261f;stroke:#69e39a;stroke-width:1.2}
+.viz .g2-lt{fill:var(--paper);font-weight:700}
+.g2-leaf{transform-box:view-box;animation:g2-leaf 10s ease-in-out infinite}
+.g2-leaf.cut{animation:g2-cut 10s ease-in-out infinite}
+@keyframes g2-cut{0%,22%{opacity:1}28%,96%{opacity:.14}100%{opacity:1}}
+@keyframes g2-leaf{0%,58%{opacity:1}66%,90%{opacity:.35}100%{opacity:1}}
+.g2-snip{fill:none;stroke:var(--paper);stroke-width:2;animation:g2-snip 10s ease-in-out infinite}
+.g2-snip circle{stroke-width:1.4}
+@keyframes g2-snip{0%,6%{transform:translate(30px,150px);opacity:0}12%{opacity:1}20%,26%{transform:translate(111px,94px);opacity:1}32%,100%{transform:translate(111px,94px);opacity:0}}
+.viz .g2-plus{fill:var(--coral);font-weight:900;opacity:0;animation:g2-plus 10s ease-in-out infinite}
+@keyframes g2-plus{0%,26%{opacity:0}30%,92%{opacity:1}100%{opacity:0}}
+.viz .g2-big{font-weight:900}.viz .g2-big.c{fill:var(--coral)}.viz .g2-big.a{fill:var(--amber)}
+.viz .g2-if{fill:var(--amber);font-style:italic;font-weight:700}
+.g3-disc{stroke-width:1.4}
+.g3-disc.y{fill:rgba(63,214,200,.06);stroke:var(--amber)}.g3-disc.o{fill:rgba(244,151,122,.05);stroke:#5b6b7c;animation:g3-sick 6s ease-in-out infinite}.g3-disc.r{fill:rgba(63,214,200,.06);stroke:var(--amber);stroke-dasharray:5 4}
+@keyframes g3-sick{0%,40%{fill:rgba(244,151,122,.05)}55%,90%{fill:rgba(244,151,122,.28)}100%{fill:rgba(244,151,122,.05)}}
+.g3-t{opacity:.9;animation:g3-tw 2.4s ease-in-out var(--d) infinite}
+@keyframes g3-tw{0%,100%{opacity:.95}50%{opacity:.55}}
+.g3-v{offset-rotate:0deg;animation:g3-v 6s ease-in-out infinite}
+.g3-v circle{fill:rgba(244,151,122,.35);stroke:var(--coral);stroke-width:1.4}.g3-v path{stroke:var(--coral);stroke-width:1.4;stroke-linecap:round}
+@keyframes g3-v{0%{offset-distance:0%;opacity:0}8%{opacity:1}45%{offset-distance:55%}90%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.g3-v.b{animation-name:g3-vb}
+@keyframes g3-vb{0%{offset-distance:0%;opacity:0}8%{opacity:1}50%,90%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.g3-ai rect{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.4}.viz .g3-ai text{fill:var(--amber);font-weight:900}
+.g3-beam{stroke:var(--amber);stroke-width:2.4;stroke-dasharray:4 4;animation:k-ants .8s linear infinite}
+.viz .g3-al{fill:var(--amber);font-weight:700}
+.viz .g3-ft{fill:var(--dim);font-style:italic}
+html.paused .g1-ring,html.paused .g1-row,html.paused .g1-stamp{animation:none!important;stroke-dashoffset:0;opacity:1}
+html.paused .g2-rootglow ellipse,html.paused .g2-leaf,html.paused .g2-snip,html.paused .g2-plus,html.paused .g3-disc,html.paused .g3-t,html.paused .g3-v,html.paused .g3-beam{animation:none!important}
+html.paused .g2-leaf.cut{opacity:.14}html.paused .g2-plus{opacity:1}html.paused .g2-snip{opacity:0}html.paused .g3-v{opacity:0}

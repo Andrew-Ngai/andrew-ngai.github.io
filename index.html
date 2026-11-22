@@ -2669,6 +2669,12 @@ html.paused .theater{animation:none}
 @keyframes xgd-helix{0%,100%{transform:scaleX(1)}50%{transform:scaleX(-1)}}
 .xgd-drop{animation:xgd-drop 1.8s ease-in infinite}
 @keyframes xgd-drop{0%,40%{opacity:0;transform:translateY(calc(-4*var(--u)))}50%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(calc(12*var(--u)))}100%{opacity:0;transform:translateY(calc(14*var(--u)))}}
+.echo-clockmaker .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-clockmaker .echo-fin-l,.echo-clockmaker .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xck-hand{transform-origin:calc(2*var(--u)) calc(68*var(--u));animation:xck-hand 3s linear infinite reverse}
+@keyframes xck-hand{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.xck-glass{transform-origin:calc(99*var(--u)) calc(65*var(--u));animation:xck-glass 4s ease-in-out infinite}
+@keyframes xck-glass{0%,40%{transform:rotate(0)}55%,90%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 .v-old{display:none!important}
 .k-pop,.k-grow-x,.k-grow-y,.k-fade{opacity:0}
 .viz[data-step="1"] .f1 .k-in,.viz[data-step="2"] .f2 .k-in,.viz[data-step="3"] .f3 .k-in{animation:k-in .7s var(--ease) var(--d,0s) both}
@@ -4519,6 +4525,64 @@ html.paused .h2-l.bad,html.paused .h2-fix,html.paused .h2-edit,html.paused .h2-b
 html.paused .h2-fix{opacity:1}html.paused .h2-l.bad{opacity:0}html.paused .h2-edit{transform:translate(calc(224*var(--u)),calc(84*var(--u)))}
 html.paused .h2-cap:nth-child(n){transform:translate(calc(120*var(--u)),calc(197*var(--u)))}html.paused .h3-ball{offset-distance:20%}
 .viz .h1-bo{fill:var(--coral);font-weight:700}
+.viz .g-k{fill:var(--violet);letter-spacing:.06em;font-weight:700}.viz .g-k.a{fill:var(--amber)}
+.viz .g-dim{fill:var(--dim)}
+.g1-bark{fill:#2a2018;stroke:#5a4024;stroke-width:3}
+.g1-wood{fill:#1d1712}
+.g1-crack{stroke:#0e0b08;stroke-width:1.4;opacity:.7}
+.g1-ring{fill:none;stroke-width:2.2;stroke-dasharray:1;stroke-dashoffset:1;opacity:.9}
+.viz[data-step="1"] .g1-ring{animation:g-draw 1s ease-out var(--d) forwards}
+@keyframes g-draw{to{stroke-dashoffset:0}}
+.g1-pith{fill:#d4e3f0}
+.g1-row{opacity:.25}
+.viz[data-step="1"] .g1-row{animation:g-in .4s ease-out var(--d) forwards}
+@keyframes g-in{to{opacity:1}}
+.viz .g1-row text{fill:var(--paper)}.viz .g1-yr{font-weight:900}
+.g1-stamp{opacity:0}
+.viz[data-step="1"] .g1-stamp{animation:g-stamp .35s cubic-bezier(.3,1.6,.5,1) 3.4s forwards}
+@keyframes g-stamp{from{opacity:0;transform:rotate(-14deg) scale(1.6)}to{opacity:1}}
+.g1-stamp{transform-box:fill-box;transform-origin:center}
+.g1-stamp rect{fill:rgba(10,16,26,.82);stroke:var(--coral);stroke-width:2.4}.viz .g1-stamp text{fill:var(--coral);font-weight:900;letter-spacing:.12em}
+.viz .g1-st{fill:var(--coral);font-weight:700}
+.g2-soil{stroke:#5a4024;stroke-width:2;stroke-dasharray:6 4}
+.g2-rt{fill:none;stroke:#8a6a4a;stroke-width:1.6}
+.g2-tip{fill:var(--coral)}
+.viz .g2-rl{fill:var(--coral);opacity:.85}
+.g2-rootglow ellipse{fill:var(--amber);opacity:0;filter:blur(calc(10*var(--u)));animation:g2-glow 10s ease-in-out infinite}
+@keyframes g2-glow{0%,52%{opacity:0}60%,88%{opacity:.22}96%,100%{opacity:0}}
+.g2-trunk{stroke:#8a6a4a;stroke-width:7;stroke-linecap:round}
+.viz .g2-tl{fill:#c79a5b;font-weight:700}
+.g2-br{fill:none;stroke:#8a6a4a;stroke-width:2.4}
+.g2-lf{fill:#10261f;stroke:#69e39a;stroke-width:1.2}
+.viz .g2-lt{fill:var(--paper);font-weight:700}
+.g2-leaf{transform-box:view-box;animation:g2-leaf 10s ease-in-out infinite}
+.g2-leaf.cut{animation:g2-cut 10s ease-in-out infinite}
+@keyframes g2-cut{0%,22%{opacity:1}28%,96%{opacity:.14}100%{opacity:1}}
+@keyframes g2-leaf{0%,58%{opacity:1}66%,90%{opacity:.35}100%{opacity:1}}
+.g2-snip{fill:none;stroke:var(--paper);stroke-width:2;animation:g2-snip 10s ease-in-out infinite}
+.g2-snip circle{stroke-width:1.4}
+@keyframes g2-snip{0%,6%{transform:translate(calc(30*var(--u)),calc(150*var(--u)));opacity:0}12%{opacity:1}20%,26%{transform:translate(calc(111*var(--u)),calc(94*var(--u)));opacity:1}32%,100%{transform:translate(calc(111*var(--u)),calc(94*var(--u)));opacity:0}}
+.viz .g2-plus{fill:var(--coral);font-weight:900;opacity:0;animation:g2-plus 10s ease-in-out infinite}
+@keyframes g2-plus{0%,26%{opacity:0}30%,92%{opacity:1}100%{opacity:0}}
+.viz .g2-big{font-weight:900}.viz .g2-big.c{fill:var(--coral)}.viz .g2-big.a{fill:var(--amber)}
+.viz .g2-if{fill:var(--amber);font-style:italic;font-weight:700}
+.g3-disc{stroke-width:1.4}
+.g3-disc.y{fill:rgba(63,214,200,.06);stroke:var(--amber)}.g3-disc.o{fill:rgba(244,151,122,.05);stroke:#5b6b7c;animation:g3-sick 6s ease-in-out infinite}.g3-disc.r{fill:rgba(63,214,200,.06);stroke:var(--amber);stroke-dasharray:5 4}
+@keyframes g3-sick{0%,40%{fill:rgba(244,151,122,.05)}55%,90%{fill:rgba(244,151,122,.28)}100%{fill:rgba(244,151,122,.05)}}
+.g3-t{opacity:.9;animation:g3-tw 2.4s ease-in-out var(--d) infinite}
+@keyframes g3-tw{0%,100%{opacity:.95}50%{opacity:.55}}
+.g3-v{offset-rotate:0deg;animation:g3-v 6s ease-in-out infinite}
+.g3-v circle{fill:rgba(244,151,122,.35);stroke:var(--coral);stroke-width:1.4}.g3-v path{stroke:var(--coral);stroke-width:1.4;stroke-linecap:round}
+@keyframes g3-v{0%{offset-distance:0%;opacity:0}8%{opacity:1}45%{offset-distance:55%}90%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.g3-v.b{animation-name:g3-vb}
+@keyframes g3-vb{0%{offset-distance:0%;opacity:0}8%{opacity:1}50%,90%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.g3-ai rect{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.4}.viz .g3-ai text{fill:var(--amber);font-weight:900}
+.g3-beam{stroke:var(--amber);stroke-width:2.4;stroke-dasharray:4 4;animation:k-ants .8s linear infinite}
+.viz .g3-al{fill:var(--amber);font-weight:700}
+.viz .g3-ft{fill:var(--dim);font-style:italic}
+html.paused .g1-ring,html.paused .g1-row,html.paused .g1-stamp{animation:none!important;stroke-dashoffset:0;opacity:1}
+html.paused .g2-rootglow ellipse,html.paused .g2-leaf,html.paused .g2-snip,html.paused .g2-plus,html.paused .g3-disc,html.paused .g3-t,html.paused .g3-v,html.paused .g3-beam{animation:none!important}
+html.paused .g2-leaf.cut{opacity:.14}html.paused .g2-plus{opacity:1}html.paused .g2-snip{opacity:0}html.paused .g3-v{opacity:0}
 
 </style>
 </head>
@@ -5044,6 +5108,29 @@ const SRC = {
   rxWiser: "https://www.acponline.org/advocacy/acp-advocate/archive/september-12-2025/cms-introduces-prior-authorization-model-that-incorporates-artificial-intelligence-in-the-process",
   rxWiser31: "https://news.bgov.com/bloomberg-government-news/medicare-ai-pilot-programs-lack-of-details-worries-critics",
   rxKjOne: "https://singularityhub.com/2025/11/18/scientists-race-to-deliver-custom-gene-therapies-for-incurable-diseases-in-weeks-not-years/",
+  geKennedy: "https://pubmed.ncbi.nlm.nih.gov/25417146/",
+  geGsig: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5352582",
+  geHallmarks: "https://pubmed.ncbi.nlm.nih.gov/36599349/",
+  geGems: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7611451",
+  geTheories: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2601518/table/T1",
+  geGompertz: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4360127",
+  geEight: "https://www.smithsonianmag.com/smart-news/your-probability-of-dying-doubles-every-eight-years-180948228/",
+  geSinclair: "https://eye.hms.harvard.edu/publications/loss-epigenetic-information-cause-mammalian-aging",
+  geFlu: "https://www.cdc.gov/flu/highrisk/65over.htm",
+  geThymus: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3791471/",
+  geThymus2: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12904209",
+  geVax: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3755270",
+  geCancer: "https://www.cancer.gov/about-cancer/causes-prevention/risk/age",
+  geOlshansky: "https://docs.house.gov/meetings/SY/SY21/20220915/115115/HHRG-117-SY21-Wstate-OlshanskyJ-20220915.pdf",
+  geValue: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10154220/",
+  geFda: "https://reaganudall.org/sites/default/files/2026-07/073126_Affecting%20the%20Aging%20Trajectory%20Public%20Meeting%20Summary.pdf",
+  geTame: "https://www.afar.org/research/TAME/",
+  geHorvath: "https://en.wikipedia.org/wiki/Epigenetic_clock",
+  geNewLimit: "https://longevity.technology/news/newlimit-restores-youthful-function-to-liver-and-immune-cells/",
+  geNewLimitAi: "https://research.contrary.com/report/newlimit",
+  geRetro: "https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences",
+  geLife: "https://www.technologyreview.com/2026/01/27/1131796/",
+  geLifeDose: "https://www.axios.com/newsletters/axios-future-of-health-care-828915b0-69c2-11f1-a37d-2b74fcee3304",
 };
 const BINS = {
   agree:    { label: "Agree",     css: "var(--beat)",   hex: "#6aa8ff" },
@@ -5784,6 +5871,29 @@ const ALL_THESES = [
     note: "Not investment advice. Trial counts are BCG’s 2024 analysis of AI-native biotechs, a small sample; billing figures are from the Peterson Health Technology Institute, via HIT Consultant; rare-disease counts are standard estimates.",
     receipts: [["Health Tech World: BCG on AI-discovered drugs (May 2024)", SRC.rxBcg], ["HealthManagement: 21 of 24, 4 of 10", SRC.rxBcgN], ["News-Medical: Rentosertib enters Phase III (Sep 2026)", SRC.rxRento], ["Arc Institute: State, its first virtual cell model", SRC.rxState], ["GenomeWeb: the first Virtual Cell Challenge’s results", SRC.rxVccRes], ["Arc Institute: the 2026 Virtual Cell Challenge", SRC.rxVcc], ["National Academies: rare diseases and orphan drugs", SRC.rxOrphan], ["GAO: only 5% of rare diseases have FDA-approved treatments", SRC.rxGao], ["Nature, via CGS: KJ’s bespoke editor in six months", SRC.rxKj], ["Singularity Hub: KJ’s single-letter mutation and the trial for five more", SRC.rxKjOne], ["AABB: the FDA’s one-week review and the plausible mechanism pathway", SRC.rxKjFda], ["Fierce Biotech: the FDA’s draft guidance (Feb 2026)", SRC.rxPm], ["Profluent: OpenCRISPR-1", SRC.rxOc], ["Genome Medicine: OpenCRISPR-1 tested (2026)", SRC.rxOcPeer], ["TechTarget: two-thirds of Epic hospitals use ambient AI", SRC.rxScribe], ["HIT Consultant: PHTI on scribes, downcoding and bot wars (Apr 2026)", SRC.rxPhti], ["Fierce Healthcare: AI speeds prior auth, raises costs", SRC.rxPhtiFierce], ["ACP: Medicare’s WISeR model and its six states", SRC.rxWiser], ["Bloomberg Government: WISeR runs through 2031", SRC.rxWiser31]],
     viz: "health", echo: { pose: "genedoc", acc: "genedoc", name: "Gene Doc" }
+  },
+  {
+    id: "aging", die: [8, 1], stance: "build", probe: true,
+    probeHook: "A flu that costs a 20-year-old three sick days can kill an 80-year-old. Same virus.",
+    layer: "M", tldr: ["Old age may be one disease with many symptoms.", "A theory, not settled science: aging cells may be the root of most diseases of old age. 70–85% of flu deaths are people 65+, and the odds of dying double about every 8 years. Curing cancer would add ~3 years; slowing aging by one year is worth an estimated $38T. AI’s job: make old cells act young, then prove it."],
+    title: "Old age may be one disease with many symptoms.",
+    h2: "Old age may be | one disease | with many symptoms.",
+    short: "One disease, many symptoms",
+    hook: "A flu that costs a 20-year-old a few sick days can kill an 80-year-old. The virus is the same; the body isn’t. The geroscience hypothesis says the diseases of old age share one upstream cause, cells losing function with age, so treating that cause could delay many of them at once. It is still a theory. AI may be how it finally gets tested.",
+    ref: { label: "Brian Kennedy and colleagues, “Geroscience: Linking Aging to Chronic Disease” (Cell, 2014): aging is the greatest risk factor for most chronic diseases, so slowing it could delay many at once", href: SRC.geKennedy },
+    signal: `<p class="claim">Same virus. | Different body.</p>
+      <p>The CDC estimates that 70–85% of seasonal flu deaths are people 65 and older. Cancer follows the same slope: its median age at diagnosis is 67, and its rate climbs from under 26 cases per 100,000 people under 20 to over 1,000 for every age group from 60 up. Actuaries have known the overall pattern since 1825: in adults, the odds of dying in a given year roughly double every eight years.</p>
+      <p>The geroscience hypothesis reads those curves as one story: if aging is the biggest risk factor behind most chronic diseases, slowing aging could delay all of them together. It is a hypothesis, not a finding. No trial has yet shown that slowing aging in people delays many diseases at once, the FDA has no approved indication for aging, and there is no validated aging biomarker or accepted endpoint to prove one.</p>`,
+    takes: [
+      ["The idea is old. The proof isn’t.", "Benjamin Gompertz spotted the doubling in death rates in 1825. Peter Medawar argued in 1952 that evolution can’t weed out harms that show up after we’ve had children; Denham Harman blamed free radicals in 1956; Leonard Hayflick found in 1961 that human cells divide only so many times. The NIH formed a Geroscience Interest Group in 2012, Carlos López-Otín and colleagues listed nine “hallmarks of aging” in 2013, twelve by 2023, and Brian Kennedy’s group laid out the geroscience case in Cell in 2014. David Sinclair’s lab goes furthest, arguing that cells losing epigenetic information is a reversible cause of aging. Critics, including David Gems and João Pedro de Magalhães, say the hallmarks describe aging without yet explaining it the way the hallmarks of cancer explain cancer."],
+      ["Cure one disease and the next one is waiting.", "Old immune systems lose function in measurable ways: the thymus shrinks, the supply of new naive T cells falls, and older studies put the yearly flu shot at only 40–60% effective in people 65 and up. Cancer is a partial fit for the theory, not a perfect one: it is cells gaining the power to divide without stopping, from mutations that pile up with age, often while an aging immune system is watching less closely. Because these diseases rise together, beating one mostly hands the patient to the next. S. Jay Olshansky estimates a cure for cancer would add about three years to life expectancy. Andrew Scott, Martin Ellison and David Sinclair estimate a slowdown in aging that adds one year is worth $38 trillion."],
+      ["AI’s job: make old cells act young, then prove it.", "If old cells are the root, the fix is rewriting them, and the search space is huge. NewLimit uses an AI model called Ambrosia to pick combinations of transcription factors, the switches that set which genes are on; it reports sets that restored youthful function to aged T cells and liver cells in the lab. OpenAI and Retro Biosciences used a protein model, GPT-4b micro, to redesign the Yamanaka factors; in cells, the variants drove over 50 times more expression of reprogramming markers. In January the FDA cleared the first human test of partial reprogramming, Life Biosciences’ ER-100, for eye disease. The harder problem is proof: a trial on aging itself would take decades. My read: AI’s biggest job here is the clock, a measure of biological age the FDA will accept, building on Steve Horvath’s 2013 epigenetic clock."]
+    ],
+    bet: `Back the proof, not the promise. Aging clocks good enough to become trial endpoints. Rejuvenation platforms that start with one cell type and a disease the FDA already recognizes, the way Life Biosciences started with the eye. And immune rejuvenation for older adults, where flu and vaccine response give a fast, measurable readout. Be wary of anyone selling “reverse your age” tests or pills on the strength of a clock alone. <a href="#health">AI sped up medicine’s cheap half</a> covers why proof is where the money is.`,
+    wrong: "Aging isn’t one process. If the hallmarks turn out to be loosely linked, fixing one leaves the rest, the diseases stay separate problems, and medicine keeps fighting them one at a time. Or rewriting cells proves unsafe in whole bodies, and reprogramming stays confined to small, contained organs like the eye.",
+    note: "Not medical or investment advice. The geroscience hypothesis is a theory under test; most rejuvenation results so far are in cells and mice. Figures are from the CDC, the NCI, S. Jay Olshansky, Scott, Ellison and Sinclair, and company announcements.",
+    receipts: [["Kennedy et al., “Geroscience: linking aging to chronic disease” (Cell, 2014)", SRC.geKennedy], ["Sierra and Kohanski: the NIH Geroscience Interest Group (2012)", SRC.geGsig], ["López-Otín et al.: twelve hallmarks of aging (Cell, 2023)", SRC.geHallmarks], ["Gems and de Magalhães: a critique of the hallmarks (2021)", SRC.geGems], ["Theories of aging: Harman (1956), Hayflick (1961)", SRC.geTheories], ["Kirkwood on Gompertz (1825)", SRC.geGompertz], ["Smithsonian: death odds double every eight years", SRC.geEight], ["Yang et al.: loss of epigenetic information as a cause of aging (Cell, 2023)", SRC.geSinclair], ["CDC: flu and people 65 and older", SRC.geFlu], ["Palmer: the effect of age on thymic function", SRC.geThymus], ["Thymic involution, infection and cancer risk", SRC.geThymus2], ["Haynes and Maue: T cells, aging and flu vaccine efficacy", SRC.geVax], ["NCI: age and cancer risk", SRC.geCancer], ["S. Jay Olshansky, House testimony (2022): curing cancer adds about three years", SRC.geOlshansky], ["Scott, Ellison and Sinclair: the economic value of targeting aging (2021)", SRC.geValue], ["Reagan-Udall Foundation: no aging indication or accepted endpoint (Jul 2026)", SRC.geFda], ["AFAR: the TAME trial", SRC.geTame], ["Epigenetic clocks, from Horvath (2013)", SRC.geHorvath], ["Longevity.Technology: NewLimit rejuvenates T cells and liver cells", SRC.geNewLimit], ["Contrary Research: NewLimit’s Ambrosia model (Jun 2026)", SRC.geNewLimitAi], ["OpenAI and Retro Biosciences: GPT-4b micro (Aug 2025)", SRC.geRetro], ["MIT Technology Review: the first human reprogramming test (Jan 2026)", SRC.geLife], ["Axios: first patient treated", SRC.geLifeDose]],
+    viz: "aging", echo: { pose: "clockmaker", acc: "clockmaker", name: "Clockmaker" }
   }
 ];
 const THESES = ALL_THESES.filter(t => !t.probe);
@@ -5832,6 +5942,7 @@ const DOODLES = {
   asic: "<path d=\"M8 36 h34 v26 h-34 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M13 36 l-5 -10 M20 36 v-12 M28 36 l3 -11 M36 36 l7 -9\" stroke=\"#26303a\" stroke-width=\"2\" /><circle cx=\"8\" cy=\"25\" r=\"2.2\" fill=\"#26303a\"/><path d=\"M18 22 h4\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M29 23 l4 2\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"25\" y=\"53\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">GPU</text><text x=\"25\" y=\"78\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">any job</text><path d=\"M46 49 L58 49 M52 45 L58 49 L52 53\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M64 32 h11 v11 h-11 Z M77 32 h11 v11 h-11 Z M90 32 h11 v11 h-11 Z M64 45 h11 v11 h-11 Z M77 45 h11 v11 h-11 Z M90 45 h11 v11 h-11 Z M64 58 h11 v11 h-11 Z M77 58 h11 v11 h-11 Z M90 58 h11 v11 h-11 Z\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><path d=\"M66 67 L99 34\" stroke=\"#d23c3c\" stroke-width=\"2.4\" stroke-dasharray=\"4 3\" /><text x=\"82\" y=\"24\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">ASIC</text><text x=\"60\" y=\"96\" fill=\"#d23c3c\" font-size=\"15\" text-anchor=\"middle\">built for one job</text>",
   bias: "<path d=\"M6 88 H114 M6 88 V8\" stroke=\"#26303a\" stroke-width=\"2\" /><circle cx=\"28\" cy=\"30\" r=\"2.6\" fill=\"#26303a\"/><circle cx=\"44\" cy=\"58\" r=\"2.6\" fill=\"#26303a\"/><circle cx=\"70\" cy=\"22\" r=\"2.6\" fill=\"#26303a\"/><circle cx=\"96\" cy=\"46\" r=\"2.6\" fill=\"#26303a\"/><circle cx=\"58\" cy=\"74\" r=\"2.6\" fill=\"#26303a\"/><path d=\"M16 76 C30 60 40 40 60 36 C76 33 88 30 102 20\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M96 18 L103 19.4 L100 26\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><path d=\"M16 76 L102 66\" stroke=\"#1f5fbf\" stroke-width=\"2.2\" stroke-dasharray=\"4 4\" /><path d=\"M16 70 l2 4 l4 1 l-3 3 l1 4 l-4 -2 l-4 2 l1 -4 l-3 -3 l4 -1 Z\" stroke=\"#d23c3c\" stroke-width=\"1.6\" /><text x=\"24\" y=\"104\" fill=\"#d23c3c\" font-size=\"13\" text-anchor=\"start\">1st prompt</text><text x=\"86\" y=\"14\" fill=\"#d23c3c\" font-size=\"13\" text-anchor=\"middle\">drift</text>",
   health: "<path d=\"M26 44 h36 v28 h-36 a14 14 0 0 1 0 -28 Z\" stroke=\"#1d8a5c\" stroke-width=\"3\" /><path d=\"M62 44 h36 a14 14 0 0 1 0 28 h-36 Z\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M0 50 h8 M0 58 h9 M0 66 h8\" stroke=\"#1d8a5c\" stroke-width=\"2.4\" /><text x=\"82\" y=\"64\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">$$</text><text x=\"40\" y=\"34\" fill=\"#1d8a5c\" font-size=\"14\" text-anchor=\"middle\">fast</text><text x=\"82\" y=\"34\" fill=\"#d23c3c\" font-size=\"14\" text-anchor=\"middle\">slow</text><text x=\"60\" y=\"96\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">the expensive half</text>",
+  aging: "<path d=\"M60 78 V34 M60 60 L30 45 M60 52 L90 45\" stroke=\"#26303a\" stroke-width=\"3\" /><path d=\"M60 78 L46 90 M60 78 L74 90 M60 78 V92\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><circle cx=\"25\" cy=\"42\" r=\"7\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><circle cx=\"60\" cy=\"27\" r=\"7\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><circle cx=\"95\" cy=\"42\" r=\"7\" stroke=\"#1d8a5c\" stroke-width=\"2.2\" /><text x=\"25\" y=\"27\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">flu</text><text x=\"60\" y=\"13\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">heart</text><text x=\"95\" y=\"27\" fill=\"#1d8a5c\" font-size=\"12\" text-anchor=\"middle\">cancer</text><text x=\"80\" y=\"92\" fill=\"#d23c3c\" font-size=\"13\" text-anchor=\"start\">aging?</text>",
   physical: "<path d=\"M24 72 V48 Q24 44 28 44 Q32 44 32 48 V60 M32 48 V38 Q32 34 36 34 Q40 34 40 38 V58 M40 40 Q40 36 44 36 Q48 36 48 40 V60 M48 44 Q48 40 52 40 Q56 40 56 44 V66 Q56 82 40 84 Q26 84 24 72 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><rect x=\"70\" y=\"40\" width=\"30\" height=\"20\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M100 46 L112 40 V60 L100 54\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"75\" cy=\"31\" r=\"3.4\" fill=\"#d23c3c\" /><text x=\"82\" y=\"35\" fill=\"#d23c3c\" font-size=\"11\">REC</text><text x=\"64\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">film the hands</text>",
 };
 const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5"};
@@ -6070,6 +6181,10 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<path d="M16 8 C14 -12 86 -12 84 8 Q50 1 16 8 Z" fill="#2fb8a8"/><path d="M18 6 Q50 -1 82 6" stroke="#1d8a7c" stroke-width="1.4" fill="none"/>${[26, 38, 50, 62, 74].map(x => `<circle cx="${x}" cy="${-2 + Math.abs(x - 50) * .12}" r=".9" fill="#1d8a7c"/>`).join("")}` +
       `<g class="echo-hand-l"><g class="xgd-helix"><path d="M-6 54 C4 62 -4 70 6 78 C-2 84 4 86 2 82" stroke="#cfc6f5" stroke-width="1.8" fill="none"/><path d="M6 54 C-4 62 4 70 -6 78" stroke="#cfc6f5" stroke-width="1.8" fill="none"/>${hx}</g>${mitt(3, 82, 20)}</g>` +
       `<g class="echo-hand-r"><g transform="rotate(14 100 64)"><rect x="97.6" y="44" width="5" height="22" rx="1.4" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".8"/><rect x="96" y="40" width="8" height="5.6" rx="1.6" fill="#ff6b80"/><path d="M98.6 66 L100 72 L101.4 66 Z" fill="#9fb3c4"/><rect x="98.4" y="56" width="3.4" height="9" rx="1" fill="#3fd6c8" opacity=".7"/></g><circle class="xgd-drop" cx="101.4" cy="76" r="1.8" fill="#3fd6c8"/>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "clockmaker") {
+    accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
+      `<g class="echo-hand-l"><path d="M2 56 Q-10 50 -8 40" stroke="#c79a5b" stroke-width="1.2" fill="none" stroke-dasharray="1.6 1.2"/><circle cx="2" cy="68" r="10" fill="#f3ead2" stroke="#c79a5b" stroke-width="2"/><rect x="0" y="55" width="4" height="3.4" rx="1" fill="#c79a5b"/>${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i => `<path d="M2 ${60.6} V${i % 3 ? 61.6 : 62.6}" transform="rotate(${i * 30} 2 68)" stroke="#9c7440" stroke-width=".8"/>`).join("")}<g class="xck-hand"><path d="M2 68 V61.2" stroke="#2b2142" stroke-width="1.3" stroke-linecap="round"/></g><path d="M2 68 L6 70" stroke="#2b2142" stroke-width="1.1" stroke-linecap="round"/><circle cx="2" cy="68" r="1" fill="#2b2142"/>${mitt(3, 80, 20)}</g>` +
+      `<g class="echo-hand-r"><g class="xck-glass"><rect x="91" y="52" width="16" height="2.6" rx="1" fill="#c79a5b"/><rect x="91" y="76" width="16" height="2.6" rx="1" fill="#c79a5b"/><path d="M93 54.6 Q99 64 93 76 M105 54.6 Q99 64 105 76" stroke="#d4e3f0" stroke-width="1.2" fill="#a6e9ff" fill-opacity=".18"/><path d="M95 58 Q99 63 103 58 Z" fill="#ffc566"/><path d="M96 75.5 Q99 70 102 75.5 Z" fill="#ffc566"/></g>${mitt(95.5, 76)}</g>`;
   } else if (acc === "camera") {
     accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
       `<g class="echo-hand-l"><rect x="-12" y="60" width="24" height="15" rx="1.5" fill="#26303a" stroke="#d4e3f0" stroke-width=".9"/><text x="0" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#d4e3f0">TAKE 1</text><g class="xcm-arm"><path d="M-12 59.5 L12 53 L13 57 L-11 63.5 Z" fill="#d4e3f0"/><path d="M-6.5 62 L-3.5 56.4 M-.5 60.4 L2.5 54.8 M5.5 58.8 L8.5 53.2" stroke="#26303a" stroke-width="2"/></g>${mitt(3, 80, 20)}</g>` +
@@ -7216,7 +7331,8 @@ const VIZ = {
   ledger() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   asic() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   bias() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  health() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  health() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  aging() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 const VIZ_INIT = {
   quantum(root) {
@@ -10349,8 +10465,70 @@ A["health-3a"] = { html: () => {
     show(6);
   } };
 })();
+(() => {
+const A = window.AX;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const RINGS = [["1825", "Gompertz: death odds double ~every 8 yrs"], ["1952", "Medawar: evolution can’t weed out late harm"], ["1956", "Harman: free radicals damage cells"], ["1961", "Hayflick: cells divide only so many times"], ["2012", "NIH starts a geroscience group"], ["2013", "López-Otín et al.: 9 hallmarks of aging"], ["2014", "Kennedy et al.: the geroscience case"], ["2023", "12 hallmarks; Sinclair: lost information"], ["2026", "first rejuvenation test in people (eye)"]];
+A["aging-1a"] = { html: () => {
+    const CX = 120, CY = 144;
+    const ring = (i) => { const r = 10 + i * 9.4, pts = []; for (let k = 0; k <= 60; k++) { const t = k / 60 * Math.PI * 2, rr = r * (1 + .035 * Math.sin(5 * t + i) + .02 * Math.sin(3 * t + 2 * i)); pts.push(`${(CX + rr * Math.cos(t)).toFixed(1)} ${(CY + rr * Math.sin(t)).toFixed(1)}`); } return `<path d="M${pts.join(" L")} Z" class="g1-ring" pathLength="1" style="--d:${(.2 + i * .32).toFixed(2)}s;stroke:color-mix(in srgb, #3fd6c8 ${Math.round(i / 8 * 100)}%, #d4e3f0)"/>`; };
+    const cracks = [20, 110, 200, 290].map(a => { const t = a * Math.PI / 180; return `<path d="M${(CX + 16 * Math.cos(t)).toFixed(1)} ${(CY + 16 * Math.sin(t)).toFixed(1)} L${(CX + 86 * Math.cos(t)).toFixed(1)} ${(CY + 86 * Math.sin(t)).toFixed(1)}" class="g1-crack"/>`; }).join("");
+    const rows = RINGS.map(([y, l], i) => `<g class="g1-row" style="--d:${(.2 + i * .32).toFixed(2)}s"><circle cx="246" cy="${51 + i * 19.6}" r="3.6" style="fill:color-mix(in srgb, #3fd6c8 ${Math.round(i / 8 * 100)}%, #d4e3f0)"/><text x="256" y="${54.5 + i * 19.6}" font-size="9.5"><tspan class="g1-yr">${y}</tspan> · ${l}</text></g>`).join("");
+    return `<div class="k-col g1">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="The theory, ring by ring. A tree stump's growth rings, one per milestone, from the center out: 1825, Gompertz finds death odds double about every eight years; 1952, Medawar argues evolution can't weed out late-life harm; 1956, Harman blames free radicals; 1961, Hayflick finds cells divide only so many times; 2012, the NIH starts a geroscience group; 2013, nine hallmarks of aging; 2014, Kennedy and colleagues make the geroscience case; 2023, twelve hallmarks and Sinclair's information theory; 2026, the first rejuvenation test in people. A stamp across the stump reads: still a hypothesis.">
+        <text x="14" y="18" font-size="13" class="t-strong">The theory, ring by ring</text>
+        <text x="14" y="33" font-size="10.5">Two centuries of ideas behind “aging is the root.” None of them is proof yet.</text>
+        <circle cx="${CX}" cy="${CY}" r="96" class="g1-bark"/><circle cx="${CX}" cy="${CY}" r="91" class="g1-wood"/>
+        ${cracks}${RINGS.map((_, i) => ring(i)).join("")}<circle cx="${CX}" cy="${CY}" r="4" class="g1-pith"/>
+        <g class="g1-stamp" transform="rotate(-14 ${CX} ${CY})"><rect x="${CX - 78}" y="${CY - 15}" width="156" height="30" rx="3"/><text x="${CX}" y="${CY + 5}" text-anchor="middle" font-size="13">STILL A HYPOTHESIS</text></g>
+        ${rows}
+        <text x="246" y="229" font-size="9.5" class="g1-st">Still in 2026: no FDA indication for aging,</text><text x="246" y="242" font-size="9.5" class="g1-st">and no accepted endpoint to prove a drug works</text>
+      </svg>
+      <p class="cf1-say">The pattern is old: Benjamin Gompertz saw death odds doubling with age in 1825. The idea that one aging process sits under the diseases of old age took shape much later, as the geroscience hypothesis Brian Kennedy and colleagues laid out in 2014. Critics say the hallmarks of aging describe it without yet explaining it, and no trial has proved it in people.</p>
+    </div>${capLS("Milestones: Kirkwood on Gompertz (1825); theories of aging (Medawar, Harman, Hayflick); Sierra and Kohanski (NIH, 2012); López-Otín et al. (2013, 2023); Kennedy et al. (2014); Yang et al. (2023); Life Biosciences (2026). Status: Reagan-Udall Foundation, July 2026.", "Cell; NIH; Reagan-Udall Foundation.")}`; } };
+A["aging-2a"] = { html: () => {
+    const T = [160, 120], G = 160, leaves = [["flu deaths", 46, 116], ["cancer", 62, 80], ["heart disease", 118, 58], ["dementia", 206, 58], ["diabetes", 250, 80], ["frailty", 280, 116]];
+    const br = leaves.map(([l, x, y], i) => { const w = l.length * 5.2 + 18; return `<g class="g2-leaf${l === "cancer" ? " cut" : ""}" style="--i:${i}"><path d="M${T[0]} ${T[1]} Q${((T[0] + x) / 2).toFixed(0)} ${Math.min(T[1], y + 9) - 6} ${x} ${y + 9}" class="g2-br"/><rect x="${(x - w / 2).toFixed(1)}" y="${y - 9}" width="${w.toFixed(1)}" height="18" rx="9" class="g2-lf"/><text x="${x}" y="${y + 3.3}" text-anchor="middle" font-size="9" class="g2-lt">${l}</text></g>`; }).join("");
+    const roots = [["DNA damage", 44], ["epigenetic changes", 92], ["senescent cells", 140], ["inflammation", 188], ["stem cell exhaustion", 236], ["mitochondria", 284]];
+    const rt = roots.map(([l, x], i) => `<path d="M${T[0]} ${G} C${T[0]} ${G + 22} ${x} ${G + 14} ${x} ${G + 32 + (i % 2) * 8}" class="g2-rt"/><circle cx="${x}" cy="${G + 32 + (i % 2) * 8}" r="2.6" class="g2-tip"/><text x="${x}" y="${G + 50 + (i % 2) * 14}" text-anchor="middle" font-size="8.4" class="g2-rl">${l}</text>`).join("");
+    return `<div class="k-col g2">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="One root, many branches. A tree whose leaves are the diseases of old age: flu deaths, cancer, heart disease, dementia, diabetes and frailty, all growing from one trunk labeled aging cells, with roots labeled by hallmarks of aging such as DNA damage, epigenetic changes, senescent cells, inflammation, stem cell exhaustion and mitochondria. Scissors cut the cancer branch: about three more years of life expectancy, while the other branches keep growing. Then the root glows: slowing aging by enough to add one year is valued at about $38 trillion, if the theory holds.">
+        <text x="14" y="18" font-size="13" class="t-strong">One root, many branches?</text>
+        <text x="14" y="33" font-size="10.5">The hypothesis: the diseases of old age grow from the same aging cells.</text>
+        <path d="M14 ${G} H306" class="g2-soil"/>
+        ${rt}<g class="g2-rootglow"><ellipse cx="${T[0]}" cy="${G + 30}" rx="130" ry="30"/></g>
+        <path d="M${T[0]} ${G} V${T[1]}" class="g2-trunk"/><text x="${T[0] + 9}" y="${G - 12}" font-size="9" class="g2-tl">aging cells?</text>
+        ${br}
+        <g class="g2-snip"><path d="M-6 -6 L6 6 M-6 6 L6 -6" /><circle cx="-8" cy="-8" r="3"/><circle cx="-8" cy="8" r="3"/></g>
+        <text x="40" y="62" text-anchor="middle" font-size="12" class="g2-plus">+3 yrs</text>
+        <text x="324" y="60" font-size="9.5" class="g-k">CUT ONE BRANCH</text><text x="324" y="88" font-size="26" class="g2-big c">+3 yrs</text><text x="324" y="103" font-size="9.5" class="g-dim">life expectancy if cancer</text><text x="324" y="115" font-size="9.5" class="g-dim">were cured (Olshansky)</text>
+        <text x="324" y="146" font-size="9.5" class="g-k">TREAT THE ROOT?</text><text x="324" y="174" font-size="26" class="g2-big a">$38T</text><text x="324" y="189" font-size="9.5" class="g-dim">value of slowing aging</text><text x="324" y="201" font-size="9.5" class="g-dim">enough to add 1 year</text>
+        <text x="324" y="226" font-size="9.5" class="g2-if">if the theory holds</text>
+      </svg>
+      <p class="cf1-say">The diseases of old age rise together, so beating one mostly hands people to the next: S. Jay Olshansky estimates a cancer cure adds about three years of life expectancy. If they share a root, slowing aging would push them all back at once; Andrew Scott, Martin Ellison and David Sinclair value a one-year slowdown at $38 trillion. Cancer only partly fits: it is cells gaining the power to divide, from mutations that build up with age.</p>
+    </div>${capLS("Roots are 6 of the 12 hallmarks of aging (López-Otín et al., 2023). Cancer cure: S. Jay Olshansky’s House testimony (2022). Value: Scott, Ellison and Sinclair, Nature Aging (2021). The tree is schematic.", "Cell; House testimony; Nature Aging.")}`; } };
+const PAL = ["#3fd6c8", "#6aa8ff", "#d4e3f0", "#ffc566", "#b49cff", "#69e39a"];
+A["aging-3a"] = { html: () => {
+    const disc = (cx, n, cols, cls, seed) => { let x = seed; const r = () => (x = (x * 9301 + 49297) % 233280) / 233280; const dots = [...Array(n)].map((_, i) => { const a = r() * Math.PI * 2, d = 10 + r() * 30; return `<circle cx="${(cx + d * Math.cos(a)).toFixed(1)}" cy="${(116 + d * Math.sin(a)).toFixed(1)}" r="3.6" fill="${cols(i, r)}" class="g3-t" style="--d:${(r() * 2).toFixed(2)}s"/>`; }).join(""); return `<circle cx="${cx}" cy="116" r="46" class="g3-disc ${cls}"/>${dots}`; };
+    const virus = (p, cls) => `<g class="g3-v ${cls}" style="offset-path:path('${p}')"><circle r="6.4"/>${[0, 45, 90, 135, 180, 225, 270, 315].map(a => `<path d="M0 -6.4 V-9.4" transform="rotate(${a})"/>`).join("")}</g>`;
+    return `<div class="k-col g3">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="Same virus, different body. Three immune systems drawn as discs of T cells. Age 25: many kinds of T cells, and a flu virus bounces off. Age 80: fewer, less varied T cells, and the virus gets through. Age 80, rewritten: an AI model picks transcription factors that make old T cells act young again, restoring variety, and the virus bounces off, so far only in the lab.">
+        <text x="14" y="18" font-size="13" class="t-strong">Same virus, different body</text>
+        <text x="14" y="33" font-size="10.5">70–85% of flu deaths are people 65 and older. Could old immune cells be rewritten?</text>
+        <text x="80" y="60" text-anchor="middle" font-size="9.5" class="g-k">AGE 25</text><text x="230" y="60" text-anchor="middle" font-size="9.5" class="g-k">AGE 80</text><text x="380" y="60" text-anchor="middle" font-size="9.5" class="g-k a">AGE 80, REWRITTEN?</text>
+        ${disc(80, 34, (i) => PAL[i % 6], "y", 3)}${disc(230, 16, (i) => i % 7 ? "#5b6b7c" : PAL[i % 3], "o", 8)}${disc(380, 34, (i) => PAL[(i + 2) % 6], "r", 5)}
+        ${virus("M150 66 L118 98 L158 60", "a")}${virus("M300 66 L232 116", "b")}${virus("M452 66 L418 98 L456 60", "c")}
+        <g class="g3-ai"><rect x="292" y="74" width="30" height="22" rx="4"/><text x="307" y="89" text-anchor="middle" font-size="9">AI</text><path d="M322 88 L346 106" class="g3-beam"/></g>
+        <text x="80" y="180" text-anchor="middle" font-size="9.5">many kinds of T cells</text><text x="80" y="193" text-anchor="middle" font-size="9" class="g-dim">a full thymus keeps</text><text x="80" y="205" text-anchor="middle" font-size="9" class="g-dim">making new ones</text>
+        <text x="230" y="180" text-anchor="middle" font-size="9.5">fewer, less varied</text><text x="230" y="193" text-anchor="middle" font-size="9" class="g-dim">the thymus shrinks;</text><text x="230" y="205" text-anchor="middle" font-size="9" class="g-dim">new T cells dwindle</text>
+        <text x="380" y="180" text-anchor="middle" font-size="9.5" class="g3-al">old T cells acting young</text><text x="380" y="193" text-anchor="middle" font-size="9" class="g-dim">AI-picked factor sets,</text><text x="380" y="205" text-anchor="middle" font-size="9" class="g-dim">so far in the lab</text>
+        <text x="14" y="234" font-size="9.5" class="g3-ft">First human test of partial reprogramming: Life Biosciences, the eye, 2026. Proof will need an aging clock the FDA accepts.</text>
+      </svg>
+      <p class="cf1-say">This is where AI comes in. NewLimit’s Ambrosia model searches for combinations of transcription factors, the switches that set which genes are on; the company reports sets that made aged T cells act young again in the lab. OpenAI and Retro Biosciences redesigned the Yamanaka factors with a protein model and got over 50 times more reprogramming-marker expression, in cells. None of it has been shown in a person’s immune system yet.</p>
+    </div>${capLS("Flu deaths: CDC. Thymus and T cells: Palmer; aging-immunity reviews. NewLimit: Longevity.Technology; Contrary Research. Retro: OpenAI. First human test: MIT Technology Review; Axios. Discs are schematic.", "CDC; NewLimit; OpenAI; MIT Technology Review.")}`; } };
+})();
 (function () {
-  const AX = window.AX, PICK = {"health":{"1":"health-1a","2":"health-2a","3":"health-3a"},"bias":{"1":"bias-1a","2":"bias-2a","3":"bias-3a"},"asic":{"1":"asic-1a","2":"asic-2a","3":"asic-3a"},"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"aging":{"1":"aging-1a","2":"aging-2a","3":"aging-3a"},"health":{"1":"health-1a","2":"health-2a","3":"health-3a"},"bias":{"1":"bias-1a","2":"bias-2a","3":"bias-3a"},"asic":{"1":"asic-1a","2":"asic-2a","3":"asic-3a"},"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
@@ -11430,7 +11608,7 @@ function initLinks(root) {
   $$(".sd", root).forEach(g => g.addEventListener("click", () => { location.hash = g.dataset.id; }));
 }
 const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<div class="bd-scroll" tabindex="-1"><div class="${cls}" id="wb">${inner}</div></div>`; };
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa", ledger: "Lk", asic: "As", bias: "Bi", health: "Rx" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa", ledger: "Lk", asic: "As", bias: "Bi", health: "Rx", aging: "Ge" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
