@@ -1421,3 +1421,177 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .jg[data-m="pull"] .jg-ok{opacity:1;transition-delay:1.2s}
 /* the train set's ticket buttons on phones */
 @media (max-width:860px){.trn-tk{padding-left:13px}.trn-tk::before{left:4px;width:4px;height:4px}}
+
+/* robots: an electric car's parts rearranged into a humanoid */
+.leg-gr{fill:none;stroke:var(--rule);stroke-width:1.4}
+.leg-car,.leg-bot{transition:opacity .7s var(--ease)}
+.lg1[data-m="c"] .leg-bot{opacity:.08}
+.lg1[data-m="r"] .leg-car{opacity:.08}
+.leg-body{fill:#132a43;stroke:#5f7f9c;stroke-width:1.2}
+.leg-win{fill:#0b1828;stroke:#5f7f9c;stroke-width:1}
+.leg-wheel{fill:#07101d;stroke:#5f7f9c;stroke-width:2}
+.leg-head,.leg-torso{fill:#132a43;stroke:#5f7f9c;stroke-width:1.2}
+.leg-limb{fill:none;stroke:#2a4766;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.leg-limb.o{stroke:#5f7f9c;stroke-width:8}
+.leg-foot{fill:none;stroke:#5f7f9c;stroke-width:4;stroke-linecap:round}
+.leg-m,.leg-bat,.leg-cpu,.leg-eye{transform:var(--c);transition:transform 1s cubic-bezier(.6,0,.25,1) var(--d,0s)}
+.lg1[data-m="r"] :is(.leg-m,.leg-bat,.leg-cpu,.leg-eye){transform:var(--r)}
+.leg-mag{fill:#f4977a;stroke:#07101d;stroke-width:.8}
+.leg-core{fill:#07101d}
+.leg-bat{fill:#1c4a52;stroke:var(--amber);stroke-width:.5}
+.leg-cpu{fill:#26405e;stroke:var(--violet);stroke-width:.5}
+.leg-eye{fill:var(--beat)}
+.leg-key .leg-bat,.leg-key .leg-cpu,.leg-key .leg-eye,.leg-key .leg-mag{transform:none;transition:none}
+.leg-key .leg-bat{stroke-width:1}.leg-key .leg-cpu{stroke-width:1}
+.leg-track{fill:var(--ink-3)}
+.leg-fill{fill:#5a3a3a}
+.viz .leg-bt{fill:var(--paper)}
+.viz .leg-bv{fill:#ffd9cc}
+
+/* robots: the joint and its magnet faucet */
+.lg3-case{fill:var(--ink-2);stroke:var(--rule);stroke-width:1.4}
+.lg3-tooth{stroke:#3c5f80;stroke-width:5;stroke-linecap:round}
+.lg3-mag.n{fill:#f4977a}.lg3-mag.s{fill:#9a5d50}
+.lg3-rot{transform-box:view-box;transform-origin:112px 126px;animation:k-spin 3.2s linear infinite}
+.lg3-gear{transform-box:view-box;transform-origin:112px 126px;animation:k-spin 1.6s linear infinite reverse}
+.lg3[data-s="shut"] :is(.lg3-rot,.lg3-gear,.lg3-belt){animation-play-state:paused}
+.lg3-ring{fill:var(--ink);stroke:var(--rule);stroke-width:1.2}
+.lg3-pl{fill:var(--ink-3);stroke:var(--dim);stroke-width:1.2;stroke-dasharray:2.5 1.8}
+.lg3-sun{fill:var(--dim)}
+.lg3-ld{fill:none;stroke:var(--faint);stroke-width:1}
+.viz .lg3-mt{fill:#f4977a}
+.lg3-pipe{fill:none;stroke:#1d3654;stroke-width:6;stroke-linecap:round}
+.lg3-pipe.big{stroke-width:11}
+.lg3-pipe.fut{stroke:#3c5f80;stroke-width:5;stroke-dasharray:6 6}
+.lg3-tok{fill:#f4977a}
+.lg3-tok.s{fill:#c07a68}
+.lg3-tok{transition:opacity .4s}
+.lg3[data-s="shut"] .lg3-flow.big .lg3-tok:not(:first-child){visibility:hidden}
+.lg3[data-s="shut"] .lg3-flow.big .lg3-tok:first-child{--t:7s}
+.lg3-vw{transform-box:fill-box;transform-origin:center;transition:transform .6s var(--ease)}
+.lg3-vw circle{fill:var(--ink-2);stroke:var(--dim);stroke-width:2}
+.lg3-vw path{stroke:var(--dim);stroke-width:2}
+.lg3[data-s="shut"] .lg3-vw{transform:rotate(90deg)}
+.lg3[data-s="shut"] .lg3-vw circle,.lg3[data-s="shut"] .lg3-vw path{stroke:#f4977a}
+.viz .lg3-lic{fill:var(--faint);transition:fill .4s}
+.viz .lg3[data-s="shut"] .lg3-lic{fill:#f4977a;font-weight:800}
+.viz .lg3-futt{fill:var(--faint);font-style:italic}
+.lg3-bot circle,.lg3-bot rect{fill:#2a4766;stroke:#9fb3c4;stroke-width:.8}
+.lg3-bot path{fill:none;stroke:#9fb3c4;stroke-width:1.6;stroke-linecap:round}
+.lg3-line g{transition:opacity .5s}
+.lg3[data-s="shut"] .lg3-line>g:not(.lg3-stop){opacity:.35}
+.lg3-belt{fill:none;stroke:#3c5f80;stroke-width:3;stroke-dasharray:3 5;animation:k-ants 1s linear infinite}
+.lg3-stop rect{fill:#f4977a}
+.lg3-stop{opacity:0;transition:opacity .4s}
+.lg3[data-s="shut"] .lg3-stop{opacity:1}
+
+/* physical: scrape what exists, film what doesn't */
+.hd-div{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:3 4}
+.viz .hd-k,.viz .pb1-k,.viz .pb3-k{fill:var(--faint);font-weight:800;letter-spacing:.12em}
+.hd-cloud{fill:#1d3654}
+.hd-cloud.empty{fill:var(--ink);filter:drop-shadow(1px 0 0 #3c5f80) drop-shadow(-1px 0 0 #3c5f80) drop-shadow(0 1px 0 #3c5f80) drop-shadow(0 -1px 0 #3c5f80)}
+.viz .hd-none{fill:var(--faint);font-style:italic}
+.viz .hd-w{fill:var(--violet);font-weight:700;opacity:.9}
+.hd-tok{fill:var(--violet)}
+.hd-fun{fill:var(--ink-3);stroke:var(--dim);stroke-width:1.2}
+.hd-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1.4}
+.hd-cone{fill:var(--amber);opacity:.08}
+.hd-cloth{fill:#2f5578}
+.hd-flap{fill:#3c6a94;transform-box:fill-box;transform-origin:50% 100%;animation:hd-fold 3s ease-in-out infinite}
+@keyframes hd-fold{0%,25%{transform:scaleY(1)}55%,85%{transform:scaleY(-1)}100%{transform:scaleY(1)}}
+.hd-hand rect{fill:#c3d2df;stroke:#07101d;stroke-width:.8}
+.hd-hand .hd-sleeve{fill:#2a4766;stroke:#9fb3c4}
+.hd-hand{animation:hd-hand 3s ease-in-out infinite}
+@keyframes hd-hand{0%,25%{transform:none}55%,85%{transform:translate(8px,-6px)}100%{transform:none}}
+.hd-cam rect{fill:var(--ink-2);stroke:var(--paper);stroke-width:1.2}
+.hd-lens{fill:var(--ink-3);stroke:var(--paper);stroke-width:1.2}
+.hd-rec{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.viz .hd-rect{fill:#f4977a;font-weight:800;letter-spacing:.06em}
+.viz .hd-n{fill:var(--paper);font-weight:900;font-variant-numeric:tabular-nums}
+.hd-tr{fill:var(--ink-3)}
+.hd-fill{fill:var(--amber);opacity:.75;transform-box:fill-box;transform-origin:0 50%}
+.hd-64{stroke:var(--faint);stroke-width:1;stroke-dasharray:2 2}
+.viz .hd-pc{fill:var(--amber);font-variant-numeric:tabular-nums}
+
+/* physical: three ways to film hands */
+.hd2-sc{opacity:0;transition:opacity .45s}
+.hd2[data-t="tele"] .hd2-sc.tele,.hd2[data-t="video"] .hd2-sc.video,.hd2[data-t="fleet"] .hd2-sc.fleet{opacity:1}
+.hd2-p circle,.hd2-p path{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.hd2-r circle,.hd2-r path{fill:#1d3654;stroke:var(--violet);stroke-width:1.2}
+.hd2-vr{fill:var(--amber)}
+.hd2-visor{fill:var(--amber);opacity:.8}
+.hd2-ctl{fill:var(--dim)}
+.hd2-link{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-dasharray:4 6;animation:k-ants 1s linear infinite}
+.viz .hd2-lt{fill:var(--amber);font-weight:700}
+.hd2-tbl{fill:var(--ink-3);stroke:var(--rule);stroke-width:1}
+.hd2-plate{animation:hd2-plate 2.4s ease-in-out infinite}
+.hd2-dish{fill:var(--dim)}
+@keyframes hd2-plate{0%,100%{transform:none}50%{transform:translate(-6px,-4px)}}
+.hd2-recg circle{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.viz .hd2-recg text{fill:#f4977a}
+.hd2-cube{fill:var(--amber);opacity:.85}
+.hd2-ph rect{fill:var(--ink-3);stroke:#5f7f9c;stroke-width:1}
+.hd2-dot{fill:#f4977a;animation:k-pulse 1.4s ease-in-out var(--d) infinite}
+.hd2-cloth{fill:#2f5578}
+.hd2-wipe{animation:hd2-wipe 2.2s ease-in-out infinite}
+@keyframes hd2-wipe{0%,100%{transform:none}50%{transform:translateX(34px)}}
+.hd2-ln{fill:none;stroke:#9fb3c4;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hd2-phone{fill:var(--ink-2);stroke:var(--paper);stroke-width:1.2}
+.hd2-rec2{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.hd2-arm{transform-box:view-box;transform-origin:0 -6px;animation:hd2-arm 2.6s ease-in-out infinite}
+.hd2-sc.fleet>g:nth-child(odd) .hd2-arm{animation-delay:-1.3s}
+@keyframes hd2-arm{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(18deg)}}
+.hd2-j{fill:var(--amber)}
+.hd2-belt{fill:none;stroke:#1d3654;stroke-width:8;stroke-linecap:round}
+.hd2-bin path{fill:none;stroke:var(--dim);stroke-width:1.6}
+.viz .hd2-rb{fill:var(--amber)}
+
+/* robots: a factory is a line, trust is a curve; Optimus at the start */
+.pb1-grid{stroke:var(--grid);stroke-width:1}
+.pb1-axis{stroke:var(--rule);stroke-width:1.2}
+.pb1-road{fill:none;stroke:#1d3654;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+.pb1-lane{fill:none;stroke:var(--paper);stroke-width:1;stroke-dasharray:4 5;opacity:.45}
+.pb1-ms{fill:var(--ink);stroke:var(--faint);stroke-width:1.4;transition:fill .4s,stroke .4s}
+.pb1-ms.on{fill:var(--amber);stroke:var(--amber)}
+.pb1-car path{fill:var(--violet);stroke:var(--ink);stroke-width:.8}
+.pb-wh{fill:var(--ink);stroke:var(--dim);stroke-width:1}
+.pb1-c{fill:none;stroke:#3c5f80;stroke-width:.8;opacity:0;transition:opacity .4s var(--d)}
+.pb1:not([data-s="0"]) .pb1-c{opacity:1}
+.pb1-on{fill:#f4977a;transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .6s var(--ease)}
+.pb1[data-s="2"] .pb1-on[data-i="0"],.pb1[data-s="3"] .pb1-on[data-i="0"]{transform:scaleX(.3)}
+.pb1[data-s="4"] .pb1-on,.pb1[data-s="5"] .pb1-on{transform:none}
+.pb1-opt{opacity:0;transition:opacity .5s}
+.pb1[data-s="5"] .pb1-opt{opacity:1}
+.pb1-bot circle,.pb1-bot rect{fill:#4a2e33;stroke:#f4977a;stroke-width:.8}
+.pb1-bot path{fill:none;stroke:#f4977a;stroke-width:1.6;stroke-linecap:round}
+.viz .pb1-ot{fill:#f4977a;font-weight:800}
+.viz .pb1-os{fill:var(--dim)}
+.viz .pb1-foot{fill:var(--dim);font-style:italic}
+
+/* physical: how many robots one person looks after */
+.pb3-op circle,.pb3-op path:not(.pb3-hs){fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.pb3-hs{fill:none;stroke:var(--dim);stroke-width:2}
+.pb3-vr{fill:var(--amber)}
+.pb3-desk{fill:var(--ink-3);stroke:var(--rule)}
+.pb3-op{transition:opacity .4s}
+.pb3[data-m="early"] .pb3-op{opacity:.25}
+.viz .pb3-ratio{fill:var(--amber);font-weight:900;font-variant-numeric:tabular-nums}
+.pb3-sc{opacity:0;transition:opacity .45s}
+.pb3[data-m="early"] .pb3-sc.early,.pb3[data-m="now"] .pb3-sc.now,.pb3[data-m="bot"] .pb3-sc.bot{opacity:1}
+.pb3-car path{fill:#2a4766;stroke:#9fb3c4;stroke-width:.8;transition:fill .3s}
+.pb3-car.big path{stroke-width:.25}
+.pb3-car.big .pb-wh{stroke-width:.3}
+.pb3-u.ask .pb3-car path{fill:var(--amber)}
+.pb3-q{opacity:0;transition:opacity .3s}
+.pb3-q circle{fill:#f4977a}
+.viz .pb3-q text{fill:var(--ink)}
+.pb3-u.ask .pb3-q{opacity:1}
+.pb3-l{fill:none;stroke:#3c5f80;stroke-width:.6;opacity:.45;transition:stroke .3s,opacity .3s,stroke-width .3s}
+.pb3-l.ask{stroke:var(--amber);opacity:1;stroke-width:1.5}
+.pb3-road{stroke:var(--rule);stroke-width:2}
+.pb3-drv circle,.pb3-drv path{fill:#4a2e33;stroke:#f4977a;stroke-width:1}
+.pb3-thick{fill:none;stroke:var(--amber);stroke-width:4;stroke-dasharray:6 6;animation:k-ants 1s linear infinite}
+.pb3-bot circle,.pb3-bot rect{fill:#1d3654;stroke:var(--violet);stroke-width:.35}
+.pb3-bot path{fill:none;stroke:var(--violet);stroke-width:.9;stroke-linecap:round}
+.pb3-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1;opacity:.9}
+.viz .pb3-ct{fill:var(--paper)}

@@ -225,7 +225,33 @@ const SRC = {
   winstar: "https://www.eweek.com/news/vendor-financing-backfires/",
   jioEkn: "https://www.ekn.se/en/magazine/digitalisation/record-deal-behind-record-time-5g-rollout-in-india/",
   jioFinn: "https://finnvera.fi/eng/finnvera/newsroom/news/finnvera-guarantees-nokias-5g-deliveries-for-a-large-order-from-indias-leading-telecom-operator-the",
-  oaSubs: "https://aimagazine.com/news/openais-billion-users-us-852bn-valuation-and-stargate"
+  oaSubs: "https://aimagazine.com/news/openais-billion-users-us-852bn-valuation-and-stargate",
+  sagH1: "https://www.techrepublic.com/article/news-humanoid-robot-shipments-chinese-vendors/",
+  unitreeH1: "https://www.ehangzhou.gov.cn/2026-08/07/c_298484.htm",
+  unitreeR1: "https://www.engadget.com/ai/this-humanoid-robot-can-do-cartwheels-handstands-and-roundhouse-kicks-at-less-than-6000-184500276.html",
+  figure39: "https://fortune.com/2026/08/19/unitree-china-dancing-robots-ipo-trading-surge-valuation/",
+  ieaEv: "https://www.iea.org/reports/global-ev-outlook-2026/manufacturing-and-trade",
+  ieaCells: "https://www.iea.org/news/close-to-30-of-cars-sold-this-year-are-set-to-be-electric-as-countries-and-consumers-respond-to-energy-crisis",
+  actBom: "https://thenextweb.com/news/physical-ai-hardest-problem-magnet-not-model-crma-schaeffler",
+  motors30: "https://oilprice.com/Energy/Energy-General/Robot-Wars-How-China-Has-the-Robotics-Industry-in-Its-Grip.html",
+  teslaLine: "https://driveteslacanada.ca/news/tesla-optimus-production-fremont-20000-week/",
+  fccRobots: "https://www.fcc.gov/document/fcc-adds-foreign-produced-power-inverters-and-robots-covered-list",
+  mp10x: "https://www.zacks.com/stock/news/2901636/can-mp-materials-scale-magnet-production-to-meet-demand",
+  gen0: "https://generalistai.com/blog/gen-0",
+  gen1: "https://generalistai.com/blog/gen-1",
+  gen1rr: "https://www.therobotreport.com/generalist-introduces-gen-1-general-purpose-model-for-physical-ai/",
+  figIndex: "https://figure.ai/news/introducing-index",
+  goBig: "https://www.figure.ai/news/project-go-big",
+  neoOrder: "https://www.1x.tech/order",
+  muskUseful: "https://electrek.co/2026/01/28/musk-admits-no-optimus-robots-are-doing-useful-work-at-tesla-after-claiming-otherwise/",
+  llama3: "https://ai.meta.com/blog/meta-llama-3/",
+  teslaQ3: "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
+  optSale: "https://www.rnz.co.nz/news/business/585438/elon-musk-is-betting-tesla-s-future-isn-t-about-cars-at-all",
+  waymo2020: "https://www.bloomberg.com/news/articles/2020-10-08/waymo-one-app-offers-driverless-alternative-to-uber-in-arizona",
+  waymo500: "https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",
+  waymoQ3: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
+  waymoRA: "https://techcrunch.com/2026/02/22/techcrunch-mobility-waymo-makes-its-defense/",
+  waymoOrder: "https://www.thedrive.com/tech/21219/waymo-will-buy-up-to-62000-chrysler-pacificas-for-ride-hailing-service",
 };
 
 const BINS = {
@@ -236,7 +262,7 @@ const BINS = {
 };
 
 /* ---------------------------------------------------------------- theses */
-const THESES = [
+const ALL_THESES = [
   {
     id: "automate", die: [6, 5], stance: "agree",
     layer: "M", tldr: ["Automate the researcher, not the economy", "OpenAI: 3.1 agent-workdays per human workday. Experiment compute is the speed limit; taste is the scarce input."],
@@ -830,12 +856,64 @@ const THESES = [
     note: "Not investment advice. The IMF’s $1.4 trillion is future revenue promised in the deals, not money invested.",
     receipts: [["Congressional Research Service: The Role of Circular Finance in Funding AI Investment (Nov 2026)", SRC.crsCirc], ["TNW on the IMF’s Global Financial Stability Report (Oct 2026)", SRC.imfCirc], ["Reuters, via The Star: the chip slide and Nvidia’s financing deals", SRC.semisDown], ["SemiAnalysis: H100 one-year rentals up almost 40%", SRC.h100Rent], ["Calcalist: Anthropic’s nine-month revenue", SRC.ant9m], ["Fortune: Anthropic prices its IPO (Nov 18, 2026)", SRC.antIpo], ["Business Standard on the FT: Nvidia’s $30B in place of $100B", SRC.nvOai30], ["TNW on the WSJ: Nvidia halves its OpenAI guarantee", SRC.nvBackstop], ["Onmanorama on Reuters: Colette Kress and the financing deals", SRC.kress], ["American rails: bonds paid for British iron", SRC.rails], ["Ward’s Auto: a century of GM’s car loans", SRC.gmac], ["Tomasz Tunguz: Lucent, Nortel and Cisco’s vendor loans", SRC.lucent], ["eWeek (2001): Vendor financing backfires", SRC.winstar], ["EKN: the export credit behind Jio’s 5G with Ericsson", SRC.jioEkn], ["Finnvera: $1.5B guarantee for Nokia’s 5G deliveries to Jio", SRC.jioFinn], ["AI Magazine: OpenAI’s paying subscribers", SRC.oaSubs]],
     viz: "circular", echo: { pose: "conductor", acc: "conductor", name: "Conductor" }
+  },
+  {
+    id: "robots", die: [8, -3], stance: "original", probe: true,
+    probeHook: "China builds the bodies. Waymo shows the factory was never the hard part.",
+    layer: "C", tldr: ["A humanoid is an EV with legs. Building it is the easy part.", "Same parts list as an electric car, so China ships 97% of humanoids and makes the magnets in every joint. But a factory isn’t a market: Waymo ordered up to 82,000 cars in 2018 and runs about 3,000 today. Optimus has the line. It hasn’t started the curve."],
+    title: "A humanoid is an EV with legs. Building it is the easy part.",
+    h2: "A humanoid is | an EV with legs. | Building it is | the easy part.",
+    short: "An EV with legs",
+    hook: "Strip the skin off a humanoid and the parts list reads like an electric car’s, which is why China already ships nearly all of them. But Waymo ordered 82,000 cars in 2018 and runs about 3,000 today. Robots aren’t won in the factory.",
+    ref: { k: "Reference design", label: "My own read of 2026 humanoid shipments (Smart Analytics Global), the IEA’s Global EV Outlook and Waymo’s ten-year ramp", href: SRC.sagH1 },
+    signal: `<p class="claim">Strip off the skin | and a humanoid | is an EV parts list.</p>
+      <p>Chinese makers shipped more than 97% of the world’s humanoid robots in the first half of 2026, about 19,100 units, and Chinese buyers took more than 85% of them, by Smart Analytics Global’s count. Unitree sells a humanoid from $5,900 and expected a profit on about 1.1 billion yuan of first-half revenue.</p>
+      <p><b>Where Optimus fits.</b> America’s biggest bet is built on a car factory. Tesla turned its Model S and X line at Fremont into an Optimus line, started early production in October, and Musk says 20,000 a week is about a year away. That’s the part I think is easy. The slow part hasn’t started: in January, Musk admitted no Optimus was doing useful work at Tesla, and sales are planned for the end of 2027.</p>
+      <p>Waymo shows what comes after the factory. It ordered up to 82,000 cars in 2018. Eight years later it runs about 3,000 of them, for 500,000 paid rides a week.</p>`,
+    takes: [
+      ["The parts list is an EV’s.", "A humanoid moves on roughly 30 joint motors, each with a rare-earth magnet, a gearbox and a driver, all fed by a battery pack and power electronics. That’s an electric car’s supply chain, shrunk and multiplied. China made about 16 million of the world’s 22 million electric cars in 2025 and over 80% of the battery cells, per the IEA, and it’s riding the same cost curve with robots: Unitree’s R1 starts at $5,900, under a third of the $20,000-plus expected for Optimus, and Unitree makes money doing it."],
+      ["The joint is the choke point.", "Actuators, the motor-and-gear joints, are 40% to 60% of a humanoid’s bill of materials, McKinsey estimates, and China makes over 90% of the rare-earth magnets inside them. When China started licensing magnet exports in 2025, Musk told investors within weeks that Optimus production had been hit. America’s fixes are slow: MP Materials’ second Texas magnet plant isn’t due to start commissioning until 2028. And in July the FCC barred new foreign-made robots from US authorization, which keeps Chinese robots out but not Chinese parts."],
+      ["The factory is the easy part.", "When Waymo opened driverless rides to the public in Phoenix in 2020, it had just over 300 vans, and its CEO said it had taken two years to run three cars driverless at the same time and another year to reach a hundred. It went deep in one city for years, then got fast: 500,000 paid rides a week by spring 2026 and 15 US cities by October. The bottleneck was never the assembly line. It was proving each car safe on each street. Humanoids need their Phoenix too: one kind of building, one job, one paying customer. A home is the hardest city there is."]
+    ],
+    bet: `For venture: back the joint, not the humanoid. Every robot shape, from arms to dogs to humanoids, needs motors, magnets and gearboxes, and today they come mostly from one country. Back actuator makers and magnet supply outside China, and motor designs that need less of the heavy rare earths. Then back robots that pick a Phoenix: a narrow job with a paying customer, where the help each robot needs falls week by week. Be wary of humanoid makers valued on production targets; Figure was valued at $39 billion in 2025, more than four times Unitree’s IPO price. A factory is a line, trust is a curve, and <a href="#physical">There’s no internet for hands</a> is what bends it.`,
+    wrong: "Magnet and actuator capacity outside China ramps fast, and general-purpose humanoids work in ordinary homes by 2028 with almost no human help. Then bodies are a commodity, the one-city years get skipped, and whoever builds the most wins.",
+    note: "Not investment advice. Shipment shares are Smart Analytics Global’s estimates; the actuator share is McKinsey’s; ride counts are Waymo’s; production targets are Musk’s.",
+    receipts: [["TechRepublic on Smart Analytics Global: Chinese vendors shipped 97% of humanoids (H1 2026)", SRC.sagH1], ["Unitree’s IPO pricing and first-half estimates", SRC.unitreeH1], ["Engadget: Unitree’s R1 for under $6,000, Optimus at $20,000-plus", SRC.unitreeR1], ["Fortune: Unitree’s debut against Figure’s $39 billion", SRC.figure39], ["IEA Global EV Outlook 2026: manufacturing and trade", SRC.ieaEv], ["IEA: China makes over 80% of battery cells", SRC.ieaCells], ["TNW: actuators are 40–60% of a humanoid’s bill of materials", SRC.actBom], ["OilPrice: about 30 motors per robot, and the magnet licenses", SRC.motors30], ["FCC: foreign-made robots added to the Covered List (Jul 2026)", SRC.fccRobots], ["Zacks: MP Materials’ 10X plant to start commissioning in 2028", SRC.mp10x], ["Drive Tesla Canada: Fremont’s S/X line becomes Optimus’s, with 20,000 a week ‘about a year away’", SRC.teslaLine], ["TechCrunch: Tesla starts Optimus production (Oct 2026)", SRC.teslaQ3], ["CNN via RNZ: Optimus for sale by the end of 2027", SRC.optSale], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["The Drive: Waymo orders up to 62,000 minivans, with up to 20,000 Jaguars on option (2018)", SRC.waymoOrder], ["Bloomberg: Waymo opens fully driverless rides in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: Waymo’s ridership, 50K → 500K a week", SRC.waymo500], ["Alphabet Q3 2026: 300 million autonomous miles, 15 cities", SRC.waymoQ3], ["TechCrunch: Waymo’s fleet of about 3,000 and its remote helpers", SRC.waymoRA]],
+    viz: "robots", echo: { pose: "mechanic", acc: "mechanic", name: "Mechanic" }
+  },
+  {
+    id: "physical", die: [8, 5], stance: "build", probe: true,
+    probeHook: "Robots have no internet to learn from. The first real business is filming one.",
+    layer: "M", tldr: ["There’s no internet for hands. Physical AI has to film one.", "Robot models scale with physical data, and there’s none to scrape. Generalist: 270K → 500K hours, 64% → 99% success. Figure pays people to film their chores. The scoreboard: Waymo runs about one remote helper per 40 cars; humanoids are still at one per robot."],
+    title: "There’s no internet for hands. Physical AI has to film one.",
+    h2: "There’s no internet | for hands. | Physical AI has | to film one.",
+    short: "No internet for hands",
+    hook: "Language models learned from text the internet had already written. Robots need hands doing things, on camera, and almost none of that was ever recorded. So the first real business in physical AI is recording it, and the scoreboard is how often a human still has to step in.",
+    ref: { label: "Generalist, “GEN-0: Embodied Foundation Models That Scale with Physical Interaction” (Nov 2025): the first scaling laws for robot data", href: SRC.gen0 },
+    signal: `<p class="claim">Robots have | no internet to read. | So we’re filming one.</p>
+      <p>Last November, Generalist showed that robot models get predictably better as they train on more physical data, the same kind of scaling law that powered language models. It took 270,000 hours of robots doing real tasks, growing by 10,000 hours a week. By April it had half a million hours, and its new model reached 99% average success on tasks where its earlier models managed 64%.</p>
+      <p>Now that data has a price. Figure’s Index app pays people to film their own everyday work: over 44,000 weekly users, more than 16 million videos and $15 million paid out so far. Figure says it will spend over $1 billion on data and compute in the next 12 months.</p>`,
+    takes: [
+      ["There’s no internet for hands.", "Meta trained Llama 3 on about 15 trillion tokens of text the internet had already written. Nobody ever filmed an internet’s worth of hands folding, wiping and fixing things. Generalist’s half a million hours is far bigger than any public robot dataset, and it’s still only about 57 years of one robot working nonstop. For robots, the scarce input isn’t chips or clever models. It’s recorded touch."],
+      ["Every early robot is a data rig with a job.", "In January, Musk admitted no Optimus was doing useful work at Tesla yet; the robots were there to learn. There are three ways to fill the gap. Teleoperation records the exact motions: 1X’s $20,000 NEO ships with an Expert Mode, where an operator in VR takes over chores it doesn’t know. Human video records the variety: Figure taught its robot to get around homes from human video alone, and Index takes in 30 minutes of video every second. Robot fleets record scale: Generalist was adding 10,000 hours a week. The winners will blend all three."],
+      ["The remote human is the scoreboard.", "Waymo started with a safety driver in every car. In 2026 it keeps about 70 remote assistance agents on duty for a fleet of about 3,000, roughly one helper for every 40 cars, and they advise stuck cars rather than drive them. Humanoids start back at one person per robot. Every hour a helper spends teaching is data, and every hour the robot doesn’t need one is margin. The business works when that ratio falls the way Waymo’s did."]
+    ],
+    bet: `For venture: back the data engine. Tools that capture human hands cheaply, like wearable cameras, gloves and phone apps; teleoperation and remote-assistance platforms that turn every stuck robot into a training example; and robots placed in paid but forgiving jobs, where every working hour is also a data hour. Then watch the number nobody publishes yet: minutes of human help per robot per day. When it falls, the engine is working, and <a href="#robots">A humanoid is an EV with legs</a> is why the bodies will be cheap enough to run this way.`,
+    wrong: "World models and simulation get good enough that real robot data stops mattering, or human video alone turns out to be enough. Then recorded robot hours stop being scarce, and the data moat drains.",
+    note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
+    receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
+    viz: "physical", echo: { pose: "camera", acc: "camera", name: "Camera Op" }
   }
 ];
 
+// A thesis marked probe: true is written in full but shows only as a probe die. Remove the flag and it publishes with everything above.
+const THESES = ALL_THESES.filter(t => !t.probe);
+
 const PROBES = [
   { die: [-2, -8], layer: "E", title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
-  { die: [4, -7], layer: "C", title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" }
+  { die: [4, -7], layer: "C", title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" },
+  // held-back theses show a one-line teaser while in probe, not their full hook or notes
+  ...ALL_THESES.filter(t => t.probe).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
@@ -876,6 +954,8 @@ const DOODLES = {
   light: "<path d=\"M8 28 h40 v40 h-40 Z M8 41 h40 M8 55 h40 M21 28 v40 M35 28 v40\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M55 40 h16 v16 h-16 Z\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><path d=\"M71 48 H112 M104 42 L112 48 L104 54\" stroke=\"#1f5fbf\" stroke-width=\"2.8\" stroke-dasharray=\"5 4\" /><path d=\"M63 32 l-3 -8 M71 34 l4 -7 M55 34 l-6 -6\" stroke=\"#d23c3c\" stroke-width=\"2.2\" /><text x=\"28\" y=\"82\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">silicon</text><text x=\"63\" y=\"74\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">InP</text><text x=\"60\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">follow the laser</text>",
   cuda: "<path d=\"M30 62 V34 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 V62 Z M50 62 v-12 a4 4 0 0 1 8 0 v12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M8 70 q8 -5 16 0 t16 0 t16 0 t16 0 t16 0 t16 0\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M84 72 C92 60 104 58 112 66 M86 66 h4 M94 62 h4 M102 61 h4\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"25\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">CUDA</text><text x=\"60\" y=\"97\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">the few build bridges</text>",
   circular: "<path d=\"M60 18 A26 26 0 1 1 34.2 46.8 M30 38 L34.4 47.4 L42.6 41\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"52\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M84 52 C96 56 102 64 106 74 M99 70 L106.4 75 L108 66\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><text x=\"108\" y=\"88\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">exit</text><text x=\"56\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">look for the exit</text>",
+  robots: "<path d=\"M18 52 Q20 40 34 38 L46 27 Q52 22 62 22 L80 22 Q90 22 96 30 L104 38 Q112 40 112 52 V58 H18 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M46 38 H100\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M38 58 L33 76 L24 78 M92 58 L97 76 L106 78\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M60 28 v6 a5 5 0 0 0 10 0 v-6\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"96\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">an EV with legs</text>",
+  physical: "<path d=\"M24 72 V48 Q24 44 28 44 Q32 44 32 48 V60 M32 48 V38 Q32 34 36 34 Q40 34 40 38 V58 M40 40 Q40 36 44 36 Q48 36 48 40 V60 M48 44 Q48 40 52 40 Q56 40 56 44 V66 Q56 82 40 84 Q26 84 24 72 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><rect x=\"70\" y=\"40\" width=\"30\" height=\"20\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M100 46 L112 40 V60 L100 54\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"75\" cy=\"31\" r=\"3.4\" fill=\"#d23c3c\" /><text x=\"82\" y=\"35\" fill=\"#d23c3c\" font-size=\"11\">REC</text><text x=\"64\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">film the hands</text>",
 };
 
 // Some doodles spill past their 120 x 100 box (a long label, a wide arrow); these boxes are widened to fit them, measured once
@@ -1133,6 +1213,16 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       [[0, "loco"], [.36, "car"], [.72, "car"]].map(([d, t]) => `<g class="xcd-car" style="offset-path:path('${loop}');animation-delay:-${(d * 4.8).toFixed(2)}s">${t === "loco" ? `<rect x="-6" y="-4" width="12" height="7" rx="1.6" fill="#c94a5e" stroke="#8a2f3e" stroke-width=".7"/><rect x="2" y="-6.4" width="3" height="3" fill="#3a3f4a"/>` : `<rect x="-5" y="-2" width="10" height="5" rx="1" fill="#6b4fd8" stroke="#4a3f86" stroke-width=".6"/><circle cy="-2.4" r="2.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".6"/>`}</g>`).join("") +
       `<g class="echo-hand-l"><g transform="rotate(-8 2 68)"><rect x="-10" y="62" width="24" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="-1" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">EXIT</text><path d="M7.6 68 h4 m-1.8 -2 l2 2 l-2 2" stroke="#fff" stroke-width="1" fill="none"/></g>${mitt(5, 80, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xcd-lamp"><path d="M99 58 a4 3 0 0 1 8 0" stroke="#9fb3c4" stroke-width="1.4" fill="none"/><rect x="97" y="60" width="12" height="15" rx="2" fill="#2b2142" stroke="#9fb3c4"/><rect class="xcd-flame" x="99.5" y="62.5" width="7" height="10" rx="1.6" fill="#ffd98a"/></g>${mitt(95.5, 78)}</g>`;
+  } else if (acc === "mechanic") {
+    // Mechanic: a work cap with a gear badge; a horseshoe magnet pulling bolts in one fin, a wrench turning in the other
+    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#2a3f58"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#1a2636"/><path d="M27 -2 Q31 -7 39 -8.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/><g transform="translate(50 -2.6)"><circle r="4.4" fill="none" stroke="#ffb23f" stroke-width="1.7" stroke-dasharray="1.9 1.3"/><circle r="1.6" fill="#ffb23f"/></g>` +
+      `<g class="echo-hand-l">${[0, 1, 2].map(i => `<g class="xmc-bolt" style="animation-delay:${(i * .6).toFixed(1)}s"><path d="M${-19 + i * 7} 38 h3.6 l1.8 2.4 l-1.8 2.4 h-3.6 l-1.8 -2.4 Z" fill="#9fb3c4"/></g>`).join("")}<path d="M-8 52 V64 A9 9 0 0 0 10 64 V52" stroke="#d23c3c" stroke-width="5.6" fill="none"/><rect x="-10.8" y="47" width="5.6" height="6" fill="#d4e3f0"/><rect x="7.2" y="47" width="5.6" height="6" fill="#d4e3f0"/>${mitt(1, 76, 20)}</g>` +
+      `<g class="echo-hand-r"><g class="xmc-wrench"><path d="M96 72 L110 55" stroke="#9fb3c4" stroke-width="4" stroke-linecap="round"/><path d="M106.5 54.5 L111.5 48.5 L118 52.5 L115.4 55.6 L112.2 53.6 L110.4 55.8 L113.4 57.8 L110.6 61 Z" fill="#9fb3c4"/></g>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "camera") {
+    // Camera op: a head strap with an action camera and a blinking REC light; a clapperboard in one fin, a phone filming in the other
+    accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
+      `<g class="echo-hand-l"><rect x="-12" y="60" width="24" height="15" rx="1.5" fill="#26303a" stroke="#d4e3f0" stroke-width=".9"/><text x="0" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#d4e3f0">TAKE 1</text><g class="xcm-arm"><path d="M-12 59.5 L12 53 L13 57 L-11 63.5 Z" fill="#d4e3f0"/><path d="M-6.5 62 L-3.5 56.4 M-.5 60.4 L2.5 54.8 M5.5 58.8 L8.5 53.2" stroke="#26303a" stroke-width="2"/></g>${mitt(3, 80, 20)}</g>` +
+      `<g class="echo-hand-r"><rect x="96" y="52" width="12.5" height="21" rx="2.2" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><rect x="98" y="55" width="8.5" height="13" rx="1" fill="#3fd6c8" opacity=".7"/><circle class="xcm-rec" cx="102.2" cy="70.6" r="1.1" fill="#ff4d4d"/>${mitt(95.5, 76)}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -2378,7 +2468,10 @@ const VIZ = {
   // optics, CUDA and circular financing draw all three slides in visuals.js too
   light() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   cuda() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  // physical AI: the body, the data and the playbook draw all three slides in visuals.js
+  robots() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 
 /* interactive bits inside a memo's visual */
@@ -4104,7 +4197,7 @@ const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<
 
 // The periodic table of my theses: each thesis an element, numbered in the order I published it.
 // Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }

@@ -1418,6 +1418,16 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
 .xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
 @keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
+.echo-mechanic .echo-all,.echo-camera .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-mechanic .echo-fin-l,.echo-mechanic .echo-hand-l,.echo-camera .echo-fin-r,.echo-camera .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xmc-wrench{transform-origin:96px 72px;animation:xmc-wrench 1.8s ease-in-out infinite}
+@keyframes xmc-wrench{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
+.xmc-bolt{opacity:0;animation:xmc-bolt 1.8s ease-in infinite}
+@keyframes xmc-bolt{0%{opacity:0;transform:translate(-6px,-6px)}20%{opacity:1}80%{opacity:1;transform:translate(8px,10px)}100%{opacity:0;transform:translate(9px,11px)}}
+.xcm-rec{animation:xsg-led 1.2s steps(1,end) infinite}
+.xcm-arm{transform-origin:-12px 61.5px;animation:xcm-clap 2.4s ease-in-out infinite}
+@keyframes xcm-clap{0%,30%,100%{transform:rotate(-20deg)}42%,56%{transform:rotate(0)}}
+.echo-camera .echo-fin-l,.echo-camera .echo-hand-l{animation:echo-cond-r 2.4s ease-in-out infinite}
 
 [data-depth]{will-change:transform}
 

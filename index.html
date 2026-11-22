@@ -1317,6 +1317,16 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
 .xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
 @keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
+.echo-mechanic .echo-all,.echo-camera .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-mechanic .echo-fin-l,.echo-mechanic .echo-hand-l,.echo-camera .echo-fin-r,.echo-camera .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xmc-wrench{transform-origin:calc(96*var(--u)) calc(72*var(--u));animation:xmc-wrench 1.8s ease-in-out infinite}
+@keyframes xmc-wrench{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
+.xmc-bolt{opacity:0;animation:xmc-bolt 1.8s ease-in infinite}
+@keyframes xmc-bolt{0%{opacity:0;transform:translate(calc(-6*var(--u)),calc(-6*var(--u)))}20%{opacity:1}80%{opacity:1;transform:translate(calc(8*var(--u)),calc(10*var(--u)))}100%{opacity:0;transform:translate(calc(9*var(--u)),calc(11*var(--u)))}}
+.xcm-rec{animation:xsg-led 1.2s steps(1,end) infinite}
+.xcm-arm{transform-origin:calc(-12*var(--u)) calc(61.5*var(--u));animation:xcm-clap 2.4s ease-in-out infinite}
+@keyframes xcm-clap{0%,30%,100%{transform:rotate(-20deg)}42%,56%{transform:rotate(0)}}
+.echo-camera .echo-fin-l,.echo-camera .echo-hand-l{animation:echo-cond-r 2.4s ease-in-out infinite}
 [data-depth]{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -4035,6 +4045,168 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .viz .jg-ok{fill:var(--amber);font-weight:800;opacity:0;transition:opacity .4s}
 .jg[data-m="pull"] .jg-ok{opacity:1;transition-delay:1.2s}
 @media (max-width:860px){.trn-tk{padding-left:calc(13*var(--u))}.trn-tk::before{left:calc(4*var(--u));width:calc(4*var(--u));height:calc(4*var(--u))}}
+.leg-gr{fill:none;stroke:var(--rule);stroke-width:1.4}
+.leg-car,.leg-bot{transition:opacity .7s var(--ease)}
+.lg1[data-m="c"] .leg-bot{opacity:.08}
+.lg1[data-m="r"] .leg-car{opacity:.08}
+.leg-body{fill:#132a43;stroke:#5f7f9c;stroke-width:1.2}
+.leg-win{fill:#0b1828;stroke:#5f7f9c;stroke-width:1}
+.leg-wheel{fill:#07101d;stroke:#5f7f9c;stroke-width:2}
+.leg-head,.leg-torso{fill:#132a43;stroke:#5f7f9c;stroke-width:1.2}
+.leg-limb{fill:none;stroke:#2a4766;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.leg-limb.o{stroke:#5f7f9c;stroke-width:8}
+.leg-foot{fill:none;stroke:#5f7f9c;stroke-width:4;stroke-linecap:round}
+.leg-m,.leg-bat,.leg-cpu,.leg-eye{transform:var(--c);transition:transform 1s cubic-bezier(.6,0,.25,1) var(--d,0s)}
+.lg1[data-m="r"] :is(.leg-m,.leg-bat,.leg-cpu,.leg-eye){transform:var(--r)}
+.leg-mag{fill:#f4977a;stroke:#07101d;stroke-width:.8}
+.leg-core{fill:#07101d}
+.leg-bat{fill:#1c4a52;stroke:var(--amber);stroke-width:.5}
+.leg-cpu{fill:#26405e;stroke:var(--violet);stroke-width:.5}
+.leg-eye{fill:var(--beat)}
+.leg-key .leg-bat,.leg-key .leg-cpu,.leg-key .leg-eye,.leg-key .leg-mag{transform:none;transition:none}
+.leg-key .leg-bat{stroke-width:1}.leg-key .leg-cpu{stroke-width:1}
+.leg-track{fill:var(--ink-3)}
+.leg-fill{fill:#5a3a3a}
+.viz .leg-bt{fill:var(--paper)}
+.viz .leg-bv{fill:#ffd9cc}
+.lg3-case{fill:var(--ink-2);stroke:var(--rule);stroke-width:1.4}
+.lg3-tooth{stroke:#3c5f80;stroke-width:5;stroke-linecap:round}
+.lg3-mag.n{fill:#f4977a}.lg3-mag.s{fill:#9a5d50}
+.lg3-rot{transform-box:view-box;transform-origin:calc(112*var(--u)) calc(126*var(--u));animation:k-spin 3.2s linear infinite}
+.lg3-gear{transform-box:view-box;transform-origin:calc(112*var(--u)) calc(126*var(--u));animation:k-spin 1.6s linear infinite reverse}
+.lg3[data-s="shut"] :is(.lg3-rot,.lg3-gear,.lg3-belt){animation-play-state:paused}
+.lg3-ring{fill:var(--ink);stroke:var(--rule);stroke-width:1.2}
+.lg3-pl{fill:var(--ink-3);stroke:var(--dim);stroke-width:1.2;stroke-dasharray:2.5 1.8}
+.lg3-sun{fill:var(--dim)}
+.lg3-ld{fill:none;stroke:var(--faint);stroke-width:1}
+.viz .lg3-mt{fill:#f4977a}
+.lg3-pipe{fill:none;stroke:#1d3654;stroke-width:6;stroke-linecap:round}
+.lg3-pipe.big{stroke-width:11}
+.lg3-pipe.fut{stroke:#3c5f80;stroke-width:5;stroke-dasharray:6 6}
+.lg3-tok{fill:#f4977a}
+.lg3-tok.s{fill:#c07a68}
+.lg3-tok{transition:opacity .4s}
+.lg3[data-s="shut"] .lg3-flow.big .lg3-tok:not(:first-child){visibility:hidden}
+.lg3[data-s="shut"] .lg3-flow.big .lg3-tok:first-child{--t:7s}
+.lg3-vw{transform-box:fill-box;transform-origin:center;transition:transform .6s var(--ease)}
+.lg3-vw circle{fill:var(--ink-2);stroke:var(--dim);stroke-width:2}
+.lg3-vw path{stroke:var(--dim);stroke-width:2}
+.lg3[data-s="shut"] .lg3-vw{transform:rotate(90deg)}
+.lg3[data-s="shut"] .lg3-vw circle,.lg3[data-s="shut"] .lg3-vw path{stroke:#f4977a}
+.viz .lg3-lic{fill:var(--faint);transition:fill .4s}
+.viz .lg3[data-s="shut"] .lg3-lic{fill:#f4977a;font-weight:800}
+.viz .lg3-futt{fill:var(--faint);font-style:italic}
+.lg3-bot circle,.lg3-bot rect{fill:#2a4766;stroke:#9fb3c4;stroke-width:.8}
+.lg3-bot path{fill:none;stroke:#9fb3c4;stroke-width:1.6;stroke-linecap:round}
+.lg3-line g{transition:opacity .5s}
+.lg3[data-s="shut"] .lg3-line>g:not(.lg3-stop){opacity:.35}
+.lg3-belt{fill:none;stroke:#3c5f80;stroke-width:3;stroke-dasharray:3 5;animation:k-ants 1s linear infinite}
+.lg3-stop rect{fill:#f4977a}
+.lg3-stop{opacity:0;transition:opacity .4s}
+.lg3[data-s="shut"] .lg3-stop{opacity:1}
+.hd-div{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:3 4}
+.viz .hd-k,.viz .pb1-k,.viz .pb3-k{fill:var(--faint);font-weight:800;letter-spacing:.12em}
+.hd-cloud{fill:#1d3654}
+.hd-cloud.empty{fill:var(--ink);filter:drop-shadow(calc(1*var(--u)) 0 0 #3c5f80) drop-shadow(calc(-1*var(--u)) 0 0 #3c5f80) drop-shadow(0 calc(1*var(--u)) 0 #3c5f80) drop-shadow(0 calc(-1*var(--u)) 0 #3c5f80)}
+.viz .hd-none{fill:var(--faint);font-style:italic}
+.viz .hd-w{fill:var(--violet);font-weight:700;opacity:.9}
+.hd-tok{fill:var(--violet)}
+.hd-fun{fill:var(--ink-3);stroke:var(--dim);stroke-width:1.2}
+.hd-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1.4}
+.hd-cone{fill:var(--amber);opacity:.08}
+.hd-cloth{fill:#2f5578}
+.hd-flap{fill:#3c6a94;transform-box:fill-box;transform-origin:50% 100%;animation:hd-fold 3s ease-in-out infinite}
+@keyframes hd-fold{0%,25%{transform:scaleY(1)}55%,85%{transform:scaleY(-1)}100%{transform:scaleY(1)}}
+.hd-hand rect{fill:#c3d2df;stroke:#07101d;stroke-width:.8}
+.hd-hand .hd-sleeve{fill:#2a4766;stroke:#9fb3c4}
+.hd-hand{animation:hd-hand 3s ease-in-out infinite}
+@keyframes hd-hand{0%,25%{transform:none}55%,85%{transform:translate(calc(8*var(--u)),calc(-6*var(--u)))}100%{transform:none}}
+.hd-cam rect{fill:var(--ink-2);stroke:var(--paper);stroke-width:1.2}
+.hd-lens{fill:var(--ink-3);stroke:var(--paper);stroke-width:1.2}
+.hd-rec{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.viz .hd-rect{fill:#f4977a;font-weight:800;letter-spacing:.06em}
+.viz .hd-n{fill:var(--paper);font-weight:900;font-variant-numeric:tabular-nums}
+.hd-tr{fill:var(--ink-3)}
+.hd-fill{fill:var(--amber);opacity:.75;transform-box:fill-box;transform-origin:0 50%}
+.hd-64{stroke:var(--faint);stroke-width:1;stroke-dasharray:2 2}
+.viz .hd-pc{fill:var(--amber);font-variant-numeric:tabular-nums}
+.hd2-sc{opacity:0;transition:opacity .45s}
+.hd2[data-t="tele"] .hd2-sc.tele,.hd2[data-t="video"] .hd2-sc.video,.hd2[data-t="fleet"] .hd2-sc.fleet{opacity:1}
+.hd2-p circle,.hd2-p path{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.hd2-r circle,.hd2-r path{fill:#1d3654;stroke:var(--violet);stroke-width:1.2}
+.hd2-vr{fill:var(--amber)}
+.hd2-visor{fill:var(--amber);opacity:.8}
+.hd2-ctl{fill:var(--dim)}
+.hd2-link{fill:none;stroke:var(--amber);stroke-width:1.6;stroke-dasharray:4 6;animation:k-ants 1s linear infinite}
+.viz .hd2-lt{fill:var(--amber);font-weight:700}
+.hd2-tbl{fill:var(--ink-3);stroke:var(--rule);stroke-width:1}
+.hd2-plate{animation:hd2-plate 2.4s ease-in-out infinite}
+.hd2-dish{fill:var(--dim)}
+@keyframes hd2-plate{0%,100%{transform:none}50%{transform:translate(calc(-6*var(--u)),calc(-4*var(--u)))}}
+.hd2-recg circle{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.viz .hd2-recg text{fill:#f4977a}
+.hd2-cube{fill:var(--amber);opacity:.85}
+.hd2-ph rect{fill:var(--ink-3);stroke:#5f7f9c;stroke-width:1}
+.hd2-dot{fill:#f4977a;animation:k-pulse 1.4s ease-in-out var(--d) infinite}
+.hd2-cloth{fill:#2f5578}
+.hd2-wipe{animation:hd2-wipe 2.2s ease-in-out infinite}
+@keyframes hd2-wipe{0%,100%{transform:none}50%{transform:translateX(calc(34*var(--u)))}}
+.hd2-ln{fill:none;stroke:#9fb3c4;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hd2-phone{fill:var(--ink-2);stroke:var(--paper);stroke-width:1.2}
+.hd2-rec2{fill:#f4977a;animation:k-pulse 1.2s ease-in-out infinite}
+.hd2-arm{transform-box:view-box;transform-origin:0 calc(-6*var(--u));animation:hd2-arm 2.6s ease-in-out infinite}
+.hd2-sc.fleet>g:nth-child(odd) .hd2-arm{animation-delay:-1.3s}
+@keyframes hd2-arm{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(18deg)}}
+.hd2-j{fill:var(--amber)}
+.hd2-belt{fill:none;stroke:#1d3654;stroke-width:8;stroke-linecap:round}
+.hd2-bin path{fill:none;stroke:var(--dim);stroke-width:1.6}
+.viz .hd2-rb{fill:var(--amber)}
+.pb1-grid{stroke:var(--grid);stroke-width:1}
+.pb1-axis{stroke:var(--rule);stroke-width:1.2}
+.pb1-road{fill:none;stroke:#1d3654;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+.pb1-lane{fill:none;stroke:var(--paper);stroke-width:1;stroke-dasharray:4 5;opacity:.45}
+.pb1-ms{fill:var(--ink);stroke:var(--faint);stroke-width:1.4;transition:fill .4s,stroke .4s}
+.pb1-ms.on{fill:var(--amber);stroke:var(--amber)}
+.pb1-car path{fill:var(--violet);stroke:var(--ink);stroke-width:.8}
+.pb-wh{fill:var(--ink);stroke:var(--dim);stroke-width:1}
+.pb1-c{fill:none;stroke:#3c5f80;stroke-width:.8;opacity:0;transition:opacity .4s var(--d)}
+.pb1:not([data-s="0"]) .pb1-c{opacity:1}
+.pb1-on{fill:#f4977a;transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .6s var(--ease)}
+.pb1[data-s="2"] .pb1-on[data-i="0"],.pb1[data-s="3"] .pb1-on[data-i="0"]{transform:scaleX(.3)}
+.pb1[data-s="4"] .pb1-on,.pb1[data-s="5"] .pb1-on{transform:none}
+.pb1-opt{opacity:0;transition:opacity .5s}
+.pb1[data-s="5"] .pb1-opt{opacity:1}
+.pb1-bot circle,.pb1-bot rect{fill:#4a2e33;stroke:#f4977a;stroke-width:.8}
+.pb1-bot path{fill:none;stroke:#f4977a;stroke-width:1.6;stroke-linecap:round}
+.viz .pb1-ot{fill:#f4977a;font-weight:800}
+.viz .pb1-os{fill:var(--dim)}
+.viz .pb1-foot{fill:var(--dim);font-style:italic}
+.pb3-op circle,.pb3-op path:not(.pb3-hs){fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.pb3-hs{fill:none;stroke:var(--dim);stroke-width:2}
+.pb3-vr{fill:var(--amber)}
+.pb3-desk{fill:var(--ink-3);stroke:var(--rule)}
+.pb3-op{transition:opacity .4s}
+.pb3[data-m="early"] .pb3-op{opacity:.25}
+.viz .pb3-ratio{fill:var(--amber);font-weight:900;font-variant-numeric:tabular-nums}
+.pb3-sc{opacity:0;transition:opacity .45s}
+.pb3[data-m="early"] .pb3-sc.early,.pb3[data-m="now"] .pb3-sc.now,.pb3[data-m="bot"] .pb3-sc.bot{opacity:1}
+.pb3-car path{fill:#2a4766;stroke:#9fb3c4;stroke-width:.8;transition:fill .3s}
+.pb3-car.big path{stroke-width:.25}
+.pb3-car.big .pb-wh{stroke-width:.3}
+.pb3-u.ask .pb3-car path{fill:var(--amber)}
+.pb3-q{opacity:0;transition:opacity .3s}
+.pb3-q circle{fill:#f4977a}
+.viz .pb3-q text{fill:var(--ink)}
+.pb3-u.ask .pb3-q{opacity:1}
+.pb3-l{fill:none;stroke:#3c5f80;stroke-width:.6;opacity:.45;transition:stroke .3s,opacity .3s,stroke-width .3s}
+.pb3-l.ask{stroke:var(--amber);opacity:1;stroke-width:1.5}
+.pb3-road{stroke:var(--rule);stroke-width:2}
+.pb3-drv circle,.pb3-drv path{fill:#4a2e33;stroke:#f4977a;stroke-width:1}
+.pb3-thick{fill:none;stroke:var(--amber);stroke-width:4;stroke-dasharray:6 6;animation:k-ants 1s linear infinite}
+.pb3-bot circle,.pb3-bot rect{fill:#1d3654;stroke:var(--violet);stroke-width:.35}
+.pb3-bot path{fill:none;stroke:var(--violet);stroke-width:.9;stroke-linecap:round}
+.pb3-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1;opacity:.9}
+.viz .pb3-ct{fill:var(--paper)}
 
 </style>
 </head>
@@ -4460,7 +4632,33 @@ const SRC = {
   winstar: "https://www.eweek.com/news/vendor-financing-backfires/",
   jioEkn: "https://www.ekn.se/en/magazine/digitalisation/record-deal-behind-record-time-5g-rollout-in-india/",
   jioFinn: "https://finnvera.fi/eng/finnvera/newsroom/news/finnvera-guarantees-nokias-5g-deliveries-for-a-large-order-from-indias-leading-telecom-operator-the",
-  oaSubs: "https://aimagazine.com/news/openais-billion-users-us-852bn-valuation-and-stargate"
+  oaSubs: "https://aimagazine.com/news/openais-billion-users-us-852bn-valuation-and-stargate",
+  sagH1: "https://www.techrepublic.com/article/news-humanoid-robot-shipments-chinese-vendors/",
+  unitreeH1: "https://www.ehangzhou.gov.cn/2026-08/07/c_298484.htm",
+  unitreeR1: "https://www.engadget.com/ai/this-humanoid-robot-can-do-cartwheels-handstands-and-roundhouse-kicks-at-less-than-6000-184500276.html",
+  figure39: "https://fortune.com/2026/08/19/unitree-china-dancing-robots-ipo-trading-surge-valuation/",
+  ieaEv: "https://www.iea.org/reports/global-ev-outlook-2026/manufacturing-and-trade",
+  ieaCells: "https://www.iea.org/news/close-to-30-of-cars-sold-this-year-are-set-to-be-electric-as-countries-and-consumers-respond-to-energy-crisis",
+  actBom: "https://thenextweb.com/news/physical-ai-hardest-problem-magnet-not-model-crma-schaeffler",
+  motors30: "https://oilprice.com/Energy/Energy-General/Robot-Wars-How-China-Has-the-Robotics-Industry-in-Its-Grip.html",
+  teslaLine: "https://driveteslacanada.ca/news/tesla-optimus-production-fremont-20000-week/",
+  fccRobots: "https://www.fcc.gov/document/fcc-adds-foreign-produced-power-inverters-and-robots-covered-list",
+  mp10x: "https://www.zacks.com/stock/news/2901636/can-mp-materials-scale-magnet-production-to-meet-demand",
+  gen0: "https://generalistai.com/blog/gen-0",
+  gen1: "https://generalistai.com/blog/gen-1",
+  gen1rr: "https://www.therobotreport.com/generalist-introduces-gen-1-general-purpose-model-for-physical-ai/",
+  figIndex: "https://figure.ai/news/introducing-index",
+  goBig: "https://www.figure.ai/news/project-go-big",
+  neoOrder: "https://www.1x.tech/order",
+  muskUseful: "https://electrek.co/2026/01/28/musk-admits-no-optimus-robots-are-doing-useful-work-at-tesla-after-claiming-otherwise/",
+  llama3: "https://ai.meta.com/blog/meta-llama-3/",
+  teslaQ3: "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
+  optSale: "https://www.rnz.co.nz/news/business/585438/elon-musk-is-betting-tesla-s-future-isn-t-about-cars-at-all",
+  waymo2020: "https://www.bloomberg.com/news/articles/2020-10-08/waymo-one-app-offers-driverless-alternative-to-uber-in-arizona",
+  waymo500: "https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",
+  waymoQ3: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
+  waymoRA: "https://techcrunch.com/2026/02/22/techcrunch-mobility-waymo-makes-its-defense/",
+  waymoOrder: "https://www.thedrive.com/tech/21219/waymo-will-buy-up-to-62000-chrysler-pacificas-for-ride-hailing-service",
 };
 const BINS = {
   agree:    { label: "Agree",     css: "var(--beat)",   hex: "#6aa8ff" },
@@ -4468,7 +4666,7 @@ const BINS = {
   push:     { label: "Push back", css: "var(--coral)",  hex: "#f4977a" },
   original: { label: "My read",   css: "var(--violet)", hex: "#d4e3f0" }
 };
-const THESES = [
+const ALL_THESES = [
   {
     id: "automate", die: [6, 5], stance: "agree",
     layer: "M", tldr: ["Automate the researcher, not the economy", "OpenAI: 3.1 agent-workdays per human workday. Experiment compute is the speed limit; taste is the scarce input."],
@@ -5062,11 +5260,60 @@ const THESES = [
     note: "Not investment advice. The IMF’s $1.4 trillion is future revenue promised in the deals, not money invested.",
     receipts: [["Congressional Research Service: The Role of Circular Finance in Funding AI Investment (Nov 2026)", SRC.crsCirc], ["TNW on the IMF’s Global Financial Stability Report (Oct 2026)", SRC.imfCirc], ["Reuters, via The Star: the chip slide and Nvidia’s financing deals", SRC.semisDown], ["SemiAnalysis: H100 one-year rentals up almost 40%", SRC.h100Rent], ["Calcalist: Anthropic’s nine-month revenue", SRC.ant9m], ["Fortune: Anthropic prices its IPO (Nov 18, 2026)", SRC.antIpo], ["Business Standard on the FT: Nvidia’s $30B in place of $100B", SRC.nvOai30], ["TNW on the WSJ: Nvidia halves its OpenAI guarantee", SRC.nvBackstop], ["Onmanorama on Reuters: Colette Kress and the financing deals", SRC.kress], ["American rails: bonds paid for British iron", SRC.rails], ["Ward’s Auto: a century of GM’s car loans", SRC.gmac], ["Tomasz Tunguz: Lucent, Nortel and Cisco’s vendor loans", SRC.lucent], ["eWeek (2001): Vendor financing backfires", SRC.winstar], ["EKN: the export credit behind Jio’s 5G with Ericsson", SRC.jioEkn], ["Finnvera: $1.5B guarantee for Nokia’s 5G deliveries to Jio", SRC.jioFinn], ["AI Magazine: OpenAI’s paying subscribers", SRC.oaSubs]],
     viz: "circular", echo: { pose: "conductor", acc: "conductor", name: "Conductor" }
+  },
+  {
+    id: "robots", die: [8, -3], stance: "original", probe: true,
+    probeHook: "China builds the bodies. Waymo shows the factory was never the hard part.",
+    layer: "C", tldr: ["A humanoid is an EV with legs. Building it is the easy part.", "Same parts list as an electric car, so China ships 97% of humanoids and makes the magnets in every joint. But a factory isn’t a market: Waymo ordered up to 82,000 cars in 2018 and runs about 3,000 today. Optimus has the line. It hasn’t started the curve."],
+    title: "A humanoid is an EV with legs. Building it is the easy part.",
+    h2: "A humanoid is | an EV with legs. | Building it is | the easy part.",
+    short: "An EV with legs",
+    hook: "Strip the skin off a humanoid and the parts list reads like an electric car’s, which is why China already ships nearly all of them. But Waymo ordered 82,000 cars in 2018 and runs about 3,000 today. Robots aren’t won in the factory.",
+    ref: { k: "Reference design", label: "My own read of 2026 humanoid shipments (Smart Analytics Global), the IEA’s Global EV Outlook and Waymo’s ten-year ramp", href: SRC.sagH1 },
+    signal: `<p class="claim">Strip off the skin | and a humanoid | is an EV parts list.</p>
+      <p>Chinese makers shipped more than 97% of the world’s humanoid robots in the first half of 2026, about 19,100 units, and Chinese buyers took more than 85% of them, by Smart Analytics Global’s count. Unitree sells a humanoid from $5,900 and expected a profit on about 1.1 billion yuan of first-half revenue.</p>
+      <p><b>Where Optimus fits.</b> America’s biggest bet is built on a car factory. Tesla turned its Model S and X line at Fremont into an Optimus line, started early production in October, and Musk says 20,000 a week is about a year away. That’s the part I think is easy. The slow part hasn’t started: in January, Musk admitted no Optimus was doing useful work at Tesla, and sales are planned for the end of 2027.</p>
+      <p>Waymo shows what comes after the factory. It ordered up to 82,000 cars in 2018. Eight years later it runs about 3,000 of them, for 500,000 paid rides a week.</p>`,
+    takes: [
+      ["The parts list is an EV’s.", "A humanoid moves on roughly 30 joint motors, each with a rare-earth magnet, a gearbox and a driver, all fed by a battery pack and power electronics. That’s an electric car’s supply chain, shrunk and multiplied. China made about 16 million of the world’s 22 million electric cars in 2025 and over 80% of the battery cells, per the IEA, and it’s riding the same cost curve with robots: Unitree’s R1 starts at $5,900, under a third of the $20,000-plus expected for Optimus, and Unitree makes money doing it."],
+      ["The joint is the choke point.", "Actuators, the motor-and-gear joints, are 40% to 60% of a humanoid’s bill of materials, McKinsey estimates, and China makes over 90% of the rare-earth magnets inside them. When China started licensing magnet exports in 2025, Musk told investors within weeks that Optimus production had been hit. America’s fixes are slow: MP Materials’ second Texas magnet plant isn’t due to start commissioning until 2028. And in July the FCC barred new foreign-made robots from US authorization, which keeps Chinese robots out but not Chinese parts."],
+      ["The factory is the easy part.", "When Waymo opened driverless rides to the public in Phoenix in 2020, it had just over 300 vans, and its CEO said it had taken two years to run three cars driverless at the same time and another year to reach a hundred. It went deep in one city for years, then got fast: 500,000 paid rides a week by spring 2026 and 15 US cities by October. The bottleneck was never the assembly line. It was proving each car safe on each street. Humanoids need their Phoenix too: one kind of building, one job, one paying customer. A home is the hardest city there is."]
+    ],
+    bet: `For venture: back the joint, not the humanoid. Every robot shape, from arms to dogs to humanoids, needs motors, magnets and gearboxes, and today they come mostly from one country. Back actuator makers and magnet supply outside China, and motor designs that need less of the heavy rare earths. Then back robots that pick a Phoenix: a narrow job with a paying customer, where the help each robot needs falls week by week. Be wary of humanoid makers valued on production targets; Figure was valued at $39 billion in 2025, more than four times Unitree’s IPO price. A factory is a line, trust is a curve, and <a href="#physical">There’s no internet for hands</a> is what bends it.`,
+    wrong: "Magnet and actuator capacity outside China ramps fast, and general-purpose humanoids work in ordinary homes by 2028 with almost no human help. Then bodies are a commodity, the one-city years get skipped, and whoever builds the most wins.",
+    note: "Not investment advice. Shipment shares are Smart Analytics Global’s estimates; the actuator share is McKinsey’s; ride counts are Waymo’s; production targets are Musk’s.",
+    receipts: [["TechRepublic on Smart Analytics Global: Chinese vendors shipped 97% of humanoids (H1 2026)", SRC.sagH1], ["Unitree’s IPO pricing and first-half estimates", SRC.unitreeH1], ["Engadget: Unitree’s R1 for under $6,000, Optimus at $20,000-plus", SRC.unitreeR1], ["Fortune: Unitree’s debut against Figure’s $39 billion", SRC.figure39], ["IEA Global EV Outlook 2026: manufacturing and trade", SRC.ieaEv], ["IEA: China makes over 80% of battery cells", SRC.ieaCells], ["TNW: actuators are 40–60% of a humanoid’s bill of materials", SRC.actBom], ["OilPrice: about 30 motors per robot, and the magnet licenses", SRC.motors30], ["FCC: foreign-made robots added to the Covered List (Jul 2026)", SRC.fccRobots], ["Zacks: MP Materials’ 10X plant to start commissioning in 2028", SRC.mp10x], ["Drive Tesla Canada: Fremont’s S/X line becomes Optimus’s, with 20,000 a week ‘about a year away’", SRC.teslaLine], ["TechCrunch: Tesla starts Optimus production (Oct 2026)", SRC.teslaQ3], ["CNN via RNZ: Optimus for sale by the end of 2027", SRC.optSale], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["The Drive: Waymo orders up to 62,000 minivans, with up to 20,000 Jaguars on option (2018)", SRC.waymoOrder], ["Bloomberg: Waymo opens fully driverless rides in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: Waymo’s ridership, 50K → 500K a week", SRC.waymo500], ["Alphabet Q3 2026: 300 million autonomous miles, 15 cities", SRC.waymoQ3], ["TechCrunch: Waymo’s fleet of about 3,000 and its remote helpers", SRC.waymoRA]],
+    viz: "robots", echo: { pose: "mechanic", acc: "mechanic", name: "Mechanic" }
+  },
+  {
+    id: "physical", die: [8, 5], stance: "build", probe: true,
+    probeHook: "Robots have no internet to learn from. The first real business is filming one.",
+    layer: "M", tldr: ["There’s no internet for hands. Physical AI has to film one.", "Robot models scale with physical data, and there’s none to scrape. Generalist: 270K → 500K hours, 64% → 99% success. Figure pays people to film their chores. The scoreboard: Waymo runs about one remote helper per 40 cars; humanoids are still at one per robot."],
+    title: "There’s no internet for hands. Physical AI has to film one.",
+    h2: "There’s no internet | for hands. | Physical AI has | to film one.",
+    short: "No internet for hands",
+    hook: "Language models learned from text the internet had already written. Robots need hands doing things, on camera, and almost none of that was ever recorded. So the first real business in physical AI is recording it, and the scoreboard is how often a human still has to step in.",
+    ref: { label: "Generalist, “GEN-0: Embodied Foundation Models That Scale with Physical Interaction” (Nov 2025): the first scaling laws for robot data", href: SRC.gen0 },
+    signal: `<p class="claim">Robots have | no internet to read. | So we’re filming one.</p>
+      <p>Last November, Generalist showed that robot models get predictably better as they train on more physical data, the same kind of scaling law that powered language models. It took 270,000 hours of robots doing real tasks, growing by 10,000 hours a week. By April it had half a million hours, and its new model reached 99% average success on tasks where its earlier models managed 64%.</p>
+      <p>Now that data has a price. Figure’s Index app pays people to film their own everyday work: over 44,000 weekly users, more than 16 million videos and $15 million paid out so far. Figure says it will spend over $1 billion on data and compute in the next 12 months.</p>`,
+    takes: [
+      ["There’s no internet for hands.", "Meta trained Llama 3 on about 15 trillion tokens of text the internet had already written. Nobody ever filmed an internet’s worth of hands folding, wiping and fixing things. Generalist’s half a million hours is far bigger than any public robot dataset, and it’s still only about 57 years of one robot working nonstop. For robots, the scarce input isn’t chips or clever models. It’s recorded touch."],
+      ["Every early robot is a data rig with a job.", "In January, Musk admitted no Optimus was doing useful work at Tesla yet; the robots were there to learn. There are three ways to fill the gap. Teleoperation records the exact motions: 1X’s $20,000 NEO ships with an Expert Mode, where an operator in VR takes over chores it doesn’t know. Human video records the variety: Figure taught its robot to get around homes from human video alone, and Index takes in 30 minutes of video every second. Robot fleets record scale: Generalist was adding 10,000 hours a week. The winners will blend all three."],
+      ["The remote human is the scoreboard.", "Waymo started with a safety driver in every car. In 2026 it keeps about 70 remote assistance agents on duty for a fleet of about 3,000, roughly one helper for every 40 cars, and they advise stuck cars rather than drive them. Humanoids start back at one person per robot. Every hour a helper spends teaching is data, and every hour the robot doesn’t need one is margin. The business works when that ratio falls the way Waymo’s did."]
+    ],
+    bet: `For venture: back the data engine. Tools that capture human hands cheaply, like wearable cameras, gloves and phone apps; teleoperation and remote-assistance platforms that turn every stuck robot into a training example; and robots placed in paid but forgiving jobs, where every working hour is also a data hour. Then watch the number nobody publishes yet: minutes of human help per robot per day. When it falls, the engine is working, and <a href="#robots">A humanoid is an EV with legs</a> is why the bodies will be cheap enough to run this way.`,
+    wrong: "World models and simulation get good enough that real robot data stops mattering, or human video alone turns out to be enough. Then recorded robot hours stop being scarce, and the data moat drains.",
+    note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
+    receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
+    viz: "physical", echo: { pose: "camera", acc: "camera", name: "Camera Op" }
   }
 ];
+const THESES = ALL_THESES.filter(t => !t.probe);
 const PROBES = [
   { die: [-2, -8], layer: "E", title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
-  { die: [4, -7], layer: "C", title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" }
+  { die: [4, -7], layer: "C", title: "Every AI roadmap ends at a fab.", hook: "Musk’s Terafab targets a million wafer starts a month and a terawatt of AI compute a year. What would a fab that size look like?" },
+  ...ALL_THESES.filter(t => t.probe).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
 ];
 const RECEIPTS = [
   { v: "17–150×", t: "The spread between making a million tokens and selling them. GPU-hours earn 20–30%.", id: "tokens", fresh: 1 },
@@ -5103,6 +5350,8 @@ const DOODLES = {
   light: "<path d=\"M8 28 h40 v40 h-40 Z M8 41 h40 M8 55 h40 M21 28 v40 M35 28 v40\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M55 40 h16 v16 h-16 Z\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><path d=\"M71 48 H112 M104 42 L112 48 L104 54\" stroke=\"#1f5fbf\" stroke-width=\"2.8\" stroke-dasharray=\"5 4\" /><path d=\"M63 32 l-3 -8 M71 34 l4 -7 M55 34 l-6 -6\" stroke=\"#d23c3c\" stroke-width=\"2.2\" /><text x=\"28\" y=\"82\" fill=\"#26303a\" font-size=\"12\" text-anchor=\"middle\">silicon</text><text x=\"63\" y=\"74\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">InP</text><text x=\"60\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">follow the laser</text>",
   cuda: "<path d=\"M30 62 V34 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 V62 Z M50 62 v-12 a4 4 0 0 1 8 0 v12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M8 70 q8 -5 16 0 t16 0 t16 0 t16 0 t16 0 t16 0\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M84 72 C92 60 104 58 112 66 M86 66 h4 M94 62 h4 M102 61 h4\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"25\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">CUDA</text><text x=\"60\" y=\"97\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">the few build bridges</text>",
   circular: "<path d=\"M60 18 A26 26 0 1 1 34.2 46.8 M30 38 L34.4 47.4 L42.6 41\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"52\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M84 52 C96 56 102 64 106 74 M99 70 L106.4 75 L108 66\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><text x=\"108\" y=\"88\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">exit</text><text x=\"56\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">look for the exit</text>",
+  robots: "<path d=\"M18 52 Q20 40 34 38 L46 27 Q52 22 62 22 L80 22 Q90 22 96 30 L104 38 Q112 40 112 52 V58 H18 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M46 38 H100\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M38 58 L33 76 L24 78 M92 58 L97 76 L106 78\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M60 28 v6 a5 5 0 0 0 10 0 v-6\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"96\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">an EV with legs</text>",
+  physical: "<path d=\"M24 72 V48 Q24 44 28 44 Q32 44 32 48 V60 M32 48 V38 Q32 34 36 34 Q40 34 40 38 V58 M40 40 Q40 36 44 36 Q48 36 48 40 V60 M48 44 Q48 40 52 40 Q56 40 56 44 V66 Q56 82 40 84 Q26 84 24 72 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><rect x=\"70\" y=\"40\" width=\"30\" height=\"20\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M100 46 L112 40 V60 L100 54\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"75\" cy=\"31\" r=\"3.4\" fill=\"#d23c3c\" /><text x=\"82\" y=\"35\" fill=\"#d23c3c\" font-size=\"11\">REC</text><text x=\"64\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">film the hands</text>",
 };
 const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5"};
 const doodleVB = id => DOODLE_VB[id] || "0 0 120 100";
@@ -5317,6 +5566,14 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       [[0, "loco"], [.36, "car"], [.72, "car"]].map(([d, t]) => `<g class="xcd-car" style="offset-path:path('${loop}');animation-delay:-${(d * 4.8).toFixed(2)}s">${t === "loco" ? `<rect x="-6" y="-4" width="12" height="7" rx="1.6" fill="#c94a5e" stroke="#8a2f3e" stroke-width=".7"/><rect x="2" y="-6.4" width="3" height="3" fill="#3a3f4a"/>` : `<rect x="-5" y="-2" width="10" height="5" rx="1" fill="#6b4fd8" stroke="#4a3f86" stroke-width=".6"/><circle cy="-2.4" r="2.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".6"/>`}</g>`).join("") +
       `<g class="echo-hand-l"><g transform="rotate(-8 2 68)"><rect x="-10" y="62" width="24" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="-1" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">EXIT</text><path d="M7.6 68 h4 m-1.8 -2 l2 2 l-2 2" stroke="#fff" stroke-width="1" fill="none"/></g>${mitt(5, 80, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xcd-lamp"><path d="M99 58 a4 3 0 0 1 8 0" stroke="#9fb3c4" stroke-width="1.4" fill="none"/><rect x="97" y="60" width="12" height="15" rx="2" fill="#2b2142" stroke="#9fb3c4"/><rect class="xcd-flame" x="99.5" y="62.5" width="7" height="10" rx="1.6" fill="#ffd98a"/></g>${mitt(95.5, 78)}</g>`;
+  } else if (acc === "mechanic") {
+    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#2a3f58"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#1a2636"/><path d="M27 -2 Q31 -7 39 -8.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/><g transform="translate(50 -2.6)"><circle r="4.4" fill="none" stroke="#ffb23f" stroke-width="1.7" stroke-dasharray="1.9 1.3"/><circle r="1.6" fill="#ffb23f"/></g>` +
+      `<g class="echo-hand-l">${[0, 1, 2].map(i => `<g class="xmc-bolt" style="animation-delay:${(i * .6).toFixed(1)}s"><path d="M${-19 + i * 7} 38 h3.6 l1.8 2.4 l-1.8 2.4 h-3.6 l-1.8 -2.4 Z" fill="#9fb3c4"/></g>`).join("")}<path d="M-8 52 V64 A9 9 0 0 0 10 64 V52" stroke="#d23c3c" stroke-width="5.6" fill="none"/><rect x="-10.8" y="47" width="5.6" height="6" fill="#d4e3f0"/><rect x="7.2" y="47" width="5.6" height="6" fill="#d4e3f0"/>${mitt(1, 76, 20)}</g>` +
+      `<g class="echo-hand-r"><g class="xmc-wrench"><path d="M96 72 L110 55" stroke="#9fb3c4" stroke-width="4" stroke-linecap="round"/><path d="M106.5 54.5 L111.5 48.5 L118 52.5 L115.4 55.6 L112.2 53.6 L110.4 55.8 L113.4 57.8 L110.6 61 Z" fill="#9fb3c4"/></g>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "camera") {
+    accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
+      `<g class="echo-hand-l"><rect x="-12" y="60" width="24" height="15" rx="1.5" fill="#26303a" stroke="#d4e3f0" stroke-width=".9"/><text x="0" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#d4e3f0">TAKE 1</text><g class="xcm-arm"><path d="M-12 59.5 L12 53 L13 57 L-11 63.5 Z" fill="#d4e3f0"/><path d="M-6.5 62 L-3.5 56.4 M-.5 60.4 L2.5 54.8 M5.5 58.8 L8.5 53.2" stroke="#26303a" stroke-width="2"/></g>${mitt(3, 80, 20)}</g>` +
+      `<g class="echo-hand-r"><rect x="96" y="52" width="12.5" height="21" rx="2.2" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><rect x="98" y="55" width="8.5" height="13" rx="1" fill="#3fd6c8" opacity=".7"/><circle class="xcm-rec" cx="102.2" cy="70.6" r="1.1" fill="#ff4d4d"/>${mitt(95.5, 76)}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -6453,7 +6710,9 @@ const VIZ = {
   contracts() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   light() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   cuda() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  robots() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 const VIZ_INIT = {
   quantum(root) {
@@ -8925,8 +9184,285 @@ A["circular-3c"] = { html: () => {
     K.loop(fr, n => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "pull" : "calm"}"]`)); }, 3400);
   } };
 })();
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const bot = cls => `<g class="${cls}"><circle cy="-15" r="3.2"/><rect x="-4.5" y="-11.5" width="9" height="9" rx="2"/><path d="M-2.4 -2.5 V2 M2.4 -2.5 V2"/></g>`;
+const car = cls => `<g class="${cls}"><path d="M-9 1 V-2 Q-9 -4 -6 -4.5 L-3.5 -7.5 Q-2.5 -8.5 0 -8.5 H3 Q5.5 -8.5 7 -6 L8.5 -4 Q10 -3.5 10 -1.5 V1 Z"/><circle cx="-5" cy="1.5" r="2.2" class="pb-wh"/><circle cx="6" cy="1.5" r="2.2" class="pb-wh"/></g>`;
+function mono(P) {
+  const n = P.length, d = [], m = [];
+  for (let i = 0; i < n - 1; i++) d.push((P[i + 1][1] - P[i][1]) / (P[i + 1][0] - P[i][0]));
+  m[0] = d[0]; m[n - 1] = d[n - 2];
+  for (let i = 1; i < n - 1; i++) { const h0 = P[i][0] - P[i - 1][0], h1 = P[i + 1][0] - P[i][0], w1 = 2 * h1 + h0, w2 = h1 + 2 * h0; m[i] = d[i - 1] * d[i] <= 0 ? 0 : (w1 + w2) / (w1 / d[i - 1] + w2 / d[i]); }
+  for (let i = 0; i < n - 1; i++) if (d[i] === 0) { m[i] = 0; m[i + 1] = 0; }
+  let s = `M${P[0][0].toFixed(1)} ${P[0][1].toFixed(1)}`;
+  for (let i = 0; i < n - 1; i++) { const h = (P[i + 1][0] - P[i][0]) / 3; s += ` C${(P[i][0] + h).toFixed(1)} ${(P[i][1] + m[i] * h).toFixed(1)} ${(P[i + 1][0] - h).toFixed(1)} ${(P[i + 1][1] - m[i + 1] * h).toFixed(1)} ${P[i + 1][0].toFixed(1)} ${P[i + 1][1].toFixed(1)}`; }
+  return s;
+}
+const JOINTS = [[230, 85], [230, 90], [202, 97], [197, 105], [258, 97], [263, 105], [188, 132], [272, 132], [182, 157], [184, 164], [278, 157], [276, 164],
+  [173, 173], [180, 177], [187, 173], [273, 173], [280, 177], [287, 173], [221, 156], [239, 156], [216, 178], [221, 184], [244, 178], [239, 184], [214, 201], [246, 201], [213, 221], [247, 221]];
+const HUB = i => { const h = i < 14 ? [166, 206] : [294, 206], a = (i % 14) / 14 * Math.PI * 2; return [h[0] + 11 * Math.cos(a), h[1] + 11 * Math.sin(a)]; };
+const LG1 = {
+  c: "<b>An electric car:</b> two drive motors with rare-earth magnets, one battery pack, a computer and cameras.",
+  r: "<b>A humanoid:</b> the same kinds of parts, rearranged. About 30 joint motors, each with its magnets, plus a battery pack, a computer and cameras."
+};
+A["robots-1a"] = { html: () => {
+    const limb = d => `<path d="${d}" class="leg-limb o"/><path d="${d}" class="leg-limb"/>`;
+    const motors = JOINTS.map(([rx, ry], i) => { const [cx, cy] = HUB(i); return `<g class="leg-m" style="--c:translate(${cx.toFixed(1)}px,${cy.toFixed(1)}px);--r:translate(${rx}px,${ry}px);--d:${(i * .018).toFixed(3)}s"><circle r="3.9" class="leg-mag"/><circle r="1.5" class="leg-core"/></g>`; }).join("");
+    const bar = (y, f, lab) => `<rect x="12" y="${y}" width="436" height="15" rx="3" class="leg-track"/><rect x="12" y="${y}" width="${(436 * f).toFixed(1)}" height="15" rx="3" class="leg-fill"/><text x="20" y="${y + 11}" font-size="10.5" class="leg-bt">${lab}</text><text x="${(12 + 436 * f - 6).toFixed(1)}" y="${y + 11}" text-anchor="end" font-size="10.5" font-weight="800" class="leg-bv">${Math.round(f * 100)}%</text>`;
+    return `<div class="k-col lg1" data-m="c">
+      <div class="k-seg"><button type="button" class="k-b" data-v="c">Electric car</button><button type="button" class="k-b" data-v="r">Humanoid</button></div>
+      <svg viewBox="0 0 460 284" class="k-svg" aria-label="The same parts, rearranged. An electric car's parts, two drive motors with rare-earth magnets, a battery pack under the floor, a computer and cameras, fly apart and reassemble into a humanoid: about 30 joint motors with magnets, the battery in its chest, the computer in its head, cameras for eyes. Below, two bars: China made 16 of the world's 22 million electric cars in 2025, and Chinese makers shipped 97% of humanoids in the first half of 2026.">
+        <text x="14" y="18" font-size="13" class="t-strong">Same parts, rearranged</text>
+        <path d="M30 226 H430" class="leg-gr"/>
+        <g class="leg-car"><path d="M112 196 Q112 176 136 170 L178 150 Q192 142 214 142 L262 142 Q284 142 298 154 L326 170 Q350 174 350 194 L350 200 Q350 204 344 204 L318 204 A26 26 0 0 0 270 204 L190 204 A26 26 0 0 0 142 204 L118 204 Q112 204 112 198 Z" class="leg-body"/><path d="M186 166 L204 152 Q210 149 218 149 L254 149 Q268 149 278 158 L288 166 Z" class="leg-win"/><circle cx="166" cy="206" r="19" class="leg-wheel"/><circle cx="294" cy="206" r="19" class="leg-wheel"/></g>
+        <g class="leg-bot"><circle cx="230" cy="70" r="16" class="leg-head"/>${limb("M202 99 L188 132 L182 160")}${limb("M258 99 L272 132 L278 160")}${limb("M218 180 L214 201 L213 222")}${limb("M242 180 L246 201 L247 222")}<rect x="204" y="90" width="52" height="72" rx="12" class="leg-torso"/><rect x="210" y="160" width="40" height="22" rx="7" class="leg-torso"/><path d="M204 226 H222 M238 226 H256" class="leg-foot"/></g>
+        <rect x="-20" y="-6" width="40" height="12" rx="3" class="leg-bat" style="--c:translate(230px,196px) scale(3.3,.75);--r:translate(230px,124px) scale(.9,2.7)"/>
+        <rect x="-7" y="-5" width="14" height="10" rx="2" class="leg-cpu" style="--c:translate(320px,176px);--r:translate(230px,60px) scale(1.3)"/>
+        <circle r="2.8" class="leg-eye" style="--c:translate(264px,158px);--r:translate(224px,73px)"/><circle r="2.8" class="leg-eye" style="--c:translate(272px,158px);--r:translate(236px,73px)"/>
+        ${motors}
+        <g class="leg-key"><circle cx="20" cy="237" r="3.9" class="leg-mag"/><text x="28" y="240.5" font-size="10.5">motor + magnets</text><rect x="122" y="232" width="16" height="10" rx="2" class="leg-bat"/><text x="144" y="240.5" font-size="10.5">battery</text><rect x="198" y="232" width="14" height="10" rx="2" class="leg-cpu"/><text x="218" y="240.5" font-size="10.5">computer</text><circle cx="286" cy="237" r="2.8" class="leg-eye"/><text x="294" y="240.5" font-size="10.5">cameras</text></g>
+        ${bar(249, 16 / 22, "Electric cars made in China, 2025 (16 of 22 million)")}${bar(266, .97, "Humanoids shipped by Chinese makers, first half of 2026")}
+      </svg>
+      ${sayStack("cf1-say", "lgSay", Object.values(LG1))}
+    </div>${capLS("Schematic; motors drawn one per joint. Electric car production: the IEA’s Global EV Outlook 2026. Humanoid shipments: Smart Analytics Global via TechRepublic.", "Schematic. IEA; Smart Analytics Global.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lg1"), say = fr.querySelector("#lgSay");
+    let auto = true;
+    const tabs = K.tabs(fr, ".k-b", m => { col.dataset.m = m; say.innerHTML = LG1[m]; }, "c");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="c"]')); });
+    K.loop(fr, n => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "r" : "c"}"]`)); }, 3600);
+  } };
+const LG3 = {
+  open: "<b>Open trade:</b> magnets flow, the joint spins, the line runs. Over 90% of those magnets come from China.",
+  shut: "<b>Export licenses (April 2025):</b> the big pipe slows to a trickle, joints stop and the robot line stalls. Musk told investors Optimus production was hit within weeks. America’s next big magnet plant starts commissioning in 2028."
+};
+A["robots-2a"] = { html: () => {
+    const C = [112, 126];
+    const stator = [...Array(18)].map((_, i) => { const a = i / 18 * Math.PI * 2, c = Math.cos(a), s = Math.sin(a); return `<path d="M${(C[0] + 47 * c).toFixed(1)} ${(C[1] + 47 * s).toFixed(1)} L${(C[0] + 58 * c).toFixed(1)} ${(C[1] + 58 * s).toFixed(1)}" class="lg3-tooth"/>`; }).join("");
+    const mags = [...Array(12)].map((_, i) => { const a0 = i / 12 * Math.PI * 2, a1 = (i + 1) / 12 * Math.PI * 2 - .06, r0 = 32, r1 = 42, p = (r, a) => `${(C[0] + r * Math.cos(a)).toFixed(1)} ${(C[1] + r * Math.sin(a)).toFixed(1)}`;
+      return `<path d="M${p(r0, a0)} L${p(r1, a0)} A${r1} ${r1} 0 0 1 ${p(r1, a1)} L${p(r0, a1)} A${r0} ${r0} 0 0 0 ${p(r0, a0)} Z" class="lg3-mag ${i % 2 ? "s" : "n"}"/>`; }).join("");
+    const planets = [0, 1, 2].map(i => { const a = i / 3 * Math.PI * 2 - Math.PI / 2; return `<circle cx="${(C[0] + 17 * Math.cos(a)).toFixed(1)}" cy="${(C[1] + 17 * Math.sin(a)).toFixed(1)}" r="8.5" class="lg3-pl"/>`; }).join("");
+    const BIG = "M440 62 H300 C262 62 250 92 214 104 L176 114", SMALL = "M440 150 H310 C276 150 250 138 214 132 L176 130";
+    return `<div class="k-col lg3" data-s="open">
+      <div class="k-seg"><button type="button" class="k-b" data-v="open">Open trade</button><button type="button" class="k-b" data-v="shut">Export licenses</button></div>
+      <svg viewBox="0 0 460 262" class="k-svg" aria-label="One robot joint, seen face on: stator coils on the outside, a ring of rare-earth magnets that spins, and a planetary gearbox in the middle. Actuators like this are 40 to 60% of a humanoid's bill of materials. Pipes feed it magnets: a big one from China, over 90% of supply, and a thin one from everyone else. Switch on export licenses and the big pipe's valve closes: the joint stops and a line of robots stalls. A dashed future pipe, a US magnet plant, starts in 2028.">
+        <text x="14" y="18" font-size="13" class="t-strong">Back the joint, not the robot</text>
+        <text x="14" y="33" font-size="10.5">Actuators are 40–60% of a humanoid’s bill of materials</text>
+        <circle cx="${C[0]}" cy="${C[1]}" r="60" class="lg3-case"/>${stator}
+        <g class="lg3-rot">${mags}</g>
+        <circle cx="${C[0]}" cy="${C[1]}" r="30" class="lg3-ring"/><g class="lg3-gear">${planets}<circle cx="${C[0]}" cy="${C[1]}" r="7" class="lg3-sun"/></g>
+        <path d="M60 196 L76 176 M164 196 L148 176 M112 196 V188" class="lg3-ld"/>
+        <text x="52" y="207" text-anchor="middle" font-size="10.5">coils</text><text x="112" y="207" text-anchor="middle" font-size="10.5" class="lg3-mt">magnets</text><text x="172" y="207" text-anchor="middle" font-size="10.5">gearbox</text>
+        <path d="${BIG}" class="lg3-pipe big"/><path d="${SMALL}" class="lg3-pipe"/><path d="M440 228 H330" class="lg3-pipe fut"/>
+        <g class="lg3-flow big">${[0, 1, 2, 3].map(k => `<rect x="-4" y="-3" width="8" height="6" rx="1.5" class="k-flow lg3-tok" style="offset-path:path('${BIG}');--t:2.2s;--d:${(k * .55).toFixed(2)}s"/>`).join("")}</g>
+        <g class="lg3-flow">${[0].map(k => `<rect x="-3" y="-2.4" width="6" height="4.8" rx="1.2" class="k-flow lg3-tok s" style="offset-path:path('${SMALL}');--t:3.2s;--d:${k}s"/>`).join("")}</g>
+        <g class="lg3-valve" transform="translate(398 62)"><g class="lg3-vw"><circle r="11" /><path d="M-11 0 H11 M0 -11 V11"/></g></g>
+        <text x="398" y="44" text-anchor="middle" font-size="10" class="lg3-lic">export license</text>
+        <text x="444" y="88" text-anchor="end" font-size="11.5" class="t-strong">China · 90%+ of magnets</text>
+        <text x="444" y="170" text-anchor="end" font-size="10.5">everyone else</text>
+        <text x="444" y="246" text-anchor="end" font-size="10.5" class="lg3-futt">US · MP Materials’ 10X plant, from 2028</text>
+        <g class="lg3-line">${[0, 1, 2, 3].map(i => `<g transform="translate(${236 + i * 22} 206)">${bot("lg3-bot")}</g>`).join("")}<path d="M224 208 H318" class="lg3-belt"/><g class="lg3-stop"><rect x="330" y="190" width="4" height="14" rx="1"/><rect x="338" y="190" width="4" height="14" rx="1"/></g></g>
+      </svg>
+      ${sayStack("cf1-say", "lg3Say", Object.values(LG3))}
+    </div>${capLS("Schematic. Actuator and magnet shares: McKinsey via TNW. The 2025 licenses: OilPrice. MP Materials’ 10X commissioning date: Zacks.", "Schematic. TNW; OilPrice; Zacks.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lg3"), say = fr.querySelector("#lg3Say");
+    let auto = true;
+    const tabs = K.tabs(fr, ".k-b", m => { col.dataset.s = m; say.innerHTML = LG3[m]; }, "open");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="open"]')); });
+    K.loop(fr, n => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${n % 2 ? "shut" : "open"}"]`)); }, 3800);
+  } };
+const X1 = y => 46 + (y - 2015) * 400 / 11.6, Y1 = r => 214 - r / 500000 * 150;
+const RIDES = [[2015.8, 0], [2020.8, 0], [2024.4, 50000], [2024.6, 100000], [2025.1, 200000], [2025.3, 250000], [2026.25, 500000]];
+const PB1 = [
+  [2015.8, "<b>Oct 2015:</b> the first fully driverless ride on a public road."],
+  [2018.4, "<b>2018:</b> Waymo orders up to 82,000 cars. Building them was never the hard part."],
+  [2020.8, "<b>Oct 2020:</b> driverless rides open to the public in Phoenix, with just over 300 vans. Five years after the first ride."],
+  [2024.4, "<b>May 2024:</b> 50,000 paid rides a week. Almost nine years in, the curve finally lifts."],
+  [2026.25, "<b>Spring 2026:</b> 500,000 paid rides a week, from a fleet of about 3,000."],
+  [2026.25, "<b>Optimus, 2026:</b> Tesla has built the line, a Fremont factory aiming for 20,000 a week. Sales are planned for the end of 2027. On this road, Optimus is still at the start."]
+];
+A["robots-3a"] = { html: () => {
+    const road = mono(RIDES.map(([y, r]) => [X1(y), Y1(r)]));
+    const cells = [...Array(82)].map((_, i) => `<rect x="${54 + (i % 14) * 10}" y="${68 + Math.floor(i / 14) * 7}" width="8" height="5" rx="1.2" class="pb1-c" style="--d:${(i * .006).toFixed(3)}s"/>`).join("");
+    const live = [0, 1, 2].map(i => `<rect x="${54 + i * 10}" y="68" width="8" height="5" rx="1.2" class="pb1-on" data-i="${i}"/>`).join("");
+    return `<div class="k-col pb1" data-s="5">
+      <svg viewBox="0 0 460 246" class="k-svg" aria-label="A road drawn as Waymo's weekly paid rides from 2015 to 2026. It runs flat for years: the first driverless ride in 2015, public rides in Phoenix in 2020 with just over 300 vans. Then it climbs steeply: 50,000 rides a week in May 2024 and 500,000 in spring 2026. In the empty corner, a grid of 82 squares shows the up to 82,000 cars Waymo ordered in 2018; three are lit for the roughly 3,000 cars it actually ran in 2026. A last step puts Optimus at the start of the road: a production line built in 2026, sales planned for the end of 2027.">
+        <text x="14" y="18" font-size="13" class="t-strong">A factory is a line. Trust is a curve.</text>
+        ${[100000, 200000, 300000, 400000, 500000].map(r => `<path d="M46 ${Y1(r)} H446" class="pb1-grid"/><text x="40" y="${Y1(r) + 3.5}" text-anchor="end" font-size="10">${r / 1000}K</text>`).join("")}
+        <path d="M46 214 H446" class="pb1-axis"/><text x="40" y="217.5" text-anchor="end" font-size="10">0</text>
+        ${[2015, 2018, 2020, 2022, 2024, 2026].map(y => `<text x="${X1(y).toFixed(1)}" y="230" text-anchor="middle" font-size="10">${y}</text>`).join("")}
+        <text x="14" y="33" font-size="10.5">Waymo’s paid rides a week</text>
+        <text x="54" y="50" font-size="9.5" class="pb1-k">THE FACTORY · 2018</text><text x="54" y="62" font-size="11" class="t-strong">Ordered: up to 82,000 cars</text>
+        <g class="pb1-lot">${cells}</g><g class="pb1-live">${live}</g>
+        <text x="54" y="120" font-size="10" id="pb1Lot">each square is 1,000 cars</text>
+        <path d="${road}" class="pb1-road"/><path d="${road}" class="pb1-lane" id="pb1Road"/>
+        ${PB1.slice(0, 5).map(([y], i) => { const r = RIDES.find(p => p[0] === y); const yy = r ? Y1(r[1]) : 214; return `<circle cx="${X1(y).toFixed(1)}" cy="${yy.toFixed(1)}" r="3.2" class="pb1-ms" data-i="${i}"/>`; }).join("")}
+        <g class="pb1-opt"><text x="62" y="166" font-size="11" class="pb1-ot">Optimus, 2026</text><text x="62" y="179" font-size="9.5" class="pb1-os">line built, sales late 2027</text><g transform="translate(74 208) scale(1.25)">${bot("pb1-bot")}</g></g>
+        <g id="pb1Car">${car("pb1-car")}</g>
+        <text x="240" y="244" text-anchor="middle" font-size="10" class="pb1-foot">Flat for most of a decade, then nearly straight up</text>
+      </svg>
+      <label class="k-row"><span>Year</span><input type="range" id="pb1R" min="0" max="5" step="1" value="5" aria-label="Milestone"><b id="pb1V">2026</b></label>
+      ${sayStack("cf1-say", "pb1Say", PB1.map(p => p[1]))}
+    </div>${capLS("Weekly paid rides, smoothed between the published points. Rides: Waymo via TechCrunch and Alphabet. 2018 orders: up to 62,000 Pacificas plus up to 20,000 Jaguars (The Drive). Phoenix fleet: Bloomberg; 2026 fleet: TechCrunch. Optimus: Drive Tesla Canada; CNN via RNZ.", "Waymo via TechCrunch; The Drive; Bloomberg; RNZ.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".pb1"), r = fr.querySelector("#pb1R"), road = fr.querySelector("#pb1Road"), carG = fr.querySelector("#pb1Car"), say = fr.querySelector("#pb1Say");
+    const L = road.getTotalLength();
+    const lenAt = x => { let a = 0, b = L; for (let k = 0; k < 24; k++) { const m = (a + b) / 2; if (road.getPointAtLength(m).x < x) a = m; else b = m; } return (a + b) / 2; };
+    const put = l => { const p = road.getPointAtLength(l), q = road.getPointAtLength(Math.min(L, l + 1)), p0 = road.getPointAtLength(Math.max(0, l - 1)); const ang = Math.atan2(q.y - p0.y, q.x - p0.x) * 180 / Math.PI; carG.setAttribute("transform", `translate(${p.x.toFixed(1)} ${(p.y - 3).toFixed(1)}) rotate(${ang.toFixed(1)})`); };
+    let cur = lenAt(X1(PB1[4][0])), anim = 0;
+    const go = (i, inst) => {
+      const to = lenAt(X1(PB1[i][0])), from = cur, t0 = performance.now(), id = ++anim;
+      col.dataset.s = i; r.value = i; fr.querySelector("#pb1V").textContent = i === 5 ? "Optimus" : Math.floor(PB1[i][0]); say.innerHTML = PB1[i][1];
+      fr.querySelectorAll(".pb1-ms").forEach((m, k) => m.classList.toggle("on", k <= i));
+      fr.querySelector("#pb1Lot").textContent = i >= 4 ? "on the road in 2026: about 3,000" : i >= 2 ? "on the road in 2020: just over 300" : "each square is 1,000 cars";
+      if (inst || K.paused()) { cur = to; put(to); return; }
+      const step = now => { if (id !== anim) return; const k = Math.min(1, (now - t0) / 900), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2; cur = from + (to - from) * e; put(cur); if (k < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    };
+    let auto = true;
+    r.addEventListener("input", () => { auto = false; go(+r.value); });
+    K.onEnter(fr, () => { auto = true; go(0, true); });
+    K.loop(fr, n => { if (auto && +r.value < 5) go(+r.value + 1); }, 1700);
+    go(5, true);
+  } };
+})();
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const fmt = n => Math.round(n).toLocaleString("en-US");
+const car = cls => `<g class="${cls}"><path d="M-9 1 V-2 Q-9 -4 -6 -4.5 L-3.5 -7.5 Q-2.5 -8.5 0 -8.5 H3 Q5.5 -8.5 7 -6 L8.5 -4 Q10 -3.5 10 -1.5 V1 Z"/><circle cx="-5" cy="1.5" r="2.2" class="pb-wh"/><circle cx="6" cy="1.5" r="2.2" class="pb-wh"/></g>`;
+const humanoid = cls => `<g class="${cls}"><circle cy="-15" r="3.2"/><rect x="-4.5" y="-11.5" width="9" height="9" rx="2"/><path d="M-2.4 -2.5 V2 M2.4 -2.5 V2"/></g>`;
+A["physical-1a"] = { html: () => {
+    const cloud = (cx, cy, cls) => `<g class="${cls}">${[[-46, 6, 18], [-24, -8, 24], [4, -12, 26], [32, -4, 22], [50, 8, 16], [0, 10, 22], [-30, 12, 16], [26, 12, 18]].map(([dx, dy, r]) => `<circle cx="${cx + dx}" cy="${cy + dy}" r="${r}"/>`).join("")}</g>`;
+    const words = [["code  law  news", 90], ["recipes  forums", 102], ["math  poems", 114]].map(([t, y]) => `<text x="120" y="${y}" text-anchor="middle" font-size="9.5" class="hd-w" xml:space="preserve">${t}</text>`).join("");
+    const drops = [100, 136, 112, 128, 106, 132].map((x0, i) => `<rect x="-3" y="-2.5" width="6" height="5" rx="1" class="k-flow hd-tok" style="offset-path:path('M${x0} 122 C${x0} 136 120 138 120 168');--t:1.8s;--d:${(i * .3).toFixed(1)}s"/>`).join("");
+    return `<div class="k-col hd1">
+      <svg viewBox="0 0 460 262" class="k-svg" aria-label="Two panels. Language models: a cloud of text that already exists, recipes, code, law, news, pours through a funnel into a model: about 15 trillion tokens for Llama 3. Robots: the cloud is empty, there's no internet of hands, so a camera films a hand folding a towel and the footage piles up: Generalist went from 270,000 to 500,000 hours, and success on the same tasks rose from 64% to 99%.">
+        <text x="14" y="18" font-size="13" class="t-strong">Text was already written. Hands weren’t.</text>
+        <path d="M230 34 V232" class="hd-div"/>
+        <text x="22" y="48" font-size="9.5" class="hd-k">LANGUAGE MODELS</text><text x="22" y="62" font-size="12" class="t-strong">Scrape what exists</text>
+        <text x="246" y="48" font-size="9.5" class="hd-k">ROBOTS</text><text x="246" y="62" font-size="12" class="t-strong">Film what doesn’t</text>
+        ${cloud(120, 96, "hd-cloud")}
+        ${words}${drops}
+        <path d="M84 150 H156 L128 176 V188 H112 V176 Z" class="hd-fun"/>
+        <rect x="88" y="196" width="64" height="22" rx="5" class="hd-chip"/><text x="120" y="211" text-anchor="middle" font-size="10.5" class="t-strong">model</text>
+        <text x="120" y="236" text-anchor="middle" font-size="10.5">~15 trillion tokens (Llama 3)</text>
+        ${cloud(340, 96, "hd-cloud empty")}<text x="340" y="100" text-anchor="middle" font-size="10.5" class="hd-none">no internet of hands</text>
+        <path d="M384 141 L300 128 L300 178 Z" class="hd-cone"/>
+        <g class="hd-towel"><rect x="270" y="150" width="42" height="26" rx="2" class="hd-cloth"/><rect x="270" y="150" width="42" height="13" rx="2" class="hd-flap"/></g>
+        <g class="hd-hand"><rect x="236" y="176" width="20" height="11" rx="3" class="hd-sleeve"/><rect x="252" y="174" width="16" height="14" rx="5"/><rect x="264" y="174" width="13" height="4" rx="2"/><rect x="264" y="179" width="14" height="4" rx="2"/><rect x="264" y="184" width="12" height="4" rx="2"/><rect x="256" y="168" width="10" height="5" rx="2.5" transform="rotate(-28 261 170)"/></g>
+        <g class="hd-cam"><rect x="384" y="130" width="34" height="22" rx="4"/><path d="M384 136 L374 132 V150 L384 146" class="hd-lens"/><circle cx="392" cy="164" r="3" class="hd-rec"/><text x="398" y="167.5" font-size="9.5" class="hd-rect">REC</text></g>
+        <text x="345" y="208" text-anchor="middle" font-size="17" class="hd-n" id="hdHrs">270,000 hours</text>
+        <text x="345" y="221" text-anchor="middle" font-size="10">of robots doing real tasks (Generalist)</text>
+        <rect x="248" y="232" width="194" height="12" rx="3" class="hd-tr"/><rect x="248" y="232" width="194" height="12" rx="3" class="hd-fill" id="hdFill" style="transform:scaleX(.64)"/>
+        <path d="M${(248 + 194 * .64).toFixed(1)} 229 V247" class="hd-64"/>
+        <text x="248" y="258" font-size="10">success on the same tasks</text><text x="442" y="258" text-anchor="end" font-size="10.5" font-weight="800" class="hd-pc" id="hdPc">64%</text>
+      </svg>
+    </div>${capLS("Schematic. Llama 3: Meta (over 15 trillion tokens). Hours and success rates: Generalist’s GEN-0 (Nov 2025) and GEN-1 (Apr 2026), via The Robot Report.", "Meta; Generalist; The Robot Report.")}`; },
+  init: fr => {
+    const h = fr.querySelector("#hdHrs"), fill = fr.querySelector("#hdFill"), pc = fr.querySelector("#hdPc");
+    let t0 = 0, run = false;
+    const show = p => { const e = 1 - Math.pow(1 - p, 3); h.textContent = fmt(270000 + 230000 * e) + " hours"; fill.style.transform = `scaleX(${(.64 + .35 * e).toFixed(3)})`; pc.textContent = Math.round(64 + 35 * e) + "%"; };
+    K.onEnter(fr, () => { t0 = performance.now(); run = true; show(0); });
+    K.raf(fr, (dt, now) => { if (!run) return; const p = Math.min(1, (now - t0 - 600) / 2600); if (p < 0) return; show(K.paused() ? 1 : p); if (p >= 1) run = false; });
+    show(1);
+  } };
+const HD2 = {
+  tele: ["Teleop", "<b>Teleoperation:</b> a person in VR drives the robot through the chore. Slow and costly, but it records exactly the motions a robot needs. 1X calls it Expert Mode."],
+  video: ["Human video", "<b>Human video:</b> no robot needed, just a phone. Figure’s Index has paid creators $15 million and took in 30 minutes of video every second by August, with 373 different tasks in every 1,000 hours."],
+  fleet: ["Robot fleet", "<b>Robot fleets:</b> real robots doing real work, all of it recorded. Generalist was adding 10,000 hours a week, and passed half a million hours by April."]
+};
+const person = (x, y, cls) => `<g class="${cls}" transform="translate(${x} ${y})"><circle cy="-34" r="9"/><path d="M-12 0 V-16 Q-12 -24 0 -24 Q12 -24 12 -16 V0 Z"/></g>`;
+const arm = (x, y) => `<g transform="translate(${x} ${y})"><rect x="-14" y="10" width="28" height="6" rx="2" class="hd2-tbl"/><g class="hd2-arm"><path d="M0 10 V-6 L14 -14" class="hd2-ln"/><circle cx="0" cy="-6" r="2.6" class="hd2-j"/><path d="M14 -14 l5 -3 M14 -14 l5 3" class="hd2-ln"/></g></g>`;
+A["physical-2a"] = { html: () => `<div class="k-col hd2" data-t="tele">
+      <div class="k-seg">${Object.entries(HD2).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[0]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="Three ways to record hands. Teleop: a person in a VR headset drives a robot through a chore, and each session becomes training data. Human video: people film their own chores on phones; Figure's Index takes in 30 minutes of video every second. Robot fleet: rows of robot arms working while everything is recorded; Generalist added 10,000 hours a week.">
+        <g class="hd2-sc tele">
+          ${person(80, 150, "hd2-p")}<rect x="70" y="111" width="20" height="8" rx="3" class="hd2-vr"/><rect x="58" y="136" width="8" height="12" rx="2" class="hd2-ctl"/><rect x="94" y="136" width="8" height="12" rx="2" class="hd2-ctl"/>
+          <text x="80" y="172" text-anchor="middle" font-size="10.5">operator in VR</text>
+          <path d="M106 112 C180 70 270 70 330 104" class="hd2-link"/><text x="218" y="70" text-anchor="middle" font-size="10.5" class="hd2-lt">Expert Mode</text>
+          <rect x="290" y="146" width="100" height="10" class="hd2-tbl"/>${person(340, 146, "hd2-r")}<rect x="333" y="108" width="14" height="5" rx="2" class="hd2-visor"/><g class="hd2-plate"><path d="M350 128 L364 124" class="hd2-ln"/><ellipse cx="371" cy="122" rx="9" ry="2.5" class="hd2-dish"/></g>
+          <g class="hd2-recg"><circle cx="392" cy="98" r="3"/><text x="398" y="101.5" font-size="10" font-weight="800">REC</text></g>
+          <rect x="-5" y="-5" width="10" height="10" rx="2" class="k-flow hd2-cube" style="offset-path:path('M362 150 C364 180 390 196 412 204');--t:2.4s;--d:.6s"/>
+        </g>
+        <g class="hd2-sc video">
+          ${[...Array(16)].map((_, i) => { const a = i / 16 * Math.PI * 2, x = 230 + 170 * Math.cos(a), y = 92 + 50 * Math.sin(a); return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" class="hd2-ph"><rect x="-5" y="-8" width="10" height="16" rx="2"/><circle cx="0" cy="-4.4" r="1.3" class="hd2-dot" style="--d:${(i * .37 % 2).toFixed(2)}s"/></g>`; }).join("")}
+          <rect x="168" y="104" width="124" height="10" rx="2" class="hd2-tbl"/>
+          <g class="hd2-wipe"><rect x="196" y="93" width="26" height="11" rx="3" class="hd2-cloth"/><path d="M204 93 Q206 84 214 84" class="hd2-ln"/></g>
+          <path d="M254 104 L264 82" class="hd2-ln"/><rect x="258" y="62" width="14" height="22" rx="2.5" class="hd2-phone"/><circle cx="265" cy="68" r="2" class="hd2-rec2"/>
+          <text x="230" y="172" text-anchor="middle" font-size="11.5" class="t-strong">30 minutes of video every second</text>
+          <text x="230" y="188" text-anchor="middle" font-size="10.5" id="hd2Live">Since you opened this: 0 hours of human work</text>
+          <text x="230" y="206" text-anchor="middle" font-size="10">Every 1,000 hours: 373 tasks, 1,146 objects, 116 places</text>
+        </g>
+        <g class="hd2-sc fleet">
+          ${[0, 1, 2].map(c => [0, 1].map(r => arm(130 + c * 100, 96 + r * 62)).join("")).join("")}
+          <path d="M70 206 H390" class="hd2-belt"/>
+          ${[0, 1, 2, 3, 4].map(k => `<rect x="-5" y="-5" width="10" height="10" rx="2" class="k-flow hd2-cube" style="offset-path:path('M90 200 H404');--t:3s;--d:${(k * .6).toFixed(1)}s"/>`).join("")}
+          <text x="230" y="44" text-anchor="middle" font-size="11.5" class="t-strong">+10,000 hours a week</text>
+        </g>
+        <g class="hd2-bin"><path d="M404 196 V222 H444 V196" /><text x="424" y="234" text-anchor="middle" font-size="10">training data</text></g>
+        <text x="16" y="230" font-size="10.5" class="hd2-rb" id="hd2Rb">records: the exact motions</text>
+      </svg>
+      ${sayStack("cf1-say", "hd2Say", Object.values(HD2).map(v => v[1]))}
+    </div>${capLS("Schematic. Expert Mode: 1X. Index: Figure (Aug 2026); the live count runs at August’s upload rate. Fleet hours: Generalist.", "Schematic. 1X; Figure; Generalist.")}`,
+  init: fr => {
+    const col = fr.querySelector(".hd2"), say = fr.querySelector("#hd2Say"), live = fr.querySelector("#hd2Live"), rb = fr.querySelector("#hd2Rb");
+    const RB = { tele: "records: the exact motions", video: "records: the variety", fleet: "records: scale, on real robots" };
+    let auto = true, at = "tele", t0 = performance.now();
+    const keys = Object.keys(HD2);
+    const tabs = K.tabs(fr, ".k-b", t => { at = t; col.dataset.t = t; say.innerHTML = HD2[t][1]; rb.textContent = RB[t]; }, "tele");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; t0 = performance.now(); tabs(fr.querySelector('.k-b[data-v="tele"]')); });
+    K.loop(fr, () => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${keys[(keys.indexOf(at) + 1) % 3]}"]`)); }, 4200);
+    K.raf(fr, (dt, now) => { if (at !== "video") return; const h = (now - t0) / 1000 * .5; live.textContent = `Since you opened this: ${h < 10 ? h.toFixed(1) : fmt(h)} hours of human work`; });
+  } };
+const PB3 = {
+  early: ["Robotaxi, early", "1 : 1", "<b>Waymo’s early years:</b> a safety driver in every car. One person per vehicle, the same ratio as an ordinary taxi."],
+  now: ["Robotaxi, 2026", "1 : 40", "<b>Waymo, 2026:</b> about 70 remote helpers on duty for a fleet of about 3,000, roughly one for every 40 cars. They advise cars that get stuck. They don’t drive them."],
+  bot: ["Humanoid, 2026", "1 : 1", "<b>Humanoids, 2026:</b> back to one person per robot. NEO’s Expert Mode puts a 1X operator in VR behind it. The business works when this ratio falls the way Waymo’s did."]
+};
+A["physical-3a"] = { html: () => {
+    const grid = [...Array(40)].map((_, i) => { const x = 178 + (i % 8) * 34, y = 58 + Math.floor(i / 8) * 30; return `<g class="pb3-u" data-i="${i}" transform="translate(${x} ${y})">${car("pb3-car")}<g class="pb3-q"><circle cx="9" cy="-12" r="5.5"/><text x="9" y="-9.2" text-anchor="middle" font-size="8" font-weight="900">?</text></g></g>`; }).join("");
+    const links = [...Array(40)].map((_, i) => { const x = 178 + (i % 8) * 34, y = 58 + Math.floor(i / 8) * 30 - 3; return `<path d="M96 112 Q${(140 + x) / 2} ${(112 + y) / 2 - 8} ${x - 9} ${y}" class="pb3-l" data-i="${i}"/>`; }).join("");
+    return `<div class="k-col pb3" data-m="now">
+      <div class="k-seg">${Object.entries(PB3).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[0]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="How many machines one person looks after. Early robotaxis: one safety driver in one car, 1 to 1. Waymo in 2026: one remote helper for about 40 cars, and now and then a car shows a question mark and the helper's line lights up. Humanoids in 2026: one operator in VR for one robot, 1 to 1 again. Along the bottom, the fleet layer the robotaxi era built: remote assistance, monitoring, maintenance and insurance.">
+        <text x="14" y="18" font-size="13" class="t-strong">One person, how many robots?</text>
+        <text x="446" y="20" text-anchor="end" font-size="22" class="pb3-ratio" id="pb3Ratio">1 : 40</text>
+        <g class="pb3-op"><circle cx="70" cy="96" r="10"/><path d="M54 140 V122 Q54 112 70 112 Q86 112 86 122 V140 Z"/><path d="M60 92 Q70 80 80 92" class="pb3-hs"/><rect x="58" y="92" width="24" height="8" rx="3" class="pb3-vr"/><rect x="46" y="140" width="48" height="6" rx="1.5" class="pb3-desk"/></g>
+        <text x="70" y="162" text-anchor="middle" font-size="10.5" id="pb3Who">remote helper</text>
+        <g class="pb3-sc now">${links}${grid}</g>
+        <g class="pb3-sc early"><path d="M280 128 H360" class="pb3-road"/><g transform="translate(310 112) scale(4.2)">${car("pb3-car big")}</g><g class="pb3-drv"><circle cx="318" cy="88" r="5"/><path d="M312 100 Q312 94 318 94 Q324 94 324 100"/></g><text x="310" y="152" text-anchor="middle" font-size="10.5">safety driver in the car</text></g>
+        <g class="pb3-sc bot"><path d="M96 112 C180 70 250 70 300 92" class="pb3-thick"/><g transform="translate(312 140) scale(3.4)">${humanoid("pb3-bot")}</g><text x="312" y="162" text-anchor="middle" font-size="10.5">one robot</text></g>
+        <text x="14" y="196" font-size="9.5" class="pb3-k">THE FLEET LAYER TO BACK</text>
+        ${["remote assistance", "monitoring", "maintenance", "insurance"].map((t, i) => { const x = [14, 128, 214, 310][i], w = [106, 78, 88, 72][i]; return `<rect x="${x}" y="204" width="${w}" height="20" rx="10" class="pb3-chip" style="--d:${(i * .12).toFixed(2)}s"/><text x="${x + w / 2}" y="217.5" text-anchor="middle" font-size="10.5" class="pb3-ct">${t}</text>`; }).join("")}
+      </svg>
+      ${sayStack("cf1-say", "pb3Say", Object.values(PB3).map(v => v[2]))}
+    </div>${capLS("Ratio worked out from TechCrunch’s figures: about 70 remote assistance agents on duty and a fleet of about 3,000 (Feb 2026). Expert Mode: 1X.", "TechCrunch; 1X.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".pb3"), say = fr.querySelector("#pb3Say");
+    const WHO = { early: "nobody remote", now: "remote helper", bot: "operator in VR" };
+    let auto = true, m = "now";
+    const keys = Object.keys(PB3);
+    const tabs = K.tabs(fr, ".k-b", v => { m = v; col.dataset.m = v; fr.querySelector("#pb3Ratio").textContent = PB3[v][1]; say.innerHTML = PB3[v][2]; fr.querySelector("#pb3Who").textContent = WHO[v]; }, "now");
+    fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+    K.onEnter(fr, () => { auto = true; tabs(fr.querySelector('.k-b[data-v="early"]')); });
+    let tick = 0;
+    K.loop(fr, () => {
+      tick++;
+      if (m === "now") { const i = (tick * 17 + 5) % 40; fr.querySelectorAll(".pb3-u,.pb3-l").forEach(e => e.classList.toggle("ask", +e.dataset.i === i)); }
+      if (auto && tick % 5 === 0) tabs(fr.querySelector(`.k-b[data-v="${keys[(keys.indexOf(m) + 1) % 3]}"]`));
+    }, 900);
+  } };
+})();
 (function () {
-  const AX = window.AX, PICK = {"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
@@ -10006,7 +10542,7 @@ function initLinks(root) {
   $$(".sd", root).forEach(g => g.addEventListener("click", () => { location.hash = g.dataset.id; }));
 }
 const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<div class="bd-scroll" tabindex="-1"><div class="${cls}" id="wb">${inner}</div></div>`; };
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
