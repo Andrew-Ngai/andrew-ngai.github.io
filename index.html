@@ -3940,24 +3940,35 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .cu2-f{font-size:calc(11*var(--u))}.cu2-r small{font-size:calc(10*var(--u))}.cu2-h span{font-size:calc(9.5*var(--u))}
 .cu2-q{font-size:calc(11.5*var(--u))}}
 @media (orientation:landscape) and (max-height:520px){.lt2-say,.cu2-say,.cu3-say,.cf1-say,.cf3-say,.cu2-q,.lt3-stats{display:none}}
-.son-ground{fill:#0f1c17;stroke:#3a5a3f;stroke-width:1}
+.son-water{fill:var(--ink-2)}
+.son-dots{fill:url(#sonDot)}
+#sonDot circle{fill:var(--beat);fill-opacity:.16}
+.son-ground{fill:#081320}
+#sonHatch path{stroke:var(--rule);stroke-width:1}
+.son-prof{fill:none;stroke:var(--amber);stroke-width:2;filter:drop-shadow(0 0 calc(4*var(--u)) rgba(63,214,200,.45))}
+.son-surf{stroke:var(--violet);stroke-opacity:.5;stroke-width:1;stroke-dasharray:3 4}
+.son-mk{fill:none;stroke:var(--violet);stroke-width:1.4;opacity:.45}
+.son-pile+.son-mk{stroke:var(--coral);opacity:.75}
+.viz .son-k{fill:var(--amber);font-weight:800;letter-spacing:.12em;paint-order:stroke;stroke:var(--ink-2);stroke-width:calc(4*var(--u));stroke-linejoin:round}
+.son-c{stroke-width:.8;transform-box:fill-box;transform-origin:center}
+.son-band .son-c{fill:#b9c6d3;fill-opacity:.12;stroke:#b9c6d3;stroke-opacity:.6}
+.son-pile .son-c{fill:#ff8a7a;fill-opacity:.18;stroke:#ff8a7a;stroke-opacity:.85}
+.viz[data-step="1"] .f1 .son-c{animation:k-pop .45s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .son-c{animation:none!important}
+.son-pile .son-c:nth-child(7n+3){animation:son-blink 2.8s ease-in-out infinite}
+@keyframes son-blink{0%,60%,100%{fill-opacity:.18}30%{fill-opacity:.7}}
 .son-ping{transition:transform .9s var(--ease)}
-.son-ping circle{fill:none;stroke:#8fd3ff;stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:son-ping 2.1s ease-out var(--d) infinite}
-@keyframes son-ping{0%{transform:scale(.2);opacity:.9}100%{transform:scale(14);opacity:0}}
-.son-wave{fill:none;stroke:#8fd3ff;stroke-opacity:.35;stroke-width:1;animation:son-wave 3s ease-in-out var(--d) infinite alternate}
-@keyframes son-wave{to{transform:translateX(calc(10*var(--u)))}}
-.son-snd circle{fill:#bfe6ff;opacity:.5;transition:opacity .4s}
-.viz .son-snd text{fill:#bfe6ff;opacity:.6;font-weight:700;transition:opacity .4s}
-.son-snd.on circle{opacity:1;fill:#fff;filter:drop-shadow(0 0 calc(4*var(--u)) #8fd3ff)}
-.viz .son-snd.on text{opacity:1;fill:#fff;font-weight:900}
-.son-surf{stroke:#8fd3ff;stroke-opacity:.55;stroke-width:1.2}
-.son-pile,.son-band{stroke:#6e5022;stroke-width:.6}
-.son-top{fill:#c9a24a}
-.son-boat{transition:transform .9s var(--ease)}
-.son-hull{fill:#d4e3f0;stroke:#07101d;stroke-width:.8}
-.son-cab{fill:#22405c;stroke:#d4e3f0;stroke-width:1}
-.son-dome{fill:var(--amber)}
-.son-line{fill:#8fd3ff;opacity:.75;transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
+.son-ping circle{fill:none;stroke:var(--amber);stroke-width:1.2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:son-ping 2.1s ease-out var(--d) infinite}
+@keyframes son-ping{0%{transform:scale(.2);opacity:.8}100%{transform:scale(14);opacity:0}}
+.son-snd circle{fill:var(--ink);stroke:var(--amber);stroke-width:1.4;transition:fill .3s}
+.viz .son-snd text{fill:var(--dim);font-weight:700;transition:fill .3s}
+.son-snd.on circle{fill:var(--amber);filter:drop-shadow(0 0 calc(5*var(--u)) rgba(63,214,200,.8))}
+.viz .son-snd.on text{fill:var(--paper);font-weight:900}
+.son-probe{transition:transform .9s var(--ease)}
+.son-pr{fill:var(--ink);stroke:var(--amber);stroke-width:1.6}
+.son-pt{stroke:var(--amber);stroke-width:1.6;stroke-linecap:round}
+.son-pd{fill:var(--amber)}
+.son-line{fill:var(--amber);opacity:.7;transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
 .viz .son-ax{fill:var(--faint);font-weight:700;transition:fill .3s}
 .viz .son-ax.on{fill:var(--paper)}
 .ad-model rect{fill:#0c1a2b;stroke:#76b900;stroke-width:1.3}
@@ -4893,7 +4904,7 @@ const ALL_THESES = [
       ["Bankruptcies don’t break it.", "The 1990s telecom boom put over $500 billion, mostly debt, into fiber and networks. WorldCom and Global Crossing collapsed and bondholders got back about 20 cents on the dollar. The fiber stayed in the ground and carried the internet’s next decade."],
       ["Leverage does.", "A builder can fail and the thesis survive. What doesn’t survive is whoever borrowed against a straight line. This summer the fund itself showed it: the builders kept posting records while its borrowed book was sold in a single night. The mirror image is shorting businesses AI could eat, like parts of software."]
     ],
-    bet: "For venture, I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
+    bet: "I’d run the same thesis with less leverage: back builders that still work in a capacity glut, like software and services that get better as compute gets cheaper, and be wary of businesses that only work while GPU prices and cheap debt both hold.",
     wrong: "AI capex falls two years in a row. Then the builders weren’t mispriced, they were early.",
     note: "Not investment advice.",
     updates: [{ on: "Nov 16, 2026", tag: "post Q3 13F", why: "Situational Awareness LP’s Q3 13F: reported US positions fell from $20.2 billion at June 30 to $1.58 billion at September 30, after margin calls forced the fund to sell most of its stock portfolio to Citadel on July 30. The signal, take 3 and the chart now say so.", was: "Originally written with the June 30 filing, when it reported about $20 billion." }],
@@ -5201,7 +5212,7 @@ const ALL_THESES = [
     title: "Silicon can’t make light. Follow the laser.",
     h2: "Silicon can’t | make light. | Follow the laser.",
     short: "Follow the laser",
-    hook: "The video calls transceivers the razor blades of the data center. Co-packaged optics folds the blade into the switch, all but one part: the laser, the one thing silicon can’t make.",
+    hook: "Leo Jiang calls transceivers the razor blades of the data center. Co-packaged optics folds the blade into the switch, all but one part: the laser, the one thing silicon can’t make.",
     ref: { label: "Leo Jiang, “Who’s Making Trillions Off the AI Boom?” (2026): the optics chapter, from Coherent and Lumentum to co-packaged optics", href: SRC.leoVid },
     signal: `<p class="claim">Between racks, | AI talks in light. | Silicon can’t make light.</p>
       <p>Inside a rack, GPUs talk over copper. Between racks, the signal turns into light in a transceiver at each end of every fiber. Ethernet transceiver sales doubled in 2024 and rose almost 90% in 2025. LightCounting expected 2026 to slow down; instead, the first nine months pushed its forecast to 120% growth.</p>
@@ -5211,7 +5222,7 @@ const ALL_THESES = [
       ["Co-packaging eats the transceiver, not the laser.", "A pluggable transceiver sits on the switch’s front panel, and the signal burns power crossing the board to reach it. Co-packaged optics puts the optical engines right beside the switch chip. Nvidia says its switches use 3.5× less power, and Broadcom’s cut up to 70% and passed validation at Meta. But lasers hate heat and are the part you most want to swap, so both designs move them to the front panel as pluggable laser modules, replaceable while the switch stays sealed. The razor blade shrinks to the laser."],
       ["The laser is the choke point.", "Silicon can guide, split and switch light, but it can’t emit it. Every silicon photonics platform in production, Nvidia’s and Broadcom’s included, still needs a laser made of indium phosphide. Lumentum, which runs five indium phosphide fabs, says it is sold out into early 2029 and can’t meet about 70% of demand for some products next year. Nvidia put $2 billion each into Lumentum and Coherent in March to lock up supply, and Lumentum’s CEO expects the shortage to get worse than memory’s."]
     ],
-    bet: `For venture: back what the light path still needs after co-packaging. Laser capacity and the materials under it, fiber attach and optical testing at wafer scale, and the tools that keep a sealed switch serviceable. Be wary of businesses whose whole value is assembling pluggable modules: co-packaging moves that work into the chipmaker’s package. It’s the same pattern as <a href="#memory">The bottleneck moved below the GPU</a>: value moves to whatever is scarce.`,
+    bet: `Back what the light path still needs after co-packaging. Laser capacity and the materials under it, fiber attach and optical testing at wafer scale, and the tools that keep a sealed switch serviceable. Be wary of businesses whose whole value is assembling pluggable modules: co-packaging moves that work into the chipmaker’s package. It’s the same pattern as <a href="#memory">The bottleneck moved below the GPU</a>: value moves to whatever is scarce.`,
     wrong: "Lasers move onto the silicon itself at volume, or pluggables keep winning because they’re easier to fix. Then the laser stops being its own toll booth, and the razor blade stays a commodity.",
     note: "Not investment advice. Transceiver growth is LightCounting’s estimate; the power savings are Nvidia’s and Broadcom’s claims.",
     receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["Edited transcript of the video", SRC.leoTx], ["Lightwave on LightCounting: Ethernet transceivers +120% in 2026", SRC.lc120], ["TrendForce: Nvidia and Broadcom begin shipping CPO switches (Jul 2026)", SRC.cpoShip], ["Nvidia on its silicon photonics switches: 3.5× less power, front-panel lasers", SRC.nvCpo], ["Lumentum on external laser sources", SRC.elsLite], ["Tom’s Hardware: Lumentum’s CEO on the indium phosphide squeeze", SRC.inpShort], ["TIKR: Lumentum sold out through early 2029 (Oct 2026)", SRC.liteSold], ["TrendForce: Nvidia’s $2B stakes and the InP shortage", SRC.nvInp]],
@@ -5223,7 +5234,7 @@ const ALL_THESES = [
     title: "The CUDA moat is deepest where the money isn’t.",
     h2: "The CUDA moat | is deepest | where the money isn’t.",
     short: "Where the money isn’t",
-    hook: "The video calls CUDA a 20-year trap: rewrite the code, retrain the engineers, risk the training run. True for the many. But those costs barely change with size, and most of Nvidia’s money comes from the few who can pay them.",
+    hook: "Leo Jiang calls CUDA a 20-year trap: rewrite the code, retrain the engineers, risk the training run. True for the many. But those costs barely change with size, and most of Nvidia’s money comes from the few who can pay them.",
     ref: { label: "Leo Jiang, “Who’s Making Trillions Off the AI Boom?” (2026): CUDA’s 20 years of trained developers, and why switching is so hard", href: SRC.leoVid },
     signal: `<p class="claim">A moat stops armies | that can’t afford | a bridge.</p>
       <p>The case for CUDA is real. Nvidia has trained developers on it for about 20 years, every framework is tuned for it first, and leaving means rewriting code, retraining engineers and risking a training run that costs hundreds of millions of dollars.</p>
@@ -5231,9 +5242,9 @@ const ALL_THESES = [
     takes: [
       ["Switching costs are fixed costs.", "Rewriting kernels, retraining a team and de-risking one big run cost about the same whether you spend $10 million a year on compute or $10 billion. For a startup that bill is fatal. For a lab spending tens of billions it’s a rounding error, and the payoff, a second supplier and leverage on price, grows with the spend. Anthropic hired former Google TPU and compiler engineers, and now trains and serves across TPUs, Amazon’s Trainium and GPUs."],
       ["The few have already left once.", "Google trained Gemini 3 on its own TPUs, and Anthropic’s deal covers up to a million of them. Meta, one of Nvidia’s biggest buyers, reportedly signed in February to rent TPUs for training, the same week AMD said it would sell Meta up to $60 billion of chips. OpenAI’s 6-gigawatt AMD deal starts with a gigawatt this half. Jensen Huang’s retort was that TPU growth was “100% Anthropic.” That’s the point: one buyer with the right engineers is enough to make a second ecosystem real."],
-      ["Agents are eating two of the three costs.", "The video’s three costs of switching are rewriting code, retraining engineers and risking the run. Coding agents now chip away at the first two. AMD runs agents that write and tune kernels for its GPUs, a Google team open-sourced one that writes TPU kernels, and in January a developer used Claude Code to port a CUDA backend to AMD’s ROCm in about 30 minutes: simple kernels, but a sign of where this goes. What’s left is the risk of the run, and that lives in the whole system: racks, networking, supply. My read: Nvidia’s moat is moving from the software to the rack."]
+      ["Agents are eating two of the three costs.", "Leo Jiang asserts that switching off CUDA costs three things: rewriting code, retraining engineers and risking the run. Coding agents now chip away at the first two. AMD runs agents that write and tune kernels for its GPUs, a Google team open-sourced one that writes TPU kernels, and in January a developer used Claude Code to port a CUDA backend to AMD’s ROCm in about 30 minutes: simple kernels, but a sign of where this goes. What’s left is the risk of the run, and that lives in the whole system: racks, networking, supply. My read: Nvidia’s moat is moving from the software to the rack."]
     ],
-    bet: `For venture: the next CUDA is a translator. Back what makes chips interchangeable, like kernel agents, compilers and inference runtimes that run one model on any hardware. They sell the many what the few built in-house. Be wary of startups whose only edge is knowing one vendor’s stack best. And if the moat is moving into the rack, follow it into the wiring: <a href="#light">Silicon can’t make light</a>.`,
+    bet: `The next CUDA is a translator. Back what makes chips interchangeable, like kernel agents, compilers and inference runtimes that run one model on any hardware. They sell the many what the few built in-house. Be wary of startups whose only edge is knowing one vendor’s stack best. And if the moat is moving into the rack, follow it into the wiring: <a href="#light">Silicon can’t make light</a>.`,
     wrong: "OpenAI’s AMD gigawatt slips, Meta’s TPUs stay a pilot, and the next frontier model trains only on Nvidia because nothing else keeps up. Then the moat held even at the top.",
     note: "Not investment advice. The 44% is The Information’s count from Nvidia’s filings; the switching cost on the slide is illustrative.",
     receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["The Information, via Herald Corp: Nvidia’s top three customers at 44% of sales", SRC.nvTop3], ["SemiAnalysis: TPUv7 and the Anthropic deal", SRC.tpuV7], ["VentureBeat: Gemini 3 and Claude Opus 4.5 trained on TPUs", SRC.vbTpu], ["SiliconANGLE: Meta to rent Google TPUs (Feb 2026)", SRC.metaTpu], ["Reuters, via Free Malaysia Today: Meta’s AMD and Google deals", SRC.metaAmd], ["OpenAI and AMD: 6 gigawatts, the first in 2H 2026", SRC.oaAmd], ["AIM: Jensen Huang on TPU growth", SRC.tpuAnt], ["AIM: Anthropic’s TPU and compiler engineers", SRC.tpuEng], ["AMD’s GEAK kernel agents", SRC.geak], ["MaxKernel: agentic kernel generation for TPUs", SRC.maxKernel], ["Wccftech: Claude Code ports a CUDA backend to ROCm", SRC.ccRocm]],
@@ -5255,7 +5266,7 @@ const ALL_THESES = [
       ["Telecom shows how the loop works, and where it breaks.", "An equipment maker lends a carrier the money for its gear, the carrier builds the network, and subscribers’ bills repay the loan. Around 2000, Lucent committed about $8.1 billion this way, roughly a quarter of its revenue, and Nortel and Cisco did the same on a smaller scale. It broke where borrowers had no subscribers yet: Winstar, which one finance professor gave “absolutely no chance of survival,” went bankrupt in 2001 after drawing on a $2 billion credit line from Lucent. The tool never left. In 2023 and 2024, Ericsson’s and Nokia’s 5G gear for India’s Reliance Jio came with about $3.6 billion of credit backed by Sweden’s and Finland’s export agencies, part of what Sweden’s agency calls the fastest 5G rollout anywhere."],
       ["This loop has an exit, and it’s tightening in public.", "The end of this loop pays. Anthropic’s revenue grew more than 13-fold in a year, OpenAI has reported over 50 million paying subscribers, and the oldest chips in the loop rent for more, not less. Whenever a number looked too big, it shrank before anything broke: Nvidia’s $100 billion OpenAI letter of intent became a $30 billion equity check, and its proposed guarantee for OpenAI’s 10-gigawatt data center project fell from $250 billion to under $120 billion within three weeks, once investors asked what it was worth. Then Anthropic’s IPO brought in about $68 billion from public investors who sell it nothing, alongside $26 billion from partners including Google and Nvidia."]
     ],
-    bet: `For venture, separate the loop from the leverage. Back the businesses where outside money enters: products that people and companies pay for out of their own budgets, and suppliers that fund customers out of cash flow. Be wary of the borrowed middle, like a neocloud or project company whose debt only works if one customer’s contract does. It’s the same line as <a href="#builders">Back the builders</a>: busts break leverage, not the network.`,
+    bet: `Separate the loop from the leverage. Back the businesses where outside money enters: products that people and companies pay for out of their own budgets, and suppliers that fund customers out of cash flow. Be wary of the borrowed middle, like a neocloud or project company whose debt only works if one customer’s contract does. It’s the same line as <a href="#builders">Back the builders</a>: busts break leverage, not the network.`,
     wrong: "The exit narrows: Anthropic’s and OpenAI’s revenue goes flat for two quarters while their compute commitments keep climbing, and rents for older chips start to fall. Then the loop has no way out, and it’s Lucent with bigger numbers.",
     note: "Not investment advice. The IMF’s $1.4 trillion is future revenue promised in the deals, not money invested.",
     receipts: [["Congressional Research Service: The Role of Circular Finance in Funding AI Investment (Nov 2026)", SRC.crsCirc], ["TNW on the IMF’s Global Financial Stability Report (Oct 2026)", SRC.imfCirc], ["Reuters, via The Star: the chip slide and Nvidia’s financing deals", SRC.semisDown], ["SemiAnalysis: H100 one-year rentals up almost 40%", SRC.h100Rent], ["Calcalist: Anthropic’s nine-month revenue", SRC.ant9m], ["Fortune: Anthropic prices its IPO (Nov 18, 2026)", SRC.antIpo], ["Business Standard on the FT: Nvidia’s $30B in place of $100B", SRC.nvOai30], ["TNW on the WSJ: Nvidia halves its OpenAI guarantee", SRC.nvBackstop], ["Onmanorama on Reuters: Colette Kress and the financing deals", SRC.kress], ["American rails: bonds paid for British iron", SRC.rails], ["Ward’s Auto: a century of GM’s car loans", SRC.gmac], ["Tomasz Tunguz: Lucent, Nortel and Cisco’s vendor loans", SRC.lucent], ["eWeek (2001): Vendor financing backfires", SRC.winstar], ["EKN: the export credit behind Jio’s 5G with Ericsson", SRC.jioEkn], ["Finnvera: $1.5B guarantee for Nokia’s 5G deliveries to Jio", SRC.jioFinn], ["AI Magazine: OpenAI’s paying subscribers", SRC.oaSubs]],
@@ -5279,7 +5290,7 @@ const ALL_THESES = [
       ["The joint is the choke point.", "Actuators, the motor-and-gear joints, are 40% to 60% of a humanoid’s bill of materials, McKinsey estimates, and China makes over 90% of the rare-earth magnets inside them. When China started licensing magnet exports in 2025, Musk told investors within weeks that Optimus production had been hit. America’s fixes are slow: MP Materials’ second Texas magnet plant isn’t due to start commissioning until 2028. And in July the FCC barred new foreign-made robots from US authorization, which keeps Chinese robots out but not Chinese parts."],
       ["The factory is the easy part.", "When Waymo opened driverless rides to the public in Phoenix in 2020, it had just over 300 vans, and its CEO said it had taken two years to run three cars driverless at the same time and another year to reach a hundred. It went deep in one city for years, then got fast: 500,000 paid rides a week by spring 2026 and 15 US cities by October. The bottleneck was never the assembly line. It was proving each car safe on each street. Humanoids need their Phoenix too: one kind of building, one job, one paying customer. A home is the hardest city there is."]
     ],
-    bet: `For venture: back the joint, not the humanoid. Every robot shape, from arms to dogs to humanoids, needs motors, magnets and gearboxes, and today they come mostly from one country. Back actuator makers and magnet supply outside China, and motor designs that need less of the heavy rare earths. Then back robots that pick a Phoenix: a narrow job with a paying customer, where the help each robot needs falls week by week. Be wary of humanoid makers valued on production targets; Figure was valued at $39 billion in 2025, more than four times Unitree’s IPO price. A factory is a line, trust is a curve, and <a href="#physical">There’s no internet for hands</a> is what bends it.`,
+    bet: `Back the joint, not the humanoid. Every robot shape, from arms to dogs to humanoids, needs motors, magnets and gearboxes, and today they come mostly from one country. Back actuator makers and magnet supply outside China, and motor designs that need less of the heavy rare earths. Then back robots that pick a Phoenix: a narrow job with a paying customer, where the help each robot needs falls week by week. Be wary of humanoid makers valued on production targets; Figure was valued at $39 billion in 2025, more than four times Unitree’s IPO price. A factory is a line, trust is a curve, and <a href="#physical">There’s no internet for hands</a> is what bends it.`,
     wrong: "Magnet and actuator capacity outside China ramps fast, and general-purpose humanoids work in ordinary homes by 2028 with almost no human help. Then bodies are a commodity, the one-city years get skipped, and whoever builds the most wins.",
     note: "Not investment advice. Shipment shares are Smart Analytics Global’s estimates; the actuator share is McKinsey’s; ride counts are Waymo’s; production targets are Musk’s.",
     receipts: [["TechRepublic on Smart Analytics Global: Chinese vendors shipped 97% of humanoids (H1 2026)", SRC.sagH1], ["Unitree’s IPO pricing and first-half estimates", SRC.unitreeH1], ["Engadget: Unitree’s R1 for under $6,000, Optimus at $20,000-plus", SRC.unitreeR1], ["Fortune: Unitree’s debut against Figure’s $39 billion", SRC.figure39], ["IEA Global EV Outlook 2026: manufacturing and trade", SRC.ieaEv], ["IEA: China makes over 80% of battery cells", SRC.ieaCells], ["TNW: actuators are 40–60% of a humanoid’s bill of materials", SRC.actBom], ["OilPrice: about 30 motors per robot, and the magnet licenses", SRC.motors30], ["FCC: foreign-made robots added to the Covered List (Jul 2026)", SRC.fccRobots], ["Zacks: MP Materials’ 10X plant to start commissioning in 2028", SRC.mp10x], ["Drive Tesla Canada: Fremont’s S/X line becomes Optimus’s, with 20,000 a week ‘about a year away’", SRC.teslaLine], ["TechCrunch: Tesla starts Optimus production (Oct 2026)", SRC.teslaQ3], ["CNN via RNZ: Optimus for sale by the end of 2027", SRC.optSale], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["The Drive: Waymo orders up to 62,000 minivans, with up to 20,000 Jaguars on option (2018)", SRC.waymoOrder], ["Bloomberg: Waymo opens fully driverless rides in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: Waymo’s ridership, 50K → 500K a week", SRC.waymo500], ["Alphabet Q3 2026: 300 million autonomous miles, 15 cities", SRC.waymoQ3], ["TechCrunch: Waymo’s fleet of about 3,000 and its remote helpers", SRC.waymoRA]],
@@ -5302,7 +5313,7 @@ const ALL_THESES = [
       ["Every early robot is a data rig with a job.", "In January, Musk admitted no Optimus was doing useful work at Tesla yet; the robots were there to learn. There are three ways to fill the gap. Teleoperation records the exact motions: 1X’s $20,000 NEO ships with an Expert Mode, where an operator in VR takes over chores it doesn’t know. Human video records the variety: Figure taught its robot to get around homes from human video alone, and Index takes in 30 minutes of video every second. Robot fleets record scale: Generalist was adding 10,000 hours a week. The winners will blend all three."],
       ["The remote human is the scoreboard.", "Waymo started with a safety driver in every car. In 2026 it keeps about 70 remote assistance agents on duty for a fleet of about 3,000, roughly one helper for every 40 cars, and they advise stuck cars rather than drive them. Humanoids start back at one person per robot. Every hour a helper spends teaching is data, and every hour the robot doesn’t need one is margin. The business works when that ratio falls the way Waymo’s did."]
     ],
-    bet: `For venture: back the data engine. Tools that capture human hands cheaply, like wearable cameras, gloves and phone apps; teleoperation and remote-assistance platforms that turn every stuck robot into a training example; and robots placed in paid but forgiving jobs, where every working hour is also a data hour. Then watch the number nobody publishes yet: minutes of human help per robot per day. When it falls, the engine is working, and <a href="#robots">A humanoid is an EV with legs</a> is why the bodies will be cheap enough to run this way.`,
+    bet: `Back the data engine. Tools that capture human hands cheaply, like wearable cameras, gloves and phone apps; teleoperation and remote-assistance platforms that turn every stuck robot into a training example; and robots placed in paid but forgiving jobs, where every working hour is also a data hour. Then watch the number nobody publishes yet: minutes of human help per robot per day. When it falls, the engine is working, and <a href="#robots">A humanoid is an EV with legs</a> is why the bodies will be cheap enough to run this way.`,
     wrong: "World models and simulation get good enough that real robot data stops mattering, or human video alone turns out to be enough. Then recorded robot hours stop being scarce, and the data moat drains.",
     note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
     receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
@@ -8957,39 +8968,45 @@ const SY = 108;
 const smooth = p => p.slice(1).map((q, i) => { const a = p[i - 1] || p[i], b = p[i], c = q, d = p[i + 2] || q; return `C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)} ${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (d[0] - b[0]) / 6).toFixed(1)} ${(c[1] - (d[1] - b[1]) / 6).toFixed(1)} ${c[0]} ${c[1]}`; }).join(" ");
 A["cuda-1c"] = { html: () => {
     const bed = [[26, SY + 124], ...SON.map(([x, d]) => [x, SY + d]), [434, SY + 13]];
+    const prof = `M26 ${SY + 124} ${smooth(bed)}`;
     const water = `M26 ${SY} L26 ${SY + 124} ${smooth(bed)} L434 ${SY} Z`;
-    const ground = `M26 ${SY + 124} ${smooth(bed)} L434 252 L26 252 Z`;
+    const ground = `${prof} L434 252 L26 252 Z`;
+    const MB = SY - 20;
+    const band = [...Array(46)].map((_, i) => `<rect x="${30 + i * 7}" y="${MB}" width="6" height="6" rx="1" class="son-c" style="--d:${(i * .012).toFixed(3)}s"/>`).join("");
+    const pile = [...Array(36)].map((_, i) => `<rect x="${379 + (i % 6) * 7}" y="${MB - Math.floor(i / 6) * 7}" width="6" height="6" rx="1" class="son-c" style="--d:${(.55 + i * .02).toFixed(3)}s"/>`).join("");
+    const mk = (x0, y0, x1, y1, l = 8) => `<path class="son-mk" d="M${x0} ${y0 + l}V${y0}H${x0 + l}M${x1 - l} ${y0}H${x1}V${y0 + l}M${x1} ${y1 - l}V${y1}H${x1 - l}M${x0 + l} ${y1}H${x0}V${y1 - l}"/>`;
     return `<div class="k-col son">
-      <svg viewBox="0 0 460 252" class="k-svg" aria-label="A sonar cross-section of the moat. Above the waterline sit Nvidia's sales, areas to scale: a thin layer spread across everyone else, 56%, and one tall pile for its top three buyers, 44%. Below the waterline, the moat's depth for each size of buyer, measured as an illustrative $500 million switch against a year of its compute: 50 years at $10 million a year, 5 years at $100 million, half a year at $1 billion, 5% at $10 billion and 1% at $50 billion. The moat is deepest under the small buyers and shallowest under the pile of money.">
-        <defs><linearGradient id="sonWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6aa0"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
-          <pattern id="sonCoin" width="7" height="4" patternUnits="userSpaceOnUse"><rect width="7" height="4" fill="#8f6a2e"/><path d="M0 .3H7" stroke="#c9a24a" stroke-width=".7"/><path d="M3.5 0V4" stroke="#6e5022" stroke-width=".5"/></pattern>
+      <svg viewBox="0 0 460 254" class="k-svg" aria-label="A sonar cross-section of the moat. Above the waterline sit Nvidia's sales, drawn as die cells counted to scale: a thin row for everyone else, 56%, and one tall stack for its top three buyers, 44%. Below the waterline, the moat's depth for each size of buyer, measured as an illustrative $500 million switch against a year of its compute: 50 years at $10 million a year, 5 years at $100 million, half a year at $1 billion, 5% at $10 billion and 1% at $50 billion. The moat is deepest under the small buyers and shallowest under the stack of money.">
+        <defs><pattern id="sonDot" width="8" height="13.86" patternUnits="userSpaceOnUse"><circle cx="4" cy="3.46" r="1.1"/><circle cx="0" cy="10.39" r="1.1"/><circle cx="8" cy="10.39" r="1.1"/></pattern>
+          <pattern id="sonHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V7"/></pattern>
           <clipPath id="sonClip"><path d="${water}"/></clipPath></defs>
         <text x="14" y="17" font-size="13" class="t-strong">Deepest where the money isn’t</text>
         <text x="14" y="32" font-size="10.5">Nvidia’s sales above the waterline. The moat below, by buyer size.</text>
-        <path d="${ground}" class="son-ground"/>
-        <path d="${water}" fill="url(#sonWater)" class="son-water"/>
-        <g clip-path="url(#sonClip)"><g id="sonPing" class="son-ping">${[0, 1, 2].map(k => `<circle r="10" style="--d:${(k * .7).toFixed(1)}s"/>`).join("")}</g>
-          ${[0, 1, 2, 3, 4, 5].map(k => `<path class="son-wave" d="M${26 + k * 70} ${SY + 3} q8 -3 16 0 t16 0" style="--d:${(k * .4).toFixed(1)}s"/>`).join("")}</g>
-        ${SON.map(([x, d, l], i) => `<g class="son-snd" data-i="${i}"><circle cx="${x}" cy="${SY + d}" r="2.6"/><text x="${x}" y="${d < 45 ? SY + d + 15 : SY + d - 7}" text-anchor="middle" font-size="10.5">${l}</text></g>`).join("")}
+        <path d="${ground}" class="son-ground"/><path d="${ground}" fill="url(#sonHatch)" class="son-hatch"/>
+        <path d="${water}" class="son-water"/><path d="${water}" fill="url(#sonDot)" class="son-dots"/>
+        <g clip-path="url(#sonClip)"><g id="sonPing" class="son-ping">${[0, 1, 2].map(k => `<circle r="10" style="--d:${(k * .7).toFixed(1)}s"/>`).join("")}</g></g>
+        <path d="${prof}" class="son-prof"/>
+        ${SON.map(([x, d, l], i) => `<g class="son-snd" data-i="${i}"><circle cx="${x}" cy="${SY + d}" r="3"/><text x="${x}" y="${d < 45 ? SY + d + 16 : SY + d - 8}" text-anchor="middle" font-size="10.5">${l}</text></g>`).join("")}
         <path d="M26 ${SY} H434" class="son-surf"/>
-        <rect x="30" y="${SY - 22}" width="400" height="6" fill="url(#sonCoin)" class="son-band"/>
-        <rect x="378" y="${SY - 65}" width="44" height="43" fill="url(#sonCoin)" class="son-pile"/><ellipse cx="400" cy="${SY - 65}" rx="22" ry="3" class="son-top"/>
-        <text x="372" y="${SY - 50}" text-anchor="end" font-size="11.5" class="t-strong">Top 3 buyers · 44%</text><text x="372" y="${SY - 37}" text-anchor="end" font-size="10">of Nvidia’s sales</text>
-        <text x="30" y="${SY - 27}" font-size="10.5">Everyone else · 56%</text>
-        <g id="sonBoat" class="son-boat"><rect x="-1" y="5" width="2" height="1" class="son-line" id="sonLine"/><path d="M-15 -3 H15 L10 5 H-10 Z" class="son-hull"/><path d="M-4 -3 V-9 H5 V-3" class="son-cab"/><circle cx="0" cy="5" r="2" class="son-dome"/></g>
-        ${SON.map(([x], i) => `<text x="${x}" y="246" text-anchor="middle" font-size="10.5" class="son-ax" data-i="${i}">${SPEND[i][0]}</text>`).join("")}
+        ${mk(22, SY - 4, 438, 248)}
+        <g class="son-band">${band}</g><g class="son-pile">${pile}</g>${mk(374, MB - 40, 426, MB + 11, 6)}
+        <text x="370" y="${MB - 26}" text-anchor="end" font-size="11.5" class="t-strong">Top 3 buyers · 44%</text><text x="370" y="${MB - 13}" text-anchor="end" font-size="10">of Nvidia’s sales</text>
+        <text x="30" y="${MB - 6}" font-size="10.5">Everyone else · 56%</text>
+        <g id="sonBoat" class="son-probe"><rect x="-.8" y="8" width="1.6" height="1" class="son-line" id="sonLine"/><circle r="7" class="son-pr"/><path d="M-13 0H-9M9 0H13M0 -13V-9M0 9V13" class="son-pt"/><circle r="2" class="son-pd"/></g>
+        <text x="34" y="${SY + 17}" font-size="9.5" class="son-k">DEPTH = SWITCHING COST ÷ A YEAR OF COMPUTE</text>
+        ${SON.map(([x], i) => `<text x="${x}" y="243" text-anchor="middle" font-size="10.5" class="son-ax" data-i="${i}">${SPEND[i][0]}</text>`).join("")}
       </svg>
       <label class="k-row"><span>Buyer’s compute a year</span><input type="range" id="sonR" min="0" max="4" step="1" value="0"><b id="sonV">$10M</b></label>
       <p class="k-out cu1-out"><span>Switching ≈</span><b id="sonX">50×</b><span id="sonSay"></span></p>
-    </div>${capLS("Illustrative: switching priced at $500M of rewrites, retraining and one risky run, at any size. Money areas to scale; the 44% is The Information’s count from Nvidia’s filings.", "Illustrative $500M switch. The 44%: The Information.")}`; },
+    </div>${capLS("Illustrative: switching priced at $500M of rewrites, retraining and one risky run, at any size. Sales drawn as die cells, counted to scale; the 44% is The Information’s count from Nvidia’s filings.", "Illustrative $500M switch. The 44%: The Information.")}`; },
   init: fr => {
     const r = fr.querySelector("#sonR"), boat = fr.querySelector("#sonBoat"), ping = fr.querySelector("#sonPing"), line = fr.querySelector("#sonLine");
     const snd = [...fr.querySelectorAll(".son-snd")], ax = [...fr.querySelectorAll(".son-ax")];
     const set = i => {
       const [x, d] = SON[i], [lab, sp] = SPEND[i], k = COST / sp;
-      boat.style.transform = `translate(${x}px,${SY - 3}px)`;
-      ping.style.transform = `translate(${x}px,${SY + 3}px)`;
-      line.style.transform = `scaleY(${d - 6})`;
+      boat.style.transform = `translate(${x}px,${SY}px)`;
+      ping.style.transform = `translate(${x}px,${SY}px)`;
+      line.style.transform = `scaleY(${d - 8})`;
       snd.forEach((s, j) => s.classList.toggle("on", j === i)); ax.forEach((s, j) => s.classList.toggle("on", j === i));
       fr.querySelector("#sonV").textContent = lab;
       const X = fr.querySelector("#sonX"); X.textContent = k >= 1 ? Math.round(k) + "×" : Math.round(k * 100) + "%"; X.classList.toggle("c", k >= .5);

@@ -2177,45 +2177,52 @@ A["cuda-2a"] = { html: () => `<div class="k-col cu2">
   } };
 
 // ---------------------------------------------------------- slide 1: a sonar sweep of the moat
-// Above the waterline, Nvidia's sales (areas to scale); below it, the moat's depth for each size of buyer.
+// Above the waterline, Nvidia's sales (die cells, counted to scale); below it, the moat's depth for each size of buyer.
 const SON = [[62, 120, "50 yrs"], [146, 92, "5 yrs"], [230, 64, "½ yr"], [314, 36, "5%"], [398, 15, "1%"]];
 const SY = 108;
 const smooth = p => p.slice(1).map((q, i) => { const a = p[i - 1] || p[i], b = p[i], c = q, d = p[i + 2] || q; return `C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)} ${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (d[0] - b[0]) / 6).toFixed(1)} ${(c[1] - (d[1] - b[1]) / 6).toFixed(1)} ${c[0]} ${c[1]}`; }).join(" ");
 A["cuda-1c"] = { html: () => {
     const bed = [[26, SY + 124], ...SON.map(([x, d]) => [x, SY + d]), [434, SY + 13]];
+    const prof = `M26 ${SY + 124} ${smooth(bed)}`;
     const water = `M26 ${SY} L26 ${SY + 124} ${smooth(bed)} L434 ${SY} Z`;
-    const ground = `M26 ${SY + 124} ${smooth(bed)} L434 252 L26 252 Z`;
+    const ground = `${prof} L434 252 L26 252 Z`;
+    // Nvidia's sales as die cells, counted to scale: 46 cells for everyone else (56%), 36 for the top three (44%)
+    const MB = SY - 20;
+    const band = [...Array(46)].map((_, i) => `<rect x="${30 + i * 7}" y="${MB}" width="6" height="6" rx="1" class="son-c" style="--d:${(i * .012).toFixed(3)}s"/>`).join("");
+    const pile = [...Array(36)].map((_, i) => `<rect x="${379 + (i % 6) * 7}" y="${MB - Math.floor(i / 6) * 7}" width="6" height="6" rx="1" class="son-c" style="--d:${(.55 + i * .02).toFixed(3)}s"/>`).join("");
+    const mk = (x0, y0, x1, y1, l = 8) => `<path class="son-mk" d="M${x0} ${y0 + l}V${y0}H${x0 + l}M${x1 - l} ${y0}H${x1}V${y0 + l}M${x1} ${y1 - l}V${y1}H${x1 - l}M${x0 + l} ${y1}H${x0}V${y1 - l}"/>`;
     return `<div class="k-col son">
-      <svg viewBox="0 0 460 252" class="k-svg" aria-label="A sonar cross-section of the moat. Above the waterline sit Nvidia's sales, areas to scale: a thin layer spread across everyone else, 56%, and one tall pile for its top three buyers, 44%. Below the waterline, the moat's depth for each size of buyer, measured as an illustrative $500 million switch against a year of its compute: 50 years at $10 million a year, 5 years at $100 million, half a year at $1 billion, 5% at $10 billion and 1% at $50 billion. The moat is deepest under the small buyers and shallowest under the pile of money.">
-        <defs><linearGradient id="sonWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6aa0"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
-          <pattern id="sonCoin" width="7" height="4" patternUnits="userSpaceOnUse"><rect width="7" height="4" fill="#8f6a2e"/><path d="M0 .3H7" stroke="#c9a24a" stroke-width=".7"/><path d="M3.5 0V4" stroke="#6e5022" stroke-width=".5"/></pattern>
+      <svg viewBox="0 0 460 254" class="k-svg" aria-label="A sonar cross-section of the moat. Above the waterline sit Nvidia's sales, drawn as die cells counted to scale: a thin row for everyone else, 56%, and one tall stack for its top three buyers, 44%. Below the waterline, the moat's depth for each size of buyer, measured as an illustrative $500 million switch against a year of its compute: 50 years at $10 million a year, 5 years at $100 million, half a year at $1 billion, 5% at $10 billion and 1% at $50 billion. The moat is deepest under the small buyers and shallowest under the stack of money.">
+        <defs><pattern id="sonDot" width="8" height="13.86" patternUnits="userSpaceOnUse"><circle cx="4" cy="3.46" r="1.1"/><circle cx="0" cy="10.39" r="1.1"/><circle cx="8" cy="10.39" r="1.1"/></pattern>
+          <pattern id="sonHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V7"/></pattern>
           <clipPath id="sonClip"><path d="${water}"/></clipPath></defs>
         <text x="14" y="17" font-size="13" class="t-strong">Deepest where the money isn’t</text>
         <text x="14" y="32" font-size="10.5">Nvidia’s sales above the waterline. The moat below, by buyer size.</text>
-        <path d="${ground}" class="son-ground"/>
-        <path d="${water}" fill="url(#sonWater)" class="son-water"/>
-        <g clip-path="url(#sonClip)"><g id="sonPing" class="son-ping">${[0, 1, 2].map(k => `<circle r="10" style="--d:${(k * .7).toFixed(1)}s"/>`).join("")}</g>
-          ${[0, 1, 2, 3, 4, 5].map(k => `<path class="son-wave" d="M${26 + k * 70} ${SY + 3} q8 -3 16 0 t16 0" style="--d:${(k * .4).toFixed(1)}s"/>`).join("")}</g>
-        ${SON.map(([x, d, l], i) => `<g class="son-snd" data-i="${i}"><circle cx="${x}" cy="${SY + d}" r="2.6"/><text x="${x}" y="${d < 45 ? SY + d + 15 : SY + d - 7}" text-anchor="middle" font-size="10.5">${l}</text></g>`).join("")}
+        <path d="${ground}" class="son-ground"/><path d="${ground}" fill="url(#sonHatch)" class="son-hatch"/>
+        <path d="${water}" class="son-water"/><path d="${water}" fill="url(#sonDot)" class="son-dots"/>
+        <g clip-path="url(#sonClip)"><g id="sonPing" class="son-ping">${[0, 1, 2].map(k => `<circle r="10" style="--d:${(k * .7).toFixed(1)}s"/>`).join("")}</g></g>
+        <path d="${prof}" class="son-prof"/>
+        ${SON.map(([x, d, l], i) => `<g class="son-snd" data-i="${i}"><circle cx="${x}" cy="${SY + d}" r="3"/><text x="${x}" y="${d < 45 ? SY + d + 16 : SY + d - 8}" text-anchor="middle" font-size="10.5">${l}</text></g>`).join("")}
         <path d="M26 ${SY} H434" class="son-surf"/>
-        <rect x="30" y="${SY - 22}" width="400" height="6" fill="url(#sonCoin)" class="son-band"/>
-        <rect x="378" y="${SY - 65}" width="44" height="43" fill="url(#sonCoin)" class="son-pile"/><ellipse cx="400" cy="${SY - 65}" rx="22" ry="3" class="son-top"/>
-        <text x="372" y="${SY - 50}" text-anchor="end" font-size="11.5" class="t-strong">Top 3 buyers · 44%</text><text x="372" y="${SY - 37}" text-anchor="end" font-size="10">of Nvidia’s sales</text>
-        <text x="30" y="${SY - 27}" font-size="10.5">Everyone else · 56%</text>
-        <g id="sonBoat" class="son-boat"><rect x="-1" y="5" width="2" height="1" class="son-line" id="sonLine"/><path d="M-15 -3 H15 L10 5 H-10 Z" class="son-hull"/><path d="M-4 -3 V-9 H5 V-3" class="son-cab"/><circle cx="0" cy="5" r="2" class="son-dome"/></g>
-        ${SON.map(([x], i) => `<text x="${x}" y="246" text-anchor="middle" font-size="10.5" class="son-ax" data-i="${i}">${SPEND[i][0]}</text>`).join("")}
+        ${mk(22, SY - 4, 438, 248)}
+        <g class="son-band">${band}</g><g class="son-pile">${pile}</g>${mk(374, MB - 40, 426, MB + 11, 6)}
+        <text x="370" y="${MB - 26}" text-anchor="end" font-size="11.5" class="t-strong">Top 3 buyers · 44%</text><text x="370" y="${MB - 13}" text-anchor="end" font-size="10">of Nvidia’s sales</text>
+        <text x="30" y="${MB - 6}" font-size="10.5">Everyone else · 56%</text>
+        <g id="sonBoat" class="son-probe"><rect x="-.8" y="8" width="1.6" height="1" class="son-line" id="sonLine"/><circle r="7" class="son-pr"/><path d="M-13 0H-9M9 0H13M0 -13V-9M0 9V13" class="son-pt"/><circle r="2" class="son-pd"/></g>
+        <text x="34" y="${SY + 17}" font-size="9.5" class="son-k">DEPTH = SWITCHING COST ÷ A YEAR OF COMPUTE</text>
+        ${SON.map(([x], i) => `<text x="${x}" y="243" text-anchor="middle" font-size="10.5" class="son-ax" data-i="${i}">${SPEND[i][0]}</text>`).join("")}
       </svg>
       <label class="k-row"><span>Buyer’s compute a year</span><input type="range" id="sonR" min="0" max="4" step="1" value="0"><b id="sonV">$10M</b></label>
       <p class="k-out cu1-out"><span>Switching ≈</span><b id="sonX">50×</b><span id="sonSay"></span></p>
-    </div>${capLS("Illustrative: switching priced at $500M of rewrites, retraining and one risky run, at any size. Money areas to scale; the 44% is The Information’s count from Nvidia’s filings.", "Illustrative $500M switch. The 44%: The Information.")}`; },
+    </div>${capLS("Illustrative: switching priced at $500M of rewrites, retraining and one risky run, at any size. Sales drawn as die cells, counted to scale; the 44% is The Information’s count from Nvidia’s filings.", "Illustrative $500M switch. The 44%: The Information.")}`; },
   init: fr => {
     const r = fr.querySelector("#sonR"), boat = fr.querySelector("#sonBoat"), ping = fr.querySelector("#sonPing"), line = fr.querySelector("#sonLine");
     const snd = [...fr.querySelectorAll(".son-snd")], ax = [...fr.querySelectorAll(".son-ax")];
     const set = i => {
       const [x, d] = SON[i], [lab, sp] = SPEND[i], k = COST / sp;
-      boat.style.transform = `translate(${x}px,${SY - 3}px)`;
-      ping.style.transform = `translate(${x}px,${SY + 3}px)`;
-      line.style.transform = `scaleY(${d - 6})`;
+      boat.style.transform = `translate(${x}px,${SY}px)`;
+      ping.style.transform = `translate(${x}px,${SY}px)`;
+      line.style.transform = `scaleY(${d - 8})`;
       snd.forEach((s, j) => s.classList.toggle("on", j === i)); ax.forEach((s, j) => s.classList.toggle("on", j === i));
       fr.querySelector("#sonV").textContent = lab;
       const X = fr.querySelector("#sonX"); X.textContent = k >= 1 ? Math.round(k) + "×" : Math.round(k * 100) + "%"; X.classList.toggle("c", k >= .5);

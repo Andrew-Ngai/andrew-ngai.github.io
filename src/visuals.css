@@ -1307,26 +1307,36 @@ html.paused .k-draw{animation:none!important;stroke-dashoffset:0}
 .cu2-f{font-size:11px}.cu2-r small{font-size:10px}.cu2-h span{font-size:9.5px}
 .cu2-q{font-size:11.5px}}
 @media (orientation:landscape) and (max-height:520px){.lt2-say,.cu2-say,.cu3-say,.cf1-say,.cf3-say,.cu2-q,.lt3-stats{display:none}}
-/* cuda: a sonar sweep of the moat */
-
-.son-ground{fill:#0f1c17;stroke:#3a5a3f;stroke-width:1}
+/* cuda: a sonar sweep of the moat, drawn like the wafer map: dotted water, hatched floor, die-cell money */
+.son-water{fill:var(--ink-2)}
+.son-dots{fill:url(#sonDot)}
+#sonDot circle{fill:var(--beat);fill-opacity:.16}
+.son-ground{fill:#081320}
+#sonHatch path{stroke:var(--rule);stroke-width:1}
+.son-prof{fill:none;stroke:var(--amber);stroke-width:2;filter:drop-shadow(0 0 4px rgba(63,214,200,.45))}
+.son-surf{stroke:var(--violet);stroke-opacity:.5;stroke-width:1;stroke-dasharray:3 4}
+.son-mk{fill:none;stroke:var(--violet);stroke-width:1.4;opacity:.45}
+.son-pile+.son-mk{stroke:var(--coral);opacity:.75}
+.viz .son-k{fill:var(--amber);font-weight:800;letter-spacing:.12em;paint-order:stroke;stroke:var(--ink-2);stroke-width:4px;stroke-linejoin:round}
+.son-c{stroke-width:.8;transform-box:fill-box;transform-origin:center}
+.son-band .son-c{fill:#b9c6d3;fill-opacity:.12;stroke:#b9c6d3;stroke-opacity:.6}
+.son-pile .son-c{fill:#ff8a7a;fill-opacity:.18;stroke:#ff8a7a;stroke-opacity:.85}
+.viz[data-step="1"] .f1 .son-c{animation:k-pop .45s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .son-c{animation:none!important}
+.son-pile .son-c:nth-child(7n+3){animation:son-blink 2.8s ease-in-out infinite}
+@keyframes son-blink{0%,60%,100%{fill-opacity:.18}30%{fill-opacity:.7}}
 .son-ping{transition:transform .9s var(--ease)}
-.son-ping circle{fill:none;stroke:#8fd3ff;stroke-width:1.4;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:son-ping 2.1s ease-out var(--d) infinite}
-@keyframes son-ping{0%{transform:scale(.2);opacity:.9}100%{transform:scale(14);opacity:0}}
-.son-wave{fill:none;stroke:#8fd3ff;stroke-opacity:.35;stroke-width:1;animation:son-wave 3s ease-in-out var(--d) infinite alternate}
-@keyframes son-wave{to{transform:translateX(10px)}}
-.son-snd circle{fill:#bfe6ff;opacity:.5;transition:opacity .4s}
-.viz .son-snd text{fill:#bfe6ff;opacity:.6;font-weight:700;transition:opacity .4s}
-.son-snd.on circle{opacity:1;fill:#fff;filter:drop-shadow(0 0 4px #8fd3ff)}
-.viz .son-snd.on text{opacity:1;fill:#fff;font-weight:900}
-.son-surf{stroke:#8fd3ff;stroke-opacity:.55;stroke-width:1.2}
-.son-pile,.son-band{stroke:#6e5022;stroke-width:.6}
-.son-top{fill:#c9a24a}
-.son-boat{transition:transform .9s var(--ease)}
-.son-hull{fill:#d4e3f0;stroke:#07101d;stroke-width:.8}
-.son-cab{fill:#22405c;stroke:#d4e3f0;stroke-width:1}
-.son-dome{fill:var(--amber)}
-.son-line{fill:#8fd3ff;opacity:.75;transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
+.son-ping circle{fill:none;stroke:var(--amber);stroke-width:1.2;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;opacity:0;animation:son-ping 2.1s ease-out var(--d) infinite}
+@keyframes son-ping{0%{transform:scale(.2);opacity:.8}100%{transform:scale(14);opacity:0}}
+.son-snd circle{fill:var(--ink);stroke:var(--amber);stroke-width:1.4;transition:fill .3s}
+.viz .son-snd text{fill:var(--dim);font-weight:700;transition:fill .3s}
+.son-snd.on circle{fill:var(--amber);filter:drop-shadow(0 0 5px rgba(63,214,200,.8))}
+.viz .son-snd.on text{fill:var(--paper);font-weight:900}
+.son-probe{transition:transform .9s var(--ease)}
+.son-pr{fill:var(--ink);stroke:var(--amber);stroke-width:1.6}
+.son-pt{stroke:var(--amber);stroke-width:1.6;stroke-linecap:round}
+.son-pd{fill:var(--amber)}
+.son-line{fill:var(--amber);opacity:.7;transform-box:fill-box;transform-origin:50% 0;transition:transform .9s var(--ease)}
 .viz .son-ax{fill:var(--faint);font-weight:700;transition:fill .3s}
 .viz .son-ax.on{fill:var(--paper)}
 
