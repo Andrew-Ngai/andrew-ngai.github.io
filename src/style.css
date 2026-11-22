@@ -1418,7 +1418,10 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
 .xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
 @keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
-.echo-mechanic .echo-all,.echo-camera .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-mechanic .echo-all,.echo-camera .echo-all,.echo-vaultkeeper .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.xvk-keys{transform-origin:0 58px;animation:xvk-keys 1.6s ease-in-out infinite}
+@keyframes xvk-keys{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(12deg)}}
+.xvk-clasp{animation:xsg-led 1.4s steps(1,end) infinite}
 .echo-mechanic .echo-fin-l,.echo-mechanic .echo-hand-l,.echo-camera .echo-fin-r,.echo-camera .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
 .xmc-wrench{transform-origin:96px 72px;animation:xmc-wrench 1.8s ease-in-out infinite}
 @keyframes xmc-wrench{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
@@ -2406,12 +2409,15 @@ html.paused .st-card{animation:none}
 .pt-el.lock::before{content:"";position:absolute;right:6px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--bin);box-shadow:0 0 8px var(--bin)}
 .pt-pin{margin:2px 0 0;font-size:13.5px;color:var(--faint)}
 .pt-card.locked .pt-pin{color:var(--amber);font-weight:700}
-.pt-unpin{margin-left:6px;padding:1px 8px 2px;font-family:var(--label);font-weight:700;font-size:13px;color:var(--paper);background:var(--ink);border:1px solid var(--rule);border-radius:3px;cursor:pointer}
-.pt-unpin:hover{border-color:var(--amber)}
 .pt-l{margin:4px 0 0;font-weight:800;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .pt-card h3{margin:0;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.05}
 .pt-n{margin:0;font-size:16px;line-height:1.35;color:var(--dim)}
-.pt-card .btn{font-size:16px;padding:8px 14px 9px;margin-top:4px}
+.pt-card .pt-go{justify-self:stretch;justify-content:space-between;font-size:17px;padding:10px 16px 11px;margin-top:6px;transition:background .2s,border-color .2s,box-shadow .2s}
+.pt-go i{font-style:normal;font-size:1.3em;line-height:.8;transition:transform .2s var(--ease)}
+.pt-go:hover i,.pt-go:focus-visible i{transform:translateX(5px)}
+.pt-card.locked .pt-go{animation:pt-go 2.4s ease-in-out infinite}
+@keyframes pt-go{0%,100%{box-shadow:0 0 0 0 rgba(63,214,200,0)}50%{box-shadow:0 0 22px -4px rgba(63,214,200,.7)}}
+html.paused .pt-card .pt-go{animation:none}
 .pt[data-f="agree"] .pt-el[data-s]:not([data-s="agree"]),.pt[data-f="build"] .pt-el[data-s]:not([data-s="build"]),.pt[data-f="push"] .pt-el[data-s]:not([data-s="push"]),.pt[data-f="original"] .pt-el[data-s]:not([data-s="original"]){opacity:.16}
 
 /* ===== Option H: departures board ===== */

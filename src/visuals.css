@@ -1605,3 +1605,107 @@ html.paused .son-c{animation:none!important}
 .pb3-bot path{fill:none;stroke:var(--violet);stroke-width:.9;stroke-linecap:round}
 .pb3-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1;opacity:.9}
 .viz .pb3-ct{fill:var(--paper)}
+/* ledger: the billing unit sorted them */
+.lk1-sc{opacity:0;transition:opacity .45s}
+.lk1[data-t="pair"] .lk1-sc.pair,.lk1[data-t="field"] .lk1-sc.field{opacity:1}
+.lk1-belt{fill:var(--ink-3);stroke:var(--rule);stroke-width:1}
+.lk1-roll{fill:none;stroke:#3c5f80;stroke-width:1.4;stroke-dasharray:2 6;animation:k-ants 1s linear infinite}
+.lk1-rail{fill:none;stroke-width:2;stroke-dasharray:4 5}
+.lk1-rail.up{stroke:var(--amber);opacity:.55}.lk1-rail.dn{stroke:var(--coral);opacity:.55}
+.lk1-pr{fill:var(--ink);stroke:var(--violet);stroke-width:1.6}
+.lk1-pt{stroke:var(--violet);stroke-width:1.6;stroke-linecap:round}
+.lk1-pd{fill:var(--violet)}
+.lk1-beam{stroke-width:3;stroke-linecap:round;opacity:0;animation:lk1-beam 6.4s linear infinite}
+.lk1-beam.a{stroke:var(--amber)}.lk1-beam.b{stroke:var(--coral);animation-delay:2.2s}
+.viz .lk1-read{font-weight:800;opacity:0;animation:lk1-beam 6.4s linear infinite}
+.viz .lk1-read.a{fill:var(--amber)}.viz .lk1-read.b{fill:var(--coral);animation-delay:2.2s}
+@keyframes lk1-beam{0%,26%{opacity:0}29%,41%{opacity:1}45%,100%{opacity:0}}
+.lk1-mv{offset-rotate:0deg;animation:lk1-mv 6.4s ease-in-out infinite}
+.lk1-mv.b{animation-delay:2.2s}
+@keyframes lk1-mv{0%{offset-distance:0%;opacity:0}5%{opacity:1}28%{offset-distance:62%}41%{offset-distance:62%}56%{offset-distance:100%}92%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.lk1-box rect{fill:var(--ink-2);stroke-width:1.4}
+.lk1-box.a rect{stroke:var(--amber)}.lk1-box.b rect{stroke:var(--coral)}
+.viz .lk1-bn{fill:var(--paper);font-weight:800}
+.viz .lk1-bg{fill:var(--dim)}
+.lk1-dock{fill:var(--ink-2);stroke-width:1.2}
+.lk1-dock.a{stroke:var(--amber)}.lk1-dock.b{stroke:var(--coral)}
+.viz .lk1-dk{fill:var(--dim)}
+.viz .lk1-big{font-weight:900;font-variant-numeric:tabular-nums}
+.viz .lk1-big.a{fill:var(--amber)}.viz .lk1-big.b{fill:var(--coral)}
+.viz .lk1-foot{fill:var(--dim);font-style:italic}
+.lk1-zero{stroke:var(--violet);stroke-opacity:.4;stroke-width:1;stroke-dasharray:2 3}
+.viz .lk1-z0{fill:var(--faint)}
+.viz .lk1-k{font-weight:800;letter-spacing:.1em}
+.viz .lk1-k.use{fill:var(--amber)}.viz .lk1-k.seat{fill:var(--coral)}
+.viz .lk1-n{fill:var(--paper)}
+.viz .lk1-tag{font-weight:800;letter-spacing:.08em}
+.viz .lk1-tag.lock{fill:var(--amber)}.viz .lk1-tag.ledger{fill:var(--violet)}
+.lk1-c{transform-box:fill-box;transform-origin:center;transition:opacity .3s}
+.lk1-c.use{fill:var(--amber);fill-opacity:.3;stroke:var(--amber);stroke-width:.8}
+.lk1-c.seat{fill:var(--coral);fill-opacity:.22;stroke:var(--coral);stroke-width:.8}
+.lk1[data-t="field"] .lk1-c{animation:k-pop .4s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .lk1-c{animation:none!important}
+.viz .lk1-v{font-weight:800;font-variant-numeric:tabular-nums}
+.viz .lk1-v.use{fill:var(--amber)}.viz .lk1-v.seat{fill:var(--coral)}
+
+/* ledger: one person, 109 keys */
+.lk2-who circle,.lk2-who path{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.lk2-badge{fill:var(--coral)}
+.viz .lk2-n{fill:var(--amber);font-weight:900;font-variant-numeric:tabular-nums}
+.lk2-k rect:first-child{fill:var(--ink-3);stroke:var(--rule);stroke-width:1;transition:fill .3s,stroke .3s}
+.lk2-k .lk2-h{fill:var(--ink);transition:fill .3s}
+.lk2-k{transform-box:fill-box;transform-origin:center}
+.lk2-k.on rect:first-child{fill:rgba(63,214,200,.28);stroke:var(--amber)}
+.lk2-k.on{animation:lk2-pop .35s var(--ease) var(--d) both}
+@keyframes lk2-pop{from{transform:scale(.4)}to{transform:none}}
+.lk2-k.ghost rect:first-child{fill:none;stroke:var(--amber);stroke-dasharray:2.5 2;stroke-opacity:.8}
+.lk2-k.ghost .lk2-h{fill:none}
+html.paused .lk2-k{animation:none!important}
+.lk2-seat{fill:var(--coral)}
+.viz .lk2-sv{fill:var(--coral);font-weight:800}
+.viz .lk2-lv{fill:var(--amber);font-weight:800}
+
+/* ledger: the ledger and the lock merge */
+.viz .lk3-k{font-weight:800;letter-spacing:.12em}
+.viz .lk3-k.l{fill:var(--violet)}.viz .lk3-k.k{fill:var(--amber)}
+.lk3-pg{fill:var(--ink-2);stroke:var(--violet);stroke-width:1.2;stroke-opacity:.6}
+.lk3-rc{fill:var(--violet);fill-opacity:.1;stroke:var(--violet);stroke-opacity:.45;stroke-width:.6}
+.lk3-spine{stroke:var(--violet);stroke-width:1.6}
+.lk3-book{transition:filter .4s}
+.lk3[data-t="buy"] .lk3-book,.lk3[data-t="gate"] .lk3-book{filter:drop-shadow(0 0 8px rgba(212,227,240,.35))}
+.lk3[data-t="buy"] .lk3-rc:nth-child(5n+2){animation:lk3-rc 2s ease-in-out infinite}
+@keyframes lk3-rc{0%,100%{fill-opacity:.1}50%{fill-opacity:.6}}
+.viz .lk3-who{fill:var(--dim);font-weight:700}
+.lk3-link{fill:none;stroke:var(--violet);stroke-width:2;stroke-dasharray:4 5;opacity:.35;transition:opacity .4s,stroke .4s}
+.lk3[data-t="buy"] .lk3-link{opacity:1;animation:k-ants 1s linear infinite reverse}
+.lk3[data-t="keys"] .lk3-link{stroke:var(--amber);opacity:.6}
+.lk3[data-t="gate"] .lk3-link{opacity:.12}
+.lk3-head{fill:var(--violet);opacity:0;transition:opacity .4s}
+.lk3[data-t="buy"] .lk3-head{opacity:1}
+.lk3-ring{fill:var(--ink-2);stroke:var(--amber);stroke-width:2;stroke-opacity:.7}
+.lk3-face{fill:var(--ink);stroke:var(--rule);stroke-width:1.2}
+.lk3-bolt{fill:var(--ink-3);stroke:var(--rule);stroke-width:1;transition:fill .3s var(--d),stroke .3s var(--d)}
+.lk3[data-t="keys"] .lk3-bolt{fill:var(--amber);stroke:var(--amber)}
+.lk3-dl{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.4}
+.lk3-tick,.lk3-hand{stroke:var(--amber);stroke-width:1.6;stroke-linecap:round}
+.lk3-dial{transform-box:view-box;transform-origin:344px 108px;transition:transform 1.2s var(--ease)}
+.lk3[data-t="keys"] .lk3-dial{transform:rotate(300deg)}
+.lk3-post{stroke:var(--rule);stroke-width:3}
+.lk3-bar rect{fill:var(--ink-3);stroke:var(--coral);stroke-width:1.4}
+.lk3-stripe{stroke:var(--coral);stroke-width:3}
+.lk3-bar{transform:translateY(-110px);opacity:0;transition:transform .7s cubic-bezier(.5,1.6,.5,1),opacity .3s}
+.lk3[data-t="gate"] .lk3-bar{transform:none;opacity:1}
+.lk3-bot circle,.lk3-bot rect{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.viz .lk3-bt{fill:var(--faint)}
+.lk3-bot{opacity:0;transition:opacity .3s}
+.lk3[data-t="gate"] .lk3-bot{opacity:1;animation:lk3-bump 1.8s ease-in-out infinite}
+@keyframes lk3-bump{0%,100%{transform:none}45%{transform:translateX(6px)}52%{transform:translateX(1px)}}
+.lk3-deal{opacity:0;transition:opacity .4s}
+.lk3[data-t="buy"] .lk3-deal.buy,.lk3[data-t="keys"] .lk3-deal.keys,.lk3[data-t="gate"] .lk3-deal.gate{opacity:1}
+.lk3-c{transform-box:fill-box;transform-origin:center}
+.lk3-c.l{fill:var(--violet);fill-opacity:.25;stroke:var(--violet);stroke-width:.7}
+.lk3-c.k{fill:var(--amber);fill-opacity:.28;stroke:var(--amber);stroke-width:.7}
+.lk3[data-t="buy"] .lk3-deal.buy .lk3-c,.lk3[data-t="keys"] .lk3-deal.keys .lk3-c{animation:k-pop .4s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .lk3-c{animation:none!important}
+.viz .lk3-dt{fill:var(--paper);font-weight:700}
+.viz .lk3-by{fill:var(--dim)}

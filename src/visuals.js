@@ -2730,9 +2730,140 @@ A["physical-3a"] = { html: () => {
   } };
 })();
 
+// 33 · SaaS that survives AI is a ledger or a lock.
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const autoTabs = (fr, keys, set, ms) => {
+  let auto = true, at = keys[0];
+  const tabs = K.tabs(fr, ".k-b", v => { at = v; set(v); }, keys[0]);
+  fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+  K.onEnter(fr, () => { auto = true; tabs(fr.querySelector(`.k-b[data-v="${keys[0]}"]`)); });
+  K.loop(fr, () => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${keys[(keys.indexOf(at) + 1) % keys.length]}"]`)); }, ms);
+};
+
+// ---------------------------------------------------------- slide 1: the billing unit sorted them
+// 2026 to the Sept 2–3 closes, as SaaStr grouped them: billed by use or by what it protects, or billed per seat
+const FIELD = [["CrowdStrike", 83.4, "use", "lock"], ["Twilio", 73.8, "use", ""], ["Snowflake", 73.1, "use", "ledger"], ["Datadog", 53.9, "use", ""],
+  ["Atlassian", 20.1, "seat", ""], ["Salesforce", 4.3, "seat", "ledger"], ["HubSpot", -33.3, "seat", ""], ["Figma", -35.1, "seat", ""], ["monday.com", -35.5, "seat", ""]];
+const LK1 = {
+  pair: "<b>Same growth:</b> Twilio and monday.com both grew revenue 22% in the June quarter. Twilio bills by use and was up 74% for the year by early September. monday.com bills per seat and was down 36%.",
+  field: "<b>The whole field:</b> every company billed by use or by what it protects was up more than 50%. Three seat-billed apps lost about a third, Atlassian clawed back to +20%, and Salesforce, the biggest ledger, was up 4%."
+};
+A["ledger-1a"] = { html: () => {
+    const Z = 232, U = 2.3;
+    const rows = (list, y0) => list.map(([n, v, kind, tag], i) => {
+      const y = y0 + i * 16, cells = Math.max(1, Math.round(Math.abs(v) / 4)), neg = v < 0;
+      const bar = [...Array(cells)].map((_, k) => `<rect x="${(neg ? Z - (k + 1) * 4 * U : Z + k * 4 * U + 1).toFixed(1)}" y="${y - 8}" width="${(4 * U - 1.4).toFixed(1)}" height="10" rx="1.5" class="lk1-c ${kind}" style="--d:${(k * .025 + i * .06).toFixed(3)}s"/>`).join("");
+      const end = neg ? Z - cells * 4 * U - 6 : Z + cells * 4 * U + 6;
+      return `<text x="16" y="${y + 1}" font-size="10.5" class="lk1-n">${n}</text>${tag ? `<text x="${n.length * 5.2 + 22}" y="${y + 1}" font-size="9" class="lk1-tag ${tag}">${tag.toUpperCase()}</text>` : ""}${bar}<text x="${end.toFixed(1)}" y="${y + 1}" font-size="10.5" text-anchor="${neg ? "end" : "start"}" class="lk1-v ${kind}">${v > 0 ? "+" : "−"}${Math.abs(v).toFixed(0)}%</text>`;
+    }).join("");
+    const box = (name, cls) => `<g class="lk1-box ${cls}"><rect x="-31" y="-14" width="62" height="28" rx="3"/><text y="-2" text-anchor="middle" font-size="10" class="lk1-bn">${name}</text><text y="9" text-anchor="middle" font-size="9" class="lk1-bg">grew 22%</text></g>`;
+    return `<div class="k-col lk1" data-t="pair">
+      <div class="k-seg"><button type="button" class="k-b" data-v="pair">Same growth</button><button type="button" class="k-b" data-v="field">The whole field</button></div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="Two views of 2026's software split. Same growth: Twilio and monday.com, both growing 22%, ride a belt into a scanner that reads how each bills. Twilio, billed by use, rises to plus 74%; monday.com, billed per seat, drops through a trapdoor to minus 36%. The whole field: bars of die cells for nine companies' 2026 stock moves to early September. Billed by use or by what it protects: CrowdStrike plus 83%, Twilio plus 74%, Snowflake plus 73%, Datadog plus 54%. Billed per seat: Atlassian plus 20%, Salesforce plus 4%, HubSpot minus 33%, Figma minus 35%, monday.com minus 36%.">
+        <g class="lk1-sc pair">
+          <text x="14" y="18" font-size="13" class="t-strong">Same growth. 109 points apart.</text>
+          <text x="14" y="33" font-size="10.5">Both grew revenue 22% in the June quarter. The scanner reads how each one bills.</text>
+          <rect x="18" y="129" width="190" height="8" rx="4" class="lk1-belt"/><path d="M22 133 H204" class="lk1-roll"/>
+          <path d="M206 116 C240 116 262 72 300 72 H318" class="lk1-rail up"/><path d="M206 116 C240 116 262 170 300 170 H318" class="lk1-rail dn"/>
+          <g class="lk1-scan"><path d="M206 62 V102" class="lk1-beam a"/><path d="M206 62 V102" class="lk1-beam b"/><circle cx="206" cy="58" r="8" class="lk1-pr"/><path d="M193 58H197M215 58H219M206 45V49" class="lk1-pt"/><circle cx="206" cy="58" r="2.2" class="lk1-pd"/>
+            <text x="222" y="49" font-size="9.5" class="lk1-read a">billed per use</text><text x="222" y="49" font-size="9.5" class="lk1-read b">billed per seat</text></g>
+          <g class="lk1-mv a" style="offset-path:path('M44 116 H206 C240 116 262 72 290 72')">${box("Twilio", "a")}</g>
+          <g class="lk1-mv b" style="offset-path:path('M44 116 H206 C240 116 262 170 290 170')">${box("monday.com", "b")}</g>
+          <rect x="322" y="50" width="124" height="46" rx="3" class="lk1-dock a"/><text x="332" y="64" font-size="10" class="lk1-dk">Twilio · billed per use</text><text x="436" y="88" text-anchor="end" font-size="21" class="lk1-big a">+74%</text>
+          <rect x="322" y="148" width="124" height="46" rx="3" class="lk1-dock b"/><text x="332" y="162" font-size="10" class="lk1-dk">monday.com · per seat</text><text x="436" y="186" text-anchor="end" font-size="21" class="lk1-big b">−36%</text>
+          <text x="14" y="224" font-size="10.5" class="lk1-foot">Growth didn’t sort them. The billing unit did.</text>
+        </g>
+        <g class="lk1-sc field">
+          <text x="14" y="18" font-size="13" class="t-strong">The billing unit sorted them</text>
+          <text x="14" y="33" font-size="10.5">Stock move in 2026, to early September. Each cell is about 4 points.</text>
+          <path d="M${Z} 44 V226" class="lk1-zero"/><text x="${Z}" y="232" text-anchor="middle" font-size="9" class="lk1-z0">0</text>
+          <text x="16" y="52" font-size="9.5" class="lk1-k use">BILLED BY USE, OR BY WHAT IT PROTECTS</text>${rows(FIELD.slice(0, 4), 66)}
+          <text x="16" y="138" font-size="9.5" class="lk1-k seat">BILLED PER SEAT</text>${rows(FIELD.slice(4), 152)}
+        </g>
+      </svg>
+      ${sayStack("cf1-say", "lk1Say", Object.values(LK1))}
+    </div>${capLS("Year-to-date stock moves through the Sept 2–3, 2026 closes, and the billing-unit grouping, from SaaStr. Cells rounded to 4 points; labels are exact.", "SaaStr, through early September 2026.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk1"), say = fr.querySelector("#lk1Say");
+    autoTabs(fr, ["pair", "field"], v => { col.dataset.t = v; say.innerHTML = LK1[v]; }, 6400);
+  } };
+
+// ---------------------------------------------------------- slide 2: one person, 109 keys
+const LK2 = {
+  y25: [82, 0, "2025", "<b>2025:</b> CyberArk counted 82 machine identities for every human: service accounts, API keys, bots and the first AI agents."],
+  y26: [109, 0, "2026", "<b>2026:</b> Palo Alto Networks counts 109. Each is a login that can be stolen. A screen still bills for the one human; a lock guards all 110."],
+  next: [109, 124, "Next year?", "<b>Next year?</b> Companies expect machine identities to grow 77% and people 56%. If both happen, that’s about 124 keys per person, every one of them for the lock to guard."]
+};
+A["ledger-2a"] = { html: () => {
+    const cell = (i) => { const x = 118 + (i % 18) * 18, y = 54 + Math.floor(i / 18) * 18; return `<g transform="translate(${x} ${y})"><g class="lk2-k" data-i="${i}" style="--d:${(i * .008).toFixed(3)}s"><rect width="14" height="14" rx="2.5"/><circle cx="7" cy="5.6" r="2.1" class="lk2-h"/><rect x="6" y="6.8" width="2" height="4.4" class="lk2-h"/></g></g>`; };
+    return `<div class="k-col lk2" data-s="y26">
+      <div class="k-seg">${Object.entries(LK2).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[2]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="One person and the keys that come with them. A grid of key cells counts machine identities per human: 82 in 2025, 109 in 2026, and about 124 next year if machine identities grow 77% and people 56%. A screen bills for one seat; a lock guards every identity.">
+        <text x="14" y="18" font-size="13" class="t-strong">One person, 109 keys</text>
+        <text x="14" y="33" font-size="10.5">Machine identities, including AI agents, for every human in the average company</text>
+        <g class="lk2-who"><circle cx="58" cy="86" r="13"/><path d="M38 132 V114 Q38 102 58 102 Q78 102 78 114 V132 Z"/><rect x="51" y="110" width="14" height="10" rx="2" class="lk2-badge"/></g>
+        <text x="58" y="150" text-anchor="middle" font-size="10.5">1 person</text>
+        <text x="58" y="186" text-anchor="middle" font-size="30" class="lk2-n" id="lk2N">109</text>
+        <text x="58" y="200" text-anchor="middle" font-size="10">keys per person</text>
+        <g class="lk2-grid">${[...Array(126)].map((_, i) => cell(i)).join("")}</g>
+        <text x="118" y="198" font-size="10.5">A screen bills for</text><rect x="210" y="189" width="11" height="11" rx="2" class="lk2-seat"/><text x="227" y="198" font-size="10.5" class="lk2-sv">1 seat</text>
+        <text x="118" y="216" font-size="10.5">A lock guards</text><text x="194" y="216" font-size="10.5" class="lk2-lv" id="lk2L">all 110 identities</text>
+      </svg>
+      ${sayStack("cf1-say", "lk2Say", Object.values(LK2).map(v => v[3]))}
+    </div>${capLS("Palo Alto Networks’ 2026 Identity Security Landscape (109, and the growth companies expect, via Help Net Security); CyberArk’s 2025 survey via VentureBeat (82). Next year is my arithmetic from those expectations.", "Palo Alto Networks; CyberArk; my arithmetic.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk2"), say = fr.querySelector("#lk2Say"), keys = [...fr.querySelectorAll(".lk2-k")];
+    autoTabs(fr, Object.keys(LK2), v => {
+      const [on, ghost] = LK2[v];
+      col.dataset.s = v; say.innerHTML = LK2[v][3];
+      keys.forEach((k, i) => { k.classList.toggle("on", i < on); k.classList.toggle("ghost", i >= on && i < ghost); });
+      fr.querySelector("#lk2N").textContent = ghost ? "~" + ghost : on;
+      fr.querySelector("#lk2L").textContent = `all ${ghost ? "~" + (ghost + 1) : on + 1} identities`;
+    }, 4200);
+  } };
+
+// ---------------------------------------------------------- slide 3: the ledger and the lock merge
+const LK3 = {
+  buy: ["Ledgers buy locks", "<b>Ledgers buy locks:</b> ServiceNow, which keeps IT and service records for big companies, bought Veza, which maps who and what can reach each system, then Armis for about $7.75 billion. Each cell is $1 billion."],
+  keys: ["Locks buy keys", "<b>Locks buy keys:</b> Palo Alto Networks paid $25 billion for CyberArk to secure every identity, human, machine and agent. Google paid $32 billion for Wiz. Each cell is $1 billion."],
+  gate: ["Ledgers build gates", "<b>Ledgers build gates:</b> in 2025 Salesforce changed Slack’s terms so outside AI tools like Glean can’t store or index its messages. My read: the record becomes a toll road."]
+};
+A["ledger-3a"] = { html: () => {
+    const cells = (n, x0, y0, cls) => [...Array(n)].map((_, i) => `<rect x="${x0 + (i % 8) * 8}" y="${y0 - Math.floor(i / 8) * 8}" width="6.4" height="6.4" rx="1.2" class="lk3-c ${cls}" style="--d:${(i * .02).toFixed(2)}s"/>`).join("");
+    const bolts = [...Array(10)].map((_, i) => { const a = i / 10 * Math.PI * 2 - Math.PI / 2, x = 344 + 54 * Math.cos(a), y = 108 + 54 * Math.sin(a); return `<rect x="-5" y="-3" width="10" height="6" rx="1.5" class="lk3-bolt" style="--d:${(i * .09).toFixed(2)}s" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(a * 180 / Math.PI).toFixed(0)})"/>`; }).join("");
+    const page = (x, flip) => `<path d="M${x} 66 Q${x + (flip ? -30 : 30)} 60 ${x + (flip ? -56 : 56)} 66 V156 Q${x + (flip ? -30 : 30)} 150 ${x} 156 Z" class="lk3-pg"/>${[0, 1, 2, 3, 4, 5].map(r => [0, 1, 2, 3].map(c => `<rect x="${(flip ? x - 50 + c * 11 : x + 6 + c * 11)}" y="${76 + r * 12}" width="8" height="7" rx="1" class="lk3-rc"/>`).join("")).join("")}`;
+    return `<div class="k-col lk3" data-t="buy">
+      <div class="k-seg">${Object.entries(LK3).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[0]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 246" class="k-svg" aria-label="The ledger and the lock are merging. On the left, the ledger, an open book of record cells; on the right, the lock, a vault door ringed with bolts. Ledgers buy locks: ServiceNow bought Veza and then Armis for about $7.75 billion, shown as 8 cells of $1 billion flowing into the ledger. Locks buy keys: Palo Alto Networks paid $25 billion for CyberArk and Google $32 billion for Wiz, and the vault's bolts light up. Ledgers build gates: Salesforce's 2025 Slack terms drop a gate in front of the ledger and an outside AI tool bounces off.">
+        <text x="14" y="18" font-size="13" class="t-strong">The ledger and the lock are merging</text>
+        <text x="124" y="52" text-anchor="middle" font-size="9.5" class="lk3-k l">THE LEDGER</text><text x="344" y="34" text-anchor="middle" font-size="9.5" class="lk3-k k">THE LOCK</text>
+        <g class="lk3-book">${page(124, true)}${page(124, false)}<path d="M124 66 V156" class="lk3-spine"/></g>
+        <text x="124" y="174" text-anchor="middle" font-size="10" class="lk3-who" id="lk3L">ServiceNow</text>
+        <path d="M184 110 H282" class="lk3-link"/><path d="M190 110 l8 -5 v10 Z" class="lk3-head"/>
+        <g class="lk3-door"><circle cx="344" cy="108" r="62" class="lk3-ring"/><circle cx="344" cy="108" r="46" class="lk3-face"/>${bolts}
+          <g class="lk3-dial"><circle cx="344" cy="108" r="16" class="lk3-dl"/>${[0, 1, 2, 3, 4, 5].map(i => `<path d="M344 92 V97" class="lk3-tick" transform="rotate(${i * 60} 344 108)"/>`).join("")}<path d="M344 108 V96" class="lk3-hand"/></g></g>
+        <text x="344" y="186" text-anchor="middle" font-size="10" class="lk3-who" id="lk3R">identity, cloud, runtime</text>
+        <g class="lk3-gate"><path d="M44 60 V160" class="lk3-post"/><g class="lk3-bar"><rect x="36" y="58" width="16" height="104" rx="2"/>${[0, 1, 2, 3, 4].map(i => `<path d="M36 ${66 + i * 20} l16 10" class="lk3-stripe"/>`).join("")}</g></g>
+        <g class="lk3-bot"><circle cx="18" cy="104" r="6"/><rect x="11" y="112" width="14" height="14" rx="3"/><text x="18" y="140" text-anchor="middle" font-size="9" class="lk3-bt">Glean</text></g>
+        <g class="lk3-deal buy"><text x="184" y="204" font-size="10" class="lk3-dt">Veza · access map · Mar 2026</text><text x="184" y="220" font-size="10" class="lk3-dt">Armis · $7.75B · Apr 2026</text>${cells(8, 184, 228, "l")}</g>
+        <g class="lk3-deal keys">${cells(25, 14, 228, "k")}<text x="14" y="198" font-size="10" class="lk3-dt">CyberArk · $25B · Feb 2026</text>${cells(32, 236, 228, "k")}<text x="236" y="198" font-size="10" class="lk3-dt">Wiz · $32B · Mar 2026</text><text x="88" y="236" font-size="9.5" class="lk3-by">Palo Alto</text><text x="310" y="236" font-size="9.5" class="lk3-by">Google</text></g>
+        <g class="lk3-deal gate"><text x="14" y="214" font-size="10.5" class="lk3-dt">Salesforce · Slack terms · 2025</text><text x="14" y="230" font-size="10" class="lk3-by">outside AI can’t store or index messages</text></g>
+      </svg>
+      ${sayStack("cf1-say", "lk3Say", Object.values(LK3).map(v => v[1]))}
+    </div>${capLS("Schematic. Deals: SecurityBrief (Armis, after Veza), ITPro (CyberArk), SecurityWeek (Wiz). Slack’s terms: Reuters via Yahoo Finance. Each cell is $1 billion; Veza’s price wasn’t disclosed.", "SecurityBrief; ITPro; SecurityWeek; Reuters.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk3"), say = fr.querySelector("#lk3Say");
+    const L = { buy: "ServiceNow", keys: "", gate: "Salesforce · Slack" }, R = { buy: "Veza, Armis", keys: "Palo Alto · Google", gate: "identity, cloud, runtime" };
+    autoTabs(fr, Object.keys(LK3), v => { col.dataset.t = v; say.innerHTML = LK3[v][1]; fr.querySelector("#lk3L").textContent = L[v]; fr.querySelector("#lk3R").textContent = R[v]; }, 4600);
+  } };
+})();
+
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];

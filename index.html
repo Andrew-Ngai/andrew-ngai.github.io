@@ -1317,7 +1317,10 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
 .xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
 @keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
-.echo-mechanic .echo-all,.echo-camera .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-mechanic .echo-all,.echo-camera .echo-all,.echo-vaultkeeper .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.xvk-keys{transform-origin:0 calc(58*var(--u));animation:xvk-keys 1.6s ease-in-out infinite}
+@keyframes xvk-keys{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(12deg)}}
+.xvk-clasp{animation:xsg-led 1.4s steps(1,end) infinite}
 .echo-mechanic .echo-fin-l,.echo-mechanic .echo-hand-l,.echo-camera .echo-fin-r,.echo-camera .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
 .xmc-wrench{transform-origin:calc(96*var(--u)) calc(72*var(--u));animation:xmc-wrench 1.8s ease-in-out infinite}
 @keyframes xmc-wrench{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
@@ -2223,12 +2226,15 @@ html.paused .st-card{animation:none}
 .pt-el.lock::before{content:"";position:absolute;right:calc(6*var(--u));top:calc(7*var(--u));width:calc(7*var(--u));height:calc(7*var(--u));border-radius:50%;background:var(--bin);box-shadow:0 0 calc(8*var(--u)) var(--bin)}
 .pt-pin{margin:calc(2*var(--u)) 0 0;font-size:calc(13.5*var(--u));color:var(--faint)}
 .pt-card.locked .pt-pin{color:var(--amber);font-weight:700}
-.pt-unpin{margin-left:calc(6*var(--u));padding:calc(1*var(--u)) calc(8*var(--u)) calc(2*var(--u));font-family:var(--label);font-weight:700;font-size:calc(13*var(--u));color:var(--paper);background:var(--ink);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(3*var(--u));cursor:pointer}
-.pt-unpin:hover{border-color:var(--amber)}
 .pt-l{margin:calc(4*var(--u)) 0 0;font-weight:800;font-size:calc(12.5*var(--u));letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .pt-card h3{margin:0;font-family:var(--display);font-weight:800;font-size:calc(25*var(--u));line-height:1.05}
 .pt-n{margin:0;font-size:calc(16*var(--u));line-height:1.35;color:var(--dim)}
-.pt-card .btn{font-size:calc(16*var(--u));padding:calc(8*var(--u)) calc(14*var(--u)) calc(9*var(--u));margin-top:calc(4*var(--u))}
+.pt-card .pt-go{justify-self:stretch;justify-content:space-between;font-size:calc(17*var(--u));padding:calc(10*var(--u)) calc(16*var(--u)) calc(11*var(--u));margin-top:calc(6*var(--u));transition:background .2s,border-color .2s,box-shadow .2s}
+.pt-go i{font-style:normal;font-size:1.3em;line-height:.8;transition:transform .2s var(--ease)}
+.pt-go:hover i,.pt-go:focus-visible i{transform:translateX(calc(5*var(--u)))}
+.pt-card.locked .pt-go{animation:pt-go 2.4s ease-in-out infinite}
+@keyframes pt-go{0%,100%{box-shadow:0 0 0 0 rgba(63,214,200,0)}50%{box-shadow:0 0 calc(22*var(--u)) calc(-4*var(--u)) rgba(63,214,200,.7)}}
+html.paused .pt-card .pt-go{animation:none}
 .pt[data-f="agree"] .pt-el[data-s]:not([data-s="agree"]),.pt[data-f="build"] .pt-el[data-s]:not([data-s="build"]),.pt[data-f="push"] .pt-el[data-s]:not([data-s="push"]),.pt[data-f="original"] .pt-el[data-s]:not([data-s="original"]){opacity:.16}
 .fd-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:calc(30*var(--u));align-items:end;margin-bottom:calc(16*var(--u))}
 .fd-clock{display:grid;justify-items:end;gap:calc(2*var(--u))}
@@ -4221,6 +4227,105 @@ html.paused .son-c{animation:none!important}
 .pb3-bot path{fill:none;stroke:var(--violet);stroke-width:.9;stroke-linecap:round}
 .pb3-chip{fill:var(--ink-2);stroke:var(--amber);stroke-width:1;opacity:.9}
 .viz .pb3-ct{fill:var(--paper)}
+.lk1-sc{opacity:0;transition:opacity .45s}
+.lk1[data-t="pair"] .lk1-sc.pair,.lk1[data-t="field"] .lk1-sc.field{opacity:1}
+.lk1-belt{fill:var(--ink-3);stroke:var(--rule);stroke-width:1}
+.lk1-roll{fill:none;stroke:#3c5f80;stroke-width:1.4;stroke-dasharray:2 6;animation:k-ants 1s linear infinite}
+.lk1-rail{fill:none;stroke-width:2;stroke-dasharray:4 5}
+.lk1-rail.up{stroke:var(--amber);opacity:.55}.lk1-rail.dn{stroke:var(--coral);opacity:.55}
+.lk1-pr{fill:var(--ink);stroke:var(--violet);stroke-width:1.6}
+.lk1-pt{stroke:var(--violet);stroke-width:1.6;stroke-linecap:round}
+.lk1-pd{fill:var(--violet)}
+.lk1-beam{stroke-width:3;stroke-linecap:round;opacity:0;animation:lk1-beam 6.4s linear infinite}
+.lk1-beam.a{stroke:var(--amber)}.lk1-beam.b{stroke:var(--coral);animation-delay:2.2s}
+.viz .lk1-read{font-weight:800;opacity:0;animation:lk1-beam 6.4s linear infinite}
+.viz .lk1-read.a{fill:var(--amber)}.viz .lk1-read.b{fill:var(--coral);animation-delay:2.2s}
+@keyframes lk1-beam{0%,26%{opacity:0}29%,41%{opacity:1}45%,100%{opacity:0}}
+.lk1-mv{offset-rotate:0deg;animation:lk1-mv 6.4s ease-in-out infinite}
+.lk1-mv.b{animation-delay:2.2s}
+@keyframes lk1-mv{0%{offset-distance:0%;opacity:0}5%{opacity:1}28%{offset-distance:62%}41%{offset-distance:62%}56%{offset-distance:100%}92%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
+.lk1-box rect{fill:var(--ink-2);stroke-width:1.4}
+.lk1-box.a rect{stroke:var(--amber)}.lk1-box.b rect{stroke:var(--coral)}
+.viz .lk1-bn{fill:var(--paper);font-weight:800}
+.viz .lk1-bg{fill:var(--dim)}
+.lk1-dock{fill:var(--ink-2);stroke-width:1.2}
+.lk1-dock.a{stroke:var(--amber)}.lk1-dock.b{stroke:var(--coral)}
+.viz .lk1-dk{fill:var(--dim)}
+.viz .lk1-big{font-weight:900;font-variant-numeric:tabular-nums}
+.viz .lk1-big.a{fill:var(--amber)}.viz .lk1-big.b{fill:var(--coral)}
+.viz .lk1-foot{fill:var(--dim);font-style:italic}
+.lk1-zero{stroke:var(--violet);stroke-opacity:.4;stroke-width:1;stroke-dasharray:2 3}
+.viz .lk1-z0{fill:var(--faint)}
+.viz .lk1-k{font-weight:800;letter-spacing:.1em}
+.viz .lk1-k.use{fill:var(--amber)}.viz .lk1-k.seat{fill:var(--coral)}
+.viz .lk1-n{fill:var(--paper)}
+.viz .lk1-tag{font-weight:800;letter-spacing:.08em}
+.viz .lk1-tag.lock{fill:var(--amber)}.viz .lk1-tag.ledger{fill:var(--violet)}
+.lk1-c{transform-box:fill-box;transform-origin:center;transition:opacity .3s}
+.lk1-c.use{fill:var(--amber);fill-opacity:.3;stroke:var(--amber);stroke-width:.8}
+.lk1-c.seat{fill:var(--coral);fill-opacity:.22;stroke:var(--coral);stroke-width:.8}
+.lk1[data-t="field"] .lk1-c{animation:k-pop .4s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .lk1-c{animation:none!important}
+.viz .lk1-v{font-weight:800;font-variant-numeric:tabular-nums}
+.viz .lk1-v.use{fill:var(--amber)}.viz .lk1-v.seat{fill:var(--coral)}
+.lk2-who circle,.lk2-who path{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.lk2-badge{fill:var(--coral)}
+.viz .lk2-n{fill:var(--amber);font-weight:900;font-variant-numeric:tabular-nums}
+.lk2-k rect:first-child{fill:var(--ink-3);stroke:var(--rule);stroke-width:1;transition:fill .3s,stroke .3s}
+.lk2-k .lk2-h{fill:var(--ink);transition:fill .3s}
+.lk2-k{transform-box:fill-box;transform-origin:center}
+.lk2-k.on rect:first-child{fill:rgba(63,214,200,.28);stroke:var(--amber)}
+.lk2-k.on{animation:lk2-pop .35s var(--ease) var(--d) both}
+@keyframes lk2-pop{from{transform:scale(.4)}to{transform:none}}
+.lk2-k.ghost rect:first-child{fill:none;stroke:var(--amber);stroke-dasharray:2.5 2;stroke-opacity:.8}
+.lk2-k.ghost .lk2-h{fill:none}
+html.paused .lk2-k{animation:none!important}
+.lk2-seat{fill:var(--coral)}
+.viz .lk2-sv{fill:var(--coral);font-weight:800}
+.viz .lk2-lv{fill:var(--amber);font-weight:800}
+.viz .lk3-k{font-weight:800;letter-spacing:.12em}
+.viz .lk3-k.l{fill:var(--violet)}.viz .lk3-k.k{fill:var(--amber)}
+.lk3-pg{fill:var(--ink-2);stroke:var(--violet);stroke-width:1.2;stroke-opacity:.6}
+.lk3-rc{fill:var(--violet);fill-opacity:.1;stroke:var(--violet);stroke-opacity:.45;stroke-width:.6}
+.lk3-spine{stroke:var(--violet);stroke-width:1.6}
+.lk3-book{transition:filter .4s}
+.lk3[data-t="buy"] .lk3-book,.lk3[data-t="gate"] .lk3-book{filter:drop-shadow(0 0 calc(8*var(--u)) rgba(212,227,240,.35))}
+.lk3[data-t="buy"] .lk3-rc:nth-child(5n+2){animation:lk3-rc 2s ease-in-out infinite}
+@keyframes lk3-rc{0%,100%{fill-opacity:.1}50%{fill-opacity:.6}}
+.viz .lk3-who{fill:var(--dim);font-weight:700}
+.lk3-link{fill:none;stroke:var(--violet);stroke-width:2;stroke-dasharray:4 5;opacity:.35;transition:opacity .4s,stroke .4s}
+.lk3[data-t="buy"] .lk3-link{opacity:1;animation:k-ants 1s linear infinite reverse}
+.lk3[data-t="keys"] .lk3-link{stroke:var(--amber);opacity:.6}
+.lk3[data-t="gate"] .lk3-link{opacity:.12}
+.lk3-head{fill:var(--violet);opacity:0;transition:opacity .4s}
+.lk3[data-t="buy"] .lk3-head{opacity:1}
+.lk3-ring{fill:var(--ink-2);stroke:var(--amber);stroke-width:2;stroke-opacity:.7}
+.lk3-face{fill:var(--ink);stroke:var(--rule);stroke-width:1.2}
+.lk3-bolt{fill:var(--ink-3);stroke:var(--rule);stroke-width:1;transition:fill .3s var(--d),stroke .3s var(--d)}
+.lk3[data-t="keys"] .lk3-bolt{fill:var(--amber);stroke:var(--amber)}
+.lk3-dl{fill:var(--ink-3);stroke:var(--amber);stroke-width:1.4}
+.lk3-tick,.lk3-hand{stroke:var(--amber);stroke-width:1.6;stroke-linecap:round}
+.lk3-dial{transform-box:view-box;transform-origin:calc(344*var(--u)) calc(108*var(--u));transition:transform 1.2s var(--ease)}
+.lk3[data-t="keys"] .lk3-dial{transform:rotate(300deg)}
+.lk3-post{stroke:var(--rule);stroke-width:3}
+.lk3-bar rect{fill:var(--ink-3);stroke:var(--coral);stroke-width:1.4}
+.lk3-stripe{stroke:var(--coral);stroke-width:3}
+.lk3-bar{transform:translateY(calc(-110*var(--u)));opacity:0;transition:transform .7s cubic-bezier(.5,1.6,.5,1),opacity .3s}
+.lk3[data-t="gate"] .lk3-bar{transform:none;opacity:1}
+.lk3-bot circle,.lk3-bot rect{fill:#2a4766;stroke:#9fb3c4;stroke-width:1}
+.viz .lk3-bt{fill:var(--faint)}
+.lk3-bot{opacity:0;transition:opacity .3s}
+.lk3[data-t="gate"] .lk3-bot{opacity:1;animation:lk3-bump 1.8s ease-in-out infinite}
+@keyframes lk3-bump{0%,100%{transform:none}45%{transform:translateX(calc(6*var(--u)))}52%{transform:translateX(calc(1*var(--u)))}}
+.lk3-deal{opacity:0;transition:opacity .4s}
+.lk3[data-t="buy"] .lk3-deal.buy,.lk3[data-t="keys"] .lk3-deal.keys,.lk3[data-t="gate"] .lk3-deal.gate{opacity:1}
+.lk3-c{transform-box:fill-box;transform-origin:center}
+.lk3-c.l{fill:var(--violet);fill-opacity:.25;stroke:var(--violet);stroke-width:.7}
+.lk3-c.k{fill:var(--amber);fill-opacity:.28;stroke:var(--amber);stroke-width:.7}
+.lk3[data-t="buy"] .lk3-deal.buy .lk3-c,.lk3[data-t="keys"] .lk3-deal.keys .lk3-c{animation:k-pop .4s cubic-bezier(.3,1.5,.5,1) var(--d) both}
+html.paused .lk3-c{animation:none!important}
+.viz .lk3-dt{fill:var(--paper);font-weight:700}
+.viz .lk3-by{fill:var(--dim)}
 
 </style>
 </head>
@@ -4673,6 +4778,22 @@ const SRC = {
   waymo500: "https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",
   waymoQ3: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
   waymoRA: "https://techcrunch.com/2026/02/22/techcrunch-mobility-waymo-makes-its-defense/",
+  lkKip: "https://www.kiplinger.com/investing/tech-stocks/saasmageddon-survivors-top-software-stocks-to-buy",
+  lkSaastr: "https://saastr.com/beyond-the-saaspocalypse-the-winners-and-losers-of-2026-so-far",
+  lkIo: "https://io-fund.com/ai-stocks/ai-trends-2026-cybersecurity-stocks-rally",
+  lkCrwd: "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial",
+  lkCrwdCall: "https://www.webull.com/news/15497781704532992",
+  lkZs: "https://www.tikr.com/blog/zscaler-just-made-its-case-at-zenith-live-heres-why-the-ai-fear-driving-its-60-drop-may-be-backwards",
+  lkPanwId: "https://www.paloaltonetworks.com/idira/identity-security-landscape-report",
+  lkHns: "https://www.helpnetsecurity.com/2026/05/14/2026-identity-security-landscape-report/",
+  lkVb82: "https://venturebeat.com/security/machine-identities-outnumber-humans-82-to-1-legacy-iam-cant-keep-up",
+  lkGlass: "https://www.anthropic.com/glasswing",
+  lkGlassUpd: "https://www.anthropic.com/research/glasswing-initial-update",
+  lkArmis: "https://securitybrief.co.uk/story/servicenow-completes-usd-7-75-billion-armis-acquisition",
+  lkCyberArk: "https://www.itpro.com/business/acquisition/palo-alto-networks-ceo-hails-the-end-of-identity-silos-as-firm-closes-cyberark-acquisition",
+  lkWiz: "https://www.securityweek.com/wiz-joins-google-cloud-as-landmark-acquisition-closes/",
+  lkSlack: "https://finance.yahoo.com/news/salesforce-blocks-ai-rivals-using-014746612.html",
+  lkNov5: "https://www.morningstar.com/news/marketwatch/20261105219/why-crowdstrike-and-cybersecurity-stocks-got-crunched-in-thursdays-rout",
   waymoOrder: "https://www.thedrive.com/tech/21219/waymo-will-buy-up-to-62000-chrysler-pacificas-for-ride-hailing-service",
 };
 const BINS = {
@@ -5322,6 +5443,29 @@ const ALL_THESES = [
     note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
     receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
     viz: "physical", echo: { pose: "camera", acc: "camera", name: "Camera Op" }
+  },
+  {
+    id: "ledger", die: [2, 6], stance: "original", probe: true,
+    probeHook: "The screens fell. The lock took off. The ledger is next.",
+    layer: "A", tldr: ["SaaS that survives AI is a ledger or a lock.", "The screens fell and stayed down: HubSpot −33%, monday.com −36%. The locks took off: Okta +146%, CrowdStrike +120%, because every agent is a new key to guard. The ledger survived but isn’t paid yet: Salesforce +4%."],
+    title: "SaaS that survives AI is a ledger or a lock.",
+    h2: "SaaS that survives | AI is a ledger | or a lock.",
+    short: "The ledger and the lock",
+    hook: "The SaaSpocalypse sorted software by one question: does an agent still need you? It needs the record it writes to and the lock that decides what it may touch. Everything else was a screen.",
+    ref: { k: "Reference design", label: "My own read of 2026’s software split (SaaStr’s winners and losers), CrowdStrike’s record quarter and Palo Alto Networks’ 2026 identity survey", href: SRC.lkSaastr },
+    signal: `<p class="claim">AI ate the screens. | It made the ledger | and the lock | worth more.</p>
+      <p>Early in 2026, about $2 trillion came off software stocks on the fear that AI agents would do the work software seats were sold for. By September the software index had bounced about 40% from its April low, but the companies didn’t move together. CrowdStrike was up 83% for the year and Snowflake 73%; HubSpot was down 33%, monday.com 36% and Figma 35%. Twilio and monday.com had both grown 22% the quarter before, and finished 109 points apart.</p>
+      <p>By late October the gap was wider. Okta, which guards logins, was up 146% for the year and CrowdStrike 120%. In August CrowdStrike reported a record $333 million of new annual recurring revenue for the quarter, up 51%, and its CEO said the market had accepted “that AI adoption needs security.” Salesforce, the system of record for sales, was up 4% through early September.</p>`,
+    takes: [
+      ["Everything between the ledger and the lock is a screen.", "A ledger is the record an agent has to read and write: the customer list, the books, the patient chart. A lock decides who and what may touch it. Most other SaaS was a screen for people to click, sold by the seat, and seats are the line CIOs cut first when budget moves to AI. Even security got punished when it billed by the head: Zscaler, which charges per user, fell about 31% on its May results. Its new product for agent traffic is priced by traffic and requests, and non-seat deals went from about 25% to 30% of its new contract value in a single quarter."],
+      ["Every agent is a new key to guard.", "Palo Alto Networks counts 109 machine identities for every human in the average company, up from 82 a year earlier, and companies expect their AI agents to grow 85% in the next year. Each one is a login that can be stolen, and attackers get the same models: in a month, Anthropic’s Mythos Preview and about 50 partners found more than 10,000 high- or critical-severity flaws in the world’s most important software. So the lock is the rare SaaS whose market grows with agents, not employees. CrowdStrike’s ARR from customers on Falcon Flex, its draw-down plan, passed $2.29 billion, up 101%, and its identity business grew 34%."],
+      ["The ledger and the lock are merging.", "This year the record-keepers bought locks and the lock-makers bought keys. ServiceNow, which runs IT and service records for big companies, bought Veza, which maps who and what can reach each system, then Armis for about $7.75 billion. Palo Alto closed its $25 billion purchase of CyberArk to secure “every identity — human, machine, and agent,” and Google closed its $32 billion purchase of Wiz. Ledgers are fencing their data too: in 2025 Salesforce changed Slack’s terms so outside AI tools like Glean can’t store or index its messages. My read: the decade’s winners own both halves, the record of what’s true and the rules for who may change it."]
+    ],
+    bet: `Back the ledger the market hasn’t paid for yet, and the lock it already has. Systems of record that charge agents to read and write, per call or per action rather than per seat, above all in regulated records like health, finance and government. Identity and runtime security for agents, priced by what it protects. And the tools that join the two: permissions, audit trails and the policies that decide what each agent may do. Be wary of seat-priced apps whose product is mostly a screen, and of security still billed per employee. <a href="#saas">AI eats the seat, not the software</a> covers how the ledger gets paid.`,
+    wrong: "AI labs become the lock and agents keep their own records. If models that find and fix flaws on their own turn security into a feature, a fear that helped knock CrowdStrike and Okta down about 10% on November 5, and companies let agents rebuild their records in-house, neither half needs a SaaS company.",
+    note: "Not investment advice. Stock moves are year to date at the dates shown, from SaaStr and the I/O Fund; ARR figures are CrowdStrike’s; identity counts are from Palo Alto Networks’ survey.",
+    receipts: [["Kiplinger: the roughly $2 trillion SaaSpocalypse", SRC.lkKip], ["SaaStr: the winners and losers of 2026 so far (Sep 2026)", SRC.lkSaastr], ["I/O Fund: Okta +146%, CrowdStrike +120% (Oct 2026)", SRC.lkIo], ["CrowdStrike: record Q2 fiscal 2027 (Aug 2026)", SRC.lkCrwd], ["CrowdStrike Q2 call: identity ARR up 34%", SRC.lkCrwdCall], ["TIKR on Zscaler’s per-user pricing and its May drop", SRC.lkZs], ["Palo Alto Networks: 2026 Identity Security Landscape, 109 to 1", SRC.lkPanwId], ["Help Net Security: machines +77%, people +56% expected", SRC.lkHns], ["VentureBeat: CyberArk’s 2025 count, 82 to 1", SRC.lkVb82], ["Anthropic: Project Glasswing and Mythos Preview", SRC.lkGlass], ["Anthropic: Glasswing’s first update, 10,000+ flaws", SRC.lkGlassUpd], ["SecurityBrief: ServiceNow completes its $7.75 billion Armis deal, after Veza (Apr 2026)", SRC.lkArmis], ["ITPro: Palo Alto closes its $25 billion CyberArk deal", SRC.lkCyberArk], ["SecurityWeek: Google closes its $32 billion Wiz deal", SRC.lkWiz], ["Reuters: Salesforce blocks AI rivals from Slack data (2025)", SRC.lkSlack], ["MarketWatch: cybersecurity’s November 5 rout", SRC.lkNov5]],
+    viz: "ledger", echo: { pose: "vaultkeeper", acc: "vaultkeeper", name: "Vault Keeper" }
   }
 ];
 const THESES = ALL_THESES.filter(t => !t.probe);
@@ -5366,6 +5510,7 @@ const DOODLES = {
   cuda: "<path d=\"M30 62 V34 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 V62 Z M50 62 v-12 a4 4 0 0 1 8 0 v12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M8 70 q8 -5 16 0 t16 0 t16 0 t16 0 t16 0 t16 0\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M84 72 C92 60 104 58 112 66 M86 66 h4 M94 62 h4 M102 61 h4\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"25\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">CUDA</text><text x=\"60\" y=\"97\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">the few build bridges</text>",
   circular: "<path d=\"M60 18 A26 26 0 1 1 34.2 46.8 M30 38 L34.4 47.4 L42.6 41\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"52\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M84 52 C96 56 102 64 106 74 M99 70 L106.4 75 L108 66\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><text x=\"108\" y=\"88\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">exit</text><text x=\"56\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">look for the exit</text>",
   robots: "<path d=\"M18 52 Q20 40 34 38 L46 27 Q52 22 62 22 L80 22 Q90 22 96 30 L104 38 Q112 40 112 52 V58 H18 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M46 38 H100\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M38 58 L33 76 L24 78 M92 58 L97 76 L106 78\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M60 28 v6 a5 5 0 0 0 10 0 v-6\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"96\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">an EV with legs</text>",
+  ledger: "<path d=\"M10 34 Q30 28 50 34 V78 Q30 72 10 78 Z M50 34 Q70 28 90 34 V78 Q70 72 50 78\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M16 44 H42 M16 52 H42 M16 60 H36 M58 44 H84 M58 52 H80\" stroke=\"#26303a\" stroke-width=\"1.6\" /><rect x=\"80\" y=\"52\" width=\"30\" height=\"24\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M86 52 V44 Q86 34 95 34 Q104 34 104 44 V52\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"95\" cy=\"62\" r=\"2.6\" fill=\"#d23c3c\" /><path d=\"M95 64 V69\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">the ledger and the lock</text>",
   physical: "<path d=\"M24 72 V48 Q24 44 28 44 Q32 44 32 48 V60 M32 48 V38 Q32 34 36 34 Q40 34 40 38 V58 M40 40 Q40 36 44 36 Q48 36 48 40 V60 M48 44 Q48 40 52 40 Q56 40 56 44 V66 Q56 82 40 84 Q26 84 24 72 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><rect x=\"70\" y=\"40\" width=\"30\" height=\"20\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M100 46 L112 40 V60 L100 54\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"75\" cy=\"31\" r=\"3.4\" fill=\"#d23c3c\" /><text x=\"82\" y=\"35\" fill=\"#d23c3c\" font-size=\"11\">REC</text><text x=\"64\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">film the hands</text>",
 };
 const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5"};
@@ -5585,6 +5730,10 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#2a3f58"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#1a2636"/><path d="M27 -2 Q31 -7 39 -8.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/><g transform="translate(50 -2.6)"><circle r="4.4" fill="none" stroke="#ffb23f" stroke-width="1.7" stroke-dasharray="1.9 1.3"/><circle r="1.6" fill="#ffb23f"/></g>` +
       `<g class="echo-hand-l">${[0, 1, 2].map(i => `<g class="xmc-bolt" style="animation-delay:${(i * .6).toFixed(1)}s"><path d="M${-19 + i * 7} 38 h3.6 l1.8 2.4 l-1.8 2.4 h-3.6 l-1.8 -2.4 Z" fill="#9fb3c4"/></g>`).join("")}<path d="M-8 52 V64 A9 9 0 0 0 10 64 V52" stroke="#d23c3c" stroke-width="5.6" fill="none"/><rect x="-10.8" y="47" width="5.6" height="6" fill="#d4e3f0"/><rect x="7.2" y="47" width="5.6" height="6" fill="#d4e3f0"/>${mitt(1, 76, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xmc-wrench"><path d="M96 72 L110 55" stroke="#9fb3c4" stroke-width="4" stroke-linecap="round"/><path d="M106.5 54.5 L111.5 48.5 L118 52.5 L115.4 55.6 L112.2 53.6 L110.4 55.8 L113.4 57.8 L110.6 61 Z" fill="#9fb3c4"/></g>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "vaultkeeper") {
+    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#1d3654"/><path d="M14 5.5 H86 Q88.5 9.5 84 11 H16 Q11.5 9.5 14 5.5 Z" fill="#0f1f33"/><g transform="translate(50 -2.4)"><circle r="5" fill="#3fd6c8"/><circle cy="-1" r="1.7" fill="#0f1f33"/><path d="M-1 0 L-1.6 3 H1.6 L1 0 Z" fill="#0f1f33"/></g>` +
+      `<g class="echo-hand-l"><g class="xvk-keys"><circle cx="0" cy="58" r="7" fill="none" stroke="#9fb3c4" stroke-width="2"/>${[[-14, 66, -28], [-4, 72, 4], [8, 68, 30]].map(([x, y, r]) => `<g transform="rotate(${r} ${x} ${y})"><circle cx="${x}" cy="${y}" r="3.6" fill="#ffb23f"/><circle cx="${x}" cy="${y}" r="1.3" fill="#7a5410"/><rect x="${x - 1.2}" y="${y + 3}" width="2.4" height="10" fill="#ffb23f"/><rect x="${x + 1}" y="${y + 9}" width="2.6" height="1.8" fill="#ffb23f"/></g>`).join("")}</g>${mitt(1, 76, 20)}</g>` +
+      `<g class="echo-hand-r"><rect x="90" y="48" width="24" height="30" rx="2" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M94 55 H110 M94 60 H110 M94 65 H106" stroke="#9fb3c4" stroke-width="1.2"/><rect class="xvk-clasp" x="108" y="58" width="7" height="8" rx="1.5" fill="#3fd6c8"/>${mitt(95.5, 74)}</g>`;
   } else if (acc === "camera") {
     accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
       `<g class="echo-hand-l"><rect x="-12" y="60" width="24" height="15" rx="1.5" fill="#26303a" stroke="#d4e3f0" stroke-width=".9"/><text x="0" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#d4e3f0">TAKE 1</text><g class="xcm-arm"><path d="M-12 59.5 L12 53 L13 57 L-11 63.5 Z" fill="#d4e3f0"/><path d="M-6.5 62 L-3.5 56.4 M-.5 60.4 L2.5 54.8 M5.5 58.8 L8.5 53.2" stroke="#26303a" stroke-width="2"/></g>${mitt(3, 80, 20)}</g>` +
@@ -6727,7 +6876,8 @@ const VIZ = {
   cuda() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   robots() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  ledger() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 const VIZ_INIT = {
   quantum(root) {
@@ -9482,8 +9632,130 @@ A["physical-3a"] = { html: () => {
     }, 900);
   } };
 })();
+(() => {
+const A = window.AX;
+const sayStack = (cls, id, all) => `<div class="k-stack">${all.map(t => `<p class="${cls} k-ghost" aria-hidden="true">${t}</p>`).join("")}<p class="${cls}" id="${id}"></p></div>`;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const autoTabs = (fr, keys, set, ms) => {
+  let auto = true, at = keys[0];
+  const tabs = K.tabs(fr, ".k-b", v => { at = v; set(v); }, keys[0]);
+  fr.querySelectorAll(".k-b").forEach(b => b.addEventListener("pointerdown", () => { auto = false; }));
+  K.onEnter(fr, () => { auto = true; tabs(fr.querySelector(`.k-b[data-v="${keys[0]}"]`)); });
+  K.loop(fr, () => { if (auto) tabs(fr.querySelector(`.k-b[data-v="${keys[(keys.indexOf(at) + 1) % keys.length]}"]`)); }, ms);
+};
+const FIELD = [["CrowdStrike", 83.4, "use", "lock"], ["Twilio", 73.8, "use", ""], ["Snowflake", 73.1, "use", "ledger"], ["Datadog", 53.9, "use", ""],
+  ["Atlassian", 20.1, "seat", ""], ["Salesforce", 4.3, "seat", "ledger"], ["HubSpot", -33.3, "seat", ""], ["Figma", -35.1, "seat", ""], ["monday.com", -35.5, "seat", ""]];
+const LK1 = {
+  pair: "<b>Same growth:</b> Twilio and monday.com both grew revenue 22% in the June quarter. Twilio bills by use and was up 74% for the year by early September. monday.com bills per seat and was down 36%.",
+  field: "<b>The whole field:</b> every company billed by use or by what it protects was up more than 50%. Three seat-billed apps lost about a third, Atlassian clawed back to +20%, and Salesforce, the biggest ledger, was up 4%."
+};
+A["ledger-1a"] = { html: () => {
+    const Z = 232, U = 2.3;
+    const rows = (list, y0) => list.map(([n, v, kind, tag], i) => {
+      const y = y0 + i * 16, cells = Math.max(1, Math.round(Math.abs(v) / 4)), neg = v < 0;
+      const bar = [...Array(cells)].map((_, k) => `<rect x="${(neg ? Z - (k + 1) * 4 * U : Z + k * 4 * U + 1).toFixed(1)}" y="${y - 8}" width="${(4 * U - 1.4).toFixed(1)}" height="10" rx="1.5" class="lk1-c ${kind}" style="--d:${(k * .025 + i * .06).toFixed(3)}s"/>`).join("");
+      const end = neg ? Z - cells * 4 * U - 6 : Z + cells * 4 * U + 6;
+      return `<text x="16" y="${y + 1}" font-size="10.5" class="lk1-n">${n}</text>${tag ? `<text x="${n.length * 5.2 + 22}" y="${y + 1}" font-size="9" class="lk1-tag ${tag}">${tag.toUpperCase()}</text>` : ""}${bar}<text x="${end.toFixed(1)}" y="${y + 1}" font-size="10.5" text-anchor="${neg ? "end" : "start"}" class="lk1-v ${kind}">${v > 0 ? "+" : "−"}${Math.abs(v).toFixed(0)}%</text>`;
+    }).join("");
+    const box = (name, cls) => `<g class="lk1-box ${cls}"><rect x="-31" y="-14" width="62" height="28" rx="3"/><text y="-2" text-anchor="middle" font-size="10" class="lk1-bn">${name}</text><text y="9" text-anchor="middle" font-size="9" class="lk1-bg">grew 22%</text></g>`;
+    return `<div class="k-col lk1" data-t="pair">
+      <div class="k-seg"><button type="button" class="k-b" data-v="pair">Same growth</button><button type="button" class="k-b" data-v="field">The whole field</button></div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="Two views of 2026's software split. Same growth: Twilio and monday.com, both growing 22%, ride a belt into a scanner that reads how each bills. Twilio, billed by use, rises to plus 74%; monday.com, billed per seat, drops through a trapdoor to minus 36%. The whole field: bars of die cells for nine companies' 2026 stock moves to early September. Billed by use or by what it protects: CrowdStrike plus 83%, Twilio plus 74%, Snowflake plus 73%, Datadog plus 54%. Billed per seat: Atlassian plus 20%, Salesforce plus 4%, HubSpot minus 33%, Figma minus 35%, monday.com minus 36%.">
+        <g class="lk1-sc pair">
+          <text x="14" y="18" font-size="13" class="t-strong">Same growth. 109 points apart.</text>
+          <text x="14" y="33" font-size="10.5">Both grew revenue 22% in the June quarter. The scanner reads how each one bills.</text>
+          <rect x="18" y="129" width="190" height="8" rx="4" class="lk1-belt"/><path d="M22 133 H204" class="lk1-roll"/>
+          <path d="M206 116 C240 116 262 72 300 72 H318" class="lk1-rail up"/><path d="M206 116 C240 116 262 170 300 170 H318" class="lk1-rail dn"/>
+          <g class="lk1-scan"><path d="M206 62 V102" class="lk1-beam a"/><path d="M206 62 V102" class="lk1-beam b"/><circle cx="206" cy="58" r="8" class="lk1-pr"/><path d="M193 58H197M215 58H219M206 45V49" class="lk1-pt"/><circle cx="206" cy="58" r="2.2" class="lk1-pd"/>
+            <text x="222" y="49" font-size="9.5" class="lk1-read a">billed per use</text><text x="222" y="49" font-size="9.5" class="lk1-read b">billed per seat</text></g>
+          <g class="lk1-mv a" style="offset-path:path('M44 116 H206 C240 116 262 72 290 72')">${box("Twilio", "a")}</g>
+          <g class="lk1-mv b" style="offset-path:path('M44 116 H206 C240 116 262 170 290 170')">${box("monday.com", "b")}</g>
+          <rect x="322" y="50" width="124" height="46" rx="3" class="lk1-dock a"/><text x="332" y="64" font-size="10" class="lk1-dk">Twilio · billed per use</text><text x="436" y="88" text-anchor="end" font-size="21" class="lk1-big a">+74%</text>
+          <rect x="322" y="148" width="124" height="46" rx="3" class="lk1-dock b"/><text x="332" y="162" font-size="10" class="lk1-dk">monday.com · per seat</text><text x="436" y="186" text-anchor="end" font-size="21" class="lk1-big b">−36%</text>
+          <text x="14" y="224" font-size="10.5" class="lk1-foot">Growth didn’t sort them. The billing unit did.</text>
+        </g>
+        <g class="lk1-sc field">
+          <text x="14" y="18" font-size="13" class="t-strong">The billing unit sorted them</text>
+          <text x="14" y="33" font-size="10.5">Stock move in 2026, to early September. Each cell is about 4 points.</text>
+          <path d="M${Z} 44 V226" class="lk1-zero"/><text x="${Z}" y="232" text-anchor="middle" font-size="9" class="lk1-z0">0</text>
+          <text x="16" y="52" font-size="9.5" class="lk1-k use">BILLED BY USE, OR BY WHAT IT PROTECTS</text>${rows(FIELD.slice(0, 4), 66)}
+          <text x="16" y="138" font-size="9.5" class="lk1-k seat">BILLED PER SEAT</text>${rows(FIELD.slice(4), 152)}
+        </g>
+      </svg>
+      ${sayStack("cf1-say", "lk1Say", Object.values(LK1))}
+    </div>${capLS("Year-to-date stock moves through the Sept 2–3, 2026 closes, and the billing-unit grouping, from SaaStr. Cells rounded to 4 points; labels are exact.", "SaaStr, through early September 2026.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk1"), say = fr.querySelector("#lk1Say");
+    autoTabs(fr, ["pair", "field"], v => { col.dataset.t = v; say.innerHTML = LK1[v]; }, 6400);
+  } };
+const LK2 = {
+  y25: [82, 0, "2025", "<b>2025:</b> CyberArk counted 82 machine identities for every human: service accounts, API keys, bots and the first AI agents."],
+  y26: [109, 0, "2026", "<b>2026:</b> Palo Alto Networks counts 109. Each is a login that can be stolen. A screen still bills for the one human; a lock guards all 110."],
+  next: [109, 124, "Next year?", "<b>Next year?</b> Companies expect machine identities to grow 77% and people 56%. If both happen, that’s about 124 keys per person, every one of them for the lock to guard."]
+};
+A["ledger-2a"] = { html: () => {
+    const cell = (i) => { const x = 118 + (i % 18) * 18, y = 54 + Math.floor(i / 18) * 18; return `<g transform="translate(${x} ${y})"><g class="lk2-k" data-i="${i}" style="--d:${(i * .008).toFixed(3)}s"><rect width="14" height="14" rx="2.5"/><circle cx="7" cy="5.6" r="2.1" class="lk2-h"/><rect x="6" y="6.8" width="2" height="4.4" class="lk2-h"/></g></g>`; };
+    return `<div class="k-col lk2" data-s="y26">
+      <div class="k-seg">${Object.entries(LK2).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[2]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 236" class="k-svg" aria-label="One person and the keys that come with them. A grid of key cells counts machine identities per human: 82 in 2025, 109 in 2026, and about 124 next year if machine identities grow 77% and people 56%. A screen bills for one seat; a lock guards every identity.">
+        <text x="14" y="18" font-size="13" class="t-strong">One person, 109 keys</text>
+        <text x="14" y="33" font-size="10.5">Machine identities, including AI agents, for every human in the average company</text>
+        <g class="lk2-who"><circle cx="58" cy="86" r="13"/><path d="M38 132 V114 Q38 102 58 102 Q78 102 78 114 V132 Z"/><rect x="51" y="110" width="14" height="10" rx="2" class="lk2-badge"/></g>
+        <text x="58" y="150" text-anchor="middle" font-size="10.5">1 person</text>
+        <text x="58" y="186" text-anchor="middle" font-size="30" class="lk2-n" id="lk2N">109</text>
+        <text x="58" y="200" text-anchor="middle" font-size="10">keys per person</text>
+        <g class="lk2-grid">${[...Array(126)].map((_, i) => cell(i)).join("")}</g>
+        <text x="118" y="198" font-size="10.5">A screen bills for</text><rect x="210" y="189" width="11" height="11" rx="2" class="lk2-seat"/><text x="227" y="198" font-size="10.5" class="lk2-sv">1 seat</text>
+        <text x="118" y="216" font-size="10.5">A lock guards</text><text x="194" y="216" font-size="10.5" class="lk2-lv" id="lk2L">all 110 identities</text>
+      </svg>
+      ${sayStack("cf1-say", "lk2Say", Object.values(LK2).map(v => v[3]))}
+    </div>${capLS("Palo Alto Networks’ 2026 Identity Security Landscape (109, and the growth companies expect, via Help Net Security); CyberArk’s 2025 survey via VentureBeat (82). Next year is my arithmetic from those expectations.", "Palo Alto Networks; CyberArk; my arithmetic.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk2"), say = fr.querySelector("#lk2Say"), keys = [...fr.querySelectorAll(".lk2-k")];
+    autoTabs(fr, Object.keys(LK2), v => {
+      const [on, ghost] = LK2[v];
+      col.dataset.s = v; say.innerHTML = LK2[v][3];
+      keys.forEach((k, i) => { k.classList.toggle("on", i < on); k.classList.toggle("ghost", i >= on && i < ghost); });
+      fr.querySelector("#lk2N").textContent = ghost ? "~" + ghost : on;
+      fr.querySelector("#lk2L").textContent = `all ${ghost ? "~" + (ghost + 1) : on + 1} identities`;
+    }, 4200);
+  } };
+const LK3 = {
+  buy: ["Ledgers buy locks", "<b>Ledgers buy locks:</b> ServiceNow, which keeps IT and service records for big companies, bought Veza, which maps who and what can reach each system, then Armis for about $7.75 billion. Each cell is $1 billion."],
+  keys: ["Locks buy keys", "<b>Locks buy keys:</b> Palo Alto Networks paid $25 billion for CyberArk to secure every identity, human, machine and agent. Google paid $32 billion for Wiz. Each cell is $1 billion."],
+  gate: ["Ledgers build gates", "<b>Ledgers build gates:</b> in 2025 Salesforce changed Slack’s terms so outside AI tools like Glean can’t store or index its messages. My read: the record becomes a toll road."]
+};
+A["ledger-3a"] = { html: () => {
+    const cells = (n, x0, y0, cls) => [...Array(n)].map((_, i) => `<rect x="${x0 + (i % 8) * 8}" y="${y0 - Math.floor(i / 8) * 8}" width="6.4" height="6.4" rx="1.2" class="lk3-c ${cls}" style="--d:${(i * .02).toFixed(2)}s"/>`).join("");
+    const bolts = [...Array(10)].map((_, i) => { const a = i / 10 * Math.PI * 2 - Math.PI / 2, x = 344 + 54 * Math.cos(a), y = 108 + 54 * Math.sin(a); return `<rect x="-5" y="-3" width="10" height="6" rx="1.5" class="lk3-bolt" style="--d:${(i * .09).toFixed(2)}s" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(a * 180 / Math.PI).toFixed(0)})"/>`; }).join("");
+    const page = (x, flip) => `<path d="M${x} 66 Q${x + (flip ? -30 : 30)} 60 ${x + (flip ? -56 : 56)} 66 V156 Q${x + (flip ? -30 : 30)} 150 ${x} 156 Z" class="lk3-pg"/>${[0, 1, 2, 3, 4, 5].map(r => [0, 1, 2, 3].map(c => `<rect x="${(flip ? x - 50 + c * 11 : x + 6 + c * 11)}" y="${76 + r * 12}" width="8" height="7" rx="1" class="lk3-rc"/>`).join("")).join("")}`;
+    return `<div class="k-col lk3" data-t="buy">
+      <div class="k-seg">${Object.entries(LK3).map(([k, v]) => `<button type="button" class="k-b" data-v="${k}">${v[0]}</button>`).join("")}</div>
+      <svg viewBox="0 0 460 246" class="k-svg" aria-label="The ledger and the lock are merging. On the left, the ledger, an open book of record cells; on the right, the lock, a vault door ringed with bolts. Ledgers buy locks: ServiceNow bought Veza and then Armis for about $7.75 billion, shown as 8 cells of $1 billion flowing into the ledger. Locks buy keys: Palo Alto Networks paid $25 billion for CyberArk and Google $32 billion for Wiz, and the vault's bolts light up. Ledgers build gates: Salesforce's 2025 Slack terms drop a gate in front of the ledger and an outside AI tool bounces off.">
+        <text x="14" y="18" font-size="13" class="t-strong">The ledger and the lock are merging</text>
+        <text x="124" y="52" text-anchor="middle" font-size="9.5" class="lk3-k l">THE LEDGER</text><text x="344" y="34" text-anchor="middle" font-size="9.5" class="lk3-k k">THE LOCK</text>
+        <g class="lk3-book">${page(124, true)}${page(124, false)}<path d="M124 66 V156" class="lk3-spine"/></g>
+        <text x="124" y="174" text-anchor="middle" font-size="10" class="lk3-who" id="lk3L">ServiceNow</text>
+        <path d="M184 110 H282" class="lk3-link"/><path d="M190 110 l8 -5 v10 Z" class="lk3-head"/>
+        <g class="lk3-door"><circle cx="344" cy="108" r="62" class="lk3-ring"/><circle cx="344" cy="108" r="46" class="lk3-face"/>${bolts}
+          <g class="lk3-dial"><circle cx="344" cy="108" r="16" class="lk3-dl"/>${[0, 1, 2, 3, 4, 5].map(i => `<path d="M344 92 V97" class="lk3-tick" transform="rotate(${i * 60} 344 108)"/>`).join("")}<path d="M344 108 V96" class="lk3-hand"/></g></g>
+        <text x="344" y="186" text-anchor="middle" font-size="10" class="lk3-who" id="lk3R">identity, cloud, runtime</text>
+        <g class="lk3-gate"><path d="M44 60 V160" class="lk3-post"/><g class="lk3-bar"><rect x="36" y="58" width="16" height="104" rx="2"/>${[0, 1, 2, 3, 4].map(i => `<path d="M36 ${66 + i * 20} l16 10" class="lk3-stripe"/>`).join("")}</g></g>
+        <g class="lk3-bot"><circle cx="18" cy="104" r="6"/><rect x="11" y="112" width="14" height="14" rx="3"/><text x="18" y="140" text-anchor="middle" font-size="9" class="lk3-bt">Glean</text></g>
+        <g class="lk3-deal buy"><text x="184" y="204" font-size="10" class="lk3-dt">Veza · access map · Mar 2026</text><text x="184" y="220" font-size="10" class="lk3-dt">Armis · $7.75B · Apr 2026</text>${cells(8, 184, 228, "l")}</g>
+        <g class="lk3-deal keys">${cells(25, 14, 228, "k")}<text x="14" y="198" font-size="10" class="lk3-dt">CyberArk · $25B · Feb 2026</text>${cells(32, 236, 228, "k")}<text x="236" y="198" font-size="10" class="lk3-dt">Wiz · $32B · Mar 2026</text><text x="88" y="236" font-size="9.5" class="lk3-by">Palo Alto</text><text x="310" y="236" font-size="9.5" class="lk3-by">Google</text></g>
+        <g class="lk3-deal gate"><text x="14" y="214" font-size="10.5" class="lk3-dt">Salesforce · Slack terms · 2025</text><text x="14" y="230" font-size="10" class="lk3-by">outside AI can’t store or index messages</text></g>
+      </svg>
+      ${sayStack("cf1-say", "lk3Say", Object.values(LK3).map(v => v[1]))}
+    </div>${capLS("Schematic. Deals: SecurityBrief (Armis, after Veza), ITPro (CyberArk), SecurityWeek (Wiz). Slack’s terms: Reuters via Yahoo Finance. Each cell is $1 billion; Veza’s price wasn’t disclosed.", "SecurityBrief; ITPro; SecurityWeek; Reuters.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".lk3"), say = fr.querySelector("#lk3Say");
+    const L = { buy: "ServiceNow", keys: "", gate: "Salesforce · Slack" }, R = { buy: "Veza, Armis", keys: "Palo Alto · Google", gate: "identity, cloud, runtime" };
+    autoTabs(fr, Object.keys(LK3), v => { col.dataset.t = v; say.innerHTML = LK3[v][1]; fr.querySelector("#lk3L").textContent = L[v]; fr.querySelector("#lk3R").textContent = R[v]; }, 4600);
+  } };
+})();
 (function () {
-  const AX = window.AX, PICK = {"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
@@ -10563,7 +10835,7 @@ function initLinks(root) {
   $$(".sd", root).forEach(g => g.addEventListener("click", () => { location.hash = g.dataset.id; }));
 }
 const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<div class="bd-scroll" tabindex="-1"><div class="${cls}" id="wb">${inner}</div></div>`; };
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa", ledger: "Lk" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
@@ -10602,8 +10874,8 @@ function initTable(root) {
     card.classList.toggle("locked", locked === id);
     card.style.setProperty("--bin", b.css);
     card.innerHTML = `<button type="button" class="pt-x" aria-label="Close this element">Close</button><div class="pt-big"><i>${n}</i><b>${S[id]}</b><span>${t.short}</span></div>
-      <p class="pt-pin">${locked === id ? `Locked on ${S[id]}. <button type="button" class="pt-unpin">Unlock</button>` : "Click an element to lock it here"}</p>
-      <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn" href="#${id}">Open the thesis →</a>`; };
+      ${locked === id ? "" : `<p class="pt-pin">Click an element to lock it here</p>`}
+      <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn primary pt-go" href="#${id}">Open the thesis <i aria-hidden="true">→</i></a>`; };
   const sheet = matchMedia("(max-width: 700px)"), hover = matchMedia("(hover: hover)");
   els.forEach(e => {
     e.addEventListener("click", () => {
@@ -10616,7 +10888,6 @@ function initTable(root) {
   });
   card.addEventListener("click", e => {
     if (e.target.closest(".pt-x")) { card.classList.remove("open"); locked = null; els.forEach(x => { x.classList.remove("lock"); x.setAttribute("aria-pressed", "false"); }); }
-    if (e.target.closest(".pt-unpin")) { locked = null; pick(shown); }
   });
   pick(THESES[THESES.length - 1].id);
 }

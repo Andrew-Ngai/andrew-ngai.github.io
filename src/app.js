@@ -251,6 +251,22 @@ const SRC = {
   waymo500: "https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",
   waymoQ3: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2026/",
   waymoRA: "https://techcrunch.com/2026/02/22/techcrunch-mobility-waymo-makes-its-defense/",
+  lkKip: "https://www.kiplinger.com/investing/tech-stocks/saasmageddon-survivors-top-software-stocks-to-buy",
+  lkSaastr: "https://saastr.com/beyond-the-saaspocalypse-the-winners-and-losers-of-2026-so-far",
+  lkIo: "https://io-fund.com/ai-stocks/ai-trends-2026-cybersecurity-stocks-rally",
+  lkCrwd: "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial",
+  lkCrwdCall: "https://www.webull.com/news/15497781704532992",
+  lkZs: "https://www.tikr.com/blog/zscaler-just-made-its-case-at-zenith-live-heres-why-the-ai-fear-driving-its-60-drop-may-be-backwards",
+  lkPanwId: "https://www.paloaltonetworks.com/idira/identity-security-landscape-report",
+  lkHns: "https://www.helpnetsecurity.com/2026/05/14/2026-identity-security-landscape-report/",
+  lkVb82: "https://venturebeat.com/security/machine-identities-outnumber-humans-82-to-1-legacy-iam-cant-keep-up",
+  lkGlass: "https://www.anthropic.com/glasswing",
+  lkGlassUpd: "https://www.anthropic.com/research/glasswing-initial-update",
+  lkArmis: "https://securitybrief.co.uk/story/servicenow-completes-usd-7-75-billion-armis-acquisition",
+  lkCyberArk: "https://www.itpro.com/business/acquisition/palo-alto-networks-ceo-hails-the-end-of-identity-silos-as-firm-closes-cyberark-acquisition",
+  lkWiz: "https://www.securityweek.com/wiz-joins-google-cloud-as-landmark-acquisition-closes/",
+  lkSlack: "https://finance.yahoo.com/news/salesforce-blocks-ai-rivals-using-014746612.html",
+  lkNov5: "https://www.morningstar.com/news/marketwatch/20261105219/why-crowdstrike-and-cybersecurity-stocks-got-crunched-in-thursdays-rout",
   waymoOrder: "https://www.thedrive.com/tech/21219/waymo-will-buy-up-to-62000-chrysler-pacificas-for-ride-hailing-service",
 };
 
@@ -903,6 +919,29 @@ const ALL_THESES = [
     note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
     receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
     viz: "physical", echo: { pose: "camera", acc: "camera", name: "Camera Op" }
+  },
+  {
+    id: "ledger", die: [2, 6], stance: "original", probe: true,
+    probeHook: "The screens fell. The lock took off. The ledger is next.",
+    layer: "A", tldr: ["SaaS that survives AI is a ledger or a lock.", "The screens fell and stayed down: HubSpot −33%, monday.com −36%. The locks took off: Okta +146%, CrowdStrike +120%, because every agent is a new key to guard. The ledger survived but isn’t paid yet: Salesforce +4%."],
+    title: "SaaS that survives AI is a ledger or a lock.",
+    h2: "SaaS that survives | AI is a ledger | or a lock.",
+    short: "The ledger and the lock",
+    hook: "The SaaSpocalypse sorted software by one question: does an agent still need you? It needs the record it writes to and the lock that decides what it may touch. Everything else was a screen.",
+    ref: { k: "Reference design", label: "My own read of 2026’s software split (SaaStr’s winners and losers), CrowdStrike’s record quarter and Palo Alto Networks’ 2026 identity survey", href: SRC.lkSaastr },
+    signal: `<p class="claim">AI ate the screens. | It made the ledger | and the lock | worth more.</p>
+      <p>Early in 2026, about $2 trillion came off software stocks on the fear that AI agents would do the work software seats were sold for. By September the software index had bounced about 40% from its April low, but the companies didn’t move together. CrowdStrike was up 83% for the year and Snowflake 73%; HubSpot was down 33%, monday.com 36% and Figma 35%. Twilio and monday.com had both grown 22% the quarter before, and finished 109 points apart.</p>
+      <p>By late October the gap was wider. Okta, which guards logins, was up 146% for the year and CrowdStrike 120%. In August CrowdStrike reported a record $333 million of new annual recurring revenue for the quarter, up 51%, and its CEO said the market had accepted “that AI adoption needs security.” Salesforce, the system of record for sales, was up 4% through early September.</p>`,
+    takes: [
+      ["Everything between the ledger and the lock is a screen.", "A ledger is the record an agent has to read and write: the customer list, the books, the patient chart. A lock decides who and what may touch it. Most other SaaS was a screen for people to click, sold by the seat, and seats are the line CIOs cut first when budget moves to AI. Even security got punished when it billed by the head: Zscaler, which charges per user, fell about 31% on its May results. Its new product for agent traffic is priced by traffic and requests, and non-seat deals went from about 25% to 30% of its new contract value in a single quarter."],
+      ["Every agent is a new key to guard.", "Palo Alto Networks counts 109 machine identities for every human in the average company, up from 82 a year earlier, and companies expect their AI agents to grow 85% in the next year. Each one is a login that can be stolen, and attackers get the same models: in a month, Anthropic’s Mythos Preview and about 50 partners found more than 10,000 high- or critical-severity flaws in the world’s most important software. So the lock is the rare SaaS whose market grows with agents, not employees. CrowdStrike’s ARR from customers on Falcon Flex, its draw-down plan, passed $2.29 billion, up 101%, and its identity business grew 34%."],
+      ["The ledger and the lock are merging.", "This year the record-keepers bought locks and the lock-makers bought keys. ServiceNow, which runs IT and service records for big companies, bought Veza, which maps who and what can reach each system, then Armis for about $7.75 billion. Palo Alto closed its $25 billion purchase of CyberArk to secure “every identity — human, machine, and agent,” and Google closed its $32 billion purchase of Wiz. Ledgers are fencing their data too: in 2025 Salesforce changed Slack’s terms so outside AI tools like Glean can’t store or index its messages. My read: the decade’s winners own both halves, the record of what’s true and the rules for who may change it."]
+    ],
+    bet: `Back the ledger the market hasn’t paid for yet, and the lock it already has. Systems of record that charge agents to read and write, per call or per action rather than per seat, above all in regulated records like health, finance and government. Identity and runtime security for agents, priced by what it protects. And the tools that join the two: permissions, audit trails and the policies that decide what each agent may do. Be wary of seat-priced apps whose product is mostly a screen, and of security still billed per employee. <a href="#saas">AI eats the seat, not the software</a> covers how the ledger gets paid.`,
+    wrong: "AI labs become the lock and agents keep their own records. If models that find and fix flaws on their own turn security into a feature, a fear that helped knock CrowdStrike and Okta down about 10% on November 5, and companies let agents rebuild their records in-house, neither half needs a SaaS company.",
+    note: "Not investment advice. Stock moves are year to date at the dates shown, from SaaStr and the I/O Fund; ARR figures are CrowdStrike’s; identity counts are from Palo Alto Networks’ survey.",
+    receipts: [["Kiplinger: the roughly $2 trillion SaaSpocalypse", SRC.lkKip], ["SaaStr: the winners and losers of 2026 so far (Sep 2026)", SRC.lkSaastr], ["I/O Fund: Okta +146%, CrowdStrike +120% (Oct 2026)", SRC.lkIo], ["CrowdStrike: record Q2 fiscal 2027 (Aug 2026)", SRC.lkCrwd], ["CrowdStrike Q2 call: identity ARR up 34%", SRC.lkCrwdCall], ["TIKR on Zscaler’s per-user pricing and its May drop", SRC.lkZs], ["Palo Alto Networks: 2026 Identity Security Landscape, 109 to 1", SRC.lkPanwId], ["Help Net Security: machines +77%, people +56% expected", SRC.lkHns], ["VentureBeat: CyberArk’s 2025 count, 82 to 1", SRC.lkVb82], ["Anthropic: Project Glasswing and Mythos Preview", SRC.lkGlass], ["Anthropic: Glasswing’s first update, 10,000+ flaws", SRC.lkGlassUpd], ["SecurityBrief: ServiceNow completes its $7.75 billion Armis deal, after Veza (Apr 2026)", SRC.lkArmis], ["ITPro: Palo Alto closes its $25 billion CyberArk deal", SRC.lkCyberArk], ["SecurityWeek: Google closes its $32 billion Wiz deal", SRC.lkWiz], ["Reuters: Salesforce blocks AI rivals from Slack data (2025)", SRC.lkSlack], ["MarketWatch: cybersecurity’s November 5 rout", SRC.lkNov5]],
+    viz: "ledger", echo: { pose: "vaultkeeper", acc: "vaultkeeper", name: "Vault Keeper" }
   }
 ];
 
@@ -955,6 +994,7 @@ const DOODLES = {
   cuda: "<path d=\"M30 62 V34 h8 v6 h8 v-6 h8 v6 h8 v-6 h8 V62 Z M50 62 v-12 a4 4 0 0 1 8 0 v12\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M8 70 q8 -5 16 0 t16 0 t16 0 t16 0 t16 0 t16 0\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M84 72 C92 60 104 58 112 66 M86 66 h4 M94 62 h4 M102 61 h4\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"25\" fill=\"#26303a\" font-size=\"13\" text-anchor=\"middle\">CUDA</text><text x=\"60\" y=\"97\" fill=\"#1d8a5c\" font-size=\"15\" text-anchor=\"middle\">the few build bridges</text>",
   circular: "<path d=\"M60 18 A26 26 0 1 1 34.2 46.8 M30 38 L34.4 47.4 L42.6 41\" stroke=\"#1d8a5c\" stroke-width=\"2.8\" /><text x=\"60\" y=\"52\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M84 52 C96 56 102 64 106 74 M99 70 L106.4 75 L108 66\" stroke=\"#d23c3c\" stroke-width=\"2.8\" /><text x=\"108\" y=\"88\" fill=\"#d23c3c\" font-size=\"12\" text-anchor=\"middle\">exit</text><text x=\"56\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">look for the exit</text>",
   robots: "<path d=\"M18 52 Q20 40 34 38 L46 27 Q52 22 62 22 L80 22 Q90 22 96 30 L104 38 Q112 40 112 52 V58 H18 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M46 38 H100\" stroke=\"#26303a\" stroke-width=\"2\" /><path d=\"M38 58 L33 76 L24 78 M92 58 L97 76 L106 78\" stroke=\"#d23c3c\" stroke-width=\"3\" /><path d=\"M60 28 v6 a5 5 0 0 0 10 0 v-6\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"96\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">an EV with legs</text>",
+  ledger: "<path d=\"M10 34 Q30 28 50 34 V78 Q30 72 10 78 Z M50 34 Q70 28 90 34 V78 Q70 72 50 78\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M16 44 H42 M16 52 H42 M16 60 H36 M58 44 H84 M58 52 H80\" stroke=\"#26303a\" stroke-width=\"1.6\" /><rect x=\"80\" y=\"52\" width=\"30\" height=\"24\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M86 52 V44 Q86 34 95 34 Q104 34 104 44 V52\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"95\" cy=\"62\" r=\"2.6\" fill=\"#d23c3c\" /><path d=\"M95 64 V69\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><text x=\"60\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">the ledger and the lock</text>",
   physical: "<path d=\"M24 72 V48 Q24 44 28 44 Q32 44 32 48 V60 M32 48 V38 Q32 34 36 34 Q40 34 40 38 V58 M40 40 Q40 36 44 36 Q48 36 48 40 V60 M48 44 Q48 40 52 40 Q56 40 56 44 V66 Q56 82 40 84 Q26 84 24 72 Z\" stroke=\"#26303a\" stroke-width=\"2.4\" /><rect x=\"70\" y=\"40\" width=\"30\" height=\"20\" rx=\"3\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><path d=\"M100 46 L112 40 V60 L100 54\" stroke=\"#1f5fbf\" stroke-width=\"2.6\" /><circle cx=\"75\" cy=\"31\" r=\"3.4\" fill=\"#d23c3c\" /><text x=\"82\" y=\"35\" fill=\"#d23c3c\" font-size=\"11\">REC</text><text x=\"64\" y=\"98\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">film the hands</text>",
 };
 
@@ -1218,6 +1258,11 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#2a3f58"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#1a2636"/><path d="M27 -2 Q31 -7 39 -8.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/><g transform="translate(50 -2.6)"><circle r="4.4" fill="none" stroke="#ffb23f" stroke-width="1.7" stroke-dasharray="1.9 1.3"/><circle r="1.6" fill="#ffb23f"/></g>` +
       `<g class="echo-hand-l">${[0, 1, 2].map(i => `<g class="xmc-bolt" style="animation-delay:${(i * .6).toFixed(1)}s"><path d="M${-19 + i * 7} 38 h3.6 l1.8 2.4 l-1.8 2.4 h-3.6 l-1.8 -2.4 Z" fill="#9fb3c4"/></g>`).join("")}<path d="M-8 52 V64 A9 9 0 0 0 10 64 V52" stroke="#d23c3c" stroke-width="5.6" fill="none"/><rect x="-10.8" y="47" width="5.6" height="6" fill="#d4e3f0"/><rect x="7.2" y="47" width="5.6" height="6" fill="#d4e3f0"/>${mitt(1, 76, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xmc-wrench"><path d="M96 72 L110 55" stroke="#9fb3c4" stroke-width="4" stroke-linecap="round"/><path d="M106.5 54.5 L111.5 48.5 L118 52.5 L115.4 55.6 L112.2 53.6 L110.4 55.8 L113.4 57.8 L110.6 61 Z" fill="#9fb3c4"/></g>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "vaultkeeper") {
+    // Vault keeper: a cap with a keyhole badge; a ring of keys jingling in one fin, a ledger with a lit clasp in the other
+    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#1d3654"/><path d="M14 5.5 H86 Q88.5 9.5 84 11 H16 Q11.5 9.5 14 5.5 Z" fill="#0f1f33"/><g transform="translate(50 -2.4)"><circle r="5" fill="#3fd6c8"/><circle cy="-1" r="1.7" fill="#0f1f33"/><path d="M-1 0 L-1.6 3 H1.6 L1 0 Z" fill="#0f1f33"/></g>` +
+      `<g class="echo-hand-l"><g class="xvk-keys"><circle cx="0" cy="58" r="7" fill="none" stroke="#9fb3c4" stroke-width="2"/>${[[-14, 66, -28], [-4, 72, 4], [8, 68, 30]].map(([x, y, r]) => `<g transform="rotate(${r} ${x} ${y})"><circle cx="${x}" cy="${y}" r="3.6" fill="#ffb23f"/><circle cx="${x}" cy="${y}" r="1.3" fill="#7a5410"/><rect x="${x - 1.2}" y="${y + 3}" width="2.4" height="10" fill="#ffb23f"/><rect x="${x + 1}" y="${y + 9}" width="2.6" height="1.8" fill="#ffb23f"/></g>`).join("")}</g>${mitt(1, 76, 20)}</g>` +
+      `<g class="echo-hand-r"><rect x="90" y="48" width="24" height="30" rx="2" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M94 55 H110 M94 60 H110 M94 65 H106" stroke="#9fb3c4" stroke-width="1.2"/><rect class="xvk-clasp" x="108" y="58" width="7" height="8" rx="1.5" fill="#3fd6c8"/>${mitt(95.5, 74)}</g>`;
   } else if (acc === "camera") {
     // Camera op: a head strap with an action camera and a blinking REC light; a clapperboard in one fin, a phone filming in the other
     accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
@@ -2471,7 +2516,8 @@ const VIZ = {
   circular() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
   // physical AI: the body, the data and the playbook draw all three slides in visuals.js
   robots() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
-  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
+  physical() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; },
+  ledger() { return `<div class="viz" data-step="1"><div class="frame f1"></div><div class="frame f2"></div><div class="frame f3"></div></div>`; }
 };
 
 /* interactive bits inside a memo's visual */
@@ -4197,7 +4243,7 @@ const plainShell = (cls, inner, title) => { const { N } = boardMeta(); return `<
 
 // The periodic table of my theses: each thesis an element, numbered in the order I published it.
 // Like Mendeleev's first table it leaves gaps on purpose, for the theses not discovered yet.
-const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa" };
+const SYM = { automate: "Au", agent: "Ag", weights: "Wt", ooms: "Om", molecules: "Mo", bloom: "Bl", fleet: "Fl", gpulife: "Gl", saas: "Sa", neocloud: "Nc", builders: "Bu", moat: "Mt", memory: "Me", backend: "Bk", heat: "He", screentime: "St", quantum: "Qu", tokens: "Tk", factory: "Fa", chipnames: "Cn", openclaw: "Oc", race: "Ra", silicon: "Si", paycheck: "Pc", contracts: "Ct", light: "Ph", cuda: "Cd", circular: "Lp", robots: "Rb", physical: "Pa", ledger: "Lk" };
 function symbols() {
   const used = new Set(Object.values(SYM)), out = {};
   THESES.forEach(t => { if (SYM[t.id]) { out[t.id] = SYM[t.id]; return; }
@@ -4230,15 +4276,15 @@ function initTable(root) {
   const card = $("#ptCard", root);
   if (!card) return;
   const S = symbols(), all = Object.fromEntries([...BOARD.stack, ...BOARD.side].map(l => [l.k, l])), els = $$(".pt-el[data-id]", root);
-  // hovering previews an element; clicking locks the card onto it, so the mouse can travel to "Open the thesis"
+  // hovering previews an element; clicking locks the card onto it (click it again to let go), so the mouse can travel to "Open the thesis"
   let locked = null, shown = null;
   const pick = id => { shown = id; const t = byId[id], b = BINS[t.stance] || BINS.original, [title, note] = tdr(t), L = all[t.layer] || { n: "Just pinned", s: "" }, n = THESES.indexOf(t) + 1;
     els.forEach(e => { e.classList.toggle("on", e.dataset.id === id); e.classList.toggle("lock", e.dataset.id === locked); e.setAttribute("aria-pressed", String(e.dataset.id === locked)); });
     card.classList.toggle("locked", locked === id);
     card.style.setProperty("--bin", b.css);
     card.innerHTML = `<button type="button" class="pt-x" aria-label="Close this element">Close</button><div class="pt-big"><i>${n}</i><b>${S[id]}</b><span>${t.short}</span></div>
-      <p class="pt-pin">${locked === id ? `Locked on ${S[id]}. <button type="button" class="pt-unpin">Unlock</button>` : "Click an element to lock it here"}</p>
-      <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn" href="#${id}">Open the thesis →</a>`; };
+      ${locked === id ? "" : `<p class="pt-pin">Click an element to lock it here</p>`}
+      <p class="pt-l">${L.n} · ${L.s}</p><span class="bin">${b.label}</span><h3>${title}</h3><p class="pt-n">${note}</p><a class="btn primary pt-go" href="#${id}">Open the thesis <i aria-hidden="true">→</i></a>`; };
   // on a phone the card is a sheet that slides up over the table, so a tap doesn't send you scrolling for it
   const sheet = matchMedia("(max-width: 700px)"), hover = matchMedia("(hover: hover)");
   els.forEach(e => {
@@ -4252,7 +4298,6 @@ function initTable(root) {
   });
   card.addEventListener("click", e => {
     if (e.target.closest(".pt-x")) { card.classList.remove("open"); locked = null; els.forEach(x => { x.classList.remove("lock"); x.setAttribute("aria-pressed", "false"); }); }
-    if (e.target.closest(".pt-unpin")) { locked = null; pick(shown); }
   });
   pick(THESES[THESES.length - 1].id);
 }
