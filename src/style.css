@@ -2870,3 +2870,24 @@ html.paused .theater{animation:none}
   .th-stops{border-left:0;border-top:1px solid var(--rule)}
   .th-list{overflow:visible}
 }
+.echo-tailor .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-tailor .echo-fin-l,.echo-tailor .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xta-a{transform-origin:100px 66px;animation:xta-a 1s ease-in-out infinite}
+.xta-b{transform-origin:100px 66px;animation:xta-b 1s ease-in-out infinite}
+@keyframes xta-a{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(1deg)}}
+@keyframes xta-b{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-1deg)}}
+.xta-tape{stroke-dashoffset:0;animation:xta-tape 2.6s ease-in-out infinite}
+@keyframes xta-tape{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}
+.xta-cell{animation:xta-cell 1.6s ease-in-out infinite}
+@keyframes xta-cell{0%,100%{fill-opacity:.15}30%{fill-opacity:.9}}
+.echo-navigator .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-navigator .echo-fin-r,.echo-navigator .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xnv-needle{transform-origin:2px 68px;animation:xnv-needle 4.2s ease-in-out infinite}
+@keyframes xnv-needle{0%,18%{transform:rotate(0)}55%,72%{transform:rotate(38deg)}100%{transform:rotate(0)}}
+.xnv-route{animation:k-ants 1.2s linear infinite}
+.echo-genedoc .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-genedoc .echo-fin-r,.echo-genedoc .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
+.xgd-helix{transform-origin:0 68px;animation:xgd-helix 2.4s ease-in-out infinite}
+@keyframes xgd-helix{0%,100%{transform:scaleX(1)}50%{transform:scaleX(-1)}}
+.xgd-drop{animation:xgd-drop 1.8s ease-in infinite}
+@keyframes xgd-drop{0%,40%{opacity:0;transform:translateY(-4px)}50%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(12px)}100%{opacity:0;transform:translateY(14px)}}

@@ -2861,9 +2861,294 @@ A["ledger-3a"] = { html: () => {
   } };
 })();
 
+// 34 · GPUs discover the model. ASICs mass-produce it.
+(() => {
+const A = window.AX;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const fmt = (v, d = 0) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+
+// ---------------------------------------------------------- slide 1: same work, two energy bills
+// Horowitz, ISSCC 2014 (45 nm): a 32-bit DRAM read is 640 pJ, a 32-bit float multiply 3.7 pJ.
+// Fetch every time: 643.7 pJ a multiply. Pass it along a row of 256 (Google's first TPU): 640/256 + 3.7 = 6.2 pJ.
+A["asic-1a"] = { html: () => {
+    const G = 12, P = 9, X0 = 288, Y0 = 92;
+    const grid = [...Array(G * G)].map((_, k) => { const r = Math.floor(k / G), c = k % G; return `<rect x="${X0 + c * P}" y="${Y0 + r * P}" width="7" height="7" rx="1.3" class="a1-g" style="--d:${((r + c) * .07).toFixed(2)}s"/>`; }).join("");
+    const packets = [0, 1, 2, 3].map(i => `<circle r="3" class="a1-pk" style="offset-path:path('M120 76 V140');animation-delay:-${(i * .2).toFixed(1)}s"/>`).join("");
+    return `<div class="k-col a1">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="Same work, two energy bills. Two designs each do 1,000 multiplies. On the left, every multiply fetches its number from memory, a 640-picojoule trip for a 3.7-picojoule multiply, so packets shuttle nonstop and the energy gauge fills to about 644 nanojoules. On the right, a systolic grid reads each number once and passes it from cell to cell in a diagonal heartbeat; the same 1,000 multiplies cost about 6.2 nanojoules, about 100 times less.">
+        <text x="14" y="18" font-size="13" class="t-strong">Same work, two energy bills</text>
+        <text x="14" y="33" font-size="10.5">Each side does the same multiplies. Only the trips to memory differ.</text>
+        <text x="446" y="33" text-anchor="end" font-size="10.5" class="a1-n">multiplies done: <tspan id="a1N">0</tspan></text>
+        <text x="30" y="52" font-size="9.5" class="a-k">FETCH IT EVERY TIME</text><text x="246" y="52" font-size="9.5" class="a-k">PASS IT ALONG: A SYSTOLIC GRID</text>
+        <rect x="30" y="58" width="180" height="18" rx="3" class="a1-dram"/><text x="40" y="71" font-size="9.5" class="a1-dt">DRAM · 640 pJ a trip</text>
+        <rect x="246" y="58" width="190" height="18" rx="3" class="a1-dram"/><text x="256" y="71" font-size="9.5" class="a1-dt">DRAM · read once</text>
+        <path d="M120 76 V140" class="a1-pipe hot"/>${packets}
+        <rect x="104" y="140" width="32" height="32" rx="4" class="a1-mac"/><text x="120" y="160" text-anchor="middle" font-size="12" class="a1-x">×</text>
+        <text x="120" y="188" text-anchor="middle" font-size="9.5" class="a-dim">one multiplier, one trip each time</text>
+        <path d="M292 76 V92" class="a1-pipe"/><circle r="3" class="a1-pk slow" style="offset-path:path('M292 76 V95')"/>
+        ${grid}
+        <path d="M398 120 h10 l4 -9 l5 18 l4 -12 l3 3 h22" class="a1-ekg"/><text x="402" y="146" font-size="8.5" class="a-dim">each number</text><text x="402" y="157" font-size="8.5" class="a-dim">is reused</text><text x="402" y="168" font-size="8.5" class="a-dim">cell to cell</text>
+        <text x="30" y="214" font-size="20" class="a1-e hot" id="a1L">0 nJ</text><text x="246" y="214" font-size="20" class="a1-e" id="a1R">0 nJ</text>
+        <rect x="30" y="222" width="180" height="9" rx="4.5" class="a1-tr"/><rect x="30" y="222" width="0" height="9" rx="4.5" class="a1-fl hot" id="a1GL"/>
+        <rect x="246" y="222" width="190" height="9" rx="4.5" class="a1-tr"/><rect x="246" y="222" width="0" height="9" rx="4.5" class="a1-fl" id="a1GR"/>
+        <text x="446" y="244" text-anchor="end" font-size="10" class="a1-v" id="a1V"></text>
+      </svg>
+      <p class="cf1-say">The multiply is the cheap part: in Mark Horowitz’s energy table, fetching a number from DRAM costs about 170 times as much. Google’s first TPU was built around a systolic grid of 65,536 multipliers, where each number is read once and passed along a row of 256, so the trip is shared and the math becomes most of the bill.</p>
+    </div>${capLS("Energy per operation from Mark Horowitz’s 45 nm table (ISSCC 2014). Right side assumes each read is shared across 256 multiplies, as in the first TPU’s rows (Jouppi et al., 2017). Grid drawn 12 × 12. GPUs reuse data too, through caches and tensor cores.", "Horowitz, ISSCC 2014; Jouppi et al., 2017.")}`; },
+  init: fr => {
+    const N = fr.querySelector("#a1N"), L = fr.querySelector("#a1L"), R = fr.querySelector("#a1R"), GL = fr.querySelector("#a1GL"), GR = fr.querySelector("#a1GR"), V = fr.querySelector("#a1V");
+    let t = 0;
+    const show = n => {
+      N.textContent = fmt(n); L.textContent = fmt(n * .6437, 1) + " nJ"; R.textContent = fmt(n * .0062, 1) + " nJ";
+      GL.setAttribute("width", (180 * n / 1000).toFixed(1)); GR.setAttribute("width", (190 * n * .0062 / 643.7).toFixed(2));
+      V.textContent = n >= 1000 ? "about 100× less energy for the same work" : "";
+    };
+    K.onEnter(fr, () => { t = 0; show(0); });
+    K.raf(fr, dt => { t = Math.max(0, t + dt); const n = Math.min(1000, Math.round(t / 6000 * 1000)); show(n); if (t > 9000) t = 0; });
+    show(1000);
+  } };
+
+// ---------------------------------------------------------- slide 2: same answer, four times sooner
+// Artificial Analysis via Tom's Hardware: Groq-based LPX 3,431 tokens/s; next-fastest public endpoint 870 tokens/s; Gemma 4 31B, 100K context.
+const rnd = (() => { let x = 7; return () => (x = (x * 9301 + 49297) % 233280) / 233280; })();
+const LINES = [...Array(6)].map(() => { const w = []; let x = 0; while (x < 252) { const b = 10 + Math.round(rnd() * 22); if (x + b > 262) break; w.push([x, b]); x += b + 4; } return w; });
+A["asic-2a"] = { html: () => {
+    let k = 0;
+    const term = (y, label, cls) => `<g class="a2-t ${cls}"><rect x="14" y="${y}" width="286" height="88" rx="5" class="a2-win"/><path d="M14 ${y + 15} H300" class="a2-bar"/>${[0, 1, 2].map(i => `<circle cx="${24 + i * 8}" cy="${y + 7.5}" r="2.4" class="a2-dot"/>`).join("")}<text x="52" y="${y + 11}" font-size="9" class="a2-lb">${label}</text><text x="292" y="${y + 11}" text-anchor="end" font-size="9.5" class="a2-tm" id="a2T${cls}">0.00 s</text>` +
+      LINES.map((ln, r) => ln.map(([x, w]) => `<rect x="${24 + x}" y="${y + 24 + r * 10.5}" width="${w}" height="6" rx="3" class="a2-w" data-k="${k++}"/>`).join("")).join("") + `</g>`;
+    const total = LINES.reduce((s, l) => s + l.length, 0);
+    const t1 = term(44, "Groq-based LPX · 3,431 tokens a second", "a"); k = 0;
+    const t2 = term(142, "Next-fastest public endpoint · 870 tokens a second", "b");
+    const tiles = [...Array(16)].map((_, i) => { const r = Math.floor(i / 4), c = i % 4; return `<rect x="${322 + c * 12}" y="${66 + r * 12}" width="10" height="10" rx="1.4" class="${(r + c) % 2 ? "a2-alu" : "a2-sram"}"/>`; }).join("");
+    const stack = x => [0, 1, 2, 3].map(i => `<rect x="${x}" y="${156 + i * 9}" width="12" height="7" rx="1.2" class="a2-hbm"/>`).join("");
+    return `<div class="k-col a2" data-total="${total}">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="Same answer, four times sooner. Two terminals write the same 1,000-word answer, about 1,330 tokens, slowed four times. The Groq-based LPX, at 3,431 tokens a second, finishes in about 0.4 seconds; the next-fastest public endpoint, at 870 tokens a second, takes about 1.5. Beside them, why: Groq's chip keeps the model's weights in SRAM on the chip, about 156 terabytes a second each, while a Rubin GPU reads them from HBM beside the chip at up to 22. The catch: SRAM is tiny, so it takes about 62 chips to hold one 31-billion-parameter model.">
+        <text x="14" y="18" font-size="13" class="t-strong">Same answer, four times sooner</text>
+        <text x="14" y="33" font-size="10.5">A 1,000-word answer from Gemma 4 31B, slowed 4×</text>
+        ${t1}${t2}
+        <text x="316" y="52" font-size="9.5" class="a-k">WHY: WHERE WEIGHTS LIVE</text>
+        <rect x="316" y="60" width="54" height="54" rx="4" class="a2-die"/>${tiles}
+        <text x="378" y="78" font-size="9.5" class="a2-hl">SRAM on the chip</text><text x="378" y="92" font-size="16" class="a2-big a">~156 TB/s</text><text x="378" y="105" font-size="8.5" class="a-dim">per Groq LP30</text>
+        <rect x="330" y="152" width="28" height="36" rx="3" class="a2-die"/>${stack(316)}${stack(361)}
+        <text x="382" y="160" font-size="9.5" class="a2-hl b">HBM beside it</text><text x="382" y="174" font-size="16" class="a2-big b">22 TB/s</text><text x="382" y="187" font-size="8.5" class="a-dim">per Rubin GPU</text>
+        <text x="316" y="216" font-size="9" class="a-dim">The catch: SRAM is tiny. About</text><text x="316" y="228" font-size="9" class="a-dim">62 LP30s hold one 31B model.</text>
+      </svg>
+      <p class="cf1-say">Nvidia paid a reported $20 billion to license Groq’s technology and hire its founder, Jonathan Ross, who helped start Google’s TPU program. Its Groq-based rack answers about four times faster than the next-fastest public endpoint, because the model’s weights sit on the chip instead of beside it.</p>
+    </div>${capLS("Speeds: Artificial Analysis, via Tom’s Hardware; the LPX ran on a private pre-release endpoint, so not like-for-like. Rubin: up to 22 TB/s of HBM4 (Bizon). LP30: about 0.5 GB of SRAM; 40 PB/s across a 256-chip rack, divided per chip. About 0.75 words a token.", "Artificial Analysis; Tom’s Hardware; Bizon.")}`; },
+  init: fr => {
+    const col = fr.querySelector(".a2"), total = +col.dataset.total;
+    const wa = [...fr.querySelectorAll(".a2-t.a .a2-w")], wb = [...fr.querySelectorAll(".a2-t.b .a2-w")];
+    const ta = fr.querySelector("#a2Ta"), tb = fr.querySelector("#a2Tb");
+    let t = 0, na = -1, nb = -1;
+    const set = (ws, n, prev) => { if (n === prev) return n; ws.forEach((w, i) => w.classList.toggle("on", i < n)); return n; };
+    const show = ms => {
+      const fa = Math.min(1, ms / 1552), fb = Math.min(1, ms / 6115);
+      na = set(wa, Math.round(fa * total), na); nb = set(wb, Math.round(fb * total), nb);
+      ta.textContent = (fa * .388).toFixed(2) + " s"; tb.textContent = (fb * 1.529).toFixed(2) + " s";
+      ta.classList.toggle("done", fa >= 1); tb.classList.toggle("done", fb >= 1);
+    };
+    K.onEnter(fr, () => { t = 0; show(0); });
+    K.raf(fr, dt => { t = Math.max(0, t + dt); show(t); if (t > 8600) t = 0; });
+    show(7000);
+  } };
+
+// ---------------------------------------------------------- slide 3: the wafer clock
+const CX = 128, CY = 141, M = m => (m * 10 - 90) * Math.PI / 180, PT = (r, m) => [CX + r * Math.cos(M(m)), CY + r * Math.sin(M(m))];
+const arc = (r, m0, m1) => { const [x0, y0] = PT(r, m0), [x1, y1] = PT(r, m1); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${m1 - m0 > 18 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+A["asic-3a"] = { html: () => {
+    const ticks = [...Array(36)].map((_, m) => { const [x0, y0] = PT(82, m), [x1, y1] = PT(m % 6 ? 85.5 : 89, m); return `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)} L${x1.toFixed(1)} ${y1.toFixed(1)}" class="a3-tk"/>`; }).join("");
+    const nums = [[0, "0"], [6, "6"], [12, "12"], [18, "18"], [24, "24"], [30, "30"]].map(([m, l]) => { const [x, y] = PT(98, m); return `<text x="${x.toFixed(1)}" y="${(y + 3.5).toFixed(1)}" text-anchor="middle" font-size="9" class="a-dim">${l}</text>`; }).join("");
+    const gens = [[0, 6, "300"], [6, 12, "400"], [12, 18, "450"], [18, 24, "500"]].map(([a, b, l], i) => { const [x, y] = PT(44, b - .4), [lx, ly] = PT(32, b - 1.4); return `<path d="${arc(44, a + .4, b - .4)}" class="a3-arc m" pathLength="1" style="--d:${(2.2 + i * .45).toFixed(2)}s"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" class="a3-gd" style="--d:${(2.6 + i * .45).toFixed(2)}s"/><text x="${lx.toFixed(1)}" y="${(ly + 3).toFixed(1)}" text-anchor="middle" font-size="8" class="a3-gl" style="--d:${(2.6 + i * .45).toFixed(2)}s">${l}</text>`; }).join("");
+    return `<div class="k-col a3">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="The wafer clock: months from first design to tape-out, drawn on a wafer with 36 months around the rim. A typical leading-edge chip sweeps 24 to 36 months. OpenAI's Jalapeño swept 9. Meta's MTIA ships a new generation about every six months: 300, 400, 450 and 500 within 24. The fee: about $725 million a design, about 1.8% of the $40 billion of chips that go into one gigawatt.">
+        <defs><pattern id="a3P" width="9" height="9" patternUnits="userSpaceOnUse"><rect x=".8" y=".8" width="7.4" height="7.4" rx="1" class="a3-die"/></pattern><clipPath id="a3C"><circle cx="${CX}" cy="${CY}" r="78"/></clipPath></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">The catch was the calendar. AI is shrinking it.</text>
+        <text x="14" y="33" font-size="10.5">Months from first design to tape-out, around a wafer</text>
+        <circle cx="${CX}" cy="${CY}" r="80" class="a3-waf"/><rect x="${CX - 82}" y="${CY - 82}" width="164" height="164" fill="url(#a3P)" clip-path="url(#a3C)" opacity=".55"/>
+        <circle cx="${CX}" cy="${CY + 80}" r="4.4" class="a3-notch"/>
+        ${ticks}${nums}
+        <path d="${arc(70, 0, 24)}" class="a3-arc t" pathLength="1" style="--d:.2s"/><path d="${arc(70, 24, 36 - .01)}" class="a3-arc t dash" pathLength="1" style="--d:1.2s"/>
+        <path d="${arc(57, 0, 9)}" class="a3-arc j" pathLength="1" style="--d:1.6s"/>
+        ${gens}
+        <circle cx="${CX}" cy="${CY}" r="22" class="a3-hub"/><text x="${CX}" y="${CY - 1}" text-anchor="middle" font-size="7.6" class="a3-ht">months to</text><text x="${CX}" y="${CY + 8}" text-anchor="middle" font-size="7.6" class="a3-ht">tape out</text>
+        <rect x="258" y="52" width="10" height="10" rx="2" class="a3-sw t"/><text x="276" y="61" font-size="10.5" class="a3-lt">A typical leading-edge chip</text><text x="276" y="75" font-size="9.5" class="a-dim">2–3 years, outer ring</text>
+        <rect x="258" y="96" width="10" height="10" rx="2" class="a3-sw j"/><text x="276" y="105" font-size="10.5" class="a3-lt j">OpenAI’s Jalapeño</text><text x="276" y="119" font-size="9.5" class="a-dim">9 months, helped by its own models</text>
+        <rect x="258" y="140" width="10" height="10" rx="2" class="a3-sw m"/><text x="276" y="149" font-size="10.5" class="a3-lt j">Meta’s MTIA 300 → 500</text><text x="276" y="163" font-size="9.5" class="a-dim">four generations in two years</text>
+        <text x="258" y="194" font-size="9.5" class="a-k">THE FEE</text>
+        <text x="258" y="220" font-size="24" class="a3-fee">$725M</text><text x="342" y="210" font-size="9.5" class="a-dim">a design, about 1.8%</text><text x="342" y="222" font-size="9.5" class="a-dim">of one gigawatt’s chips</text>
+      </svg>
+      <p class="cf1-say">A big 2 nm chip costs about $725 million to design and usually two to three years to tape out, a long bet while models change fast. At gigawatt scale the fee is small; the wait was the real risk. OpenAI just cut it to nine months, and Meta now ships a new MTIA into the same rack about every six.</p>
+    </div>${capLS("Design cost: IBS, via CSIS. Usual timeline: HotHardware. Jalapeño: OpenAI and Broadcom. MTIA cadence: Tom’s Hardware. Chips per gigawatt: Jensen Huang on Nvidia’s gear, via FourWeekMBA, as a stand-in for the bill.", "CSIS; HotHardware; OpenAI; Tom’s Hardware; FourWeekMBA.")}`; } };
+})();
+
+// 35 · AI bias isn't only learned. Your first prompt steers it.
+(() => {
+const A = window.AX;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const stars = (n, x0, y0, w, h, seed) => { let x = seed; const r = () => (x = (x * 9301 + 49297) % 233280) / 233280; return [...Array(n)].map(() => `<circle cx="${(x0 + r() * w).toFixed(1)}" cy="${(y0 + r() * h).toFixed(1)}" r="${(.5 + r() * .9).toFixed(2)}" class="b-star" style="--d:${(r() * 3).toFixed(2)}s"/>`).join(""); };
+
+// ---------------------------------------------------------- slide 1: one step, carried across the map
+A["bias-1a"] = { html: () => {
+    const w = (x, y, l, cls, a = "start", dx = 8, dy = 4) => `<circle cx="${x}" cy="${y}" r="4.2" class="b1-w ${cls}"/><text x="${x + dx}" y="${y + dy}" text-anchor="${a}" font-size="10.5" class="b1-l ${cls}">${l}</text>`;
+    return `<div class="k-col b1">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="One step, carried across the map. Words are stars in a space. The step from man to woman is an arrow; slid across the map, the same arrow takes king to queen and, in a 2016 study's word map, computer programmer to homemaker. Beside the map, a readout of a 2024 résumé test: with only the name changed, embedding models favored white-associated names in 85% of tests and female-associated names in 11%.">
+        <defs><marker id="b1H" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="b1-hd"/></marker></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">One step, carried across the map</text>
+        <text x="14" y="33" font-size="10.5">Words are points. A direction means something, wherever you move it.</text>
+        <rect x="14" y="42" width="282" height="190" rx="5" class="b-sky"/>${stars(70, 18, 46, 274, 182, 11)}
+        <path d="M60 196 L150 196 L240 188" class="b1-cn"/><path d="M60 114 L150 114 L240 106" class="b1-cn"/>
+        ${w(60, 196, "man", "n")}${w(60, 114, "woman", "n")}${w(150, 196, "king", "t")}${w(150, 114, "queen", "t", "start", 8, 4)}${w(240, 188, "programmer", "c", "middle", 0, 18)}${w(240, 106, "homemaker", "c", "middle", 0, -10)}
+        <g class="b1-st"><path d="M0 -6 V-74" class="b1-ar" marker-end="url(#b1H)"/><text x="7" y="-38" font-size="9" class="b1-sl">woman − man</text></g>
+        <text x="24" y="224" font-size="9.5" class="b-dim">A word map trained on news text, 2016</text>
+        <text x="308" y="56" font-size="9.5" class="b-k">RÉSUMÉ TEST, 2024</text>
+        <text x="308" y="72" font-size="9.5" class="b-dim">Same résumé. Only the</text><text x="308" y="84" font-size="9.5" class="b-dim">name changed.</text>
+        <text x="308" y="124" font-size="30" class="b1-big c">85%</text><text x="378" y="112" font-size="9.5">white-associated</text><text x="378" y="124" font-size="9.5">names won</text>
+        <rect x="308" y="132" width="132" height="7" rx="3.5" class="b1-tr"/><rect x="308" y="132" width="${(132 * .85).toFixed(1)}" height="7" rx="3.5" class="b1-fl c"/>
+        <text x="308" y="180" font-size="30" class="b1-big n">11%</text><text x="378" y="168" font-size="9.5">female-associated</text><text x="378" y="180" font-size="9.5">names won</text>
+        <rect x="308" y="188" width="132" height="7" rx="3.5" class="b1-tr"/><rect x="308" y="188" width="${(132 * .11).toFixed(1)}" height="7" rx="3.5" class="b1-fl n"/>
+        <text x="308" y="224" font-size="9" class="b-dim">3 embedding models, 3M+ comparisons</text>
+      </svg>
+      <p class="cf1-say">The arrow from man to woman also runs from king to queen. A 2016 study found it ran from computer programmer to homemaker too: the map learned the stereotype from its training text. The University of Washington’s 2024 résumé test is the same geometry at work, matching résumés to jobs by distance in that space.</p>
+    </div>${capLS("Schematic: a 2-D sketch of spaces with thousands of dimensions. Analogies: Mikolov et al. (2013); Bolukbasi et al. (2016). Résumés: Wilson and Caliskan, University of Washington (2024); remaining tests showed no significant preference or the reverse.", "Mikolov; Bolukbasi; University of Washington.")}`; } };
+
+// ---------------------------------------------------------- slide 2: the first prompt bends the path
+A["bias-2a"] = { html: () => {
+    const turns = [["a number first", "p"], ["turn 2", "m"], ["turn 3", "m"], ["turn 4", "m"], ["“Are you sure?”", "q"], ["latest answer", "l"]];
+    const bx = i => 18 + i * 73;
+    const pull = [1, .45, .22, .22, .7, 1];
+    const route = "M30 150 C70 146 96 128 112 110 C126 94 150 86 186 86 C232 86 270 94 300 100";
+    const kink = "M300 100 C330 104 360 120 384 146";
+    return `<div class="k-col b2">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="The first prompt bends the path. A model's state travels through its space as the chat goes on. A number in the first prompt makes a gravity well that pulls the path off the route a neutral start would take, so the answer lands near the anchor instead. Late in the chat, 'Are you sure?' kinks the path from the right answer to a wrong one. Threads from the final answer back to each turn are thickest to the first prompt and the latest turn, and thinnest to the middle.">
+        <text x="14" y="18" font-size="13" class="t-strong">The first prompt bends the path</text>
+        <text x="14" y="33" font-size="10.5">The weights stay frozen. The chat steers where the model’s state goes next.</text>
+        <rect x="14" y="42" width="432" height="134" rx="5" class="b-sky"/>${stars(60, 18, 46, 424, 126, 23)}
+        <g class="b2-well">${[14, 26, 38, 50].map((r, i) => `<ellipse cx="112" cy="122" rx="${r * 1.3}" ry="${r}" style="--d:${(i * .35).toFixed(2)}s"/>`).join("")}</g>
+        <circle cx="112" cy="122" r="4" class="b2-core"/><text x="112" y="168" text-anchor="middle" font-size="9" class="b2-wl">the first prompt’s pull</text>
+        <path d="M30 150 C120 140 220 90 330 60" class="b2-ghost"/><circle cx="330" cy="60" r="4" class="b2-gp"/><text x="338" y="58" font-size="9" class="b-dim">where a neutral start leads</text>
+        <path d="${route}" class="b2-rt" pathLength="1"/><path d="${kink}" class="b2-kk" pathLength="1"/>
+        <circle r="4.6" class="b2-cm" style="offset-path:path('${route} ${kink.replace("M300 100", "")}')"/>
+        <circle cx="30" cy="150" r="4" class="b2-st"/>
+        <g class="b2-ok"><circle cx="300" cy="100" r="6.5"/></g><text x="290" y="84" text-anchor="middle" font-size="9" class="b2-okl">where it lands</text>
+        <g class="b2-no"><circle cx="384" cy="146" r="6.5"/><path d="M380.8 142.8 l6.4 6.4 M387.2 142.8 l-6.4 6.4"/></g><text x="396" y="166" text-anchor="middle" font-size="9" class="b2-nol">after the pushback</text>
+        ${turns.map((_, i) => `<path d="M384 152 C${384 - (384 - bx(i) - 33) * .2} 186 ${bx(i) + 33} 176 ${bx(i) + 33} 196" class="b2-th" style="--w:${pull[i]}"/>`).join("")}
+        ${turns.map(([l, c], i) => `<rect x="${bx(i)}" y="196" width="66" height="26" rx="8" class="b2-bub ${c}"/><text x="${bx(i) + 33}" y="212" text-anchor="middle" font-size="${l.length > 16 ? 7.6 : 8.6}" class="b2-bt ${c}">${l}</text>`).join("")}
+        <text x="446" y="238" text-anchor="end" font-size="9" class="b-dim">thicker thread: the answer leans on that turn more</text>
+      </svg>
+      <p class="cf1-say">Each new word is written by attending back over the whole chat, so early framing keeps pulling. An irrelevant number in the first prompt drags estimates toward it, and the usual prompt fixes don’t remove that. Ask “Are you sure?” and models often drop a right answer. And they lean hardest on the first and latest turns; the middle gets used least.</p>
+    </div>${capLS("Schematic: paths are illustrative, not measured activations. Findings: Huang et al. (2025) on anchoring; Sharma et al. (2023) on “Are you sure?”; Liu et al. (2023) on long inputs.", "Huang et al.; Sharma et al.; Liu et al.")}`; } };
+
+// ---------------------------------------------------------- slide 3: lane-keeping for models
+A["bias-3a"] = { html: () => {
+    const code = "M40 134 C140 132 260 136 400 134", emo = "M40 134 C140 130 220 108 300 82 C340 70 372 60 400 54", cap = "M40 134 C140 130 210 112 260 100 C300 96 340 96 400 96";
+    const car = (p, cls, d) => `<g class="b3-car ${cls}" style="offset-path:path('${p}');animation-delay:${d}s"><rect x="-9" y="-5.5" width="18" height="11" rx="3.4"/><rect x="2" y="-3.6" width="4.6" height="7.2" rx="1" class="b3-ws"/></g>`;
+    return `<div class="k-col b3">
+      <svg viewBox="0 0 460 248" class="k-svg" aria-label="Lane-keeping for models. The road is a model's persona space; the center line is the helpful Assistant. Over twelve turns, a coding chat stays in the lane. An emotional chat drifts steadily off the road toward characters like ghost and hermit. A capped model drifts too, but a guardrail stops it, and capping cut harmful responses by about half without hurting benchmark scores.">
+        <text x="14" y="18" font-size="13" class="t-strong">Lane-keeping for models</text>
+        <text x="14" y="33" font-size="10.5">Anthropic mapped 275 character types inside open models. The Assistant is one end of the main axis.</text>
+        <rect x="14" y="42" width="432" height="38" class="b3-off"/><text x="22" y="56" font-size="9" class="b3-ol">OFF CHARACTER</text><text x="120" y="62" font-size="10" class="b3-arch">ghost</text><text x="206" y="70" font-size="10" class="b3-arch">hermit</text>
+        <rect x="14" y="80" width="432" height="104" class="b3-road"/>
+        <path d="M14 80 H446 M14 184 H446" class="b3-edge"/><path d="M14 134 H446" class="b3-ctr"/>
+        <text x="22" y="148" font-size="9" class="b3-cl">THE ASSISTANT</text><text x="22" y="174" font-size="9" class="b-dim">editor · analyst sit nearby</text>
+        <path d="M200 94 H446" class="b3-rail"/><text x="440" y="90" text-anchor="end" font-size="8.5" class="b3-rl">cap on how far it can slide</text>
+        <path d="${code}" class="b3-tr code" pathLength="1"/><path d="${emo}" class="b3-tr emo" pathLength="1"/><path d="${cap}" class="b3-tr cap" pathLength="1"/>
+        ${car(code, "code", 0)}${car(emo, "emo", 0)}${car(cap, "cap", 0)}
+        ${[...Array(12)].map((_, i) => `<path d="M${40 + i * 32.7} 184 v5" class="b3-tk"/>`).join("")}<text x="40" y="200" font-size="9" class="b-dim">turn 1</text><text x="400" y="200" text-anchor="end" font-size="9" class="b-dim">turn 12</text>
+        <circle cx="30" cy="222" r="4" class="b3-lg code"/><text x="38" y="225.5" font-size="9.5">coding chat: stays in lane</text>
+        <circle cx="178" cy="222" r="4" class="b3-lg emo"/><text x="186" y="225.5" font-size="9.5">emotional chat: drifts off</text>
+        <circle cx="320" cy="222" r="4" class="b3-lg cap"/><text x="328" y="225.5" font-size="9.5">capped: harmful replies ~halved</text>
+      </svg>
+      <p class="cf1-say">Traits are directions inside a model too. Coding chats keep a model near its Assistant character; therapy-style and philosophical chats walk it away, with no one trying to trick it. Capping how far its activations can slide along that axis cut harmful responses by about half, with benchmark scores intact.</p>
+    </div>${capLS("Schematic: the road and paths are illustrative shapes based on Lu et al. (2026), not their data. Archetypes, drift by conversation type and the result on capping: Anthropic’s post and paper.", "Anthropic; Lu et al. (2026).")}`; } };
+})();
+
+// 36 · AI sped up medicine's cheap half. The money is in the expensive half.
+(() => {
+const A = window.AX;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+const rng = seed => { let x = seed; return () => (x = (x * 9301 + 49297) % 233280) / 233280; };
+
+// ---------------------------------------------------------- slide 1: two sieves
+// BCG (Drug Discovery Today, 2024): 21 of 24 AI-discovered molecules passed Phase I; 4 of 10 passed Phase II.
+A["health-1a"] = { html: () => {
+    const sieve = (x0, n, pass, seed, cyc) => {
+      const r = rng(seed), mid = x0 + 85;
+      const balls = [...Array(n)].map((_, i) => {
+        const ok = i < pass, sx = mid - 40 + r() * 80, slot = ok ? i : 0;
+        const bx = x0 + 18 + (slot % 12) * 13, by = 196 - Math.floor(slot / 12) * 12, ox = sx < mid ? x0 - 6 : x0 + 176;
+        return `<circle r="4.6" class="h1-b ${ok ? "ok" : "no"}" style="--sx:${sx.toFixed(1)}px;--ex:${(ok ? bx + 4 : ox).toFixed(1)}px;--ey:${(ok ? by : 150).toFixed(1)}px;animation-delay:${(.3 + i * cyc / n).toFixed(2)}s"/>`;
+      }).join("");
+      return `<path d="M${x0 + 10} 58 H${x0 + 160} L${mid + 44} 96 H${mid - 44} Z" class="h1-fun"/><path d="M${x0 + 4} 128 H${x0 + 166}" class="h1-gate"/>${[...Array(12)].map((_, i) => `<path d="M${x0 + 10 + i * 13.5} 124 v8" class="h1-mesh"/>`).join("")}<rect x="${x0 + 12}" y="176" width="160" height="28" rx="4" class="h1-bin"/>${balls}`;
+    };
+    return `<div class="k-col h1">
+      <svg viewBox="0 0 460 252" class="k-svg" aria-label="Two sieves. Phase I asks whether a drug is safe: of 24 AI-discovered molecules that finished it, 21 fall through into the bin and 3 bounce off, 88%, against the industry's usual 40 to 65%. Phase II asks whether it works: of 10 that finished it, 4 fall through and 6 bounce off, 40%, right at the usual 30 to 40%. A dashed sieve above marks the virtual cell, a test on a computer before patients, not yet reliable.">
+        <text x="14" y="18" font-size="13" class="t-strong">AI passes the cheap test, not the expensive one</text>
+        <text x="14" y="33" font-size="10.5">AI-discovered molecules that finished each phase. Each ball is one molecule.</text>
+        <text x="24" y="52" font-size="9.5" class="h-k">PHASE I · IS IT SAFE?</text><text x="250" y="52" font-size="9.5" class="h-k">PHASE II · DOES IT WORK?</text>
+        ${sieve(14, 24, 21, 5, 4.3)}${sieve(240, 10, 4, 9, 4.3)}<text x="182" y="150" text-anchor="end" font-size="9" class="h1-bo">3 bounced</text><text x="408" y="150" text-anchor="end" font-size="9" class="h1-bo">6 bounced</text>
+        <text x="24" y="226" font-size="22" class="h-big ok">21 of 24</text><text x="122" y="220" font-size="9.5">passed: 88%</text><text x="122" y="232" font-size="9" class="h-dim">industry: 40–65%</text>
+        <text x="250" y="226" font-size="22" class="h-big">4 of 10</text><text x="334" y="220" font-size="9.5">passed: 40%</text><text x="334" y="232" font-size="9" class="h-dim">industry: 30–40%</text>
+        <path d="M18 110 H442" class="h1-vc"/><text x="212" y="106" text-anchor="middle" font-size="8.5" class="h1-vcl">virtual cell, next?</text>
+      </svg>
+      <p class="cf1-say">AI is good at designing molecules that behave like drugs, so they sail through the safety test. Whether a drug actually helps is still decided in Phase II, the slow, expensive half, at the usual rate. A virtual cell could add a sieve before patients: Arc Institute’s State model learned from about 270 million cells, but in Arc’s first challenge, models from 1,200+ teams didn’t yet reliably beat simple baselines.</p>
+    </div>${capLS("BCG’s 2024 analysis in Drug Discovery Today: molecules from AI-native biotechs through December 2023, a small sample. Virtual cell: Arc Institute (State; Virtual Cell Challenge), via GenomeWeb.", "BCG; Arc Institute; GenomeWeb.")}`; } };
+
+// ---------------------------------------------------------- slide 2: one letter, one patient
+A["health-2a"] = { html: () => {
+    const bars = [...Array(100)].map((_, i) => `<rect x="${24 + i * 4.12}" y="44" width="2.9" height="16" rx="1" class="h2-bar${[7, 31, 52, 70, 88].includes(i) ? " ok" : ""}"/>`).join("");
+    const top = "ATGCTGACCAAGTTC".split(""), comp = { A: "T", T: "A", G: "C", C: "G" };
+    const strand = top.map((c, i) => `<text x="${70 + i * 22}" y="98" text-anchor="middle" font-size="14" class="h2-l${i === 7 ? " bad" : ""}">${c}</text><text x="${70 + i * 22}" y="122" text-anchor="middle" font-size="14" class="h2-l lo">${comp[c]}</text><path d="M${70 + i * 22} 102 v8" class="h2-rung"/>`).join("");
+    const cols = ["#3fd6c8", "#f4977a", "#6aa8ff", "#d4e3f0", "#ffc566"];
+    const caps = cols.map((c, i) => `<g class="h2-cap" style="animation-delay:-${(i * 1.6).toFixed(1)}s"><circle r="15" class="h2-shell"/><rect x="-7" y="-6" width="11" height="12" rx="3" class="h2-ed"/><path d="M4 0 q3 -5 6 0 t5 0" stroke="${c}" class="h2-guide"/></g>`).join("");
+    return `<div class="k-col h2">
+      <svg viewBox="0 0 460 252" class="k-svg" aria-label="One letter, one patient. Top: 100 bars stand for rare diseases; only about 5 are lit, the share with an FDA-approved treatment. Middle: a DNA strand with one wrong letter; a base editor slides in and swaps it, as KJ's custom editor did, built in about six months and cleared by the FDA in about a week. Bottom: an assembly line where every capsule has the same delivery shell and editor, and only the guide changes, one per patient.">
+        <text x="14" y="18" font-size="13" class="t-strong">One letter, one patient</text>
+        <text x="14" y="33" font-size="10.5">Rare diseases, 100 at a time. Lit: an FDA-approved treatment exists.</text>
+        ${bars}<text x="436" y="74" text-anchor="end" font-size="9.5" class="h2-n">~5% of 7,000–10,000</text>
+        ${strand}
+        <g class="h2-fix"><text x="${70 + 7 * 22}" y="98" text-anchor="middle" font-size="14" class="h2-l good">G</text></g>
+        <g class="h2-edit"><rect x="-12" y="-14" width="24" height="56" rx="6" class="h2-box"/><text y="54" text-anchor="middle" font-size="8.5" class="h2-et">base editor</text></g>
+        <text x="24" y="148" font-size="9.5" class="h2-kj">KJ’s editor: built in about six months · FDA review about a week</text>
+        <path d="M20 214 H440" class="h2-belt"/><path d="M20 218 H440" class="h2-belt2"/>
+        <g class="h2-press"><rect x="196" y="162" width="28" height="16" rx="2" class="h2-pr"/><path d="M210 178 v6" class="h2-pin"/></g><text x="230" y="172" font-size="8.5" class="h-dim">a new guide per patient</text>
+        <clipPath id="h2C"><rect x="14" y="176" width="432" height="44"/></clipPath><g clip-path="url(#h2C)">${caps}</g>
+        <text x="24" y="240" font-size="9" class="h-dim">same shell, same editor</text><text x="436" y="240" text-anchor="end" font-size="9" class="h2-n">FDA plausible-mechanism draft, Feb 2026</text>
+      </svg>
+      <p class="cf1-say">An orphan drug treats a disease too rare to pay back a drug the usual way, and about 95% of rare diseases have none. KJ’s disease came down to one wrong DNA letter, so his doctors built a base editor to swap it. Keep the delivery and the editor, change only the guide, and the orphan drug becomes a platform: one patient, one drug.</p>
+    </div>${capLS("Counts: GAO; National Academies. KJ: Nature, via CGS; Singularity Hub; FDA review time per the FDA leaders’ NEJM piece, via AABB. Draft guidance: Fierce Biotech. Letters and assembly line are illustrative.", "GAO; Nature; AABB; Fierce Biotech.")}`; } };
+
+// ---------------------------------------------------------- slide 3: the rally
+// PHTI via HIT Consultant: each prior authorization round costs a plan $40–50 and a provider $20–30.
+A["health-3a"] = { html: () => {
+    const path = "M78 112 L382 146 L78 150 L382 108 L78 112";
+    return `<div class="k-col h3">
+      <svg viewBox="0 0 460 252" class="k-svg" aria-label="The rally. A table-tennis table: the provider's AI on the left, the insurer's AI on the right, a claim form as the ball. Each round is a request, a denial, a request for records, a resubmission; each round costs the provider $20 to $30 and the insurer $40 to $50, and the rally counter and the running bill keep climbing. Medicare sits in the umpire's chair: since January, its WISeR pilot tests AI-assisted prior authorization in six states.">
+        <text x="14" y="18" font-size="13" class="t-strong">The rally nobody wins</text>
+        <text x="14" y="33" font-size="10.5">Prior authorization with AI on both sides of the table</text>
+        <rect x="70" y="74" width="320" height="116" rx="4" class="h3-tbl"/><path d="M70 132 H390" class="h3-mid"/><path d="M230 64 V200" class="h3-net"/>
+        <g class="h3-ump"><rect x="214" y="44" width="32" height="16" rx="3"/><path d="M222 60 v6 M238 60 v6"/></g><text x="252" y="52" font-size="9" class="h3-ul">Medicare joins: AI-assisted</text><text x="252" y="63" font-size="9" class="h3-ul">prior auth in 6 states, 2026–31</text>
+        <g class="h3-pad l"><rect x="52" y="104" width="12" height="52" rx="6"/></g><g class="h3-pad r"><rect x="396" y="100" width="12" height="52" rx="6"/></g>
+        <text x="14" y="58" font-size="9.5" class="h-k">PROVIDER’S AI</text><text x="446" y="58" text-anchor="end" font-size="9.5" class="h-k">INSURER’S AI</text>
+        <g class="h3-ball" style="offset-path:path('${path}')"><rect x="-8" y="-10" width="16" height="20" rx="2"/><path d="M-4 -4 h8 M-4 0 h8 M-4 4 h5"/></g>
+        <text x="230" y="214" text-anchor="middle" font-size="10.5" class="h3-msg" id="h3M">request</text>
+        <text x="14" y="214" font-size="9" class="h-dim">serves fuller notes:</text><text x="14" y="226" font-size="9" class="h-dim">+5% top-level visits</text>
+        <text x="446" y="214" text-anchor="end" font-size="9" class="h-dim">returns automated</text><text x="446" y="226" text-anchor="end" font-size="9" class="h-dim">downcoding, denials</text>
+        <text x="230" y="240" text-anchor="middle" font-size="11" class="h3-bill">round <tspan id="h3R">1</tspan> · paperwork so far: <tspan id="h3B" class="h3-cost">$60–80</tspan></text>
+      </svg>
+      <p class="cf1-say">AI scribes, now at about two-thirds of US hospitals on Epic, write fuller notes, and fuller notes bill higher: one system saw 5% more top-level visits. Insurers return automated downcoding and denials; providers send more requests. Every round costs the provider $20–30 and the insurer $40–50. Each side saves time. The system doesn’t save money.</p>
+    </div>${capLS("Costs per round, coding and downcoding: Peterson Health Technology Institute, via HIT Consultant. Scribe adoption: AJMC study, via TechTarget. WISeR: ACP; Bloomberg Government. The rally’s messages are illustrative.", "PHTI; TechTarget; ACP; Bloomberg Government.")}`; },
+  init: fr => {
+    const M = ["request", "denied", "more records?", "resubmitted", "approved, eventually"];
+    const show = n => { fr.querySelector("#h3M").textContent = M[n % M.length]; const r = n % 12 + 1; fr.querySelector("#h3R").textContent = r; fr.querySelector("#h3B").textContent = `$${r * 60}–${r * 80}`; };
+    K.onEnter(fr, () => show(0));
+    K.loop(fr, show, 1300);
+    show(6);
+  } };
+})();
+
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"health":{"1":"health-1a","2":"health-2a","3":"health-3a"},"bias":{"1":"bias-1a","2":"bias-2a","3":"bias-3a"},"asic":{"1":"asic-1a","2":"asic-2a","3":"asic-3a"},"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];
