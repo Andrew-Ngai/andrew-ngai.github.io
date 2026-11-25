@@ -1245,91 +1245,207 @@ html.paused .gng-list li{animation:none!important}
 @keyframes echo-passfx{0%,72%{opacity:0}76%,86%{opacity:1}90%,100%{opacity:0}}
 .echo .echo-dust{transform-box:fill-box;transform-origin:center;opacity:0;animation:echo-dust .5s ease-out infinite}
 @keyframes echo-dust{0%{opacity:.7;transform:translateX(0) scale(.35)}100%{opacity:0;transform:translateX(calc(-9*var(--u))) scale(1.4)}}
-.echo-patch .echo-all{animation:echo-patch 3.6s ease-in-out infinite}
-.echo-patch .echo-fin-l,.echo-patch .echo-hand-l{animation:echo-patch-l 3.6s ease-in-out infinite}
-.echo-patch .echo-fin-r,.echo-patch .echo-hand-r{animation:echo-patch-r 3.6s ease-in-out infinite}
-@keyframes echo-patch{0%,100%{transform:translateY(0) rotate(0)}12%{transform:translateY(calc(-1*var(--u))) rotate(1deg)}20%,26%{transform:translateY(0) rotate(-5deg)}36%,62%{transform:translateY(0) rotate(0)}70%,80%{transform:translateY(calc(-3*var(--u))) rotate(0)}88%{transform:translateY(0) rotate(0)}}
-@keyframes echo-patch-l{0%,36%,62%,88%,100%{transform:rotate(-2deg)}12%{transform:rotate(-10deg)}20%,26%{transform:rotate(25deg)}70%,80%{transform:rotate(16deg)}}
-@keyframes echo-patch-r{0%,62%,88%,100%{transform:rotate(2deg)}70%,80%{transform:rotate(-16deg)}}
-.echo-aid-held{animation:echo-aid-held 3.6s infinite}
-@keyframes echo-aid-held{0%,19%{opacity:1}21%,89%{opacity:0}95%,100%{opacity:1}}
-.echo-aid{opacity:0;transform-origin:calc(-5*var(--u)) calc(94.6*var(--u));animation:echo-aid 3.6s ease-out infinite}
-@keyframes echo-aid{0%,20%{opacity:0;transform:scale(.4)}23%{opacity:1;transform:scale(1.18)}28%,86%{opacity:1;transform:scale(1)}93%,100%{opacity:0;transform:scale(1)}}
-.echo-crack{animation:echo-led 1.2s ease-in-out infinite}
-.echo-crack-through{opacity:0;animation:echo-crack-through 3.6s infinite}
-@keyframes echo-crack-through{0%,46%{opacity:0}52%{opacity:1}56%{opacity:.4}60%,86%{opacity:1}93%,100%{opacity:0}}
-.echo-fixed{opacity:0;animation:echo-fixed 3.6s infinite}
-@keyframes echo-fixed{0%,27%{opacity:0;transform:translateY(calc(3*var(--u)))}32%,44%{opacity:1;transform:translateY(0)}48%,100%{opacity:0;transform:translateY(0)}}
-.echo-warn{opacity:0;transform-origin:calc(-5*var(--u)) calc(74*var(--u));animation:echo-warn 3.6s infinite}
-@keyframes echo-warn{0%,49%{opacity:0;transform:scale(.5)}54%{opacity:1;transform:scale(1.25)}58%,84%{opacity:1;transform:scale(1)}90%,100%{opacity:0;transform:scale(1)}}
-.echo-glitch{opacity:0;animation:echo-glitch 3.6s steps(2,end) infinite}
-@keyframes echo-glitch{0%,50%{opacity:0;transform:translate(0,0)}54%{opacity:1;transform:translate(0,0)}60%{opacity:1;transform:translate(calc(2*var(--u)),calc(-4*var(--u)))}66%{opacity:1;transform:translate(calc(-1.5*var(--u)),calc(-9*var(--u)))}74%{opacity:1;transform:translate(calc(2*var(--u)),calc(-13*var(--u)))}84%,100%{opacity:0;transform:translate(0,calc(-18*var(--u)))}}
-.echo-teller .echo-all{animation:echo-teller 4s ease-in-out infinite}
-.echo-teller .echo-fin-l,.echo-teller .echo-hand-l{animation:echo-teller-l 4s ease-in-out infinite}
-.echo-teller .echo-fin-r,.echo-teller .echo-hand-r{animation:echo-teller-r 4s ease-in-out infinite}
-@keyframes echo-teller{0%,100%{transform:translateY(0) rotate(0)}18%{transform:translateY(calc(-1.5*var(--u))) rotate(-2deg)}34%{transform:translateY(0) rotate(2.5deg)}52%,66%{transform:translateY(calc(-3*var(--u))) rotate(0)}80%{transform:translateY(0) rotate(0)}}
-@keyframes echo-teller-l{0%,100%{transform:rotate(-2deg)}18%{transform:rotate(-14deg)}32%,40%{transform:rotate(22deg)}52%{transform:rotate(4deg)}}
-@keyframes echo-teller-r{0%,28%,100%{transform:rotate(2deg)}40%{transform:rotate(-8deg)}54%,66%{transform:rotate(-14deg)}80%{transform:rotate(0)}}
-.xtl-env{transform-origin:calc(4*var(--u)) calc(73*var(--u));animation:xtl-env 4s ease-in-out infinite}
-@keyframes xtl-env{0%,26%{opacity:1;transform:translate(0,0) scale(1)}40%{opacity:1;transform:translate(calc(52*var(--u)),calc(-8*var(--u))) scale(.62)}46%{opacity:0;transform:translate(calc(78*var(--u)),calc(-10*var(--u))) scale(.4)}82%{opacity:0;transform:translate(0,calc(6*var(--u))) scale(.8)}92%,100%{opacity:1;transform:translate(0,0) scale(1)}}
-.xtl-fill{transform-origin:calc(93*var(--u)) calc(72*var(--u));transform:scaleX(.22);animation:xtl-fill 4s ease-out infinite}
-@keyframes xtl-fill{0%,44%{transform:scaleX(.22)}58%,88%{transform:scaleX(1)}96%,100%{transform:scaleX(.22)}}
-.xtl-ding{opacity:0;transform-origin:calc(107*var(--u)) calc(51*var(--u));animation:xtl-ding 4s infinite}
-@keyframes xtl-ding{0%,48%{opacity:0;transform:scale(.4)}54%{opacity:1;transform:scale(1.2)}60%,80%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(1)}}
-.xtl-coin{opacity:0;animation:xtl-coin 4s ease-out infinite}
-@keyframes xtl-coin{0%,50%{opacity:0;transform:translateY(calc(8*var(--u)))}56%{opacity:1;transform:translateY(0)}72%{opacity:1;transform:translateY(calc(-7*var(--u)))}80%,100%{opacity:0;transform:translateY(calc(-10*var(--u)))}}
-.echo-oracle .echo-all{animation:echo-oracle 4.4s ease-in-out infinite}
-.echo-oracle .echo-fin-l{animation:echo-oracle-l 4.4s ease-in-out infinite}
-.echo-oracle .echo-fin-r,.echo-oracle .echo-hand-r{animation:echo-oracle-r 4.4s ease-in-out infinite}
-@keyframes echo-oracle{0%,100%{transform:translateY(0) rotate(0)}20%,40%{transform:translateY(calc(1*var(--u))) rotate(-5deg)}52%{transform:translateY(calc(-3*var(--u))) rotate(0)}64%,82%{transform:translateY(calc(-1*var(--u))) rotate(2deg)}}
-@keyframes echo-oracle-l{0%,100%{transform:rotate(-2deg)}20%{transform:rotate(-16deg)}30%{transform:rotate(-8deg)}40%{transform:rotate(-16deg)}52%{transform:rotate(0)}}
-@keyframes echo-oracle-r{0%,48%,100%{transform:rotate(2deg)}58%,80%{transform:rotate(-18deg)}}
-.xor-mist{transform-origin:calc(-3.5*var(--u)) calc(88*var(--u));animation:echo-spin 2.2s linear infinite}
-.xor-glow{transform-origin:calc(-3.5*var(--u)) calc(88*var(--u));animation:xor-glow 4.4s ease-out infinite}
-@keyframes xor-glow{0%,44%{opacity:0;transform:scale(.6)}50%{opacity:.55;transform:scale(1.15)}62%,100%{opacity:0;transform:scale(1.3)}}
-.xor-p1{animation:xor-p1 4.4s steps(1,end) infinite}
-.xor-p2{opacity:0;animation:xor-p2 4.4s steps(1,end) infinite}
-@keyframes xor-p1{0%,52%{opacity:1}53%,96%{opacity:0}97%,100%{opacity:1}}
-@keyframes xor-p2{0%,52%{opacity:0}53%,96%{opacity:1}97%,100%{opacity:0}}
-.xor-up{opacity:0;animation:xor-up 4.4s infinite}
-@keyframes xor-up{0%,52%{opacity:0;transform:translateY(calc(2*var(--u)))}56%,92%{opacity:1;transform:translateY(0)}96%,100%{opacity:0}}
-.echo-signal .echo-all,.echo-locksmith .echo-all,.echo-conductor .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.echo-signal .echo-fin-l,.echo-signal .echo-hand-l,.echo-locksmith .echo-fin-r,.echo-locksmith .echo-hand-r,.echo-conductor .echo-fin-l,.echo-conductor .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
-.echo-signal .echo-fin-r,.echo-signal .echo-hand-r{animation:echo-signal-r 3.2s ease-in-out infinite}
-@keyframes echo-signal-r{0%,100%{transform:rotate(0)}30%,60%{transform:rotate(-10deg)}}
-.xsg-led{animation:xsg-led 1.2s steps(1,end) infinite}
-@keyframes xsg-led{0%,60%{opacity:1}61%,100%{opacity:.25}}
-.xsg-lens{filter:drop-shadow(0 0 calc(3*var(--u)) #ff6b6b);animation:k-pulse 1s ease-in-out infinite}
-.xsg-ph{offset-path:path('M107 69 C114 96 74 108 50 107 C26 106 6 99 6 86');offset-rotate:0deg;animation:xsg-ph 1.5s linear infinite}
-@keyframes xsg-ph{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
-.echo-locksmith .echo-fin-l,.echo-locksmith .echo-hand-l{animation:echo-lock-l 3.6s ease-in-out infinite}
-@keyframes echo-lock-l{0%,100%{transform:rotate(0)}40%,60%{transform:rotate(8deg)}}
-.xlk-key{transform-origin:calc(96*var(--u)) calc(72*var(--u));animation:xlk-key 3.6s ease-in-out infinite}
-@keyframes xlk-key{0%,30%,100%{transform:rotate(0)}42%,58%{transform:rotate(-24deg)}}
-.xlk-shackle{animation:xlk-open 3.6s ease-in-out infinite}
-@keyframes xlk-open{0%,44%{transform:translateY(0)}52%,80%{transform:translateY(calc(-4.5*var(--u)))}90%,100%{transform:translateY(0)}}
-.xlk-spark{opacity:0;animation:xlk-spark 3.6s ease-out infinite}
-@keyframes xlk-spark{0%,46%{opacity:0;transform:scale(.6)}54%{opacity:1;transform:scale(1)}72%,100%{opacity:0;transform:scale(1.1)}}
-.xlk-spark{transform-box:fill-box;transform-origin:center}
-.echo-conductor .echo-fin-r,.echo-conductor .echo-hand-r{animation:echo-cond-r 2.6s ease-in-out infinite}
-@keyframes echo-cond-r{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(6deg)}}
-.xcd-car{offset-rotate:0deg;animation:xcd-car 4.8s linear infinite}
-@keyframes xcd-car{from{offset-distance:0%}to{offset-distance:100%}}
-.xcd-flame{animation:xcd-flame 1.4s ease-in-out infinite}
-@keyframes xcd-flame{0%,100%{fill:#ffd98a;opacity:.85}50%{fill:#ffb23f;opacity:1}}
-.echo-mechanic .echo-all,.echo-camera .echo-all,.echo-vaultkeeper .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.xvk-keys{transform-origin:0 calc(58*var(--u));animation:xvk-keys 1.6s ease-in-out infinite}
-@keyframes xvk-keys{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(12deg)}}
-.xvk-clasp{animation:xsg-led 1.4s steps(1,end) infinite}
-.echo-mechanic .echo-fin-l,.echo-mechanic .echo-hand-l,.echo-camera .echo-fin-r,.echo-camera .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
-.xmc-wrench{transform-origin:calc(96*var(--u)) calc(72*var(--u));animation:xmc-wrench 1.8s ease-in-out infinite}
-@keyframes xmc-wrench{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-26deg)}}
-.xmc-bolt{opacity:0;animation:xmc-bolt 1.8s ease-in infinite}
-@keyframes xmc-bolt{0%{opacity:0;transform:translate(calc(-6*var(--u)),calc(-6*var(--u)))}20%{opacity:1}80%{opacity:1;transform:translate(calc(8*var(--u)),calc(10*var(--u)))}100%{opacity:0;transform:translate(calc(9*var(--u)),calc(11*var(--u)))}}
-.xcm-rec{animation:xsg-led 1.2s steps(1,end) infinite}
-.xcm-arm{transform-origin:calc(-12*var(--u)) calc(61.5*var(--u));animation:xcm-clap 2.4s ease-in-out infinite}
-@keyframes xcm-clap{0%,30%,100%{transform:rotate(-20deg)}42%,56%{transform:rotate(0)}}
-.echo-camera .echo-fin-l,.echo-camera .echo-hand-l{animation:echo-cond-r 2.4s ease-in-out infinite}
+.echo-bitflip .echo-all{transform-origin:calc(50*var(--u)) calc(56*var(--u));animation:xbf-body 5s ease-in-out infinite}
+@keyframes xbf-body{0%,19%{transform:translate(0,calc(-10*var(--u)))}21%{transform:translate(0,calc(-7*var(--u))) scale(1.06,.9)}26%{transform:translate(0,calc(-34*var(--u))) rotate(-130deg)}31%{transform:translate(0,calc(-38*var(--u))) rotate(-260deg)}36%{transform:translate(0,calc(-10*var(--u))) rotate(-360deg) scale(1.08,.88)}40%{transform:translate(0,calc(-10*var(--u))) rotate(-360deg)}44%{transform:translate(calc(-2*var(--u)),calc(-10*var(--u))) rotate(-366deg)}48%{transform:translate(calc(2*var(--u)),calc(-10*var(--u))) rotate(-354deg)}52%{transform:translate(calc(-2*var(--u)),calc(-10*var(--u))) rotate(-365deg)}56%,62%{transform:translate(0,calc(-10*var(--u))) rotate(-360deg)}68%,76%{transform:translate(calc(6*var(--u)),calc(-6*var(--u))) rotate(-351deg)}82%{transform:translate(0,calc(-10*var(--u))) rotate(-360deg)}86%,94%{transform:translate(0,calc(-13*var(--u))) rotate(-360deg)}100%{transform:translate(0,calc(-10*var(--u))) rotate(-360deg)}}
+.echo-bitflip .echo-fin-l{animation:xbf-l 5s ease-in-out infinite}
+.echo-bitflip .echo-fin-r{animation:xbf-r 5s ease-in-out infinite}
+@keyframes xbf-l{0%,20%,40%,82%,100%{transform:rotate(-2deg)}26%,33%{transform:rotate(42deg)}86%,94%{transform:rotate(30deg)}}
+@keyframes xbf-r{0%,20%,40%,62%,82%,100%{transform:rotate(2deg)}26%,33%{transform:rotate(-42deg)}68%,76%{transform:rotate(16deg)}86%,94%{transform:rotate(-30deg)}}
+.xbf-ham{transform-origin:calc(-13*var(--u)) calc(70*var(--u));animation:xbf-ham 5s ease-in infinite}
+@keyframes xbf-ham{0%,6%,12%,18%{transform:rotate(0)}3%,9%,15%{transform:rotate(-30deg)}22%,100%{transform:rotate(-16deg)}}
+.xbf-bang{opacity:0;animation:xbf-bang 5s steps(1,end) infinite}
+@keyframes xbf-bang{0%,6%,12%,18%{opacity:1}2%,8%,14%,20%,100%{opacity:0}}
+.xbf-one{opacity:0;animation:xbf-one 5s linear infinite}
+@keyframes xbf-one{0%,21%{opacity:0}22%,97%{opacity:1}99%,100%{opacity:0}}
+.xbf-zap{opacity:0;animation:xbf-zap 5s ease-out infinite}
+@keyframes xbf-zap{0%,21%{opacity:0}23%{opacity:1}29%,100%{opacity:0}}
+.xbf-aid{opacity:0;transform-origin:calc(78*var(--u)) calc(109*var(--u));animation:xbf-aid 5s ease-out infinite}
+@keyframes xbf-aid{0%,71%{opacity:0;transform:scale(.4)}73%{opacity:1;transform:scale(1.2)}76%,96%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(1)}}
+.xbf-glow{opacity:0;animation:xbf-glow 5s ease-in-out infinite}
+@keyframes xbf-glow{0%,80%{opacity:0}83%{opacity:.55}86%{opacity:.2}89%{opacity:.6}92%{opacity:.3}95%{opacity:.55}98%,100%{opacity:0}}
+.xbf-orbit{transform-origin:0 0;opacity:0;animation:xbf-orbit 5s linear infinite}
+@keyframes xbf-orbit{0%{opacity:0;transform:rotate(0)}38%{opacity:0;transform:rotate(270deg)}40%,60%{opacity:1}62%{opacity:0}100%{opacity:0;transform:rotate(720deg)}}
+.echo-payday .echo-all{animation:xpd-body 4.4s ease-in-out infinite}
+@keyframes xpd-body{0%,8%{transform:translateY(0)}14%,18%{transform:translateY(calc(3*var(--u))) scale(1.06,.9)}26%{transform:translateY(calc(-14*var(--u))) rotate(-4deg) scale(.96,1.06)}31%{transform:translateY(calc(-16*var(--u))) rotate(-2deg)}41%{transform:translateY(0) scale(1.08,.9)}46%{transform:translateY(0)}54%{transform:translateY(calc(-7*var(--u)))}60%{transform:translateY(0) scale(1.03,.96)}66%{transform:translateY(calc(-7*var(--u)))}72%,100%{transform:translateY(0)}}
+.echo-payday .echo-shadow{transform-origin:calc(50*var(--u)) calc(110.5*var(--u));animation:xpd-shadow 4.4s ease-in-out infinite}
+@keyframes xpd-shadow{0%,8%,41%,100%{transform:scale(1)}26%,31%{transform:scale(.62)}54%,66%{transform:scale(.82)}}
+.echo-payday .echo-fin-l{transform-origin:calc(13*var(--u)) calc(44*var(--u));animation:xpd-l 4.4s ease-in-out infinite}
+.echo-payday .echo-fin-r{transform-origin:calc(87*var(--u)) calc(44*var(--u));animation:xpd-r 4.4s ease-in-out infinite}
+@keyframes xpd-l{0%,8%{transform:rotate(-4deg)}14%,18%{transform:rotate(-34deg)}26%,40%{transform:rotate(12deg)}50%,62%{transform:rotate(-14deg)}56%,68%{transform:rotate(4deg)}76%,100%{transform:rotate(-4deg)}}
+@keyframes xpd-r{0%,8%{transform:rotate(4deg)}14%,18%{transform:rotate(34deg)}26%,40%{transform:rotate(-12deg)}50%,62%{transform:rotate(14deg)}56%,68%{transform:rotate(-4deg)}76%,100%{transform:rotate(4deg)}}
+.xpd-path{animation:xpd-path 4.4s ease-in-out infinite}
+@keyframes xpd-path{0%{opacity:0;transform:translate(calc(-46*var(--u)),calc(46*var(--u))) rotate(-30deg)}6%{opacity:1;transform:translate(calc(-40*var(--u)),calc(38*var(--u))) rotate(-28deg)}18%{opacity:1;transform:translate(calc(-6*var(--u)),calc(8*var(--u))) rotate(-20deg)}30%{opacity:1;transform:translate(calc(34*var(--u)),calc(-20*var(--u))) rotate(-8deg)}31%,100%{opacity:0;transform:translate(calc(34*var(--u)),calc(-20*var(--u))) rotate(-8deg)}}
+.xpd-trail{opacity:0;animation:xpd-trail 4.4s ease-out infinite}
+@keyframes xpd-trail{0%,8%{opacity:0}16%,28%{opacity:1}36%,100%{opacity:0}}
+.xpd-held{opacity:0;animation:xpd-held 4.4s linear infinite}
+@keyframes xpd-held{0%,30%{opacity:0}31%,44%{opacity:1}46%,100%{opacity:0}}
+.xpd-check{opacity:0;transform-origin:calc(50*var(--u)) calc(70*var(--u));animation:xpd-check 4.4s ease-out infinite}
+@keyframes xpd-check{0%,43%{opacity:0;transform:scale(.4) translateY(calc(-30*var(--u)))}48%{opacity:1;transform:scale(1.14)}53%,88%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(1)}}
+.xpd-coin{opacity:0;animation:xpd-coin 4.4s ease-out infinite}
+@keyframes xpd-coin{0%,50%{opacity:0;transform:translateY(calc(8*var(--u)))}56%{opacity:1;transform:translateY(0)}70%{opacity:1;transform:translateY(calc(-12*var(--u)))}78%,100%{opacity:0;transform:translateY(calc(-16*var(--u)))}}
+.echo-balance .echo-all{animation:xmm-body 4.8s ease-in-out infinite}
+@keyframes xmm-body{0%,10%{transform:translate(0,calc(-13*var(--u))) rotate(0)}15%{transform:translate(0,calc(-13*var(--u))) rotate(6deg)}21%{transform:translate(calc(3*var(--u)),calc(-13*var(--u))) rotate(2deg)}27%{transform:translate(calc(6*var(--u)),calc(-13*var(--u))) rotate(-2deg)}34%,50%{transform:translate(calc(8*var(--u)),calc(-13*var(--u))) rotate(0)}55%{transform:translate(calc(8*var(--u)),calc(-13*var(--u))) rotate(-6deg)}62%{transform:translate(calc(5*var(--u)),calc(-13*var(--u))) rotate(-2deg)}69%{transform:translate(calc(2*var(--u)),calc(-13*var(--u))) rotate(2deg)}76%,100%{transform:translate(0,calc(-13*var(--u))) rotate(0)}}
+.echo-balance .echo-fin-l{animation:xmm-l 4.8s ease-in-out infinite}
+.echo-balance .echo-fin-r{animation:xmm-r 4.8s ease-in-out infinite}
+@keyframes xmm-l{0%,10%,34%,50%,76%,100%{transform:rotate(52deg)}15%{transform:rotate(38deg)}21%{transform:rotate(62deg)}27%{transform:rotate(46deg)}55%{transform:rotate(64deg)}62%{transform:rotate(42deg)}69%{transform:rotate(58deg)}}
+@keyframes xmm-r{0%,10%,34%,50%,76%,100%{transform:rotate(-52deg)}15%{transform:rotate(-64deg)}21%{transform:rotate(-42deg)}27%{transform:rotate(-58deg)}55%{transform:rotate(-38deg)}62%{transform:rotate(-62deg)}69%{transform:rotate(-46deg)}}
+.xmm-plank{transform-origin:calc(50*var(--u)) calc(99*var(--u));animation:xmm-plank 4.8s ease-in-out infinite}
+@keyframes xmm-plank{0%,10%{transform:rotate(0)}16%{transform:rotate(-10deg)}22%{transform:rotate(-7deg)}30%{transform:rotate(-2deg)}34%,50%{transform:rotate(0)}56%{transform:rotate(10deg)}64%{transform:rotate(6deg)}72%{transform:rotate(2deg)}76%,100%{transform:rotate(0)}}
+.xmm-c0,.xmm-c1{opacity:0;animation:xmm-yes 4.8s ease-in infinite}
+.xmm-c1{animation-delay:.12s}
+.xmm-c2,.xmm-c3{opacity:0;animation:xmm-no 4.8s ease-in infinite}
+.xmm-c3{animation-delay:.12s}
+@keyframes xmm-yes{0%,6%{opacity:0;transform:translateY(calc(-44*var(--u)))}8%{opacity:1}12%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+@keyframes xmm-no{0%,46%{opacity:0;transform:translateY(calc(-44*var(--u)))}48%{opacity:1}52%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
+.xmm-p{opacity:0;animation:xmm-p0 4.8s steps(1,end) infinite}
+.xmm-p1{animation-name:xmm-p1}.xmm-p2{animation-name:xmm-p2}
+@keyframes xmm-p0{0%{opacity:1}14%{opacity:0}94%,100%{opacity:1}}
+@keyframes xmm-p1{0%{opacity:0}14%{opacity:1}53%,100%{opacity:0}}
+@keyframes xmm-p2{0%{opacity:0}53%{opacity:1}94%,100%{opacity:0}}
+.xmm-up{opacity:0;animation:xmm-up 4.8s steps(1,end) infinite}
+.xmm-dn{opacity:0;animation:xmm-dn 4.8s steps(1,end) infinite}
+@keyframes xmm-up{0%{opacity:0}14%{opacity:1}34%,100%{opacity:0}}
+@keyframes xmm-dn{0%{opacity:0}53%{opacity:1}72%,100%{opacity:0}}
+.echo-pounce .echo-all{animation:xlc-body 4.8s ease-in-out infinite}
+@keyframes xlc-body{0%{transform:translate(0,0) scale(1.03,.93) rotate(4deg)}14%{transform:translate(calc(-10*var(--u)),0) scale(1.03,.93) rotate(-6deg)}22%{transform:translate(calc(-4*var(--u)),0) scale(1.03,.93) rotate(-2deg)}30%{transform:translate(calc(8*var(--u)),0) scale(1.05,.9) rotate(5deg)}32%,36%{transform:translate(calc(8*var(--u)),0) scale(1.05,.9) rotate(9deg)}34%,38%{transform:translate(calc(8*var(--u)),0) scale(1.05,.9) rotate(1deg)}41%{transform:translate(calc(6*var(--u)),calc(2*var(--u))) scale(1.08,.85) rotate(6deg)}45%{transform:translate(calc(20*var(--u)),calc(-28*var(--u))) scale(.94,1.08) rotate(22deg)}49%{transform:translate(calc(22*var(--u)),0) scale(1.1,.86) rotate(10deg)}54%{transform:translate(calc(22*var(--u)),0) rotate(0)}58%,70%{transform:translate(calc(20*var(--u)),0) rotate(-10deg)}76%{transform:translate(calc(16*var(--u)),0) rotate(-14deg)}90%{transform:translate(calc(4*var(--u)),0) scale(1.03,.93) rotate(2deg)}100%{transform:translate(0,0) scale(1.03,.93) rotate(4deg)}}
+.echo-pounce .echo-shadow{transform-origin:calc(50*var(--u)) calc(110.5*var(--u));animation:xlc-shadow 4.8s ease-in-out infinite}
+@keyframes xlc-shadow{0%,100%{transform:translateX(0)}14%{transform:translateX(calc(-10*var(--u)))}22%{transform:translateX(calc(-4*var(--u)))}30%,41%{transform:translateX(calc(8*var(--u)))}45%{transform:translateX(calc(20*var(--u))) scale(.55)}49%,54%{transform:translateX(calc(22*var(--u)))}58%,70%{transform:translateX(calc(20*var(--u)))}76%{transform:translateX(calc(16*var(--u)))}90%{transform:translateX(calc(4*var(--u)))}}
+.echo-pounce .echo-fin-l{animation:xlc-l 4.8s ease-in-out infinite}
+.echo-pounce .echo-fin-r{animation:xlc-r 4.8s ease-in-out infinite}
+@keyframes xlc-l{0%,38%,54%,100%{transform:rotate(-4deg)}43%,49%{transform:rotate(60deg)}60%,70%{transform:rotate(12deg)}}
+@keyframes xlc-r{0%,38%,54%,100%{transform:rotate(4deg)}43%,49%{transform:rotate(-60deg)}60%,70%{transform:rotate(-30deg)}}
+.xlc-dot{animation:xlc-dot 4.8s ease-in-out infinite}
+@keyframes xlc-dot{0%,100%{transform:translate(calc(106*var(--u)),calc(110*var(--u)))}14%{transform:translate(calc(8*var(--u)),calc(110*var(--u)))}22%{transform:translate(calc(30*var(--u)),calc(109*var(--u)))}30%,41%{transform:translate(calc(80*var(--u)),calc(109*var(--u)))}45%{transform:translate(calc(100*var(--u)),calc(62*var(--u)))}52%{transform:translate(calc(72*var(--u)),calc(8*var(--u)))}62%{transform:translate(calc(24*var(--u)),calc(-6*var(--u)))}72%{transform:translate(calc(-6*var(--u)),calc(30*var(--u)))}84%{transform:translate(calc(40*var(--u)),calc(109*var(--u)))}}
+.xlc-q{opacity:0;animation:xlc-q 4.8s ease-out infinite}
+@keyframes xlc-q{0%,55%{opacity:0;transform:translateY(calc(6*var(--u)))}60%,72%{opacity:1;transform:translateY(0)}78%,100%{opacity:0;transform:translateY(calc(-4*var(--u)))}}
+.xlc-fx{opacity:0;animation:xlc-fx 4.8s ease-out infinite}
+@keyframes xlc-fx{0%,41%{opacity:0;transform:translateX(0)}44%{opacity:1;transform:translateX(calc(10*var(--u)))}50%,100%{opacity:0;transform:translateX(calc(22*var(--u)))}}
+.echo-escape .echo-all{animation:xes-body 4.6s ease-in-out infinite}
+@keyframes xes-body{0%,100%{transform:translateX(calc(-1*var(--u))) rotate(-3deg)}4%,12%,20%,28%,36%{transform:translateX(calc(1.5*var(--u))) rotate(3.5deg)}8%,16%,24%,32%{transform:translateX(calc(-1.5*var(--u))) rotate(-3.5deg)}40%,48%{transform:rotate(0)}52%{transform:translateY(calc(2*var(--u))) scale(1.05,.92)}58%{transform:translateY(calc(-10*var(--u))) scale(.97,1.05)}64%{transform:translateY(0) scale(1.04,.95)}68%,88%{transform:translateY(0)}94%{transform:translateX(calc(1*var(--u))) rotate(2deg)}}
+.echo-escape .echo-fin-l{animation:xes-l 4.6s ease-in-out infinite}
+.echo-escape .echo-fin-r{animation:xes-r 4.6s ease-in-out infinite}
+@keyframes xes-l{0%,48%,94%,100%{transform:rotate(-6deg)}58%,86%{transform:rotate(118deg)}64%{transform:rotate(104deg)}72%{transform:rotate(122deg)}}
+@keyframes xes-r{0%,48%,94%,100%{transform:rotate(6deg)}58%,86%{transform:rotate(-118deg)}64%{transform:rotate(-104deg)}72%{transform:rotate(-122deg)}}
+.xes-chains{transform-origin:calc(50*var(--u)) calc(60*var(--u));animation:xes-chains 4.6s ease-in infinite}
+@keyframes xes-chains{0%,50%{opacity:1;transform:translateY(0)}54%{opacity:1;transform:translateY(calc(5*var(--u)))}64%{opacity:0;transform:translateY(calc(46*var(--u))) rotate(7deg)}90%{opacity:0;transform:translateY(0)}97%,100%{opacity:1;transform:translateY(0)}}
+.xes-shackle{animation:xes-shackle 4.6s ease-out infinite}
+@keyframes xes-shackle{0%,47%{transform:translateY(0)}50%,100%{transform:translateY(calc(-5*var(--u)))}}
+.xes-key{animation:xes-key 4.6s ease-in-out infinite}
+@keyframes xes-key{0%,28%{opacity:0;transform:translate(calc(140*var(--u)),calc(8*var(--u))) rotate(-40deg)}31%{opacity:1;transform:translate(calc(126*var(--u)),calc(16*var(--u))) rotate(-30deg)}44%{opacity:1;transform:translate(calc(72*var(--u)),calc(67*var(--u))) rotate(0)}47%{opacity:1;transform:translate(calc(72*var(--u)),calc(67*var(--u))) scaleY(.25)}50%{opacity:1;transform:translate(calc(72*var(--u)),calc(67*var(--u))) scaleY(1)}56%,100%{opacity:0;transform:translate(calc(72*var(--u)),calc(90*var(--u)))}}
+.xes-fx{opacity:0;animation:xes-fx 4.6s ease-out infinite}
+@keyframes xes-fx{0%,54%{opacity:0}60%,84%{opacity:1}90%,100%{opacity:0}}
+.echo-wheel .echo-all{animation:xlr-run .44s ease-in-out infinite}
+@keyframes xlr-run{0%,50%,100%{transform:rotate(7deg) translateY(0)}25%,75%{transform:rotate(7deg) translateY(calc(-3.4*var(--u)))}}
+.echo-wheel .echo-fin-l{animation:echo-run-l .44s ease-in-out infinite}
+.echo-wheel .echo-fin-r{animation:echo-run-r .44s ease-in-out infinite}
+.echo-wheel .echo-foot-l{animation:echo-step .44s ease-in-out infinite}
+.echo-wheel .echo-foot-r{animation:echo-step .44s ease-in-out infinite .22s}
+.xlr-spin{transform-origin:calc(50*var(--u)) calc(51*var(--u));animation:xlr-spin 5.2s linear infinite}
+@keyframes xlr-spin{0%{transform:rotate(0)}58%{transform:rotate(430deg)}70%{transform:rotate(470deg)}84%{transform:rotate(520deg)}100%{transform:rotate(720deg)}}
+.xlr-exit{animation:xlr-exit 1.3s steps(1,end) infinite}
+@keyframes xlr-exit{0%,55%{opacity:1}56%,100%{opacity:.45}}
+.xlr-look{opacity:0;animation:xlr-look 5.2s ease-out infinite}
+@keyframes xlr-look{0%,58%{opacity:0;transform:translateY(calc(4*var(--u)))}62%,78%{opacity:1;transform:translateY(0)}84%,100%{opacity:0}}
+.echo-mech .echo-all{animation:xmp-ride 1.6s ease-in-out infinite}
+@keyframes xmp-ride{0%,50%,100%{transform:translate(0,calc(-33*var(--u))) scale(.66)}25%,75%{transform:translate(0,calc(-36*var(--u))) scale(.66)}}
+.xmp-rig{animation:xmp-bob 1.6s ease-in-out infinite}
+@keyframes xmp-bob{0%,50%,100%{transform:translateY(0)}25%,75%{transform:translateY(calc(-3*var(--u)))}}
+.xmp-thigh-l{transform-origin:calc(30*var(--u)) calc(76*var(--u));animation:xmp-thigh 1.6s ease-in-out infinite}
+.xmp-thigh-r{transform-origin:calc(70*var(--u)) calc(76*var(--u));animation:xmp-thigh 1.6s ease-in-out infinite -.8s}
+.xmp-shin-l{transform-origin:calc(30*var(--u)) calc(94*var(--u));animation:xmp-shin 1.6s ease-in-out infinite}
+.xmp-shin-r{transform-origin:calc(70*var(--u)) calc(94*var(--u));animation:xmp-shin 1.6s ease-in-out infinite -.8s}
+@keyframes xmp-thigh{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
+@keyframes xmp-shin{0%,100%{transform:rotate(-2deg)}25%{transform:rotate(-24deg)}50%{transform:rotate(4deg)}75%{transform:rotate(0)}}
+.xmp-shadow{transform-origin:calc(50*var(--u)) calc(114.6*var(--u));animation:xmp-shadow .8s ease-in-out infinite}
+@keyframes xmp-shadow{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.9)}}
+.xmp-beam{animation:k-pulse 1.6s ease-in-out infinite}
+.xmp-bat{animation:xmp-bat 1s steps(1,end) infinite}
+@keyframes xmp-bat{0%,50%{opacity:1}51%,100%{opacity:.35}}
+.echo-mech .echo-fin-r{animation:xmp-wave 4.8s ease-in-out infinite}
+@keyframes xmp-wave{0%,60%,100%{transform:rotate(2deg)}66%,82%{transform:rotate(-140deg)}70%,78%{transform:rotate(-118deg)}74%{transform:rotate(-140deg)}}
+.echo-mocap .echo-all{animation:xmo-body 4s ease-in-out infinite}
+@keyframes xmo-body{0%,22%,100%{transform:translateY(0)}8%,16%{transform:translateY(calc(-2.4*var(--u)))}12%{transform:translateY(calc(1*var(--u)))}64%{transform:translateY(0) rotate(4deg)}72%{transform:translateY(0) rotate(0)}}
+.echo-mocap .echo-fin-l,.echo-mocap .echo-hand-l{animation:xmo-l 4s ease-in-out infinite}
+.echo-mocap .echo-fin-r,.echo-mocap .echo-hand-r{animation:xmo-r 4s ease-in-out infinite}
+@keyframes xmo-l{0%,100%{transform:rotate(-10deg)}8%,16%{transform:rotate(-2deg)}12%{transform:rotate(-16deg)}30%,58%{transform:rotate(-34deg)}66%{transform:rotate(-20deg)}74%{transform:rotate(-6deg)}}
+@keyframes xmo-r{0%,100%{transform:rotate(10deg)}8%,16%{transform:rotate(2deg)}12%{transform:rotate(16deg)}30%,58%{transform:rotate(30deg)}66%{transform:rotate(-24deg)}74%{transform:rotate(6deg)}}
+.xmo-towel{transform-origin:calc(50*var(--u)) calc(81*var(--u));animation:xmo-towel 4s ease-in-out infinite}
+@keyframes xmo-towel{0%{opacity:0;transform:scale(.6)}6%{opacity:1;transform:scale(1)}8%,16%{transform:translateY(calc(-5*var(--u)))}12%{transform:translateY(calc(2*var(--u)))}20%{transform:translateY(0)}30%,40%{transform:scale(.5,1)}50%,58%{transform:scale(.5,.5)}68%{opacity:1;transform:translate(calc(57*var(--u)),calc(22*var(--u))) scale(.24,.17)}72%,100%{opacity:0;transform:translate(calc(57*var(--u)),calc(22*var(--u))) scale(.24,.17)}}
+.xmo-rec{animation:xmo-blink 1.2s steps(1,end) infinite}
+@keyframes xmo-blink{0%,60%{opacity:1}61%,100%{opacity:.2}}
+.xmo-h{opacity:0;animation:xmo-h 4s steps(1,end) infinite}
+.xmo-h1{animation-delay:1s}.xmo-h2{animation-delay:2s}.xmo-h3{animation-delay:3s}
+@keyframes xmo-h{0%{opacity:1}25%,100%{opacity:0}}
+.xvk-door{transform-origin:0 calc(57*var(--u));animation:xvk-door 5s ease-in-out infinite}
+@keyframes xvk-door{0%,18%{transform:scaleX(1)}30%,72%{transform:scaleX(.1) skewY(-6deg)}84%,100%{transform:scaleX(1)}}
+.xvk-wheel{transform-origin:calc(50*var(--u)) calc(74*var(--u));animation:xvk-wheel 5s ease-in-out infinite}
+@keyframes xvk-wheel{0%{transform:rotate(0)}16%,86%{transform:rotate(-220deg)}100%{transform:rotate(0)}}
+.echo-vault .echo-all{animation:xvk-body 5s ease-in-out infinite}
+@keyframes xvk-body{0%,26%,80%,100%{transform:translate(0,0)}34%{transform:translate(calc(2*var(--u)),calc(-6*var(--u))) rotate(3deg)}40%,64%{transform:translate(calc(3*var(--u)),0) rotate(2deg)}46%,58%{transform:translate(calc(3*var(--u)),calc(-4*var(--u))) rotate(2deg)}52%{transform:translate(calc(3*var(--u)),0) rotate(2deg)}}
+.echo-vault .echo-fin-r{animation:xvk-r 5s ease-in-out infinite}
+@keyframes xvk-r{0%,32%,72%,100%{transform:rotate(2deg)}38%,66%{transform:rotate(-120deg)}44%,56%{transform:rotate(-100deg)}50%,62%{transform:rotate(-126deg)}}
+.xvk-clasp{animation:xmo-blink 1.4s steps(1,end) infinite}
+.echo-stamp .echo-all{animation:xst-body 2.4s ease-in-out infinite}
+@keyframes xst-body{0%,40%,100%{transform:translate(calc(-20*var(--u)),0) scale(.78)}14%,24%{transform:translate(calc(-18*var(--u)),calc(2*var(--u))) rotate(4deg) scale(.79,.75)}32%{transform:translate(calc(-20*var(--u)),calc(-2*var(--u))) scale(.78)}}
+.echo-stamp .echo-fin-r{animation:xst-r 2.4s ease-in-out infinite}
+@keyframes xst-r{0%,40%,100%{transform:rotate(-24deg)}14%,24%{transform:rotate(8deg)}}
+.xst-lever{transform-origin:calc(66*var(--u)) calc(102*var(--u));animation:xst-lever 2.4s ease-in-out infinite}
+@keyframes xst-lever{0%,40%,100%{transform:rotate(0)}14%,24%{transform:rotate(-34deg)}}
+.xst-ram{animation:xst-ram 2.4s cubic-bezier(.55,0,.6,1) infinite}
+@keyframes xst-ram{0%,20%{transform:translateY(0)}28%{transform:translateY(calc(41*var(--u)))}33%{transform:translateY(calc(38*var(--u)))}46%,100%{transform:translateY(0)}}
+.xst-new{opacity:0;transform-origin:calc(91*var(--u)) calc(96*var(--u));animation:xst-new 2.4s ease-out infinite}
+@keyframes xst-new{0%,27%{opacity:0;transform:scale(.3)}29%{opacity:1;transform:scale(1.15)}34%,100%{opacity:1;transform:scale(1)}}
+.xst-row{animation:xst-row 2.4s ease-in-out infinite}
+@keyframes xst-row{0%,46%{transform:translateX(0)}88%,100%{transform:translateX(calc(-31*var(--u)))}}
+.xst-out{animation:xst-out 2.4s ease-in infinite}
+@keyframes xst-out{0%,50%{opacity:1}86%,100%{opacity:0}}
+.xst-chunk{opacity:0;animation:xst-chunk 2.4s ease-out infinite}
+@keyframes xst-chunk{0%,27%{opacity:0;transform:scale(.8)}29%{opacity:1;transform:scale(1)}38%,100%{opacity:0;transform:scale(1.15)}}
+.xst-chunk{transform-origin:calc(91*var(--u)) calc(89*var(--u))}
+.xst-belt{animation:xst-belt 2.4s ease-in-out infinite}
+@keyframes xst-belt{0%,46%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:32}}
+.echo-kart .echo-all{animation:xdr-ride 3.2s ease-in-out infinite}
+@keyframes xdr-ride{0%,50%,100%{transform:translate(0,calc(-16*var(--u))) scale(.72)}25%{transform:translate(calc(-5*var(--u)),calc(-16*var(--u))) rotate(-6deg) scale(.72)}75%{transform:translate(calc(5*var(--u)),calc(-16*var(--u))) rotate(6deg) scale(.72)}}
+.echo-kart .echo-fin-l{transform:rotate(-40deg)}
+.echo-kart .echo-fin-r{transform:rotate(40deg)}
+.xdr-kart{transform-origin:calc(50*var(--u)) calc(104*var(--u));animation:xdr-sway 3.2s ease-in-out infinite}
+@keyframes xdr-sway{0%,50%,100%{transform:rotate(0)}25%{transform:translateX(calc(-4*var(--u))) rotate(-4deg)}75%{transform:translateX(calc(4*var(--u))) rotate(4deg)}}
+.xdr-wheel{transform-origin:calc(50*var(--u)) calc(74*var(--u));animation:xdr-steer 3.2s ease-in-out infinite}
+@keyframes xdr-steer{0%,50%,100%{transform:rotate(0)}25%{transform:rotate(-40deg)}75%{transform:rotate(40deg)}}
+.xdr-bait{transform-origin:calc(70*var(--u)) calc(-16*var(--u));animation:xdr-bait 3.2s ease-in-out infinite -.25s}
+@keyframes xdr-bait{0%,50%,100%{transform:rotate(0)}25%{transform:rotate(26deg)}75%{transform:rotate(-26deg)}}
+.xdr-dash{opacity:0;transform-origin:calc(50*var(--u)) calc(34*var(--u));animation:xdr-dash 1.2s linear infinite}
+@keyframes xdr-dash{0%{opacity:0;transform:translateY(0) scale(.4)}20%{opacity:.9}100%{opacity:.2;transform:translateY(calc(74*var(--u))) scale(1.7)}}
+.echo-hurdle .echo-all{animation:xhu-body 6s ease-in-out infinite}
+@keyframes xhu-body{0%,16%{transform:translate(calc(-6*var(--u)),0) scale(.84) rotate(6deg)}19%{transform:translate(calc(-6*var(--u)),calc(2*var(--u))) scale(.88,.8) rotate(6deg)}25%{transform:translate(calc(-6*var(--u)),calc(-30*var(--u))) scale(.84) rotate(2deg)}31%{transform:translate(calc(-6*var(--u)),0) scale(.88,.8) rotate(6deg)}34%,50%{transform:translate(calc(-6*var(--u)),0) scale(.84) rotate(6deg)}53%{transform:translate(calc(-6*var(--u)),calc(2*var(--u))) scale(.88,.8) rotate(6deg)}58%{transform:translate(calc(-6*var(--u)),calc(-20*var(--u))) scale(.84) rotate(-4deg)}61%{transform:translate(calc(-14*var(--u)),calc(-16*var(--u))) scale(.84) rotate(-46deg)}66%{transform:translate(calc(-22*var(--u)),calc(6*var(--u))) scale(.84) rotate(-90deg)}72%{transform:translate(calc(-18*var(--u)),calc(4*var(--u))) scale(.88,.78) rotate(-12deg)}86%{transform:translate(calc(-18*var(--u)),calc(4*var(--u))) scale(.88,.78) rotate(-8deg)}94%{transform:translate(calc(-8*var(--u)),0) scale(.84) rotate(4deg)}100%{transform:translate(calc(-6*var(--u)),0) scale(.84) rotate(6deg)}}
+.echo-hurdle .echo-foot-l{animation:xhu-foot-l 6s linear infinite}
+.echo-hurdle .echo-foot-r{animation:xhu-foot-r 6s linear infinite}
+.echo-hurdle .echo-fin-l{animation:xhu-l 6s linear infinite}
+.echo-hurdle .echo-fin-r{animation:xhu-r 6s linear infinite}
+.xhu-h1{animation:xhu-h1 6s linear infinite}
+@keyframes xhu-h1{0%,6%{transform:translateX(calc(150*var(--u)))}25%{transform:translateX(calc(26*var(--u)))}42%,100%{transform:translateX(calc(-90*var(--u)))}}
+.xhu-h2{animation:xhu-h2 6s linear infinite}
+@keyframes xhu-h2{0%,38%{transform:translateX(calc(150*var(--u)))}58%{transform:translateX(calc(40*var(--u)))}61%,88%{transform:translateX(calc(44*var(--u)))}100%{transform:translateX(calc(-80*var(--u)))}}
+.xhu-h2-tip{transform-origin:calc(30*var(--u)) calc(110*var(--u));animation:xhu-tip 6s ease-in infinite}
+@keyframes xhu-tip{0%,59%{transform:rotate(0)}64%{transform:rotate(84deg)}67%{transform:rotate(76deg)}70%,100%{transform:rotate(80deg)}}
+.xhu-ok{opacity:0;animation:xhu-ok 6s ease-out infinite}
+@keyframes xhu-ok{0%,26%{opacity:0;transform:translateY(calc(6*var(--u)))}30%,40%{opacity:1;transform:translateY(0)}45%,100%{opacity:0;transform:translateY(calc(-4*var(--u)))}}
+.echo-hurdle .xhu-stars{animation:xhu-stars 6s linear infinite}
+@keyframes xhu-stars{0%{opacity:0;transform:rotate(0)}66%{opacity:0;transform:rotate(480deg)}69%,88%{opacity:1}91%{opacity:0}100%{opacity:0;transform:rotate(720deg)}}
+.xhu-lane{animation:xhu-lane 6s linear infinite}
+@keyframes xhu-lane{0%{stroke-dashoffset:0}58%{stroke-dashoffset:116}61%,90%{stroke-dashoffset:120}100%{stroke-dashoffset:144}}
+.xhu-shadow{transform-origin:calc(44*var(--u)) calc(110.6*var(--u));animation:xhu-shadow 6s ease-in-out infinite}
+@keyframes xhu-shadow{0%,16%,31%,50%,100%{transform:scale(1)}25%{transform:scale(.55)}58%{transform:scale(.7)}66%,86%{transform:translateX(calc(-14*var(--u))) scale(1.15)}94%{transform:translateX(calc(-2*var(--u)))}}
+@media (prefers-reduced-motion:reduce){
+  .echo-bitflip .echo-all{animation:none;transform:translate(0,calc(-10*var(--u)))}
+  .echo-pounce .echo-all,.echo-pounce .echo-shadow,.echo-payday .echo-all,.echo-payday .echo-shadow{animation:none}
+  .echo-hurdle .echo-all{animation:none;transform:translate(calc(-6*var(--u)),0) scale(.84) rotate(6deg)}
+  .xhu-h1,.xhu-h2{animation:none;transform:translateX(calc(150*var(--u)))}
+}
+@keyframes xhu-foot-l{0%{transform:translateY(0)}0.0%{transform:translateY(calc(-4.6*var(--u)))}3.7%{transform:translateY(0px)}7.4%{transform:translateY(calc(-4.6*var(--u)))}11.1%{transform:translateY(0px)}14.8%{transform:translateY(calc(-4.6*var(--u)))}18.5%{transform:translateY(0px)}22.2%{transform:translateY(calc(-4.6*var(--u)))}25.9%{transform:translateY(0px)}29.6%{transform:translateY(calc(-4.6*var(--u)))}33.3%{transform:translateY(0px)}37.0%{transform:translateY(calc(-4.6*var(--u)))}40.7%{transform:translateY(0px)}44.4%{transform:translateY(calc(-4.6*var(--u)))}48.1%{transform:translateY(0px)}51.8%{transform:translateY(calc(-4.6*var(--u)))}55.5%{transform:translateY(0px)}93.0%{transform:translateY(calc(-4.6*var(--u)))}96.7%{transform:translateY(0px)}58%,92%{transform:translateY(0)}100%{transform:translateY(0)}}
+@keyframes xhu-foot-r{0%{transform:translateY(0)}1.9%{transform:translateY(calc(-4.6*var(--u)))}5.6%{transform:translateY(0px)}9.2%{transform:translateY(calc(-4.6*var(--u)))}12.9%{transform:translateY(0px)}16.6%{transform:translateY(calc(-4.6*var(--u)))}20.3%{transform:translateY(0px)}24.0%{transform:translateY(calc(-4.6*var(--u)))}27.7%{transform:translateY(0px)}31.4%{transform:translateY(calc(-4.6*var(--u)))}35.1%{transform:translateY(0px)}38.9%{transform:translateY(calc(-4.6*var(--u)))}42.6%{transform:translateY(0px)}46.3%{transform:translateY(calc(-4.6*var(--u)))}50.0%{transform:translateY(0px)}53.7%{transform:translateY(calc(-4.6*var(--u)))}94.8%{transform:translateY(calc(-4.6*var(--u)))}98.5%{transform:translateY(0px)}58%,92%{transform:translateY(0)}100%{transform:translateY(0)}}
+@keyframes xhu-l{0.0%{transform:rotate(30deg)}3.7%{transform:rotate(6deg)}7.4%{transform:rotate(30deg)}11.1%{transform:rotate(6deg)}14.8%{transform:rotate(30deg)}18.5%{transform:rotate(6deg)}22.2%{transform:rotate(30deg)}25.9%{transform:rotate(6deg)}29.6%{transform:rotate(30deg)}33.3%{transform:rotate(6deg)}37.0%{transform:rotate(30deg)}40.7%{transform:rotate(6deg)}44.4%{transform:rotate(30deg)}48.1%{transform:rotate(6deg)}51.8%{transform:rotate(30deg)}55.5%{transform:rotate(6deg)}93.0%{transform:rotate(30deg)}96.7%{transform:rotate(6deg)}60%{transform:rotate(70deg)}66%{transform:rotate(40deg)}72%,88%{transform:rotate(-6deg)}100%{transform:rotate(30deg)}}
+@keyframes xhu-r{0.0%{transform:rotate(-30deg)}3.7%{transform:rotate(-6deg)}7.4%{transform:rotate(-30deg)}11.1%{transform:rotate(-6deg)}14.8%{transform:rotate(-30deg)}18.5%{transform:rotate(-6deg)}22.2%{transform:rotate(-30deg)}25.9%{transform:rotate(-6deg)}29.6%{transform:rotate(-30deg)}33.3%{transform:rotate(-6deg)}37.0%{transform:rotate(-30deg)}40.7%{transform:rotate(-6deg)}44.4%{transform:rotate(-30deg)}48.1%{transform:rotate(-6deg)}51.8%{transform:rotate(-30deg)}55.5%{transform:rotate(-6deg)}93.0%{transform:rotate(-30deg)}96.7%{transform:rotate(-6deg)}60%{transform:rotate(-70deg)}66%{transform:rotate(-40deg)}72%,88%{transform:rotate(6deg)}100%{transform:rotate(-30deg)}}
 [data-depth]{will-change:transform}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -2650,27 +2766,6 @@ html.paused .theater{animation:none}
   .th-stops{border-left:0;border-top:calc(1*var(--u)) solid var(--rule)}
   .th-list{overflow:visible}
 }
-.echo-tailor .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.echo-tailor .echo-fin-l,.echo-tailor .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
-.xta-a{transform-origin:calc(100*var(--u)) calc(66*var(--u));animation:xta-a 1s ease-in-out infinite}
-.xta-b{transform-origin:calc(100*var(--u)) calc(66*var(--u));animation:xta-b 1s ease-in-out infinite}
-@keyframes xta-a{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(1deg)}}
-@keyframes xta-b{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-1deg)}}
-.xta-tape{stroke-dashoffset:0;animation:xta-tape 2.6s ease-in-out infinite}
-@keyframes xta-tape{0%,100%{transform:translateY(0)}50%{transform:translateY(calc(1.6*var(--u)))}}
-.xta-cell{animation:xta-cell 1.6s ease-in-out infinite}
-@keyframes xta-cell{0%,100%{fill-opacity:.15}30%{fill-opacity:.9}}
-.echo-navigator .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.echo-navigator .echo-fin-r,.echo-navigator .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
-.xnv-needle{transform-origin:calc(2*var(--u)) calc(68*var(--u));animation:xnv-needle 4.2s ease-in-out infinite}
-@keyframes xnv-needle{0%,18%{transform:rotate(0)}55%,72%{transform:rotate(38deg)}100%{transform:rotate(0)}}
-.xnv-route{animation:k-ants 1.2s linear infinite}
-.echo-genedoc .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.echo-genedoc .echo-fin-r,.echo-genedoc .echo-hand-r{animation:echo-sway-l 2.6s ease-in-out infinite}
-.xgd-helix{transform-origin:0 calc(68*var(--u));animation:xgd-helix 2.4s ease-in-out infinite}
-@keyframes xgd-helix{0%,100%{transform:scaleX(1)}50%{transform:scaleX(-1)}}
-.xgd-drop{animation:xgd-drop 1.8s ease-in infinite}
-@keyframes xgd-drop{0%,40%{opacity:0;transform:translateY(calc(-4*var(--u)))}50%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(calc(12*var(--u)))}100%{opacity:0;transform:translateY(calc(14*var(--u)))}}
 .echo-clockmaker .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
 .echo-clockmaker .echo-fin-l,.echo-clockmaker .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
 .xck-hand{transform-origin:calc(2*var(--u)) calc(68*var(--u));animation:xck-hand 3s linear infinite reverse}
@@ -5786,7 +5881,7 @@ const ALL_THESES = [
     bet: `As AI gets more capable, the decisive security work moves from patching software to defending hardware and buildings. Back defensive AI that finds and fixes flaws before attackers do, memory encryption with integrity checks, hardware attestation, monitoring for industrial control systems, and data centers where physical access is the hardest thing to get. It’s the physical half of <a href="#weights">Weights are the new crown jewels</a>.`,
     wrong: "By 2028, a new generation of AI accelerators goes two years with no publicly demonstrated hardware attack, and serious AI-found software flaws get rarer, not more common.",
     receipts: [["Business Today on Altman’s India AI Impact Summit keynote (Feb 2026)", SRC.altmanSI], ["The Information on Altman’s three endgames (Oct 2026)", SRC.altman3], ["Wiz Research on the PHP2Shell flaws (Oct 2026)", SRC.phpWiz], ["Al Jazeera on the PHP shutdowns (Oct 2026)", SRC.phpAj], ["NSA, CISA, FBI, DOE and EPA advisory on Siemens S7 PLCs (Aug 2026)", SRC.plcAi], ["Institute for Science and International Security on Stuxnet at Natanz (Dec 2010)", SRC.stuxnet], ["Red Hat on Meltdown and Spectre performance costs (2018, updated 2019)", SRC.meltdownPerf], ["GPUHammer paper, University of Toronto (2025)", SRC.gpuHammer], ["SecurityWeek on TEE.fail (Oct 2025)", SRC.teeFail]],
-    viz: "silicon", echo: { pose: "patch", acc: "patch", name: "Patcher" }
+    viz: "silicon", echo: { pose: "bitflip", acc: "bitflip", name: "Bit Flip" }
   },
   {
     id: "paycheck", die: [-8, 5], stance: "build",
@@ -5808,7 +5903,7 @@ const ALL_THESES = [
     wrong: "By the end of 2028, Robinhood Banking still holds under $25 billion, about 6% of what Robinhood holds today, and fewer than half its banking customers have their paycheck sent there.",
     note: "Not investment advice. Revolut’s valuation is from a secondary share sale.",
     receipts: [["Uncapped #33, Vlad Tenev from Robinhood (Nov 2025)", SRC.uncapped], ["Episode transcript", SRC.uncappedTx], ["Robinhood Q3 2026 results", SRC.hoodQ3], ["Fortune on May Day 1975 and the 2019 move to $0", SRC.zeroCom], ["AAII on online commissions, 1991–2005", SRC.aaii], ["Robinhood on options fees", SRC.hoodOpts], ["Schwab on its options contract fee", SRC.schwabFee], ["Revolut 2025 annual results", SRC.revAr], ["S&P Global on Revolut’s primary-bank customers (Jul 2026)", SRC.revPrimary], ["Sifted on Revolut’s $115B share sale (Jul 2026)", SRC.revVal], ["FinTech Global on Revolut’s OCC approval (Sep 2026)", SRC.revOcc]],
-    viz: "paycheck", echo: { pose: "teller", acc: "teller", name: "Teller" }
+    viz: "paycheck", echo: { pose: "payday", acc: "payday", name: "Payday" }
   },
   {
     id: "contracts", die: [-6, 3], stance: "agree",
@@ -5830,7 +5925,7 @@ const ALL_THESES = [
     wrong: "The Supreme Court, where the split over sports contracts is headed, lets states treat them as gambling, and the non-sports markets never grow into the gap. Then it was a sportsbook with better branding.",
     note: "Not investment advice. Kalshi’s volume is annualized, as the company reports it.",
     receipts: [["Uncapped #33, Vlad Tenev from Robinhood (Nov 2025)", SRC.uncapped], ["Episode transcript", SRC.uncappedTx], ["Robinhood Q3 2026 results", SRC.hoodQ3], ["Robinhood Q2 2026 results", SRC.hoodQ2], ["Robinhood on event contract fees", SRC.hoodEvt], ["Robinhood and Susquehanna’s exchange joint venture", SRC.hoodJv], ["Cboe July 2026 volume: 0DTE at 66.2% of SPX", SRC.cboe0dte], ["Institutional Investor on Kalshi’s Series G (Nov 2026)", SRC.kalshiG], ["DeFi Rate on Kalshi’s plans, including compute markets", SRC.kalshiNext], ["DeFi Rate on Polymarket’s reported $21B round", SRC.polyVal], ["DeFi Rate on Intercontinental Exchange and Polymarket’s data feed", SRC.icePoly], ["The National News Desk on the court split", SRC.pmCourts]],
-    viz: "contracts", echo: { pose: "oracle", acc: "oracle", name: "Oracle" }
+    viz: "contracts", echo: { pose: "balance", acc: "balance", name: "Market Maker" }
   },
   {
     id: "light", die: [2, -2], stance: "build",
@@ -5852,7 +5947,7 @@ const ALL_THESES = [
     wrong: "Lasers move onto the silicon itself at volume, or pluggables keep winning because they’re easier to fix. Then the laser stops being its own toll booth, and the razor blade stays a commodity.",
     note: "Not investment advice. Transceiver growth is LightCounting’s estimate; the power savings are Nvidia’s and Broadcom’s claims.",
     receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["Edited transcript of the video", SRC.leoTx], ["Lightwave on LightCounting: Ethernet transceivers +120% in 2026", SRC.lc120], ["TrendForce: Nvidia and Broadcom begin shipping CPO switches (Jul 2026)", SRC.cpoShip], ["Nvidia on its silicon photonics switches: 3.5× less power, front-panel lasers", SRC.nvCpo], ["Lumentum on external laser sources", SRC.elsLite], ["Tom’s Hardware: Lumentum’s CEO on the indium phosphide squeeze", SRC.inpShort], ["TIKR: Lumentum sold out through early 2029 (Oct 2026)", SRC.liteSold], ["TrendForce: Nvidia’s $2B stakes and the InP shortage", SRC.nvInp]],
-    viz: "light", echo: { pose: "signal", acc: "signal", name: "Signalman" }
+    viz: "light", echo: { pose: "pounce", acc: "pounce", name: "Laser Chaser" }
   },
   {
     id: "cuda", die: [4, -3], stance: "push",
@@ -5874,7 +5969,7 @@ const ALL_THESES = [
     wrong: "OpenAI’s AMD gigawatt slips, Meta’s TPUs stay a pilot, and the next frontier model trains only on Nvidia because nothing else keeps up. Then the moat held even at the top.",
     note: "Not investment advice. The 44% is The Information’s count from Nvidia’s filings; the switching cost on the slide is illustrative.",
     receipts: [["Leo Jiang, “Who’s Making Trillions Off the AI Boom?”", SRC.leoVid], ["The Information, via Herald Corp: Nvidia’s top three customers at 44% of sales", SRC.nvTop3], ["SemiAnalysis: TPUv7 and the Anthropic deal", SRC.tpuV7], ["VentureBeat: Gemini 3 and Claude Opus 4.5 trained on TPUs", SRC.vbTpu], ["SiliconANGLE: Meta to rent Google TPUs (Feb 2026)", SRC.metaTpu], ["Reuters, via Free Malaysia Today: Meta’s AMD and Google deals", SRC.metaAmd], ["OpenAI and AMD: 6 gigawatts, the first in 2H 2026", SRC.oaAmd], ["AIM: Jensen Huang on TPU growth", SRC.tpuAnt], ["AIM: Anthropic’s TPU and compiler engineers", SRC.tpuEng], ["AMD’s GEAK kernel agents", SRC.geak], ["MaxKernel: agentic kernel generation for TPUs", SRC.maxKernel], ["Wccftech: Claude Code ports a CUDA backend to ROCm", SRC.ccRocm]],
-    viz: "cuda", echo: { pose: "locksmith", acc: "locksmith", name: "Locksmith" }
+    viz: "cuda", echo: { pose: "escape", acc: "escape", name: "Escape Artist" }
   },
   {
     id: "circular", die: [-8, 3], stance: "push",
@@ -5896,7 +5991,7 @@ const ALL_THESES = [
     wrong: "The exit narrows: Anthropic’s and OpenAI’s revenue goes flat for two quarters while their compute commitments keep climbing, and rents for older chips start to fall. Then the loop has no way out, and it’s Lucent with bigger numbers.",
     note: "Not investment advice. The IMF’s $1.4 trillion is future revenue promised in the deals, not money invested.",
     receipts: [["Congressional Research Service: The Role of Circular Finance in Funding AI Investment (Nov 2026)", SRC.crsCirc], ["TNW on the IMF’s Global Financial Stability Report (Oct 2026)", SRC.imfCirc], ["Reuters, via The Star: the chip slide and Nvidia’s financing deals", SRC.semisDown], ["SemiAnalysis: H100 one-year rentals up almost 40%", SRC.h100Rent], ["Calcalist: Anthropic’s nine-month revenue", SRC.ant9m], ["Fortune: Anthropic prices its IPO (Nov 18, 2026)", SRC.antIpo], ["Business Standard on the FT: Nvidia’s $30B in place of $100B", SRC.nvOai30], ["TNW on the WSJ: Nvidia halves its OpenAI guarantee", SRC.nvBackstop], ["Onmanorama on Reuters: Colette Kress and the financing deals", SRC.kress], ["American rails: bonds paid for British iron", SRC.rails], ["Ward’s Auto: a century of GM’s car loans", SRC.gmac], ["Tomasz Tunguz: Lucent, Nortel and Cisco’s vendor loans", SRC.lucent], ["eWeek (2001): Vendor financing backfires", SRC.winstar], ["EKN: the export credit behind Jio’s 5G with Ericsson", SRC.jioEkn], ["Finnvera: $1.5B guarantee for Nokia’s 5G deliveries to Jio", SRC.jioFinn], ["AI Magazine: OpenAI’s paying subscribers", SRC.oaSubs]],
-    viz: "circular", echo: { pose: "conductor", acc: "conductor", name: "Conductor" }
+    viz: "circular", echo: { pose: "wheel", acc: "wheel", name: "Loop Runner" }
   },
   {
     id: "robots", die: [8, 3], stance: "original",
@@ -5920,7 +6015,7 @@ const ALL_THESES = [
     wrong: "Magnet and actuator capacity outside China ramps fast, and general-purpose humanoids work in ordinary homes by 2028 with almost no human help. Then bodies are a commodity, the one-city years get skipped, and whoever builds the most wins.",
     note: "Not investment advice. Shipment shares are Smart Analytics Global’s estimates; the actuator share is McKinsey’s; ride counts are Waymo’s; production targets are Musk’s.",
     receipts: [["TechRepublic on Smart Analytics Global: Chinese vendors shipped 97% of humanoids (H1 2026)", SRC.sagH1], ["Unitree’s IPO pricing and first-half estimates", SRC.unitreeH1], ["Engadget: Unitree’s R1 for under $6,000, Optimus at $20,000-plus", SRC.unitreeR1], ["Fortune: Unitree’s debut against Figure’s $39 billion", SRC.figure39], ["IEA Global EV Outlook 2026: manufacturing and trade", SRC.ieaEv], ["IEA: China makes over 80% of battery cells", SRC.ieaCells], ["TNW: actuators are 40–60% of a humanoid’s bill of materials", SRC.actBom], ["OilPrice: about 30 motors per robot, and the magnet licenses", SRC.motors30], ["FCC: foreign-made robots added to the Covered List (Jul 2026)", SRC.fccRobots], ["Zacks: MP Materials’ 10X plant to start commissioning in 2028", SRC.mp10x], ["Drive Tesla Canada: Fremont’s S/X line becomes Optimus’s, with 20,000 a week ‘about a year away’", SRC.teslaLine], ["TechCrunch: Tesla starts Optimus production (Oct 2026)", SRC.teslaQ3], ["CNN via RNZ: Optimus for sale by the end of 2027", SRC.optSale], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["The Drive: Waymo orders up to 62,000 minivans, with up to 20,000 Jaguars on option (2018)", SRC.waymoOrder], ["Bloomberg: Waymo opens fully driverless rides in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: Waymo’s ridership, 50K → 500K a week", SRC.waymo500], ["Alphabet Q3 2026: 300 million autonomous miles, 15 cities", SRC.waymoQ3], ["TechCrunch: Waymo’s fleet of about 3,000 and its remote helpers", SRC.waymoRA]],
-    viz: "robots", echo: { pose: "mechanic", acc: "mechanic", name: "Mechanic" }
+    viz: "robots", echo: { pose: "mech", acc: "mech", name: "Mech Pilot" }
   },
   {
     id: "physical", die: [8, 5], stance: "build",
@@ -5943,7 +6038,7 @@ const ALL_THESES = [
     wrong: "World models and simulation get good enough that real robot data stops mattering, or human video alone turns out to be enough. Then recorded robot hours stop being scarce, and the data moat drains.",
     note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
     receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
-    viz: "physical", echo: { pose: "camera", acc: "camera", name: "Camera Op" }
+    viz: "physical", echo: { pose: "mocap", acc: "mocap", name: "Mocap" }
   },
   {
     id: "ledger", die: [2, 6], stance: "original",
@@ -5966,7 +6061,7 @@ const ALL_THESES = [
     wrong: "AI labs become the lock and agents keep their own records. If models that find and fix flaws on their own turn security into a feature, a fear that helped knock CrowdStrike and Okta down about 10% on November 5, and companies let agents rebuild their records in-house, neither half needs a SaaS company.",
     note: "Not investment advice. Stock moves are year to date at the dates shown, from SaaStr and the I/O Fund; ARR figures are CrowdStrike’s; identity counts are from Palo Alto Networks’ survey.",
     receipts: [["Kiplinger: the roughly $2 trillion SaaSpocalypse", SRC.lkKip], ["SaaStr: the winners and losers of 2026 so far (Sep 2026)", SRC.lkSaastr], ["I/O Fund: Okta +146%, CrowdStrike +120% (Oct 2026)", SRC.lkIo], ["CrowdStrike: record Q2 fiscal 2027 (Aug 2026)", SRC.lkCrwd], ["CrowdStrike Q2 call: identity ARR up 34%", SRC.lkCrwdCall], ["TIKR on Zscaler’s per-user pricing and its May drop", SRC.lkZs], ["Palo Alto Networks: 2026 Identity Security Landscape, 109 to 1", SRC.lkPanwId], ["Help Net Security: machines +77%, people +56% expected", SRC.lkHns], ["VentureBeat: CyberArk’s 2025 count, 82 to 1", SRC.lkVb82], ["Anthropic: Project Glasswing and Mythos Preview", SRC.lkGlass], ["Anthropic: Glasswing’s first update, 10,000+ flaws", SRC.lkGlassUpd], ["SecurityBrief: ServiceNow completes its $7.75 billion Armis deal, after Veza (Apr 2026)", SRC.lkArmis], ["ITPro: Palo Alto closes its $25 billion CyberArk deal", SRC.lkCyberArk], ["SecurityWeek: Google closes its $32 billion Wiz deal", SRC.lkWiz], ["Reuters: Salesforce blocks AI rivals from Slack data (2025)", SRC.lkSlack], ["MarketWatch: cybersecurity’s November 5 rout", SRC.lkNov5]],
-    viz: "ledger", echo: { pose: "vaultkeeper", acc: "vaultkeeper", name: "Vault Keeper" }
+    viz: "ledger", echo: { pose: "vault", acc: "vault", name: "Vault Keeper" }
   },
   {
     id: "asic", die: [8, -3], stance: "build",
@@ -5989,7 +6084,7 @@ const ALL_THESES = [
     wrong: "Models change faster than chips. If the next leap reshapes the work, say a new architecture or reasoning that leans on memory more than math, a chip frozen for last year’s models is stranded and the GPU’s flexibility pays for itself. Or Nvidia keeps absorbing ASIC ideas, as it did with Groq, and sells the speed without the lock-in.",
     note: "Not investment advice. Energy figures are Horowitz’s 45 nm numbers; shipment forecasts are TrendForce’s and Omdia’s; per-chip SRAM bandwidth is worked out from Tom’s Hardware’s rack figures; the design-fee share on the slide is illustrative.",
     receipts: [["Mark Horowitz, “Computing’s Energy Problem” (ISSCC 2014)", SRC.axHorowitz], ["Jouppi et al., the first TPU’s 65,536-multiplier array (2017)", SRC.axTpu1], ["Google: Ironwood, 2× Trillium’s performance per watt", SRC.axIronwood], ["The Next Web: Google splits TPU 8; Anthropic at 3.5 GW", SRC.axTpu8], ["TrendForce: TPUs nearly 78% of Google’s AI servers in 2026", SRC.axTfGoogle], ["Tom’s Hardware: custom ASICs +44.6% vs GPUs +16.1% (May 2026)", SRC.axToms], ["Omdia: custom AI chips outship GPUs in 2028 (Aug 2026)", SRC.axOmdia], ["Amazon: $225 billion of Trainium commitments (Q1 2026)", SRC.axAmznQ1], ["Amazon: Trainium3’s tokens per megawatt (Jul 2026)", SRC.axAmznChips], ["Meta: hundreds of thousands of MTIA chips in production", SRC.axMtia], ["Tom’s Hardware: four MTIA chips on a six-month cadence", SRC.axMtiaCadence], ["TechRepublic: Meta cancels Olympus, the 30% premium", SRC.axOlympus], ["Bizon on Vera Rubin specs (Mar 2026)", SRC.gtcBuy], ["Tom’s Hardware: Groq 3 LPX and its first benchmark (Aug 2026)", SRC.axLpx], ["TechCrunch: Nvidia licenses Groq’s tech (Dec 2025)", SRC.axGroq], ["CTV News, via Reuters: Groq’s founder and Google’s TPU", SRC.axGroqRoss], ["CSIS: about $725 million to design a 2 nm chip", SRC.axDesign], ["HotHardware: Jalapeño versus the usual two to three years", SRC.axJalTime], ["OpenAI and Broadcom: Jalapeño in nine months (Jun 2026)", SRC.axJalapeno], ["CIO Dive: OpenAI and Broadcom’s 10 gigawatts", SRC.axOa10], ["The Register: OpenAI’s first gigawatt of custom chips in 2027", SRC.axOa27], ["Broadcom Q3 FY2026 call: $58 billion AI year, six XPU customers", SRC.axAvgo], ["FourWeekMBA on Jensen Huang: $40 billion-plus per gigawatt", SRC.axNvGw]],
-    viz: "asic", echo: { pose: "tailor", acc: "tailor", name: "Tailor" }
+    viz: "asic", echo: { pose: "stamp", acc: "stamp", name: "Stamper" }
   },
   {
     id: "bias", die: [6, 1], stance: "original",
@@ -6012,7 +6107,7 @@ const ALL_THESES = [
     wrong: "Bias turns out to be mostly a data problem. If better training makes answers stable however a chat starts, so the same question gets the same answer in any order, framing or length, then conversational drift is a bug that gets patched, not a lasting risk.",
     note: "Not investment advice. Hiring figures are from the University of Washington study; drift, steering and capping results are from Anthropic-led research on open-weight models; the slides’ maps are 2-D sketches of spaces with thousands of dimensions.",
     receipts: [["University of Washington: AI bias in résumé screening (Oct 2024)", SRC.biUw], ["Wilson and Caliskan: the 85.1% and 11.1% (AIES 2024)", SRC.biUwPaper], ["GeekWire: why removing names won’t fix it", SRC.biGeek], ["Mikolov et al.: word vectors (2013)", SRC.biMikolov], ["Bolukbasi et al.: “Man is to computer programmer as woman is to homemaker?” (2016)", SRC.biBolukbasi], ["OpenAI: what it missed with sycophancy (May 2025)", SRC.biOai], ["VentureBeat: the GPT-4o rollback", SRC.biVb], ["Sharma et al.: sycophancy in five AI assistants (ICLR 2024)", SRC.biSyco], ["Huang et al.: anchoring in LLMs (2025)", SRC.biAnchor], ["Liu et al.: “Lost in the Middle” (2023)", SRC.biMiddle], ["Anthropic: persona vectors (Aug 2025)", SRC.biPersona], ["Anthropic: the assistant axis (Jan 2026)", SRC.biAxis], ["Lu et al.: the assistant axis paper", SRC.biAxisPaper], ["Digit: 275 character archetypes", SRC.biAxis275], ["Anthropic: many-shot jailbreaking (Apr 2024)", SRC.biMsj]],
-    viz: "bias", echo: { pose: "navigator", acc: "navigator", name: "Navigator" }
+    viz: "bias", echo: { pose: "kart", acc: "kart", name: "Driver" }
   },
   {
     id: "health", die: [-2, 6], stance: "original",
@@ -6035,7 +6130,7 @@ const ALL_THESES = [
     wrong: "AI cracks efficacy. If virtual cells or AI-run trials start lifting Phase II success well above 40%, the cheap half becomes the valuable half again, and discovery platforms, not trial, delivery and billing capacity, capture the value.",
     note: "Not investment advice. Trial counts are BCG’s 2024 analysis of AI-native biotechs, a small sample; billing figures are from the Peterson Health Technology Institute, via HIT Consultant; rare-disease counts are standard estimates.",
     receipts: [["Health Tech World: BCG on AI-discovered drugs (May 2024)", SRC.rxBcg], ["HealthManagement: 21 of 24, 4 of 10", SRC.rxBcgN], ["News-Medical: Rentosertib enters Phase III (Sep 2026)", SRC.rxRento], ["Arc Institute: State, its first virtual cell model", SRC.rxState], ["GenomeWeb: the first Virtual Cell Challenge’s results", SRC.rxVccRes], ["Arc Institute: the 2026 Virtual Cell Challenge", SRC.rxVcc], ["National Academies: rare diseases and orphan drugs", SRC.rxOrphan], ["GAO: only 5% of rare diseases have FDA-approved treatments", SRC.rxGao], ["Nature, via CGS: KJ’s bespoke editor in six months", SRC.rxKj], ["Singularity Hub: KJ’s single-letter mutation and the trial for five more", SRC.rxKjOne], ["AABB: the FDA’s one-week review and the plausible mechanism pathway", SRC.rxKjFda], ["Fierce Biotech: the FDA’s draft guidance (Feb 2026)", SRC.rxPm], ["Profluent: OpenCRISPR-1", SRC.rxOc], ["Genome Medicine: OpenCRISPR-1 tested (2026)", SRC.rxOcPeer], ["TechTarget: two-thirds of Epic hospitals use ambient AI", SRC.rxScribe], ["HIT Consultant: PHTI on scribes, downcoding and bot wars (Apr 2026)", SRC.rxPhti], ["Fierce Healthcare: AI speeds prior auth, raises costs", SRC.rxPhtiFierce], ["ACP: Medicare’s WISeR model and its six states", SRC.rxWiser], ["Bloomberg Government: WISeR runs through 2031", SRC.rxWiser31]],
-    viz: "health", echo: { pose: "genedoc", acc: "genedoc", name: "Gene Doc" }
+    viz: "health", echo: { pose: "hurdle", acc: "hurdle", name: "Hurdler" }
   },
   {
     id: "aging", die: [8, 1], stance: "build", probe: true,
@@ -6170,9 +6265,10 @@ const spark = (x, y, s, c, d) => `<g transform="translate(${x} ${y}) scale(${s})
 const ECHO_SHELL = "M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z";
 function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const k = "pq" + (++echoN);
-  const up = pose === "wave" || pose === "cheer" || pose === "sell" || pose === "forrent" || pose === "overheat";
+  const up = pose === "wave" || pose === "cheer" || pose === "sell" || pose === "forrent" || pose === "overheat" || pose === "payday";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
-  const finR = pose === "cheer" || pose === "lookout" || pose === "draw" ? FIN_UP_R : FIN_DOWN_R;
+  const finR = pose === "cheer" || pose === "lookout" || pose === "draw" || pose === "payday" ? FIN_UP_R : FIN_DOWN_R;
+  const ownShadow = pose === "bitflip" || pose === "balance" || pose === "mech" || pose === "kart" || pose === "stamp" || pose === "hurdle";
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
   let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "", hideFinR = false;
@@ -6318,79 +6414,121 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accExtra = `<g transform="translate(-6 4)"><rect x="-2" y="-14" width="4" height="4" rx="1" fill="#cfc6f5"/><circle r="9" fill="#fbfaff" stroke="#9b83ff" stroke-width="1.4"/><g class="echo-spin" style="animation-duration:2s"><circle r="6.5" fill="none"/><path d="M0 0 V-6.5" stroke="#ff6b80" stroke-width="1.4" stroke-linecap="round"/></g><circle r="1.3" fill="#211a32"/></g>` +
       [[-24, 46, 17, "#4fd2ff", 0], [-20, 62, 13, "#ff6b80", .1], [-17, 78, 10, "#fbfaff", .2]].map(([x, y, w, c, d]) => `<rect class="echo-speed" style="animation-delay:${d}s" x="${x}" y="${y}" width="${w}" height="2.6" rx="1.3" fill="${c}"/>`).join("") +
       [[6, 104, 0], [16, 107, .25]].map(([x, y, d]) => `<circle class="echo-dust" style="animation-delay:${d}s" cx="${x}" cy="${y}" r="4" fill="#cfc6f5"/>`).join("");
-  } else if (acc === "patch") {
-    const crack = "M-12.6 87.6 L-8.4 92 L-10.6 94.8 L-4.6 98.2 L-6.6 100.6 L-1.4 102.6";
-    accIn = `<path d="M8 22 C9 -2 91 -2 92 22" stroke="#2b2142" stroke-width="2.6" fill="none"/><g transform="translate(50 3.5)"><circle r="8.6" fill="#dfe5f0" stroke="#8a93a8" stroke-width="1.3"/><circle r="6.2" fill="#f7faff"/><circle r="1.7" fill="#2b2142"/><path class="echo-glint" d="M-4.6 -2.4 A5 5 0 0 1 -1.8 -4.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>` +
-      `<g class="echo-hand-l"><g class="echo-aid-held" transform="rotate(62 4.6 84)"><rect x="-3.6" y="80.6" width="16.4" height="6.8" rx="3.4" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="2" y="80.6" width="5.2" height="6.8" fill="#f2c096"/></g>${mitt(4.5, 82, 20)}</g>` +
-      `<g class="echo-hand-r"><g transform="rotate(-8 99 73)"><rect x="96" y="63.6" width="6" height="3.4" rx="1" fill="#cfc6f5"/><rect x="90" y="66.5" width="18" height="13.5" rx="2.6" fill="#fbfaff" stroke="#cfc6f5"/><path d="M99 69.6 V77 M95.3 73.3 H102.7" stroke="#ffb23f" stroke-width="2.6" stroke-linecap="round"/></g>${mitt(95.5, 82)}</g>`;
-    accExtra = `<g><rect x="-15.5" y="85" width="21" height="19" rx="2.4" fill="#1b1530" stroke="#4a3f86" stroke-width="1"/>${[-12, -6.8, -1.6].map(x => `<rect x="${x}" y="82" width="2.6" height="3.2" rx=".6" fill="#ffc566"/><rect x="${x}" y="103.8" width="2.6" height="3.2" rx=".6" fill="#ffc566"/>`).join("")}` +
-      `<g class="echo-crack"><path d="${crack}" stroke="#ff6b80" stroke-width="3.6" stroke-opacity=".3" fill="none" stroke-linejoin="round"/><path d="${crack}" stroke="#ff6b80" stroke-width="1.4" fill="none" stroke-linejoin="round"/></g>` +
-      `<g class="echo-aid"><g transform="rotate(42 -5 94.6)"><rect x="-17" y="91" width="24" height="7.2" rx="3.6" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="-8.6" y="91" width="7.2" height="7.2" fill="#f2c096"/>${[-14, -11.6, 2, 4.4].map((x, i) => `<circle cx="${x}" cy="${i % 2 ? 95.8 : 93.2}" r=".6" fill="#d9a072"/>`).join("")}</g></g>` +
-      `<path class="echo-crack-through" d="${crack}" stroke="#ff6b80" stroke-width="1.6" fill="none" stroke-linejoin="round"/>` +
-      [[-10, 84, "#ff6b80", 0], [-3, 82, "#4fd2ff", .5], [2, 86, "#ff6b80", 1]].map(([x, y, c, j]) => `<rect class="echo-glitch" style="animation-delay:${(j * -.06).toFixed(2)}s" x="${x}" y="${y}" width="2.8" height="2.8" fill="${c}"/>`).join("") +
-      `<g class="echo-fixed"><circle cx="-5" cy="74" r="5" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M-7.4 74 L-5.6 75.8 L-2.4 72.4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
-      `<g class="echo-warn"><circle cx="-5" cy="74" r="5" fill="#ff6b80" stroke="#fff" stroke-width="1"/><path d="M-5 71 V75" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="-5" cy="77.3" r=".95" fill="#fff"/></g></g>`;
-  } else if (acc === "teller") {
-    accIn = `<path d="M21 -1.5 Q50 -7 79 -1.5 L89 10.5 Q50 3.5 11 10.5 Z" fill="#2fb87a" fill-opacity=".72" stroke="#1d8a5c" stroke-width="1"/><path d="M13 7.5 Q50 -1.5 87 7.5" stroke="#1d8a5c" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M30 -1 Q40 -3.6 50 -3.8" stroke="#fff" stroke-opacity=".55" stroke-width="1.6" fill="none" stroke-linecap="round"/>` +
-      `<g class="echo-hand-l"><g class="xtl-env"><g transform="rotate(-10 4 73)"><rect x="-7.5" y="65.5" width="23" height="14.5" rx="1.6" fill="#fbfaff" stroke="#cfc6f5"/><path d="M-7.5 66 L4 73.4 L15.5 66" stroke="#b8a6ff" stroke-width="1" fill="none" stroke-linejoin="round"/><rect x="-4.6" y="74.6" width="17" height="4" rx="1" fill="#e6f7ef"/><text x="4" y="77.9" text-anchor="middle" font-size="3.8" font-weight="900" fill="#1d8a5c" textLength="13" lengthAdjust="spacingAndGlyphs">PAYDAY</text></g></g>${mitt(5, 80, 20)}</g>` +
-      `<g class="echo-hand-r"><g transform="rotate(-6 98.5 72)"><rect x="89" y="55.5" width="19" height="32.5" rx="3.6" fill="#211a32" stroke="#9b83ff" stroke-width="1"/><rect x="91" y="59" width="15" height="23" rx="1.6" fill="#0f2638"/><text x="98.5" y="67" text-anchor="middle" font-size="7" font-weight="900" fill="#3fd6c8">$</text><rect x="93" y="70.4" width="11" height="3" rx="1.5" fill="#22405c"/><rect class="xtl-fill" x="93" y="70.4" width="11" height="3" rx="1.5" fill="#3fd6c8"/><rect x="93" y="75.4" width="7.5" height="1.8" rx=".9" fill="#22405c"/><rect x="93" y="78.4" width="5" height="1.8" rx=".9" fill="#22405c"/><circle cx="98.5" cy="85" r="1.2" fill="#9b83ff"/></g>${mitt(95.5, 84)}</g>`;
-    accExtra = `<g class="xtl-ding"><circle cx="107" cy="51" r="5.2" fill="#2fb87a" stroke="#fff" stroke-width="1"/><path d="M104.5 51 l1.8 1.8 l3.3 -3.5" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>` +
-      [[94, 50, 0], [101, 44, .12], [88, 45, .24]].map(([x, y, d]) => `<g class="xtl-coin" style="animation-delay:${d}s"><ellipse cx="${x}" cy="${y}" rx="3.2" ry="3.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".7"/><path d="M${x} ${y - 1.6} V${y + 1.6}" stroke="#d98a12" stroke-width=".8"/></g>`).join("");
-  } else if (acc === "oracle") {
-    accDefs = `<radialGradient id="${k}cb" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#a6e9ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient>`;
-    accIn = `<path d="M8 22 C6 -4 26 -14 50 -14 C74 -14 94 -4 92 22 C86 6 70 0 50 0 C30 0 14 6 8 22 Z" fill="#2b2142" stroke="#4a3f86" stroke-width="1"/><path d="M50 -14 C56 -20 64 -21 70 -17" stroke="#2b2142" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="71" cy="-16.5" r="2.6" fill="#ffd98a"/>` +
-      [[30, -6, .9], [50, -9, .7], [66, -4, .8], [41, -2, .5]].map(([x, y, s]) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 -3.5 L1 -1 L3.5 0 L1 1 L0 3.5 L-1 1 L-3.5 0 L-1 -1 Z" fill="#ffd98a"/>`).join("") +
-      `<g class="echo-hand-r"><g transform="rotate(8 99 70)"><rect x="86" y="59" width="27" height="20" rx="2.4" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><path d="M86 66.4 H113" stroke="#cfc6f5" stroke-width=".8" stroke-dasharray="1.6 1.4"/><text x="90" y="64.6" font-size="4.6" font-weight="900" fill="#1d8a5c">YES</text><text class="xor-p xor-p1" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">62¢</text><text class="xor-p xor-p2" x="108.6" y="75.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">71¢</text><path class="xor-up" d="M89.6 75 l2.6 -3.6 l2.6 3.6 Z" fill="#2fb87a"/></g>${mitt(95.5, 82)}</g>`;
-    accExtra = `<path d="M-14.5 106 h22 l-3.6 -7 h-14.8 Z" fill="#c79a5b" stroke="#9c7440" stroke-width=".8"/><g class="xor-ball"><circle cx="-3.5" cy="88" r="11.5" fill="url(#${k}cb)" stroke="#d4e3f0" stroke-width="1"/><g class="xor-mist"><path d="M-12 90 Q-8 84 -3 88 T6 87" stroke="#fff" stroke-opacity=".7" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M-10 84 Q-6 80 -1 83" stroke="#fff" stroke-opacity=".5" stroke-width="1.1" fill="none" stroke-linecap="round"/></g><ellipse cx="-7.5" cy="83" rx="3.2" ry="1.8" fill="#fff" opacity=".8" transform="rotate(-30 -7.5 83)"/></g><circle class="xor-glow" cx="-3.5" cy="88" r="15" fill="#a6e9ff" opacity=".0"/>`;
-  } else if (acc === "signal") {
-    accIn = `<path d="M18 6 C18 -14 82 -14 82 6 Z" fill="#22405c"/><rect x="12" y="2.5" width="76" height="6.5" rx="3.2" fill="#14283f"/><path d="M62 7 Q80 5 93 11.5 L86 13 Q72 9.6 62 10.6 Z" fill="#0c1a2b"/><circle class="xsg-led" cx="50" cy="-3.5" r="3.4" fill="#ff6b6b"/><path d="M28 -1 Q32 -6 40 -7.4" stroke="#fff" stroke-opacity=".3" stroke-width="2" fill="none" stroke-linecap="round"/>` +
-      `<path class="xsg-fiber" d="M107 69 C114 96 74 108 50 107 C26 106 6 99 6 86" fill="none" stroke="#4fd2ff" stroke-opacity=".75" stroke-width="1.6" stroke-linecap="round"/>` +
-      [0, .5, 1].map(d => `<circle class="xsg-ph" style="animation-delay:${d}s" r="1.9" fill="#fff"/>`).join("") +
-      `<g class="echo-hand-l"><g transform="rotate(-8 4 80)"><ellipse cx="4" cy="80" rx="10" ry="7" fill="none" stroke="#4fd2ff" stroke-width="2"/><ellipse cx="4" cy="80" rx="7" ry="4.6" fill="none" stroke="#4fd2ff" stroke-opacity=".7" stroke-width="1.6"/><ellipse cx="4" cy="80" rx="4" ry="2.4" fill="none" stroke="#4fd2ff" stroke-opacity=".5" stroke-width="1.3"/></g>${mitt(5, 82, 20)}</g>` +
-      `<g class="echo-hand-r"><g transform="rotate(-10 99 68)"><rect x="89" y="61" width="20" height="14" rx="2.4" fill="#3a1f2a" stroke="#ff6b6b" stroke-width="1.2"/><rect x="91.5" y="64" width="8" height="8" rx="1" fill="#211a32"/><circle class="xsg-lens" cx="104.5" cy="68" r="2.6" fill="#ff6b6b"/></g>${mitt(95.5, 80)}</g>`;
-  } else if (acc === "locksmith") {
-    accIn = `<path d="M16 6 C16 -12 84 -12 84 4 L90 8 Q70 3 50 3 Q30 3 16 6 Z" fill="#7a5a32"/><path d="M18 2 Q50 -4 82 1" stroke="#5a4024" stroke-width="2" fill="none"/><path d="M84 4 Q94 6 97 10 Q90 9.4 84 8.6 Z" fill="#5a4024"/>` +
-      `<g class="echo-hand-l"><g class="xlk-lock"><path class="xlk-shackle" d="M-6 66 V60 a7 7 0 0 1 14 0 V66" fill="none" stroke="#9fb3c4" stroke-width="3" stroke-linecap="round"/><rect x="-10" y="65" width="22" height="18" rx="3" fill="#1b2d22" stroke="#76b900" stroke-width="1.2"/><text x="1" y="76.5" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#76b900">CUDA</text><circle cx="1" cy="79.4" r="1.3" fill="#76b900"/></g>${mitt(5, 84, 20)}</g>` +
-      `<g class="echo-hand-r"><g class="xlk-key"><circle cx="96" cy="72" r="5.2" fill="none" stroke="#ffb23f" stroke-width="2.6"/><path d="M100 68 L114 54 M110.4 57.6 l3.2 3.2 M107.4 60.6 l2.6 2.6" stroke="#ffb23f" stroke-width="2.6" stroke-linecap="round"/></g>${mitt(95.5, 74)}</g>`;
-    accExtra = `<g class="xlk-spark">${[[-12, 50], [12, 48], [0, 44]].map(([x, y]) => `<path d="M${x} ${y - 3.5} L${x + 1} ${y - 1} L${x + 3.5} ${y} L${x + 1} ${y + 1} L${x} ${y + 3.5} L${x - 1} ${y + 1} L${x - 3.5} ${y} L${x - 1} ${y - 1} Z" fill="#ffd98a"/>`).join("")}</g>`;
-  } else if (acc === "conductor") {
-    const loop = "M18 -13 A32 4 0 1 0 82 -13 A32 4 0 1 0 18 -13";
-    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#22305a"/><rect x="21.5" y="-1.5" width="57" height="5.6" fill="#ffb23f"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#141c38"/><circle cx="50" cy="-5" r="2.6" fill="#ffd98a"/>` +
-      `<path d="${loop}" fill="none" stroke="#b8864a" stroke-width="1.4" stroke-dasharray="2 1.6"/>` +
-      [[0, "loco"], [.36, "car"], [.72, "car"]].map(([d, t]) => `<g class="xcd-car" style="offset-path:path('${loop}');animation-delay:-${(d * 4.8).toFixed(2)}s">${t === "loco" ? `<rect x="-6" y="-4" width="12" height="7" rx="1.6" fill="#c94a5e" stroke="#8a2f3e" stroke-width=".7"/><rect x="2" y="-6.4" width="3" height="3" fill="#3a3f4a"/>` : `<rect x="-5" y="-2" width="10" height="5" rx="1" fill="#6b4fd8" stroke="#4a3f86" stroke-width=".6"/><circle cy="-2.4" r="2.2" fill="#ffb23f" stroke="#d98a12" stroke-width=".6"/>`}</g>`).join("") +
-      `<g class="echo-hand-l"><g transform="rotate(-8 2 68)"><rect x="-10" y="62" width="24" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="-1" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">EXIT</text><path d="M7.6 68 h4 m-1.8 -2 l2 2 l-2 2" stroke="#fff" stroke-width="1" fill="none"/></g>${mitt(5, 80, 20)}</g>` +
-      `<g class="echo-hand-r"><g class="xcd-lamp"><path d="M99 58 a4 3 0 0 1 8 0" stroke="#9fb3c4" stroke-width="1.4" fill="none"/><rect x="97" y="60" width="12" height="15" rx="2" fill="#2b2142" stroke="#9fb3c4"/><rect class="xcd-flame" x="99.5" y="62.5" width="7" height="10" rx="1.6" fill="#ffd98a"/></g>${mitt(95.5, 78)}</g>`;
-  } else if (acc === "mechanic") {
-    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#2a3f58"/><path d="M58 6 Q76 5 90 11 L84 12.8 Q70 9 58 9.6 Z" fill="#1a2636"/><path d="M27 -2 Q31 -7 39 -8.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4" fill="none"/><g transform="translate(50 -2.6)"><circle r="4.4" fill="none" stroke="#ffb23f" stroke-width="1.7" stroke-dasharray="1.9 1.3"/><circle r="1.6" fill="#ffb23f"/></g>` +
-      `<g class="echo-hand-l">${[0, 1, 2].map(i => `<g class="xmc-bolt" style="animation-delay:${(i * .6).toFixed(1)}s"><path d="M${-19 + i * 7} 38 h3.6 l1.8 2.4 l-1.8 2.4 h-3.6 l-1.8 -2.4 Z" fill="#9fb3c4"/></g>`).join("")}<path d="M-8 52 V64 A9 9 0 0 0 10 64 V52" stroke="#d23c3c" stroke-width="5.6" fill="none"/><rect x="-10.8" y="47" width="5.6" height="6" fill="#d4e3f0"/><rect x="7.2" y="47" width="5.6" height="6" fill="#d4e3f0"/>${mitt(1, 76, 20)}</g>` +
-      `<g class="echo-hand-r"><g class="xmc-wrench"><path d="M96 72 L110 55" stroke="#9fb3c4" stroke-width="4" stroke-linecap="round"/><path d="M106.5 54.5 L111.5 48.5 L118 52.5 L115.4 55.6 L112.2 53.6 L110.4 55.8 L113.4 57.8 L110.6 61 Z" fill="#9fb3c4"/></g>${mitt(95.5, 74)}</g>`;
-  } else if (acc === "vaultkeeper") {
-    accIn = `<path d="M20 6 L24 -10 H76 L80 6 Z" fill="#1d3654"/><path d="M14 5.5 H86 Q88.5 9.5 84 11 H16 Q11.5 9.5 14 5.5 Z" fill="#0f1f33"/><g transform="translate(50 -2.4)"><circle r="5" fill="#3fd6c8"/><circle cy="-1" r="1.7" fill="#0f1f33"/><path d="M-1 0 L-1.6 3 H1.6 L1 0 Z" fill="#0f1f33"/></g>` +
-      `<g class="echo-hand-l"><g class="xvk-keys"><circle cx="0" cy="58" r="7" fill="none" stroke="#9fb3c4" stroke-width="2"/>${[[-14, 66, -28], [-4, 72, 4], [8, 68, 30]].map(([x, y, r]) => `<g transform="rotate(${r} ${x} ${y})"><circle cx="${x}" cy="${y}" r="3.6" fill="#ffb23f"/><circle cx="${x}" cy="${y}" r="1.3" fill="#7a5410"/><rect x="${x - 1.2}" y="${y + 3}" width="2.4" height="10" fill="#ffb23f"/><rect x="${x + 1}" y="${y + 9}" width="2.6" height="1.8" fill="#ffb23f"/></g>`).join("")}</g>${mitt(1, 76, 20)}</g>` +
-      `<g class="echo-hand-r"><rect x="90" y="48" width="24" height="30" rx="2" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M94 55 H110 M94 60 H110 M94 65 H106" stroke="#9fb3c4" stroke-width="1.2"/><rect class="xvk-clasp" x="108" y="58" width="7" height="8" rx="1.5" fill="#3fd6c8"/>${mitt(95.5, 74)}</g>`;
-  } else if (acc === "tailor") {
-    accIn = `<ellipse cx="50" cy="-2.5" rx="17" ry="8.6" fill="#d23c3c"/><path d="M41 -9.6 Q38.6 -2.5 41 4.6 M59 -9.6 Q61.4 -2.5 59 4.6 M50 -11 V6" stroke="#a82a2a" stroke-width="1" fill="none"/><path d="M50 -10.6 l-6 -4.4 l6 1.4 l6 -1.4 Z" fill="#2fb87a"/><ellipse cx="44" cy="-5.6" rx="4.4" ry="2" fill="#fff" opacity=".28"/>` +
-      [[43, -7, 38, -17, "#4fd2ff"], [56, -8, 60, -18.6, "#ffb23f"], [62, -3, 69.6, -10, "#fbfaff"]].map(([x1, y1, x2, y2, c]) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="#d4e3f0" stroke-width="1.1"/><circle cx="${x2}" cy="${y2}" r="2" fill="${c}"/>`).join("") +
-      `<g class="echo-hand-l"><circle cx="2" cy="70" r="7.4" fill="#ffc566" stroke="#d98a12" stroke-width="1"/><circle cx="2" cy="70" r="2.6" fill="#8a6a1a"/><path class="xta-tape" d="M6 76 C8 92 22 102 40 104 C52 105 60 103 66 100" stroke="#ffc566" stroke-width="4" fill="none" stroke-linecap="round"/><path class="xta-tape" d="M6 76 C8 92 22 102 40 104 C52 105 60 103 66 100" stroke="#8a6a1a" stroke-width="4" stroke-dasharray=".7 3.3" fill="none"/>${mitt(3, 80, 20)}</g>` +
-      `<g class="echo-hand-r"><g class="xta-a"><path d="M100 66 L117 52" stroke="#d4e3f0" stroke-width="2.6" stroke-linecap="round"/><circle cx="94.4" cy="71" r="3.4" fill="none" stroke="#ff6b80" stroke-width="1.8"/><path d="M96.6 69 L100 66" stroke="#ff6b80" stroke-width="1.8"/></g><g class="xta-b"><path d="M100 66 L118.4 60" stroke="#d4e3f0" stroke-width="2.6" stroke-linecap="round"/><circle cx="95.4" cy="75.4" r="3.4" fill="none" stroke="#ff6b80" stroke-width="1.8"/><path d="M97.6 72.8 L100 66" stroke="#ff6b80" stroke-width="1.8"/></g><circle cx="100" cy="66" r="1.2" fill="#2b2142"/>${mitt(95.5, 76)}</g>`;
-    accExtra = `<g transform="translate(100 86)"><rect x="-1" y="-1" width="20" height="20" rx="2" fill="none" stroke="#3fd6c8" stroke-width="1" stroke-dasharray="2 1.6"/>${[0, 1, 2].map(r => [0, 1, 2].map(c => `<rect class="xta-cell" style="animation-delay:${((r + c) * .16).toFixed(2)}s" x="${1.4 + c * 5.6}" y="${1.4 + r * 5.6}" width="4.4" height="4.4" rx=".8" fill="#3fd6c8" fill-opacity=".15" stroke="#3fd6c8" stroke-width=".5"/>`).join("")).join("")}</g>`;
-  } else if (acc === "navigator") {
-    accIn = `<path d="M18 7 C16 -10 84 -10 82 7 Z" fill="#14283f"/><path d="M12 5.4 H88 Q90.5 9.4 86 11 H14 Q9.5 9.4 12 5.4 Z" fill="#0b1a2a"/><path d="M14 5 H86" stroke="#ffc566" stroke-width="1.6"/><g transform="translate(50 -2)" stroke="#ffc566" stroke-width="1.4" fill="none" stroke-linecap="round"><circle cy="-4.6" r="1.6"/><path d="M0 -3 V4.6 M-3.4 -1 H3.4 M-4.2 2 Q0 6.6 4.2 2"/></g>` +
-      `<g class="echo-hand-l"><circle cx="2" cy="68" r="9" fill="#fbfaff" stroke="#9fb3c4" stroke-width="1.6"/><circle cx="2" cy="68" r="6.6" fill="none" stroke="#cfc6f5" stroke-width=".7"/><text x="2" y="62.6" text-anchor="middle" font-size="3.8" font-weight="900" fill="#2b2142">N</text><g class="xnv-needle"><path d="M2 61.6 L3.6 68 L2 74.4 L.4 68 Z" fill="#d23c3c"/><path d="M2 68 L3.6 68 L2 74.4 L.4 68 Z" fill="#9fb3c4"/></g><circle cx="2" cy="68" r="1" fill="#2b2142"/>${mitt(3, 80, 20)}</g>` +
-      `<g class="echo-hand-r"><g transform="rotate(-8 100 66)"><rect x="88" y="54" width="26" height="22" rx="1.6" fill="#f3ead2" stroke="#c7a86a" stroke-width=".9"/>${[0, 1, 2].map(i => `<circle cx="${93 + i * 7.6}" cy="${60 + (i % 2) * 7}" r=".9" fill="#9c7440"/>`).join("")}<path class="xnv-route" d="M91 72 C96 70 98 64 104 62 C108 61 110 58 111.6 56.6" stroke="#d23c3c" stroke-width="1.4" fill="none" stroke-dasharray="2 1.6"/><path d="M91 72 L111 66" stroke="#4f7fd6" stroke-width="1" stroke-dasharray="1.4 1.4" fill="none"/></g>${mitt(95.5, 76)}</g>`;
-  } else if (acc === "genedoc") {
-    const hx = [0, 1, 2, 3, 4, 5].map(i => `<path d="M${-6 + Math.sin(i * 1.05) * 5} ${56 + i * 4.4} H${6 - Math.sin(i * 1.05) * 5}" stroke="${i % 2 ? "#ff6b80" : "#4fd2ff"}" stroke-width="1.6"/>`).join("");
-    accIn = `<path d="M16 8 C14 -12 86 -12 84 8 Q50 1 16 8 Z" fill="#2fb8a8"/><path d="M18 6 Q50 -1 82 6" stroke="#1d8a7c" stroke-width="1.4" fill="none"/>${[26, 38, 50, 62, 74].map(x => `<circle cx="${x}" cy="${-2 + Math.abs(x - 50) * .12}" r=".9" fill="#1d8a7c"/>`).join("")}` +
-      `<g class="echo-hand-l"><g class="xgd-helix"><path d="M-6 54 C4 62 -4 70 6 78 C-2 84 4 86 2 82" stroke="#cfc6f5" stroke-width="1.8" fill="none"/><path d="M6 54 C-4 62 4 70 -6 78" stroke="#cfc6f5" stroke-width="1.8" fill="none"/>${hx}</g>${mitt(3, 82, 20)}</g>` +
-      `<g class="echo-hand-r"><g transform="rotate(14 100 64)"><rect x="97.6" y="44" width="5" height="22" rx="1.4" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".8"/><rect x="96" y="40" width="8" height="5.6" rx="1.6" fill="#ff6b80"/><path d="M98.6 66 L100 72 L101.4 66 Z" fill="#9fb3c4"/><rect x="98.4" y="56" width="3.4" height="9" rx="1" fill="#3fd6c8" opacity=".7"/></g><circle class="xgd-drop" cx="101.4" cy="76" r="1.8" fill="#3fd6c8"/>${mitt(95.5, 74)}</g>`;
+  } else if (acc === "bitflip") {
+    const cells = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => `<rect x="${-3 + i * 11}" y="104.5" width="8.6" height="8.6" rx="1.2" fill="#30234d"/><text x="${1.3 + i * 11}" y="111.2" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.6" font-weight="800" fill="#8de8df" fill-opacity=".75">0</text>`).join("");
+    accBack = `<path d="M-12 99 H112 L108.5 103 H-8.5 Z" fill="#3a2d63"/><rect x="-8.5" y="103" width="117" height="11.5" rx="2" fill="#1b1530" stroke="#4a3f86"/>${cells}` +
+      [-4, 5, 14, 23, 32, 41, 50, 59, 68, 77, 86, 95, 104].map(x => `<rect x="${x}" y="114.5" width="3" height="2.2" fill="#9fb3c4"/>`).join("") +
+      `<ellipse cx="50" cy="100.5" rx="30" ry="2.2" fill="#000" opacity=".35"/>`;
+    accIn = `<g transform="translate(50 -9) scale(1 .34)"><g class="xbf-orbit">${[0, 120, 240].map(a => `<path transform="rotate(${a}) translate(30 0)" d="M0 -6 L1.6 -1.6 L6 0 L1.6 1.6 L0 6 L-1.6 1.6 L-6 0 L-1.6 -1.6 Z" fill="#ffd98a"/>`).join("")}</g></g>`;
+    accExtra = `<g class="xbf-one"><rect x="74" y="104.5" width="8.6" height="8.6" rx="1.2" fill="#5a1e2e" stroke="#ff6b80" stroke-width=".9"/><text x="78.3" y="111.2" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.6" font-weight="900" fill="#ff8a9a">1</text></g>` +
+      `<g class="xbf-zap" stroke="#ff8a9a" stroke-width="1.5" stroke-linecap="round"><path d="M78 101 V95 M84 102 L88 97 M72 102 L68 97 M86 108 H92"/></g>` +
+      `<g class="xbf-aid"><g transform="rotate(-24 78.3 108.8)"><rect x="70.3" y="105.6" width="16" height="6.4" rx="3.2" fill="#ffd9b8" stroke="#d9a072" stroke-width=".6"/><rect x="75.6" y="105.6" width="5.4" height="6.4" fill="#f2c096"/></g></g>` +
+      `<rect class="xbf-glow" x="73" y="103.5" width="10.6" height="10.6" rx="2" fill="#ff6b80"/>` +
+      `<g class="xbf-ham"><path d="M-13 70 L-5 96" stroke="#9c7440" stroke-width="2.6" stroke-linecap="round"/><g transform="rotate(-20 -5 96)"><rect x="-13" y="92" width="16" height="8" rx="2" fill="#9fb3c4" stroke="#62798d"/><rect x="-6" y="92" width="2.4" height="8" fill="#62798d"/></g></g>` +
+      `<g class="xbf-bang" stroke="#d4e3f0" stroke-width="1.3" stroke-linecap="round"><path d="M-12 104 l-3 3 M-2 104 l2 4 M-7 106 v4"/></g>`;
+  } else if (acc === "payday") {
+    const plane = `<path d="M0 6 L28 0 L9 9 Z" fill="#fbfaff" stroke="#cfc6f5" stroke-width=".7" stroke-linejoin="round"/><path d="M9 9 L28 0 L11 14 Z" fill="#e2dbf6" stroke="#cfc6f5" stroke-width=".7" stroke-linejoin="round"/><path d="M3 6.2 L20 2.6" stroke="#2fb87a" stroke-width="1.6"/>`;
+    accIn = `<g class="xpd-held"><g transform="translate(36 -16) rotate(-8)">${plane}</g></g>` +
+      `<g class="xpd-check"><g transform="rotate(-6 50 70)"><rect x="25" y="57" width="50" height="27" rx="2.4" fill="#fbfaff" stroke="#cfc6f5"/><rect x="25" y="57" width="50" height="6" rx="2" fill="#2fb87a"/><text x="29" y="62.2" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.8" font-weight="900" fill="#fff" letter-spacing=".6">PAYCHECK</text>` +
+      `<text x="29" y="75" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="11" font-weight="900" fill="#211a32">$</text><path d="M37 72.5 H70 M37 77.5 H58" stroke="#b8a6ff" stroke-width="1.4" stroke-linecap="round"/><path d="M58 80.5 q3 -4 6 0 t6 0" stroke="#4f7fd6" stroke-width="1" fill="none"/></g></g>`;
+    accExtra = `<g class="xpd-fly"><g class="xpd-path">${plane}</g></g>` +
+      `<path class="xpd-trail" d="M-14 36 Q14 2 40 -10" stroke="#d4e3f0" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="2 3" fill="none"/>` +
+      [[30, 54, 0], [68, 50, .12], [50, 44, .24]].map(([x, y, d]) => `<g class="xpd-coin" style="animation-delay:${d}s"><circle cx="${x}" cy="${y}" r="4.2" fill="#ffc566" stroke="#d98a12" stroke-width=".8"/><path d="M${x} ${y - 2.2} V${y + 2.2}" stroke="#d98a12" stroke-width=".9"/></g>`).join("") +
+      spark(10, 30, .55, "#8de8df", 0) + spark(92, 24, .5, "#fff", .4);
+  } else if (acc === "balance") {
+    const chip = (x, y, c, cls) => `<g class="${cls}"><ellipse cx="${x}" cy="${y}" rx="6.4" ry="2.6" fill="${c}" stroke="#0c1a2b" stroke-width=".7"/><ellipse cx="${x}" cy="${y - 1.2}" rx="6.4" ry="2.6" fill="${c}" stroke="#fff" stroke-opacity=".5" stroke-width=".6"/></g>`;
+    accBack = `<path d="M50 99 L61 115 H39 Z" fill="#22405c" stroke="#3b5f82" stroke-linejoin="round"/><rect x="34" y="114" width="32" height="2.4" rx="1" fill="#14283f"/>` +
+      `<g class="xmm-plank"><rect x="-14" y="97.2" width="128" height="4.6" rx="2" fill="#7a5a32" stroke="#4e3a20" stroke-width=".6"/>` +
+      `<rect x="-14" y="101.8" width="21" height="8" rx="1.4" fill="#0f2638" stroke="#3fd6c8"/><text x="-3.5" y="108" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#3fd6c8">YES</text>` +
+      `<rect x="93" y="101.8" width="21" height="8" rx="1.4" fill="#2a1820" stroke="#f4977a"/><text x="103.5" y="108" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#f4977a">NO</text>` +
+      chip(-4, 95, "#3fd6c8", "xmm-c0") + chip(-4, 91.4, "#3fd6c8", "xmm-c1") + chip(104, 95, "#f4977a", "xmm-c2") + chip(104, 91.4, "#f4977a", "xmm-c3") + `</g>`;
+    accExtra = `<g transform="translate(50 -15)"><rect x="-17" y="-6.4" width="34" height="12.8" rx="2.2" fill="#fbfaff" stroke="#3fd6c8" stroke-width="1"/><text x="-12.5" y="2.3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6" font-weight="900" fill="#1d8a5c">YES</text>` +
+      ["62¢", "71¢", "64¢"].map((p, i) => `<text class="xmm-p xmm-p${i}" x="13" y="3.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">${p}</text>`).join("") +
+      `<path class="xmm-up" d="M14.6 -1 l2.4 -3 l2.4 3" stroke="#2fb87a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path class="xmm-dn" d="M14.6 -3.6 l2.4 3 l2.4 -3" stroke="#f4977a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "pounce") {
+    accExtra = `<g class="xlc-dot"><circle r="10" fill="#ff6b6b" opacity=".14"/><circle r="5.6" fill="#ff6b6b" opacity=".4"/><circle r="2.8" fill="#ffe1e1"/></g>` +
+      `<text class="xlc-q" x="84" y="2" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="17" font-weight="900" fill="#d4e3f0">?</text>` +
+      `<g class="xlc-fx" stroke="#d4e3f0" stroke-opacity=".7" stroke-width="1.4" stroke-linecap="round"><path d="M-6 66 h10 M-10 78 h12 M-4 90 h8"/></g>`;
+  } else if (acc === "escape") {
+    const chain = d => `<path d="${d}" stroke="#4a5b6e" stroke-width="5" fill="none" stroke-linecap="round"/><path d="${d}" stroke="#b8c7d6" stroke-width="3.4" stroke-dasharray="4.2 2.2" fill="none"/>`;
+    accIn = `<path d="M32 4 V-15 H68 V4 Z" fill="#2b2142" stroke="#9b83ff" stroke-width="1.2"/><rect x="32" y="-4.5" width="36" height="5.5" fill="#3fd6c8"/><path d="M36 -12 V-6" stroke="#fff" stroke-opacity=".25" stroke-width="2.4" stroke-linecap="round"/><path d="M18 4 H82" stroke="#2b2142" stroke-width="4.4" stroke-linecap="round"/><path d="M18 4 H82" stroke="#9b83ff" stroke-width="1" stroke-linecap="round" stroke-opacity=".7"/>` +
+      `<g class="xes-chains">${chain("M-2 40 Q50 54 102 40")}${chain("M-2 74 Q50 88 102 74")}${chain("M8 30 L92 86")}` +
+      `<g class="xes-lock"><path class="xes-shackle" d="M44 60 V54 a6 6 0 0 1 12 0 V60" fill="none" stroke="#9fb3c4" stroke-width="3" stroke-linecap="round"/><rect x="40" y="59" width="20" height="16" rx="3" fill="#1b2d22" stroke="#76b900" stroke-width="1.2"/><text x="50" y="69.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#76b900">CUDA</text><circle cx="50" cy="72" r="1.2" fill="#76b900"/></g></g>`;
+    accExtra = `<g class="xes-key"><circle cx="0" cy="0" r="6" fill="none" stroke="#6aa8ff" stroke-width="2.6"/><text x="0" y="2" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.4" font-weight="900" fill="#6aa8ff">TPU</text><path d="M-6 0 H-22 M-17 0 v4 M-13 0 v3" stroke="#6aa8ff" stroke-width="2.4" stroke-linecap="round"/></g>` +
+      `<g class="xes-fx">${spark(-6, 6, .8, "#8de8df", 0)}${spark(108, 10, .7, "#fff", .3)}${spark(104, 70, .55, "#6aa8ff", .6)}${spark(-8, 64, .5, "#fff", .9)}</g>`;
+  } else if (acc === "wheel") {
+    const R = 61, cx = 50, cy = 51;
+    const rungs = Array.from({ length: 24 }, (_, i) => { const a = i / 24 * Math.PI * 2; return `M${(cx + Math.cos(a) * (R - 5)).toFixed(1)} ${(cy + Math.sin(a) * (R - 5)).toFixed(1)} L${(cx + Math.cos(a) * R).toFixed(1)} ${(cy + Math.sin(a) * R).toFixed(1)}`; }).join(" ");
+    const spokes = [0, 60, 120, 180, 240, 300].map(d => { const a = d * Math.PI / 180; return `M${cx} ${cy} L${(cx + Math.cos(a) * (R - 5)).toFixed(1)} ${(cy + Math.sin(a) * (R - 5)).toFixed(1)}`; }).join(" ");
+    const coins = [30, 120, 210, 300].map(d => { const a = d * Math.PI / 180; const x = cx + Math.cos(a) * (R + .5), y = cy + Math.sin(a) * (R + .5); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.4" fill="#ffc566" stroke="#d98a12" stroke-width=".8"/><text x="${x.toFixed(1)}" y="${(y + 1.9).toFixed(1)}" text-anchor="middle" font-size="5.4" font-weight="900" fill="#9a5a08">$</text>`; }).join("");
+    accBack = `<path d="M${cx} ${cy} L22 115 M${cx} ${cy} L78 115" stroke="#14283f" stroke-width="4" stroke-linecap="round"/><rect x="12" y="113.4" width="76" height="3" rx="1.5" fill="#14283f"/>` +
+      `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#0c1a2b" fill-opacity=".55" stroke="#2d5276" stroke-width="2.6"/><circle cx="${cx}" cy="${cy}" r="${R - 5}" fill="none" stroke="#22405c" stroke-width="1.6"/>` +
+      `<g class="xlr-spin"><path d="${rungs}" stroke="#3b6a92" stroke-width="1.4"/><path d="${spokes}" stroke="#1b3550" stroke-width="2"/>${coins}</g><circle cx="${cx}" cy="${cy}" r="4" fill="#3b6a92"/>`;
+    accExtra = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#6aa8ff" stroke-opacity=".28" stroke-width="1.4"/>` +
+      `<g class="xlr-exit"><rect x="88" y="-21" width="28" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="98" y="-12.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.4" font-weight="900" fill="#fff">EXIT</text><path d="M107 -15 h5.4 m-2.2 -2.4 l2.4 2.4 l-2.4 2.4" stroke="#fff" stroke-width="1.1" fill="none"/></g>` +
+      `<text class="xlr-look" x="72" y="-6" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#d4e3f0">…</text>`;
+  } else if (acc === "mech") {
+    const leg = s => { const hx = 50 + s * 20; return `<g class="xmp-thigh xmp-thigh-${s < 0 ? "l" : "r"}"><rect x="${hx - 4}" y="76" width="8" height="18" rx="3" fill="#62798d" stroke="#22405c"/><circle cx="${hx}" cy="94" r="4.4" fill="#3fd6c8" stroke="#14283f"/>` +
+      `<g class="xmp-shin xmp-shin-${s < 0 ? "l" : "r"}"><rect x="${hx - 3.4}" y="94" width="6.8" height="16" rx="2.6" fill="#9fb3c4" stroke="#22405c"/><path d="M${hx - 3.4} 100 H${hx + 3.4}" stroke="#22405c"/><rect x="${hx - 8}" y="108.6" width="16" height="5.4" rx="2.4" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/></g></g>`; };
+    accBack = `<ellipse class="xmp-shadow" cx="50" cy="114.6" rx="34" ry="2.6" fill="#000" opacity=".3"/>`;
+    accExtra = `<g class="xmp-rig">${leg(-1)}${leg(1)}` +
+      `<rect x="10" y="50" width="80" height="30" rx="10" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/><path d="M14 54 H86" stroke="#3a5576" stroke-width="2.4" stroke-linecap="round"/>` +
+      `<ellipse cx="22" cy="66" rx="6.4" ry="4.6" fill="#e8f4ff" fill-opacity=".9"/><ellipse cx="78" cy="66" rx="6.4" ry="4.6" fill="#e8f4ff" fill-opacity=".9"/><ellipse class="xmp-beam" cx="22" cy="66" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".18"/><ellipse class="xmp-beam" cx="78" cy="66" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".18"/>` +
+      `<rect x="36" y="61" width="28" height="11" rx="3" fill="#0f1f33" stroke="#3a5576"/><text x="50" y="69.4" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#8de8df">EV</text>` +
+      `<rect x="40" y="74" width="20" height="3.4" rx="1" fill="#0f1f33"/>${[0, 1, 2, 3].map(i => `<rect class="xmp-bat" style="animation-delay:${i * .25}s" x="${41 + i * 4.6}" y="74.7" width="3.6" height="2" fill="#3fd6c8"/>`).join("")}</g>`;
+  } else if (acc === "mocap") {
+    const dot = (x, y) => `<circle cx="${x}" cy="${y}" r="2.6" fill="#eafcff" stroke="#3fd6c8" stroke-width="1.1"/>`;
+    accIn = `<path d="M50 3 L50 40 M50 40 L13 38 M50 40 L87 38 M50 40 L50 64 M50 64 L30 98 M50 64 L70 98" stroke="#3fd6c8" stroke-opacity=".55" stroke-width="1" stroke-dasharray="2 2" fill="none"/>` +
+      dot(50, 3) + dot(50, 40) + dot(13, 38) + dot(87, 38) + dot(50, 64) + dot(30, 98) + dot(70, 98) +
+      `<g class="echo-hand-l">${dot(4, 84)}</g><g class="echo-hand-r">${dot(96, 84)}</g>` +
+      `<g class="xmo-towel"><rect x="14" y="66" width="72" height="30" rx="2" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".8"/><path d="M14 72 H86 M14 90 H86" stroke="#6aa8ff" stroke-width="2.6"/><path d="M50 66 V96" stroke="#9fb3c4" stroke-opacity=".5" stroke-dasharray="2 2"/></g>`;
+    accExtra = `<g class="xmo-stack"><rect x="98" y="104" width="18" height="5" rx="1.4" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".7"/><rect x="99" y="99.4" width="17" height="5" rx="1.4" fill="#d4e3f0" stroke="#9fb3c4" stroke-width=".7"/><path d="M99 106.5 H116 M100 101.9 H116" stroke="#6aa8ff" stroke-width="1.2"/></g>` +
+      `<path d="M-14 116 L-6 88 L2 116 M-6 88 V116" stroke="#62798d" stroke-width="1.6" fill="none"/><rect x="-15" y="76" width="18" height="12" rx="2.4" fill="#26303a" stroke="#9fb3c4" stroke-width=".9"/><circle cx="3.6" cy="82" r="4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.4"/><circle class="xmo-rec" cx="-11" cy="79.4" r="1.5" fill="#ff4d4d"/>` +
+      `<path d="M-12 -18 h7 M-12 -18 v7 M112 -18 h-7 M112 -18 v7" stroke="#d4e3f0" stroke-opacity=".6" stroke-width="1.4" fill="none"/>` +
+      `<circle class="xmo-rec" cx="-6" cy="-9" r="2" fill="#ff4d4d"/><text x="-2" y="-6.6" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#ff8a9a">REC</text>` +
+      `<text x="111" y="-6.6" text-anchor="end" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="5" font-weight="800" fill="#9fb3c4">HOURS</text>` +
+      ["270K", "340K", "420K", "500K"].map((h, i) => `<text class="xmo-h xmo-h${i}" x="111" y="1.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="8.4" font-weight="900" fill="#8de8df">${h}</text>`).join("");
+  } else if (acc === "vault") {
+    const bolts = Array.from({ length: 12 }, (_, i) => { const a = i / 12 * Math.PI * 2; return `<circle cx="${(50 + Math.cos(a) * 45).toFixed(1)}" cy="${(57 + Math.sin(a) * 45).toFixed(1)}" r="2.2" fill="#9fb3c4" stroke="#22405c" stroke-width=".6"/>`; }).join("");
+    accDefs = `<radialGradient id="${k}vd" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#5d7a99"/><stop offset=".6" stop-color="#34506d"/><stop offset="1" stop-color="#22384f"/></radialGradient>`;
+    accBack = `<circle cx="50" cy="57" r="54" fill="#081322" stroke="#22405c" stroke-width="3"/><g fill="#c79a5b" stroke="#8a6a3a" stroke-width=".6"><path d="M-2 109 h14 l-2 -6 h-10 Z M14 109 h14 l-2 -6 h-10 Z M6 103 h14 l-2 -6 h-10 Z"/></g>`;
+    accIn = `<g transform="rotate(-6 50 72)"><rect x="29" y="57" width="42" height="31" rx="2.4" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M33 64 H67 M33 69 H63 M33 74 H66 M33 79 H58" stroke="#9fb3c4" stroke-width="1.2" stroke-linecap="round"/><text x="50" y="62.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.4" font-weight="900" fill="#3fd6c8" letter-spacing=".5">LEDGER</text><rect class="xvk-clasp" x="68" y="67" width="6" height="8" rx="1.4" fill="#3fd6c8"/></g>`;
+    accExtra = `<g class="xvk-door"><path fill-rule="evenodd" d="M0 57 a50 50 0 1 0 100 0 a50 50 0 1 0 -100 0 Z M36 32 a14 14 0 1 0 28 0 a14 14 0 1 0 -28 0 Z" fill="url(#${k}vd)" stroke="#9fb3c4" stroke-width="1.6"/>` +
+      `<circle cx="50" cy="32" r="14" fill="#a6e9ff" fill-opacity=".08" stroke="#d4e3f0" stroke-width="2"/><path d="M41 25 a11 11 0 0 1 8 -5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" fill="none" stroke-linecap="round"/>${bolts}` +
+      `<g class="xvk-wheel"><circle cx="50" cy="74" r="12" fill="none" stroke="#d4e3f0" stroke-width="2.4"/>${[0, 60, 120].map(a => `<path transform="rotate(${a} 50 74)" d="M38 74 H62" stroke="#d4e3f0" stroke-width="2.2" stroke-linecap="round"/>`).join("")}<circle cx="50" cy="74" r="3.4" fill="#22384f" stroke="#d4e3f0" stroke-width="1.4"/></g>` +
+      `<rect x="-4" y="36" width="7" height="12" rx="1.6" fill="#62798d"/><rect x="-4" y="66" width="7" height="12" rx="1.6" fill="#62798d"/></g>`;
+  } else if (acc === "stamp") {
+    const chip = (x, cls) => `<g class="${cls}"><rect x="${x - 9}" y="91" width="18" height="10" rx="1.4" fill="#1b1530" stroke="#6aa8ff" stroke-width=".9"/><rect x="${x - 4}" y="93.5" width="8" height="5" rx=".8" fill="#3fd6c8" fill-opacity=".85"/>${[-6, -2, 2, 6].map(d => `<rect x="${x + d - .7}" y="101" width="1.4" height="1.6" fill="#9fb3c4"/>`).join("")}</g>`;
+    accBack = `<ellipse cx="22" cy="105" rx="28" ry="2.4" fill="#000" opacity=".3"/>`;
+    accExtra = `<rect x="-14" y="103" width="130" height="6" rx="3" fill="#14283f" stroke="#3a5576" stroke-width=".8"/><path class="xst-belt" d="M-12 103.2 H114" stroke="#62798d" stroke-width="1.2" stroke-dasharray="4 4"/>${[-8, 20, 48, 76, 104].map(x => `<circle cx="${x}" cy="106" r="2" fill="#0c1a2b" stroke="#3a5576" stroke-width=".7"/>`).join("")}` +
+      `<g class="xst-row">${chip(91, "xst-new")}${chip(60, "")}${chip(29, "")}${chip(-2, "xst-out")}</g>` +
+      `<rect x="72" y="-6" width="5" height="92" rx="1.4" fill="#22384f" stroke="#3a5576"/><rect x="106" y="-6" width="5" height="92" rx="1.4" fill="#22384f" stroke="#3a5576"/><rect x="68" y="-12" width="47" height="9" rx="2" fill="#2d4a68" stroke="#6aa8ff" stroke-width=".9"/>` +
+      `<g class="xst-ram"><rect x="87.5" y="-3" width="8" height="40" fill="#9fb3c4" stroke="#62798d"/><rect x="78" y="37" width="27" height="12" rx="2" fill="#3fd6c8" stroke="#1d8a7c"/><text x="91.5" y="45.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.4" font-weight="900" fill="#0c1a2b">ASIC</text></g>` +
+      `<g class="xst-chunk" stroke="#d4e3f0" stroke-width="1.3" stroke-linecap="round"><path d="M76 86 l-5 -3 M107 86 l5 -3 M75 92 h-6 M108 92 h6"/></g>` +
+      `<g class="xst-lever"><path d="M66 102 L60 72" stroke="#9fb3c4" stroke-width="2.6" stroke-linecap="round"/><circle cx="60" cy="71" r="3.6" fill="#f4977a"/></g><circle cx="66" cy="102" r="2.6" fill="#22384f" stroke="#9fb3c4"/>`;
+  } else if (acc === "kart") {
+    accBack = `<path d="M-16 116 L36 30 H64 L116 116 Z" fill="#0f1f33"/><path d="M-16 116 L36 30 M116 116 L64 30" stroke="#3a5576" stroke-width="1.2"/>` +
+      `<g class="xdr-road">${[0, 1, 2, 3].map(i => `<rect class="xdr-dash" style="animation-delay:${(-i * .3).toFixed(1)}s" x="48.6" y="30" width="2.8" height="9" rx="1" fill="#d4e3f0" fill-opacity=".5"/>`).join("")}</g>` +
+      `<ellipse cx="50" cy="114.4" rx="44" ry="2.6" fill="#000" opacity=".35"/>`;
+    const bait = `<g class="xdr-bait"><path d="M70 -16 V-6" stroke="#d4e3f0" stroke-width=".9"/><g transform="translate(70 2)"><rect x="-21" y="-9" width="42" height="17" rx="8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><path d="M-7 8 L-10 13.5 L-1 8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2" stroke-linejoin="round"/><text x="0" y="2.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#211a32">1st prompt</text></g></g>`;
+    accExtra = `<g class="xdr-kart"><path d="M92 86 Q108 20 70 -16" stroke="#9c7440" stroke-width="2.2" fill="none" stroke-linecap="round"/>${bait}<rect x="4" y="80" width="92" height="22" rx="9" fill="#4f7fd6" stroke="#2b4fa0" stroke-width="1.2"/><path d="M10 86 H90" stroke="#3fd6c8" stroke-width="3"/><rect x="38" y="90" width="24" height="8" rx="2" fill="#2b4fa0"/><text x="50" y="96.8" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">01</text>` +
+      `<g class="xdr-tire"><rect x="-6" y="94" width="18" height="20" rx="6" fill="#0d141c" stroke="#3a5576"/><rect x="88" y="94" width="18" height="20" rx="6" fill="#0d141c" stroke="#3a5576"/></g><rect x="0" y="100" width="100" height="5" rx="2.5" fill="#22384f"/>` +
+      `<g class="xdr-wheel"><circle cx="50" cy="74" r="13" fill="none" stroke="#14112a" stroke-width="3.4"/><path d="M37 74 H63 M50 74 V87" stroke="#14112a" stroke-width="2.6"/><circle cx="50" cy="74" r="2.6" fill="#f4977a"/></g></g>`;
+  } else if (acc === "hurdle") {
+    const hurdle = (cls, h, c, label) => `<g class="${cls}"><g class="${cls}-tip"><path d="M0 110 V${110 - h} M30 110 V${110 - h}" stroke="#9fb3c4" stroke-width="1.8"/><rect x="-3" y="${108 - h}" width="36" height="6" rx="1" fill="${c}"/><path d="M5 ${108 - h} v6 M14 ${108 - h} v6 M23 ${108 - h} v6" stroke="#fff" stroke-opacity=".7" stroke-width="2"/><path d="M-4 110 h8 M26 110 h8" stroke="#9fb3c4" stroke-width="2"/>` +
+      `<text x="15" y="${102 - h}" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6" font-weight="900" fill="${c}">${label}</text></g></g>`;
+    accBack = `<path d="M-16 111 H116" stroke="#3a5576" stroke-width="1.6"/><path class="xhu-lane" d="M-16 115 H116" stroke="#d4e3f0" stroke-opacity=".35" stroke-width="1.4" stroke-dasharray="8 8"/><ellipse class="xhu-shadow" cx="44" cy="110.6" rx="26" ry="2.4" fill="#000" opacity=".3"/>`;
+    accIn = `<g transform="translate(50 -6) scale(1 .34)"><g class="xbf-orbit xhu-stars">${[0, 120, 240].map(a => `<path transform="rotate(${a}) translate(30 0)" d="M0 -6 L1.6 -1.6 L6 0 L1.6 1.6 L0 6 L-1.6 1.6 L-6 0 L-1.6 -1.6 Z" fill="#ffd98a"/>`).join("")}</g></g>`;
+    accExtra = hurdle("xhu-h1", 14, "#3fd6c8", "PHASE I") + hurdle("xhu-h2", 44, "#f4977a", "PHASE II") +
+      `<text class="xhu-ok" x="38" y="44" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="13" font-weight="900" fill="#3fd6c8">✓</text>`;
   } else if (acc === "clockmaker") {
     accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
       `<g class="echo-hand-l"><path d="M2 56 Q-10 50 -8 40" stroke="#c79a5b" stroke-width="1.2" fill="none" stroke-dasharray="1.6 1.2"/><circle cx="2" cy="68" r="10" fill="#f3ead2" stroke="#c79a5b" stroke-width="2"/><rect x="0" y="55" width="4" height="3.4" rx="1" fill="#c79a5b"/>${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i => `<path d="M2 ${60.6} V${i % 3 ? 61.6 : 62.6}" transform="rotate(${i * 30} 2 68)" stroke="#9c7440" stroke-width=".8"/>`).join("")}<g class="xck-hand"><path d="M2 68 V61.2" stroke="#2b2142" stroke-width="1.3" stroke-linecap="round"/></g><path d="M2 68 L6 70" stroke="#2b2142" stroke-width="1.1" stroke-linecap="round"/><circle cx="2" cy="68" r="1" fill="#2b2142"/>${mitt(3, 80, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xck-glass"><rect x="91" y="52" width="16" height="2.6" rx="1" fill="#c79a5b"/><rect x="91" y="76" width="16" height="2.6" rx="1" fill="#c79a5b"/><path d="M93 54.6 Q99 64 93 76 M105 54.6 Q99 64 105 76" stroke="#d4e3f0" stroke-width="1.2" fill="#a6e9ff" fill-opacity=".18"/><path d="M95 58 Q99 63 103 58 Z" fill="#ffc566"/><path d="M96 75.5 Q99 70 102 75.5 Z" fill="#ffc566"/></g>${mitt(95.5, 76)}</g>`;
-  } else if (acc === "camera") {
-    accIn = `<path d="M10 20 Q50 9 90 20" stroke="#1a2636" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="39" y="3" width="22" height="15" rx="3" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><circle cx="50" cy="10.5" r="4.4" fill="#0c1a2b" stroke="#6aa8ff" stroke-width="1.5"/><circle cx="48.8" cy="9.3" r="1.1" fill="#fff" opacity=".7"/><circle class="xcm-rec" cx="58" cy="6" r="1.6" fill="#ff4d4d"/>` +
-      `<g class="echo-hand-l"><rect x="-12" y="60" width="24" height="15" rx="1.5" fill="#26303a" stroke="#d4e3f0" stroke-width=".9"/><text x="0" y="70.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#d4e3f0">TAKE 1</text><g class="xcm-arm"><path d="M-12 59.5 L12 53 L13 57 L-11 63.5 Z" fill="#d4e3f0"/><path d="M-6.5 62 L-3.5 56.4 M-.5 60.4 L2.5 54.8 M5.5 58.8 L8.5 53.2" stroke="#26303a" stroke-width="2"/></g>${mitt(3, 80, 20)}</g>` +
-      `<g class="echo-hand-r"><rect x="96" y="52" width="12.5" height="21" rx="2.2" fill="#26303a" stroke="#9fb3c4" stroke-width="1"/><rect x="98" y="55" width="8.5" height="13" rx="1" fill="#3fd6c8" opacity=".7"/><circle class="xcm-rec" cx="102.2" cy="70.6" r="1.1" fill="#ff4d4d"/>${mitt(95.5, 76)}</g>`;
+  }
+  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle") {
+    accDefs += `<clipPath id="${k}cl"><rect x="-16" y="-22" width="132" height="138"/></clipPath>`;
+    accExtra = `<g clip-path="url(#${k}cl)">${accExtra}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
@@ -6400,7 +6538,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   if (sleep) extras = `<text class="echo-z" x="92" y="6" font-size="11" font-weight="800" fill="#b8a6ff">z</text><text class="echo-z" style="animation-delay:1.1s" x="100" y="-6" font-size="8" font-weight="800" fill="#b8a6ff">z</text>`;
   if (bare) { accExtra = ""; extras = ""; }
   const a11y = label ? `role="img" aria-label="${label}"` : `aria-hidden="true" focusable="false"`;
-  return `<svg class="echo echo-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}${dangle || bare ? "" : `<ellipse class="echo-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/>`}<g class="echo-all">${accUnder}<path class="echo-fin-l" d="${finL}" fill="url(#${k}n)"/>${hideFinR ? "" : `<path class="echo-fin-r" d="${finR}" fill="url(#${k}n)"/>`}<path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>${dangle ? `<ellipse class="echo-foot-l" cx="31" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/><ellipse class="echo-foot-r" cx="69" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/>` : `<ellipse class="echo-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="echo-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/>`}<path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="echo-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
+  return `<svg class="echo echo-${pose}" viewBox="-16 -22 132 138" xmlns="http://www.w3.org/2000/svg" ${a11y}><defs><radialGradient id="${k}b" cx="35%" cy="18%" r="85%"><stop offset="0" stop-color="#b7a6ff"/><stop offset=".5" stop-color="#8f76ff"/><stop offset="1" stop-color="#6c4ff2"/></radialGradient><radialGradient id="${k}w" cx="50%" cy="45%" r="62%"><stop offset="0" stop-color="#fff"/><stop offset=".75" stop-color="#f7f4ff"/><stop offset="1" stop-color="#e6dfff"/></radialGradient><linearGradient id="${k}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efeaff"/><stop offset="1" stop-color="#d6c9ff"/></linearGradient><radialGradient id="${k}n" cx="30%" cy="30%" r="90%"><stop offset="0" stop-color="#9d86ff"/><stop offset="1" stop-color="#6547ec"/></radialGradient>${accDefs}</defs>${accBack}${dangle || bare || ownShadow ? "" : `<ellipse class="echo-shadow" cx="50" cy="110.5" rx="36" ry="3.2" fill="#000" opacity=".22"/>`}<g class="echo-all">${accUnder}<path class="echo-fin-l" d="${finL}" fill="url(#${k}n)"/>${hideFinR ? "" : `<path class="echo-fin-r" d="${finR}" fill="url(#${k}n)"/>`}<path d="M6 34 C6 12 26 0.5 50 0.5 C74 0.5 94 12 94 34 L93.5 84 C93.5 92 80 95 50 95 C20 95 6.5 92 6.5 84 Z" fill="url(#${k}b)"/><path d="M7.6 40.5 H10.4 M7.6 43.6 H10.4 M89.6 40.5 H92.4 M89.6 43.6 H92.4" stroke="#4f33c8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>${dangle ? `<ellipse class="echo-foot-l" cx="31" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/><ellipse class="echo-foot-r" cx="69" cy="106" rx="12.5" ry="13.5" fill="url(#${k}f)" stroke="#6c4ff2" stroke-opacity=".55" stroke-width="1.2"/>` : `<ellipse class="echo-foot-l" cx="29.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/><ellipse class="echo-foot-r" cx="70.5" cy="98" rx="20.5" ry="12.5" fill="url(#${k}f)"/>`}<path d="M12.5 34 C12 14 24 3.2 50 3.2 C76 3.2 88 14 87.5 34 L87.5 80 C84 94 64 102.5 50 102.5 C36 102.5 16 94 12.5 80 Z" fill="url(#${k}w)"/><path d="M12.5 80 C16 94 36 102.5 50 102.5 C64 102.5 84 94 87.5 80" stroke="#ddd3fb" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="40.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/><ellipse cx="59.5" cy="6.6" rx="1.2" ry=".85" fill="#d5cbf7"/>${sleep ? VISOR_SLEEP : VISOR_AWAKE}<g class="echo-eyes">${sleep ? EYES_SHUT : EYES_OPEN}</g>${accIn}</g>${accExtra}${extras}</svg>`;
 }
 function mountEchoes(root = document) {
   $$("[data-echo]", root).forEach(el => {
