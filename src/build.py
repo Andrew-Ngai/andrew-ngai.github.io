@@ -19,6 +19,7 @@ PX = re.compile(
     r"|'(?:\\.|[^'\\])*'"
     r"|url\([^)]*\)"
     r"|@media[^{]*"
+    r"|@container[^{]*"
     r"|@property[^{]*\{[^}]*\}"
     r"|--u[\w-]*:[^;}]*"
     r"|(?<![\w.#-])(-?(?:\d+\.?\d*|\.\d+))px\b"
@@ -28,7 +29,7 @@ PX = re.compile(
 def scale_px(src):
     """Write each CSS pixel length as a multiple of --u (see the top of style.css).
 
-    Media query breakpoints stay in real pixels, and the --u and --u-* declarations themselves are left as written."""
+    Media and container query breakpoints stay in real pixels, and the --u and --u-* declarations themselves are left as written."""
     def unit(m):
         n = m.group(1)
         if n is None or float(n) == 0:
