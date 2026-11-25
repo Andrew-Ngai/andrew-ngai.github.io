@@ -1445,16 +1445,23 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       [[30, 54, 0], [68, 50, .12], [50, 44, .24]].map(([x, y, d]) => `<g class="xpd-coin" style="animation-delay:${d}s"><circle cx="${x}" cy="${y}" r="4.2" fill="#ffc566" stroke="#d98a12" stroke-width=".8"/><path d="M${x} ${y - 2.2} V${y + 2.2}" stroke="#d98a12" stroke-width=".9"/></g>`).join("") +
       spark(10, 30, .55, "#8de8df", 0) + spark(92, 24, .5, "#fff", .4);
   } else if (acc === "balance") {
-    // Market maker: balances on a YES/NO seesaw; a bet lands on one end, the board tips, Echo leans to level it, and the price moves
-    const chip = (x, y, c, cls) => `<g class="${cls}"><ellipse cx="${x}" cy="${y}" rx="6.4" ry="2.6" fill="${c}" stroke="#0c1a2b" stroke-width=".7"/><ellipse cx="${x}" cy="${y - 1.2}" rx="6.4" ry="2.6" fill="${c}" stroke="#fff" stroke-opacity=".5" stroke-width=".6"/></g>`;
-    accBack = `<path d="M50 99 L61 115 H39 Z" fill="#22405c" stroke="#3b5f82" stroke-linejoin="round"/><rect x="34" y="114" width="32" height="2.4" rx="1" fill="#14283f"/>` +
-      `<g class="xmm-plank"><rect x="-14" y="97.2" width="128" height="4.6" rx="2" fill="#7a5a32" stroke="#4e3a20" stroke-width=".6"/>` +
-      `<rect x="-14" y="101.8" width="21" height="8" rx="1.4" fill="#0f2638" stroke="#3fd6c8"/><text x="-3.5" y="108" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#3fd6c8">YES</text>` +
-      `<rect x="93" y="101.8" width="21" height="8" rx="1.4" fill="#2a1820" stroke="#f4977a"/><text x="103.5" y="108" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6.4" font-weight="900" fill="#f4977a">NO</text>` +
-      chip(-4, 95, "#3fd6c8", "xmm-c0") + chip(-4, 91.4, "#3fd6c8", "xmm-c1") + chip(104, 95, "#f4977a", "xmm-c2") + chip(104, 91.4, "#f4977a", "xmm-c3") + `</g>`;
-    accExtra = `<g transform="translate(50 -15)"><rect x="-17" y="-6.4" width="34" height="12.8" rx="2.2" fill="#fbfaff" stroke="#3fd6c8" stroke-width="1"/><text x="-12.5" y="2.3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6" font-weight="900" fill="#1d8a5c">YES</text>` +
-      ["62¢", "71¢", "64¢"].map((p, i) => `<text class="xmm-p xmm-p${i}" x="13" y="3.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#211a32">${p}</text>`).join("") +
-      `<path class="xmm-up" d="M14.6 -1 l2.4 -3 l2.4 3" stroke="#2fb87a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path class="xmm-dn" d="M14.6 -3.6 l2.4 3 l2.4 -3" stroke="#f4977a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+    // Market maker: Echo is the scale. A pan hangs from each fin, YES and NO; bets drop in, the heavy side sinks and
+    // the price jumps, then bets on the other side swing it back. It makes both sides of every trade.
+    const tok = (x, y, c, cls) => `<g class="xmm-t ${cls}"><ellipse cx="${x}" cy="${y + 1.5}" rx="6.2" ry="2.6" fill="#000" opacity=".35"/><ellipse cx="${x}" cy="${y}" rx="6.2" ry="2.6" fill="${c}" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/></g>`;
+    const pan = s => {
+      const x = s < 0 ? 5 : 95, c = s < 0 ? "#3fd6c8" : "#f4977a", side = s < 0 ? "l" : "r";
+      const toks = s < 0 ? tok(x - 5.6, 101, c, "xmm-l1") + tok(x + 5.6, 101, c, "xmm-l2")
+        : tok(x - 5.6, 101, c, "xmm-r1") + tok(x + 5.6, 101, c, "xmm-r2") + tok(x, 97.4, c, "xmm-r3");
+      return `<g class="echo-hand-${side}">${mitt(x, 85, s * 20)}<g class="xmm-hang-${side}"><path d="M${x} 87 L${x - 13.4} 102.6 M${x} 87 L${x + 13.4} 102.6" stroke="#d4e3f0" stroke-opacity=".8" stroke-width="1.1"/><circle cx="${x}" cy="87" r="1.6" fill="#d4e3f0"/>` +
+        `<path d="M${x - 15} 102 Q${x} 118 ${x + 15} 102 Z" fill="#14283f"/>` + toks +
+        `<path d="M${x - 15} 102 Q${x} 118 ${x + 15} 102 Q${x} 105 ${x - 15} 102 Z" fill="#14283f" stroke="${c}" stroke-width="1.5" stroke-linejoin="round"/>` +
+        `<text x="${x}" y="111" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7.4" font-weight="900" fill="${c}">${s < 0 ? "YES" : "NO"}</text></g></g>`;
+    };
+    accIn = pan(-1) + pan(1);
+    accBack = `<ellipse cx="50" cy="110.6" rx="26" ry="2.6" fill="#000" opacity=".3"/>`;
+    accExtra = `<g transform="translate(50 6)"><path d="M0 8.5 V15" stroke="#3fd6c8" stroke-opacity=".5" stroke-width="1"/><rect x="-25" y="-9" width="50" height="18" rx="2.8" fill="#fbfaff" stroke="#3fd6c8" stroke-width="1.2"/><text x="-20" y="3.2" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#1d8a5c">YES</text>` +
+      ["62¢", "71¢", "64¢", "55¢"].map((p, i) => `<text class="xmm-p xmm-p${i}" x="13.6" y="5.2" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="14.6" font-weight="900" fill="#211a32">${p}</text>`).join("") +
+      `<path class="xmm-up" d="M15.4 1.4 l3.6 -4.6 l3.6 4.6" stroke="#2fb87a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path class="xmm-dn" d="M15.4 -3.2 l3.6 4.6 l3.6 -4.6" stroke="#f4977a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
   } else if (acc === "pounce") {
     // Laser chaser: stalks a red dot like a cat, wiggles, pounces, misses when it zips up the wall, and looks up, baffled
     accExtra = `<g class="xlc-dot"><circle r="10" fill="#ff6b6b" opacity=".14"/><circle r="5.6" fill="#ff6b6b" opacity=".4"/><circle r="2.8" fill="#ffe1e1"/></g>` +
@@ -1481,15 +1488,30 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<g class="xlr-exit"><rect x="88" y="-21" width="28" height="12" rx="1.6" fill="#1d8a5c" stroke="#3fd6c8" stroke-width=".9"/><text x="98" y="-12.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.4" font-weight="900" fill="#fff">EXIT</text><path d="M107 -15 h5.4 m-2.2 -2.4 l2.4 2.4 l-2.4 2.4" stroke="#fff" stroke-width="1.1" fill="none"/></g>` +
       `<text class="xlr-look" x="72" y="-6" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#d4e3f0">…</text>`;
   } else if (acc === "mech") {
-    // Mech pilot: rides an EV chassis on two robot legs that stride, wobble, and catch themselves
-    const leg = s => { const hx = 50 + s * 20; return `<g class="xmp-thigh xmp-thigh-${s < 0 ? "l" : "r"}"><rect x="${hx - 4}" y="76" width="8" height="18" rx="3" fill="#62798d" stroke="#22405c"/><circle cx="${hx}" cy="94" r="4.4" fill="#3fd6c8" stroke="#14283f"/>` +
-      `<g class="xmp-shin xmp-shin-${s < 0 ? "l" : "r"}"><rect x="${hx - 3.4}" y="94" width="6.8" height="16" rx="2.6" fill="#9fb3c4" stroke="#22405c"/><path d="M${hx - 3.4} 100 H${hx + 3.4}" stroke="#22405c"/><rect x="${hx - 8}" y="108.6" width="16" height="5.4" rx="2.4" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/></g></g>`; };
-    accBack = `<ellipse class="xmp-shadow" cx="50" cy="114.6" rx="34" ry="2.6" fill="#000" opacity=".3"/>`;
-    accExtra = `<g class="xmp-rig">${leg(-1)}${leg(1)}` +
-      `<rect x="10" y="50" width="80" height="30" rx="10" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/><path d="M14 54 H86" stroke="#3a5576" stroke-width="2.4" stroke-linecap="round"/>` +
-      `<ellipse cx="22" cy="66" rx="6.4" ry="4.6" fill="#e8f4ff" fill-opacity=".9"/><ellipse cx="78" cy="66" rx="6.4" ry="4.6" fill="#e8f4ff" fill-opacity=".9"/><ellipse class="xmp-beam" cx="22" cy="66" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".18"/><ellipse class="xmp-beam" cx="78" cy="66" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".18"/>` +
-      `<rect x="36" y="61" width="28" height="11" rx="3" fill="#0f1f33" stroke="#3a5576"/><text x="50" y="69.4" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#8de8df">EV</text>` +
-      `<rect x="40" y="74" width="20" height="3.4" rx="1" fill="#0f1f33"/>${[0, 1, 2, 3].map(i => `<rect class="xmp-bat" style="animation-delay:${i * .25}s" x="${41 + i * 4.6}" y="74.7" width="3.6" height="2" fill="#3fd6c8"/>`).join("")}</g>`;
+    // Mech pilot: a humanoid that's an EV with legs, wheels for shoulders, Echo under the glass. It strides until the
+    // battery runs flat, slumps, gets plugged in, charges back up and flexes. Building the body is the easy part.
+    const arm = s => { const x = s < 0 ? 9 : 91, side = s < 0 ? "l" : "r";
+      return `<g class="xmp-arm-${side}"><rect x="${x - 4}" y="60" width="8" height="17" rx="3.4" fill="#62798d" stroke="#22405c"/><g class="xmp-fore-${side}"><circle cx="${x}" cy="77" r="3.6" fill="#3fd6c8" stroke="#14283f"/>` +
+        `<rect x="${x - 3.4}" y="77" width="6.8" height="13" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><path d="M${x - 3} 90 l-1.8 5.2 M${x + 3} 90 l1.8 5.2" stroke="#d4e3f0" stroke-width="2.2" stroke-linecap="round"/></g></g>`; };
+    const leg = s => { const hx = 50 + s * 17, side = s < 0 ? "l" : "r";
+      return `<g class="xmp-thigh-${side}"><rect x="${hx - 4.4}" y="78" width="8.8" height="17" rx="3.4" fill="#62798d" stroke="#22405c"/>` +
+        `<g class="xmp-shin-${side}"><rect x="${hx - 3.6}" y="95" width="7.2" height="14" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><rect x="${hx - 8.4}" y="108.4" width="16.8" height="5.6" rx="2.6" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/></g>` +
+        `<circle cx="${hx}" cy="95" r="4.4" fill="#3fd6c8" stroke="#14283f"/></g>`; };
+    accBack = `<ellipse class="xmp-shadow" cx="50" cy="114.8" rx="36" ry="2.8" fill="#000" opacity=".35"/>`;
+    accExtra = `<g class="xmp-rig">${leg(-1)}${leg(1)}${arm(-1)}${arm(1)}` +
+      `<path d="M14 49 Q14 44 22 44 H78 Q86 44 86 49 V75 Q86 80 80 80 H20 Q14 80 14 75 Z" fill="#22384f" stroke="#6aa8ff" stroke-width="1.1"/>` +
+      `<path d="M19 49.4 H81" stroke="#3a5576" stroke-width="2.4" stroke-linecap="round"/>` +
+      `<g class="xmp-lights"><ellipse cx="24.6" cy="61" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".14"/><ellipse cx="75.4" cy="61" rx="9" ry="7" fill="#e8f4ff" fill-opacity=".14"/><ellipse cx="24.6" cy="61" rx="5.6" ry="4.2" fill="#e8f4ff" fill-opacity=".92"/><ellipse cx="75.4" cy="61" rx="5.6" ry="4.2" fill="#e8f4ff" fill-opacity=".92"/></g>` +
+      `<rect x="38" y="54.6" width="24" height="10" rx="3" fill="#0f1f33" stroke="#3a5576"/><text x="50" y="62.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.6" font-weight="900" fill="#8de8df">EV</text>` +
+      `<rect x="37.6" y="68" width="24.8" height="7.4" rx="1.8" fill="#0f1f33" stroke="#3a5576" stroke-width=".8"/><rect x="62.4" y="70" width="1.8" height="3.4" rx=".5" fill="#3a5576"/>` +
+      [0, 1, 2, 3].map(i => `<rect class="xmp-b xmp-b${i}" x="${39.4 + i * 5.6}" y="69.6" width="4.6" height="4.2" rx=".7" fill="#3fd6c8"/>`).join("") + `<rect class="xmp-low" x="39.4" y="69.6" width="4.6" height="4.2" rx=".7" fill="#ff6b80"/>` +
+      `<rect x="17" y="69" width="5" height="6" rx="1.2" fill="#0c1a2b" stroke="#3a5576" stroke-width=".7"/>` +
+      [-1, 1].map(s => `<circle cx="${50 + s * 41}" cy="58" r="9" fill="#0d141c" stroke="#3a5576" stroke-width="1.2"/><circle cx="${50 + s * 41}" cy="58" r="3.6" fill="#3fd6c8" stroke="#14283f"/>`).join("") +
+      `<path d="M21 45 C21 -9 79 -9 79 45" fill="#a6e9ff" fill-opacity=".07" stroke="#d4e3f0" stroke-opacity=".55" stroke-width="1.6"/><path d="M27 30 C27 11 35 3 43 1" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/></g>` +
+      `<path class="xmp-cable" d="M-18 113 C-2 114 -6 84 19.5 80" stroke="#0c1a2b" stroke-width="3.4" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>` +
+      `<path class="xmp-cable" d="M-18 113 C-2 114 -6 84 19.5 80" stroke="#3fd6c8" stroke-width="1.1" fill="none" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>` +
+      `<path class="xmp-bolt" d="M3 52 L-2 63 H2.4 L0 72 L8 59 H3.6 Z" fill="#8de8df"/>` +
+      `<g class="xmp-fx">${spark(-6, 22, .7, "#8de8df", 0)}${spark(106, 20, .65, "#fff", .25)}${spark(100, -6, .5, "#6aa8ff", .5)}${spark(0, -4, .5, "#fff", .4)}</g>`;
   } else if (acc === "mocap") {
     // Mocap: in a motion-capture suit, folding laundry for the camera while the hours counter climbs
     const dot = (x, y) => `<circle cx="${x}" cy="${y}" r="2.6" fill="#eafcff" stroke="#3fd6c8" stroke-width="1.1"/>`;
@@ -1504,15 +1526,28 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<text x="111" y="-6.6" text-anchor="end" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="5" font-weight="800" fill="#9fb3c4">HOURS</text>` +
       ["270K", "340K", "420K", "500K"].map((h, i) => `<text class="xmo-h xmo-h${i}" x="111" y="1.6" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="8.4" font-weight="900" fill="#8de8df">${h}</text>`).join("");
   } else if (acc === "vault") {
-    // Vault keeper: a round vault door spins its wheel and swings open on Echo hugging the ledger, then swings shut
+    // Vault keeper: an AI agent flies up and knocks. The wheel spins, the door swings open, and Echo writes the entry in
+    // the ledger and stamps it. The agent leaves with its receipt, and the door clunks shut and locks. Agents need the record.
     const bolts = Array.from({ length: 12 }, (_, i) => { const a = i / 12 * Math.PI * 2; return `<circle cx="${(50 + Math.cos(a) * 45).toFixed(1)}" cy="${(57 + Math.sin(a) * 45).toFixed(1)}" r="2.2" fill="#9fb3c4" stroke="#22405c" stroke-width=".6"/>`; }).join("");
-    accDefs = `<radialGradient id="${k}vd" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#5d7a99"/><stop offset=".6" stop-color="#34506d"/><stop offset="1" stop-color="#22384f"/></radialGradient>`;
-    accBack = `<circle cx="50" cy="57" r="54" fill="#081322" stroke="#22405c" stroke-width="3"/><g fill="#c79a5b" stroke="#8a6a3a" stroke-width=".6"><path d="M-2 109 h14 l-2 -6 h-10 Z M14 109 h14 l-2 -6 h-10 Z M6 103 h14 l-2 -6 h-10 Z"/></g>`;
-    accIn = `<g transform="rotate(-6 50 72)"><rect x="29" y="57" width="42" height="31" rx="2.4" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M33 64 H67 M33 69 H63 M33 74 H66 M33 79 H58" stroke="#9fb3c4" stroke-width="1.2" stroke-linecap="round"/><text x="50" y="62.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.4" font-weight="900" fill="#3fd6c8" letter-spacing=".5">LEDGER</text><rect class="xvk-clasp" x="68" y="67" width="6" height="8" rx="1.4" fill="#3fd6c8"/></g>`;
-    accExtra = `<g class="xvk-door"><path fill-rule="evenodd" d="M0 57 a50 50 0 1 0 100 0 a50 50 0 1 0 -100 0 Z M36 32 a14 14 0 1 0 28 0 a14 14 0 1 0 -28 0 Z" fill="url(#${k}vd)" stroke="#9fb3c4" stroke-width="1.6"/>` +
+    accDefs = `<radialGradient id="${k}vd" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#5d7a99"/><stop offset=".6" stop-color="#34506d"/><stop offset="1" stop-color="#22384f"/></radialGradient>` +
+      `<radialGradient id="${k}vg" cx="50%" cy="55%" r="50%"><stop offset="0" stop-color="#3fd6c8" stop-opacity=".4"/><stop offset="1" stop-color="#3fd6c8" stop-opacity="0"/></radialGradient>`;
+    accBack = `<circle cx="50" cy="57" r="54" fill="#081322" stroke="#22405c" stroke-width="3"/><circle class="xvk-glow" cx="50" cy="60" r="50" fill="url(#${k}vg)"/>` +
+      `<path d="M14 34 H86 M10 80 H90" stroke="#22405c" stroke-width="2"/>`;
+    accIn = `<g transform="rotate(-5 50 74)"><rect x="27" y="58" width="44" height="32" rx="2.4" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><path d="M49 58 V90" stroke="#d4e3f0" stroke-opacity=".35"/>` +
+      `<text x="38" y="64.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.4" font-weight="900" fill="#3fd6c8" letter-spacing=".4">LEDGER</text>` +
+      `<path d="M31 70 H45 M31 75 H44 M31 80 H45 M31 85 H42" stroke="#9fb3c4" stroke-width="1.1" stroke-linecap="round"/>` +
+      [70, 75, 80].map((y, i) => `<path class="xvk-ln xvk-ln${i}" d="M53 ${y} H67" stroke="#8de8df" stroke-width="1.3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`).join("") +
+      `<g class="xvk-ok"><circle cx="61" cy="85.6" r="3.8" fill="none" stroke="#3fd6c8" stroke-width="1.2"/><path d="M59 85.6 l1.5 1.5 l2.8 -3" stroke="#3fd6c8" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>` +
+      `<g class="echo-hand-r">${mitt(95, 85, 20)}<g transform="translate(95 87) rotate(-24)"><path d="M0 0 L-1.4 -21 Q6.4 -17 3.2 -4 Z" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".6"/><path d="M0 0 L-.9 -19" stroke="#9fb3c4" stroke-width=".6"/><circle r="1.1" fill="#211a32"/></g></g>`;
+    accExtra = `<g class="xvk-bot"><path class="xvk-prop" d="M-9 -11 H9" stroke="#9fb3c4" stroke-width="1.6" stroke-linecap="round"/><path d="M0 -11 V-7" stroke="#9fb3c4" stroke-width="1.2"/>` +
+      `<circle r="7.4" fill="#22384f" stroke="#6aa8ff" stroke-width="1.2"/><rect x="-4.6" y="-2" width="9.2" height="3.4" rx="1.7" fill="#0c1a2b"/><circle class="xvk-beye" cx="-1.8" cy="-.3" r="1" fill="#8de8df"/><circle class="xvk-beye" cx="1.8" cy="-.3" r="1" fill="#8de8df"/>` +
+      `<g class="xvk-rcpt"><path d="M-4 7.4 h8 v9 l-1.6 -1.2 l-1.6 1.2 l-1.6 -1.2 l-1.6 1.2 l-1.6 -1.2 Z" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".5"/><path d="M-2.4 10.4 h4.8 M-2.4 12.8 h3.4" stroke="#3fd6c8" stroke-width=".8"/></g></g>` +
+      `<rect class="xvk-edge" x="8" y="9" width="7" height="97" rx="3" fill="#162a40" stroke="#5d7a99" stroke-width="1"/>` +
+      `<g class="xvk-door"><path fill-rule="evenodd" d="M0 57 a50 50 0 1 0 100 0 a50 50 0 1 0 -100 0 Z M36 32 a14 14 0 1 0 28 0 a14 14 0 1 0 -28 0 Z" fill="url(#${k}vd)" stroke="#9fb3c4" stroke-width="1.6"/>` +
       `<circle cx="50" cy="32" r="14" fill="#a6e9ff" fill-opacity=".08" stroke="#d4e3f0" stroke-width="2"/><path d="M41 25 a11 11 0 0 1 8 -5" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" fill="none" stroke-linecap="round"/>${bolts}` +
       `<g class="xvk-wheel"><circle cx="50" cy="74" r="12" fill="none" stroke="#d4e3f0" stroke-width="2.4"/>${[0, 60, 120].map(a => `<path transform="rotate(${a} 50 74)" d="M38 74 H62" stroke="#d4e3f0" stroke-width="2.2" stroke-linecap="round"/>`).join("")}<circle cx="50" cy="74" r="3.4" fill="#22384f" stroke="#d4e3f0" stroke-width="1.4"/></g>` +
-      `<rect x="-4" y="36" width="7" height="12" rx="1.6" fill="#62798d"/><rect x="-4" y="66" width="7" height="12" rx="1.6" fill="#62798d"/></g>`;
+      `<rect x="-4" y="36" width="7" height="12" rx="1.6" fill="#62798d"/><rect x="-4" y="66" width="7" height="12" rx="1.6" fill="#62798d"/></g>` +
+      `<circle cx="96" cy="9" r="4.4" fill="#0c1a2b" stroke="#22405c"/><circle class="xvk-lamp" cx="96" cy="9" r="2.8"/>`;
   } else if (acc === "stamp") {
     // Stamper: pulls the lever, the ASIC press slams down, and identical chips march off the belt, one per stroke
     const chip = (x, cls) => `<g class="${cls}"><rect x="${x - 9}" y="91" width="18" height="10" rx="1.4" fill="#1b1530" stroke="#6aa8ff" stroke-width=".9"/><rect x="${x - 4}" y="93.5" width="8" height="5" rx=".8" fill="#3fd6c8" fill-opacity=".85"/>${[-6, -2, 2, 6].map(d => `<rect x="${x + d - .7}" y="101" width="1.4" height="1.6" fill="#9fb3c4"/>`).join("")}</g>`;
@@ -1524,14 +1559,26 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<g class="xst-chunk" stroke="#d4e3f0" stroke-width="1.3" stroke-linecap="round"><path d="M76 86 l-5 -3 M107 86 l5 -3 M75 92 h-6 M108 92 h6"/></g>` +
       `<g class="xst-lever"><path d="M66 102 L60 72" stroke="#9fb3c4" stroke-width="2.6" stroke-linecap="round"/><circle cx="60" cy="71" r="3.6" fill="#f4977a"/></g><circle cx="66" cy="102" r="2.6" fill="#22384f" stroke="#9fb3c4"/>`;
   } else if (acc === "kart") {
-    // Driver: in a go-kart chasing the "1st prompt" bubble dangled from a rod; wherever it swings, the kart follows
-    accBack = `<path d="M-16 116 L36 30 H64 L116 116 Z" fill="#0f1f33"/><path d="M-16 116 L36 30 M116 116 L64 30" stroke="#3a5576" stroke-width="1.2"/>` +
-      `<g class="xdr-road">${[0, 1, 2, 3].map(i => `<rect class="xdr-dash" style="animation-delay:${(-i * .3).toFixed(1)}s" x="48.6" y="30" width="2.8" height="9" rx="1" fill="#d4e3f0" fill-opacity=".5"/>`).join("")}</g>` +
-      `<ellipse cx="50" cy="114.4" rx="44" ry="2.6" fill="#000" opacity=".35"/>`;
+    // Driver: racing after the "1st prompt" dangled on a rod. It swings, the kart swerves after it, the road bends,
+    // posts whip past and dust kicks up: wherever the first prompt points, the whole ride follows.
+    const post = (s, i) => `<g class="xdr-post xdr-post-${s < 0 ? "l" : "r"}" style="animation-delay:${(-i * .55).toFixed(2)}s"><rect x="${s < 0 ? 36.6 : 61}" y="33" width="2.4" height="8" rx="1" fill="${s < 0 ? "#f4977a" : "#3fd6c8"}"/><rect x="${s < 0 ? 36.6 : 61}" y="33" width="2.4" height="2.4" fill="#fff" fill-opacity=".85"/></g>`;
+    accBack = `<ellipse cx="50" cy="38" rx="48" ry="7" fill="#3fd6c8" opacity=".06"/>` +
+      `<g class="xdr-roadg"><path d="M-40 116 L41 38 H59 L140 116 Z" fill="#0f1f33"/><path d="M-40 116 L41 38 M140 116 L59 38" stroke="#4a6d92" stroke-width="1.6"/>` +
+      [0, 1, 2, 3].map(i => `<rect class="xdr-dash" style="animation-delay:${(-i * .2).toFixed(2)}s" x="48.9" y="38" width="2.2" height="6" rx="1" fill="#d4e3f0"/>`).join("") + `</g>` +
+      [-1, 1].map(s => [0, 1].map(i => post(s, i)).join("")).join("") +
+      `<ellipse cx="50" cy="114.6" rx="50" ry="2.8" fill="#000" opacity=".45"/>`;
+    // racing goggles pushed up on the dome
+    accIn = `<path d="M19 13 Q50 -4 81 13" stroke="#2b2142" stroke-width="4.4" fill="none" stroke-linecap="round"/>` +
+      [36, 64].map(x => `<circle cx="${x}" cy="3" r="10" fill="#2b2142"/><circle cx="${x}" cy="3" r="7.4" fill="#3fd6c8" fill-opacity=".3" stroke="#9fe9e1" stroke-width="1.4"/><path d="M${x - 4.4} -.2 a6 6 0 0 1 5 -3.2" stroke="#fff" stroke-opacity=".85" stroke-width="1.3" fill="none" stroke-linecap="round"/>`).join("") +
+      `<path d="M45 3 H55" stroke="#2b2142" stroke-width="3.4"/>`;
     const bait = `<g class="xdr-bait"><path d="M70 -16 V-6" stroke="#d4e3f0" stroke-width=".9"/><g transform="translate(70 2)"><rect x="-21" y="-9" width="42" height="17" rx="8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><path d="M-7 8 L-10 13.5 L-1 8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2" stroke-linejoin="round"/><text x="0" y="2.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#211a32">1st prompt</text></g></g>`;
-    accExtra = `<g class="xdr-kart"><path d="M92 86 Q108 20 70 -16" stroke="#9c7440" stroke-width="2.2" fill="none" stroke-linecap="round"/>${bait}<rect x="4" y="80" width="92" height="22" rx="9" fill="#4f7fd6" stroke="#2b4fa0" stroke-width="1.2"/><path d="M10 86 H90" stroke="#3fd6c8" stroke-width="3"/><rect x="38" y="90" width="24" height="8" rx="2" fill="#2b4fa0"/><text x="50" y="96.8" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#fff">01</text>` +
-      `<g class="xdr-tire"><rect x="-6" y="94" width="18" height="20" rx="6" fill="#0d141c" stroke="#3a5576"/><rect x="88" y="94" width="18" height="20" rx="6" fill="#0d141c" stroke="#3a5576"/></g><rect x="0" y="100" width="100" height="5" rx="2.5" fill="#22384f"/>` +
-      `<g class="xdr-wheel"><circle cx="50" cy="74" r="13" fill="none" stroke="#14112a" stroke-width="3.4"/><path d="M37 74 H63 M50 74 V87" stroke="#14112a" stroke-width="2.6"/><circle cx="50" cy="74" r="2.6" fill="#f4977a"/></g></g>`;
+    accExtra = `<g class="xdr-kart"><path d="M92 86 Q110 20 70 -16" stroke="#9c7440" stroke-width="2.2" fill="none" stroke-linecap="round"/>${bait}` +
+      `<g class="xdr-bounce"><path d="M16 79 L24 71 H76 L84 79 Z" fill="#3a63b8" stroke="#2b4fa0" stroke-width="1"/><path d="M2 93 Q2 79 16 79 H84 Q98 79 98 93 V101 H2 Z" fill="#4f7fd6" stroke="#2b4fa0" stroke-width="1.2"/><path d="M7 86 H93" stroke="#3fd6c8" stroke-width="3"/>` +
+      `<rect x="38" y="90" width="24" height="9" rx="2" fill="#2b4fa0"/><text x="50" y="97.4" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.6" font-weight="900" fill="#fff">01</text>` +
+      `<g class="xdr-wheel"><circle cx="50" cy="72" r="13.6" fill="none" stroke="#14112a" stroke-width="3.6"/><path d="M36.4 72 H63.6 M50 72 V85.6" stroke="#14112a" stroke-width="2.8"/><circle cx="50" cy="72" r="2.8" fill="#f4977a"/></g></g>` +
+      `<rect x="-8" y="93" width="19" height="22" rx="6.4" fill="#0d141c" stroke="#3a5576"/><rect x="89" y="93" width="19" height="22" rx="6.4" fill="#0d141c" stroke="#3a5576"/>` +
+      `<g class="xdr-tread" stroke="#3a5576" stroke-width="1.2"><path d="M-6 92 H9 M-6 98 H9 M-6 104 H9 M-6 110 H9 M91 92 H106 M91 98 H106 M91 104 H106 M91 110 H106"/></g>` +
+      `<rect x="0" y="100" width="100" height="5" rx="2.5" fill="#22384f"/></g>`;
   } else if (acc === "hurdle") {
     // Hurdler: clears the low Phase I hurdle in stride, then meets Phase II, goes over backward, and sits there seeing stars
     const hurdle = (cls, h, c, label) => `<g class="${cls}"><g class="${cls}-tip"><path d="M0 110 V${110 - h} M30 110 V${110 - h}" stroke="#9fb3c4" stroke-width="1.8"/><rect x="-3" y="${108 - h}" width="36" height="6" rx="1" fill="${c}"/><path d="M5 ${108 - h} v6 M14 ${108 - h} v6 M23 ${108 - h} v6" stroke="#fff" stroke-opacity=".7" stroke-width="2"/><path d="M-4 110 h8 M26 110 h8" stroke="#9fb3c4" stroke-width="2"/>` +
@@ -1547,7 +1594,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<g class="echo-hand-r"><g class="xck-glass"><rect x="91" y="52" width="16" height="2.6" rx="1" fill="#c79a5b"/><rect x="91" y="76" width="16" height="2.6" rx="1" fill="#c79a5b"/><path d="M93 54.6 Q99 64 93 76 M105 54.6 Q99 64 105 76" stroke="#d4e3f0" stroke-width="1.2" fill="#a6e9ff" fill-opacity=".18"/><path d="M95 58 Q99 63 103 58 Z" fill="#ffc566"/><path d="M96 75.5 Q99 70 102 75.5 Z" fill="#ffc566"/></g>${mitt(95.5, 76)}</g>`;
   }
   // scenes that slide props in from past the edge keep them inside the drawing
-  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle") {
+  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle" || acc === "vault") {
     accDefs += `<clipPath id="${k}cl"><rect x="-16" y="-22" width="132" height="138"/></clipPath>`;
     accExtra = `<g clip-path="url(#${k}cl)">${accExtra}</g>`;
   }
