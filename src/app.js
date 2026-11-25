@@ -1244,7 +1244,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
   const finR = pose === "cheer" || pose === "lookout" || pose === "draw" || pose === "payday" ? FIN_UP_R : FIN_DOWN_R;
   // Echoes standing on a prop, riding something or drawing their own shadow skip the floor shadow
-  const ownShadow = pose === "bitflip" || pose === "balance" || pose === "mech" || pose === "kart" || pose === "stamp" || pose === "hurdle";
+  const ownShadow = pose === "bitflip" || pose === "balance" || pose === "mech" || pose === "kart" || pose === "stamp" || pose === "hurdle" || pose === "surf" || pose === "sail" || pose === "toll" || pose === "transform" || pose === "assemble";
   // sitting or dozing on a ledge: no floor, so no shadow, and the feet dangle over the edge
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
@@ -1587,6 +1587,117 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<g transform="translate(50 -6) scale(1 .34)"><g class="xbf-orbit xhu-stars">${[0, 120, 240].map(a => `<path transform="rotate(${a}) translate(30 0)" d="M0 -6 L1.6 -1.6 L6 0 L1.6 1.6 L0 6 L-1.6 1.6 L-6 0 L-1.6 -1.6 Z" fill="#ffd98a"/>`).join("")}</g></g>`;
     accExtra = hurdle("xhu-h1", 14, "#3fd6c8", "PHASE I") + hurdle("xhu-h2", 44, "#f4977a", "PHASE II") +
       `<text class="xhu-ok" x="38" y="44" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="13" font-weight="900" fill="#3fd6c8">✓</text>`;
+  } else if (acc === "juggle") {
+    // Market maker, juggling: keeps YES and NO in the air at once, never dropping either, while the quotes tick with every throw
+    const coin = (d, c, t) => `<g class="xjg-x" style="animation-delay:${d}s"><g class="xjg-y" style="animation-delay:${d}s"><circle r="7" fill="${c}" stroke="#fff" stroke-opacity=".8" stroke-width="1"/><circle r="4.8" fill="none" stroke="#0c1a2b" stroke-opacity=".3" stroke-width=".8"/><text y="2.7" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.6" font-weight="900" fill="#0c1a2b">${t}</text></g></g>`;
+    const px = `font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10.6" font-weight="900" fill="#eef4f8"`;
+    accIn = `<g class="echo-hand-l">${mitt(8, 86, -10)}</g><g class="echo-hand-r">${mitt(92, 86, 10)}</g>`;
+    accExtra = `<g transform="translate(50 -14)"><rect x="-44" y="-7.4" width="88" height="14.8" rx="3" fill="#0f1f33" stroke="#3a5576"/>` +
+      `<text x="-39.5" y="3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#3fd6c8">YES</text><path d="M0 -4.4 V4.4" stroke="#3a5576"/><text x="5" y="3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#f4977a">NO</text>` +
+      [["62¢", "38¢"], ["64¢", "36¢"], ["61¢", "39¢"]].map(([y, n], i) => `<g class="xjg-q xjg-q${i}"><text x="-24" y="3.8" ${px}>${y}</text><text x="17" y="3.8" ${px}>${n}</text></g>`).join("") + `</g>` +
+      coin(0, "#3fd6c8", "Y") + coin(-.8, "#f4977a", "N") + coin(-1.6, "#3fd6c8", "Y");
+  } else if (acc === "surf") {
+    // Market maker, surfing the odds: rides the tip of a live YES price as it climbs and drops, and the quote rides along
+    const P = [92, 78, 86, 68, 76, 88], f = X => { const m = ((X % 132) + 132) % 132, i = Math.floor(m / 22); return P[i] + (P[(i + 1) % 6] - P[i]) * (m - i * 22) / 22; };
+    const pts = []; for (let X = -22; X <= 198; X += 22) pts.push([X, f(X)]);
+    const line = "M" + pts.map(p => p.join(" ")).join(" L");
+    accDefs = `<clipPath id="${k}sc"><rect x="-16" y="-22" width="67" height="138"/></clipPath><linearGradient id="${k}sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fd6c8" stop-opacity=".3"/><stop offset="1" stop-color="#3fd6c8" stop-opacity="0"/></linearGradient>`;
+    const lab = `font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6" font-weight="800" fill="#62798d" text-anchor="end"`;
+    accBack = `<path d="M-16 72.7 H116 M-16 81 H116 M-16 89.3 H116" stroke="#22405c" stroke-width=".8" stroke-dasharray="3 3"/><text x="115" y="70.7" ${lab}>80¢</text><text x="115" y="79" ${lab}>70¢</text><text x="115" y="87.3" ${lab}>60¢</text>` +
+      `<g clip-path="url(#${k}sc)"><g class="xsf-line"><path d="${line} V118 H-22 Z" fill="url(#${k}sg)"/><path d="${line}" stroke="#3fd6c8" stroke-width="2.2" fill="none" stroke-linejoin="round"/>${pts.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2" fill="#8de8df"/>`).join("")}</g></g>`;
+    accUnder = `<path d="M-4 112 Q50 103 104 112 Q50 119 -4 112 Z" fill="#6aa8ff" stroke="#2b4fa0" stroke-width="1.4"/><path d="M6 111.4 Q50 106 94 111.4" stroke="#fbfaff" stroke-opacity=".7" stroke-width="2" fill="none"/>`;
+    accIn = `<g transform="translate(50 -22)"><path d="M0 12 V22" stroke="#3fd6c8" stroke-opacity=".6" stroke-width="1.6"/><rect x="-33" y="-12" width="66" height="24" rx="3.4" fill="#fbfaff" stroke="#3fd6c8" stroke-width="1.6"/><text x="-28" y="4.4" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#1d8a5c">YES</text>` +
+      ["64¢", "86¢", "76¢", "62¢", "57¢", "74¢", "64¢"].map((p, i) => `<text class="xsf-p xsf-p${i}" x="16" y="7" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="19" font-weight="900" fill="#211a32">${p}</text>`).join("") +
+      `<path class="xsf-up" d="M19 2 l4.4 -5.6 l4.4 5.6" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path class="xsf-dn" d="M19 -3.6 l4.4 5.6 l4.4 -5.6" stroke="#f4977a" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "sail") {
+    // Skipper: sails wherever the "1st prompt" blows. A gust from the left fills the sail and off it heels and runs right;
+    // the next gust comes from the right and away it goes the other way. Whoever sets the wind sets the course.
+    const wave = (y, c, o, cls) => { let d = `M-48 ${y}`; for (let x = -48; x < 150; x += 16) d += " q8 -4 16 0"; return `<path class="${cls}" d="${d} V118 H-48 Z" fill="${c}" fill-opacity="${o}"/>`; };
+    const gust = cls => `<g class="${cls}"><path d="M-30 10 q7 -6 14 0 t14 0 M-24 20 q7 -6 14 0 t12 0 M-34 0 q6 -5 12 0" stroke="#d4e3f0" stroke-opacity=".75" stroke-width="1.6" fill="none" stroke-linecap="round"/>` +
+      `<g transform="translate(-6 -10)"><rect x="-21" y="-8.5" width="42" height="17" rx="8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><text x="0" y="2.8" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#211a32">1st prompt</text></g></g>`;
+    accBack = wave(101, "#14365a", 1, "xsl-wb") +
+      `<g class="xsl-rig"><path d="M84 103 V-14" stroke="#9c7440" stroke-width="2.6" stroke-linecap="round"/>` +
+      `<g class="xsl-slack"><path d="M83 -11 L83 77 L6 77 Q52 40 83 -11 Z" fill="#e9f0f6" fill-opacity=".9" stroke="#9fb3c4" stroke-width=".8"/></g>` +
+      `<g class="xsl-full"><path d="M83 -11 L83 77 L6 77 Q22 14 83 -11 Z" fill="#fbfaff" stroke="#d4e3f0" stroke-width=".8"/><path d="M83 30 Q46 30 16 64" stroke="#3fd6c8" stroke-width="2.4" fill="none"/></g>` +
+      `<path d="M84 78 H4" stroke="#7a5a32" stroke-width="2.4" stroke-linecap="round"/><g class="xsl-flag"><path d="M84 -14 L99 -10 L84 -6 Z" fill="#f4977a"/></g></g>`;
+    accExtra = `<g class="xsl-rig"><path d="M-8 84 H108 L99 101 Q50 109 1 101 Z" fill="#4f7fd6" stroke="#2b4fa0" stroke-width="1.2"/><path d="M-5 89.4 H105" stroke="#3fd6c8" stroke-width="2.6"/>` +
+      [20, 50, 80].map(x => `<circle cx="${x}" cy="95.4" r="2.2" fill="#0f1f33" stroke="#9fb3c4" stroke-width=".8"/>`).join("") + `</g>` +
+      [["xsl-spray-r", 106], ["xsl-spray-l", -6]].map(([c, x]) => `<g class="${c}">${[0, 1, 2].map(i => `<circle cx="${x + (x > 50 ? i * 4 : -i * 4)}" cy="${95 - i * 3}" r="${1.8 - i * .3}" fill="#d4e3f0" fill-opacity=".8"/>`).join("")}</g>`).join("") +
+      wave(106, "#1f4f7a", .92, "xsl-wf") + `<path class="xsl-wf" d="M-48 106 ${"q8 -4 16 0 ".repeat(13)}" stroke="#8de8df" stroke-opacity=".5" stroke-width="1" fill="none"/>` +
+      gust("xsl-g xsl-g1") + gust("xsl-g xsl-g2");
+  } else if (acc === "rc") {
+    // Driver, by remote: the "1st prompt" is the controller. Echo works the sticks, and the little car laps it wherever it's steered.
+    const car = cls => `<g class="${cls}"><g class="xrc-x"><g class="xrc-z"><ellipse cx="0" cy="6.6" rx="15" ry="2.3" fill="#000" opacity=".35"/><g class="xrc-dir">` +
+      `<path d="M19 -2 h9 M18 2.6 h12" stroke="#d4e3f0" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"/>` +
+      `<path d="M-15 2.4 Q-15 -3.6 -8.6 -4.6 L-3 -9.4 H5.4 L9.6 -4.6 H13 Q15.6 -4.6 15.6 -.6 V3.4 H-15 Z" fill="#3fd6c8" stroke="#1d8a7c" stroke-width=".9"/><path d="M-1.6 -8.4 H5 L7.8 -4.8 H-5 Z" fill="#0c1a2b"/>` +
+      `<path d="M11 -9 h5.6 v2.2 h-5.6 Z M13 -6.8 v2.2" stroke="#f4977a" stroke-width="1.2" fill="#f4977a"/><circle cx="-8" cy="3.6" r="3.6" fill="#0d141c" stroke="#62798d"/><circle cx="9" cy="3.6" r="3.6" fill="#0d141c" stroke="#62798d"/></g></g></g></g>`;
+    accBack = car("xrc-back");
+    accIn = `<g class="echo-hand-l">${mitt(8, 86, -10)}</g><g class="echo-hand-r">${mitt(92, 86, 10)}</g>` +
+      `<path d="M63 60 L76 41" stroke="#9fb3c4" stroke-width="1.8" stroke-linecap="round"/><circle cx="76" cy="41" r="2.4" fill="#f4977a"/>` +
+      `<rect x="30" y="58" width="40" height="29" rx="7" fill="#22384f" stroke="#6aa8ff" stroke-width="1.2"/>` +
+      [41, 59].map(x => `<circle cx="${x}" cy="68" r="5.4" fill="#0c1a2b" stroke="#3a5576"/>`).join("") +
+      `<g class="xrc-st-l"><path d="M41 68 V62" stroke="#9fb3c4" stroke-width="2.2" stroke-linecap="round"/><circle cx="41" cy="61.6" r="2.8" fill="#3fd6c8"/></g>` +
+      `<g class="xrc-st-r"><path d="M59 68 V62" stroke="#9fb3c4" stroke-width="2.2" stroke-linecap="round"/><circle cx="59" cy="61.6" r="2.8" fill="#f4977a"/></g>` +
+      `<text x="50" y="82.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#8de8df">1st prompt</text>`;
+    accExtra = car("xrc-front");
+  } else if (acc === "toll") {
+    // Gatekeeper: AI agents queue at the gate. Echo checks each one into the ledger and stamps it, the arm lifts, and the
+    // agent goes through. Nothing gets in without a line in the book.
+    const bot = cls => `<g class="xtl-bot ${cls}"><path class="xtl-prop" d="M-9 -11 H9" stroke="#9fb3c4" stroke-width="1.6" stroke-linecap="round"/><path d="M0 -11 V-7" stroke="#9fb3c4" stroke-width="1.2"/><circle r="7.4" fill="#22384f" stroke="#6aa8ff" stroke-width="1.2"/><rect x="-4.6" y="-2" width="9.2" height="3.4" rx="1.7" fill="#0c1a2b"/><circle cx="-1.8" cy="-.3" r="1" fill="#8de8df"/><circle cx="1.8" cy="-.3" r="1" fill="#8de8df"/></g>`;
+    accBack = bot("xtl-q1") + bot("xtl-q2") + `<rect x="0" y="22" width="76" height="92" fill="#0f1f33" stroke="#3a5576"/><path d="M8 34 H68" stroke="#22405c" stroke-width="2"/>`;
+    accIn = `<g class="echo-hand-r">${mitt(95, 85, 20)}<g transform="translate(95 87) rotate(-24)"><path d="M0 0 L-1.4 -21 Q6.4 -17 3.2 -4 Z" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".6"/><circle r="1.1" fill="#211a32"/></g></g>` +
+      `<g class="echo-hand-l">${mitt(5, 85, -20)}<g transform="translate(5 88)"><rect x="-2" y="-12" width="4" height="9" rx="1.6" fill="#c79a5b"/><circle cy="-13" r="3" fill="#c79a5b"/><rect x="-6.4" y="-3.6" width="12.8" height="5.4" rx="1.2" fill="#3fd6c8" stroke="#1d8a7c"/></g></g>`;
+    const ln = (cls, d) => `<path class="xtl-ln ${cls}" d="${d}" stroke="#3a5576" stroke-width="1.1" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`;
+    accExtra = `<path d="M-6 24 H82 L77 14 H-1 Z" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/>` +
+      `<rect x="15" y="1" width="46" height="12" rx="2.4" fill="#0f1f33" stroke="#3fd6c8"/><path d="M21 7 h5 v4.4 h-5 Z M22 7 v-1.6 a1.5 1.5 0 0 1 3 0 V7" stroke="#3fd6c8" stroke-width="1" fill="none"/><text x="44" y="10.4" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#3fd6c8" letter-spacing=".5">LEDGER</text>` +
+      `<rect x="-3" y="24" width="5" height="62" fill="#22384f" stroke="#3a5576"/><rect x="74" y="24" width="5" height="62" fill="#22384f" stroke="#3a5576"/>` +
+      `<path d="M13 86 L18 78.6 H38 V86 Z" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".5"/><path d="M38 78.6 H58 L63 86 H38 Z" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".5"/>` +
+      ln("xtl-a0", "M41 80.8 H57") + ln("xtl-a1", "M41 83.4 H59") + ln("xtl-b0", "M22 80.8 H35") + ln("xtl-b1", "M20 83.4 H35") +
+      `<g class="xtl-ok xtl-ok1"><circle cx="29" cy="82.2" r="3" fill="none" stroke="#2fb87a" stroke-width="1"/><path d="M27.4 82.2 l1.1 1.1 l2.2 -2.2" stroke="#2fb87a" stroke-width="1.1" fill="none"/></g>` +
+      `<g class="xtl-ok xtl-ok2"><circle cx="49" cy="82.2" r="3" fill="none" stroke="#2fb87a" stroke-width="1"/><path d="M47.4 82.2 l1.1 1.1 l2.2 -2.2" stroke="#2fb87a" stroke-width="1.1" fill="none"/></g>` +
+      `<rect x="-5" y="86" width="86" height="27" rx="2" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/><path d="M-5 92 H81" stroke="#3fd6c8" stroke-width="2"/>` +
+      `<rect x="82" y="72" width="6" height="41" fill="#62798d" stroke="#22405c"/><circle cx="85" cy="66" r="4.4" fill="#0c1a2b" stroke="#22405c"/><circle class="xtl-lamp" cx="85" cy="66" r="2.8"/>` +
+      `<g class="xtl-arm"><rect x="85" y="73" width="40" height="5.4" rx="2.7" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".6"/>${[92, 102, 112].map(x => `<rect x="${x}" y="73" width="5" height="5.4" fill="#f4977a"/>`).join("")}</g><circle cx="85" cy="75.6" r="3" fill="#22384f" stroke="#9fb3c4"/>`;
+  } else if (acc === "book") {
+    // Bookkeeper: hugs a ledger with a combination strap. It dials the code, the strap swings free, the cover opens on a
+    // glow, agents' slips fly in and become new rows, and it shuts and locks again. The record is the moat.
+    accDefs = `<radialGradient id="${k}bg" cx="50%" cy="60%" r="55%"><stop offset="0" stop-color="#3fd6c8" stop-opacity=".55"/><stop offset="1" stop-color="#3fd6c8" stop-opacity="0"/></radialGradient>`;
+    const slip = cls => `<g class="xbk-slip ${cls}"><path d="M-6 -4 h12 v8 h-12 Z" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".6"/><path d="M-3.6 -1.4 h7.2 M-3.6 1.4 h4.6" stroke="#3fd6c8" stroke-width="1"/></g>`;
+    accIn = `<ellipse class="xbk-glow" cx="50" cy="56" rx="40" ry="34" fill="url(#${k}bg)"/>` +
+      `<rect x="21" y="45" width="58" height="54" rx="3" fill="#1d1534" stroke="#d4e3f0" stroke-width="1"/><rect x="23.4" y="47.4" width="53.2" height="49.2" fill="#e9f0f6"/><path d="M50 47.4 V96.6" stroke="#9fb3c4" stroke-width=".8"/>` +
+      `<text x="36.6" y="55" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.6" font-weight="900" fill="#62798d" letter-spacing=".4">LEDGER</text>` +
+      `<path d="M27 61 H46 M27 67 H44 M27 73 H46 M27 79 H42 M27 85 H45 M27 91 H40" stroke="#9fb3c4" stroke-width="1.1" stroke-linecap="round"/>` +
+      [61, 69, 77].map((y, i) => `<g class="xbk-row xbk-row${i}"><circle cx="56" cy="${y}" r="2" fill="#6aa8ff"/><path d="M60 ${y} H72" stroke="#1d8a7c" stroke-width="1.3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/></g>`).join("") +
+      [0, 1, 2, 3].map(i => `<rect class="xbk-fly xbk-fly${i}" x="${30 + i * 12}" y="60" width="3.4" height="2.4" rx=".6" fill="#8de8df"/>`).join("") +
+      `<g class="xbk-cover"><g class="xbk-out"><rect x="21" y="45" width="58" height="54" rx="3" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><rect x="25" y="49" width="50" height="46" rx="2" fill="none" stroke="#c79a5b" stroke-opacity=".6" stroke-width=".8"/>` +
+      `<path d="M21 52 L28 45 M79 52 L72 45 M21 92 L28 99 M79 92 L72 99" stroke="#c79a5b" stroke-width="2"/><text x="44" y="64" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#c79a5b" letter-spacing=".6">LEDGER</text><path d="M32 69 H56" stroke="#c79a5b" stroke-opacity=".6"/></g>` +
+      `<g class="xbk-inside"><rect x="21" y="45" width="58" height="54" rx="3" fill="#3a2d63" stroke="#d4e3f0" stroke-width="1"/><rect x="24" y="48" width="52" height="48" rx="2" fill="#2a1f4a"/></g></g>` +
+      `<g class="xbk-strap"><rect x="58" y="66" width="26" height="15" rx="3.4" fill="#62798d" stroke="#22405c"/><g class="xbk-dial"><circle cx="68" cy="73.5" r="6" fill="#c79a5b" stroke="#8a6a3a"/>${[0, 60, 120, 180, 240, 300].map(a => `<path transform="rotate(${a} 68 73.5)" d="M68 68.4 V69.8" stroke="#3a2a10" stroke-width=".9"/>`).join("")}<path d="M68 70 V73.5" stroke="#3a2a10" stroke-width="1.4" stroke-linecap="round"/></g><circle cx="81" cy="73.5" r="1.6" fill="#22405c"/></g>`;
+    accExtra = slip("xbk-s0") + slip("xbk-s1") + `<g class="xbk-fx">${spark(84, 58, .6, "#8de8df", 0)}${spark(16, 50, .5, "#fff", .3)}</g>`;
+  } else if (acc === "transform") {
+    // Transformer: an EV bubble car rolls in, then stands up. The wheels swing up into shoulders, arms fold out, legs unfold,
+    // and it struts as a humanoid before folding back into a car and rolling on. Same parts, two shapes.
+    const wheel = (x, s) => `<g class="xtf-wh-${s}"><g class="xtf-arm-${s}"><rect x="${x - 3.6}" y="56" width="7.2" height="22" rx="3" fill="#9fb3c4" stroke="#22405c"/><path d="M${x - 3} 78 l-1.8 5 M${x + 3} 78 l1.8 5" stroke="#d4e3f0" stroke-width="2.2" stroke-linecap="round"/></g>` +
+      `<circle cx="${x}" cy="52" r="9.4" fill="#0d141c" stroke="#3a5576" stroke-width="1.4"/><g class="xtf-spin-${s}"><path d="M${x - 6} 52 H${x + 6} M${x} 46 V58" stroke="#4a6d92" stroke-width="1.8"/></g><circle cx="${x}" cy="52" r="3.4" fill="#3fd6c8" stroke="#14283f"/></g>`;
+    const leg = (x, s) => `<g class="xtf-step-${s}"><rect x="${x - 4.4}" y="72" width="8.8" height="19" rx="3.4" fill="#62798d" stroke="#22405c"/><rect x="${x - 3.6}" y="91" width="7.2" height="16" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><circle cx="${x}" cy="91" r="4" fill="#3fd6c8" stroke="#14283f"/><rect x="${x - 8}" y="106.4" width="16" height="5.6" rx="2.6" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/></g>`;
+    accBack = `<path class="xtf-road" d="M-40 113.4 H180" stroke="#3a5576" stroke-width="1.6" stroke-dasharray="8 8"/><ellipse class="xtf-shadow" cx="50" cy="113" rx="42" ry="2.8" fill="#000" opacity=".35"/>`;
+    accExtra = `<g class="xtf-legs">${leg(33, "l")}${leg(67, "r")}</g>${wheel(12, "l")}${wheel(88, "r")}` +
+      `<g class="xtf-car"><path d="M16 49 Q16 44 23 44 H77 Q84 44 84 49 V67 Q84 72 78 72 H22 Q16 72 16 67 Z" fill="#22384f" stroke="#6aa8ff" stroke-width="1.1"/>` +
+      `<ellipse cx="25" cy="58" rx="5.2" ry="4" fill="#e8f4ff" fill-opacity=".92"/><ellipse cx="75" cy="58" rx="5.2" ry="4" fill="#e8f4ff" fill-opacity=".92"/><ellipse cx="25" cy="58" rx="8.4" ry="6.6" fill="#e8f4ff" fill-opacity=".12"/><ellipse cx="75" cy="58" rx="8.4" ry="6.6" fill="#e8f4ff" fill-opacity=".12"/>` +
+      `<rect x="39" y="53" width="22" height="9.4" rx="3" fill="#0f1f33" stroke="#3a5576"/><text x="50" y="60.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.2" font-weight="900" fill="#8de8df">EV</text><path d="M30 67 H70" stroke="#3a5576" stroke-width="2" stroke-linecap="round"/>` +
+      `<path d="M23 45 C23 2 77 2 77 45" fill="#a6e9ff" fill-opacity=".07" stroke="#d4e3f0" stroke-opacity=".55" stroke-width="1.6"/><path d="M29 30 C29 13 36 6 43 4" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/></g>` +
+      `<g class="xtf-fx">${spark(-6, 40, .7, "#8de8df", 0)}${spark(106, 36, .65, "#fff", .2)}${spark(2, 92, .5, "#6aa8ff", .4)}${spark(100, 88, .55, "#8de8df", .1)}</g>`;
+  } else if (acc === "assemble") {
+    // Builder: wrench in fin, Echo bolts a humanoid together from EV parts: motor legs, a battery torso, arms, a camera head.
+    // It snaps together in seconds and boots up... and then just stands there, thinking. Building the body is the easy part.
+    accBack = `<ellipse cx="20" cy="110.6" rx="22" ry="2.6" fill="#000" opacity=".3"/><ellipse class="xas-sh" cx="85" cy="111.4" rx="20" ry="2.4" fill="#000" opacity=".3"/>`;
+    accIn = `<g class="echo-hand-r">${mitt(95, 85, 20)}<g transform="translate(94 90) rotate(-30)"><rect x="-1.7" y="0" width="3.4" height="17" rx="1.4" fill="#9fb3c4" stroke="#62798d" stroke-width=".5"/><path d="M-5 17 a5.4 5.4 0 1 0 10 0 l-2.4 0 v3.4 h-5.2 v-3.4 Z" fill="#9fb3c4" stroke="#62798d" stroke-width=".5"/></g></g>`;
+    accExtra = `<g class="xas-p xas-p0"><rect x="72" y="84" width="26" height="6" rx="2" fill="#62798d" stroke="#22405c"/>${[78.5, 91.5].map(x => `<rect x="${x - 3.6}" y="90" width="7.2" height="17" rx="2.6" fill="#9fb3c4" stroke="#22405c"/><circle cx="${x}" cy="98" r="3.2" fill="#3fd6c8" stroke="#14283f"/><rect x="${x - 6.6}" y="106" width="13.2" height="5.4" rx="2.4" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/>`).join("")}</g>` +
+      `<g class="xas-p xas-p2">${[64.5, 105.5].map(x => `<rect x="${x - 3.4}" y="55" width="6.8" height="24" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><path d="M${x - 2.8} 79 l-1.6 4.6 M${x + 2.8} 79 l1.6 4.6" stroke="#d4e3f0" stroke-width="2" stroke-linecap="round"/>`).join("")}</g>` +
+      `<g class="xas-p xas-p1"><rect x="69" y="52" width="32" height="33" rx="4" fill="#22384f" stroke="#6aa8ff" stroke-width="1.1"/>${[0, 1, 2, 3].map(i => `<rect x="${73.4 + i * 6.4}" y="63" width="4.6" height="17" rx="1" fill="#3fd6c8" fill-opacity=".85"/>`).join("")}<text x="85" y="60.4" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.6" font-weight="900" fill="#8de8df">EV BATTERY</text></g>` +
+      `<g class="xas-p xas-p3"><g class="xas-head"><rect x="81" y="48" width="8" height="5" fill="#62798d"/><rect x="73" y="30" width="24" height="19" rx="6" fill="#9fb3c4" stroke="#62798d"/><rect x="76" y="34.4" width="18" height="10" rx="3" fill="#0c1a2b"/><circle class="xas-eye" cx="85" cy="39.4" r="3"/></g></g>` +
+      `<g class="xas-spin"><circle cx="85" cy="18" r="5.4" fill="none" stroke="#3a5576" stroke-width="1.8"/><g class="xas-spinr"><path d="M85 12.6 a5.4 5.4 0 0 1 5.4 5.4" stroke="#8de8df" stroke-width="1.8" fill="none" stroke-linecap="round"/></g></g>` +
+      `<text class="xas-q" x="85" y="23" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="18" font-weight="900" fill="#d4e3f0">?</text>`;
   } else if (acc === "clockmaker") {
     // Clockmaker: a jeweler's loupe over one eye; a pocket watch whose hand runs backward in one fin, an hourglass that keeps flipping in the other
     accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
@@ -1594,9 +1705,10 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<g class="echo-hand-r"><g class="xck-glass"><rect x="91" y="52" width="16" height="2.6" rx="1" fill="#c79a5b"/><rect x="91" y="76" width="16" height="2.6" rx="1" fill="#c79a5b"/><path d="M93 54.6 Q99 64 93 76 M105 54.6 Q99 64 105 76" stroke="#d4e3f0" stroke-width="1.2" fill="#a6e9ff" fill-opacity=".18"/><path d="M95 58 Q99 63 103 58 Z" fill="#ffc566"/><path d="M96 75.5 Q99 70 102 75.5 Z" fill="#ffc566"/></g>${mitt(95.5, 76)}</g>`;
   }
   // scenes that slide props in from past the edge keep them inside the drawing
-  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle" || acc === "vault") {
+  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle" || acc === "vault" || acc === "sail" || acc === "toll" || acc === "assemble" || acc === "book") {
     accDefs += `<clipPath id="${k}cl"><rect x="-16" y="-22" width="132" height="138"/></clipPath>`;
     accExtra = `<g clip-path="url(#${k}cl)">${accExtra}</g>`;
+    if (acc === "toll") accBack = `<g clip-path="url(#${k}cl)">${accBack}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);

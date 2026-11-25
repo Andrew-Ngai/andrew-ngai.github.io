@@ -1486,6 +1486,175 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xhu-lane{0%{stroke-dashoffset:0}58%{stroke-dashoffset:116}61%,90%{stroke-dashoffset:120}100%{stroke-dashoffset:144}}
 .xhu-shadow{transform-origin:calc(44*var(--u)) calc(110.6*var(--u));animation:xhu-shadow 6s ease-in-out infinite}
 @keyframes xhu-shadow{0%,16%,31%,50%,100%{transform:scale(1)}25%{transform:scale(.55)}58%{transform:scale(.7)}66%,86%{transform:translateX(calc(-14*var(--u))) scale(1.15)}94%{transform:translateX(calc(-2*var(--u)))}}
+.echo-juggle .echo-all{animation:xjg-body .8s ease-in-out infinite}
+@keyframes xjg-body{0%,100%{transform:translateY(calc(2*var(--u))) scale(.78)}50%{transform:translateY(calc(.8*var(--u))) scale(.78)}}
+.echo-juggle .echo-fin-l,.echo-juggle .echo-hand-l{animation:xjg-l .8s ease-in-out infinite}
+.echo-juggle .echo-fin-r,.echo-juggle .echo-hand-r{animation:xjg-r .8s ease-in-out infinite -.4s}
+@keyframes xjg-l{0%,100%{transform:rotate(-40deg)}22%{transform:rotate(-25deg)}60%{transform:rotate(-31deg)}}
+@keyframes xjg-r{0%,100%{transform:rotate(40deg)}22%{transform:rotate(25deg)}60%{transform:rotate(31deg)}}
+.xjg-x{animation:xjg-x 2.4s linear infinite}
+.xjg-y{animation:xjg-y 2.4s infinite}
+@keyframes xjg-x{0%,100%{transform:translateX(calc(41*var(--u)))}40%{transform:translateX(calc(67*var(--u)))}50%{transform:translateX(calc(59*var(--u)))}90%{transform:translateX(calc(33*var(--u)))}}
+@keyframes xjg-y{0%{transform:translateY(calc(82*var(--u)));animation-timing-function:cubic-bezier(.33,1,.68,1)}20%{transform:translateY(calc(1*var(--u)));animation-timing-function:cubic-bezier(.32,0,.67,0)}40%{transform:translateY(calc(82*var(--u)));animation-timing-function:ease-in-out}45%{transform:translateY(calc(86*var(--u)));animation-timing-function:ease-in-out}50%{transform:translateY(calc(82*var(--u)));animation-timing-function:cubic-bezier(.33,1,.68,1)}70%{transform:translateY(calc(1*var(--u)));animation-timing-function:cubic-bezier(.32,0,.67,0)}90%{transform:translateY(calc(82*var(--u)));animation-timing-function:ease-in-out}95%{transform:translateY(calc(86*var(--u)));animation-timing-function:ease-in-out}100%{transform:translateY(calc(82*var(--u)))}}
+.xjg-q{opacity:0;animation:xjg-q0 2.4s steps(1,end) infinite}.xjg-q1{animation-name:xjg-q1}.xjg-q2{animation-name:xjg-q2}
+@keyframes xjg-q0{0%{opacity:1}33.3%,100%{opacity:0}}
+@keyframes xjg-q1{0%{opacity:0}33.3%{opacity:1}66.6%,100%{opacity:0}}
+@keyframes xjg-q2{0%{opacity:0}66.6%,100%{opacity:1}}
+.xsf-line{animation:xsf-line 4.4s linear infinite}
+@keyframes xsf-line{from{transform:translateX(0)}to{transform:translateX(calc(-132*var(--u)))}}
+.echo-surf .echo-all{animation:xsf-ride 4.4s linear infinite}
+@keyframes xsf-ride{0%{transform:translate(0,calc(-27.95*var(--u))) rotate(-19.64deg) scale(0.56)}9.92%{transform:translate(0,calc(-38.66*var(--u))) rotate(-19.64deg) scale(0.56)}12.12%{transform:translate(0,calc(-41.04*var(--u))) rotate(-4.83deg) scale(0.56)}14.32%{transform:translate(0,calc(-39.98*var(--u))) rotate(9.99deg) scale(0.56)}26.59%{transform:translate(0,calc(-34.10*var(--u))) rotate(9.99deg) scale(0.56)}28.79%{transform:translate(0,calc(-33.04*var(--u))) rotate(12.15deg) scale(0.56)}30.99%{transform:translate(0,calc(-31.46*var(--u))) rotate(14.31deg) scale(0.56)}43.26%{transform:translate(0,calc(-22.62*var(--u))) rotate(14.30deg) scale(0.56)}45.45%{transform:translate(0,calc(-21.04*var(--u))) rotate(9.73deg) scale(0.56)}47.66%{transform:translate(0,calc(-20.51*var(--u))) rotate(5.15deg) scale(0.56)}59.92%{transform:translate(0,calc(-17.57*var(--u))) rotate(5.15deg) scale(0.56)}62.12%{transform:translate(0,calc(-17.04*var(--u))) rotate(-5.54deg) scale(0.56)}64.32%{transform:translate(0,calc(-18.89*var(--u))) rotate(-16.23deg) scale(0.56)}76.59%{transform:translate(0,calc(-29.19*var(--u))) rotate(-16.23deg) scale(0.56)}78.79%{transform:translate(0,calc(-31.04*var(--u))) rotate(-3.12deg) scale(0.56)}80.99%{transform:translate(0,calc(-29.98*var(--u))) rotate(9.99deg) scale(0.56)}93.25%{transform:translate(0,calc(-24.10*var(--u))) rotate(9.99deg) scale(0.56)}95.45%{transform:translate(0,calc(-23.04*var(--u))) rotate(-4.83deg) scale(0.56)}97.66%{transform:translate(0,calc(-25.42*var(--u))) rotate(-19.64deg) scale(0.56)}100%{transform:translate(0,calc(-27.95*var(--u))) rotate(-19.64deg) scale(0.56)}}
+.echo-surf .echo-fin-l{animation:xsf-l 2.2s ease-in-out infinite}
+.echo-surf .echo-fin-r{animation:xsf-r 2.2s ease-in-out infinite}
+@keyframes xsf-l{0%,100%{transform:rotate(52deg)}50%{transform:rotate(40deg)}}
+@keyframes xsf-r{0%,100%{transform:rotate(-44deg)}50%{transform:rotate(-56deg)}}
+.xsf-p{opacity:0;animation:xsf-p0 4.4s steps(1,end) infinite}.xsf-p1{animation-name:xsf-p1}.xsf-p2{animation-name:xsf-p2}.xsf-p3{animation-name:xsf-p3}.xsf-p4{animation-name:xsf-p4}.xsf-p5{animation-name:xsf-p5}.xsf-p6{animation-name:xsf-p6}
+@keyframes xsf-p0{0%{opacity:1}12.12%,100%{opacity:0}}
+@keyframes xsf-p1{0%{opacity:0}12.12%{opacity:1}28.79%,100%{opacity:0}}
+@keyframes xsf-p2{0%{opacity:0}28.79%{opacity:1}45.45%,100%{opacity:0}}
+@keyframes xsf-p3{0%{opacity:0}45.45%{opacity:1}62.12%,100%{opacity:0}}
+@keyframes xsf-p4{0%{opacity:0}62.12%{opacity:1}78.79%,100%{opacity:0}}
+@keyframes xsf-p5{0%{opacity:0}78.79%{opacity:1}95.45%,100%{opacity:0}}
+@keyframes xsf-p6{0%{opacity:0}95.45%,100%{opacity:1}}
+.xsf-up{animation:xsf-up 4.4s steps(1,end) infinite}.xsf-dn{animation:xsf-dn 4.4s steps(1,end) infinite}
+@keyframes xsf-up{0%{opacity:1}12.12%{opacity:0}62.12%{opacity:1}78.79%{opacity:0}95.45%{opacity:1}100%{opacity:1}}
+@keyframes xsf-dn{0%{opacity:0}12.12%{opacity:1}62.12%{opacity:0}78.79%{opacity:1}95.45%{opacity:0}100%{opacity:0}}
+.xsl-rig{transform-origin:calc(50*var(--u)) calc(104*var(--u));animation:xsl-rig 5.6s ease-in-out infinite}
+@keyframes xsl-rig{0%{transform:translateX(0px) rotate(0deg)}18%{transform:translateX(0px) rotate(0deg)}28%{transform:translateX(calc(6*var(--u))) rotate(7deg)}40%{transform:translateX(calc(11*var(--u))) rotate(5deg)}52%{transform:translateX(calc(3*var(--u))) rotate(0deg)}68%{transform:translateX(calc(-6*var(--u))) rotate(-7deg)}80%{transform:translateX(calc(-11*var(--u))) rotate(-5deg)}92%{transform:translateX(calc(-2*var(--u))) rotate(0deg)}100%{transform:translateX(0px) rotate(0deg)}}
+.echo-sail .echo-all{animation:xsl-body 5.6s ease-in-out infinite}
+@keyframes xsl-body{0%{transform:translateX(0px) rotate(0deg) translate(calc(-6*var(--u)),0) scale(.64)}18%{transform:translateX(0px) rotate(0deg) translate(calc(-6*var(--u)),0) scale(.64)}28%{transform:translateX(calc(6*var(--u))) rotate(7deg) translate(calc(-6*var(--u)),0) scale(.64)}40%{transform:translateX(calc(11*var(--u))) rotate(5deg) translate(calc(-6*var(--u)),0) scale(.64)}52%{transform:translateX(calc(3*var(--u))) rotate(0deg) translate(calc(-6*var(--u)),0) scale(.64)}68%{transform:translateX(calc(-6*var(--u))) rotate(-7deg) translate(calc(-6*var(--u)),0) scale(.64)}80%{transform:translateX(calc(-11*var(--u))) rotate(-5deg) translate(calc(-6*var(--u)),0) scale(.64)}92%{transform:translateX(calc(-2*var(--u))) rotate(0deg) translate(calc(-6*var(--u)),0) scale(.64)}100%{transform:translateX(0px) rotate(0deg) translate(calc(-6*var(--u)),0) scale(.64)}}
+.xsl-wb{animation:xsl-wave 2.4s linear infinite reverse}.xsl-wf{animation:xsl-wave 1.6s linear infinite}
+@keyframes xsl-wave{from{transform:translateX(0)}to{transform:translateX(calc(-16*var(--u)))}}
+.xsl-full{opacity:0;animation:xsl-full 5.6s ease-in-out infinite}
+@keyframes xsl-full{0%,16%,48%,62%,94%,100%{opacity:0}24%,40%,70%,86%{opacity:1}}
+.xsl-slack{transform-origin:calc(83*var(--u)) calc(33*var(--u));animation:xsl-slack 5.6s ease-in-out infinite}
+@keyframes xsl-slack{0%,4%,8%,12%,50%,54%,58%,96%,100%{transform:skewY(0)}2%,6%,10%,14%,52%,56%,60%,98%{transform:skewY(-2.4deg)}}
+.xsl-slack path{animation:xsl-slackop 5.6s ease-in-out infinite}
+@keyframes xsl-slackop{0%,22%,40%,68%,86%,100%{opacity:1}24%,38%,70%,84%{opacity:0}}
+.xsl-flag{transform-origin:calc(84*var(--u)) calc(-10*var(--u));animation:xsl-flag 5.6s ease-in-out infinite}
+@keyframes xsl-flag{0%,12%,50%,96%,100%{transform:rotate(82deg)}22%,42%{transform:rotate(0)}32%{transform:rotate(-8deg)}68%,88%{transform:rotate(180deg)}78%{transform:rotate(188deg)}}
+.xsl-g{opacity:0;animation:xsl-g1 5.6s linear infinite}.xsl-g2{animation-name:xsl-g2}
+@keyframes xsl-g1{0%{opacity:0;transform:translate(calc(-40*var(--u)),0)}4%{opacity:1}36%{opacity:1}42%,100%{opacity:0;transform:translate(calc(170*var(--u)),calc(8*var(--u)))}}
+@keyframes xsl-g2{0%,48%{opacity:0;transform:translate(calc(176*var(--u)),0)}52%{opacity:1}84%{opacity:1}90%,100%{opacity:0;transform:translate(calc(-34*var(--u)),calc(8*var(--u)))}}
+.echo-sail .echo-fin-l{animation:xsl-l 5.6s ease-in-out infinite}.echo-sail .echo-fin-r{animation:xsl-r 5.6s ease-in-out infinite}
+@keyframes xsl-l{0%,22%,46%,100%{transform:rotate(-6deg)}30%,38%{transform:rotate(150deg)}34%{transform:rotate(132deg)}}
+@keyframes xsl-r{0%,72%,96%,100%{transform:rotate(6deg)}80%,88%{transform:rotate(-150deg)}84%{transform:rotate(-132deg)}}
+.xsl-spray-r,.xsl-spray-l{opacity:0;transform-origin:calc(50*var(--u)) calc(96*var(--u))}
+.xsl-spray-r{animation:xsl-spray-r 5.6s ease-out infinite}.xsl-spray-l{animation:xsl-spray-l 5.6s ease-out infinite}
+@keyframes xsl-spray-r{0%,26%{opacity:0;transform:translate(0,calc(4*var(--u)))}30%{opacity:1;transform:translate(calc(8*var(--u)),0)}40%,100%{opacity:0;transform:translate(calc(16*var(--u)),calc(-6*var(--u)))}}
+@keyframes xsl-spray-l{0%,66%{opacity:0;transform:translate(0,calc(4*var(--u)))}70%{opacity:1;transform:translate(calc(-8*var(--u)),0)}80%,100%{opacity:0;transform:translate(calc(-16*var(--u)),calc(-6*var(--u)))}}
+.echo-rc .echo-all{animation:xrc-body 2.8s ease-in-out infinite}
+@keyframes xrc-body{0%,50%,100%{transform:translate(0,calc(-6*var(--u))) scale(.8)}25%{transform:translate(0,calc(-6*var(--u))) rotate(-4deg) scale(.8)}75%{transform:translate(0,calc(-6*var(--u))) rotate(4deg) scale(.8)}}
+.echo-rc .echo-fin-l,.echo-rc .echo-hand-l{transform:rotate(-24deg)}.echo-rc .echo-fin-r,.echo-rc .echo-hand-r{transform:rotate(24deg)}
+.xrc-x{animation:xrc-x 2.8s infinite}
+@keyframes xrc-x{0%{transform:translateX(calc(50*var(--u)));animation-timing-function:cubic-bezier(.33,1,.68,1)}25%{transform:translateX(calc(-2*var(--u)));animation-timing-function:cubic-bezier(.32,0,.67,0)}50%{transform:translateX(calc(50*var(--u)));animation-timing-function:cubic-bezier(.33,1,.68,1)}75%{transform:translateX(calc(102*var(--u)));animation-timing-function:cubic-bezier(.32,0,.67,0)}100%{transform:translateX(calc(50*var(--u)))}}
+.xrc-z{animation:xrc-z 2.8s infinite}
+@keyframes xrc-z{0%{transform:translateY(calc(106*var(--u))) scale(1.5);animation-timing-function:cubic-bezier(.32,0,.67,0)}25%{transform:translateY(calc(98*var(--u))) scale(1.25);animation-timing-function:cubic-bezier(.33,1,.68,1)}50%{transform:translateY(calc(90*var(--u))) scale(1);animation-timing-function:cubic-bezier(.32,0,.67,0)}75%{transform:translateY(calc(98*var(--u))) scale(1.25);animation-timing-function:cubic-bezier(.33,1,.68,1)}100%{transform:translateY(calc(106*var(--u))) scale(1.5)}}
+.xrc-dir{animation:xrc-dir 2.8s linear infinite}
+@keyframes xrc-dir{0%,21%{transform:scaleX(1)}29%,71%{transform:scaleX(-1)}79%,100%{transform:scaleX(1)}}
+.xrc-front{animation:xrc-front 2.8s steps(1,end) infinite}.xrc-back{animation:xrc-back 2.8s steps(1,end) infinite}
+@keyframes xrc-front{0%{opacity:1}25%{opacity:0}75%,100%{opacity:1}}
+@keyframes xrc-back{0%{opacity:0}25%{opacity:1}75%,100%{opacity:0}}
+.xrc-st-r{transform-origin:calc(59*var(--u)) calc(68*var(--u));animation:xrc-steer 2.8s ease-in-out infinite}
+@keyframes xrc-steer{0%,100%{transform:rotate(-24deg)}25%,75%{transform:rotate(0)}50%{transform:rotate(24deg)}}
+.xrc-st-l{transform-origin:calc(41*var(--u)) calc(68*var(--u));animation:xrc-throttle .7s ease-in-out infinite}
+@keyframes xrc-throttle{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+.echo-toll .echo-all{animation:xtl-body 6s ease-in-out infinite}
+@keyframes xtl-body{0%,8%,48%,58%,98%,100%{transform:translate(calc(-12*var(--u)),calc(-8*var(--u))) scale(.66)}12%,40%,62%,90%{transform:translate(calc(-11*var(--u)),calc(-8*var(--u))) rotate(3deg) scale(.66)}}
+.xtl-bot{animation:xtl-bot 6s ease-in-out infinite}.xtl-q2{animation-delay:-3s}
+@keyframes xtl-bot{0%{transform:translate(calc(140*var(--u)),calc(58*var(--u)));opacity:1}10%{transform:translate(calc(103*var(--u)),calc(86*var(--u)));opacity:1}16%{transform:translate(calc(103*var(--u)),calc(83*var(--u)));opacity:1}22%{transform:translate(calc(103*var(--u)),calc(87*var(--u)));opacity:1}28%{transform:translate(calc(103*var(--u)),calc(84*var(--u)));opacity:1}34%{transform:translate(calc(103*var(--u)),calc(86*var(--u)));opacity:1}40%{transform:translate(calc(102*var(--u)),calc(86*var(--u)));opacity:1}46%{transform:translate(calc(34*var(--u)),calc(82*var(--u)));opacity:1}46.6%{transform:translate(calc(34*var(--u)),calc(82*var(--u)));opacity:0}99%{transform:translate(calc(140*var(--u)),calc(58*var(--u)));opacity:0}100%{transform:translate(calc(140*var(--u)),calc(58*var(--u)));opacity:1}}
+.xtl-prop{transform-origin:0 calc(-11*var(--u));animation:xtl-prop .16s linear infinite}
+@keyframes xtl-prop{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.2)}}
+.xtl-arm{transform-origin:calc(85*var(--u)) calc(75.6*var(--u));animation:xtl-arm 6s ease-in-out infinite}
+@keyframes xtl-arm{0%,34%,52%,84%,100%{transform:rotate(0)}40%,46%,90%,96%{transform:rotate(-78deg)}}
+.xtl-lamp{fill:#f4977a;animation:xtl-lamp 6s steps(1,end) infinite}
+@keyframes xtl-lamp{0%{fill:#f4977a}35%{fill:#3fd6c8}50%{fill:#f4977a}85%{fill:#3fd6c8}99%,100%{fill:#f4977a}}
+.echo-toll .echo-fin-r,.echo-toll .echo-hand-r{animation:xtl-write 6s ease-in-out infinite}
+@keyframes xtl-write{0%,10%,30%,60%,80%,100%{transform:rotate(4deg)}14%,18%,22%,26%,64%,68%,72%,76%{transform:rotate(31deg)}16%,20%,24%,66%,70%,74%{transform:rotate(25deg)}}
+.echo-toll .echo-fin-l,.echo-toll .echo-hand-l{animation:xtl-stamp 6s ease-in-out infinite}
+@keyframes xtl-stamp{0%,25%,34%,75%,84%,100%{transform:rotate(-4deg)}28%,78%{transform:rotate(-12deg)}30%,80%{transform:rotate(-33deg)}32%,82%{transform:rotate(-27deg)}}
+.xtl-ln{stroke-dashoffset:1;animation:xtl-a0 6s linear infinite}.xtl-a1{animation-name:xtl-a1}.xtl-b0{animation-name:xtl-b0}.xtl-b1{animation-name:xtl-b1}
+@keyframes xtl-a0{0%,14%{stroke-dashoffset:1}20%,94%{stroke-dashoffset:0}98%,100%{stroke-dashoffset:1}}
+@keyframes xtl-a1{0%,20%{stroke-dashoffset:1}26%,94%{stroke-dashoffset:0}98%,100%{stroke-dashoffset:1}}
+@keyframes xtl-b0{0%,64%{stroke-dashoffset:1}70%,94%{stroke-dashoffset:0}98%,100%{stroke-dashoffset:1}}
+@keyframes xtl-b1{0%,70%{stroke-dashoffset:1}76%,94%{stroke-dashoffset:0}98%,100%{stroke-dashoffset:1}}
+.xtl-ok{opacity:0;animation:xtl-ok1 6s ease-out infinite}.xtl-ok1{transform-origin:calc(29*var(--u)) calc(82.2*var(--u))}.xtl-ok2{transform-origin:calc(49*var(--u)) calc(82.2*var(--u));animation-name:xtl-ok2}
+@keyframes xtl-ok1{0%,29.5%{opacity:0;transform:scale(1.8)}31%{opacity:1;transform:scale(.9)}33%,94%{opacity:1;transform:scale(1)}98%,100%{opacity:0}}
+@keyframes xtl-ok2{0%,79.5%{opacity:0;transform:scale(1.8)}81%{opacity:1;transform:scale(.9)}83%,94%{opacity:1;transform:scale(1)}98%,100%{opacity:0}}
+.echo-book .echo-all{animation:xbk-body 6s ease-in-out infinite}
+@keyframes xbk-body{0%,12%,58%,72%,100%{transform:none}4%,8%{transform:rotate(-3deg)}34%,46%{transform:translateY(calc(-2*var(--u)))}40%,52%{transform:translateY(calc(1*var(--u)))}76%{transform:scale(1.03,.97)}80%{transform:scale(.98,1.02)}84%{transform:none}90%{transform:rotate(2deg)}96%{transform:rotate(-1deg)}}
+.echo-book .echo-fin-l{animation:xbk-l 6s ease-in-out infinite}.echo-book .echo-fin-r{animation:xbk-r 6s ease-in-out infinite}
+@keyframes xbk-l{0%,14%,62%,72%,86%,100%{transform:rotate(-14deg)}18%,58%{transform:rotate(8deg)}76%,82%{transform:rotate(-22deg)}}
+@keyframes xbk-r{0%,72%,86%,100%{transform:rotate(14deg)}2%,6%,10%{transform:rotate(24deg)}4%,8%{transform:rotate(20deg)}76%,82%{transform:rotate(22deg)}}
+.xbk-dial{transform-origin:calc(68*var(--u)) calc(73.5*var(--u));animation:xbk-dial 6s ease-in-out infinite}
+@keyframes xbk-dial{0%{transform:rotate(0)}4%{transform:rotate(200deg)}7%{transform:rotate(60deg)}10%,68%{transform:rotate(150deg)}74%,100%{transform:rotate(0)}}
+.xbk-strap{transform-origin:calc(81*var(--u)) calc(73.5*var(--u));animation:xbk-strap 6s ease-in-out infinite}
+@keyframes xbk-strap{0%,11%,72%,100%{transform:rotate(0)}15%,66%{transform:rotate(170deg)}}
+.xbk-cover{transform-origin:calc(21*var(--u)) calc(72*var(--u));animation:xbk-cover 6s ease-in-out infinite}
+@keyframes xbk-cover{0%,15%,68%,100%{transform:scaleX(1)}25%,58%{transform:scaleX(-.4)}}
+.xbk-inside{opacity:0;animation:xbk-inside 6s steps(1,end) infinite}
+@keyframes xbk-inside{0%{opacity:0}20%{opacity:1}63%,100%{opacity:0}}
+.xbk-glow{opacity:0;animation:xbk-glow 6s ease-in-out infinite}
+@keyframes xbk-glow{0%,18%,64%,100%{opacity:0}28%,56%{opacity:1}}
+.xbk-fly{opacity:0;animation:xbk-fly 6s ease-out infinite}.xbk-fly1{animation-delay:.25s}.xbk-fly2{animation-delay:.5s}.xbk-fly3{animation-delay:.75s}
+@keyframes xbk-fly{0%,22%{opacity:0;transform:translateY(0)}26%{opacity:1}40%,100%{opacity:0;transform:translateY(calc(-58*var(--u)))}}
+.xbk-slip{opacity:0;animation:xbk-s0 6s ease-in infinite}.xbk-s1{animation-name:xbk-s1}
+@keyframes xbk-s0{0%,28%{opacity:0;transform:translate(calc(126*var(--u)),calc(8*var(--u))) rotate(30deg)}30%{opacity:1}37%{opacity:1;transform:translate(calc(64*var(--u)),calc(62*var(--u))) rotate(-8deg) scale(.8)}40%,100%{opacity:0;transform:translate(calc(64*var(--u)),calc(62*var(--u))) scale(.5)}}
+@keyframes xbk-s1{0%,40%{opacity:0;transform:translate(calc(126*var(--u)),calc(-4*var(--u))) rotate(-20deg)}42%{opacity:1}49%{opacity:1;transform:translate(calc(64*var(--u)),calc(70*var(--u))) rotate(6deg) scale(.8)}52%,100%{opacity:0;transform:translate(calc(64*var(--u)),calc(70*var(--u))) scale(.5)}}
+.xbk-row{opacity:0;animation:xbk-r0 6s linear infinite}.xbk-row1{animation-name:xbk-r1}.xbk-row2{animation-name:xbk-r2}
+@keyframes xbk-r0{0%,26%{opacity:0}30%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes xbk-r1{0%,37%{opacity:0}39%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes xbk-r2{0%,49%{opacity:0}51%,92%{opacity:1}96%,100%{opacity:0}}
+.xbk-row path{stroke-dashoffset:1;animation:xbk-w0 6s linear infinite}.xbk-row1 path{animation-name:xbk-w1}.xbk-row2 path{animation-name:xbk-w2}
+@keyframes xbk-w0{0%,28%{stroke-dashoffset:1}33%,100%{stroke-dashoffset:0}}
+@keyframes xbk-w1{0%,39%{stroke-dashoffset:1}44%,100%{stroke-dashoffset:0}}
+@keyframes xbk-w2{0%,51%{stroke-dashoffset:1}56%,100%{stroke-dashoffset:0}}
+.xbk-fx{opacity:0;animation:xbk-fx 6s ease-out infinite}
+@keyframes xbk-fx{0%,73%{opacity:0}76%,84%{opacity:1}90%,100%{opacity:0}}
+.echo-transform .echo-all{animation:xtf-echo 6.4s ease-in-out infinite}
+@keyframes xtf-echo{0%{transform:translate(0,calc(-2*var(--u))) scale(.5)}5%{transform:translate(0,calc(-3*var(--u))) scale(.5)}10%{transform:translate(0,calc(-2*var(--u))) scale(.5)}15%{transform:translate(0,calc(-3*var(--u))) scale(.5)}21%{transform:translate(0,calc(-2*var(--u))) scale(.5)}30%{transform:translate(0,calc(-36*var(--u))) scale(.5)}32%{transform:translate(0,calc(-38*var(--u))) scale(.5)}34%{transform:translate(0,calc(-36*var(--u))) scale(.5)}68%{transform:translate(0,calc(-36*var(--u))) scale(.5)}77%{transform:translate(0,calc(-2*var(--u))) scale(.5)}79%{transform:translate(0,calc(-0.5*var(--u))) scale(.5)}81%{transform:translate(0,calc(-2*var(--u))) scale(.5)}86%{transform:translate(0,calc(-3*var(--u))) scale(.5)}91%{transform:translate(0,calc(-2*var(--u))) scale(.5)}95.5%{transform:translate(0,calc(-3*var(--u))) scale(.5)}100%{transform:translate(0,calc(-2*var(--u))) scale(.5)}}
+.xtf-car{animation:xtf-car 6.4s ease-in-out infinite}
+@keyframes xtf-car{0%{transform:translateY(calc(34*var(--u)))}5%{transform:translateY(calc(33*var(--u)))}10%{transform:translateY(calc(34*var(--u)))}15%{transform:translateY(calc(33*var(--u)))}21%{transform:translateY(calc(34*var(--u)))}30%{transform:translateY(0px)}32%{transform:translateY(calc(-2*var(--u)))}34%{transform:translateY(0px)}68%{transform:translateY(0px)}77%{transform:translateY(calc(34*var(--u)))}79%{transform:translateY(calc(35.5*var(--u)))}81%{transform:translateY(calc(34*var(--u)))}86%{transform:translateY(calc(33*var(--u)))}91%{transform:translateY(calc(34*var(--u)))}95.5%{transform:translateY(calc(33*var(--u)))}100%{transform:translateY(calc(34*var(--u)))}}
+.xtf-wh-l{animation:xtf-wh-l 6.4s ease-in-out infinite}.xtf-wh-r{animation:xtf-wh-r 6.4s ease-in-out infinite}
+@keyframes xtf-wh-l{0%,22%,78%,100%{transform:translate(calc(2*var(--u)),calc(52*var(--u)))}31%,69%{transform:translate(0,0)}26%{transform:translate(calc(-6*var(--u)),calc(30*var(--u)))}}
+@keyframes xtf-wh-r{0%,22%,78%,100%{transform:translate(calc(-2*var(--u)),calc(52*var(--u)))}31%,69%{transform:translate(0,0)}26%{transform:translate(calc(6*var(--u)),calc(30*var(--u)))}}
+.xtf-spin-l{transform-origin:calc(12*var(--u)) calc(52*var(--u));animation:xtf-spin .5s linear infinite}.xtf-spin-r{transform-origin:calc(88*var(--u)) calc(52*var(--u));animation:xtf-spin .5s linear infinite}
+@keyframes xtf-spin{to{transform:rotate(-360deg)}}
+.xtf-arm-l{transform-origin:calc(12*var(--u)) calc(56*var(--u));animation:xtf-arm-l 6.4s ease-in-out infinite}.xtf-arm-r{transform-origin:calc(88*var(--u)) calc(56*var(--u));animation:xtf-arm-r 6.4s ease-in-out infinite}
+@keyframes xtf-arm-l{0%,30%,70%,100%{transform:scaleY(0)}35%{transform:scaleY(1)}40%,48%{transform:rotate(-10deg)}44%,52%{transform:rotate(10deg)}56%,66%{transform:rotate(0)}}
+@keyframes xtf-arm-r{0%,30%,70%,100%{transform:scaleY(0)}35%{transform:scaleY(1)}40%,48%{transform:rotate(10deg)}44%,52%{transform:rotate(-10deg)}56%{transform:rotate(-150deg)}59%,63%{transform:rotate(-125deg)}61%{transform:rotate(-155deg)}66%{transform:rotate(0)}}
+.xtf-legs{transform-origin:calc(50*var(--u)) calc(112*var(--u));animation:xtf-legs 6.4s ease-in-out infinite}
+@keyframes xtf-legs{0%,21%,79%,100%{transform:scaleY(.12);opacity:0}23%,77%{opacity:1}30%,68%{transform:scaleY(1);opacity:1}32%{transform:scaleY(1.05)}34%{transform:scaleY(1)}}
+.xtf-step-l{animation:xtf-step 6.4s ease-in-out infinite}.xtf-step-r{animation:xtf-step 6.4s ease-in-out infinite -.38s}
+@keyframes xtf-step{0%,36%,48%,54%,100%{transform:translateY(0)}39%,45%,51%{transform:translateY(calc(-4*var(--u)))}42%{transform:translateY(0)}}
+.xtf-road{animation:xtf-road 6.4s linear infinite}
+@keyframes xtf-road{0%{transform:translateX(0)}22%,78%{transform:translateX(calc(-35*var(--u)))}100%{transform:translateX(calc(-64*var(--u)))}}
+.xtf-shadow{transform-origin:calc(50*var(--u)) calc(113*var(--u));animation:xtf-shadow 6.4s ease-in-out infinite}
+@keyframes xtf-shadow{0%,22%,78%,100%{transform:scaleX(1.05)}30%,70%{transform:scaleX(.7)}}
+.xtf-fx{opacity:0;animation:xtf-fx 6.4s ease-out infinite}
+@keyframes xtf-fx{0%,23%{opacity:0}26%,31%{opacity:1}36%,69%{opacity:0}72%,76%{opacity:1}80%,100%{opacity:0}}
+.echo-assemble .echo-all{animation:xas-body 6.4s ease-in-out infinite}
+@keyframes xas-body{0%,44%,100%{transform:translate(calc(-30*var(--u)),calc(2*var(--u))) scale(.56)}50%,62%{transform:translate(calc(-30*var(--u)),calc(2*var(--u))) rotate(4deg) scale(.56)}66%,76%{transform:translate(calc(-30*var(--u)),calc(2*var(--u))) rotate(-3deg) scale(.56)}}
+.echo-assemble .echo-fin-r,.echo-assemble .echo-hand-r{animation:xas-wrench 6.4s ease-in-out infinite}
+@keyframes xas-wrench{0%{transform:rotate(6deg)}5%{transform:rotate(6deg)}7.4%{transform:rotate(-115deg)}9%{transform:rotate(-38deg)}11.6%{transform:rotate(6deg)}15%{transform:rotate(6deg)}17.4%{transform:rotate(-115deg)}19%{transform:rotate(-38deg)}21.6%{transform:rotate(6deg)}25%{transform:rotate(6deg)}27.4%{transform:rotate(-115deg)}29%{transform:rotate(-38deg)}31.6%{transform:rotate(6deg)}35%{transform:rotate(6deg)}37.4%{transform:rotate(-115deg)}39%{transform:rotate(-38deg)}41.6%{transform:rotate(6deg)}100%{transform:rotate(6deg)}}
+.echo-assemble .echo-fin-l{animation:xas-scratch 6.4s ease-in-out infinite}
+@keyframes xas-scratch{0%,62%,80%,100%{transform:rotate(0)}66%,76%{transform:rotate(148deg)}69%,73%{transform:rotate(140deg)}71%{transform:rotate(150deg)}}
+.xas-p{opacity:0;animation:xas-p0 6.4s infinite}.xas-p1{animation-name:xas-p1}.xas-p2{animation-name:xas-p2}.xas-p3{animation-name:xas-p3}
+@keyframes xas-p0{0%,2.5%{transform:translateY(calc(-150*var(--u)));opacity:0;animation-timing-function:ease-in}3%{opacity:1;transform:translateY(calc(-150*var(--u)));animation-timing-function:ease-in}9%{transform:translateY(0);opacity:1}10.5%{transform:translateY(calc(-5*var(--u)))}12%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translateY(calc(4*var(--u)));opacity:0}}
+@keyframes xas-p1{0%,12.5%{transform:translateY(calc(-150*var(--u)));opacity:0;animation-timing-function:ease-in}13%{opacity:1;transform:translateY(calc(-150*var(--u)));animation-timing-function:ease-in}19%{transform:translateY(0);opacity:1}20.5%{transform:translateY(calc(-5*var(--u)))}22%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translate(calc(-4*var(--u)),calc(26*var(--u))) rotate(-14deg);opacity:0}}
+@keyframes xas-p2{0%,22.5%{transform:translateY(calc(-150*var(--u)));opacity:0;animation-timing-function:ease-in}23%{opacity:1;transform:translateY(calc(-150*var(--u)));animation-timing-function:ease-in}29%{transform:translateY(0);opacity:1}30.5%{transform:translateY(calc(-5*var(--u)))}32%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translateY(calc(34*var(--u)));opacity:0}}
+@keyframes xas-p3{0%,32.5%{transform:translateY(calc(-150*var(--u)));opacity:0;animation-timing-function:ease-in}33%{opacity:1;transform:translateY(calc(-150*var(--u)));animation-timing-function:ease-in}39%{transform:translateY(0);opacity:1}40.5%{transform:translateY(calc(-5*var(--u)))}42%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translate(calc(16*var(--u)),calc(62*var(--u))) rotate(70deg);opacity:0}}
+.xas-sh{opacity:0;transform-origin:calc(85*var(--u)) calc(111.4*var(--u));animation:xas-sh 6.4s ease-out infinite}
+@keyframes xas-sh{0%,7%{opacity:0;transform:scaleX(.3)}9%,82%{opacity:.3;transform:scaleX(1)}88%,100%{opacity:0}}
+.xas-eye{fill:#22384f;animation:xas-eye 6.4s steps(1,end) infinite}
+@keyframes xas-eye{0%{fill:#22384f}45%{fill:#3fd6c8}46%{fill:#22384f}47%{fill:#3fd6c8}86%,100%{fill:#22384f}}
+.xas-head{transform-origin:calc(85*var(--u)) calc(50*var(--u));animation:xas-head 6.4s ease-in-out infinite}
+@keyframes xas-head{0%,62%,80%,100%{transform:rotate(0)}66%,76%{transform:rotate(-12deg)}}
+.xas-spin{opacity:0;animation:xas-spin 6.4s steps(1,end) infinite}
+@keyframes xas-spin{0%{opacity:0}48%{opacity:1}63%,100%{opacity:0}}
+.xas-spinr{transform-origin:calc(85*var(--u)) calc(18*var(--u));animation:xtf-spin .7s linear infinite reverse}
+.xas-q{opacity:0;transform-origin:calc(85*var(--u)) calc(18*var(--u));animation:xas-q 6.4s ease-out infinite}
+@keyframes xas-q{0%,63%{opacity:0;transform:scale(.4)}66%{opacity:1;transform:scale(1.15)}68%,78%{opacity:1;transform:scale(1)}81%,100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){
   .echo-bitflip .echo-all{animation:none;transform:translate(0,calc(-10*var(--u)))}
   .echo-pounce .echo-all,.echo-pounce .echo-shadow,.echo-payday .echo-all,.echo-payday .echo-shadow{animation:none}
@@ -6318,7 +6487,7 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
   const up = pose === "wave" || pose === "cheer" || pose === "sell" || pose === "forrent" || pose === "overheat" || pose === "payday";
   const finL = up ? FIN_UP_L : FIN_DOWN_L;
   const finR = pose === "cheer" || pose === "lookout" || pose === "draw" || pose === "payday" ? FIN_UP_R : FIN_DOWN_R;
-  const ownShadow = pose === "bitflip" || pose === "balance" || pose === "mech" || pose === "kart" || pose === "stamp" || pose === "hurdle";
+  const ownShadow = pose === "bitflip" || pose === "balance" || pose === "mech" || pose === "kart" || pose === "stamp" || pose === "hurdle" || pose === "surf" || pose === "sail" || pose === "toll" || pose === "transform" || pose === "assemble";
   const dangle = pose === "sit" || pose === "doze";
   const sleep = pose === "sleep" || pose === "doze";
   let accDefs = "", accIn = "", accBack = "", accUnder = "", accExtra = "", hideFinR = false;
@@ -6613,14 +6782,113 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<g transform="translate(50 -6) scale(1 .34)"><g class="xbf-orbit xhu-stars">${[0, 120, 240].map(a => `<path transform="rotate(${a}) translate(30 0)" d="M0 -6 L1.6 -1.6 L6 0 L1.6 1.6 L0 6 L-1.6 1.6 L-6 0 L-1.6 -1.6 Z" fill="#ffd98a"/>`).join("")}</g></g>`;
     accExtra = hurdle("xhu-h1", 14, "#3fd6c8", "PHASE I") + hurdle("xhu-h2", 44, "#f4977a", "PHASE II") +
       `<text class="xhu-ok" x="38" y="44" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="13" font-weight="900" fill="#3fd6c8">✓</text>`;
+  } else if (acc === "juggle") {
+    const coin = (d, c, t) => `<g class="xjg-x" style="animation-delay:${d}s"><g class="xjg-y" style="animation-delay:${d}s"><circle r="7" fill="${c}" stroke="#fff" stroke-opacity=".8" stroke-width="1"/><circle r="4.8" fill="none" stroke="#0c1a2b" stroke-opacity=".3" stroke-width=".8"/><text y="2.7" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.6" font-weight="900" fill="#0c1a2b">${t}</text></g></g>`;
+    const px = `font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10.6" font-weight="900" fill="#eef4f8"`;
+    accIn = `<g class="echo-hand-l">${mitt(8, 86, -10)}</g><g class="echo-hand-r">${mitt(92, 86, 10)}</g>`;
+    accExtra = `<g transform="translate(50 -14)"><rect x="-44" y="-7.4" width="88" height="14.8" rx="3" fill="#0f1f33" stroke="#3a5576"/>` +
+      `<text x="-39.5" y="3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#3fd6c8">YES</text><path d="M0 -4.4 V4.4" stroke="#3a5576"/><text x="5" y="3" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#f4977a">NO</text>` +
+      [["62¢", "38¢"], ["64¢", "36¢"], ["61¢", "39¢"]].map(([y, n], i) => `<g class="xjg-q xjg-q${i}"><text x="-24" y="3.8" ${px}>${y}</text><text x="17" y="3.8" ${px}>${n}</text></g>`).join("") + `</g>` +
+      coin(0, "#3fd6c8", "Y") + coin(-.8, "#f4977a", "N") + coin(-1.6, "#3fd6c8", "Y");
+  } else if (acc === "surf") {
+    const P = [92, 78, 86, 68, 76, 88], f = X => { const m = ((X % 132) + 132) % 132, i = Math.floor(m / 22); return P[i] + (P[(i + 1) % 6] - P[i]) * (m - i * 22) / 22; };
+    const pts = []; for (let X = -22; X <= 198; X += 22) pts.push([X, f(X)]);
+    const line = "M" + pts.map(p => p.join(" ")).join(" L");
+    accDefs = `<clipPath id="${k}sc"><rect x="-16" y="-22" width="67" height="138"/></clipPath><linearGradient id="${k}sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fd6c8" stop-opacity=".3"/><stop offset="1" stop-color="#3fd6c8" stop-opacity="0"/></linearGradient>`;
+    const lab = `font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="6" font-weight="800" fill="#62798d" text-anchor="end"`;
+    accBack = `<path d="M-16 72.7 H116 M-16 81 H116 M-16 89.3 H116" stroke="#22405c" stroke-width=".8" stroke-dasharray="3 3"/><text x="115" y="70.7" ${lab}>80¢</text><text x="115" y="79" ${lab}>70¢</text><text x="115" y="87.3" ${lab}>60¢</text>` +
+      `<g clip-path="url(#${k}sc)"><g class="xsf-line"><path d="${line} V118 H-22 Z" fill="url(#${k}sg)"/><path d="${line}" stroke="#3fd6c8" stroke-width="2.2" fill="none" stroke-linejoin="round"/>${pts.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2" fill="#8de8df"/>`).join("")}</g></g>`;
+    accUnder = `<path d="M-4 112 Q50 103 104 112 Q50 119 -4 112 Z" fill="#6aa8ff" stroke="#2b4fa0" stroke-width="1.4"/><path d="M6 111.4 Q50 106 94 111.4" stroke="#fbfaff" stroke-opacity=".7" stroke-width="2" fill="none"/>`;
+    accIn = `<g transform="translate(50 -22)"><path d="M0 12 V22" stroke="#3fd6c8" stroke-opacity=".6" stroke-width="1.6"/><rect x="-33" y="-12" width="66" height="24" rx="3.4" fill="#fbfaff" stroke="#3fd6c8" stroke-width="1.6"/><text x="-28" y="4.4" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#1d8a5c">YES</text>` +
+      ["64¢", "86¢", "76¢", "62¢", "57¢", "74¢", "64¢"].map((p, i) => `<text class="xsf-p xsf-p${i}" x="16" y="7" text-anchor="end" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="19" font-weight="900" fill="#211a32">${p}</text>`).join("") +
+      `<path class="xsf-up" d="M19 2 l4.4 -5.6 l4.4 5.6" stroke="#2fb87a" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path class="xsf-dn" d="M19 -3.6 l4.4 5.6 l4.4 -5.6" stroke="#f4977a" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  } else if (acc === "sail") {
+    const wave = (y, c, o, cls) => { let d = `M-48 ${y}`; for (let x = -48; x < 150; x += 16) d += " q8 -4 16 0"; return `<path class="${cls}" d="${d} V118 H-48 Z" fill="${c}" fill-opacity="${o}"/>`; };
+    const gust = cls => `<g class="${cls}"><path d="M-30 10 q7 -6 14 0 t14 0 M-24 20 q7 -6 14 0 t12 0 M-34 0 q6 -5 12 0" stroke="#d4e3f0" stroke-opacity=".75" stroke-width="1.6" fill="none" stroke-linecap="round"/>` +
+      `<g transform="translate(-6 -10)"><rect x="-21" y="-8.5" width="42" height="17" rx="8" fill="#fbfaff" stroke="#6aa8ff" stroke-width="1.2"/><text x="0" y="2.8" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#211a32">1st prompt</text></g></g>`;
+    accBack = wave(101, "#14365a", 1, "xsl-wb") +
+      `<g class="xsl-rig"><path d="M84 103 V-14" stroke="#9c7440" stroke-width="2.6" stroke-linecap="round"/>` +
+      `<g class="xsl-slack"><path d="M83 -11 L83 77 L6 77 Q52 40 83 -11 Z" fill="#e9f0f6" fill-opacity=".9" stroke="#9fb3c4" stroke-width=".8"/></g>` +
+      `<g class="xsl-full"><path d="M83 -11 L83 77 L6 77 Q22 14 83 -11 Z" fill="#fbfaff" stroke="#d4e3f0" stroke-width=".8"/><path d="M83 30 Q46 30 16 64" stroke="#3fd6c8" stroke-width="2.4" fill="none"/></g>` +
+      `<path d="M84 78 H4" stroke="#7a5a32" stroke-width="2.4" stroke-linecap="round"/><g class="xsl-flag"><path d="M84 -14 L99 -10 L84 -6 Z" fill="#f4977a"/></g></g>`;
+    accExtra = `<g class="xsl-rig"><path d="M-8 84 H108 L99 101 Q50 109 1 101 Z" fill="#4f7fd6" stroke="#2b4fa0" stroke-width="1.2"/><path d="M-5 89.4 H105" stroke="#3fd6c8" stroke-width="2.6"/>` +
+      [20, 50, 80].map(x => `<circle cx="${x}" cy="95.4" r="2.2" fill="#0f1f33" stroke="#9fb3c4" stroke-width=".8"/>`).join("") + `</g>` +
+      [["xsl-spray-r", 106], ["xsl-spray-l", -6]].map(([c, x]) => `<g class="${c}">${[0, 1, 2].map(i => `<circle cx="${x + (x > 50 ? i * 4 : -i * 4)}" cy="${95 - i * 3}" r="${1.8 - i * .3}" fill="#d4e3f0" fill-opacity=".8"/>`).join("")}</g>`).join("") +
+      wave(106, "#1f4f7a", .92, "xsl-wf") + `<path class="xsl-wf" d="M-48 106 ${"q8 -4 16 0 ".repeat(13)}" stroke="#8de8df" stroke-opacity=".5" stroke-width="1" fill="none"/>` +
+      gust("xsl-g xsl-g1") + gust("xsl-g xsl-g2");
+  } else if (acc === "rc") {
+    const car = cls => `<g class="${cls}"><g class="xrc-x"><g class="xrc-z"><ellipse cx="0" cy="6.6" rx="15" ry="2.3" fill="#000" opacity=".35"/><g class="xrc-dir">` +
+      `<path d="M19 -2 h9 M18 2.6 h12" stroke="#d4e3f0" stroke-opacity=".6" stroke-width="1.2" stroke-linecap="round"/>` +
+      `<path d="M-15 2.4 Q-15 -3.6 -8.6 -4.6 L-3 -9.4 H5.4 L9.6 -4.6 H13 Q15.6 -4.6 15.6 -.6 V3.4 H-15 Z" fill="#3fd6c8" stroke="#1d8a7c" stroke-width=".9"/><path d="M-1.6 -8.4 H5 L7.8 -4.8 H-5 Z" fill="#0c1a2b"/>` +
+      `<path d="M11 -9 h5.6 v2.2 h-5.6 Z M13 -6.8 v2.2" stroke="#f4977a" stroke-width="1.2" fill="#f4977a"/><circle cx="-8" cy="3.6" r="3.6" fill="#0d141c" stroke="#62798d"/><circle cx="9" cy="3.6" r="3.6" fill="#0d141c" stroke="#62798d"/></g></g></g></g>`;
+    accBack = car("xrc-back");
+    accIn = `<g class="echo-hand-l">${mitt(8, 86, -10)}</g><g class="echo-hand-r">${mitt(92, 86, 10)}</g>` +
+      `<path d="M63 60 L76 41" stroke="#9fb3c4" stroke-width="1.8" stroke-linecap="round"/><circle cx="76" cy="41" r="2.4" fill="#f4977a"/>` +
+      `<rect x="30" y="58" width="40" height="29" rx="7" fill="#22384f" stroke="#6aa8ff" stroke-width="1.2"/>` +
+      [41, 59].map(x => `<circle cx="${x}" cy="68" r="5.4" fill="#0c1a2b" stroke="#3a5576"/>`).join("") +
+      `<g class="xrc-st-l"><path d="M41 68 V62" stroke="#9fb3c4" stroke-width="2.2" stroke-linecap="round"/><circle cx="41" cy="61.6" r="2.8" fill="#3fd6c8"/></g>` +
+      `<g class="xrc-st-r"><path d="M59 68 V62" stroke="#9fb3c4" stroke-width="2.2" stroke-linecap="round"/><circle cx="59" cy="61.6" r="2.8" fill="#f4977a"/></g>` +
+      `<text x="50" y="82.6" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="7" font-weight="900" fill="#8de8df">1st prompt</text>`;
+    accExtra = car("xrc-front");
+  } else if (acc === "toll") {
+    const bot = cls => `<g class="xtl-bot ${cls}"><path class="xtl-prop" d="M-9 -11 H9" stroke="#9fb3c4" stroke-width="1.6" stroke-linecap="round"/><path d="M0 -11 V-7" stroke="#9fb3c4" stroke-width="1.2"/><circle r="7.4" fill="#22384f" stroke="#6aa8ff" stroke-width="1.2"/><rect x="-4.6" y="-2" width="9.2" height="3.4" rx="1.7" fill="#0c1a2b"/><circle cx="-1.8" cy="-.3" r="1" fill="#8de8df"/><circle cx="1.8" cy="-.3" r="1" fill="#8de8df"/></g>`;
+    accBack = bot("xtl-q1") + bot("xtl-q2") + `<rect x="0" y="22" width="76" height="92" fill="#0f1f33" stroke="#3a5576"/><path d="M8 34 H68" stroke="#22405c" stroke-width="2"/>`;
+    accIn = `<g class="echo-hand-r">${mitt(95, 85, 20)}<g transform="translate(95 87) rotate(-24)"><path d="M0 0 L-1.4 -21 Q6.4 -17 3.2 -4 Z" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".6"/><circle r="1.1" fill="#211a32"/></g></g>` +
+      `<g class="echo-hand-l">${mitt(5, 85, -20)}<g transform="translate(5 88)"><rect x="-2" y="-12" width="4" height="9" rx="1.6" fill="#c79a5b"/><circle cy="-13" r="3" fill="#c79a5b"/><rect x="-6.4" y="-3.6" width="12.8" height="5.4" rx="1.2" fill="#3fd6c8" stroke="#1d8a7c"/></g></g>`;
+    const ln = (cls, d) => `<path class="xtl-ln ${cls}" d="${d}" stroke="#3a5576" stroke-width="1.1" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`;
+    accExtra = `<path d="M-6 24 H82 L77 14 H-1 Z" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/>` +
+      `<rect x="15" y="1" width="46" height="12" rx="2.4" fill="#0f1f33" stroke="#3fd6c8"/><path d="M21 7 h5 v4.4 h-5 Z M22 7 v-1.6 a1.5 1.5 0 0 1 3 0 V7" stroke="#3fd6c8" stroke-width="1" fill="none"/><text x="44" y="10.4" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="8" font-weight="900" fill="#3fd6c8" letter-spacing=".5">LEDGER</text>` +
+      `<rect x="-3" y="24" width="5" height="62" fill="#22384f" stroke="#3a5576"/><rect x="74" y="24" width="5" height="62" fill="#22384f" stroke="#3a5576"/>` +
+      `<path d="M13 86 L18 78.6 H38 V86 Z" fill="#e9f0f6" stroke="#9fb3c4" stroke-width=".5"/><path d="M38 78.6 H58 L63 86 H38 Z" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".5"/>` +
+      ln("xtl-a0", "M41 80.8 H57") + ln("xtl-a1", "M41 83.4 H59") + ln("xtl-b0", "M22 80.8 H35") + ln("xtl-b1", "M20 83.4 H35") +
+      `<g class="xtl-ok xtl-ok1"><circle cx="29" cy="82.2" r="3" fill="none" stroke="#2fb87a" stroke-width="1"/><path d="M27.4 82.2 l1.1 1.1 l2.2 -2.2" stroke="#2fb87a" stroke-width="1.1" fill="none"/></g>` +
+      `<g class="xtl-ok xtl-ok2"><circle cx="49" cy="82.2" r="3" fill="none" stroke="#2fb87a" stroke-width="1"/><path d="M47.4 82.2 l1.1 1.1 l2.2 -2.2" stroke="#2fb87a" stroke-width="1.1" fill="none"/></g>` +
+      `<rect x="-5" y="86" width="86" height="27" rx="2" fill="#22384f" stroke="#6aa8ff" stroke-width="1"/><path d="M-5 92 H81" stroke="#3fd6c8" stroke-width="2"/>` +
+      `<rect x="82" y="72" width="6" height="41" fill="#62798d" stroke="#22405c"/><circle cx="85" cy="66" r="4.4" fill="#0c1a2b" stroke="#22405c"/><circle class="xtl-lamp" cx="85" cy="66" r="2.8"/>` +
+      `<g class="xtl-arm"><rect x="85" y="73" width="40" height="5.4" rx="2.7" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".6"/>${[92, 102, 112].map(x => `<rect x="${x}" y="73" width="5" height="5.4" fill="#f4977a"/>`).join("")}</g><circle cx="85" cy="75.6" r="3" fill="#22384f" stroke="#9fb3c4"/>`;
+  } else if (acc === "book") {
+    accDefs = `<radialGradient id="${k}bg" cx="50%" cy="60%" r="55%"><stop offset="0" stop-color="#3fd6c8" stop-opacity=".55"/><stop offset="1" stop-color="#3fd6c8" stop-opacity="0"/></radialGradient>`;
+    const slip = cls => `<g class="xbk-slip ${cls}"><path d="M-6 -4 h12 v8 h-12 Z" fill="#fbfaff" stroke="#9fb3c4" stroke-width=".6"/><path d="M-3.6 -1.4 h7.2 M-3.6 1.4 h4.6" stroke="#3fd6c8" stroke-width="1"/></g>`;
+    accIn = `<ellipse class="xbk-glow" cx="50" cy="56" rx="40" ry="34" fill="url(#${k}bg)"/>` +
+      `<rect x="21" y="45" width="58" height="54" rx="3" fill="#1d1534" stroke="#d4e3f0" stroke-width="1"/><rect x="23.4" y="47.4" width="53.2" height="49.2" fill="#e9f0f6"/><path d="M50 47.4 V96.6" stroke="#9fb3c4" stroke-width=".8"/>` +
+      `<text x="36.6" y="55" text-anchor="middle" font-family="Big Shoulders Text, Arial Narrow, sans-serif" font-size="4.6" font-weight="900" fill="#62798d" letter-spacing=".4">LEDGER</text>` +
+      `<path d="M27 61 H46 M27 67 H44 M27 73 H46 M27 79 H42 M27 85 H45 M27 91 H40" stroke="#9fb3c4" stroke-width="1.1" stroke-linecap="round"/>` +
+      [61, 69, 77].map((y, i) => `<g class="xbk-row xbk-row${i}"><circle cx="56" cy="${y}" r="2" fill="#6aa8ff"/><path d="M60 ${y} H72" stroke="#1d8a7c" stroke-width="1.3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/></g>`).join("") +
+      [0, 1, 2, 3].map(i => `<rect class="xbk-fly xbk-fly${i}" x="${30 + i * 12}" y="60" width="3.4" height="2.4" rx=".6" fill="#8de8df"/>`).join("") +
+      `<g class="xbk-cover"><g class="xbk-out"><rect x="21" y="45" width="58" height="54" rx="3" fill="#2a1f4a" stroke="#d4e3f0" stroke-width="1"/><rect x="25" y="49" width="50" height="46" rx="2" fill="none" stroke="#c79a5b" stroke-opacity=".6" stroke-width=".8"/>` +
+      `<path d="M21 52 L28 45 M79 52 L72 45 M21 92 L28 99 M79 92 L72 99" stroke="#c79a5b" stroke-width="2"/><text x="44" y="64" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="10" font-weight="900" fill="#c79a5b" letter-spacing=".6">LEDGER</text><path d="M32 69 H56" stroke="#c79a5b" stroke-opacity=".6"/></g>` +
+      `<g class="xbk-inside"><rect x="21" y="45" width="58" height="54" rx="3" fill="#3a2d63" stroke="#d4e3f0" stroke-width="1"/><rect x="24" y="48" width="52" height="48" rx="2" fill="#2a1f4a"/></g></g>` +
+      `<g class="xbk-strap"><rect x="58" y="66" width="26" height="15" rx="3.4" fill="#62798d" stroke="#22405c"/><g class="xbk-dial"><circle cx="68" cy="73.5" r="6" fill="#c79a5b" stroke="#8a6a3a"/>${[0, 60, 120, 180, 240, 300].map(a => `<path transform="rotate(${a} 68 73.5)" d="M68 68.4 V69.8" stroke="#3a2a10" stroke-width=".9"/>`).join("")}<path d="M68 70 V73.5" stroke="#3a2a10" stroke-width="1.4" stroke-linecap="round"/></g><circle cx="81" cy="73.5" r="1.6" fill="#22405c"/></g>`;
+    accExtra = slip("xbk-s0") + slip("xbk-s1") + `<g class="xbk-fx">${spark(84, 58, .6, "#8de8df", 0)}${spark(16, 50, .5, "#fff", .3)}</g>`;
+  } else if (acc === "transform") {
+    const wheel = (x, s) => `<g class="xtf-wh-${s}"><g class="xtf-arm-${s}"><rect x="${x - 3.6}" y="56" width="7.2" height="22" rx="3" fill="#9fb3c4" stroke="#22405c"/><path d="M${x - 3} 78 l-1.8 5 M${x + 3} 78 l1.8 5" stroke="#d4e3f0" stroke-width="2.2" stroke-linecap="round"/></g>` +
+      `<circle cx="${x}" cy="52" r="9.4" fill="#0d141c" stroke="#3a5576" stroke-width="1.4"/><g class="xtf-spin-${s}"><path d="M${x - 6} 52 H${x + 6} M${x} 46 V58" stroke="#4a6d92" stroke-width="1.8"/></g><circle cx="${x}" cy="52" r="3.4" fill="#3fd6c8" stroke="#14283f"/></g>`;
+    const leg = (x, s) => `<g class="xtf-step-${s}"><rect x="${x - 4.4}" y="72" width="8.8" height="19" rx="3.4" fill="#62798d" stroke="#22405c"/><rect x="${x - 3.6}" y="91" width="7.2" height="16" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><circle cx="${x}" cy="91" r="4" fill="#3fd6c8" stroke="#14283f"/><rect x="${x - 8}" y="106.4" width="16" height="5.6" rx="2.6" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/></g>`;
+    accBack = `<path class="xtf-road" d="M-40 113.4 H180" stroke="#3a5576" stroke-width="1.6" stroke-dasharray="8 8"/><ellipse class="xtf-shadow" cx="50" cy="113" rx="42" ry="2.8" fill="#000" opacity=".35"/>`;
+    accExtra = `<g class="xtf-legs">${leg(33, "l")}${leg(67, "r")}</g>${wheel(12, "l")}${wheel(88, "r")}` +
+      `<g class="xtf-car"><path d="M16 49 Q16 44 23 44 H77 Q84 44 84 49 V67 Q84 72 78 72 H22 Q16 72 16 67 Z" fill="#22384f" stroke="#6aa8ff" stroke-width="1.1"/>` +
+      `<ellipse cx="25" cy="58" rx="5.2" ry="4" fill="#e8f4ff" fill-opacity=".92"/><ellipse cx="75" cy="58" rx="5.2" ry="4" fill="#e8f4ff" fill-opacity=".92"/><ellipse cx="25" cy="58" rx="8.4" ry="6.6" fill="#e8f4ff" fill-opacity=".12"/><ellipse cx="75" cy="58" rx="8.4" ry="6.6" fill="#e8f4ff" fill-opacity=".12"/>` +
+      `<rect x="39" y="53" width="22" height="9.4" rx="3" fill="#0f1f33" stroke="#3a5576"/><text x="50" y="60.6" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="7.2" font-weight="900" fill="#8de8df">EV</text><path d="M30 67 H70" stroke="#3a5576" stroke-width="2" stroke-linecap="round"/>` +
+      `<path d="M23 45 C23 2 77 2 77 45" fill="#a6e9ff" fill-opacity=".07" stroke="#d4e3f0" stroke-opacity=".55" stroke-width="1.6"/><path d="M29 30 C29 13 36 6 43 4" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/></g>` +
+      `<g class="xtf-fx">${spark(-6, 40, .7, "#8de8df", 0)}${spark(106, 36, .65, "#fff", .2)}${spark(2, 92, .5, "#6aa8ff", .4)}${spark(100, 88, .55, "#8de8df", .1)}</g>`;
+  } else if (acc === "assemble") {
+    accBack = `<ellipse cx="20" cy="110.6" rx="22" ry="2.6" fill="#000" opacity=".3"/><ellipse class="xas-sh" cx="85" cy="111.4" rx="20" ry="2.4" fill="#000" opacity=".3"/>`;
+    accIn = `<g class="echo-hand-r">${mitt(95, 85, 20)}<g transform="translate(94 90) rotate(-30)"><rect x="-1.7" y="0" width="3.4" height="17" rx="1.4" fill="#9fb3c4" stroke="#62798d" stroke-width=".5"/><path d="M-5 17 a5.4 5.4 0 1 0 10 0 l-2.4 0 v3.4 h-5.2 v-3.4 Z" fill="#9fb3c4" stroke="#62798d" stroke-width=".5"/></g></g>`;
+    accExtra = `<g class="xas-p xas-p0"><rect x="72" y="84" width="26" height="6" rx="2" fill="#62798d" stroke="#22405c"/>${[78.5, 91.5].map(x => `<rect x="${x - 3.6}" y="90" width="7.2" height="17" rx="2.6" fill="#9fb3c4" stroke="#22405c"/><circle cx="${x}" cy="98" r="3.2" fill="#3fd6c8" stroke="#14283f"/><rect x="${x - 6.6}" y="106" width="13.2" height="5.4" rx="2.4" fill="#22384f" stroke="#6aa8ff" stroke-width=".7"/>`).join("")}</g>` +
+      `<g class="xas-p xas-p2">${[64.5, 105.5].map(x => `<rect x="${x - 3.4}" y="55" width="6.8" height="24" rx="2.8" fill="#9fb3c4" stroke="#22405c"/><path d="M${x - 2.8} 79 l-1.6 4.6 M${x + 2.8} 79 l1.6 4.6" stroke="#d4e3f0" stroke-width="2" stroke-linecap="round"/>`).join("")}</g>` +
+      `<g class="xas-p xas-p1"><rect x="69" y="52" width="32" height="33" rx="4" fill="#22384f" stroke="#6aa8ff" stroke-width="1.1"/>${[0, 1, 2, 3].map(i => `<rect x="${73.4 + i * 6.4}" y="63" width="4.6" height="17" rx="1" fill="#3fd6c8" fill-opacity=".85"/>`).join("")}<text x="85" y="60.4" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="6.6" font-weight="900" fill="#8de8df">EV BATTERY</text></g>` +
+      `<g class="xas-p xas-p3"><g class="xas-head"><rect x="81" y="48" width="8" height="5" fill="#62798d"/><rect x="73" y="30" width="24" height="19" rx="6" fill="#9fb3c4" stroke="#62798d"/><rect x="76" y="34.4" width="18" height="10" rx="3" fill="#0c1a2b"/><circle class="xas-eye" cx="85" cy="39.4" r="3"/></g></g>` +
+      `<g class="xas-spin"><circle cx="85" cy="18" r="5.4" fill="none" stroke="#3a5576" stroke-width="1.8"/><g class="xas-spinr"><path d="M85 12.6 a5.4 5.4 0 0 1 5.4 5.4" stroke="#8de8df" stroke-width="1.8" fill="none" stroke-linecap="round"/></g></g>` +
+      `<text class="xas-q" x="85" y="23" text-anchor="middle" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="18" font-weight="900" fill="#d4e3f0">?</text>`;
   } else if (acc === "clockmaker") {
     accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
       `<g class="echo-hand-l"><path d="M2 56 Q-10 50 -8 40" stroke="#c79a5b" stroke-width="1.2" fill="none" stroke-dasharray="1.6 1.2"/><circle cx="2" cy="68" r="10" fill="#f3ead2" stroke="#c79a5b" stroke-width="2"/><rect x="0" y="55" width="4" height="3.4" rx="1" fill="#c79a5b"/>${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i => `<path d="M2 ${60.6} V${i % 3 ? 61.6 : 62.6}" transform="rotate(${i * 30} 2 68)" stroke="#9c7440" stroke-width=".8"/>`).join("")}<g class="xck-hand"><path d="M2 68 V61.2" stroke="#2b2142" stroke-width="1.3" stroke-linecap="round"/></g><path d="M2 68 L6 70" stroke="#2b2142" stroke-width="1.1" stroke-linecap="round"/><circle cx="2" cy="68" r="1" fill="#2b2142"/>${mitt(3, 80, 20)}</g>` +
       `<g class="echo-hand-r"><g class="xck-glass"><rect x="91" y="52" width="16" height="2.6" rx="1" fill="#c79a5b"/><rect x="91" y="76" width="16" height="2.6" rx="1" fill="#c79a5b"/><path d="M93 54.6 Q99 64 93 76 M105 54.6 Q99 64 105 76" stroke="#d4e3f0" stroke-width="1.2" fill="#a6e9ff" fill-opacity=".18"/><path d="M95 58 Q99 63 103 58 Z" fill="#ffc566"/><path d="M96 75.5 Q99 70 102 75.5 Z" fill="#ffc566"/></g>${mitt(95.5, 76)}</g>`;
   }
-  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle" || acc === "vault") {
+  if (acc === "payday" || acc === "escape" || acc === "stamp" || acc === "hurdle" || acc === "vault" || acc === "sail" || acc === "toll" || acc === "assemble" || acc === "book") {
     accDefs += `<clipPath id="${k}cl"><rect x="-16" y="-22" width="132" height="138"/></clipPath>`;
     accExtra = `<g clip-path="url(#${k}cl)">${accExtra}</g>`;
+    if (acc === "toll") accBack = `<g clip-path="url(#${k}cl)">${accBack}</g>`;
   }
   let extras = "";
   if (pose === "cheer") extras = spark(-6, 8, 1, "#4fd2ff", 0) + spark(104, 2, .9, "#fff", .18) + spark(-12, 46, .7, "#b8a6ff", .36) + spark(110, 40, .8, "#ffb23f", .54);
