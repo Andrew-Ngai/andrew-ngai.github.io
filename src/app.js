@@ -5492,10 +5492,10 @@ function buildWiring() {
   sw.setAttribute("aria-label", "Wiring: show which theses lean on each other");
   const rad = a => a * Math.PI / 180, at = (r, a) => [r * Math.cos(rad(a)), r * Math.sin(rad(a))];
   const arc = (r, a0, a1) => `M${at(r, a0).map(v => v.toFixed(1)).join(" ")}A${r} ${r} 0 0 0 ${at(r, a1).map(v => v.toFixed(1)).join(" ")}`;
-  const END = 95.5, RT = R + 14;
-  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" d="${arc(RT, 175, END)}" fill="none"/><path class="sb-hit"/>` +
+  const END = 95.5;
+  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" fill="none"/><path class="sb-hit"/>` +
     `<g class="sb-sw"><rect class="sb-track"/><circle class="sb-knob"/></g>` +
-    `<text class="sb-t" text-anchor="end"><textPath href="#scribeArc" startOffset="100%">WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
+    `<text class="sb-t"><textPath href="#scribeArc">WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
   wm.appendChild(sw);
   const t = $(".sb-t", sw), tog = $(".sb-sw", sw), hit = $(".sb-hit", sw);
   // keep it readable (about 11px) however small the wafer is drawn, and seat the toggle just before the label
@@ -5507,8 +5507,14 @@ function buildWiring() {
     if (Math.abs(fs - fs0) < .05) return;
     fs0 = fs;
     t.setAttribute("font-size", fs.toFixed(1));
-    const len = t.getComputedTextLength() || fs * 9, w = fs * 2.1, h = fs * 1.1;
-    const aT = END + (len + fs * .9 + w / 2) * 180 / Math.PI / RT, rs = RT - fs * .36;
+    // The label starts at a fixed point after the toggle rather than being measured: Safari leaves letter-spacing out
+    // of its measurement, which put the toggle on top of the label. "WIRING · OFF" runs about 7.2 font sizes long.
+    // the label's baseline sits far enough out that the toggle, the tallest part, clears the wafer's edge
+    const RT = R + 8 + fs * .95;
+    $("#scribeArc", sw).setAttribute("d", arc(RT, 175, END));
+    const deg = len => len * 180 / Math.PI / RT, w = fs * 2.1, h = fs * 1.1;
+    const aText = END + deg(fs * 7.6), aT = aText + deg(fs * .7 + w / 2), rs = RT - fs * .36;
+    $("textPath", t).setAttribute("startOffset", ((175 - aText) * Math.PI / 180 * RT).toFixed(1));
     const [x, y] = at(rs, aT);
     tog.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(aT - 90).toFixed(1)})`);
     $(".sb-track", sw).setAttribute("x", -w / 2); $(".sb-track", sw).setAttribute("y", -h / 2);
