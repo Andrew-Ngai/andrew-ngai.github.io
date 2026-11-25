@@ -5482,28 +5482,69 @@ function buildWiring() {
     return `<path class="net" style="--d:${d}" data-a="${a}" data-b="${b}" d="${route(a, b)}"/>`;
   }).join("");
 
+  // The switch: a small slide toggle etched on the rim beside the notch, followed by its label. Pointing at it previews
+  // the wiring as a ghost on the wafer; it nudges once, the first time the wafer comes into view.
   const sw = document.createElement("button");
   sw.type = "button";
   sw.className = "scribe";
   sw.setAttribute("role", "switch");
   sw.setAttribute("aria-checked", "false");
   sw.setAttribute("aria-label", "Wiring: show which theses lean on each other");
-  const arc = (r, a0, a1) => { const p = a => [(r * Math.cos(a * Math.PI / 180)).toFixed(1), (r * Math.sin(a * Math.PI / 180)).toFixed(1)]; return `M${p(a0).join(" ")}A${r} ${r} 0 0 0 ${p(a1).join(" ")}`; };
-  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" d="${arc(R + 13, 152, 95.5)}" fill="none"/><path class="sb-hit" d="${arc(R + 9, 150, 95)}"/>` +
-    `<text class="sb-t" text-anchor="end"><textPath href="#scribeArc" startOffset="100%"><tspan class="sb-led">●</tspan> WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
+  const rad = a => a * Math.PI / 180, at = (r, a) => [r * Math.cos(rad(a)), r * Math.sin(rad(a))];
+  const arc = (r, a0, a1) => `M${at(r, a0).map(v => v.toFixed(1)).join(" ")}A${r} ${r} 0 0 0 ${at(r, a1).map(v => v.toFixed(1)).join(" ")}`;
+  const END = 95.5, RT = R + 14;
+  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" d="${arc(RT, 175, END)}" fill="none"/><path class="sb-hit"/>` +
+    `<g class="sb-sw"><rect class="sb-track"/><circle class="sb-knob"/></g>` +
+    `<text class="sb-t" text-anchor="end"><textPath href="#scribeArc" startOffset="100%">WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
   wm.appendChild(sw);
-  // keep the scribe readable (about 10px) however small the wafer is drawn
-  const t = $(".sb-t", sw), size = () => { const k = svg.getBoundingClientRect().width / 620; if (k) t.setAttribute("font-size", Math.max(11.5, 10 / k).toFixed(1)); };
+  const t = $(".sb-t", sw), tog = $(".sb-sw", sw), hit = $(".sb-hit", sw);
+  // keep it readable (about 11px) however small the wafer is drawn, and seat the toggle just before the label
+  let fs0 = 0;
+  const size = () => {
+    const k = svg.getBoundingClientRect().width / 620;
+    if (!k) return;
+    const fs = Math.max(13, 11 / k);
+    if (Math.abs(fs - fs0) < .05) return;
+    fs0 = fs;
+    t.setAttribute("font-size", fs.toFixed(1));
+    const len = t.getComputedTextLength() || fs * 9, w = fs * 2.1, h = fs * 1.1;
+    const aT = END + (len + fs * .9 + w / 2) * 180 / Math.PI / RT, rs = RT - fs * .36;
+    const [x, y] = at(rs, aT);
+    tog.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(aT - 90).toFixed(1)})`);
+    $(".sb-track", sw).setAttribute("x", -w / 2); $(".sb-track", sw).setAttribute("y", -h / 2);
+    $(".sb-track", sw).setAttribute("width", w); $(".sb-track", sw).setAttribute("height", h); $(".sb-track", sw).setAttribute("rx", h / 2);
+    const kn = $(".sb-knob", sw);
+    kn.setAttribute("r", (h / 2 - fs * .14).toFixed(1));
+    kn.style.setProperty("--kx", `${(w / 2 - h / 2).toFixed(1)}px`);
+    hit.setAttribute("d", arc(RT - fs * .4, aT + (w / 2 + fs * .6) * 180 / Math.PI / RT, END - .5));
+    hit.style.strokeWidth = Math.max(30, fs * 2.6);
+  };
   size();
+  if (document.fonts) document.fonts.ready.then(() => { fs0 = 0; size(); });
   if (window.ResizeObserver) new ResizeObserver(size).observe(svg);
 
+  const peek = on => { wm.classList.toggle("peek", on && sw.getAttribute("aria-checked") !== "true"); sw.classList.toggle("hov", on); probeSearch.say(); };
+  hit.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") peek(true); });
+  hit.addEventListener("pointerleave", () => peek(false));
+  sw.addEventListener("focus", () => { if (sw.matches(":focus-visible")) peek(true); });
+  sw.addEventListener("blur", () => peek(false));
   sw.addEventListener("click", () => {
     const on = sw.getAttribute("aria-checked") !== "true";
     sw.setAttribute("aria-checked", String(on));
     $(".sb-s", sw).textContent = on ? "ON" : "OFF";
+    wm.classList.remove("peek");
     wm.classList.toggle("netlist", on);
     probeSearch.say();
   });
+  // a single nudge the first time the wafer is mostly on screen, so the switch reads as a switch
+  if (!calm && window.IntersectionObserver) {
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      setTimeout(() => { if (sw.getAttribute("aria-checked") !== "true") { sw.classList.add("nudge"); setTimeout(() => sw.classList.remove("nudge"), 1600); } }, 700);
+    }, { threshold: .6 });
+    io.observe(wm);
+  }
   const tell = ids => {
     if (!ids.length || readout.querySelector(".rd-wires")) return;
     readout.insertAdjacentHTML("beforeend", `<span class="rd-wires"><span class="rd-k">Wired to</span>${ids.map(o => `<span style="--bin:${BINS[byId[o].stance].css}">${byId[o].short}</span>`).join("")}</span>`);
@@ -5713,7 +5754,8 @@ function buildProbeSearch() {
   const and = a => a.length > 1 ? `${a.slice(0, -1).join(", ")} and ${a.at(-1)}` : a[0];
   // the readout under the prompt says where the matches are, or that the wiring is on
   function say() {
-    const wiring = $(".wafermap").classList.contains("netlist");
+    const wm = $(".wafermap"), wiring = wm.classList.contains("netlist");
+    if ($(".scribe.hov")) { readoutIdle(wiring ? "<b>Wiring on.</b> Click the switch to hide it." : "<b>Wiring.</b> Click the switch to show which theses lean on each other."); return; }
     readoutIdle(q && lit.length ? `Lit in <b>${and(lit)}</b>. Enter opens the top match.`
       : q ? "No die lights up."
       : wiring ? `<b>Wiring on.</b> Each trace joins two theses that lean on each other.${matchMedia("(hover: hover)").matches ? " Point at a die to light its own." : ""}` : "");

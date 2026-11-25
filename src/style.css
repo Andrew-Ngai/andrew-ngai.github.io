@@ -3031,21 +3031,30 @@ html.ps-open{overflow:hidden}
 .rd-wires .rd-k{color:var(--faint);font-weight:700;letter-spacing:.04em}
 .rd-wires span:not(.rd-k){display:inline-flex;align-items:center;gap:6px}
 .rd-wires span:not(.rd-k)::before{content:"";width:6px;height:6px;border-radius:1px;background:var(--bin)}
-/* the switch, scribed on the rim beside the notch */
+/* the switch, etched on the rim beside the notch: a slide toggle and its label */
 .scribe{position:absolute;inset:0;z-index:3;width:100%;height:100%;padding:0;margin:0;background:none;border:0;pointer-events:none;outline:0}
 .scribe svg{width:100%;height:100%;display:block;overflow:visible}
-.sb-hit{fill:none;stroke:transparent;stroke-width:30;pointer-events:stroke;cursor:pointer}
-@media (pointer:coarse){.sb-hit{stroke-width:50}}
-.sb-t{pointer-events:none;fill:var(--faint);font-family:var(--label);font-weight:800;letter-spacing:.22em;transition:fill .25s}
-.sb-led{fill:var(--rule);transition:fill .25s}
-.sb-hit:hover + .sb-t{fill:var(--dim)}
-.sb-hit:hover + .sb-t .sb-led{fill:var(--faint)}
-.scribe:focus-visible .sb-t{fill:var(--paper)}
-.scribe[aria-checked="true"] .sb-t{fill:var(--dim)}
-.scribe[aria-checked="true"] .sb-led{fill:var(--amber);filter:drop-shadow(0 0 4px var(--amber))}
+.sb-hit{fill:none;stroke:transparent;pointer-events:stroke;cursor:pointer}
+.sb-t{pointer-events:none;fill:var(--dim);font-family:var(--label);font-weight:800;letter-spacing:.2em;transition:fill .25s}
+.sb-s{fill:var(--faint);transition:fill .25s}
+.sb-sw{pointer-events:none}
+.sb-track{fill:var(--ink-2);stroke:var(--faint);stroke-width:1.4;transition:fill .3s,stroke .3s}
+.sb-knob{fill:var(--dim);transform:translateX(calc(var(--kx) * -1));transition:transform .35s var(--ease),fill .3s;animation:sb-breathe 3.2s ease-in-out infinite}
+@keyframes sb-breathe{0%,100%{opacity:.75}50%{opacity:1}}
+.scribe.hov .sb-t,.scribe:focus-visible .sb-t{fill:var(--paper)}
+.scribe.hov .sb-track,.scribe:focus-visible .sb-track{stroke:var(--amber)}
+.scribe.hov .sb-knob,.scribe:focus-visible .sb-knob{fill:var(--paper)}
+.scribe[aria-checked="true"] .sb-track{fill:rgba(63,214,200,.22);stroke:var(--amber)}
+.scribe[aria-checked="true"] .sb-knob{fill:var(--amber);transform:translateX(var(--kx));animation:none;filter:drop-shadow(0 0 4px var(--amber))}
 .scribe[aria-checked="true"] .sb-s{fill:var(--amber)}
-@media (prefers-reduced-motion:reduce){.wafermap.netlist .wires .net{animation:none}}
-html.paused .wafermap.netlist .wires .net{animation:none}
+.scribe.nudge .sb-knob{animation:sb-nudge 1.4s var(--ease)}
+.scribe.nudge .sb-track{animation:sb-ping 1.4s ease}
+@keyframes sb-nudge{0%,100%{transform:translateX(calc(var(--kx) * -1))}35%,55%{transform:translateX(calc(var(--kx) * -.15))}}
+@keyframes sb-ping{0%,100%{stroke:var(--faint)}35%,55%{stroke:var(--amber)}}
+/* pointing at the switch shows the wiring as a ghost */
+.wafermap.peek .wires .net{stroke-opacity:.12;transition:stroke-opacity .4s}
+@media (prefers-reduced-motion:reduce){.wafermap.netlist .wires .net,.sb-knob{animation:none}}
+html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 
 /* ---------------------------------------------------------------- a thumb dock on phones */
 .dock{display:none}
