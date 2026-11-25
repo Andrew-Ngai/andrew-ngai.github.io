@@ -1,0 +1,25 @@
+/* share cards: 1200 x 630, in plain px */
+html,body.shc-body{margin:0;width:1200px;height:630px;overflow:hidden;background:var(--ink)}
+.shc{position:relative;width:1200px;height:630px;overflow:hidden;background:radial-gradient(760px 520px at 78% 50%,color-mix(in srgb,var(--lc) 10%,transparent),transparent 70%),var(--ink);font-size:16px}
+.shc::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px}
+.shc *,.shc *::before,.shc *::after{animation:none!important;transition:none!important}
+.shc-wafer{position:absolute;left:640px;top:5px;width:620px;height:620px}
+.shc-wafer svg{width:100%;height:100%;display:block;overflow:visible}
+.shc-wafer .wm-hit.dim rect{opacity:.42;filter:none}
+.shc-wafer .wm-hit.lit rect{fill:var(--bin);stroke:var(--paper);stroke-width:2;filter:drop-shadow(0 0 10px var(--bin)) drop-shadow(0 0 3px var(--bin))}
+.shc-wafer .wm-field:not(.on),.shc-wafer .wm-isle:not(.on){opacity:.4}
+.shc-scrim{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0,rgba(7,16,29,.94) 560px,rgba(7,16,29,0) 760px)}
+.shc-mark{position:absolute;left:64px;top:52px;display:flex;align-items:center;gap:12px;font-family:var(--label);font-weight:800;font-size:26px;letter-spacing:.02em;color:var(--paper)}
+.shc-mark svg{width:32px;height:32px}
+.shc-meta{position:absolute;left:64px;top:118px;display:flex;align-items:center;gap:20px;font-family:var(--label);font-weight:700;font-size:22px;color:var(--faint)}
+.shc-bin{display:inline-flex;align-items:center;gap:9px;color:var(--bin)}
+.shc-bin i{width:13px;height:13px;border-radius:2px;background:var(--bin);box-shadow:0 0 10px var(--bin)}
+.shc-layer{color:var(--lc);letter-spacing:.14em;text-transform:uppercase;font-weight:800;font-size:18px}
+.shc-copy{position:absolute;left:64px;top:160px;bottom:96px;width:640px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.shc-h{margin:0;font-family:var(--display);font-weight:800;font-size:76px;line-height:.94;letter-spacing:-.005em;color:var(--paper);text-wrap:balance}
+.shc-h .ph{white-space:nowrap}
+.shc-hook{width:590px;margin:0;font-family:var(--serif);font-size:24px;line-height:1.35;color:var(--dim);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.shc-foot{position:absolute;left:64px;right:64px;bottom:34px;display:flex;gap:28px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--label);font-weight:700;font-size:20px;color:var(--faint)}
+.shc-wrong{color:var(--coral)}
+.shc-echo{position:absolute;width:92px}
+.shc-echo .echo{width:100%;display:block;overflow:visible;filter:drop-shadow(0 10px 16px rgba(2,6,13,.7))}

@@ -6,6 +6,8 @@ Each thesis opens as a three-slide memo and links its sources.
 
 The page is built from `src/`: edit the files there and run `python3 src/build.py`, which writes `index.html`.
 
+Each thesis also has its own link, `t/<id>/`, with a preview card for LinkedIn, iMessage and Slack. After adding a thesis or changing a headline, run `python3 src/share.py` to redraw them (it needs Chrome and Playwright).
+
 Fonts: Big Shoulders and Newsreader via Google Fonts. Inter is bundled under the SIL Open Font License (`fonts/Inter-LICENSE.txt`).
 
 © Andrew Ngai

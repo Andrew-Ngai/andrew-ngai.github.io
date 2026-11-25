@@ -2675,6 +2675,161 @@ html.paused .theater{animation:none}
 @keyframes xck-hand{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .xck-glass{transform-origin:calc(99*var(--u)) calc(65*var(--u));animation:xck-glass 4s ease-in-out infinite}
 @keyframes xck-glass{0%,40%{transform:rotate(0)}55%,90%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
+html.ps-open{overflow:hidden}
+.psearch{position:fixed;inset:0;z-index:80;background:rgba(4,10,20,.8);-webkit-backdrop-filter:blur(calc(6*var(--u)));backdrop-filter:blur(calc(6*var(--u)));display:grid;place-items:start center;padding:clamp(calc(56*var(--u)),9vh,calc(110*var(--u))) var(--gutter) calc(24*var(--u));animation:ps-in .22s var(--ease)}
+.psearch[hidden]{display:none}
+@keyframes ps-in{from{opacity:0}}
+.ps-box{width:min(calc(980*var(--u)),100%);background:var(--ink);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(6*var(--u));box-shadow:0 calc(30*var(--u)) calc(80*var(--u)) rgba(0,0,0,.55),0 0 0 calc(1*var(--u)) rgba(63,214,200,.06);overflow:hidden;animation:ps-drop .3s var(--ease)}
+@keyframes ps-drop{from{transform:translateY(calc(-10*var(--u)))}}
+.ps-in{display:flex;align-items:center;gap:calc(12*var(--u));padding:calc(16*var(--u)) calc(20*var(--u));border-bottom:calc(1*var(--u)) solid var(--rule)}
+.ps-prompt{font-family:var(--label);font-weight:800;font-size:calc(20*var(--u));letter-spacing:.06em;color:var(--amber);white-space:nowrap}
+.ps-in input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--paper);font-family:var(--sans);font-size:calc(21*var(--u));font-weight:500;caret-color:var(--amber);-webkit-appearance:none;appearance:none}
+.ps-in input::-webkit-search-cancel-button{display:none}
+.ps-in input::placeholder{color:var(--faint)}
+.ps-x{flex:0 0 auto;background:none;border:0;padding:0;cursor:pointer;color:var(--faint);font-family:var(--label);font-weight:700;font-size:calc(15*var(--u))}
+.ps-kb{display:inline-block;font-size:calc(13*var(--u));font-weight:600;border:calc(1*var(--u)) solid var(--rule);border-radius:calc(2*var(--u));padding:calc(1*var(--u)) calc(6*var(--u))}
+.ps-x:hover .ps-kb{color:var(--paper);border-color:var(--faint)}
+.ps-tx{display:none}
+.ps-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:0}
+.ps-map{padding:calc(18*var(--u)) calc(20*var(--u));border-right:calc(1*var(--u)) solid var(--rule);display:grid;gap:calc(12*var(--u));align-content:start}
+.ps-wafer svg{width:100%;height:auto;display:block;overflow:visible}
+.ps-wafer .wm-hit{pointer-events:auto;cursor:pointer}
+.ps-wafer .wm-hit rect{transition:fill .25s,opacity .25s}
+.ps-wafer .wm-hit.dim rect{fill:var(--ink-3);filter:none;opacity:.5}
+.ps-wafer .wm-hit.hit rect{fill:var(--bin);filter:drop-shadow(0 0 calc(9*var(--u)) var(--bin)) drop-shadow(0 0 calc(3*var(--u)) var(--bin));stroke:var(--paper);stroke-width:1.6}
+.ps-wafer .wm-probe-die.dim{opacity:.2}
+.ps-wafer .wm-field rect{fill-opacity:.04;stroke-opacity:.25}
+.ps-wafer .wm-field path{stroke-opacity:.35}
+.ps-wafer .wm-isle{opacity:.45}
+.ps-wafer .wm-field.pick rect{fill-opacity:.16;stroke-opacity:.8}
+.ps-wafer .wm-field.pick path{stroke-opacity:1}
+.ps-wafer .wm-isle.pick{opacity:1}
+.ps-read{margin:0;font-family:var(--label);font-size:calc(16*var(--u));line-height:1.4;color:var(--dim)}
+.ps-read b{color:var(--paper)}
+.ps-res{list-style:none;margin:0;padding:calc(8*var(--u)) 0;max-height:min(calc(560*var(--u)),62vh);overflow:auto;overscroll-behavior:contain}
+.ps-res:empty::before{content:"Matches show here, with the line that matched.";display:block;padding:calc(14*var(--u)) calc(22*var(--u));font-family:var(--label);font-size:calc(16*var(--u));color:var(--faint)}
+.ps-res a{display:grid;gap:calc(3*var(--u));padding:calc(12*var(--u)) calc(20*var(--u)) calc(13*var(--u)) calc(22*var(--u));text-decoration:none;border-left:calc(3*var(--u)) solid transparent}
+.ps-res a.sel{background:var(--ink-2);border-left-color:var(--bin)}
+.ps-res a:focus-visible{outline:calc(2*var(--u)) solid var(--amber);outline-offset:calc(-2*var(--u))}
+.pr-top{display:flex;gap:calc(12*var(--u));align-items:center;font-family:var(--label);font-weight:600;font-size:calc(14*var(--u));color:var(--faint)}
+.pr-top .bin{font-size:calc(14*var(--u))}
+.pr-top .bin::before{width:calc(8*var(--u));height:calc(8*var(--u))}
+.pr-l{color:var(--lc);letter-spacing:.06em;text-transform:uppercase;font-weight:800;font-size:calc(12.5*var(--u))}
+.ps-res b{font-family:var(--display);font-weight:700;font-size:calc(24*var(--u));line-height:1.05;color:var(--paper)}
+.pr-snip{font-size:calc(15.5*var(--u));line-height:1.45;color:var(--dim)}
+.ps-res mark{background:rgba(63,214,200,.2);color:var(--paper);border-radius:calc(2*var(--u));padding:0 calc(2*var(--u));box-shadow:inset 0 calc(-1.5*var(--u)) 0 var(--amber)}
+.ps-res b mark{background:none;box-shadow:inset 0 calc(-2*var(--u)) 0 var(--amber);padding:0}
+.ps-try{display:flex;flex-wrap:wrap;gap:calc(8*var(--u));align-items:center;padding:calc(12*var(--u)) calc(20*var(--u)) calc(14*var(--u));border-top:calc(1*var(--u)) solid var(--rule);font-family:var(--label);font-size:calc(14*var(--u));color:var(--faint)}
+.ps-try button{font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));color:var(--dim);background:none;border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));padding:calc(3*var(--u)) calc(11*var(--u));cursor:pointer}
+.ps-try button:hover{color:var(--paper);border-color:var(--faint)}
+@media (max-width:760px){
+  .psearch{padding:calc(env(safe-area-inset-top,0px) + calc(10*var(--u))) calc(10*var(--u)) calc(env(safe-area-inset-bottom,0px) + calc(10*var(--u)));place-items:stretch;background:rgba(4,10,20,.9)}
+  .ps-box{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto;height:100%;min-height:0;width:100%}
+  .ps-body{display:contents}
+  .ps-map{grid-template-columns:calc(112*var(--u)) minmax(0,1fr);align-items:center;border-right:0;border-bottom:calc(1*var(--u)) solid var(--rule);padding:calc(10*var(--u)) calc(14*var(--u))}
+  .ps-res{max-height:none;min-height:0}
+  .ps-in{padding:calc(12*var(--u)) calc(14*var(--u))}
+  .ps-in input{font-size:calc(18*var(--u))}
+  .ps-prompt{font-size:calc(17*var(--u))}
+  .ps-kb{display:none}
+  .ps-tx{display:inline;color:var(--dim)}
+  .ps-res a{padding:calc(11*var(--u)) calc(14*var(--u)) calc(12*var(--u)) calc(16*var(--u))}
+  .ps-res b{font-size:calc(21*var(--u))}
+  .ps-try{padding:calc(10*var(--u)) calc(14*var(--u)) calc(12*var(--u))}
+}
+.readout .ro-col{flex:1;min-width:0;display:grid;gap:calc(8*var(--u))}
+.probe-q{display:flex;align-items:center;gap:calc(8*var(--u));min-height:calc(26*var(--u));font-family:var(--label);font-size:calc(16*var(--u));color:var(--faint);cursor:text}
+.pq-k{font-weight:800;letter-spacing:.06em;color:var(--faint);white-space:nowrap;cursor:text;transition:color .2s}
+.probe-q input{flex:1;min-width:0;padding:0;background:none;border:0;outline:0;color:var(--paper);font-family:var(--label);font-weight:600;font-size:calc(17*var(--u));letter-spacing:.02em;caret-color:var(--amber);-webkit-appearance:none;appearance:none}
+.probe-q input::-webkit-search-cancel-button{display:none}
+.probe-q input::placeholder{color:var(--faint);opacity:.75;transition:opacity .2s}
+.probe-q:hover .pq-k,.probe-q:focus-within .pq-k,.probe-q.on .pq-k{color:var(--amber)}
+.probe-q:hover input::placeholder{opacity:1}
+.probe-q:focus-within input::placeholder{opacity:.45}
+.pq-n{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--dim)}
+.pq-x{background:none;border:0;padding:0;font-family:var(--label);font-weight:700;font-size:calc(15*var(--u));color:var(--faint);text-decoration:underline;text-underline-offset:calc(3*var(--u));cursor:pointer}
+.pq-x:hover{color:var(--paper)}
+.pq-kb{font-family:var(--label);font-size:calc(13*var(--u));line-height:1.2;color:var(--faint);border:calc(1*var(--u)) solid var(--rule);border-radius:calc(2*var(--u));padding:0 calc(5*var(--u));opacity:.7}
+.probe-q:focus-within .pq-kb,.probe-q.on .pq-kb{display:none}
+@media (hover:none){.pq-kb{display:none}}
+@media (max-width:760px){.probe-q{display:none}}
+#wmap.q .wm-hit:not(.hit) rect{fill:var(--ink-3);filter:none;opacity:.55}
+#wmap.q .wm-probe-die{opacity:.25}
+#wmap.q .wm-hit.hit rect{stroke:var(--paper);stroke-width:1.6}
+#wmap.q .wm-field.pick rect{fill-opacity:.22;stroke-opacity:1}
+.tlist.q .t-item .t-hook{display:none}
+.t-snip{grid-column:2;order:1;font-size:calc(17*var(--u));line-height:1.45;color:var(--dim);max-width:34rem}
+.t-snip mark{background:rgba(63,214,200,.18);color:var(--paper);border-radius:calc(2*var(--u));padding:0 calc(2*var(--u));box-shadow:inset 0 calc(-1.5*var(--u)) 0 var(--amber)}
+.tlist.q .t-item .bin{order:2}
+.t-none{padding:calc(26*var(--u)) 0;font-family:var(--label);font-size:calc(18*var(--u));color:var(--faint)}
+.memo-share{flex:0 0 auto;font-size:calc(17*var(--u));padding:calc(8*var(--u)) calc(14*var(--u)) calc(9*var(--u));gap:calc(8*var(--u))}
+.memo-share svg{width:calc(17*var(--u));height:calc(17*var(--u));flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.memo-share.done{border-color:var(--amber);color:var(--amber)}
+.mf-wired{display:flex;align-items:center;gap:calc(6*var(--u));flex:0 0 auto;margin-left:calc(10*var(--u));font-family:var(--label);font-size:calc(15*var(--u));color:var(--faint);white-space:nowrap}
+.mf-wired[hidden],.mf-a[hidden]{display:none}
+.mf-k{font-weight:700;letter-spacing:.04em;margin-right:calc(4*var(--u))}
+.mf-a{display:inline-flex;align-items:center;gap:calc(7*var(--u));padding:calc(4*var(--u)) calc(10*var(--u)) calc(5*var(--u));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(999*var(--u));color:var(--dim);text-decoration:none;font-weight:700;transition:color .2s,border-color .2s}
+.mf-a i{width:calc(7*var(--u));height:calc(7*var(--u));border-radius:calc(1*var(--u));background:var(--bin)}
+.mf-a:hover,.mf-a:focus-visible{color:var(--paper);border-color:var(--bin)}
+.wired{display:none}
+@media (max-width:760px){
+  .mf-wired{display:none!important}
+  .wired{display:grid;margin-top:calc(20*var(--u));max-width:36rem}
+  .wd-k{margin:0 0 calc(6*var(--u));font-family:var(--label);font-weight:700;font-size:calc(14*var(--u));letter-spacing:.06em;color:var(--faint)}
+  .wd-a{display:flex;align-items:center;gap:calc(10*var(--u));padding:calc(8*var(--u)) 0 calc(9*var(--u));border-top:calc(1*var(--u)) solid var(--rule);font-family:var(--display);font-weight:700;font-size:calc(19*var(--u));line-height:1.1;color:var(--paper);text-decoration:none}
+  .wd-a:last-child{border-bottom:calc(1*var(--u)) solid var(--rule)}
+  .wd-a i{width:calc(8*var(--u));height:calc(8*var(--u));border-radius:calc(1*var(--u));background:var(--bin);flex:0 0 auto}
+  .wd-a::after{content:"→";margin-left:auto;padding-left:calc(12*var(--u));font-family:var(--label);color:var(--faint)}
+}
+.memo{grid-template-columns:minmax(0,1fr)}
+.memo-foot{min-width:0}
+.memo-share-end{display:none}
+@media (max-width:600px){
+  .memo-head .memo-share{display:none}
+  .memo-share-end{display:inline-flex;margin-top:calc(22*var(--u));font-size:calc(16*var(--u));padding:calc(9*var(--u)) calc(16*var(--u)) calc(10*var(--u))}
+}
+.wires{pointer-events:none}
+.wires .net{fill:none;stroke:var(--dim);stroke-width:1;stroke-opacity:0;stroke-linejoin:round;stroke-dasharray:900;transition:stroke-opacity .5s,stroke .25s,stroke-width .25s}
+.wafermap.netlist .wires .net{stroke-opacity:.24;animation:net-in 1.1s var(--ease) both;animation-delay:calc(var(--d) * 1.6ms)}
+@keyframes net-in{from{stroke-dashoffset:900;stroke-opacity:.7}}
+.wafermap.netlist.net-hot .wires .net{stroke-opacity:.06}
+.wafermap.netlist .wires .net.hot{stroke:var(--wc);stroke-opacity:.9;stroke-width:1.8}
+.wafermap.netlist.net-hot .die-tag,.wafermap.netlist.net-hot .die-echo{opacity:0!important}
+#wmap .wm-hit.wired rect{stroke:var(--paper);stroke-width:1.4;stroke-opacity:.85}
+.rd-wires{display:flex;flex-wrap:wrap;gap:calc(2*var(--u)) calc(12*var(--u));margin-top:calc(6*var(--u));font-size:calc(15*var(--u));color:var(--dim)}
+.rd-wires .rd-k{color:var(--faint);font-weight:700;letter-spacing:.04em}
+.rd-wires span:not(.rd-k){display:inline-flex;align-items:center;gap:calc(6*var(--u))}
+.rd-wires span:not(.rd-k)::before{content:"";width:calc(6*var(--u));height:calc(6*var(--u));border-radius:calc(1*var(--u));background:var(--bin)}
+.scribe{position:absolute;inset:0;z-index:3;width:100%;height:100%;padding:0;margin:0;background:none;border:0;pointer-events:none;outline:0}
+.scribe svg{width:100%;height:100%;display:block;overflow:visible}
+.sb-hit{fill:none;stroke:transparent;stroke-width:30;pointer-events:stroke;cursor:pointer}
+@media (pointer:coarse){.sb-hit{stroke-width:50}}
+.sb-t{pointer-events:none;fill:var(--faint);font-family:var(--label);font-weight:800;letter-spacing:.22em;transition:fill .25s}
+.sb-led{fill:var(--rule);transition:fill .25s}
+.sb-hit:hover + .sb-t{fill:var(--dim)}
+.sb-hit:hover + .sb-t .sb-led{fill:var(--faint)}
+.scribe:focus-visible .sb-t{fill:var(--paper)}
+.scribe[aria-checked="true"] .sb-t{fill:var(--dim)}
+.scribe[aria-checked="true"] .sb-led{fill:var(--amber);filter:drop-shadow(0 0 calc(4*var(--u)) var(--amber))}
+.scribe[aria-checked="true"] .sb-s{fill:var(--amber)}
+@media (prefers-reduced-motion:reduce){.wafermap.netlist .wires .net{animation:none}}
+html.paused .wafermap.netlist .wires .net{animation:none}
+.dock{display:none}
+@media (max-width:760px){
+  .nav-links > a:not(.pad):not([data-href="echotempoSite"]){display:none}
+  .nav-links{gap:calc(12*var(--u));align-items:center}
+  .pads{margin-left:0;padding-left:calc(12*var(--u))}
+  .dock{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:calc(10*var(--u));right:calc(10*var(--u));bottom:calc(env(safe-area-inset-bottom,0px) + calc(10*var(--u)));z-index:46;padding:calc(6*var(--u)) calc(4*var(--u)) calc(5*var(--u));background:rgba(12,26,43,.92);-webkit-backdrop-filter:blur(calc(14*var(--u)));backdrop-filter:blur(calc(14*var(--u)));border:calc(1*var(--u)) solid var(--rule);border-radius:calc(14*var(--u));box-shadow:0 calc(12*var(--u)) calc(36*var(--u)) rgba(0,0,0,.5);transform:translateY(calc(100% + calc(24*var(--u))));visibility:hidden;transition:transform .4s var(--ease),visibility 0s .4s}
+  .dock.up{transform:none;visibility:visible;transition:transform .4s var(--ease)}
+  .dock a,.dock button{display:grid;justify-items:center;gap:calc(2*var(--u));padding:calc(6*var(--u)) 0 calc(4*var(--u));background:none;border:0;color:var(--faint);text-decoration:none;font-family:var(--label);font-weight:700;font-size:calc(12.5*var(--u));letter-spacing:.04em;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .dock svg{width:calc(22*var(--u));height:calc(22*var(--u));fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .dock svg .f{fill:currentColor;stroke:none}
+  .dock a.on{color:var(--paper)}
+  .dock a.on svg{stroke:var(--amber);filter:drop-shadow(0 0 calc(6*var(--u)) rgba(63,214,200,.6))}
+  .dk-probe{position:absolute;left:0;top:calc(-1*var(--u));width:calc(6*var(--u));height:calc(3*var(--u));border-radius:calc(2*var(--u));background:var(--amber);box-shadow:0 0 calc(10*var(--u)) var(--amber);opacity:0;transition:transform .35s var(--ease),opacity .25s}
+  .foot{padding-bottom:calc(env(safe-area-inset-bottom,0px) + calc(84*var(--u)))}
+}
+@media (max-width:760px) and (hover:none) and (pointer:coarse){.dock{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(12,26,43,.97)}}
 .v-old{display:none!important}
 .k-pop,.k-grow-x,.k-grow-y,.k-fade{opacity:0}
 .viz[data-step="1"] .f1 .k-in,.viz[data-step="2"] .f2 .k-in,.viz[data-step="3"] .f3 .k-in{animation:k-in .7s var(--ease) var(--d,0s) both}
@@ -5948,6 +6103,43 @@ const DOODLES = {
 const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "silicon": "0 0 120 110.5", "agent": "0 0 120 107.4", "openclaw": "0 0 120 103.4", "automate": "-16.4 -7.8 156.7 108.3", "race": "-4 0 128 102", "ooms": "-5.5 0 130.2 108.6", "fleet": "-8.5 0 138.3 110.5", "gpulife": "0 0 132.8 100", "neocloud": "0 0 125.5 101.5", "tokens": "-12.1 0 132.1 100", "factory": "0 -4 127.2 104", "moat": "0 0 120 108.5", "memory": "0 0 120 104.4", "backend": "0 0 120 114.4", "heat": "0 0 120 110.5", "chipnames": "-7.1 0 135.2 106.4", "molecules": "0 0 128.8 114.4", "bloom": "0 -4.3 120 104.3", "builders": "0 -1 120 111.5"};
 const doodleVB = id => DOODLE_VB[id] || "0 0 120 100";
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
+const WIRES = {
+  automate: ["fleet", "factory", "agent", "physical"],
+  agent: ["openclaw", "saas", "memory", "automate", "paycheck"],
+  weights: ["silicon", "race", "quantum"],
+  ooms: ["fleet", "heat", "chipnames", "light"],
+  molecules: ["bloom", "fleet"],
+  bloom: ["molecules", "heat", "neocloud"],
+  fleet: ["ooms", "molecules", "automate", "factory"],
+  gpulife: ["neocloud", "builders", "heat", "circular"],
+  saas: ["agent", "openclaw", "tokens", "builders", "ledger"],
+  neocloud: ["tokens", "gpulife", "bloom", "builders", "contracts"],
+  builders: ["neocloud", "gpulife", "memory", "circular"],
+  moat: ["backend", "memory", "heat"],
+  memory: ["backend", "chipnames", "agent", "tokens", "asic"],
+  backend: ["moat", "memory", "race"],
+  heat: ["moat", "memory", "gpulife", "bloom"],
+  screentime: ["agent", "factory", "automate"],
+  quantum: ["weights", "silicon", "chipnames"],
+  tokens: ["neocloud", "factory", "memory"],
+  factory: ["tokens", "fleet", "automate", "race"],
+  chipnames: ["memory", "ooms", "tokens"],
+  openclaw: ["agent", "silicon", "saas", "ledger"],
+  race: ["weights", "silicon", "backend", "factory"],
+  silicon: ["weights", "race", "quantum"],
+  paycheck: ["contracts", "agent", "circular"],
+  contracts: ["paycheck", "neocloud", "gpulife", "circular"],
+  light: ["memory", "ooms", "cuda", "backend"],
+  cuda: ["asic", "light", "ooms", "agent"],
+  circular: ["builders", "gpulife", "neocloud", "paycheck"],
+  robots: ["physical", "race", "fleet", "builders"],
+  physical: ["robots", "health", "automate", "agent"],
+  ledger: ["saas", "openclaw", "weights", "health"],
+  asic: ["cuda", "memory", "tokens", "chipnames"],
+  bias: ["memory", "agent", "weights", "ledger"],
+  health: ["physical", "ledger", "automate"],
+};
+const wiresOf = (id, n = 3) => (WIRES[id] || []).filter(o => byId[o] && o !== id).slice(0, n);
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
 const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
 let echoN = 0;
@@ -10721,6 +10913,8 @@ function renderHome() {
     note.innerHTML = `Or copy it: <span>${CONFIG.email}</span>`;
   }
 }
+const ISLE = { A: ["APPS", "#b49cff"], M: ["MODELS", "#ff86c8"], I: ["INFRA", "#59c8ff"], C: ["CHIPS", "#b9c6d3"], E: ["ENERGY", "#ffa04d"], S: ["SECURITY", "#ff6170"], F: ["MONEY", "#69e39a"] };
+let readoutIdle = () => {};
 function buildMap() {
   const svg = $("#wmap");
   const ds = 24, R = 11.63 * ds, lim = R * 0.955, N = 13;
@@ -10742,7 +10936,6 @@ function buildMap() {
       hits += `<g class="wm-probe-die" data-id="probe${k.i}" tabindex="0" aria-label="Die ${dieLabel(k.p.die)}, in probe: ${k.p.title}"><title>In probe: ${k.p.title}</title>${rect}</g>`;
     }
   }
-  const ISLE = { A: ["APPS", "#b49cff"], M: ["MODELS", "#ff86c8"], I: ["INFRA", "#59c8ff"], C: ["CHIPS", "#b9c6d3"], E: ["ENERGY", "#ffa04d"], S: ["SECURITY", "#ff6170"], F: ["MONEY", "#69e39a"] };
   const ISL = {};
   {
     const by = {};
@@ -10826,7 +11019,9 @@ function buildMap() {
   if (window.ResizeObserver) new ResizeObserver(sizeIsles).observe(svg);
   const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap"), decho = $("#dieEcho");
   const grid = $(".index-grid"), col = $(".map-col"), line = $("#linkLine");
-  const idle = readout.innerHTML;
+  let idle = readout.innerHTML;
+  const idle0 = idle;
+  readoutIdle = html => { idle = html || idle0; if (!active) readout.innerHTML = idle; };
   const desktop = () => getComputedStyle(col).position === "sticky";
   let active = null, alignTimer = 0, offTimer = 0;
   const info = id => {
@@ -10952,7 +11147,7 @@ function buildMap() {
   addEventListener("resize", follow);
 }
 const memo = $("#memo");
-let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {};
+let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {}, refitWired = () => {};
 const plain = s => s.replace(/<[^>]+>/g, "").replace(/\s*\|\s*/g, " ");
 const phrases = (txt, tail = "") => {
   const bits = txt.replace(/—(?!\|)/g, "⁠—⁠").split("|");
@@ -11023,15 +11218,39 @@ function setType(root) {
   });
 }
 const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
+const shareUrl = id => `${location.origin}/t/${id}/`;
+async function shareThesis(t, btn) {
+  const url = shareUrl(t.id), label = btn.querySelector(".ms-l"), was = label.dataset.l || (label.dataset.l = label.textContent);
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    try { await navigator.share({ title: plain(t.title), url }); } catch (e) {}
+    return;
+  }
+  let ok = false;
+  try { await navigator.clipboard.writeText(url); ok = true; } catch (e) {
+    const ta = Object.assign(document.createElement("textarea"), { value: url });
+    ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    ta.remove();
+  }
+  clearTimeout(btn._t);
+  btn.classList.toggle("done", ok);
+  label.textContent = ok ? "Link copied" : "Copy failed";
+  btn._t = setTimeout(() => { btn.classList.remove("done"); label.textContent = was; }, 2200);
+}
+const wiredLinks = (t, cls) => wiresOf(t.id).map(o => { const u = byId[o]; return `<a class="${cls}" href="#${o}" style="--bin:${BINS[u.stance].css}"><i aria-hidden="true"></i>${u.short}</a>`; }).join("");
+const SHARE_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"/></svg>`;
 function memoHTML(t) {
   const b = BINS[t.stance];
   const u = lastUpd(t);
   const idx = THESES.indexOf(t);
   const next = THESES[(idx + 1) % THESES.length];
+  const wired = wiresOf(t.id).length;
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
       <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.tag}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <button class="btn memo-share" id="memoShare" type="button" title="Share this thesis">${SHARE_ICON}<span class="ms-l" aria-live="polite">Share</span></button>
       <div class="memo-src">
         <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
         <div class="memo-src-panel" id="memoSrc" hidden>
@@ -11057,6 +11276,8 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
+          ${wired ? `<nav class="wired" aria-label="Wired to"><p class="wd-k">Wired to</p>${wiredLinks(t, "wd-a")}</nav>` : ""}
+          <button class="btn memo-share memo-share-end" type="button">${SHARE_ICON}<span class="ms-l" aria-live="polite">Share this thesis</span></button>
           <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}${modelLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
@@ -11066,6 +11287,7 @@ function memoHTML(t) {
     <div class="memo-foot">
       <button class="btn" id="memoPrev" type="button">Back</button>
       <span class="count" id="memoCount">1 of 3</span>
+      ${wired ? `<nav class="mf-wired" id="memoWired" aria-label="Wired to" hidden><span class="mf-k">Wired to</span>${wiredLinks(t, "mf-a")}</nav>` : ""}
       <a class="btn memo-ask" href="#contact">Tell me I’m wrong</a>
       <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
     </div>`;
@@ -11170,7 +11392,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
 });
 const fitViz = root => { setType(root); shapeSvgs(root); sizePane(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
-addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
+addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); refitWired(); }); });
 function openMemo(id) {
   const t = byId[id];
   if (!t) return;
@@ -11197,7 +11419,19 @@ function openMemo(id) {
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
     next.textContent = s === 3 ? (innerWidth < 600 ? "Next thesis" : `Next thesis: ${nextT.short}`) : "Next";
+    fitWired();
   };
+  const wiredBar = $("#memoWired"), foot = $(".memo-foot", memo);
+  function fitWired() {
+    if (!wiredBar) return;
+    wiredBar.hidden = step !== 3;
+    if (wiredBar.hidden) return;
+    const links = $$(".mf-a", wiredBar);
+    links.forEach(a => (a.hidden = false));
+    for (let i = links.length - 1; i >= 0 && foot.scrollWidth > foot.clientWidth + 1; i--) links[i].hidden = true;
+    wiredBar.hidden = links.every(a => a.hidden);
+  }
+  refitWired = fitWired;
   set(1);
   const go = s => slides.scrollTo({ left: (s - 1) * slides.clientWidth, behavior: calm ? "auto" : "smooth" });
   slides.addEventListener("scroll", () => { set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))); markMore(); }, { passive: true });
@@ -11225,6 +11459,7 @@ function openMemo(id) {
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
+  $$(".memo-share", memo).forEach(b => b.addEventListener("click", () => shareThesis(t, b)));
   if (memoKeys) document.removeEventListener("keydown", memoKeys);
   memoKeys = e => {
     if (memo.hidden || (theater && !theater.hidden)) return;
@@ -12475,6 +12710,312 @@ function buildLine() {
   measure(); x = xFor(0); apply(); say(0, "Probing"); shown = 0; probe();
   buildLine.wake = wake;
 }
+function buildWiring() {
+  const svg = $("#wmap"), ds = 24, R = 11.63 * ds, wm = $(".wafermap"), readout = $("#readout");
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.setAttribute("class", "wires");
+  g.setAttribute("aria-hidden", "true");
+  svg.insertBefore(g, svg.querySelector(".wm-hit"));
+  const pos = id => [byId[id].die[0] * ds, -byId[id].die[1] * ds];
+  const route = (a, b) => {
+    const [ax, ay] = pos(a), [bx, by] = pos(b), dx = bx - ax, dy = by - ay, d = Math.min(Math.abs(dx), Math.abs(dy));
+    return `M${ax} ${ay}H${(bx - Math.sign(dx) * d).toFixed(1)}L${bx} ${by}`;
+  };
+  const pairs = new Map();
+  THESES.forEach(t => wiresOf(t.id, 9).forEach(o => { const k = [t.id, o].sort().join(" "); if (!pairs.has(k)) pairs.set(k, [t.id, o]); }));
+  g.innerHTML = [...pairs.values()].map(([a, b]) => {
+    const d = Math.round(Math.hypot(...pos(a)) + Math.hypot(...pos(b)));
+    return `<path class="net" style="--d:${d}" data-a="${a}" data-b="${b}" d="${route(a, b)}"/>`;
+  }).join("");
+  const sw = document.createElement("button");
+  sw.type = "button";
+  sw.className = "scribe";
+  sw.setAttribute("role", "switch");
+  sw.setAttribute("aria-checked", "false");
+  sw.setAttribute("aria-label", "Wiring: show which theses lean on each other");
+  const arc = (r, a0, a1) => { const p = a => [(r * Math.cos(a * Math.PI / 180)).toFixed(1), (r * Math.sin(a * Math.PI / 180)).toFixed(1)]; return `M${p(a0).join(" ")}A${r} ${r} 0 0 0 ${p(a1).join(" ")}`; };
+  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" d="${arc(R + 13, 152, 95.5)}" fill="none"/><path class="sb-hit" d="${arc(R + 9, 150, 95)}"/>` +
+    `<text class="sb-t" text-anchor="end"><textPath href="#scribeArc" startOffset="100%"><tspan class="sb-led">●</tspan> WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
+  wm.appendChild(sw);
+  const t = $(".sb-t", sw), size = () => { const k = svg.getBoundingClientRect().width / 620; if (k) t.setAttribute("font-size", Math.max(11.5, 10 / k).toFixed(1)); };
+  size();
+  if (window.ResizeObserver) new ResizeObserver(size).observe(svg);
+  sw.addEventListener("click", () => {
+    const on = sw.getAttribute("aria-checked") !== "true";
+    sw.setAttribute("aria-checked", String(on));
+    $(".sb-s", sw).textContent = on ? "ON" : "OFF";
+    wm.classList.toggle("netlist", on);
+    probeSearch.say();
+  });
+  const tell = ids => {
+    if (!ids.length || readout.querySelector(".rd-wires")) return;
+    readout.insertAdjacentHTML("beforeend", `<span class="rd-wires"><span class="rd-k">Wired to</span>${ids.map(o => `<span style="--bin:${BINS[byId[o].stance].css}">${byId[o].short}</span>`).join("")}</span>`);
+  };
+  const hi = id => {
+    if (!wm.classList.contains("netlist")) return;
+    const to = [];
+    $$(".net", g).forEach(n => { const on = n.dataset.a === id || n.dataset.b === id; n.classList.toggle("hot", on); if (on) to.push(n.dataset.a === id ? n.dataset.b : n.dataset.a); });
+    g.style.setProperty("--wc", BINS[byId[id].stance].css);
+    wm.classList.add("net-hot");
+    $$(".wm-hit", svg).forEach(a => a.classList.toggle("wired", to.includes(a.dataset.id)));
+    tell([...wiresOf(id, 9).filter(o => to.includes(o)), ...to.filter(o => !wiresOf(id, 9).includes(o))].slice(0, 4));
+  };
+  const lo = () => { $$(".net.hot", g).forEach(n => n.classList.remove("hot")); wm.classList.remove("net-hot"); $$(".wm-hit.wired", svg).forEach(a => a.classList.remove("wired")); };
+  $$(".wm-hit", svg).forEach(a => {
+    a.addEventListener("mouseenter", () => hi(a.dataset.id)); a.addEventListener("focus", () => hi(a.dataset.id));
+    a.addEventListener("mouseleave", lo); a.addEventListener("blur", lo);
+  });
+}
+const ICON = {
+  search: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>`,
+  wafer: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg>`,
+  grid: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>`,
+  play: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="f" d="M10 8.5v7l6-3.5z"/></svg>`,
+  pin: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M4 8h3M4 12h3M4 16h3M17 8h3M17 12h3M17 16h3"/></svg>`
+};
+const TRY = ["Nvidia", "memory", "Aschenbrenner", "power", "Robinhood", "agents"];
+const words = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/\|/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&[a-z#0-9]+;/gi, " ").replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
+const escHTML = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const layerName = k => ISLE[k][0][0] + ISLE[k][0].slice(1).toLowerCase();
+const stop = x => (!x || /[.!?…:;,]$/.test(x) ? x : x + ".");
+let searchIndex = null;
+function searchFor(q) {
+  const terms = q.toLowerCase().replace(/[’‘]/g, "'").split(/\s+/).filter(Boolean);
+  if (!terms.length) return [];
+  searchIndex = searchIndex || THESES.map(t => ({ t, f: [
+    [`${words(t.title)} ${words(t.h2)} ${words(t.short)}`, 6],
+    [`${stop(words(t.hook))} ${(t.tldr || []).map(x => stop(words(x))).join(" ")}`, 4],
+    [t.takes.map(([h, p]) => `${stop(words(h))} ${words(p)}`).join(" "), 2],
+    [`${words(t.bet)} ${words(t.wrong)}`, 2],
+    [words(t.signal), 1],
+    [t.receipts.map(r => words(r[0])).join(" · "), 1],
+    [words(t.ref && t.ref.label), 2]
+  ] }));
+  return searchIndex.map(({ t, f }) => {
+    const all = f.map(([x]) => x.toLowerCase()).join(" ");
+    if (!terms.every(w => all.includes(w))) return null;
+    let score = 0, snip = "";
+    f.forEach(([x, w], i) => {
+      const low = x.toLowerCase(), n = terms.reduce((s, w2) => s + low.split(w2).length - 1, 0);
+      if (!n) return;
+      score += w * Math.min(n, 4);
+      const at = low.indexOf(terms[0]);
+      if (!snip && i > 0 && at >= 0) {
+        const a = Math.max(0, x.lastIndexOf(" ", Math.max(0, at - 60)) + 1), b = x.indexOf(" ", Math.min(x.length, at + 90));
+        snip = (a > 0 ? "…" : "") + x.slice(a, b < 0 ? x.length : b).trim() + (b > 0 ? "…" : "");
+      }
+    });
+    if (!snip) { const h = f[1][0]; snip = h.length > 150 ? h.slice(0, h.lastIndexOf(" ", 150)) + "…" : h; }
+    return { t, score, snip };
+  }).filter(Boolean).sort((a, b) => b.score - a.score);
+}
+const markTerms = (s, q) => q.split(/\s+/).filter(Boolean).reduce((out, w) =>
+  out.replace(new RegExp(`(${escHTML(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(?![^<]*>)`, "ig"), "<mark>$1</mark>"), escHTML(s));
+let openSearch = () => {};
+function buildSearch() {
+  const ps = document.createElement("div");
+  ps.className = "psearch";
+  ps.id = "search";
+  ps.hidden = true;
+  ps.setAttribute("role", "dialog");
+  ps.setAttribute("aria-modal", "true");
+  ps.setAttribute("aria-label", "Search the theses");
+  ps.innerHTML = `<div class="ps-box">
+    <div class="ps-in"><label class="ps-prompt" for="psQ">probe&nbsp;›</label><input id="psQ" type="search" autocomplete="off" spellcheck="false" enterkeyhint="go" aria-controls="psRes" aria-describedby="psRead" placeholder="Search ${THESES.length} theses: a company, a chip, a person, an idea"><button type="button" class="ps-x"><span class="ps-kb">esc</span><span class="ps-tx">Close</span></button></div>
+    <div class="ps-body">
+      <div class="ps-map"><div class="ps-wafer" aria-hidden="true"></div><p class="ps-read" id="psRead" aria-live="polite"></p></div>
+      <ol class="ps-res" id="psRes" aria-label="Results"></ol>
+    </div>
+    <div class="ps-try"><span>Try</span>${TRY.map(w => `<button type="button">${w}</button>`).join("")}</div>
+  </div>`;
+  document.body.appendChild(ps);
+  const input = $("#psQ"), list = $("#psRes"), read = $("#psRead"), map = $(".ps-wafer", ps);
+  let results = [], sel = 0, from = null, q = "";
+  const copyWafer = () => {
+    if (map.firstChild) return;
+    const c = $("#wmap").cloneNode(true);
+    ["id", "role", "aria-label"].forEach(a => c.removeAttribute(a));
+    c.querySelectorAll("#probe, .wires, .wire-sw").forEach(n => n.remove());
+    c.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+    c.querySelectorAll(".on, .scan, .wired").forEach(n => n.classList.remove("on", "scan", "wired"));
+    c.querySelectorAll("a, [tabindex]").forEach(n => n.setAttribute("tabindex", "-1"));
+    map.appendChild(c);
+  };
+  const paintSel = () => $$(".ps-res a", list).forEach((a, i) => a.classList.toggle("sel", i === sel));
+  function run(text) {
+    q = text.trim();
+    results = searchFor(q);
+    sel = 0;
+    const ids = new Set(results.map(r => r.t.id)), layers = [...new Set(results.map(r => r.t.layer))];
+    $$(".wm-hit", map).forEach(a => { a.classList.toggle("hit", ids.has(a.dataset.id)); a.classList.toggle("dim", !!q && !ids.has(a.dataset.id)); });
+    $$(".wm-probe-die", map).forEach(d => d.classList.toggle("dim", !!q));
+    $$(".wm-field, .wm-isle", map).forEach(d => d.classList.toggle("pick", layers.includes(d.dataset.layer)));
+    const n = results.length, across = layers.map(layerName);
+    read.innerHTML = !q ? "Type to probe the wafer. Every lit die is a thesis."
+      : n ? `<b>${n}</b> ${n === 1 ? "die lights" : "dies light"} up for “${escHTML(q)}”, in ${across.length > 1 ? across.slice(0, -1).join(", ") + " and " + across.at(-1) : across[0]}.`
+      : `Nothing lights up for “${escHTML(q)}”. Try a company, a chip or a person.`;
+    list.innerHTML = results.map(({ t, snip }) => {
+      const b = BINS[t.stance];
+      return `<li><a href="#${t.id}" style="--bin:${b.css}"><span class="pr-top"><span>Die ${dieLabel(t.die)}</span><span class="pr-l" style="--lc:${ISLE[t.layer][1]}">${layerName(t.layer)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span></span><b>${markTerms(words(t.h2 || t.title), q)}</b><span class="pr-snip">${markTerms(snip, q)}</span></a></li>`;
+    }).join("");
+    list.scrollTop = 0;
+    paintSel();
+  }
+  const isOpen = () => !ps.hidden;
+  function close(restore = true) {
+    if (ps.hidden) return;
+    ps.hidden = true;
+    document.documentElement.classList.remove("ps-open");
+    if (wafer && memo.hidden) wafer.hold(false);
+    if (restore && from && document.contains(from)) from.focus({ preventScroll: true });
+  }
+  const go = id => { close(); location.hash = id; };
+  openSearch = (text = "") => {
+    if (isOpen()) { input.focus(); return; }
+    from = document.activeElement;
+    copyWafer();
+    ps.hidden = false;
+    document.documentElement.classList.add("ps-open");
+    if (wafer) wafer.hold(true);
+    input.value = text;
+    run(text);
+    input.focus({ preventScroll: true });
+  };
+  input.addEventListener("input", () => run(input.value));
+  input.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!results.length) return;
+      e.preventDefault();
+      sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length;
+      paintSel();
+      const a = $$(".ps-res a", list)[sel];
+      if (a) a.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter" && results[sel]) { e.preventDefault(); go(results[sel].t.id); }
+  });
+  ps.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); close(); return; }
+    if (e.key !== "Tab") return;
+    const f = $$("input, button, .ps-res a", ps).filter(el => el.offsetParent !== null);
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f.at(-1).focus(); }
+    else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+  });
+  ps.addEventListener("click", e => {
+    if (e.target === ps || e.target.closest(".ps-x")) { close(); return; }
+    const tryW = e.target.closest(".ps-try button");
+    if (tryW) { input.value = tryW.textContent; run(tryW.textContent); input.focus(); return; }
+    const a = e.target.closest("a[href^='#']");
+    if (a) { e.preventDefault(); go(a.getAttribute("href").slice(1)); }
+  });
+  list.addEventListener("pointermove", e => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const i = $$(".ps-res a", list).indexOf(a);
+    if (i !== sel) { sel = i; paintSel(); }
+  });
+  addEventListener("keydown", e => {
+    if (isOpen() || e.defaultPrevented || e.altKey) return;
+    const k = e.key === "/" && !e.metaKey && !e.ctrlKey, cmd = e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey);
+    if (!k && !cmd) return;
+    if (/^(input|textarea|select)$/i.test((document.activeElement || {}).tagName || "") || document.activeElement.isContentEditable) return;
+    if (!memo.hidden || !board.hidden || !theater.hidden) return;
+    e.preventDefault();
+    if (probeSearch.shown()) probeSearch.focus(); else openSearch();
+  });
+  document.addEventListener("click", e => { if (e.target.closest("[data-search]")) openSearch(); });
+}
+const probeSearch = { shown: () => false, focus() {}, say() {} };
+function buildProbeSearch() {
+  const ro = $(".readout"), text = $("#readout"), svg = $("#wmap"), list = $("#tlist"), grid = $(".index-grid");
+  const col = document.createElement("div");
+  col.className = "ro-col";
+  col.innerHTML = `<div class="probe-q"><label class="pq-k" for="probeQ">probe&nbsp;›</label><input id="probeQ" type="search" autocomplete="off" spellcheck="false" enterkeyhint="go" placeholder="search the wafer" aria-describedby="pqN"><span class="pq-n" id="pqN" aria-live="polite"></span><button type="button" class="pq-x" aria-label="Clear the search" hidden>Clear</button><kbd class="pq-kb" aria-hidden="true">/</kbd></div>`;
+  ro.insertBefore(col, ro.firstChild);
+  col.appendChild(text);
+  const box = $(".probe-q", col), input = $("#probeQ"), count = $("#pqN"), clear = $(".pq-x", col);
+  const items = $$("#tlist > li").map(li => ({ li, a: $("a.t-item", li), hook: $(".t-hook", li) }));
+  items.forEach(it => { if (it.a) it.a.insertAdjacentHTML("beforeend", `<span class="t-snip" hidden></span>`); });
+  const none = document.createElement("li");
+  none.className = "t-none";
+  none.hidden = true;
+  list.appendChild(none);
+  let q = "", top = null, lit = [];
+  const and = a => a.length > 1 ? `${a.slice(0, -1).join(", ")} and ${a.at(-1)}` : a[0];
+  function say() {
+    const wiring = $(".wafermap").classList.contains("netlist");
+    readoutIdle(q && lit.length ? `Lit in <b>${and(lit)}</b>. Enter opens the top match.`
+      : q ? "No die lights up."
+      : wiring ? `<b>Wiring on.</b> Each trace joins two theses that lean on each other.${matchMedia("(hover: hover)").matches ? " Point at a die to light its own." : ""}` : "");
+  }
+  probeSearch.say = say;
+  function run(v) {
+    q = v.trim();
+    const res = q ? searchFor(q) : [], hit = new Map(res.map(r => [r.t.id, r]));
+    svg.classList.toggle("q", !!q);
+    list.classList.toggle("q", !!q);
+    box.classList.toggle("on", !!q);
+    clear.hidden = !q;
+    $$(".wm-hit", svg).forEach(a => a.classList.toggle("hit", hit.has(a.dataset.id)));
+    const layers = new Set(res.map(r => r.t.layer));
+    $$(".wm-field, .wm-isle", svg).forEach(d => d.classList.toggle("pick", !!q && layers.has(d.dataset.layer)));
+    items.forEach(({ li, a }) => {
+      const r = a && hit.get(a.dataset.id);
+      li.hidden = !!q && !r;
+      if (!a) return;
+      const sn = $(".t-snip", a);
+      sn.hidden = !r;
+      if (r) sn.innerHTML = markTerms(r.snip, q);
+    });
+    if (q) res.slice().reverse().forEach(r => { const it = items.find(i => i.a && i.a.dataset.id === r.t.id); if (it) list.prepend(it.li); });
+    else items.forEach(it => list.insertBefore(it.li, none));
+    top = res[0] ? res[0].t.id : null;
+    count.textContent = q ? `${res.length} of ${THESES.length}` : "";
+    lit = [...layers].map(layerName);
+    say();
+    none.hidden = !q || res.length > 0;
+    none.innerHTML = `Nothing on the wafer for “${escHTML(q)}”. Try a company, a chip or a person.`;
+    if (q && grid.getBoundingClientRect().top < 0) window.scrollTo({ top: scrollY + grid.getBoundingClientRect().top - 96 * zoom(), behavior: "auto" });
+  }
+  input.addEventListener("input", () => run(input.value));
+  input.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); input.value = ""; run(""); input.blur(); }
+    else if (e.key === "Enter" && top) { e.preventDefault(); location.hash = top; }
+    else if (e.key === "ArrowDown") { const f = items.find(i => !i.li.hidden && i.a); if (f) { e.preventDefault(); f.a.focus(); } }
+  });
+  clear.addEventListener("click", () => { input.value = ""; run(""); input.focus(); });
+  probeSearch.shown = () => getComputedStyle(box).display !== "none" && !!box.offsetParent;
+  probeSearch.focus = () => {
+    const r = ro.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) window.scrollTo({ top: scrollY + grid.getBoundingClientRect().top - 96 * zoom(), behavior: calm ? "auto" : "smooth" });
+    input.focus({ preventScroll: true });
+  };
+}
+function buildDock() {
+  const d = document.createElement("nav");
+  d.className = "dock";
+  d.setAttribute("aria-label", "Sections");
+  d.innerHTML = [["#theses", "Theses", ICON.wafer, "theses"], ["#tldr", "TL;DR", ICON.grid, ""], ["", "Search", ICON.search, ""], ["#films", "Watch", ICON.play, "films"], ["#contact", "Contact", ICON.pin, "contact"]]
+    .map(([h, l, ic, k]) => h ? `<a href="${h}" data-k="${k}">${ic}<span>${l}</span></a>` : `<button type="button" data-search>${ic}<span>${l}</span></button>`).join("") + `<i class="dk-probe" aria-hidden="true"></i>`;
+  document.body.appendChild(d);
+  const secs = ["theses", "films", "contact"].map(id => document.getElementById(id)).filter(Boolean), pr = $(".dk-probe", d);
+  let raf = 0;
+  const mark = () => {
+    raf = 0;
+    if (getComputedStyle(d).display === "none") return;
+    let on = null;
+    secs.forEach(s => { const r = s.getBoundingClientRect(); if (r.top < innerHeight * .5 && r.bottom > innerHeight * .3) on = s.id; });
+    $$("a", d).forEach(a => { const hit = a.dataset.k === on; a.classList.toggle("on", hit); if (hit) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });
+    const el = $("a.on", d);
+    pr.style.opacity = el ? 1 : 0;
+    if (el) pr.style.transform = `translateX(${el.offsetLeft + el.offsetWidth / 2 - 3}px)`;
+  };
+  addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
+  addEventListener("resize", mark);
+  mark();
+  const ctas = $(".hero .ctas");
+  if (ctas && window.IntersectionObserver) new IntersectionObserver(([e]) => d.classList.toggle("up", !e.isIntersecting && e.boundingClientRect.top < 0)).observe(ctas);
+  else d.classList.add("up");
+}
 function setMotion(paused, save) {
   motionPaused = paused;
   document.documentElement.classList.toggle("paused", paused);
@@ -12488,6 +13029,10 @@ function setMotion(paused, save) {
 renderHome();
 renderFilms();
 buildMap();
+buildWiring();
+buildSearch();
+buildProbeSearch();
+buildDock();
 buildLine();
 mountEchoes();
 wafer = initWafer();

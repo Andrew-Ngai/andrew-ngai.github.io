@@ -1178,6 +1178,44 @@ const DOODLE_VB = {"weights": "0 0 120 109.4", "quantum": "0 0 120.4 110.5", "si
 const doodleVB = id => DOODLE_VB[id] || "0 0 120 100";
 
 const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
+// Wiring: each thesis's closest neighbours, strongest first. The end of a thesis offers the first three.
+const WIRES = {
+  automate: ["fleet", "factory", "agent", "physical"],
+  agent: ["openclaw", "saas", "memory", "automate", "paycheck"],
+  weights: ["silicon", "race", "quantum"],
+  ooms: ["fleet", "heat", "chipnames", "light"],
+  molecules: ["bloom", "fleet"],
+  bloom: ["molecules", "heat", "neocloud"],
+  fleet: ["ooms", "molecules", "automate", "factory"],
+  gpulife: ["neocloud", "builders", "heat", "circular"],
+  saas: ["agent", "openclaw", "tokens", "builders", "ledger"],
+  neocloud: ["tokens", "gpulife", "bloom", "builders", "contracts"],
+  builders: ["neocloud", "gpulife", "memory", "circular"],
+  moat: ["backend", "memory", "heat"],
+  memory: ["backend", "chipnames", "agent", "tokens", "asic"],
+  backend: ["moat", "memory", "race"],
+  heat: ["moat", "memory", "gpulife", "bloom"],
+  screentime: ["agent", "factory", "automate"],
+  quantum: ["weights", "silicon", "chipnames"],
+  tokens: ["neocloud", "factory", "memory"],
+  factory: ["tokens", "fleet", "automate", "race"],
+  chipnames: ["memory", "ooms", "tokens"],
+  openclaw: ["agent", "silicon", "saas", "ledger"],
+  race: ["weights", "silicon", "backend", "factory"],
+  silicon: ["weights", "race", "quantum"],
+  paycheck: ["contracts", "agent", "circular"],
+  contracts: ["paycheck", "neocloud", "gpulife", "circular"],
+  light: ["memory", "ooms", "cuda", "backend"],
+  cuda: ["asic", "light", "ooms", "agent"],
+  circular: ["builders", "gpulife", "neocloud", "paycheck"],
+  robots: ["physical", "race", "fleet", "builders"],
+  physical: ["robots", "health", "automate", "agent"],
+  ledger: ["saas", "openclaw", "weights", "health"],
+  asic: ["cuda", "memory", "tokens", "chipnames"],
+  bias: ["memory", "agent", "weights", "ledger"],
+  health: ["physical", "ledger", "automate"],
+};
+const wiresOf = (id, n = 3) => (WIRES[id] || []).filter(o => byId[o] && o !== id).slice(0, n);
 const num = v => (v < 0 ? "−" + Math.abs(v) : String(v));
 const dieLabel = d => `(${num(d[0])}, ${num(d[1])})`;
 
@@ -3455,6 +3493,8 @@ function renderHome() {
 }
 
 /* ---------------------------------------------------------------- wafer map */
+const ISLE = { A: ["APPS", "#b49cff"], M: ["MODELS", "#ff86c8"], I: ["INFRA", "#59c8ff"], C: ["CHIPS", "#b9c6d3"], E: ["ENERGY", "#ffa04d"], S: ["SECURITY", "#ff6170"], F: ["MONEY", "#69e39a"] };
+let readoutIdle = () => {};
 function buildMap() {
   const svg = $("#wmap");
   const ds = 24, R = 11.63 * ds, lim = R * 0.955, N = 13;
@@ -3478,7 +3518,6 @@ function buildMap() {
   }
   // Each layer's dies form an island: a shaded field in the layer's colour with corner marks, named by a glowing
   // sign that loops its own small motion.
-  const ISLE = { A: ["APPS", "#b49cff"], M: ["MODELS", "#ff86c8"], I: ["INFRA", "#59c8ff"], C: ["CHIPS", "#b9c6d3"], E: ["ENERGY", "#ffa04d"], S: ["SECURITY", "#ff6170"], F: ["MONEY", "#69e39a"] };
   const ISL = {};
   {
     const by = {};
@@ -3566,7 +3605,10 @@ function buildMap() {
 
   const probe = $("#probe"), readout = $("#readout"), tag = $("#dieTag"), wm = $(".wafermap"), decho = $("#dieEcho");
   const grid = $(".index-grid"), col = $(".map-col"), line = $("#linkLine");
-  const idle = readout.innerHTML;
+  // what the readout says while no die is under the pointer; search and the wiring switch can change it
+  let idle = readout.innerHTML;
+  const idle0 = idle;
+  readoutIdle = html => { idle = html || idle0; if (!active) readout.innerHTML = idle; };
   const desktop = () => getComputedStyle(col).position === "sticky";
   let active = null, alignTimer = 0, offTimer = 0;
   const info = id => {
@@ -3704,7 +3746,7 @@ function buildMap() {
 
 /* ---------------------------------------------------------------- memo reader */
 const memo = $("#memo");
-let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {};
+let memoId = null, lastFocus = null, memoKeys = null, markMore = () => {}, refitWired = () => {};
 
 // Line-break helpers for slide 1. A title, pull quote or claim breaks between phrases, never inside one.
 // "|" marks where a line may break: with a space when the pipe has one beside it, with none right after a dash.
@@ -3791,15 +3833,44 @@ function setType(root) {
 // theses revised after they went up carry an update log: one pill in the top bar naming what prompted it (e.g. post-Q3), opening a note on what changed and what it was first written with
 const lastUpd = t => (t.updates && t.updates.length ? t.updates[t.updates.length - 1] : null);
 
+// Share: each thesis has its own small page at /t/<id>/ carrying a preview card, so a pasted link shows that thesis
+// rather than the home page. On a phone it opens the share sheet; elsewhere it copies the link.
+const shareUrl = id => `${location.origin}/t/${id}/`;
+async function shareThesis(t, btn) {
+  const url = shareUrl(t.id), label = btn.querySelector(".ms-l"), was = label.dataset.l || (label.dataset.l = label.textContent);
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    try { await navigator.share({ title: plain(t.title), url }); } catch (e) {}
+    return;
+  }
+  let ok = false;
+  try { await navigator.clipboard.writeText(url); ok = true; } catch (e) {
+    const ta = Object.assign(document.createElement("textarea"), { value: url });
+    ta.setAttribute("readonly", ""); ta.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    ta.remove();
+  }
+  clearTimeout(btn._t);
+  btn.classList.toggle("done", ok);
+  label.textContent = ok ? "Link copied" : "Copy failed";
+  btn._t = setTimeout(() => { btn.classList.remove("done"); label.textContent = was; }, 2200);
+}
+
+// "Wired to": the theses this one leans on or feeds, as quiet links at the end of the bet
+const wiredLinks = (t, cls) => wiresOf(t.id).map(o => { const u = byId[o]; return `<a class="${cls}" href="#${o}" style="--bin:${BINS[u.stance].css}"><i aria-hidden="true"></i>${u.short}</a>`; }).join("");
+const SHARE_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v6.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V12"/></svg>`;
+
 function memoHTML(t) {
   const b = BINS[t.stance];
   const u = lastUpd(t);
   const idx = THESES.indexOf(t);
   const next = THESES[(idx + 1) % THESES.length];
+  const wired = wiresOf(t.id).length;
   return `<div class="memo-head" style="--bin:${b.css}">
       <button class="btn memo-close" id="memoClose" type="button">Close</button>
       <div class="memo-meta"><span class="m-die">Die ${dieLabel(t.die)}&nbsp;&nbsp;<span class="bin">${b.label}</span>${u ? `<button type="button" class="m-upd" id="memoUpdBtn" aria-expanded="false" aria-controls="memoUpd">Updated ${u.tag}</button>` : ""}</span><span class="m-title" id="memoTitle">${t.title}</span></div>
       <div class="memo-prog" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <button class="btn memo-share" id="memoShare" type="button" title="Share this thesis">${SHARE_ICON}<span class="ms-l" aria-live="polite">Share</span></button>
       <div class="memo-src">
         <button class="btn memo-src-btn" id="memoSrcBtn" type="button" aria-expanded="false" aria-controls="memoSrc">Receipts <span class="memo-src-n">${t.receipts.length}</span></button>
         <div class="memo-src-panel" id="memoSrc" hidden>
@@ -3825,6 +3896,8 @@ function memoHTML(t) {
           <p class="slide-k">The bet</p>
           <p class="bet">${t.bet}</p>
           <div class="wrong"><b>I’m wrong if</b>${t.wrong}</div>
+          ${wired ? `<nav class="wired" aria-label="Wired to"><p class="wd-k">Wired to</p>${wiredLinks(t, "wd-a")}</nav>` : ""}
+          <button class="btn memo-share memo-share-end" type="button">${SHARE_ICON}<span class="ms-l" aria-live="polite">Share this thesis</span></button>
           <div class="bet-row"><figure class="bet-echo">${echo(t.echo)}<figcaption>${t.echo.name} Echo</figcaption></figure>${t.extraCta ? `<div class="ctas">${t.extraCta}</div>` : ""}${watchLink(t.id)}${modelLink(t.id)}<p class="memo-note">${t.note || "Not investment advice."}</p></div>
         </section>
       </div>
@@ -3834,6 +3907,7 @@ function memoHTML(t) {
     <div class="memo-foot">
       <button class="btn" id="memoPrev" type="button">Back</button>
       <span class="count" id="memoCount">1 of 3</span>
+      ${wired ? `<nav class="mf-wired" id="memoWired" aria-label="Wired to" hidden><span class="mf-k">Wired to</span>${wiredLinks(t, "mf-a")}</nav>` : ""}
       <a class="btn memo-ask" href="#contact">Tell me I’m wrong</a>
       <button class="btn primary" id="memoNext" type="button" data-next="${next.id}">Next</button>
     </div>`;
@@ -3961,7 +4035,7 @@ const hugPills = root => root.querySelectorAll(".hug").forEach(g => {
 });
 const fitViz = root => { setType(root); shapeSvgs(root); sizePane(root); fitFrames(root); fitPkg(root); hugPills(root); };
 let fitRaf = 0;
-addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); }); });
+addEventListener("resize", () => { if (memo.hidden) return; cancelAnimationFrame(fitRaf); fitRaf = requestAnimationFrame(() => { fitViz(memo); markMore(); refitWired(); }); });
 
 function openMemo(id) {
   const t = byId[id];
@@ -3991,7 +4065,20 @@ function openMemo(id) {
     count.textContent = `${s} of 3`;
     prev.disabled = s === 1;
     next.textContent = s === 3 ? (innerWidth < 600 ? "Next thesis" : `Next thesis: ${nextT.short}`) : "Next";
+    fitWired();
   };
+  // On the last slide the footer lists what this thesis is wired to, keeping only the links that fit beside the buttons
+  const wiredBar = $("#memoWired"), foot = $(".memo-foot", memo);
+  function fitWired() {
+    if (!wiredBar) return;
+    wiredBar.hidden = step !== 3;
+    if (wiredBar.hidden) return;
+    const links = $$(".mf-a", wiredBar);
+    links.forEach(a => (a.hidden = false));
+    for (let i = links.length - 1; i >= 0 && foot.scrollWidth > foot.clientWidth + 1; i--) links[i].hidden = true;
+    wiredBar.hidden = links.every(a => a.hidden);
+  }
+  refitWired = fitWired;
   set(1);
   const go = s => slides.scrollTo({ left: (s - 1) * slides.clientWidth, behavior: calm ? "auto" : "smooth" });
   slides.addEventListener("scroll", () => { set(Math.min(3, Math.max(1, Math.round(slides.scrollLeft / slides.clientWidth) + 1))); markMore(); }, { passive: true });
@@ -4023,6 +4110,7 @@ function openMemo(id) {
   prev.addEventListener("click", () => step > 1 && go(step - 1));
   next.addEventListener("click", () => (step < 3 ? go(step + 1) : (location.hash = nextT.id)));
   $("#memoClose").addEventListener("click", () => closeMemo(true));
+  $$(".memo-share", memo).forEach(b => b.addEventListener("click", () => shareThesis(t, b)));
 
   if (memoKeys) document.removeEventListener("keydown", memoKeys);
   memoKeys = e => {
@@ -5371,6 +5459,342 @@ function buildLine() {
   buildLine.wake = wake;
 }
 
+/* ---------------------------------------------------------------- wiring on the wafer */
+// Off by default. The switch is scribed on the wafer's rim beside the notch, where a real wafer carries its laser-etched
+// ID. On, every connection between theses lays down as faint metal, and pointing at a die lights only its own traces.
+function buildWiring() {
+  const svg = $("#wmap"), ds = 24, R = 11.63 * ds, wm = $(".wafermap"), readout = $("#readout");
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.setAttribute("class", "wires");
+  g.setAttribute("aria-hidden", "true");
+  svg.insertBefore(g, svg.querySelector(".wm-hit"));
+  const pos = id => [byId[id].die[0] * ds, -byId[id].die[1] * ds];
+  // a trace runs along the row, then turns 45 degrees into the other die, like routing on a chip
+  const route = (a, b) => {
+    const [ax, ay] = pos(a), [bx, by] = pos(b), dx = bx - ax, dy = by - ay, d = Math.min(Math.abs(dx), Math.abs(dy));
+    return `M${ax} ${ay}H${(bx - Math.sign(dx) * d).toFixed(1)}L${bx} ${by}`;
+  };
+  const pairs = new Map();
+  THESES.forEach(t => wiresOf(t.id, 9).forEach(o => { const k = [t.id, o].sort().join(" "); if (!pairs.has(k)) pairs.set(k, [t.id, o]); }));
+  // traces lay down from the centre of the wafer outward
+  g.innerHTML = [...pairs.values()].map(([a, b]) => {
+    const d = Math.round(Math.hypot(...pos(a)) + Math.hypot(...pos(b)));
+    return `<path class="net" style="--d:${d}" data-a="${a}" data-b="${b}" d="${route(a, b)}"/>`;
+  }).join("");
+
+  const sw = document.createElement("button");
+  sw.type = "button";
+  sw.className = "scribe";
+  sw.setAttribute("role", "switch");
+  sw.setAttribute("aria-checked", "false");
+  sw.setAttribute("aria-label", "Wiring: show which theses lean on each other");
+  const arc = (r, a0, a1) => { const p = a => [(r * Math.cos(a * Math.PI / 180)).toFixed(1), (r * Math.sin(a * Math.PI / 180)).toFixed(1)]; return `M${p(a0).join(" ")}A${r} ${r} 0 0 0 ${p(a1).join(" ")}`; };
+  sw.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="scribeArc" d="${arc(R + 13, 152, 95.5)}" fill="none"/><path class="sb-hit" d="${arc(R + 9, 150, 95)}"/>` +
+    `<text class="sb-t" text-anchor="end"><textPath href="#scribeArc" startOffset="100%"><tspan class="sb-led">●</tspan> WIRING · <tspan class="sb-s">OFF</tspan></textPath></text></svg>`;
+  wm.appendChild(sw);
+  // keep the scribe readable (about 10px) however small the wafer is drawn
+  const t = $(".sb-t", sw), size = () => { const k = svg.getBoundingClientRect().width / 620; if (k) t.setAttribute("font-size", Math.max(11.5, 10 / k).toFixed(1)); };
+  size();
+  if (window.ResizeObserver) new ResizeObserver(size).observe(svg);
+
+  sw.addEventListener("click", () => {
+    const on = sw.getAttribute("aria-checked") !== "true";
+    sw.setAttribute("aria-checked", String(on));
+    $(".sb-s", sw).textContent = on ? "ON" : "OFF";
+    wm.classList.toggle("netlist", on);
+    probeSearch.say();
+  });
+  const tell = ids => {
+    if (!ids.length || readout.querySelector(".rd-wires")) return;
+    readout.insertAdjacentHTML("beforeend", `<span class="rd-wires"><span class="rd-k">Wired to</span>${ids.map(o => `<span style="--bin:${BINS[byId[o].stance].css}">${byId[o].short}</span>`).join("")}</span>`);
+  };
+  const hi = id => {
+    if (!wm.classList.contains("netlist")) return;
+    const to = [];
+    $$(".net", g).forEach(n => { const on = n.dataset.a === id || n.dataset.b === id; n.classList.toggle("hot", on); if (on) to.push(n.dataset.a === id ? n.dataset.b : n.dataset.a); });
+    g.style.setProperty("--wc", BINS[byId[id].stance].css);
+    wm.classList.add("net-hot");
+    $$(".wm-hit", svg).forEach(a => a.classList.toggle("wired", to.includes(a.dataset.id)));
+    tell([...wiresOf(id, 9).filter(o => to.includes(o)), ...to.filter(o => !wiresOf(id, 9).includes(o))].slice(0, 4));
+  };
+  const lo = () => { $$(".net.hot", g).forEach(n => n.classList.remove("hot")); wm.classList.remove("net-hot"); $$(".wm-hit.wired", svg).forEach(a => a.classList.remove("wired")); };
+  $$(".wm-hit", svg).forEach(a => {
+    a.addEventListener("mouseenter", () => hi(a.dataset.id)); a.addEventListener("focus", () => hi(a.dataset.id));
+    a.addEventListener("mouseleave", lo); a.addEventListener("blur", lo);
+  });
+}
+
+/* ---------------------------------------------------------------- probe search */
+// "/" or ⌘K opens it from anywhere on the home page. Every thesis is indexed by its own words, weighted toward the
+// title, and the matches light up on a copy of the wafer.
+const ICON = {
+  search: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>`,
+  wafer: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg>`,
+  grid: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>`,
+  play: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="f" d="M10 8.5v7l6-3.5z"/></svg>`,
+  pin: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M4 8h3M4 12h3M4 16h3M17 8h3M17 12h3M17 16h3"/></svg>`
+};
+const TRY = ["Nvidia", "memory", "Aschenbrenner", "power", "Robinhood", "agents"];
+const words = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/\|/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&[a-z#0-9]+;/gi, " ").replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
+const escHTML = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const layerName = k => ISLE[k][0][0] + ISLE[k][0].slice(1).toLowerCase();
+const stop = x => (!x || /[.!?…:;,]$/.test(x) ? x : x + ".");
+let searchIndex = null;
+function searchFor(q) {
+  const terms = q.toLowerCase().replace(/[’‘]/g, "'").split(/\s+/).filter(Boolean);
+  if (!terms.length) return [];
+  searchIndex = searchIndex || THESES.map(t => ({ t, f: [
+    [`${words(t.title)} ${words(t.h2)} ${words(t.short)}`, 6],
+    [`${stop(words(t.hook))} ${(t.tldr || []).map(x => stop(words(x))).join(" ")}`, 4],
+    [t.takes.map(([h, p]) => `${stop(words(h))} ${words(p)}`).join(" "), 2],
+    [`${words(t.bet)} ${words(t.wrong)}`, 2],
+    [words(t.signal), 1],
+    [t.receipts.map(r => words(r[0])).join(" · "), 1],
+    [words(t.ref && t.ref.label), 2]
+  ] }));
+  return searchIndex.map(({ t, f }) => {
+    const all = f.map(([x]) => x.toLowerCase()).join(" ");
+    if (!terms.every(w => all.includes(w))) return null;
+    let score = 0, snip = "";
+    f.forEach(([x, w], i) => {
+      const low = x.toLowerCase(), n = terms.reduce((s, w2) => s + low.split(w2).length - 1, 0);
+      if (!n) return;
+      score += w * Math.min(n, 4);
+      const at = low.indexOf(terms[0]);
+      if (!snip && i > 0 && at >= 0) {
+        const a = Math.max(0, x.lastIndexOf(" ", Math.max(0, at - 60)) + 1), b = x.indexOf(" ", Math.min(x.length, at + 90));
+        snip = (a > 0 ? "…" : "") + x.slice(a, b < 0 ? x.length : b).trim() + (b > 0 ? "…" : "");
+      }
+    });
+    if (!snip) { const h = f[1][0]; snip = h.length > 150 ? h.slice(0, h.lastIndexOf(" ", 150)) + "…" : h; }
+    return { t, score, snip };
+  }).filter(Boolean).sort((a, b) => b.score - a.score);
+}
+const markTerms = (s, q) => q.split(/\s+/).filter(Boolean).reduce((out, w) =>
+  out.replace(new RegExp(`(${escHTML(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(?![^<]*>)`, "ig"), "<mark>$1</mark>"), escHTML(s));
+
+let openSearch = () => {};
+function buildSearch() {
+  const ps = document.createElement("div");
+  ps.className = "psearch";
+  ps.id = "search";
+  ps.hidden = true;
+  ps.setAttribute("role", "dialog");
+  ps.setAttribute("aria-modal", "true");
+  ps.setAttribute("aria-label", "Search the theses");
+  ps.innerHTML = `<div class="ps-box">
+    <div class="ps-in"><label class="ps-prompt" for="psQ">probe&nbsp;›</label><input id="psQ" type="search" autocomplete="off" spellcheck="false" enterkeyhint="go" aria-controls="psRes" aria-describedby="psRead" placeholder="Search ${THESES.length} theses: a company, a chip, a person, an idea"><button type="button" class="ps-x"><span class="ps-kb">esc</span><span class="ps-tx">Close</span></button></div>
+    <div class="ps-body">
+      <div class="ps-map"><div class="ps-wafer" aria-hidden="true"></div><p class="ps-read" id="psRead" aria-live="polite"></p></div>
+      <ol class="ps-res" id="psRes" aria-label="Results"></ol>
+    </div>
+    <div class="ps-try"><span>Try</span>${TRY.map(w => `<button type="button">${w}</button>`).join("")}</div>
+  </div>`;
+  document.body.appendChild(ps);
+  const input = $("#psQ"), list = $("#psRes"), read = $("#psRead"), map = $(".ps-wafer", ps);
+  let results = [], sel = 0, from = null, q = "";
+
+  // a still copy of the wafer, taken the first time search opens (by then the island names have been sized)
+  const copyWafer = () => {
+    if (map.firstChild) return;
+    const c = $("#wmap").cloneNode(true);
+    ["id", "role", "aria-label"].forEach(a => c.removeAttribute(a));
+    c.querySelectorAll("#probe, .wires, .wire-sw").forEach(n => n.remove());
+    c.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+    c.querySelectorAll(".on, .scan, .wired").forEach(n => n.classList.remove("on", "scan", "wired"));
+    c.querySelectorAll("a, [tabindex]").forEach(n => n.setAttribute("tabindex", "-1"));
+    map.appendChild(c);
+  };
+  const paintSel = () => $$(".ps-res a", list).forEach((a, i) => a.classList.toggle("sel", i === sel));
+  function run(text) {
+    q = text.trim();
+    results = searchFor(q);
+    sel = 0;
+    const ids = new Set(results.map(r => r.t.id)), layers = [...new Set(results.map(r => r.t.layer))];
+    $$(".wm-hit", map).forEach(a => { a.classList.toggle("hit", ids.has(a.dataset.id)); a.classList.toggle("dim", !!q && !ids.has(a.dataset.id)); });
+    $$(".wm-probe-die", map).forEach(d => d.classList.toggle("dim", !!q));
+    $$(".wm-field, .wm-isle", map).forEach(d => d.classList.toggle("pick", layers.includes(d.dataset.layer)));
+    const n = results.length, across = layers.map(layerName);
+    read.innerHTML = !q ? "Type to probe the wafer. Every lit die is a thesis."
+      : n ? `<b>${n}</b> ${n === 1 ? "die lights" : "dies light"} up for “${escHTML(q)}”, in ${across.length > 1 ? across.slice(0, -1).join(", ") + " and " + across.at(-1) : across[0]}.`
+      : `Nothing lights up for “${escHTML(q)}”. Try a company, a chip or a person.`;
+    list.innerHTML = results.map(({ t, snip }) => {
+      const b = BINS[t.stance];
+      return `<li><a href="#${t.id}" style="--bin:${b.css}"><span class="pr-top"><span>Die ${dieLabel(t.die)}</span><span class="pr-l" style="--lc:${ISLE[t.layer][1]}">${layerName(t.layer)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span></span><b>${markTerms(words(t.h2 || t.title), q)}</b><span class="pr-snip">${markTerms(snip, q)}</span></a></li>`;
+    }).join("");
+    list.scrollTop = 0;
+    paintSel();
+  }
+  const isOpen = () => !ps.hidden;
+  function close(restore = true) {
+    if (ps.hidden) return;
+    ps.hidden = true;
+    document.documentElement.classList.remove("ps-open");
+    if (wafer && memo.hidden) wafer.hold(false);
+    if (restore && from && document.contains(from)) from.focus({ preventScroll: true });
+  }
+  const go = id => { close(); location.hash = id; };
+  openSearch = (text = "") => {
+    if (isOpen()) { input.focus(); return; }
+    from = document.activeElement;
+    copyWafer();
+    ps.hidden = false;
+    document.documentElement.classList.add("ps-open");
+    if (wafer) wafer.hold(true);
+    input.value = text;
+    run(text);
+    input.focus({ preventScroll: true });
+  };
+
+  input.addEventListener("input", () => run(input.value));
+  input.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!results.length) return;
+      e.preventDefault();
+      sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + results.length) % results.length;
+      paintSel();
+      const a = $$(".ps-res a", list)[sel];
+      if (a) a.scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter" && results[sel]) { e.preventDefault(); go(results[sel].t.id); }
+  });
+  ps.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); close(); return; }
+    if (e.key !== "Tab") return;
+    // keep Tab inside the dialog
+    const f = $$("input, button, .ps-res a", ps).filter(el => el.offsetParent !== null);
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f.at(-1).focus(); }
+    else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+  });
+  ps.addEventListener("click", e => {
+    if (e.target === ps || e.target.closest(".ps-x")) { close(); return; }
+    const tryW = e.target.closest(".ps-try button");
+    if (tryW) { input.value = tryW.textContent; run(tryW.textContent); input.focus(); return; }
+    const a = e.target.closest("a[href^='#']");
+    if (a) { e.preventDefault(); go(a.getAttribute("href").slice(1)); }
+  });
+  list.addEventListener("pointermove", e => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const i = $$(".ps-res a", list).indexOf(a);
+    if (i !== sel) { sel = i; paintSel(); }
+  });
+  addEventListener("keydown", e => {
+    if (isOpen() || e.defaultPrevented || e.altKey) return;
+    const k = e.key === "/" && !e.metaKey && !e.ctrlKey, cmd = e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey);
+    if (!k && !cmd) return;
+    if (/^(input|textarea|select)$/i.test((document.activeElement || {}).tagName || "") || document.activeElement.isContentEditable) return;
+    if (!memo.hidden || !board.hidden || !theater.hidden) return;
+    e.preventDefault();
+    if (probeSearch.shown()) probeSearch.focus(); else openSearch();
+  });
+  document.addEventListener("click", e => { if (e.target.closest("[data-search]")) openSearch(); });
+}
+
+/* ---------------------------------------------------------------- the probe's readout doubles as search */
+// Under the wafer, the prober's readout has a prompt. Type and the matching dies light up on the wafer itself, the list
+// beside it narrows to them, and each shows the line that matched. On a phone the dock's Search opens a sheet instead.
+const probeSearch = { shown: () => false, focus() {}, say() {} };
+function buildProbeSearch() {
+  const ro = $(".readout"), text = $("#readout"), svg = $("#wmap"), list = $("#tlist"), grid = $(".index-grid");
+  const col = document.createElement("div");
+  col.className = "ro-col";
+  col.innerHTML = `<div class="probe-q"><label class="pq-k" for="probeQ">probe&nbsp;›</label><input id="probeQ" type="search" autocomplete="off" spellcheck="false" enterkeyhint="go" placeholder="search the wafer" aria-describedby="pqN"><span class="pq-n" id="pqN" aria-live="polite"></span><button type="button" class="pq-x" aria-label="Clear the search" hidden>Clear</button><kbd class="pq-kb" aria-hidden="true">/</kbd></div>`;
+  ro.insertBefore(col, ro.firstChild);
+  col.appendChild(text);
+  const box = $(".probe-q", col), input = $("#probeQ"), count = $("#pqN"), clear = $(".pq-x", col);
+  const items = $$("#tlist > li").map(li => ({ li, a: $("a.t-item", li), hook: $(".t-hook", li) }));
+  items.forEach(it => { if (it.a) it.a.insertAdjacentHTML("beforeend", `<span class="t-snip" hidden></span>`); });
+  const none = document.createElement("li");
+  none.className = "t-none";
+  none.hidden = true;
+  list.appendChild(none);
+  let q = "", top = null, lit = [];
+  const and = a => a.length > 1 ? `${a.slice(0, -1).join(", ")} and ${a.at(-1)}` : a[0];
+  // the readout under the prompt says where the matches are, or that the wiring is on
+  function say() {
+    const wiring = $(".wafermap").classList.contains("netlist");
+    readoutIdle(q && lit.length ? `Lit in <b>${and(lit)}</b>. Enter opens the top match.`
+      : q ? "No die lights up."
+      : wiring ? `<b>Wiring on.</b> Each trace joins two theses that lean on each other.${matchMedia("(hover: hover)").matches ? " Point at a die to light its own." : ""}` : "");
+  }
+  probeSearch.say = say;
+  function run(v) {
+    q = v.trim();
+    const res = q ? searchFor(q) : [], hit = new Map(res.map(r => [r.t.id, r]));
+    svg.classList.toggle("q", !!q);
+    list.classList.toggle("q", !!q);
+    box.classList.toggle("on", !!q);
+    clear.hidden = !q;
+    $$(".wm-hit", svg).forEach(a => a.classList.toggle("hit", hit.has(a.dataset.id)));
+    const layers = new Set(res.map(r => r.t.layer));
+    $$(".wm-field, .wm-isle", svg).forEach(d => d.classList.toggle("pick", !!q && layers.has(d.dataset.layer)));
+    items.forEach(({ li, a }) => {
+      const r = a && hit.get(a.dataset.id);
+      li.hidden = !!q && !r;
+      if (!a) return;
+      const sn = $(".t-snip", a);
+      sn.hidden = !r;
+      if (r) sn.innerHTML = markTerms(r.snip, q);
+    });
+    // the list follows search rank while a search is on, and goes back to the wafer's own order after
+    if (q) res.slice().reverse().forEach(r => { const it = items.find(i => i.a && i.a.dataset.id === r.t.id); if (it) list.prepend(it.li); });
+    else items.forEach(it => list.insertBefore(it.li, none));
+    top = res[0] ? res[0].t.id : null;
+    count.textContent = q ? `${res.length} of ${THESES.length}` : "";
+    lit = [...layers].map(layerName);
+    say();
+    none.hidden = !q || res.length > 0;
+    none.innerHTML = `Nothing on the wafer for “${escHTML(q)}”. Try a company, a chip or a person.`;
+    // keep the top of the list in view as it shrinks
+    if (q && grid.getBoundingClientRect().top < 0) window.scrollTo({ top: scrollY + grid.getBoundingClientRect().top - 96 * zoom(), behavior: "auto" });
+  }
+  input.addEventListener("input", () => run(input.value));
+  input.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); input.value = ""; run(""); input.blur(); }
+    else if (e.key === "Enter" && top) { e.preventDefault(); location.hash = top; }
+    else if (e.key === "ArrowDown") { const f = items.find(i => !i.li.hidden && i.a); if (f) { e.preventDefault(); f.a.focus(); } }
+  });
+  clear.addEventListener("click", () => { input.value = ""; run(""); input.focus(); });
+  probeSearch.shown = () => getComputedStyle(box).display !== "none" && !!box.offsetParent;
+  probeSearch.focus = () => {
+    const r = ro.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) window.scrollTo({ top: scrollY + grid.getBoundingClientRect().top - 96 * zoom(), behavior: calm ? "auto" : "smooth" });
+    input.focus({ preventScroll: true });
+  };
+}
+
+/* ---------------------------------------------------------------- a thumb dock on phones */
+// On a phone the top bar keeps only the name, EchoTempo and the pads; the sections move to a dock under the thumb.
+function buildDock() {
+  const d = document.createElement("nav");
+  d.className = "dock";
+  d.setAttribute("aria-label", "Sections");
+  d.innerHTML = [["#theses", "Theses", ICON.wafer, "theses"], ["#tldr", "TL;DR", ICON.grid, ""], ["", "Search", ICON.search, ""], ["#films", "Watch", ICON.play, "films"], ["#contact", "Contact", ICON.pin, "contact"]]
+    .map(([h, l, ic, k]) => h ? `<a href="${h}" data-k="${k}">${ic}<span>${l}</span></a>` : `<button type="button" data-search>${ic}<span>${l}</span></button>`).join("") + `<i class="dk-probe" aria-hidden="true"></i>`;
+  document.body.appendChild(d);
+  // a small probe light slides under whichever section is on screen
+  const secs = ["theses", "films", "contact"].map(id => document.getElementById(id)).filter(Boolean), pr = $(".dk-probe", d);
+  let raf = 0;
+  const mark = () => {
+    raf = 0;
+    if (getComputedStyle(d).display === "none") return;
+    let on = null;
+    secs.forEach(s => { const r = s.getBoundingClientRect(); if (r.top < innerHeight * .5 && r.bottom > innerHeight * .3) on = s.id; });
+    $$("a", d).forEach(a => { const hit = a.dataset.k === on; a.classList.toggle("on", hit); if (hit) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current"); });
+    const el = $("a.on", d);
+    pr.style.opacity = el ? 1 : 0;
+    if (el) pr.style.transform = `translateX(${el.offsetLeft + el.offsetWidth / 2 - 3}px)`;
+  };
+  addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
+  addEventListener("resize", mark);
+  mark();
+  // the hero has its own buttons, so the dock rises only once they have scrolled away
+  const ctas = $(".hero .ctas");
+  if (ctas && window.IntersectionObserver) new IntersectionObserver(([e]) => d.classList.toggle("up", !e.isIntersecting && e.boundingClientRect.top < 0)).observe(ctas);
+  else d.classList.add("up");
+}
+
 /* ---------------------------------------------------------------- motion toggle */
 function setMotion(paused, save) {
   motionPaused = paused;
@@ -5387,6 +5811,10 @@ function setMotion(paused, save) {
 renderHome();
 renderFilms();
 buildMap();
+buildWiring();
+buildSearch();
+buildProbeSearch();
+buildDock();
 buildLine();
 mountEchoes();
 wafer = initWafer();
