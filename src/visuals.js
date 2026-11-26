@@ -3216,9 +3216,168 @@ A["aging-3a"] = { html: () => {
     </div>${capLS("Flu deaths: CDC. Thymus and T cells: Palmer; aging-immunity reviews. NewLimit: Longevity.Technology; Contrary Research. Retro: OpenAI. First human test: MIT Technology Review; Axios. Discs are schematic.", "CDC; NewLimit; OpenAI; MIT Technology Review.")}`; } };
 })();
 
+// 38 · SpaceX can launch the compute. Terafab has to make it.
+(() => {
+const A = window.AX;
+const capLS = (l, s) => `<p class="cap"><span class="cap-l">${l}</span><span class="cap-s">${s}</span></p>`;
+
+// ---------------------------------------------------------- slide 1: the SpaceX loop, one stage short
+// Five stations on one ring, run clockwise: Starmind computes on sunlight, Starlink lasers carry the answers down,
+// xAI sells them, the money buys chips, Starship launches them. Today the chip stage is rented; Terafab would close it.
+const CX = 230, CY = 146, R = 82;
+const at = (deg, r = R) => [CX + r * Math.cos(deg * Math.PI / 180), CY + r * Math.sin(deg * Math.PI / 180)];
+const f1 = n => n.toFixed(1);
+const arc = (a, b, r = R) => { const [x1, y1] = at(a, r), [x2, y2] = at(b, r); return `M${f1(x1)} ${f1(y1)} A${r} ${r} 0 0 1 ${f1(x2)} ${f1(y2)}`; };
+A["terafab-1a"] = { html: () => {
+    const ST = [
+      [-90, "mind", "Starmind", "AI satellites run on sunlight", "start", 26, -6],
+      [-18, "link", "Starlink", "lasers carry answers down", "start", 26, 0],
+      [54, "xai", "xAI", "sells the tokens", "start", 26, 4],
+      [126, "fab", "Terafab", "makes the chips", "end", -26, 4],
+      [198, "ship", "Starship", "launches them", "end", -26, 0]
+    ];
+    const ICON = {
+      mind: `<rect x="-4.6" y="-4.6" width="9.2" height="9.2" rx="1.6" class="tf1-ic"/><path d="M-4.6 0 H-8 M4.6 0 H8" class="tf1-ln"/><rect x="-17" y="-4" width="9" height="8" class="tf1-pv"/><rect x="8" y="-4" width="9" height="8" class="tf1-pv"/><path d="M-12.5 -4 V4 M12.5 -4 V4" class="tf1-pvl"/>`,
+      link: `<path d="M-9 7 Q0 -7 9 7" class="tf1-ln"/><circle cx="0" cy="2" r="2.2" class="tf1-ic"/><path d="M0 0 L-6 -11 M0 0 V-13 M0 0 L6 -11" class="tf1-beam"/>`,
+      xai: `<path d="M-9.5 -7.5 H9.5 V4.5 H1 L-4.5 9.5 V4.5 H-9.5 Z" class="tf1-ic"/><path d="M-4 -3.4 L4 1.4 M4 -3.4 L-4 1.4" class="tf1-x"/>`,
+      fab: `<path d="M-11 8.5 V-1 L-6.5 -6.5 V-1 L-2 -6.5 V-1 L2.5 -6.5 V-1 L7 -6.5 V-1 L11 -1 V8.5 Z" class="tf1-ic"/><circle cx="0" cy="3.6" r="2.8" class="tf1-wf"/><path d="M-2.8 3.6 H2.8 M0 .8 V6.4" class="tf1-wfl"/>`,
+      ship: `<path d="M0 -13 C3.6 -8.6 3.8 3 3 8.4 H-3 C-3.8 3 -3.6 -8.6 0 -13 Z" class="tf1-ic"/><path d="M-3 4 L-7 9.6 V10.6 H-3 M3 4 L7 9.6 V10.6 H3" class="tf1-ln"/><path d="M-1.6 11.4 Q0 17 1.6 11.4" class="tf1-flame"/>`
+    };
+    const station = ([a, id, name, sub, an, dx, dy]) => { const [x, y] = at(a); return `<g class="tf1-st tf1-s-${id}" transform="translate(${f1(x)} ${f1(y)})">
+        <circle r="19" class="tf1-ring"/>${id === "fab" ? `<circle r="23.5" class="tf1-build"/><g class="tf1-due"><rect x="-17" y="-33" width="34" height="13" rx="2"/><text x="0" y="-23.6" text-anchor="middle" font-size="9">2028</text></g>` : ""}${ICON[id]}
+        <text x="${dx}" y="${dy}" text-anchor="${an}" font-size="12.5" class="t-strong">${name}</text><text x="${dx}" y="${dy + 12.5}" text-anchor="${an}" font-size="9.5">${sub}</text></g>`; };
+    const [fx, fy] = at(166);
+    const sector = (() => { const [a1, b1] = at(104, 130), [a2, b2] = at(148, 130); return `M${CX} ${CY} L${f1(a1)} ${f1(b1)} A130 130 0 0 1 ${f1(a2)} ${f1(b2)} Z`; })();
+    const pk = [...Array(12)].map((_, i) => `<g class="tf1-pk" style="animation-delay:${(-i * .75).toFixed(2)}s"><circle cx="${CX}" cy="${CY - R}" r="3.3"/></g>`).join("");
+    return `<div class="k-col tf1">
+      <svg viewBox="0 0 460 262" class="k-svg tf1-svg" id="tf1Svg" aria-label="The SpaceX loop. Five stations on one ring, running clockwise: Starmind satellites compute on sunlight, Starlink lasers carry the answers down, xAI sells the tokens, the money buys chips, and Starship launches them. Today the chip stage is bought, from Nvidia and TSMC, so the ring has a gap at Terafab. If Terafab works, the ring closes.">
+        <defs><mask id="tf1M" maskUnits="userSpaceOnUse" x="0" y="0" width="460" height="262"><rect width="460" height="262" fill="#fff"/><path d="${sector}" fill="#000"/></mask>
+          <marker id="tf1H" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="tf1-hd"/></marker>
+          <radialGradient id="tf1G" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#16314c"/><stop offset="1" stop-color="#0a1626"/></radialGradient></defs>
+        <text x="14" y="18" font-size="13" class="t-strong">One company, every stage but one</text>
+        <text x="14" y="33" font-size="10.5">SpaceX already owns the loop. The chip is the stage it still buys.</text>
+        <circle cx="${CX}" cy="${CY}" r="${R + 6}" class="tf1-halo"/>
+        <circle cx="${CX}" cy="${CY}" r="${R}" class="tf1-track"/><circle cx="${CX}" cy="${CY}" r="${R}" class="tf1-lane"/>
+        <path d="${arc(108, 144)}" class="tf1-gap"/><path d="${arc(108, 144)}" class="tf1-shut" pathLength="1"/>
+        ${[-54, 18, 90, 162, 234].map(a => { const [x, y] = at(a), t = a + 90; return `<path d="M-3.4 -4.4 L3 0 L-3.4 4.4" transform="translate(${f1(x)} ${f1(y)}) rotate(${t})" class="tf1-chev"/>`; }).join("")}
+        <g class="tf1-pks" id="tf1Pk" mask="url(#tf1M)">${pk}</g>
+        <circle cx="${CX}" cy="${CY}" r="${R - 16}" fill="url(#tf1G)" class="tf1-core"/>
+        <g class="tf1-read now"><text x="${CX}" y="${CY - 20}" text-anchor="middle" font-size="9.5">AI chips the world makes</text><text x="${CX}" y="${CY + 6}" text-anchor="middle" font-size="25" class="tf1-big c">~25 GW</text><text x="${CX}" y="${CY + 21}" text-anchor="middle" font-size="9.5">a year. Musk wants 1 TW.</text></g>
+        <g class="tf1-read next"><text x="${CX}" y="${CY - 20}" text-anchor="middle" font-size="9.5">Terafab’s goal</text><text x="${CX}" y="${CY + 6}" text-anchor="middle" font-size="25" class="tf1-big a">1 TW</text><text x="${CX}" y="${CY + 21}" text-anchor="middle" font-size="9.5">a year, ~80% for orbit</text></g>
+        <g class="tf1-rent"><rect x="6" y="196" width="84" height="40" rx="4" class="tf1-box"/><text x="48" y="212" text-anchor="middle" font-size="11" class="t-strong">Nvidia · TSMC</text><text x="48" y="226" text-anchor="middle" font-size="9.5">chips, bought</text>
+          <path d="M90 222 C116 228 ${f1(fx - 18)} ${f1(fy + 8)} ${f1(fx - 6)} ${f1(fy + 2)}" class="tf1-feed" marker-end="url(#tf1H)"/></g>
+        ${ST.map(station).join("")}
+      </svg>
+      <div class="k-seg"><button type="button" class="k-b" data-v="now">Today</button><button type="button" class="k-b" data-v="next">If Terafab works</button></div>
+      <p class="cf1-say" id="tf1Say"></p>
+    </div>${capLS("Schematic. Starmind: FCC authorization for up to 1 million satellites (Nov 25, 2026). Chip output and the terawatt goal: Musk at the Baron Investment Conference (Nov 2026). Split of output: Musk (Mar 2026). Starmind on Nvidia: Musk (Nov 2026). Timing: SpaceX’s Q3 2026 earnings call.", "FCC; Musk; SpaceX Q3 2026 call.")}`;
+  },
+  init: fr => {
+    const svg = fr.querySelector("#tf1Svg"), pk = fr.querySelector("#tf1Pk"), say = fr.querySelector("#tf1Say");
+    const SAY = {
+      now: "Today SpaceX buys its AI chips from Nvidia, made by TSMC, and waits in the same queue as everyone else. Even the first Starmind satellites, due in Q3 2027, run on Nvidia’s Vera Rubin.",
+      next: "If Terafab works, the ring closes: SpaceX’s own D3 chip, built to run hot in orbit, with no outside margin and no allocation queue between the fab and the satellite. Volume production is aimed at Q3 2028."
+    };
+    K.tabs(fr, ".k-b", v => {
+      svg.classList.toggle("next", v === "next");
+      if (v === "next") pk.removeAttribute("mask"); else pk.setAttribute("mask", "url(#tf1M)");
+      say.innerHTML = SAY[v];
+    }, "now");
+  } };
+
+// ---------------------------------------------------------- slide 2: the bull case and the skeptics, die by die
+// The site's own wafer: every lit die is one narrative. Teal for the bulls, coral for the skeptics. The probe reads one at a time.
+const N = [
+  ["own", "OWN", 1, -2, -3, "Own the bottleneck", "1 TW vs ~25 GW", "The world will make about 20 to 25 GW of AI chips this year. A terawatt is about 30 times next year’s output, more than any supplier can sell.", "Elon Musk, Baron Investment Conference (Nov 2026)"],
+  ["pay", "PAY", 1, 1, -3, "Compute pays for itself", "< 1 year", "SpaceX says new compute pays back in under a year at today’s prices, so every gigawatt it can’t bring online is revenue it doesn’t book.", "SpaceX’s CFO, Q3 2026 earnings call"],
+  ["spd", "×12", 1, -3, -1, "Iterate an order of magnitude faster", "1 year → 1 month", "Masks, wafers, memory and packaging under one roof could turn a chip cycle that takes a year into one that takes about a month.", "Musk on Terafab’s Austin research fab (Nov 2026)"],
+  ["rad", "D3", 1, 0, -1, "A chip nobody else makes", "built for orbit", "A space chip has to run hot, to save radiator mass, and shrug off radiation. No big foundry builds that at volume.", "Musk (Mar 2026); Jon Peddie Research"],
+  ["mem", "MEM", 1, 3, -1, "Memory is the next shortage", "700K wafers / mo", "Terafab reportedly told toolmakers it wants 700,000 memory wafers a month from 2032, about Samsung’s entire DRAM output, into a shortage that could run past 2028.", "Nikkei via TrendForce (Nov 2026); PC Gamer"],
+  ["sun", "SUN", 1, -1, 1, "Orbit is where the power is", "< $100 / kg", "Musk and ARK both see Starship taking launch below $100 a kilogram, where ARK says compute in orbit gets cheaper than on the ground. The FCC approved Starmind on Nov 25.", "Musk; ARK Invest; the FCC (Nov 2026)"],
+  ["usa", "USA", 1, 2, 1, "Supply beyond Asia", "US ≈ 10% of Asia", "Even if every announced US fab gets built, Musk says US capacity is optimistically 10% of Asia’s, and there is always some geopolitical risk in that region.", "Musk, Baron Investment Conference (Nov 2026)"],
+  ["fiv", "$5T", 0, -3, 2, "Trillions of dollars of fabs", "142–358 fabs", "Bernstein says a terawatt of chips a year would take 142 to 358 fabs and about $5 trillion. Morgan Stanley called even one fab Herculean.", "Bernstein, via Tom’s Hardware; Morgan Stanley"],
+  ["euv", "EUV", 0, -1, 3, "The tools are spoken for", "48 EUV in 2025", "ASML, the only maker of EUV machines, shipped 48 in 2025 and expects demand to outrun supply through 2028.", "Tom’s Hardware; Reuters via TrendForce"],
+  ["sec", "S-1", 0, 1, 3, "A framework, not a deal", "no terms yet", "SpaceX’s own S-1 calls Terafab a general framework: financial terms, IP and Tesla’s role are all still to be agreed.", "SpaceX S-1 (May 2026), via Electrek"],
+  ["gao", "GAO", 0, 3, 2, "Orbit is unproven", "this decade?", "The GAO says cooling at data-center scale is unproven in orbit, and the solar arrays would be bigger than any yet launched. Sam Altman calls the idea ridiculous for now.", "GAO (Apr 2026); Sam Altman"],
+  ["pwr", "PWR", 0, 0, 2, "Chips aren’t the limit today", "power > chips", "On SpaceX’s own Q3 call, Musk said the limit on AI is “more in power and cooling” than in chips. Terafab only pays if orbit fixes power first.", "Musk, SpaceX’s Q3 2026 earnings call"]
+];
+const WX = 130, WY = 124, P = 24;
+A["terafab-2a"] = { html: () => {
+    const dies = [];
+    for (let j = -4; j <= 4; j++) for (let i = -4; i <= 4; i++) {
+      if (i * i + j * j > 17) continue;
+      const n = N.find(d => d[3] === i && d[4] === j), x = WX + i * P - 10, y = WY + j * P - 10;
+      dies.push(n ? `<g class="tf2-d ${n[2] ? "b" : "s"}" data-k="${n[0]}" tabindex="0" role="button" aria-label="${n[5]}"><rect x="${x}" y="${y}" width="20" height="20" rx="2.4"/><text x="${x + 10}" y="${y + 13}" text-anchor="middle" font-size="7.4">${n[1]}</text></g>`
+        : `<rect x="${x}" y="${y}" width="20" height="20" rx="2.4" class="tf2-e"/>`);
+    }
+    return `<div class="k-col tf2">
+      <p class="tf2-hd"><b>Seven bull cases, five skeptics</b><span>Every lit die is one argument about Terafab. The probe reads them in turn; tap one to read it yourself.</span></p>
+      <div class="tf2-row">
+        <svg viewBox="0 0 260 250" class="k-svg tf2-svg" aria-label="A wafer of arguments about Terafab. Seven teal dies are the bull cases: own the bottleneck, compute pays for itself, iterate faster, a chip nobody else makes, memory is the next shortage, orbit is where the power is, and supply beyond Asia. Five coral dies are the skeptics: trillions of dollars of fabs, EUV tools are spoken for, a framework not a deal, orbit is unproven, and chips are not the limit today.">
+          <circle cx="${WX}" cy="${WY}" r="113" class="tf2-w"/><path d="M${WX - 9} ${WY + 113} a9 9 0 0 1 18 0" class="tf2-notch"/>
+          ${dies.join("")}
+          <g class="tf2-probe" id="tf2Pr"><circle r="15"/><path d="M-24 0 H-17 M17 0 H24 M0 -24 V-17 M0 17 V24"/></g>
+        </svg>
+        <div class="tf2-card" aria-live="polite"><p class="tf2-tag" id="tf2Tag"></p><p class="tf2-h" id="tf2H"></p><p class="tf2-big" id="tf2Big"></p><p class="tf2-t" id="tf2T"></p><p class="tf2-who" id="tf2Who"></p>
+          <p class="tf2-leg"><i class="b"></i>bull <b>7</b><i class="s"></i>skeptic <b>5</b></p></div>
+      </div>
+    </div>${capLS("Arguments as reported: Musk; SpaceX’s Q3 2026 call; Nikkei via TrendForce; Jon Peddie Research; ARK Invest; the FCC; Bernstein via Tom’s Hardware; Morgan Stanley; ASML; SpaceX’s S-1 via Electrek; GAO; Sam Altman.", "Musk; SpaceX; Bernstein; GAO; others.")}`;
+  },
+  init: fr => {
+    const pr = fr.querySelector("#tf2Pr"), ds = [...fr.querySelectorAll(".tf2-d")];
+    const $ = id => fr.querySelector("#" + id);
+    let k = 0, held = 0;
+    const show = i => {
+      k = i; const n = N[i], d = ds.find(x => x.dataset.k === n[0]);
+      ds.forEach(x => x.classList.toggle("on", x === d));
+      pr.style.transform = `translate(${WX + n[3] * P}px,${WY + n[4] * P}px)`;
+      pr.classList.toggle("s", !n[2]);
+      const tag = $("tf2Tag"); tag.textContent = n[2] ? "Bull case" : "Skeptic"; tag.className = "tf2-tag " + (n[2] ? "b" : "s");
+      $("tf2H").textContent = n[5]; $("tf2Big").textContent = n[6]; $("tf2Big").className = "tf2-big " + (n[2] ? "b" : "s");
+      $("tf2T").textContent = n[7]; $("tf2Who").textContent = n[8];
+    };
+    ds.forEach(d => { const go = () => { held = Date.now(); show(N.findIndex(n => n[0] === d.dataset.k)); };
+      d.addEventListener("click", go); d.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }); });
+    show(0);
+    K.onEnter(fr, () => { if (Date.now() - held > 9000) show(0); });
+    K.loop(fr, () => { if (Date.now() - held > 9000) show((k + 1) % N.length); }, 3600);
+  } };
+
+// ---------------------------------------------------------- slide 3: the go / no-go poll
+// Mission control polls every station before a launch. Polled today, Terafab's ground systems are go; the chip itself is not.
+const POLL = [
+  ["Site", "Gibbons Creek, Grimes County: $16.8B first phase, built by 2028", "go", "GO"],
+  ["Payload", "Starmind: FCC approved up to 1 million AI satellites on Nov 25", "go", "GO"],
+  ["Demand", "SpaceX says new compute pays back in under a year", "go", "GO"],
+  ["Process", "Intel signed on in April; Musk says Terafab will run the fab itself", "hold", "HOLD"],
+  ["Lithography", "ASML is speeding deliveries, but EUV demand runs ahead of supply through 2028", "hold", "HOLD"],
+  ["Funding", "S-1: a “general framework”; how SpaceX and Tesla split the cost is still open", "hold", "HOLD"],
+  ["Merger", "Special committees at both boards; no terms yet. My bet: Q1 2027", "hold", "HOLD"],
+  ["Test chip", "Austin research fab: an SRAM chip, to prove it can make a chip at all", "clock", "MID ’27"],
+  ["Orbit", "First Starmind computers, co-designed with Nvidia, start launching", "clock", "Q3 ’27"],
+  ["Volume", "Gibbons Creek in volume production: Q3, or Q4, Musk’s aspiration", "clock", "Q3 ’28"]
+];
+A["terafab-3a"] = { html: () => `<div class="k-col tf3">
+      <div class="tf3-con" id="tf3Con" role="img" aria-label="Terafab go / no-go poll. Go: the Gibbons Creek site, the Starmind approval, and demand. Hold: the process, EUV lithography, funding, and the Tesla merger. Still on the clock: the first test chip in mid-2027, the first Starmind computers in Q3 2027, and volume production in Q3 2028. Overall: hold.">
+        <div class="tf3-top"><span>Terafab · Go / No-go poll</span><span class="tf3-t">T– <b id="tf3T">19</b> months to volume</span></div>
+        <ol class="tf3-rows">${POLL.map(([k, v, c, s], i) => `<li style="--d:${(.15 + i * .26).toFixed(2)}s"><span class="tf3-k">${k}</span><span class="tf3-v">${v}</span><span class="tf3-s ${c}">${s}</span></li>`).join("")}</ol>
+        <p class="tf3-res" style="--d:${(.3 + POLL.length * .26).toFixed(2)}s">Poll result: <b>HOLD</b><span>3 go · 4 hold · 3 still on the clock</span></p>
+      </div>
+      <div class="tf3-ctl"><button type="button" class="k-b" id="tf3Go">Poll again</button><p class="cf1-say">The ground systems are go. The chip itself is still a promise, and the first hard proof is a working test chip from Austin around mid-2027.</p></div>
+    </div>${capLS("Status as of Nov 25, 2026, my calls. Site: Texas governor’s office; Manufacturing Dive. Starmind: the FCC. Payback, test chip and volume: SpaceX’s Q3 2026 earnings call. Starmind launch: Musk at the Baron Investment Conference (Nov 2026). Process: Reuters, via The Standard. Lithography: SpaceX’s Q3 call; Reuters via TrendForce. Funding: SpaceX’s S-1. Merger: SpaceX’s Q3 2026 call.", "Status as of Nov 25, 2026. SpaceX; FCC; Texas.")}`,
+  init: fr => {
+    const con = fr.querySelector("#tf3Con"), t = fr.querySelector("#tf3T");
+    const months = Math.max(0, Math.round((Date.UTC(2028, 6, 1) - Date.now()) / (30.44 * 864e5)));
+    t.textContent = months;
+    const run = () => { con.classList.remove("run"); void con.offsetWidth; con.classList.add("run"); };
+    K.onEnter(fr, run);
+    fr.querySelector("#tf3Go").addEventListener("click", run);
+  } };
+})();
+
 // Swap the chosen visual into each slide. The original frame stays in the page, hidden, so its own wiring still finds what it expects.
 (function () {
-  const AX = window.AX, PICK = {"aging":{"1":"aging-1a","2":"aging-2a","3":"aging-3a"},"health":{"1":"health-1a","2":"health-2a","3":"health-3a"},"bias":{"1":"bias-1a","2":"bias-2a","3":"bias-3a"},"asic":{"1":"asic-1a","2":"asic-2a","3":"asic-3a"},"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
+  const AX = window.AX, PICK = {"terafab":{"1":"terafab-1a","2":"terafab-2a","3":"terafab-3a"},"aging":{"1":"aging-1a","2":"aging-2a","3":"aging-3a"},"health":{"1":"health-1a","2":"health-2a","3":"health-3a"},"bias":{"1":"bias-1a","2":"bias-2a","3":"bias-3a"},"asic":{"1":"asic-1a","2":"asic-2a","3":"asic-3a"},"ledger":{"1":"ledger-1a","2":"ledger-2a","3":"ledger-3a"},"robots":{"1":"robots-1a","2":"robots-2a","3":"robots-3a"},"physical":{"1":"physical-1a","2":"physical-2a","3":"physical-3a"},"light":{"1":"light-1a","2":"light-2a","3":"light-3a"},"cuda":{"1":"cuda-1c","2":"cuda-2a","3":"cuda-3b"},"circular":{"1":"circular-1a","2":"circular-2b","3":"circular-3c"},"paycheck":{"1":"paycheck-1a","2":"paycheck-2a","3":"paycheck-3a"},"contracts":{"1":"contracts-1a","2":"contracts-2a","3":"contracts-3a"},"automate":{"1":"automate-1a","2":"automate-2a","3":"automate-3a"},"agent":{"1":"agent-1a","2":"agent-2a","3":"agent-3a"},"weights":{"2":"weights-2a","3":"weights-3a"},"ooms":{"1":"ooms-1a","2":"ooms-2b","3":"ooms-3b"},"molecules":{"1":"molecules-1a"},"bloom":{"1":"bloom-1a","2":"bloom-2a","3":"bloom-3a"},"fleet":{"1":"fleet-1a","2":"fleet-2a"},"gpulife":{"1":"gpulife-1a","2":"gpulife-2a","3":"gpulife-3a"},"saas":{"1":"saas-1a","2":"saas-2a","3":"saas-3a"},"neocloud":{"2":"neocloud-2a","3":"neocloud-3a"},"builders":{"1":"builders-1a"},"moat":{"1":"moat-1a","2":"moat-2b","3":"moat-3a"},"memory":{"1":"memory-1a","2":"memory-2a","3":"memory-3a"},"heat":{"1":"heat-1a","2":"heat-2a","3":"heat-3a"},"quantum":{"1":"quantum-1a","2":"quantum-2a"},"tokens":{"1":"tokens-1a","3":"tokens-3a"},"factory":{"1":"factory-1a","2":"factory-2a"},"openclaw":{"2":"openclaw-2a","3":"openclaw-3a"},"race":{"2":"race-2b"}};
   Object.keys(PICK).forEach(t => {
     const k = byId[t] && byId[t].viz; if (!k || !VIZ[k]) return;
     const base = VIZ[k], bi = VIZ_INIT[k], p = PICK[t];

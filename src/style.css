@@ -1587,6 +1587,11 @@ html.paused .gng-list li{animation:none!important}
 /* start mid-story, with the robot built and booted, so a still frame (and the share card) shows the whole scene */
 .echo.echo-assemble *{animation-delay:-3.04s}
 
+/* Fab tech: a gentle bob in the bunny suit */
+.echo-gown .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
+.echo-gown .echo-fin-l,.echo-gown .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
+.echo-gown .echo-fin-r{animation:echo-sway-r 2.6s ease-in-out infinite}
+
 /* with Reduce motion on, the flips, pounces and leaps hold still; the props keep their gentle loops */
 @media (prefers-reduced-motion:reduce){
   .echo-bitflip .echo-all{animation:none;transform:translate(0,-10px)}
