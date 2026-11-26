@@ -1386,31 +1386,6 @@ html.paused .gng-list li{animation:none!important}
 .xpd-coin{opacity:0;animation:xpd-coin 4.4s ease-out infinite}
 @keyframes xpd-coin{0%,50%{opacity:0;transform:translateY(8px)}56%{opacity:1;transform:translateY(0)}70%{opacity:1;transform:translateY(-12px)}78%,100%{opacity:0;transform:translateY(-16px)}}
 
-/* Market maker: a bet lands on YES, the board tips, Echo shuffles over to level it; a bet lands on NO, and back it goes */
-.echo-balance .echo-all{animation:xmm-body 4.8s ease-in-out infinite}
-@keyframes xmm-body{0%,10%{transform:translate(0,-13px) rotate(0)}15%{transform:translate(0,-13px) rotate(6deg)}21%{transform:translate(3px,-13px) rotate(2deg)}27%{transform:translate(6px,-13px) rotate(-2deg)}34%,50%{transform:translate(8px,-13px) rotate(0)}55%{transform:translate(8px,-13px) rotate(-6deg)}62%{transform:translate(5px,-13px) rotate(-2deg)}69%{transform:translate(2px,-13px) rotate(2deg)}76%,100%{transform:translate(0,-13px) rotate(0)}}
-.echo-balance .echo-fin-l{animation:xmm-l 4.8s ease-in-out infinite}
-.echo-balance .echo-fin-r{animation:xmm-r 4.8s ease-in-out infinite}
-@keyframes xmm-l{0%,10%,34%,50%,76%,100%{transform:rotate(52deg)}15%{transform:rotate(38deg)}21%{transform:rotate(62deg)}27%{transform:rotate(46deg)}55%{transform:rotate(64deg)}62%{transform:rotate(42deg)}69%{transform:rotate(58deg)}}
-@keyframes xmm-r{0%,10%,34%,50%,76%,100%{transform:rotate(-52deg)}15%{transform:rotate(-64deg)}21%{transform:rotate(-42deg)}27%{transform:rotate(-58deg)}55%{transform:rotate(-38deg)}62%{transform:rotate(-62deg)}69%{transform:rotate(-46deg)}}
-.xmm-plank{transform-origin:50px 99px;animation:xmm-plank 4.8s ease-in-out infinite}
-@keyframes xmm-plank{0%,10%{transform:rotate(0)}16%{transform:rotate(-10deg)}22%{transform:rotate(-7deg)}30%{transform:rotate(-2deg)}34%,50%{transform:rotate(0)}56%{transform:rotate(10deg)}64%{transform:rotate(6deg)}72%{transform:rotate(2deg)}76%,100%{transform:rotate(0)}}
-.xmm-c0,.xmm-c1{opacity:0;animation:xmm-yes 4.8s ease-in infinite}
-.xmm-c1{animation-delay:.12s}
-.xmm-c2,.xmm-c3{opacity:0;animation:xmm-no 4.8s ease-in infinite}
-.xmm-c3{animation-delay:.12s}
-@keyframes xmm-yes{0%,6%{opacity:0;transform:translateY(-44px)}8%{opacity:1}12%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
-@keyframes xmm-no{0%,46%{opacity:0;transform:translateY(-44px)}48%{opacity:1}52%{opacity:1;transform:translateY(0)}90%{opacity:1;transform:translateY(0)}95%,100%{opacity:0;transform:translateY(0)}}
-.xmm-p{opacity:0;animation:xmm-p0 4.8s steps(1,end) infinite}
-.xmm-p1{animation-name:xmm-p1}.xmm-p2{animation-name:xmm-p2}
-@keyframes xmm-p0{0%{opacity:1}14%{opacity:0}94%,100%{opacity:1}}
-@keyframes xmm-p1{0%{opacity:0}14%{opacity:1}53%,100%{opacity:0}}
-@keyframes xmm-p2{0%{opacity:0}53%{opacity:1}94%,100%{opacity:0}}
-.xmm-up{opacity:0;animation:xmm-up 4.8s steps(1,end) infinite}
-.xmm-dn{opacity:0;animation:xmm-dn 4.8s steps(1,end) infinite}
-@keyframes xmm-up{0%{opacity:0}14%{opacity:1}34%,100%{opacity:0}}
-@keyframes xmm-dn{0%{opacity:0}53%{opacity:1}72%,100%{opacity:0}}
-
 /* Laser chaser: stalks the dot, wiggles, pounces, misses as it zips up the wall, and looks up, baffled */
 .echo-pounce .echo-all{animation:xlc-body 4.8s ease-in-out infinite}
 @keyframes xlc-body{0%{transform:translate(0,0) scale(1.03,.93) rotate(4deg)}14%{transform:translate(-10px,0) scale(1.03,.93) rotate(-6deg)}22%{transform:translate(-4px,0) scale(1.03,.93) rotate(-2deg)}30%{transform:translate(8px,0) scale(1.05,.9) rotate(5deg)}32%,36%{transform:translate(8px,0) scale(1.05,.9) rotate(9deg)}34%,38%{transform:translate(8px,0) scale(1.05,.9) rotate(1deg)}41%{transform:translate(6px,2px) scale(1.08,.85) rotate(6deg)}45%{transform:translate(20px,-28px) scale(.94,1.08) rotate(22deg)}49%{transform:translate(22px,0) scale(1.1,.86) rotate(10deg)}54%{transform:translate(22px,0) rotate(0)}58%,70%{transform:translate(20px,0) rotate(-10deg)}76%{transform:translate(16px,0) rotate(-14deg)}90%{transform:translate(4px,0) scale(1.03,.93) rotate(2deg)}100%{transform:translate(0,0) scale(1.03,.93) rotate(4deg)}}
@@ -1457,25 +1432,6 @@ html.paused .gng-list li{animation:none!important}
 .xlr-look{opacity:0;animation:xlr-look 5.2s ease-out infinite}
 @keyframes xlr-look{0%,58%{opacity:0;transform:translateY(4px)}62%,78%{opacity:1;transform:translateY(0)}84%,100%{opacity:0}}
 
-/* Mech pilot: an EV with legs, striding in place; the headlights pulse and the battery ripples */
-.echo-mech .echo-all{animation:xmp-ride 1.6s ease-in-out infinite}
-@keyframes xmp-ride{0%,50%,100%{transform:translate(0,-33px) scale(.66)}25%,75%{transform:translate(0,-36px) scale(.66)}}
-.xmp-rig{animation:xmp-bob 1.6s ease-in-out infinite}
-@keyframes xmp-bob{0%,50%,100%{transform:translateY(0)}25%,75%{transform:translateY(-3px)}}
-.xmp-thigh-l{transform-origin:30px 76px;animation:xmp-thigh 1.6s ease-in-out infinite}
-.xmp-thigh-r{transform-origin:70px 76px;animation:xmp-thigh 1.6s ease-in-out infinite -.8s}
-.xmp-shin-l{transform-origin:30px 94px;animation:xmp-shin 1.6s ease-in-out infinite}
-.xmp-shin-r{transform-origin:70px 94px;animation:xmp-shin 1.6s ease-in-out infinite -.8s}
-@keyframes xmp-thigh{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
-@keyframes xmp-shin{0%,100%{transform:rotate(-2deg)}25%{transform:rotate(-24deg)}50%{transform:rotate(4deg)}75%{transform:rotate(0)}}
-.xmp-shadow{transform-origin:50px 114.6px;animation:xmp-shadow .8s ease-in-out infinite}
-@keyframes xmp-shadow{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.9)}}
-.xmp-beam{animation:k-pulse 1.6s ease-in-out infinite}
-.xmp-bat{animation:xmp-bat 1s steps(1,end) infinite}
-@keyframes xmp-bat{0%,50%{opacity:1}51%,100%{opacity:.35}}
-.echo-mech .echo-fin-r{animation:xmp-wave 4.8s ease-in-out infinite}
-@keyframes xmp-wave{0%,60%,100%{transform:rotate(2deg)}66%,82%{transform:rotate(-140deg)}70%,78%{transform:rotate(-118deg)}74%{transform:rotate(-140deg)}}
-
 /* Mocap: in the tracking suit, shakes out a towel, folds it twice and stacks it while the camera rolls and the hours climb */
 .echo-mocap .echo-all{animation:xmo-body 4s ease-in-out infinite}
 @keyframes xmo-body{0%,22%,100%{transform:translateY(0)}8%,16%{transform:translateY(-2.4px)}12%{transform:translateY(1px)}64%{transform:translateY(0) rotate(4deg)}72%{transform:translateY(0) rotate(0)}}
@@ -1490,17 +1446,6 @@ html.paused .gng-list li{animation:none!important}
 .xmo-h{opacity:0;animation:xmo-h 4s steps(1,end) infinite}
 .xmo-h1{animation-delay:1s}.xmo-h2{animation-delay:2s}.xmo-h3{animation-delay:3s}
 @keyframes xmo-h{0%{opacity:1}25%,100%{opacity:0}}
-
-/* Vault keeper: the wheel spins, the door swings open on Echo hugging the ledger, then it swings shut and locks */
-.xvk-door{transform-origin:0 57px;animation:xvk-door 5s ease-in-out infinite}
-@keyframes xvk-door{0%,18%{transform:scaleX(1)}30%,72%{transform:scaleX(.1) skewY(-6deg)}84%,100%{transform:scaleX(1)}}
-.xvk-wheel{transform-origin:50px 74px;animation:xvk-wheel 5s ease-in-out infinite}
-@keyframes xvk-wheel{0%{transform:rotate(0)}16%,86%{transform:rotate(-220deg)}100%{transform:rotate(0)}}
-.echo-vault .echo-all{animation:xvk-body 5s ease-in-out infinite}
-@keyframes xvk-body{0%,26%,80%,100%{transform:translate(0,0)}34%{transform:translate(2px,-6px) rotate(3deg)}40%,64%{transform:translate(3px,0) rotate(2deg)}46%,58%{transform:translate(3px,-4px) rotate(2deg)}52%{transform:translate(3px,0) rotate(2deg)}}
-.echo-vault .echo-fin-r{animation:xvk-r 5s ease-in-out infinite}
-@keyframes xvk-r{0%,32%,72%,100%{transform:rotate(2deg)}38%,66%{transform:rotate(-120deg)}44%,56%{transform:rotate(-100deg)}50%,62%{transform:rotate(-126deg)}}
-.xvk-clasp{animation:xmo-blink 1.4s steps(1,end) infinite}
 
 /* Stamper: pull the lever, the ASIC press slams down, a chip appears, and the belt carries one more off: mass production */
 .echo-stamp .echo-all{animation:xst-body 2.4s ease-in-out infinite}
@@ -1523,20 +1468,6 @@ html.paused .gng-list li{animation:none!important}
 .xst-belt{animation:xst-belt 2.4s ease-in-out infinite}
 @keyframes xst-belt{0%,46%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:32}}
 
-/* Driver: the "1st prompt" bubble swings on its rod, and the kart, the wheel and Echo all follow it */
-.echo-kart .echo-all{animation:xdr-ride 3.2s ease-in-out infinite}
-@keyframes xdr-ride{0%,50%,100%{transform:translate(0,-16px) scale(.72)}25%{transform:translate(-5px,-16px) rotate(-6deg) scale(.72)}75%{transform:translate(5px,-16px) rotate(6deg) scale(.72)}}
-.echo-kart .echo-fin-l{transform:rotate(-40deg)}
-.echo-kart .echo-fin-r{transform:rotate(40deg)}
-.xdr-kart{transform-origin:50px 104px;animation:xdr-sway 3.2s ease-in-out infinite}
-@keyframes xdr-sway{0%,50%,100%{transform:rotate(0)}25%{transform:translateX(-4px) rotate(-4deg)}75%{transform:translateX(4px) rotate(4deg)}}
-.xdr-wheel{transform-origin:50px 74px;animation:xdr-steer 3.2s ease-in-out infinite}
-@keyframes xdr-steer{0%,50%,100%{transform:rotate(0)}25%{transform:rotate(-40deg)}75%{transform:rotate(40deg)}}
-.xdr-bait{transform-origin:70px -16px;animation:xdr-bait 3.2s ease-in-out infinite -.25s}
-@keyframes xdr-bait{0%,50%,100%{transform:rotate(0)}25%{transform:rotate(26deg)}75%{transform:rotate(-26deg)}}
-.xdr-dash{opacity:0;transform-origin:50px 34px;animation:xdr-dash 1.2s linear infinite}
-@keyframes xdr-dash{0%{opacity:0;transform:translateY(0) scale(.4)}20%{opacity:.9}100%{opacity:.2;transform:translateY(74px) scale(1.7)}}
-
 /* Hurdler: clears the low Phase I hurdle in stride, meets Phase II, goes over backward, and sits there seeing stars */
 .echo-hurdle .echo-all{animation:xhu-body 6s ease-in-out infinite}
 @keyframes xhu-body{0%,16%{transform:translate(-6px,0) scale(.84) rotate(6deg)}19%{transform:translate(-6px,2px) scale(.88,.8) rotate(6deg)}25%{transform:translate(-6px,-30px) scale(.84) rotate(2deg)}31%{transform:translate(-6px,0) scale(.88,.8) rotate(6deg)}34%,50%{transform:translate(-6px,0) scale(.84) rotate(6deg)}53%{transform:translate(-6px,2px) scale(.88,.8) rotate(6deg)}58%{transform:translate(-6px,-20px) scale(.84) rotate(-4deg)}61%{transform:translate(-14px,-16px) scale(.84) rotate(-46deg)}66%{transform:translate(-22px,6px) scale(.84) rotate(-90deg)}72%{transform:translate(-18px,4px) scale(.88,.78) rotate(-12deg)}86%{transform:translate(-18px,4px) scale(.88,.78) rotate(-8deg)}94%{transform:translate(-8px,0) scale(.84) rotate(4deg)}100%{transform:translate(-6px,0) scale(.84) rotate(6deg)}}
@@ -1558,6 +1489,104 @@ html.paused .gng-list li{animation:none!important}
 @keyframes xhu-lane{0%{stroke-dashoffset:0}58%{stroke-dashoffset:116}61%,90%{stroke-dashoffset:120}100%{stroke-dashoffset:144}}
 .xhu-shadow{transform-origin:44px 110.6px;animation:xhu-shadow 6s ease-in-out infinite}
 @keyframes xhu-shadow{0%,16%,31%,50%,100%{transform:scale(1)}25%{transform:scale(.55)}58%{transform:scale(.7)}66%,86%{transform:translateX(-14px) scale(1.15)}94%{transform:translateX(-2px)}}
+/* Market maker, surfing the odds: rides the tip of the live YES price as it climbs and drops */
+.xsf-line{animation:xsf-line 4.4s linear infinite}
+@keyframes xsf-line{from{transform:translateX(0)}to{transform:translateX(-132px)}}
+.echo-surf .echo-all{transform:translate(0,-26px) scale(.56);animation:xsf-ride 4.4s linear infinite}
+@keyframes xsf-ride{0%{transform:translate(0,-27.95px) rotate(-19.64deg) scale(0.56)}9.92%{transform:translate(0,-38.66px) rotate(-19.64deg) scale(0.56)}12.12%{transform:translate(0,-41.04px) rotate(-4.83deg) scale(0.56)}14.32%{transform:translate(0,-39.98px) rotate(9.99deg) scale(0.56)}26.59%{transform:translate(0,-34.10px) rotate(9.99deg) scale(0.56)}28.79%{transform:translate(0,-33.04px) rotate(12.15deg) scale(0.56)}30.99%{transform:translate(0,-31.46px) rotate(14.31deg) scale(0.56)}43.26%{transform:translate(0,-22.62px) rotate(14.30deg) scale(0.56)}45.45%{transform:translate(0,-21.04px) rotate(9.73deg) scale(0.56)}47.66%{transform:translate(0,-20.51px) rotate(5.15deg) scale(0.56)}59.92%{transform:translate(0,-17.57px) rotate(5.15deg) scale(0.56)}62.12%{transform:translate(0,-17.04px) rotate(-5.54deg) scale(0.56)}64.32%{transform:translate(0,-18.89px) rotate(-16.23deg) scale(0.56)}76.59%{transform:translate(0,-29.19px) rotate(-16.23deg) scale(0.56)}78.79%{transform:translate(0,-31.04px) rotate(-3.12deg) scale(0.56)}80.99%{transform:translate(0,-29.98px) rotate(9.99deg) scale(0.56)}93.25%{transform:translate(0,-24.10px) rotate(9.99deg) scale(0.56)}95.45%{transform:translate(0,-23.04px) rotate(-4.83deg) scale(0.56)}97.66%{transform:translate(0,-25.42px) rotate(-19.64deg) scale(0.56)}100%{transform:translate(0,-27.95px) rotate(-19.64deg) scale(0.56)}}
+.echo-surf .echo-fin-l{animation:xsf-l 2.2s ease-in-out infinite}
+.echo-surf .echo-fin-r{animation:xsf-r 2.2s ease-in-out infinite}
+@keyframes xsf-l{0%,100%{transform:rotate(52deg)}50%{transform:rotate(40deg)}}
+@keyframes xsf-r{0%,100%{transform:rotate(-44deg)}50%{transform:rotate(-56deg)}}
+.xsf-p{opacity:0;animation:xsf-p0 4.4s steps(1,end) infinite}.xsf-p1{animation-name:xsf-p1}.xsf-p2{animation-name:xsf-p2}.xsf-p3{animation-name:xsf-p3}.xsf-p4{animation-name:xsf-p4}.xsf-p5{animation-name:xsf-p5}.xsf-p6{animation-name:xsf-p6}
+@keyframes xsf-p0{0%{opacity:1}12.12%,100%{opacity:0}}
+@keyframes xsf-p1{0%{opacity:0}12.12%{opacity:1}28.79%,100%{opacity:0}}
+@keyframes xsf-p2{0%{opacity:0}28.79%{opacity:1}45.45%,100%{opacity:0}}
+@keyframes xsf-p3{0%{opacity:0}45.45%{opacity:1}62.12%,100%{opacity:0}}
+@keyframes xsf-p4{0%{opacity:0}62.12%{opacity:1}78.79%,100%{opacity:0}}
+@keyframes xsf-p5{0%{opacity:0}78.79%{opacity:1}95.45%,100%{opacity:0}}
+@keyframes xsf-p6{0%{opacity:0}95.45%,100%{opacity:1}}
+.xsf-p0{opacity:1}.xsf-dn{opacity:0}.xsf-up{animation:xsf-up 4.4s steps(1,end) infinite}.xsf-dn{animation:xsf-dn 4.4s steps(1,end) infinite}
+@keyframes xsf-up{0%{opacity:1}12.12%{opacity:0}62.12%{opacity:1}78.79%{opacity:0}95.45%{opacity:1}100%{opacity:1}}
+@keyframes xsf-dn{0%{opacity:0}12.12%{opacity:1}62.12%{opacity:0}78.79%{opacity:1}95.45%{opacity:0}100%{opacity:0}}
+
+/* Driver, by remote: the "1st prompt" is the controller, and the little car laps Echo wherever it's steered */
+.echo-rc .echo-all{transform:translate(0,-6px) scale(.8);animation:xrc-body 2.8s ease-in-out infinite}
+@keyframes xrc-body{0%,50%,100%{transform:translate(0,-6px) scale(.8)}25%{transform:translate(0,-6px) rotate(-4deg) scale(.8)}75%{transform:translate(0,-6px) rotate(4deg) scale(.8)}}
+.echo-rc .echo-fin-l,.echo-rc .echo-hand-l{transform:rotate(-24deg)}.echo-rc .echo-fin-r,.echo-rc .echo-hand-r{transform:rotate(24deg)}
+.xrc-x{transform:translateX(50px);animation:xrc-x 2.8s infinite}
+@keyframes xrc-x{0%{transform:translateX(50px);animation-timing-function:cubic-bezier(.33,1,.68,1)}25%{transform:translateX(-2px);animation-timing-function:cubic-bezier(.32,0,.67,0)}50%{transform:translateX(50px);animation-timing-function:cubic-bezier(.33,1,.68,1)}75%{transform:translateX(102px);animation-timing-function:cubic-bezier(.32,0,.67,0)}100%{transform:translateX(50px)}}
+.xrc-z{transform:translateY(106px) scale(1.5);animation:xrc-z 2.8s infinite}
+@keyframes xrc-z{0%{transform:translateY(106px) scale(1.5);animation-timing-function:cubic-bezier(.32,0,.67,0)}25%{transform:translateY(98px) scale(1.25);animation-timing-function:cubic-bezier(.33,1,.68,1)}50%{transform:translateY(90px) scale(1);animation-timing-function:cubic-bezier(.32,0,.67,0)}75%{transform:translateY(98px) scale(1.25);animation-timing-function:cubic-bezier(.33,1,.68,1)}100%{transform:translateY(106px) scale(1.5)}}
+.xrc-dir{animation:xrc-dir 2.8s linear infinite}
+@keyframes xrc-dir{0%,21%{transform:scaleX(1)}29%,71%{transform:scaleX(-1)}79%,100%{transform:scaleX(1)}}
+.xrc-back{opacity:0}.xrc-front{animation:xrc-front 2.8s steps(1,end) infinite}.xrc-back{animation:xrc-back 2.8s steps(1,end) infinite}
+@keyframes xrc-front{0%{opacity:1}25%{opacity:0}75%,100%{opacity:1}}
+@keyframes xrc-back{0%{opacity:0}25%{opacity:1}75%,100%{opacity:0}}
+.xrc-st-r{transform-origin:59px 68px;animation:xrc-steer 2.8s ease-in-out infinite}
+@keyframes xrc-steer{0%,100%{transform:rotate(-24deg)}25%,75%{transform:rotate(0)}50%{transform:rotate(24deg)}}
+.xrc-st-l{transform-origin:41px 68px;animation:xrc-throttle .7s ease-in-out infinite}
+@keyframes xrc-throttle{0%,100%{transform:rotate(0)}50%{transform:rotate(-14deg)}}
+
+/* Bookkeeper: dials the code, opens the ledger on a glow, agents' slips fly in as new rows, then it shuts and locks */
+.echo-book .echo-all{animation:xbk-body 6s ease-in-out infinite}
+@keyframes xbk-body{0%,12%,58%,72%,100%{transform:none}4%,8%{transform:rotate(-3deg)}34%,46%{transform:translateY(-2px)}40%,52%{transform:translateY(1px)}76%{transform:scale(1.03,.97)}80%{transform:scale(.98,1.02)}84%{transform:none}90%{transform:rotate(2deg)}96%{transform:rotate(-1deg)}}
+.echo-book .echo-fin-l{animation:xbk-l 6s ease-in-out infinite}.echo-book .echo-fin-r{animation:xbk-r 6s ease-in-out infinite}
+@keyframes xbk-l{0%,14%,62%,72%,86%,100%{transform:rotate(-14deg)}18%,58%{transform:rotate(8deg)}76%,82%{transform:rotate(-22deg)}}
+@keyframes xbk-r{0%,72%,86%,100%{transform:rotate(14deg)}2%,6%,10%{transform:rotate(24deg)}4%,8%{transform:rotate(20deg)}76%,82%{transform:rotate(22deg)}}
+.xbk-dial{transform-origin:68px 73.5px;animation:xbk-dial 6s ease-in-out infinite}
+@keyframes xbk-dial{0%{transform:rotate(0)}4%{transform:rotate(200deg)}7%{transform:rotate(60deg)}10%,68%{transform:rotate(150deg)}74%,100%{transform:rotate(0)}}
+.xbk-strap{transform-origin:81px 73.5px;animation:xbk-strap 6s ease-in-out infinite}
+@keyframes xbk-strap{0%,11%,72%,100%{transform:rotate(0)}15%,66%{transform:rotate(170deg)}}
+.xbk-cover{transform-origin:21px 72px;animation:xbk-cover 6s ease-in-out infinite}
+@keyframes xbk-cover{0%,15%,68%,100%{transform:scaleX(1)}25%,58%{transform:scaleX(-.4)}}
+.xbk-inside{opacity:0;animation:xbk-inside 6s steps(1,end) infinite}
+@keyframes xbk-inside{0%{opacity:0}20%{opacity:1}63%,100%{opacity:0}}
+.xbk-glow{opacity:0;animation:xbk-glow 6s ease-in-out infinite}
+@keyframes xbk-glow{0%,18%,64%,100%{opacity:0}28%,56%{opacity:1}}
+.xbk-fly{opacity:0;animation:xbk-fly 6s ease-out infinite}.xbk-fly1{animation-delay:.25s}.xbk-fly2{animation-delay:.5s}.xbk-fly3{animation-delay:.75s}
+@keyframes xbk-fly{0%,22%{opacity:0;transform:translateY(0)}26%{opacity:1}40%,100%{opacity:0;transform:translateY(-58px)}}
+.xbk-slip{opacity:0;animation:xbk-s0 6s ease-in infinite}.xbk-s1{animation-name:xbk-s1}
+@keyframes xbk-s0{0%,28%{opacity:0;transform:translate(126px,8px) rotate(30deg)}30%{opacity:1}37%{opacity:1;transform:translate(64px,62px) rotate(-8deg) scale(.8)}40%,100%{opacity:0;transform:translate(64px,62px) scale(.5)}}
+@keyframes xbk-s1{0%,40%{opacity:0;transform:translate(126px,-4px) rotate(-20deg)}42%{opacity:1}49%{opacity:1;transform:translate(64px,70px) rotate(6deg) scale(.8)}52%,100%{opacity:0;transform:translate(64px,70px) scale(.5)}}
+.xbk-row{opacity:0;animation:xbk-r0 6s linear infinite}.xbk-row1{animation-name:xbk-r1}.xbk-row2{animation-name:xbk-r2}
+@keyframes xbk-r0{0%,26%{opacity:0}30%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes xbk-r1{0%,37%{opacity:0}39%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes xbk-r2{0%,49%{opacity:0}51%,92%{opacity:1}96%,100%{opacity:0}}
+.xbk-row path{stroke-dashoffset:1;animation:xbk-w0 6s linear infinite}.xbk-row1 path{animation-name:xbk-w1}.xbk-row2 path{animation-name:xbk-w2}
+@keyframes xbk-w0{0%,28%{stroke-dashoffset:1}33%,100%{stroke-dashoffset:0}}
+@keyframes xbk-w1{0%,39%{stroke-dashoffset:1}44%,100%{stroke-dashoffset:0}}
+@keyframes xbk-w2{0%,51%{stroke-dashoffset:1}56%,100%{stroke-dashoffset:0}}
+.xbk-fx{opacity:0;animation:xbk-fx 6s ease-out infinite}
+@keyframes xbk-fx{0%,73%{opacity:0}76%,84%{opacity:1}90%,100%{opacity:0}}
+
+/* Builder: bolts a humanoid together from EV parts in seconds; it boots, and then just stands there thinking */
+.echo-assemble .echo-all{transform:translate(-30px,2px) scale(.56);animation:xas-body 6.4s ease-in-out infinite}
+@keyframes xas-body{0%,44%,100%{transform:translate(-30px,2px) scale(.56)}50%,62%{transform:translate(-30px,2px) rotate(4deg) scale(.56)}66%,76%{transform:translate(-30px,2px) rotate(-3deg) scale(.56)}}
+.echo-assemble .echo-fin-r,.echo-assemble .echo-hand-r{animation:xas-wrench 6.4s ease-in-out infinite}
+@keyframes xas-wrench{0%{transform:rotate(6deg)}5%{transform:rotate(6deg)}7.4%{transform:rotate(-115deg)}9%{transform:rotate(-38deg)}11.6%{transform:rotate(6deg)}15%{transform:rotate(6deg)}17.4%{transform:rotate(-115deg)}19%{transform:rotate(-38deg)}21.6%{transform:rotate(6deg)}25%{transform:rotate(6deg)}27.4%{transform:rotate(-115deg)}29%{transform:rotate(-38deg)}31.6%{transform:rotate(6deg)}35%{transform:rotate(6deg)}37.4%{transform:rotate(-115deg)}39%{transform:rotate(-38deg)}41.6%{transform:rotate(6deg)}100%{transform:rotate(6deg)}}
+.echo-assemble .echo-fin-l{animation:xas-scratch 6.4s ease-in-out infinite}
+@keyframes xas-scratch{0%,62%,80%,100%{transform:rotate(0)}66%,76%{transform:rotate(148deg)}69%,73%{transform:rotate(140deg)}71%{transform:rotate(150deg)}}
+.xas-p{animation:xas-p0 6.4s infinite}.xas-p1{animation-name:xas-p1}.xas-p2{animation-name:xas-p2}.xas-p3{animation-name:xas-p3}
+@keyframes xas-p0{0%,2.5%{transform:translateY(-150px);opacity:0;animation-timing-function:ease-in}3%{opacity:1;transform:translateY(-150px);animation-timing-function:ease-in}9%{transform:translateY(0);opacity:1}10.5%{transform:translateY(-5px)}12%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translateY(4px);opacity:0}}
+@keyframes xas-p1{0%,12.5%{transform:translateY(-150px);opacity:0;animation-timing-function:ease-in}13%{opacity:1;transform:translateY(-150px);animation-timing-function:ease-in}19%{transform:translateY(0);opacity:1}20.5%{transform:translateY(-5px)}22%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translate(-4px,26px) rotate(-14deg);opacity:0}}
+@keyframes xas-p2{0%,22.5%{transform:translateY(-150px);opacity:0;animation-timing-function:ease-in}23%{opacity:1;transform:translateY(-150px);animation-timing-function:ease-in}29%{transform:translateY(0);opacity:1}30.5%{transform:translateY(-5px)}32%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translateY(34px);opacity:0}}
+@keyframes xas-p3{0%,32.5%{transform:translateY(-150px);opacity:0;animation-timing-function:ease-in}33%{opacity:1;transform:translateY(-150px);animation-timing-function:ease-in}39%{transform:translateY(0);opacity:1}40.5%{transform:translateY(-5px)}42%,80%{transform:translateY(0);opacity:1}88%,100%{transform:translate(16px,62px) rotate(70deg);opacity:0}}
+.xas-sh{opacity:0;transform-origin:85px 111.4px;animation:xas-sh 6.4s ease-out infinite}
+@keyframes xas-sh{0%,7%{opacity:0;transform:scaleX(.3)}9%,82%{opacity:.3;transform:scaleX(1)}88%,100%{opacity:0}}
+.xas-eye{fill:#3fd6c8;animation:xas-eye 6.4s steps(1,end) infinite}
+@keyframes xas-eye{0%{fill:#22384f}45%{fill:#3fd6c8}46%{fill:#22384f}47%{fill:#3fd6c8}86%,100%{fill:#22384f}}
+.xas-head{transform-origin:85px 50px;animation:xas-head 6.4s ease-in-out infinite}
+@keyframes xas-head{0%,62%,80%,100%{transform:rotate(0)}66%,76%{transform:rotate(-12deg)}}
+.xas-spin{opacity:0;animation:xas-spin 6.4s steps(1,end) infinite}
+@keyframes xas-spin{0%{opacity:0}48%{opacity:1}63%,100%{opacity:0}}
+.xas-spinr{transform-origin:85px 18px;animation:xas-spinr .7s linear infinite}
+@keyframes xas-spinr{to{transform:rotate(360deg)}}
+.xas-q{opacity:0;transform-origin:85px 18px;animation:xas-q 6.4s ease-out infinite}
+@keyframes xas-q{0%,63%{opacity:0;transform:scale(.4)}66%{opacity:1;transform:scale(1.15)}68%,78%{opacity:1;transform:scale(1)}81%,100%{opacity:0}}
+/* start mid-story, with the robot built and booted, so a still frame (and the share card) shows the whole scene */
+.echo.echo-assemble *{animation-delay:-3.04s}
+
 /* with Reduce motion on, the flips, pounces and leaps hold still; the props keep their gentle loops */
 @media (prefers-reduced-motion:reduce){
   .echo-bitflip .echo-all{animation:none;transform:translate(0,-10px)}
