@@ -5833,7 +5833,6 @@ const ICON = {
   play: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="f" d="M10 8.5v7l6-3.5z"/></svg>`,
   pin: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M4 8h3M4 12h3M4 16h3M17 8h3M17 12h3M17 16h3"/></svg>`
 };
-const TRY = ["Nvidia", "Elon Musk", "healthcare", "power", "Robinhood", "agents"];
 const words = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/\|/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&[a-z#0-9]+;/gi, " ").replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
 const escHTML = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const layerName = k => ISLE[k][0][0] + ISLE[k][0].slice(1).toLowerCase();
@@ -6175,7 +6174,6 @@ function buildSearch() {
       <div class="ps-map"><div class="ps-wafer" aria-hidden="true"></div><p class="ps-read" id="psRead" aria-live="polite"></p></div>
       <ol class="ps-res" id="psRes" aria-label="Results"></ol>
     </div>
-    <div class="ps-try"><span>Try</span>${TRY.map(w => `<button type="button">${w}</button>`).join("")}</div>
   </div>`;
   document.body.appendChild(ps);
   const input = $("#psQ"), list = $("#psRes"), read = $("#psRead"), map = $(".ps-wafer", ps);
@@ -6256,8 +6254,6 @@ function buildSearch() {
   });
   ps.addEventListener("click", e => {
     if (e.target === ps || e.target.closest(".ps-x")) { close(); return; }
-    const tryW = e.target.closest(".ps-try button");
-    if (tryW) { input.value = tryW.textContent; run(tryW.textContent); input.focus(); return; }
     const a = e.target.closest("a[href^='#']");
     if (a) { e.preventDefault(); go(a.getAttribute("href").slice(1)); }
   });
