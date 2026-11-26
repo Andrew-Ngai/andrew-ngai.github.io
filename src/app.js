@@ -1141,7 +1141,7 @@ const ALL_THESES = [
     viz: "aging", echo: { pose: "clockmaker", acc: "clockmaker", name: "Clockmaker" }
   },
   {
-    id: "terafab", die: [4, -7], stance: "original", probe: true,
+    id: "terafab", die: [4, -7], stance: "original",
     probeHook: "SpaceX just won approval for a million AI satellites. The world doesn’t make enough chips to fill them. That’s why it’s building Terafab.",
     layer: "C", tldr: ["SpaceX can launch the compute. Terafab has to make it.", "On the ground AI is short of power, so SpaceX is going to orbit: Starmind, a million FCC-approved satellites on sunlight. In orbit the limit becomes chips: a terawatt a year is ~30× next year’s world output. Terafab, the fab SpaceX is building with Tesla, is the bet on that. Test chip mid-2027, volume aimed at Q3 2028."],
     title: "SpaceX can launch the compute. Terafab has to make it.",
