@@ -2948,6 +2948,14 @@ html.ps-open{overflow:hidden}
 .tlist.q .t-item .t-hook{display:none}
 .t-snip{grid-column:2;order:1;font-size:calc(17*var(--u));line-height:1.45;color:var(--dim);max-width:34rem}
 .t-snip mark{background:rgba(63,214,200,.18);color:var(--paper);border-radius:calc(2*var(--u));padding:0 calc(2*var(--u));box-shadow:inset 0 calc(-1.5*var(--u)) 0 var(--amber)}
+.why{display:block;margin-top:calc(5*var(--u));font-family:var(--label);font-weight:600;font-size:calc(14*var(--u));letter-spacing:.02em;color:var(--violet)}
+.t-snip .why{font-size:calc(15*var(--u))}
+.t-item.rel .t-snip mark,.ps-res a.rel mark{background:rgba(212,227,240,.12);box-shadow:inset 0 calc(-1.5*var(--u)) 0 var(--violet)}
+#wmap.q .wm-hit.hit.rel rect{stroke:var(--violet);stroke-width:1.2;stroke-dasharray:3 2;filter:none;opacity:.85}
+#wmap.q .wm-probe-die.hit{opacity:1}
+#wmap.q .wm-probe-die.hit rect{stroke:var(--violet)}
+.ps-wafer .wm-hit.hit.rel rect{stroke:var(--violet);stroke-width:1.2;stroke-dasharray:3 2;filter:none;opacity:.85}
+.ps-wafer .wm-probe-die.hit rect{stroke:var(--violet);opacity:1}
 .tlist.q .t-item .bin{order:2}
 .t-none{padding:calc(26*var(--u)) 0;font-family:var(--label);font-size:calc(18*var(--u));color:var(--faint)}
 .memo-share{flex:0 0 auto;font-size:calc(17*var(--u));padding:calc(8*var(--u)) calc(14*var(--u)) calc(9*var(--u));gap:calc(8*var(--u))}
@@ -13671,16 +13679,227 @@ const ICON = {
   play: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="f" d="M10 8.5v7l6-3.5z"/></svg>`,
   pin: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M4 8h3M4 12h3M4 16h3M17 8h3M17 12h3M17 16h3"/></svg>`
 };
-const TRY = ["Nvidia", "memory", "Aschenbrenner", "power", "Robinhood", "agents"];
+const TRY = ["Nvidia", "Elon Musk", "healthcare", "power", "Robinhood", "agents"];
 const words = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/\|/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&[a-z#0-9]+;/gi, " ").replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
 const escHTML = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const layerName = k => ISLE[k][0][0] + ISLE[k][0].slice(1).toLowerCase();
 const stop = x => (!x || /[.!?…:;,]$/.test(x) ? x : x + ".");
-let searchIndex = null;
-function searchFor(q) {
-  const terms = q.toLowerCase().replace(/[’‘]/g, "'").split(/\s+/).filter(Boolean);
-  if (!terms.length) return [];
-  searchIndex = searchIndex || THESES.map(t => ({ t, f: [
+const RELATED = `
+elon musk, musk, elon > Musk, Tesla, SpaceX, xAI, Optimus, Starlink, Starship, Starmind, Terafab, Grok, robotaxi, Neuralink
+sam altman, altman > Altman, OpenAI, ChatGPT, Stargate, Retro Biosciences
+jensen huang, jensen, huang > Huang, Nvidia, CUDA, Blackwell, Rubin, GTC
+dario amodei, amodei > Amodei, Anthropic, Claude, country of geniuses
+demis hassabis, hassabis, demis > Hassabis, DeepMind, Isomorphic, AlphaFold, Gemini
+satya nadella, nadella, satya > Nadella, Microsoft, Azure
+sundar pichai, pichai > Google, Alphabet, Gemini, TPU, DeepMind
+mark zuckerberg, zuckerberg, zuck > Meta, Llama, MTIA
+jeff bezos, bezos, andy jassy, jassy > Amazon, AWS, Trainium
+lisa su > AMD, ROCm
+leopold aschenbrenner, aschenbrenner, leopold, situational awareness > Aschenbrenner, Situational Awareness, OOMs, AGI
+michael burry, burry, big short > Burry, depreciation, useful life
+vlad tenev, tenev > Tenev, Robinhood
+marc benioff, benioff > Benioff, Salesforce, Agentforce
+gordon moore > Moore’s law
+chris miller, chip war > Chip War, TSMC, semiconductor
+peter steinberger, steinberger > Steinberger, OpenClaw
+leo jiang > Leo Jiang, transceiver, CUDA, laser
+jonathan ross > Groq
+david sinclair, sinclair > Sinclair, aging, rejuvenation
+tim cook, apple, iphone, mac > Apple, iPhone, phone, screen time
+larry ellison, ellison, oracle > Oracle, Stargate, Bloom
+masayoshi son, softbank > SoftBank, Stargate, OpenAI
+marc andreessen, andreessen, a16z, andreessen horowitz > Andreessen Horowitz, venture
+trump, donald trump, white house, president > Trump, White House, Genesis Mission, export controls, policy
+tesla, tsla > Tesla, Optimus, Musk, EV, Terafab, robotaxi, self-driving, Model S
+spacex, space x > SpaceX, Starlink, Starship, Starmind, Terafab, Musk, satellite, orbit
+xai, grok > xAI, Grok, SpaceX, Musk
+starlink, starship > Starlink, Starship, SpaceX, satellite, orbit
+openai, open ai, chatgpt, gpt, gpt-5, gpt-4, codex > OpenAI, ChatGPT, GPT, Altman, Codex, Stargate
+anthropic, claude, claude code > Anthropic, Claude, Claude Code, Amodei
+google, alphabet, deepmind, gemini, goog > Google, Alphabet, DeepMind, Gemini, TPU, Waymo, Isomorphic, Willow
+meta, facebook, instagram, llama > Meta, Llama, MTIA
+microsoft, azure, msft > Microsoft, Azure, Nadella, OpenAI
+amazon, aws, amzn > Amazon, AWS, Trainium
+nvidia, nvda > Nvidia, GPU, CUDA, Huang, Blackwell, Rubin, Hopper, H100, GB200
+amd > AMD, ROCm
+intel > Intel, foundry, Terafab
+tsmc, taiwan semiconductor > TSMC, CoWoS, N2, A16, Arizona, Taiwan, foundry
+asml > ASML, EUV, High-NA, lithography
+samsung > Samsung, HBM, foundry
+sk hynix, hynix > SK hynix, HBM, memory
+micron, sandisk > Micron, SanDisk, HBM, memory, DRAM
+broadcom, avgo > Broadcom, ASIC, TPU, custom chip, Ethernet
+marvell, mediatek > Marvell, MediaTek, ASIC, custom chip
+coreweave > CoreWeave, neocloud
+nebius > Nebius, neocloud, Token Factory
+robinhood, hood > Robinhood, Tenev, brokerage, prediction market
+revolut > Revolut, neobank
+kalshi, polymarket > Kalshi, Polymarket, prediction market, event contract
+salesforce, slack, agentforce > Salesforce, Agentforce, Slack, Benioff
+servicenow, hubspot, snowflake, workday > ServiceNow, HubSpot, Snowflake, SaaS, system of record
+crowdstrike, okta, palo alto, zscaler, cyberark, wiz > CrowdStrike, Okta, Palo Alto Networks, Zscaler, CyberArk, Wiz, identity
+waymo > Waymo, robotaxi, self-driving
+unitree > Unitree, humanoid
+figure ai, figure robot > Figure, humanoid
+bloom energy, bloom > Bloom, fuel cell
+ge vernova, vernova, siemens energy > GE Vernova, turbine
+cognition, devin, windsurf > Cognition, Devin, Windsurf
+factory ai, droid, droids > Factory, Droid
+cursor > Cursor
+lumentum, coherent > Lumentum, Coherent, laser, transceiver
+groq > Groq, inference chip
+isomorphic, isomorphic labs, alphafold > Isomorphic, AlphaFold, DeepMind, drug
+insilico > Insilico, Rentosertib
+arc institute > Arc Institute, virtual cell
+deepseek, kimi, moonshot, qwen, alibaba, minimax > DeepSeek, Kimi, Moonshot, MiniMax, China, open-weight
+huawei > China, export controls
+stargate > Stargate, OpenAI, Oracle, Abilene
+intercom, fin > Fin, Intercom
+schwab, td ameritrade > Schwab, TD Ameritrade, brokerage
+citadel > Citadel
+ibm, quantinuum, quera > IBM, Quantinuum, QuEra, quantum
+amkor > Amkor, ASE, packaging
+epic, epic systems > Epic, AI scribe
+healthcare, health care, health, medicine, medical, doctor, hospital, patient, clinic > health, medicine, medical, drug, FDA, clinical, patient, hospital, Medicare, disease, virtual cell, biotech, aging, CRISPR, AI scribe, prior authorization
+biotech, biology, bio, pharma, pharmaceutical, drug, drug discovery, life sciences, molecule, protein > drug, biotech, biology, FDA, clinical, protein, virtual cell, AlphaFold, Isomorphic, Insilico, CRISPR, rejuvenation
+clinical trial, trial, fda, approval > clinical, Phase II, FDA, trial
+gene editing, crispr, genetics, dna, genomics, gene > CRISPR, base editor, DNA, gene
+longevity, aging, ageing, lifespan, anti-aging, rejuvenation, old age > aging, longevity, rejuvenation, geroscience, lifespan
+cancer, disease, alzheimer, dementia > cancer, disease, Alzheimer, drug, clinical trial, medicine, biotech
+insurance, insurer, billing, medicare, medicaid > billing, insurer, Medicare, prior authorization, downcoding
+energy, power, electricity, grid, utility, utilities, watt > power, electricity, grid, gas, turbine, Bloom, GW, fuel cell, nuclear, transformer, utility
+nuclear, smr, fission, fusion, uranium, reactor > nuclear, reactor, uranium
+natural gas, gas, turbine, oil, shale > gas, turbine, GE Vernova, Marcellus
+solar, renewable, wind, battery, batteries > solar, battery, renewable
+climate, emission, carbon, pollution > emission, NOx, climate, carbon
+data center, datacenter, data centre, infrastructure, buildout, hyperscaler, capex, campus > data center, hyperscaler, capex, campus, Stargate, GW, buildout, rack, cluster
+cloud, cloud computing > cloud, AWS, Azure, Google Cloud, neocloud, GPU-hour
+chip, semiconductor, semis, semi, silicon, foundry, fab, wafer, microchip > chip, semiconductor, TSMC, wafer, fab, foundry, Moore’s law, Nvidia, HBM, packaging, ASIC
+gpu, graphics card, accelerator > GPU, Nvidia, H100, Blackwell, Rubin, AMD, TPU
+memory, hbm, dram, storage, ram > HBM, memory, DRAM, SK hynix, Micron, Samsung
+packaging, cowos, chiplet > packaging, CoWoS, Amkor, chiplet
+lithography, euv > EUV, ASML, lithography
+moore’s law, moores law, moore law, transistor, node > Moore’s law, transistor, N2, A16
+cooling, heat, thermal, liquid cooling > cooling, heat, thermal, liquid
+optic, optics, photonics, laser, networking, network, interconnect, ethernet, transceiver, fiber > laser, optic, transceiver, co-packaged, Ethernet, photonics, Lumentum
+custom chip, asic, tpu, trainium, inference chip > ASIC, TPU, Trainium, MTIA, Broadcom, Groq, custom chip
+software, saas, enterprise software, software stock, b2b > SaaS, software, Salesforce, ServiceNow, seat, CRM, ERP, SaaSpocalypse
+cybersecurity, security, hack, hacking, hacker, cyber, vulnerability, zero-day, exploit, malware > security, hack, vulnerability, CrowdStrike, Wiz, attack, patch, NSA, CISA, exploit
+encryption, cryptography, keys, password > encryption, cryptography, keys, post-quantum
+national security, defense, defence, military, war, espionage, spy, weapon, pentagon, ukraine, israel, conflict, drone, drones > national security, military, NSA, espionage, defense, weapon, Stuxnet, drone
+china, chinese, beijing, us-china, geopolitics, ccp > China, Chinese, export controls, DeepSeek, Taiwan, Unitree
+taiwan > Taiwan, TSMC
+policy, regulation, government, congress, law, regulator, regulatory > policy, regulation, government, FDA, FCC, Congress, Federal, Genesis Mission, export controls
+export control, export controls, sanctions > export controls, China
+agent, ai agent, agentic, assistant, copilot, autonomous agent > agent, Claude Code, Codex, OpenClaw, Devin, assistant, harness, Droid
+coding, programming, developer, software engineer, code, dev, engineer > coding, code, developer, Claude Code, Codex, Cursor, Devin, engineer, GitHub
+robot, robotics, humanoid, robot arm > robot, humanoid, Optimus, Figure, Unitree, actuator, teleoperation
+self-driving, self driving, autonomous vehicle, robotaxi, driverless, autonomy > Waymo, self-driving, robotaxi, Tesla
+ev, electric vehicle, car, cars, automotive, auto > EV, Tesla, electric, car
+space, rocket, satellite, orbit, aerospace, nasa > SpaceX, orbit, satellite, Starship, Starlink, space
+finance, fintech, banking, bank, neobank, money, deposit > Robinhood, Revolut, bank, deposit, brokerage, fintech, credit, payment
+investing, investor, investment, stock, stocks, stock market, market, wall street, equities, shares, ipo, going public, public markets > stock, investor, market, valuation, IPO, Wall Street, share, fund
+venture capital, vc, venture, startup, startups, founder, fundraising, valuation, funding, raise > venture, startup, raised, valuation, Series, round, Andreessen Horowitz, Accel, Sequoia, Thrive
+bubble, ai bubble, bust, crash, dot-com, dotcom, overvalued > bubble, bust, dot-com, WorldCom, Lucent, bankruptcy, circular
+debt, credit, leverage, financing, loan, lending > debt, leverage, financing, credit, loan
+trading, trade, option, options, derivative, betting, bet, gambling, sports betting, prediction market > option, prediction market, Kalshi, Polymarket, contract, zero-day, trade
+crypto, bitcoin, ethereum, blockchain, stablecoin, btc, eth > Bitcoin, Ethereum, crypto, Satoshi
+quantum, quantum computing, qubit, quantum computer > quantum, qubit, Willow, IBM, Quantinuum, Q-day
+agi, superintelligence, asi, singularity, intelligence explosion, transformative ai > AGI, superintelligence, Aschenbrenner, OOMs, Situational Awareness, automated researcher
+ai safety, safety, alignment, ethics, fairness, bias, stereotype, racism, sexism > bias, alignment, stereotype, safety, ethics, drift
+open source, open-source, open weight, open weights, open model > open-source, open-weight, Llama, DeepSeek, OpenClaw, Kimi
+llm, language model, model, chatbot, frontier model, foundation model > model, LLM, GPT, Claude, Gemini, Llama, frontier
+training, pretraining, compute, scaling law, scaling > training, compute, OOMs, cluster, scaling
+inference, token, tokens, serving > inference, token, serving
+job, jobs, labor, labour, employment, work, worker, economy, future of work, automation, layoff, unemployment > labor, worker, workforce, automate, economy, researcher, seat
+consumer, social media, social, app, apps, phone, screen time, attention, loneliness, friend > consumer, feed, screen, social, attention, friend, phone, EchoTempo
+mental health, wellbeing, well-being, wellness, happiness, therapy, therapist, depression, anxiety, lonely, loneliness > mental health, loneliness, Surgeon General, wellbeing, screen time, friend
+payment, shopping, ecommerce, e-commerce, checkout, commerce, buy > checkout, payment, shopping, AP2, commerce
+supply chain, manufacturing, factories, reshoring, onshoring, made in america, industrial > manufacturing, supply chain, factory, Arizona, reshoring, Texas
+rare earth, rare earths, magnet, mineral, mining > rare earth, magnet, MP Materials
+telecom, telecoms, internet bubble > telecom, Lucent, Nortel, WorldCom, Cisco
+europe, eu, uk, britain, sovereign ai, sovereignty, sovereign > sovereign, Europe, UK, sovereignty, border, Civo
+privacy, data privacy, surveillance, personal data, tracking > privacy, permission, identity, security, confidential
+education, school, students, learning, teacher, tutor > learning, student, intern, junior, taste
+iran > Iran, Stuxnet
+russia > Russia, Yandex
+india > India, Reliance Jio
+tariff, tariffs, trade war, trade policy, protectionism, ban, bans > export controls, China, Commerce, reshoring, manufacturing, Huawei, Taiwan
+interest rate, interest rates, rates, the fed, federal reserve, inflation, recession, macro, treasury, bond, bonds, yield > debt, bond, credit, financing, bubble, capex, leverage
+lawyer, lawyers, attorney, legal, law firm, lawsuit, lawsuits, sue, sued, court, courts, litigation, copyright, intellectual property > lawsuit, court, legal, copyright, regulation, seat, systems of record
+hiring, recruiting, resume, résumé, interview, hr > résumé, hiring, bias, intern, junior, seat
+productivity, efficiency, ai adoption, enterprise ai > productivity, seat, agent, automate, enterprise
+`.trim().split("\n").map(line => {
+  const [k, v] = line.split(">");
+  return { keys: k.split(",").map(s => s.trim().toLowerCase()).filter(Boolean), terms: v.split(",").map(s => s.trim()).filter(Boolean) };
+});
+const ABOUT = {
+  automate: "AI research automation, automated researcher, AGI, superintelligence, intelligence explosion, AI labs, OpenAI, research, scientists, experiments, compute, taste, jobs, future of work, economy, Aschenbrenner",
+  agent: "AI agents, agentic AI, assistants, ChatGPT, OpenAI, Anthropic, Claude, Google, payments, checkout, shopping, ecommerce, consumer AI, apps, personal assistant, computer use",
+  weights: "AI security, model weights, cybersecurity, national security, espionage, China, theft, distillation, open-weight models, DeepSeek, Llama, Meta, Anthropic, RAND, insider threat, frontier models, training cost",
+  ooms: "data centers, compute, scaling, AGI, Aschenbrenner, Situational Awareness, orders of magnitude, Nvidia, Stargate, OpenAI, Google TPU, racks, power, infrastructure, hyperscalers, buildout, AI infrastructure",
+  molecules: "energy, power, electricity, fossil fuels, emissions, natural gas, gas turbines, GE Vernova, grid, utilities, power plants, data center power, shale, Microsoft, Aschenbrenner, supply chain, bottleneck",
+  bloom: "Bloom Energy, fuel cells, clean energy, emissions, onsite power, behind the meter, energy, power, electricity, data center power, Oracle, Nvidia, DC power, transformers, natural gas, grid, utilities",
+  fleet: "data centers, AI infrastructure, capex, hyperscalers, Amazon, Microsoft, Google, Alphabet, Meta, OpenAI, Stargate, clusters, inference, training, spending, investment, Aschenbrenner",
+  gpulife: "GPUs, depreciation, Michael Burry, Nvidia, H100, GPU prices, GPU rental, cloud pricing, CoreWeave, Nebius, accounting, useful life, AI bubble, hardware, secondary market",
+  saas: "software, SaaS, enterprise software, SaaSpocalypse, seats, pricing, Salesforce, ServiceNow, Klarna, Anthropic, agents, systems of record, CRM, software stocks, Microsoft, business models, outcome-based pricing",
+  neocloud: "neoclouds, Nebius, CoreWeave, GPU cloud, cloud computing, AWS, Microsoft, Meta, hyperscalers, GPU rental, pricing, data centers, AI infrastructure",
+  builders: "investing, venture capital, hedge funds, Aschenbrenner, public markets, stocks, AI bubble, bust, leverage, debt, bankruptcy, dot-com bubble, telecom bubble, picks and shovels, CoreWeave, Micron, Bloom Energy, portfolio",
+  moat: "semiconductors, chips, Moore’s law, TSMC, ASML, EUV, lithography, Intel, Samsung, manufacturing, fabs, foundry, competition, moats, Taiwan, Chip War",
+  memory: "memory, HBM, DRAM, SK hynix, Samsung, Micron, packaging, TSMC, chips, semiconductors, bottleneck, AI agents, inference, margins, memory chips",
+  backend: "advanced packaging, CoWoS, TSMC, Amkor, Arizona, reshoring, supply chain, Taiwan, manufacturing, Made in America, Nvidia, chips, semiconductors, Chip War, glass",
+  heat: "cooling, heat, thermal management, liquid cooling, 3D chips, chip stacking, Moore’s law, TSMC, HBM, data centers, Nvidia, semiconductors, chips, Microsoft",
+  screentime: "consumer AI, social media, screen time, attention, apps, phones, loneliness, friends, family, wellbeing, mental health, feeds, social apps, community, EchoTempo",
+  quantum: "quantum computing, cryptography, encryption, Bitcoin, crypto, Ethereum, post-quantum cryptography, security, Google, IBM, Nvidia, cybersecurity",
+  tokens: "tokens, inference, Nebius, token factory, AI cloud, GPU cloud, APIs, pricing, margins, business models, CoreWeave, inference providers, neoclouds, open models",
+  factory: "token factory, AI factories, data centers, Nvidia, Jensen Huang, Dario Amodei, inference, tokens, sovereign AI, countries, borders, Nebius, UK, Europe, labor, work",
+  chipnames: "Nvidia, GPUs, Blackwell, Rubin, Hopper, H100, TPU, Google, product roadmap, chips, semiconductors, scientists, history, memory, HBM",
+  openclaw: "AI agents, open source, OpenClaw, group chats, messaging, assistants, permissions, security, identity, enterprise, startups, GitHub, Nvidia, Microsoft",
+  race: "China, US-China, geopolitics, national security, AI race, America, policy, government, military, defense, cybersecurity, OpenAI, Sam Altman, Aschenbrenner, compute, capital, export controls, DeepSeek",
+  silicon: "chip security, hardware security, cybersecurity, vulnerabilities, hacking, Intel, AMD, Nvidia, Sam Altman, superintelligence, data center security, Stuxnet, Iran, nation states, national security",
+  paycheck: "fintech, banking, Robinhood, Revolut, Vlad Tenev, brokerage, trading, direct deposit, neobanks, Schwab, payments, consumer finance, retail investors, stocks, credit cards",
+  contracts: "prediction markets, Kalshi, Polymarket, options, derivatives, trading, Robinhood, Vlad Tenev, exchanges, betting, gambling, sports betting, elections, finance, fintech, markets",
+  light: "optics, photonics, lasers, co-packaged optics, transceivers, networking, Lumentum, Coherent, Broadcom, Nvidia, Ethernet, data centers, interconnect, bandwidth",
+  cuda: "CUDA, Nvidia, software moats, AMD, TPU, Google, Trainium, Amazon, Anthropic, OpenAI, Meta, switching costs, developers, Jensen Huang, AI coding, GPUs, competition",
+  circular: "circular deals, vendor financing, AI bubble, Nvidia, OpenAI, Anthropic, Microsoft, Oracle, CoreWeave, AMD, telecom bubble, dot-com bubble, financing, debt, investing",
+  robots: "robots, robotics, humanoid robots, Tesla, Optimus, Elon Musk, Unitree, China, Figure, electric vehicles, Waymo, self-driving cars, robotaxis, actuators, rare earth magnets, manufacturing, supply chain",
+  physical: "physical AI, robotics, robots, humanoids, robot data, teleoperation, Figure, Tesla, Optimus, Elon Musk, Waymo, self-driving, world models, training data, Meta, embodied AI",
+  ledger: "software, SaaS, cybersecurity, identity, CrowdStrike, Okta, Palo Alto Networks, Zscaler, CyberArk, ServiceNow, Salesforce, systems of record, AI agents, permissions, software stocks, Anthropic",
+  asic: "ASICs, custom chips, TPU, Google, Trainium, Amazon, Meta, OpenAI, Broadcom, Marvell, Groq, Nvidia, inference, chips, semiconductors, chip design, energy efficiency, memory",
+  bias: "AI bias, fairness, ethics, stereotypes, alignment, AI safety, prompting, Anthropic, OpenAI, language models, LLMs, research, chatbots",
+  health: "healthcare, health, medicine, medical, biotech, biology, pharma, drug discovery, drugs, clinical trials, FDA, virtual cells, Arc Institute, Insilico, Isomorphic Labs, AlphaFold, Demis Hassabis, Google DeepMind, CRISPR, gene editing, rare diseases, hospitals, billing, insurance, Medicare, doctors, patients",
+  aging: "aging, longevity, healthcare, health, medicine, biology, biotech, cells, rejuvenation, lifespan, disease, cancer, Sam Altman, OpenAI, Retro Biosciences, drug discovery",
+  terafab: "Terafab, SpaceX, Tesla, Elon Musk, xAI, chip fabs, chip manufacturing, semiconductors, chips, Intel, TSMC, ASML, EUV, space, orbit, satellites, Starlink, Starship, Texas, memory, data centers in space",
+  droids: "AI coding, coding agents, software engineering, developer tools, Cognition, Devin, Windsurf, Factory, Claude Code, Codex, Cursor, Anthropic, OpenAI, enterprise software, startups, venture capital, valuations, tokens"
+};
+const ABOUT_PROBE = { "Nuclear is": "nuclear power, nuclear, energy, power, electricity, reactors, uranium, data center power, grid" };
+let searchIndex = null, searchVocab = null;
+const qnorm = s => String(s || "").toLowerCase().replace(/[’‘`]/g, "'").replace(/[^a-z0-9'&+.\- ]+/g, " ").replace(/\s+/g, " ").trim();
+const stem = w => w.length > 4 && w.endsWith("ies") ? w.slice(0, -3) + "y" : w.length > 4 && /(sh|ch|x|ss)es$/.test(w) ? w.slice(0, -2) : w.length > 3 && w.endsWith("'s") ? w.slice(0, -2) : w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? w.slice(0, -1) : w;
+function near(a, b, max) { // edit distance, give up past max
+  if (Math.abs(a.length - b.length) > max) return false;
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i]; let low = i;
+    for (let j = 1; j <= b.length; j++) { cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); low = Math.min(low, cur[j]); }
+    if (low > max) return false;
+    prev = cur;
+  }
+  return prev[b.length] <= max;
+}
+const slack = w => w.length >= 8 ? 2 : w.length >= 5 ? 1 : 0;
+const termRe = new Map();
+const reFor = t => {
+  if (!termRe.has(t)) { const e = qnorm(t).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "[\\s-]+"); termRe.set(t, new RegExp(`(^|[^a-z0-9])(${e})(s|es|'s)?(?![a-z0-9])`, "g")); }
+  const r = termRe.get(t); r.lastIndex = 0; return r;
+};
+const countIn = (low, t) => { const r = reFor(t); let n = 0; while (r.exec(low) && n < 9) n++; return n; };
+const startRe = new Map();
+const reStart = w => { if (!startRe.has(w)) startRe.set(w, new RegExp(`(^|[^a-z0-9])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "g")); const r = startRe.get(w); r.lastIndex = 0; return r; };
+const countStart = (low, w) => { if (w.length <= 3) return countIn(low, w); const r = reStart(w); let n = 0; while (r.exec(low) && n < 9) n++; return n; };
+// one record per searchable die: its fields (weighted), what it's about, and whether it's still in probe
+function searchDocs() {
+  const docs = THESES.map(t => ({ t, f: [
     [`${words(t.title)} ${words(t.h2)} ${words(t.short)}`, 6],
     [`${stop(words(t.hook))} ${(t.tldr || []).map(x => stop(words(x))).join(" ")}`, 4],
     [t.takes.map(([h, p]) => `${stop(words(h))} ${words(p)}`).join(" "), 2],
@@ -13688,27 +13907,97 @@ function searchFor(q) {
     [words(t.signal), 1],
     [t.receipts.map(r => words(r[0])).join(" · "), 1],
     [words(t.ref && t.ref.label), 2]
-  ] }));
-  return searchIndex.map(({ t, f }) => {
-    const all = f.map(([x]) => x.toLowerCase()).join(" ");
-    if (!terms.every(w => all.includes(w))) return null;
-    let score = 0, snip = "";
-    f.forEach(([x, w], i) => {
-      const low = x.toLowerCase(), n = terms.reduce((s, w2) => s + low.split(w2).length - 1, 0);
-      if (!n) return;
-      score += w * Math.min(n, 4);
-      const at = low.indexOf(terms[0]);
-      if (!snip && i > 0 && at >= 0) {
-        const a = Math.max(0, x.lastIndexOf(" ", Math.max(0, at - 60)) + 1), b = x.indexOf(" ", Math.min(x.length, at + 90));
-        snip = (a > 0 ? "…" : "") + x.slice(a, b < 0 ? x.length : b).trim() + (b > 0 ? "…" : "");
-      }
+  ], about: ABOUT[t.id] }));
+  PROBES.forEach((p, i) => docs.push({ t: p, probe: i, f: [[words(p.title), 6], [stop(words(p.hook)), 4]],
+    about: ABOUT[p.id] || (Object.entries(ABOUT_PROBE).find(([k]) => p.title.startsWith(k)) || [])[1] }));
+  docs.forEach(d => {
+    d.low = d.f.map(([x]) => qnorm(x));
+    d.all = d.low.join(" ");
+    d.ab = (d.about || "").split(",").map(s => s.trim()).filter(Boolean).map(s => ({ s, n: qnorm(s), w: qnorm(s).split(" ").map(stem) }));
+  });
+  return docs;
+}
+function searchFor(q) {
+  const qn = qnorm(q), toks = qn.split(" ").filter(Boolean), st = toks.map(stem);
+  if (!toks.length) return [];
+  searchIndex = searchIndex || searchDocs();
+  // which RELATED lines does the query switch on? exact words first, then close spellings
+  const hit = new Map(), sq = ` ${qn} `, sst = ` ${st.join(" ")} `;
+  // a close spelling only counts for a word the site never uses: "nvdia" is a typo, "water" is not "wafer"
+  if (!searchVocab) { searchVocab = new Set(); searchIndex.forEach(d => d.all.split(" ").forEach(w => searchVocab.add(stem(w)))); RELATED.forEach(g => g.keys.forEach(k => k.split(" ").forEach(w => searchVocab.add(stem(w))))); }
+  const typo = st.map(s => s.length >= 5 && !searchVocab.has(s));
+  RELATED.forEach((g, gi) => g.keys.forEach(k => {
+    const ks = k.split(" ").map(stem).join(" ");
+    let w = 0;
+    if (sq.includes(` ${k} `) || sst.includes(` ${ks} `)) w = 1;
+    else if (!k.includes(" ") && st.some((s, i) => typo[i] && near(s, ks, slack(ks)))) w = .7;
+    if (w) g.terms.forEach((t, ti) => hit.set(t, Math.max(hit.get(t) || 0, w * (ti < 2 ? 1.4 : 1))));
+  }));
+  const terms = [...hit.entries()];
+  return searchIndex.map(d => {
+    const { f, low, all, ab } = d;
+    // 1. the exact words, everywhere (as before)
+    const direct = toks.every(w => countStart(all, w) > 0);
+    let score = 0, snip = "", why = [];
+    if (direct) f.forEach(([x, w], i) => { const n = toks.reduce((s, w2) => s + countStart(low[i], w2), 0); if (n) score += w * Math.min(n, 4); });
+    // 2. what the thesis is about, even where it never says the word
+    let rel = 0;
+    const aboutHits = ab.filter(a => a.n === qn || (qn.length >= 3 && ` ${a.n} `.includes(` ${qn} `)) || (a.n.length >= 4 && sq.includes(` ${a.n} `)) ||
+      (toks.length === 1 && a.w.length === 1 && (a.w[0] === st[0] || (typo[0] && near(st[0], a.w[0], slack(a.w[0]))))) ||
+      (toks.length > 1 && a.w.join(" ") === st.join(" ")));
+    rel += Math.min(aboutHits.length, 2) * 10;
+    why.push(...aboutHits.slice(0, 2).map(a => a.s));
+    // 3. the related names and topics, counted in its text
+    const gained = [];
+    terms.forEach(([t, w]) => {
+      let s = 0;
+      f.forEach(([, fw], i) => { const n = countIn(low[i], t); if (n) s += fw * Math.min(n, 3); });
+      const tw = qnorm(t).split(" ").map(stem).join(" ");
+      if (ab.some(a => a.w.join(" ") === tw)) s += w >= 1 ? 8 : 4;
+      if (s) gained.push([t, Math.min(s, 12) * .5 * w]);
     });
-    if (!snip) { const h = f[1][0]; snip = h.length > 150 ? h.slice(0, h.lastIndexOf(" ", 150)) + "…" : h; }
-    return { t, score, snip };
+    gained.sort((a, b) => b[1] - a[1]);
+    rel += gained.slice(0, 6).reduce((s, [, v]) => s + v, 0);
+    // 4. a long query that only partly matches still counts its words
+    if (!direct && toks.length > 1) toks.forEach(w => { if (w.length >= 3) { let s = 0; f.forEach(([, fw], i) => { if (countIn(low[i], w)) s += fw; }); rel += s * .4; if (s) gained.unshift([w, s]); } });
+    gained.forEach(([t]) => { if (why.length < 3 && !why.some(x => qnorm(x) === qnorm(t)) && !toks.includes(qnorm(t))) why.push(t); });
+    if (!direct && rel < 6) return null;
+    const kind = d.probe != null ? "probe" : direct ? "match" : "related";
+    // the line to show: where the words matched in the thesis itself, then where the strongest related name shows up,
+    // and only then a source title
+    const relTerms = gained.map(([t]) => t), body = i => i !== 5, any = () => true;
+    const passes = direct ? [[toks, body, true], [relTerms, body, false], [toks, any, true]] : [[relTerms, body, false], [relTerms, any, false]];
+    let pass = 0;
+    for (const [list, ok, exact] of passes) {
+      for (let i = 1; i < f.length && !snip; i++) {
+        if (!ok(i)) continue;
+        for (const t of list) {
+          const m = (exact && t.length > 3 ? reStart(t) : reFor(t)).exec(low[i]);
+          if (!m) continue;
+          const at = m.index + m[1].length, x = f[i][0], a = Math.max(0, x.lastIndexOf(" ", Math.max(0, at - 60)) + 1), b = x.indexOf(" ", Math.min(x.length, at + 90));
+          snip = (a > 0 ? "…" : "") + x.slice(a, b < 0 ? x.length : b).trim() + (b > 0 ? "…" : "");
+          break;
+        }
+      }
+      if (snip) break;
+      pass++;
+    }
+    // the words only turn up in a source title: show it like a related result, by what the thesis says instead
+    const soft = direct && pass === 1;
+    if (!snip) { const h = (f[1] || f[0])[0]; snip = h.length > 150 ? h.slice(0, h.lastIndexOf(" ", 150)) + "…" : h; }
+    return { t: d.t, probe: d.probe, kind, score: (direct ? 1000 + score : 0) + rel, snip, soft, why: kind === "match" && !soft ? [] : why, marks: direct && !soft ? toks : relTerms.slice(0, 6) };
   }).filter(Boolean).sort((a, b) => b.score - a.score);
 }
 const markTerms = (s, q) => q.split(/\s+/).filter(Boolean).reduce((out, w) =>
   out.replace(new RegExp(`(${escHTML(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(?![^<]*>)`, "ig"), "<mark>$1</mark>"), escHTML(s));
+// a related result marks the names that made it related, whole words only
+const markWhy = (s, r, q) => {
+  if (r.kind === "match" && !r.soft) return markTerms(s, q);
+  const alt = [...new Set(r.marks)].sort((a, b) => b.length - a.length).map(w => escHTML(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "[\\s-]+")).join("|");
+  return alt ? escHTML(s).replace(new RegExp(`(^|[^\\p{L}\\d])((?:${alt})(?:s|es|’s|'s)?)(?![\\p{L}\\d])(?![^<]*>)`, "giu"), "$1<mark>$2</mark>") : escHTML(s);
+};
+const whyLine = r => r.kind === "match" && !r.soft ? "" : `<span class="why">${r.kind === "probe" ? "In probe" : "Related"}${r.why.length ? `: ${r.why.map(escHTML).join(" · ")}` : ""}</span>`;
+const resKey = r => r.probe != null ? `probe${r.probe}` : r.t.id;
 let openSearch = () => {};
 function buildSearch() {
   const ps = document.createElement("div");
@@ -13729,6 +14018,7 @@ function buildSearch() {
   document.body.appendChild(ps);
   const input = $("#psQ"), list = $("#psRes"), read = $("#psRead"), map = $(".ps-wafer", ps);
   let results = [], sel = 0, from = null, q = "";
+  // a still copy of the wafer, taken the first time search opens (by then the island names have been sized)
   const copyWafer = () => {
     if (map.firstChild) return;
     const c = $("#wmap").cloneNode(true);
@@ -13744,17 +14034,18 @@ function buildSearch() {
     q = text.trim();
     results = searchFor(q);
     sel = 0;
-    const ids = new Set(results.map(r => r.t.id)), layers = [...new Set(results.map(r => r.t.layer))];
-    $$(".wm-hit", map).forEach(a => { a.classList.toggle("hit", ids.has(a.dataset.id)); a.classList.toggle("dim", !!q && !ids.has(a.dataset.id)); });
-    $$(".wm-probe-die", map).forEach(d => d.classList.toggle("dim", !!q));
+    const kinds = new Map(results.map(r => [resKey(r), r.kind])), layers = [...new Set(results.filter(r => r.kind !== "probe").map(r => r.t.layer))];
+    $$(".wm-hit, .wm-probe-die", map).forEach(a => { const k = kinds.get(a.dataset.id); a.classList.toggle("hit", !!k); a.classList.toggle("rel", k === "related" || k === "probe"); a.classList.toggle("dim", !!q && !k); });
     $$(".wm-field, .wm-isle", map).forEach(d => d.classList.toggle("pick", layers.includes(d.dataset.layer)));
-    const n = results.length, across = layers.map(layerName);
+    const n = results.length, across = layers.map(layerName), nRel = results.filter(r => r.kind !== "match" || r.soft).length;
     read.innerHTML = !q ? "Type to probe the wafer. Every lit die is a thesis."
-      : n ? `<b>${n}</b> ${n === 1 ? "die lights" : "dies light"} up for “${escHTML(q)}”, in ${across.length > 1 ? across.slice(0, -1).join(", ") + " and " + across.at(-1) : across[0]}.`
+      : n ? `<b>${n}</b> ${n === 1 ? "die lights" : "dies light"} up for “${escHTML(q)}”${nRel ? `, ${nRel === n ? (n === 1 ? "a related one" : "all related") : `${nRel} of them related`}` : ""}${across.length ? `, in ${across.length > 1 ? across.slice(0, -1).join(", ") + " and " + across.at(-1) : across[0]}` : ""}.`
       : `Nothing lights up for “${escHTML(q)}”. Try a company, a chip or a person.`;
-    list.innerHTML = results.map(({ t, snip }) => {
+    list.innerHTML = results.map(r => {
+      const { t, snip, kind } = r;
+      if (kind === "probe") return `<li><a class="rel probe" href="#theses" data-probe="${r.probe}" style="--bin:var(--faint)"><span class="pr-top"><span>Die ${dieLabel(t.die)}</span><span class="pr-l" style="--lc:${ISLE[t.layer][1]}">${layerName(t.layer)}</span><span class="bin probe" style="--bin:var(--faint)">In probe</span></span><b>${markWhy(words(t.title), r, q)}</b><span class="pr-snip">${markWhy(snip, r, q)}</span>${whyLine(r)}</a></li>`;
       const b = BINS[t.stance];
-      return `<li><a href="#${t.id}" style="--bin:${b.css}"><span class="pr-top"><span>Die ${dieLabel(t.die)}</span><span class="pr-l" style="--lc:${ISLE[t.layer][1]}">${layerName(t.layer)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span></span><b>${markTerms(words(t.h2 || t.title), q)}</b><span class="pr-snip">${markTerms(snip, q)}</span></a></li>`;
+      return `<li><a href="#${t.id}"${kind === "related" ? ` class="rel"` : ""} style="--bin:${b.css}"><span class="pr-top"><span>Die ${dieLabel(t.die)}</span><span class="pr-l" style="--lc:${ISLE[t.layer][1]}">${layerName(t.layer)}</span><span class="bin" style="--bin:${b.css}">${b.label}</span></span><b>${markWhy(words(t.h2 || t.title), r, q)}</b><span class="pr-snip">${markWhy(snip, r, q)}</span>${whyLine(r)}</a></li>`;
     }).join("");
     list.scrollTop = 0;
     paintSel();
@@ -13788,11 +14079,12 @@ function buildSearch() {
       paintSel();
       const a = $$(".ps-res a", list)[sel];
       if (a) a.scrollIntoView({ block: "nearest" });
-    } else if (e.key === "Enter" && results[sel]) { e.preventDefault(); go(results[sel].t.id); }
+    } else if (e.key === "Enter" && results[sel]) { e.preventDefault(); go(results[sel].kind === "probe" ? "theses" : results[sel].t.id); }
   });
   ps.addEventListener("keydown", e => {
     if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); close(); return; }
     if (e.key !== "Tab") return;
+    // keep Tab inside the dialog
     const f = $$("input, button, .ps-res a", ps).filter(el => el.offsetParent !== null);
     const i = f.indexOf(document.activeElement);
     if (e.shiftKey && i <= 0) { e.preventDefault(); f.at(-1).focus(); }
@@ -13822,6 +14114,9 @@ function buildSearch() {
   });
   document.addEventListener("click", e => { if (e.target.closest("[data-search]")) openSearch(); });
 }
+/* ---------------------------------------------------------------- the probe's readout doubles as search */
+// Under the wafer, the prober's readout has a prompt. Type and the matching dies light up on the wafer itself, the list
+// beside it narrows to them, and each shows the line that matched. On a phone the dock's Search opens a sheet instead.
 const probeSearch = { shown: () => false, focus() {}, say() {} };
 function buildProbeSearch() {
   const ro = $(".readout"), text = $("#readout"), svg = $("#wmap"), list = $("#tlist"), grid = $(".index-grid");
@@ -13831,7 +14126,7 @@ function buildProbeSearch() {
   ro.insertBefore(col, ro.firstChild);
   col.appendChild(text);
   const box = $(".probe-q", col), input = $("#probeQ"), count = $("#pqN"), clear = $(".pq-x", col);
-  const items = $$("#tlist > li").map(li => ({ li, a: $("a.t-item", li), hook: $(".t-hook", li) }));
+  const items = $$("#tlist > li").map(li => ({ li, a: $(".t-item", li), hook: $(".t-hook", li) }));
   items.forEach(it => { if (it.a) it.a.insertAdjacentHTML("beforeend", `<span class="t-snip" hidden></span>`); });
   const none = document.createElement("li");
   none.className = "t-none";
@@ -13839,6 +14134,7 @@ function buildProbeSearch() {
   list.appendChild(none);
   let q = "", top = null, lit = [];
   const and = a => a.length > 1 ? `${a.slice(0, -1).join(", ")} and ${a.at(-1)}` : a[0];
+  // the readout under the prompt says where the matches are, or that the wiring is on
   function say() {
     const wm = $(".wafermap"), wiring = wm.classList.contains("netlist");
     if ($(".scribe.hov")) { readoutIdle(wiring ? "<b>Wiring on.</b> Click the switch to hide it." : "<b>Wiring.</b> Click the switch to show which theses lean on each other."); return; }
@@ -13849,13 +14145,13 @@ function buildProbeSearch() {
   probeSearch.say = say;
   function run(v) {
     q = v.trim();
-    const res = q ? searchFor(q) : [], hit = new Map(res.map(r => [r.t.id, r]));
+    const res = q ? searchFor(q) : [], hit = new Map(res.map(r => [resKey(r), r]));
     svg.classList.toggle("q", !!q);
     list.classList.toggle("q", !!q);
     box.classList.toggle("on", !!q);
     clear.hidden = !q;
-    $$(".wm-hit", svg).forEach(a => a.classList.toggle("hit", hit.has(a.dataset.id)));
-    const layers = new Set(res.map(r => r.t.layer));
+    $$(".wm-hit, .wm-probe-die", svg).forEach(a => { const r = hit.get(a.dataset.id); a.classList.toggle("hit", !!r); a.classList.toggle("rel", !!r && r.kind !== "match"); });
+    const layers = new Set(res.filter(r => r.kind !== "probe").map(r => r.t.layer));
     $$(".wm-field, .wm-isle", svg).forEach(d => d.classList.toggle("pick", !!q && layers.has(d.dataset.layer)));
     items.forEach(({ li, a }) => {
       const r = a && hit.get(a.dataset.id);
@@ -13863,16 +14159,20 @@ function buildProbeSearch() {
       if (!a) return;
       const sn = $(".t-snip", a);
       sn.hidden = !r;
-      if (r) sn.innerHTML = markTerms(r.snip, q);
+      a.classList.toggle("rel", !!r && r.kind !== "match");
+      if (r) sn.innerHTML = markWhy(r.snip, r, q) + whyLine(r);
     });
-    if (q) res.slice().reverse().forEach(r => { const it = items.find(i => i.a && i.a.dataset.id === r.t.id); if (it) list.prepend(it.li); });
+    // the list follows search rank while a search is on, and goes back to the wafer's own order after
+    if (q) res.slice().reverse().forEach(r => { const it = items.find(i => i.a && i.a.dataset.id === resKey(r)); if (it) list.prepend(it.li); });
     else items.forEach(it => list.insertBefore(it.li, none));
-    top = res[0] ? res[0].t.id : null;
-    count.textContent = q ? `${res.length} of ${THESES.length}` : "";
+    const nRel = res.filter(r => r.kind !== "match" || r.soft).length, nHit = res.length - nRel, first = res.find(r => r.kind !== "probe");
+    top = first ? first.t.id : null;
+    count.textContent = !q ? "" : nHit && nRel ? `${nHit} + ${nRel} related` : nRel ? `${nRel} related` : `${nHit} of ${THESES.length}`;
     lit = [...layers].map(layerName);
     say();
     none.hidden = !q || res.length > 0;
     none.innerHTML = `Nothing on the wafer for “${escHTML(q)}”. Try a company, a chip or a person.`;
+    // keep the top of the list in view as it shrinks
     if (q && grid.getBoundingClientRect().top < 0) window.scrollTo({ top: scrollY + grid.getBoundingClientRect().top - 96 * zoom(), behavior: "auto" });
   }
   input.addEventListener("input", () => run(input.value));
@@ -13889,6 +14189,8 @@ function buildProbeSearch() {
     input.focus({ preventScroll: true });
   };
 }
+/* ---------------------------------------------------------------- a thumb dock on phones */
+// On a phone the top bar keeps only the name, EchoTempo and the pads; the sections move to a dock under the thumb.
 function buildDock() {
   const d = document.createElement("nav");
   d.className = "dock";
@@ -13896,6 +14198,7 @@ function buildDock() {
   d.innerHTML = [["#theses", "Theses", ICON.wafer, "theses"], ["#tldr", "TL;DR", ICON.grid, ""], ["", "Search", ICON.search, ""], ["#films", "Watch", ICON.play, "films"], ["#contact", "Contact", ICON.pin, "contact"]]
     .map(([h, l, ic, k]) => h ? `<a href="${h}" data-k="${k}">${ic}<span>${l}</span></a>` : `<button type="button" data-search>${ic}<span>${l}</span></button>`).join("") + `<i class="dk-probe" aria-hidden="true"></i>`;
   document.body.appendChild(d);
+  // a small probe light slides under whichever section is on screen
   const secs = ["theses", "films", "contact"].map(id => document.getElementById(id)).filter(Boolean), pr = $(".dk-probe", d);
   let raf = 0;
   const mark = () => {
@@ -13911,10 +14214,12 @@ function buildDock() {
   addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
   addEventListener("resize", mark);
   mark();
+  // the hero has its own buttons, so the dock rises only once they have scrolled away
   const ctas = $(".hero .ctas");
   if (ctas && window.IntersectionObserver) new IntersectionObserver(([e]) => d.classList.toggle("up", !e.isIntersecting && e.boundingClientRect.top < 0)).observe(ctas);
   else d.classList.add("up");
 }
+/* ---------------------------------------------------------------- motion toggle */
 function setMotion(paused, save) {
   motionPaused = paused;
   document.documentElement.classList.toggle("paused", paused);
@@ -13925,6 +14230,7 @@ function setMotion(paused, save) {
   if (buildLine.wake) buildLine.wake();
   if (paused) $$(".films .pv").forEach(v => v.pause());
 }
+/* ---------------------------------------------------------------- boot */
 renderHome();
 renderFilms();
 buildMap();
