@@ -3226,3 +3226,12 @@ html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
   .foot{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}
 }
 @media (max-width:760px) and (hover:none) and (pointer:coarse){.dock{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(12,26,43,.97)}}
+
+/* ---------------------------------------------------------------- Echo the router */
+.xrt-tip{fill:#2c3e55;animation:xrt-tip 2.4s steps(1,end) infinite}
+@keyframes xrt-tip{0%{fill:#4fd2ff}33.33%,100%{fill:#2c3e55}}
+.xrt-led{fill:#3fd6c8;animation:xrt-led 1.5s ease-in-out infinite}
+@keyframes xrt-led{0%,100%{opacity:1}50%{opacity:.25}}
+.xrt-ok{transform-box:fill-box;transform-origin:center;animation:xrt-ok 2.4s ease-in-out infinite}
+@keyframes xrt-ok{0%,62%,100%{transform:scale(1)}72%{transform:scale(1.28)}}
+@media (prefers-reduced-motion:reduce){.xrt-tip,.xrt-led,.xrt-ok{animation:none}}

@@ -2046,3 +2046,18 @@ html.paused .g2-leaf.cut{opacity:.14}html.paused .g2-plus{opacity:1}html.paused 
 html.paused .tf1-pk,html.paused .tf1-build,html.paused .tf1-feed,html.paused .tf1-beam,html.paused .tf1-flame{animation-play-state:paused}
 html.paused .tf3-con.run .tf3-rows li,html.paused .tf3-con.run .tf3-s,html.paused .tf3-con.run .tf3-res{animation:none!important;opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.tf1-pk,.tf1-build,.tf1-feed,.tf1-beam,.tf1-flame{animation:none}.tf2-probe{transition:none}.tf3-con.run .tf3-rows li,.tf3-con.run .tf3-s,.tf3-con.run .tf3-res{animation:none}}
+/* ---------------------------------------------------------------- the factory, not the engineer */
+.viz .fy-led{fill:var(--beat);animation:fy-led 2.2s ease-in-out infinite}
+@keyframes fy-led{0%,100%{opacity:.25}50%{opacity:1}}
+.viz .fy-cut{transform-box:fill-box;transform-origin:left center}
+.viz[data-step="2"] .f2 .fy-cut{animation:fy-cut 1.2s var(--ease) both}
+@keyframes fy-cut{from{transform:scaleX(2.5)}}
+.viz .fy-fill{transform-box:fill-box;transform-origin:center bottom}
+.viz[data-step="3"] .f3 .fy-fill{animation:fy-grow .9s var(--ease) both;animation-delay:var(--d)}
+@keyframes fy-grow{from{transform:scaleY(0)}}
+.viz[data-step="3"] .f3 .fy-ghost{animation:fy-ghost 1s ease both;animation-delay:calc(var(--d) + .7s)}
+@keyframes fy-ghost{from{opacity:0;transform:translateY(10px)}}
+.viz[data-step="3"] .f3 .fy-col .fy-ten{animation:fy-ghost .6s ease both;animation-delay:calc(var(--d) + 1.2s)}
+.viz[data-step="3"] .f3 .fy-link,.viz[data-step="3"] .f3 .fy3>.fy-ten{animation:fy-ghost .6s ease both;animation-delay:1.9s}
+@media (prefers-reduced-motion:reduce){.viz .fy-led{animation:none;opacity:.8}.viz .fy-cut,.viz .fy-fill,.viz .fy-ghost,.viz .fy-ten,.viz .fy-link{animation:none!important}}
+html.paused .fy-cut,html.paused .fy-fill,html.paused .fy-ghost,html.paused .fy-ten,html.paused .fy-link{animation:none!important}

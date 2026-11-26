@@ -373,6 +373,19 @@ const SRC = {
   geRetro: "https://openai.com/index/accelerating-life-sciences-research-with-retro-biosciences",
   geLife: "https://www.technologyreview.com/2026/01/27/1131796/",
   geLifeDose: "https://www.axios.com/newsletters/axios-future-of-health-care-828915b0-69c2-11f1-a37d-2b74fcee3304",
+  fyCogE: "https://siliconangle.com/?p=846143",
+  fyCog1b: "https://www.unite.ai/cognition-says-annualized-revenue-run-rate-has-passed-1b/",
+  fyFac5: "https://www.thestar.com.my/tech/tech-news/2026/09/16/ai-coding-agent-startup-factory-triples-valuation-to-5-billion-in-latest-funding-round",
+  fyFacPr: "https://www.hpcwire.com/aiwire/2026/09/15/factory-raises-200m-at-5b-valuation-to-scale-enterprise-software-platform/",
+  fyF2: "https://factory.ai/news/software-factory",
+  fyCogD: "https://cognition.ai/blog/series-d",
+  fySacra: "https://sacra.com/research/cognition",
+  fyBurn: "https://cryptobriefing.com/cognition-900m-arr-800m-cash-burn/",
+  fyPrice: "https://www.withorb.com/pricing-atlas/factory",
+  fyFpn: "https://factory.ai/news/factory-partner-network",
+  fyMkt: "https://factory.ai/news/claude-marketplace",
+  fyTb1: "https://factory.ai/news/terminal-bench",
+  fyTb21: "https://snorkel.ai/leaderboard/terminal-bench-2-1/",
 };
 
 const BINS = {
@@ -405,7 +418,7 @@ const ALL_THESES = [
     viz: "automate", echo: { pose: "labcoat", acc: "labcoat", name: "Researcher" }
   },
   {
-    id: "agent", die: [0, 8], stance: "build",
+    id: "agent", die: [-1, 8], stance: "build",
     layer: "A", tldr: ["An agent is a brain with a body", "Model = the brain. Harness = the body: tools, memory, permissions, the confirm button."],
     title: "An agent is a brain with a body.",
     h2: "An agent is | a brain with a body.",
@@ -552,7 +565,7 @@ const ALL_THESES = [
     viz: "gpulife", echo: { pose: "idle", acc: "waiter", name: "Maître d’" }
   },
   {
-    id: "saas", die: [0, 6], stance: "push",
+    id: "saas", die: [-1, 6], stance: "push",
     layer: "A", tldr: ["AI eats the seat, not the software", "The screen collapses. The record + rulebook don’t. Price moves from seats to work."],
     title: "AI eats the seat, not the software.",
     h2: "AI eats the seat, | not the software.",
@@ -700,7 +713,7 @@ const ALL_THESES = [
     viz: "heat", echo: { pose: "overheat", acc: "overheat", name: "Thermometer" }
   },
   {
-    id: "screentime", die: [-2, 8], stance: "original",
+    id: "screentime", die: [-3, 8], stance: "original",
     layer: "A", tldr: ["Give people their time back", "Time with friends: 60 → 20 min/day (2003 → 2020). Count plans that happen."],
     title: "The best consumer AI will give you your time back.",
     h2: "The best consumer AI | will give you | your time back.",
@@ -807,7 +820,7 @@ const ALL_THESES = [
     viz: "chipnames", echo: { pose: "introduce", acc: "nametag", name: "Name tag" }
   },
   {
-    id: "openclaw", die: [2, 8], stance: "build",
+    id: "openclaw", die: [1, 8], stance: "build",
     layer: "A", tldr: ["OpenClaw needs a badge", "0 → 391.8K GitHub stars in under a year. ~12% of audited skills were malicious."],
     title: "OpenClaw gave the brain a body. Now it needs a badge.",
     h2: "OpenClaw gave | the brain a body. | Now it needs a badge.",
@@ -1026,7 +1039,7 @@ const ALL_THESES = [
     viz: "physical", echo: { pose: "mocap", acc: "mocap", name: "Mocap" }
   },
   {
-    id: "ledger", die: [2, 6], stance: "original",
+    id: "ledger", die: [1, 6], stance: "original",
     probeHook: "The screens fell. The lock took off. The ledger is next.",
     layer: "A", tldr: ["SaaS that survives AI is a ledger or a lock.", "The screens fell and stayed down: HubSpot −33%, monday.com −36%. The locks took off: Okta +146%, CrowdStrike +120%, because every agent is a new key to guard. The ledger survived but isn’t paid yet: Salesforce +4%."],
     title: "SaaS that survives AI is a ledger or a lock.",
@@ -1095,7 +1108,7 @@ const ALL_THESES = [
     viz: "bias", echo: { pose: "rc", acc: "rc", name: "Driver" }
   },
   {
-    id: "health", die: [-2, 6], stance: "original",
+    id: "health", die: [-3, 6], stance: "original",
     probeHook: "AI made the cheap half of medicine fast. The expensive half is still waiting.",
     layer: "A", tldr: ["AI sped up medicine’s cheap half. The money is in the expensive half.", "AI-found drugs pass Phase I 80–90% of the time, then Phase II about 40%, like everyone else’s. Virtual cells could test drugs before patients do; AI-designed editors could turn orphan drugs into N-of-1 cures. And in billing, AI on both sides is a bot war that saves time, not money."],
     title: "AI sped up medicine’s cheap half. The money is in the expensive half.",
@@ -1162,6 +1175,26 @@ const ALL_THESES = [
     note: "My bet: a Tesla–SpaceX merger is close to inevitable by the end of Q1 2027. Both boards formed special committees in October, and Musk says calling a merger certain would be overstating it, but Terafab, a plant both companies need and neither has agreed to fund alone, is the clearest reason to combine them. Not investment advice. Figures are from SpaceX’s S-1 and earnings calls, Musk’s public remarks, the FCC, and the analysts named.",
     receipts: [["SiliconANGLE: the FCC clears up to 1 million Starmind satellites (Nov 2026)", SRC.tfFcc], ["SpaceX Q3 2026 earnings call transcript", SRC.tfQ3call], ["Reuters, via The Standard: Terafab targets volume production in Q3 2028 (Oct 2026)", SRC.tfQ3], ["Constellation Research: SpaceX’s Q3 and its payback of under a year", SRC.tfPayback], ["Musk and Ron Baron at the Baron Investment Conference (Nov 2026)", SRC.tfBaron], ["TechCrunch: Musk unveils Terafab (Mar 2026)", SRC.tfAnnounce], ["Fortune: “we either build the Terafab” (Mar 2026)", SRC.tfFortune], ["Reuters, via AOL: a space chip that runs hotter (Mar 2026)", SRC.tfD3], ["HotHardware: D3, and 80% of output for orbit (Mar 2026)", SRC.tfSplit], ["MarketWatch: the first Starmind satellites, on Nvidia (Aug 2026)", SRC.tfNvidia], ["Texas governor’s office: SpaceX in Grimes County", SRC.tfGrimes], ["Manufacturing Dive: the $16.8B first phase (Aug 2026)", SRC.tfMfg], ["Wikipedia: Terafab", SRC.tfWiki], ["Nikkei via TrendForce: 1M wafers a month by 2032, ~700K of it memory (Nov 2026)", SRC.tfNikkei], ["PC Gamer: the DRAM shortage could run past 2028", SRC.tfMem], ["Jon Peddie Research on Terafab", SRC.tfPeddie], ["ARK Invest on Starship and orbital compute", SRC.tfArk], ["Forbes: Intel joins Terafab (Apr 2026)", SRC.tfIntel], ["Electrek: what SpaceX’s S-1 says about Terafab (May 2026)", SRC.tfS1], ["Tom’s Hardware on Bernstein’s estimate (Mar 2026)", SRC.tfBernstein], ["Yahoo Finance: Morgan Stanley on a Herculean task", SRC.tfMs], ["Tom’s Hardware: ASML’s roadmap and 2025 EUV shipments", SRC.tfAsml], ["TrendForce: the Q3 2028 target, and EUV supply (Oct 2026)", SRC.tfEuv], ["GAO: orbital data centers (Apr 2026)", SRC.tfGao], ["Tom’s Hardware: Sam Altman on space data centers", SRC.tfAltman], ["TechCrunch: SpaceX and Tesla boards form special committees (Oct 2026)", SRC.tfMerger]],
     viz: "terafab", echo: { pose: "gown", acc: "bunny", name: "Fab tech" }
+  },
+  {
+    id: "droids", die: [3, 8], stance: "original",
+    layer: "A", tldr: ["Cognition sells an engineer. Factory sells the factory. Back the factory.", "Same $20 and $200 plans. Cognition: $48B, a $1B run rate, its own models and a reported $800M burn this year. Factory: $5B, and a router that sends each task to the cheapest model that can do it."],
+    title: "Cognition sells an engineer. Factory sells the factory.",
+    h2: "Cognition sells | an engineer. | Factory sells the factory.",
+    short: "The factory, not the engineer",
+    hook: "Both sell AI that writes software to big companies. Cognition is building a better engineer. Factory is building the line every engineer, human or AI, works on. I’d rather own the line.",
+    ref: { k: "Reference design", label: "My own read of Cognition’s and Factory’s September 2026 rounds, Factory 2.0 and Cognition’s “agent lab” pitch", href: SRC.fyCogE },
+    signal: `<p class="claim">One week in September: | $48B for the engineer. | $5B for the factory.</p>
+      <p>On September 8, Cognition raised more than $2 billion at a $48 billion valuation, led by Andreessen Horowitz and Accel, with run-rate revenue near $900 million. On September 25 it said it had passed $1 billion. On September 15, Factory raised $200 million at $5 billion, more than triple its April price. Both sell autonomous coding agents to big companies, at almost the same prices. Underneath, they’re building different businesses.</p>`,
+    takes: [
+      ["Devin is a worker. Factory is a line.", "You hand Devin a ticket and it works alone in its own cloud sandbox: it plans, codes, tests and opens a pull request. Cognition wraps it in Devin Desktop, built on the Windsurf editor it bought in 2025, and runs it partly on its own models. Factory’s Droids work wherever the work already is: the terminal, the IDE, Slack and CI. Factory 2.0 ties them into one governed system that turns requirements and bug reports into shipped code, on whichever models the customer picks, in the cloud, on-premises or fully air-gapped."],
+      ["Cognition pays to be a lab. Factory rents the labs.", "Cognition post-trains its own models on open weights (SWE-1.7, in July, sits on Moonshot’s Kimi) and reportedly planned to burn about $800 million this year, mostly leasing Nvidia servers, on enterprise gross margins near 50%. Factory doesn’t ship a model. Its Router sends each task to the cheapest model that can do it, which Factory says cuts token spend by more than 60%. It sells through others, too: integrators like Wipro, and Anthropic’s Claude Marketplace, where enterprises spend Claude budget they’ve already committed."],
+      ["The labs are coming for the worker.", "Anthropic and OpenAI now ship coding agents of their own, and the top three spots on Terminal-Bench 2.1 belong to Codex CLI and Claude Code. Factory’s Droid was #1 on the first Terminal-Bench in September 2025. That lead is gone, and Factory doesn’t need it. A worker has to beat Claude Code and Codex head-on, every quarter. A factory puts the quarter’s best model to work beside the rest. Big companies won’t want one lab’s agent; they’ll want one place to run all of them."]
+    ],
+    bet: `Back the factory, not the engineer. At $48 billion, Cognition has to out-build Anthropic and OpenAI on agents and models, and Cursor on editors, while it burns. At $5 billion, Factory only has to be where a company’s software gets made, whichever model wins the quarter. A new frontier model plugs straight into Factory’s line; for Cognition, it’s one more model its own has to keep up with. It’s the coding version of <a href="#tokens">Sell tokens to win</a>: own the spread between the model and the work, not the model.`,
+    wrong: "By the end of 2027, Factory’s revenue is still under a tenth of Cognition’s, or most big companies have standardized on one lab’s own agent, like Claude Code or Codex, instead of a neutral layer.",
+    receipts: [["SiliconANGLE, Cognition raises $2B at $48B (Sep 2026)", SRC.fyCogE], ["Unite.AI, Cognition passes a $1B run rate (Sep 2026)", SRC.fyCog1b], ["Reuters via The Star, Factory triples its valuation to $5B (Sep 2026)", SRC.fyFac5], ["Factory’s $5B announcement: Router, air-gapped deployments (Sep 2026)", SRC.fyFacPr], ["Factory, From coding agents to software factories", SRC.fyF2], ["Cognition, the agent-lab pitch (May 2026)", SRC.fyCogD], ["Sacra on Cognition: Devin Desktop, SWE models, pricing (2026)", SRC.fySacra], ["Crypto Briefing on Cognition’s run rate and cash burn (2026)", SRC.fyBurn], ["Orb Pricing Atlas, Factory’s plans (Nov 2026)", SRC.fyPrice], ["Factory Partner Network, $100M (Aug 2026)", SRC.fyFpn], ["Factory on Anthropic’s Claude Marketplace (Sep 2026)", SRC.fyMkt], ["Factory, Droid #1 on Terminal-Bench (Sep 2025)", SRC.fyTb1], ["Snorkel, Terminal-Bench 2.1 leaderboard", SRC.fyTb21]],
+    viz: "droids", echo: { pose: "router", acc: "router", name: "Router" }
   }
 ];
 
@@ -1184,6 +1217,7 @@ const RECEIPTS = [
 
 // Marker doodles for the TL;DR whiteboard, one per thesis, each drawn in a 120 x 100 box.
 const DOODLES = {
+  droids: "<path d=\"M8 78 V44 L26 54 V44 L44 54 V44 L62 54 V78 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M22 44 L18 30 M35 44 V28 M48 44 L52 30\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M15 28 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M32 26 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M49 28 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M56 80 H114\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M60 86 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M104 86 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0\" stroke=\"#26303a\" stroke-width=\"1.8\" /><path d=\"M72 66 h12 v14 h-12 Z M94 66 h12 v14 h-12 Z\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M94 56 l4 4 l9 -10\" stroke=\"#d23c3c\" stroke-width=\"2.6\" />",
   agent: "<path d=\"M18 40 C8 30 16 13 31 16 C35 5 52 5 56 13 C68 9 79 21 73 32 C81 41 72 55 59 51 H28 C17 53 12 46 18 40 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M45 12 V50 M30 28 Q37 25 36 34 M58 24 Q52 28 58 34\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M60 51 L80 70 L98 60\" stroke=\"#1f5fbf\" stroke-width=\"4.4\" /><path d=\"M98 60 L106 52 M98 60 L108 64\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M100 70 h16 l-2 18 h-12 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M103 70 q5 -8 10 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"36\" y=\"76\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">brain</text><text x=\"78\" y=\"96\" fill=\"#1f5fbf\" font-size=\"17\" text-anchor=\"middle\">body</text>",
   openclaw: "<path d=\"M20 70 C10 55 14 32 30 26 C40 22 46 32 40 40 C50 34 58 40 54 50 C48 62 36 74 20 70 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M40 40 L30 50\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M72 22 L84 8 L96 22\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M66 22 h38 v50 h-38 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M76 34 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M74 54 H96 M74 62 H90\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"85\" y=\"92\" fill=\"#1f5fbf\" font-size=\"18\" text-anchor=\"middle\">ID</text>",
   saas: "<path d=\"M14 26 h26 v26 h-26 Z M10 56 h34 M27 56 v18 M15 82 l12 -8 l12 8\" stroke=\"#26303a\" stroke-width=\"3.2\" /><path d=\"M40 26 a5 5 0 0 0 -2 9 a5 5 0 0 0 2 9\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><text x=\"28\" y=\"18\" fill=\"#d23c3c\" font-size=\"16\" text-anchor=\"middle\">seat</text><path d=\"M66 26 v48 a20 7 0 0 0 40 0 v-48\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 26 a20 7 0 0 0 40 0 a20 7 0 0 0 -40 0\" stroke=\"#1d8a5c\" stroke-width=\"3.2\" /><path d=\"M66 42 a20 7 0 0 0 40 0 M66 58 a20 7 0 0 0 40 0\" stroke=\"#1d8a5c\" stroke-width=\"2\" /><path d=\"M78 88 l6 6 l12 -14\" stroke=\"#1d8a5c\" stroke-width=\"3.4\" /><text x=\"86\" y=\"18\" fill=\"#1d8a5c\" font-size=\"16\" text-anchor=\"middle\">record</text>",
@@ -1230,6 +1264,7 @@ const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
 // Wiring: each thesis's closest neighbours, strongest first. The end of a thesis offers the first three.
 const WIRES = {
   terafab: ["memory", "backend", "moat", "asic"],
+  droids: ["tokens", "saas", "agent", "openclaw"],
   automate: ["fleet", "factory", "agent", "physical"],
   agent: ["openclaw", "saas", "memory", "automate", "paycheck"],
   weights: ["silicon", "race", "quantum"],
@@ -1611,6 +1646,15 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
     accIn = `<path d="M5 46 C5 8 28 -7 50 -7 C72 -7 95 8 95 46 Z M20 12 C20 9 22 8 26 8 H74 C78 8 80 9 80 12 V46 H20 Z" fill="#f4f7fd" fill-rule="evenodd" stroke="#cfd6e6" stroke-width="1"/><path d="M50 -7 V8" stroke="#cfd6e6" stroke-width="1.2"/>` +
       `<g transform="translate(71 62)"><circle r="7.4" fill="#14283f" stroke="#9fb3c4" stroke-width="1"/><path d="M0 -4.6 C2 -2.6 2 1.6 1.6 3.2 H-1.6 C-2 1.6 -2 -2.6 0 -4.6 Z" fill="#eef4f8"/><path d="M-4.6 2.4 Q0 -3.4 5 -1" stroke="#3fd6c8" stroke-width=".9" fill="none"/></g>` +
       `<g class="echo-hand-l"><g transform="translate(2 64) rotate(-14)"><circle r="12" fill="url(#${k}bw)" stroke="#ece7ff" stroke-width="1"/><path d="M-12 -4 H12 M-12 2 H12 M-12 8 H12 M-6 -12 V12 M0 -12 V12 M6 -12 V12" stroke="#0f0c22" stroke-opacity=".3" stroke-width=".6"/><ellipse class="echo-glint" cx="-4" cy="-5" rx="4" ry="1.6" fill="#fff" transform="rotate(-32 -4 -5)"/></g>${mitt(4.5, 82, 20)}</g>`;
+  } else if (acc === "router") {
+    // Router: a little router for a hat whose three antennas light in turn as it picks a model; a ticket in one fin,
+    // the shipped box in the other
+    accIn = `<rect x="31" y="-9.5" width="38" height="11" rx="3" fill="#1d2b3f" stroke="#4fd2ff" stroke-opacity=".6" stroke-width="1"/>` +
+      [40, 46, 52].map((x, i) => `<rect class="xrt-led" x="${x}" y="-5.6" width="3.6" height="2.6" rx=".8" style="animation-delay:-${(i * .5).toFixed(1)}s"/>`).join("") +
+      `<path d="M37 -9.5 L33.5 -17.6 M50 -9.5 V-18.4 M63 -9.5 L66.5 -17.6" stroke="#9fb3c4" stroke-width="1.8" stroke-linecap="round"/>` +
+      [[33.2, -18.6], [50, -19.4], [66.8, -18.6]].map(([x, y], i) => `<circle class="xrt-tip" cx="${x}" cy="${y}" r="2.2" style="animation-delay:-${(i * .8).toFixed(1)}s"/>`).join("") +
+      `<g class="echo-hand-l"><g transform="rotate(-12 -1 64)"><rect x="-13" y="55" width="22" height="16" rx="1.6" fill="#eef4f8" stroke="#9fb3c4" stroke-width=".7"/><path d="M-10 60 H3 M-10 64 H1 M-10 68 H-3" stroke="#9fb3c4" stroke-width="1.2" stroke-linecap="round"/><circle cx="5" cy="59.4" r="1.7" fill="#f4977a"/></g>${mitt(4, 72)}</g>` +
+      `<g class="echo-hand-r"><rect x="90" y="63" width="18" height="15" rx="1.5" fill="#c99a5e" stroke="#8a6436" stroke-width=".9"/><path d="M99 63 V78" stroke="#e8c48a" stroke-width="2"/><g class="xrt-ok"><circle cx="106.5" cy="60" r="4.6" fill="#2fb87a" stroke="#fff" stroke-width=".9"/><path d="M104.3 60 L105.9 61.6 L108.8 58.5" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>${mitt(95.5, 81)}</g>`;
   } else if (acc === "clockmaker") {
     // Clockmaker: a jeweler's loupe over one eye; a pocket watch whose hand runs backward in one fin, an hourglass that keeps flipping in the other
     accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
@@ -2767,6 +2811,91 @@ const VIZ = {
       <div class="frame f1">${F1}<p class="cap">An illustrative errand. Lead research, site audits and CRM updates are among the best-documented uses. The send button stays with you.</p></div>
       <div class="frame f2">${F2}<p class="cap">The enterprise version adds a badge at every step. NemoClaw (Nvidia, Mar 2026); OpenShell on Red Hat (Oct 2026).</p></div>
       <div class="frame f3">${F3}<p class="cap">2.0 defaults as reported: sandbox off, secrets unencrypted. About 12% of audited ClawHub skills were malicious. The log is illustrative.</p></div>
+    </div>`;
+  },
+
+  droids() {
+    // ---- frame 1: what each one builds. One agent working a ticket alone; a line that routes every task to a model and through stations
+    const chip = (x, y, w, label, c, h = 18) => `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="4" fill="var(--ink-2)" stroke="${c}" stroke-width="1.2"/><text y="3.6" text-anchor="middle" font-size="9.8" style="fill:var(--paper)">${label}</text></g>`;
+    const IN = [[196, "spec"], [222, "bug"], [248, "alert"]], MOD = [[190, "Claude"], [210, "GPT"], [230, "Gemini"], [250, "open"]];
+    const ST = [[270, "code"], [316, "test"], [362, "review"], [408, "ship"]];
+    const route = (yi, ym) => `M58 ${yi} L114 222 L146 222 L176 ${ym} L224 ${ym} L248 222 H436`;
+    const RUNS = [[0, 0], [1, 2], [2, 3], [0, 1], [1, 3], [2, 0]];
+    const F1 = `<svg viewBox="0 0 460 300" class="fy1" role="img" aria-label="Cognition, valued at 48 billion dollars, builds an engineer: a ticket goes to one agent, Devin, working alone in its own sandbox, and comes out as a pull request. Factory, valued at 5 billion dollars, builds a line: specs, bugs and alerts go to a router, which picks Claude, GPT, Gemini or an open model for each task, then through code, test, review and ship stations.">
+        <text x="14" y="22" class="t-strong" font-size="15">What each one builds</text>
+        <text x="14" y="52" font-size="12" font-weight="800" style="fill:var(--beat);letter-spacing:.12em">COGNITION · AN ENGINEER</text>
+        <text x="446" y="52" text-anchor="end" font-size="14" font-weight="900" style="fill:var(--beat)">$48B</text>
+        <path id="fyA" d="M44 96 H418" stroke="var(--rule)" stroke-width="2" fill="none"/>
+        ${[0, 1].map(k => `<circle r="4.5" fill="var(--beat)"><animateMotion dur="6s" begin="-${k * 3}s" repeatCount="indefinite"><mpath href="#fyA"/></animateMotion></circle>`).join("")}
+        <g transform="translate(44 96)"><rect x="-24" y="-13" width="48" height="26" rx="4" fill="var(--ink-2)" stroke="var(--faint)"/><text y="4" text-anchor="middle" font-size="10.5" style="fill:var(--dim)">ticket</text></g>
+        <g transform="translate(231 96)"><rect x="-80" y="-27" width="160" height="54" rx="9" fill="var(--ink-2)" stroke="var(--beat)" stroke-width="1.6"/><text y="-3" text-anchor="middle" font-size="16" font-weight="800" style="fill:var(--paper)">Devin</text><text y="14" text-anchor="middle" font-size="10" style="fill:var(--dim)">one agent, its own sandbox</text></g>
+        <g transform="translate(414 96)"><rect x="-34" y="-13" width="68" height="26" rx="4" fill="var(--ink-2)" stroke="var(--faint)"/><text y="4" text-anchor="middle" font-size="10.5" style="fill:var(--dim)">pull request</text></g>
+        <text x="231" y="138" text-anchor="middle" font-size="10" style="fill:var(--faint)">partly on its own SWE models · lives in the Windsurf editor</text>
+        <line x1="14" y1="152" x2="446" y2="152" stroke="var(--rule)" stroke-dasharray="3 5"/>
+        <text x="14" y="176" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.12em">FACTORY · A LINE</text>
+        <text x="446" y="176" text-anchor="end" font-size="14" font-weight="900" style="fill:var(--amber)">$5B</text>
+        <g class="fy-wire" fill="none" stroke="var(--rule)" stroke-width="1.4">
+          ${IN.map(([y]) => `<path d="M58 ${y} L114 222"/>`).join("")}${MOD.map(([y]) => `<path d="M146 222 L176 ${y} L224 ${y} L248 222"/>`).join("")}<path d="M248 222 H436"/>
+        </g>
+        ${RUNS.map(([i, m], k) => `<path id="fyB${k}" d="${route(IN[i][0], MOD[m][0])}" fill="none"/><circle r="3.6" fill="var(--amber)"><animateMotion dur="4.2s" begin="-${(k * .7).toFixed(1)}s" repeatCount="indefinite"><mpath href="#fyB${k}"/></animateMotion></circle>`).join("")}
+        ${IN.map(([y, l]) => chip(36, y, 44, l, "var(--faint)")).join("")}
+        <g transform="translate(130 222)"><path d="M0 -15 L15 0 L0 15 L-15 0 Z" fill="var(--ink-2)" stroke="var(--amber)" stroke-width="1.6"/><circle r="3" fill="var(--amber)"/><text y="29" text-anchor="middle" font-size="9.5" font-weight="800" style="fill:var(--amber);letter-spacing:.08em">ROUTER</text></g>
+        ${MOD.map(([y, l]) => chip(200, y, 48, l, "var(--rule)", 15)).join("")}
+        ${ST.map(([x, l]) => chip(x, 222, 40, l, "var(--amber)")).join("")}
+        <g transform="translate(442 222)"><circle r="8" fill="var(--amber)"/><path d="M-3.6 0 L-1 2.8 L3.8 -2.6" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <text x="14" y="288" font-size="10.5" style="fill:var(--dim)">a model picked per task · runs in the cloud, on-premises or air-gapped</text>
+      </svg>`;
+
+    // ---- frame 2: same price tag, two ways to cut the token bill
+    const TASK = [[124, "rename a function", 0], [146, "write the tests", 0], [168, "migrate a service", 1], [190, "design the schema", 2]];
+    const TIER = [[128, "open", "#7fe0d4"], [157, "mid", "var(--amber)"], [186, "frontier", "var(--beat)"]];
+    const F2 = `<svg viewBox="0 0 460 300" class="fy2" role="img" aria-label="Both companies charge 20 and 200 dollars a month per developer and 40 dollars a seat for teams. Cognition makes its own cheaper model, SWE-1.7, on an open-weight base, and reportedly planned to burn about 800 million dollars in 2026, mostly on leased Nvidia servers, at enterprise gross margins near 50 percent. Factory routes each task to the cheapest model that can do it: small tasks to open models, hard ones to frontier models, which Factory says cuts token spend by more than 60 percent.">
+        <text x="14" y="22" class="t-strong" font-size="15">Same price tag, two ways to cut the token bill</text>
+        <g transform="translate(230 48)"><rect x="-182" y="-13" width="364" height="26" rx="13" fill="var(--ink-2)" stroke="var(--rule)"/><text y="4.4" text-anchor="middle" font-size="11.5" style="fill:var(--dim)">Both: <tspan font-weight="800" style="fill:var(--paper)">$20</tspan> and <tspan font-weight="800" style="fill:var(--paper)">$200</tspan> a month per developer · <tspan font-weight="800" style="fill:var(--paper)">$40</tspan> a seat for teams</text></g>
+        <line x1="230" y1="76" x2="230" y2="286" stroke="var(--rule)" stroke-dasharray="3 5"/>
+        <text x="14" y="94" font-size="12" font-weight="800" style="fill:var(--beat);letter-spacing:.1em">COGNITION · MAKES ITS OWN</text>
+        <text x="14" y="109" font-size="10.5" style="fill:var(--dim)">post-trains SWE models on open weights</text>
+        ${[20, 50, 80].map((x, r) => `<g transform="translate(${x} 122)"><rect width="24" height="62" rx="2" fill="var(--ink-2)" stroke="var(--faint)"/>${[0, 1, 2, 3, 4, 5].map(i => `<rect class="fy-led" x="4" y="${6 + i * 9.4}" width="16" height="4" rx="1" style="animation-delay:-${((r * 6 + i) * .37 % 2.2).toFixed(2)}s"/>`).join("")}</g>`).join("")}
+        <path d="M110 153 H136" stroke="var(--beat)" stroke-width="2"/><path d="M136 147 L144 153 L136 159 Z" fill="var(--beat)"/>
+        <g transform="translate(180 153)"><rect x="-34" y="-24" width="68" height="48" rx="7" fill="var(--ink-2)" stroke="var(--beat)" stroke-width="1.6"/><text y="-1" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--paper)">SWE-1.7</text><text y="14" text-anchor="middle" font-size="9.5" style="fill:var(--dim)">on Kimi</text></g>
+        <text x="14" y="222" font-size="26" font-weight="900" style="fill:var(--coral)">~$800M</text>
+        <text x="14" y="240" font-size="10.5" style="fill:var(--dim)">planned 2026 burn, mostly leasing</text>
+        <text x="14" y="253" font-size="10.5" style="fill:var(--dim)">Nvidia servers (reported)</text>
+        <text x="14" y="278" font-size="10.5" style="fill:var(--dim)"><tspan font-weight="800" font-size="13" style="fill:var(--paper)">~50%</tspan> enterprise gross margin (reported)</text>
+        <text x="244" y="94" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">FACTORY · ROUTES TO THEM</text>
+        <text x="244" y="109" font-size="10.5" style="fill:var(--dim)">the cheapest model that can do each task</text>
+        ${TASK.map(([y, l, t], i) => `<path id="fyR${i}" d="M330 ${y - 3.5} L352 157 L390 ${TIER[t][0]}" fill="none" stroke="${TIER[t][2]}" stroke-opacity=".55" stroke-width="1.4"/><circle r="2.8" fill="${TIER[t][2]}"><animateMotion dur="2.6s" begin="-${(i * .65).toFixed(2)}s" repeatCount="indefinite"><mpath href="#fyR${i}"/></animateMotion></circle><text x="244" y="${y}" font-size="10" style="fill:var(--paper)">${l}</text>`).join("")}
+        <circle cx="352" cy="157" r="5" fill="var(--ink)" stroke="var(--amber)" stroke-width="1.6"/>
+        ${TIER.map(([y, l, c]) => `<g transform="translate(418 ${y})"><rect x="-28" y="-9" width="56" height="18" rx="4" fill="var(--ink-2)" stroke="${c}" stroke-width="1.2"/><text y="3.6" text-anchor="middle" font-size="9.8" style="fill:var(--paper)">${l}</text></g>`).join("")}
+        <text x="244" y="218" font-size="10" font-weight="700" style="fill:var(--faint);letter-spacing:.08em">TOKEN SPEND</text>
+        <text x="244" y="238" font-size="10.5" style="fill:var(--dim)">all frontier</text><rect x="318" y="229" width="128" height="11" rx="2" fill="var(--faint)" fill-opacity=".55"/>
+        <text x="244" y="258" font-size="10.5" style="fill:var(--dim)">routed</text><rect class="fy-cut" x="318" y="249" width="51" height="11" rx="2" fill="var(--amber)"/><text x="376" y="258.5" font-size="12" font-weight="900" style="fill:var(--amber)">−60%+</text>
+        <text x="244" y="278" font-size="10" style="fill:var(--faint)">Factory’s own claim (Sep 2026)</text>
+      </svg>`;
+
+    // ---- frame 3: the 10x test, on a log scale. Factory’s 10x lands about where Cognition is valued today
+    const Y = v => 254 - Math.log10(v) * 66;
+    const col = (x, now, c, name, rev, delay) => `<g class="fy-col" style="--d:${delay}s">
+        <rect class="fy-ghost" x="${x - 30}" y="${Y(now * 10).toFixed(1)}" width="60" height="${(Y(now) - Y(now * 10)).toFixed(1)}" fill="none" stroke="${c}" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <rect class="fy-fill" x="${x - 30}" y="${Y(now).toFixed(1)}" width="60" height="${(254 - Y(now)).toFixed(1)}" fill="${c}" fill-opacity=".85"/>
+        <text x="${x}" y="${(Y(now) + 17).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="900" style="fill:var(--ink)">$${now}B</text>
+        <text class="fy-ten" x="${x}" y="${(Y(now * 10) - 8).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="800" style="fill:${c}">×10 = $${now * 10}B</text>
+        <text x="${x}" y="272" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--paper)">${name}</text>
+        <text x="${x}" y="288" text-anchor="middle" font-size="10.5" style="fill:var(--dim)">${rev}</text></g>`;
+    const F3 = `<svg viewBox="0 0 460 300" class="fy3" role="img" aria-label="The 10x test on a log scale. Cognition is valued at 48 billion dollars; ten times that is 480 billion, about 24 billion dollars a year of revenue at 20 times revenue, 24 times its run rate today. Factory is valued at 5 billion dollars; ten times that is 50 billion, about where Cognition is valued now, or 2.5 billion dollars of revenue at 20 times.">
+        <text x="14" y="22" class="t-strong" font-size="15">The 10× test</text>
+        ${[[1, "$1B"], [10, "$10B"], [100, "$100B"], [1000, "$1T"]].map(([v, l]) => `<line x1="60" y1="${Y(v).toFixed(1)}" x2="446" y2="${Y(v).toFixed(1)}" stroke="var(--rule)" stroke-dasharray="${v === 1 ? "0" : "2 5"}"/><text x="52" y="${(Y(v) + 4).toFixed(1)}" text-anchor="end" font-size="10.5" style="fill:var(--faint)">${l}</text>`).join("")}
+        ${col(170, 48, "var(--beat)", "Cognition", "needs ~$24B a year in revenue", 0)}
+        ${col(350, 5, "var(--amber)", "Factory", "needs ~$2.5B a year in revenue", .35)}
+        <path class="fy-link" d="M200 ${Y(48).toFixed(1)} H320" stroke="var(--violet)" stroke-width="1.2" stroke-dasharray="2 3" opacity=".8"/>
+        <text class="fy-ten" x="260" y="${(Y(48) - 21).toFixed(1)}" text-anchor="middle" font-size="10.5" style="fill:var(--violet)">Factory’s ×10 ≈</text>
+        <text class="fy-ten" x="260" y="${(Y(48) - 8).toFixed(1)}" text-anchor="middle" font-size="10.5" style="fill:var(--violet)">Cognition today</text>
+      </svg>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Simplified from each company’s product pages. Devin can also be started from Slack and Linear; the difference is what each company sells, the agent or the line around it.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Self-serve plans as each company listed them in 2026. Cognition’s burn and margin as reported by The Information, via Crypto Briefing. The task mix is illustrative.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Valuations from the September 2026 rounds. Revenue needed assumes a 20× revenue multiple, my assumption, against Cognition’s ~$1B run rate today.</p></div>
     </div>`;
   },
 
