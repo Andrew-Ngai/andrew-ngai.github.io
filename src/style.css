@@ -1587,13 +1587,74 @@ html.paused .gng-list li{animation:none!important}
 /* start mid-story, with the robot built and booted, so a still frame (and the share card) shows the whole scene */
 .echo.echo-assemble *{animation-delay:-3.04s}
 
-/* Fab tech: a gentle bob in the bunny suit */
-.echo-gown .echo-all{animation:echo-bob 2.6s ease-in-out infinite}
-.echo-gown .echo-fin-l,.echo-gown .echo-hand-l{animation:echo-sway-l 2.6s ease-in-out infinite}
-.echo-gown .echo-fin-r{animation:echo-sway-r 2.6s ease-in-out infinite}
+/* Fab tech: hands a chip into the payload bay; countdown, liftoff, a wave, and the next rocket rolls out */
+.echo-launch .echo-all{transform:translate(-22px,8px) scale(.74)}.echo-launch .echo-shadow{transform:translate(-22px,0) scale(.74,1)}
+@keyframes xlf-arm{0.000%{transform:rotate(0)}5.000%{transform:rotate(0)}10.000%{transform:rotate(-22deg)}20.000%{transform:rotate(-22deg)}25.000%{transform:rotate(0)}100.000%{transform:rotate(0)}}
+.echo-launch .echo-fin-r,.echo-launch .echo-hand-r{animation:xlf-arm 6s ease-in-out infinite}
+@keyframes xlf-wave{0.000%{transform:rotate(0)}48.333%{transform:rotate(0)}53.333%{transform:rotate(60deg)}57.500%{transform:rotate(40deg)}61.667%{transform:rotate(60deg)}65.833%{transform:rotate(40deg)}71.667%{transform:rotate(0)}100.000%{transform:rotate(0)}}
+.echo-launch .echo-fin-l,.echo-launch .echo-hand-l{animation:xlf-wave 6s ease-in-out infinite}
+@keyframes xlf-held{0.000%{opacity:1}12.500%{opacity:1}12.667%{opacity:0}86.667%{opacity:0}91.667%{opacity:1}100.000%{opacity:1}}
+.xlf-held{animation:xlf-held 6s linear infinite}
+@keyframes xlf-fly{0.000%{transform:translate(64.3px,89.8px);opacity:0}12.500%{transform:translate(66.3px,81.8px);opacity:0}12.667%{transform:translate(66.3px,81.8px);opacity:1}14.333%{transform:translate(71.8px,69.3px);opacity:1}16.000%{transform:translate(77.4px,60.5px);opacity:1}17.667%{transform:translate(82.9px,57.4px);opacity:1}19.333%{transform:translate(88.5px,60.2px);opacity:1}21.000%{transform:translate(94.0px,66.5px);opacity:1}21.167%{transform:translate(94px,66.5px);opacity:0}100.000%{transform:translate(94px,66.5px);opacity:0}}
+.xlf-fly{animation:xlf-fly 6s linear infinite}
+@keyframes xlf-in{0.000%{opacity:0}21.000%{opacity:0}21.167%{opacity:1}100.000%{opacity:1}}
+.xlf-in{animation:xlf-in 6s step-end infinite}
+@keyframes xlf-door{0.000%{transform:scaleY(0)}22.500%{transform:scaleY(0)}26.667%{transform:scaleY(1)}83.333%{transform:scaleY(1)}88.333%{transform:scaleY(0)}100.000%{transform:scaleY(0)}}
+.xlf-door{transform-box:fill-box;transform-origin:center top;animation:xlf-door 6s ease-in-out infinite}
+@keyframes xlf-c0{0.000%{fill:#2c3e55}30.000%{fill:#3fd6c8}51.667%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xlf-c0{fill:#2c3e55;animation:xlf-c0 6s step-end infinite}
+@keyframes xlf-c1{0.000%{fill:#2c3e55}35.833%{fill:#3fd6c8}51.667%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xlf-c1{fill:#2c3e55;animation:xlf-c1 6s step-end infinite}
+@keyframes xlf-c2{0.000%{fill:#2c3e55}41.667%{fill:#3fd6c8}51.667%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xlf-c2{fill:#2c3e55;animation:xlf-c2 6s step-end infinite}
+@keyframes xlf-rocket{0.000%{transform:translate(0,0);opacity:1}47.500%{transform:translate(0,0);opacity:1;animation-timing-function:cubic-bezier(.5,0,.9,.6)}68.333%{transform:translate(0,-150px);opacity:1}68.500%{transform:translate(0,14px);opacity:0}76.667%{transform:translate(0,14px);opacity:0;animation-timing-function:cubic-bezier(.2,.8,.3,1)}85.000%{transform:translate(0,0);opacity:1}100.000%{transform:translate(0,0);opacity:1}}
+.xlf-rocket{animation:xlf-rocket 6s linear infinite}
+@keyframes xlf-flame{0.000%{opacity:0;transform:scaleY(.3)}43.333%{opacity:0;transform:scaleY(.3)}45.833%{opacity:1;transform:scaleY(.7)}48.333%{opacity:1;transform:scaleY(1.15)}50.000%{opacity:1;transform:scaleY(.95)}51.667%{opacity:1;transform:scaleY(1.2)}68.333%{opacity:1;transform:scaleY(1.2)}68.500%{opacity:0}100.000%{opacity:0}}
+.xlf-flame{transform-box:fill-box;transform-origin:center top;animation:xlf-flame 6s linear infinite}
+@keyframes xlf-p0{0.000%{opacity:0;transform:scale(.3)}45.000%{opacity:0;transform:scale(.3)}47.500%{opacity:.9;transform:scale(1)}65.000%{opacity:0;transform:translate(-7px,-6px) scale(2)}65.167%{opacity:0;transform:scale(.3)}100.000%{opacity:0;transform:scale(.3)}}
+.xlf-p0{transform-box:fill-box;transform-origin:center;opacity:0;animation:xlf-p0 6s ease-out infinite}
+@keyframes xlf-p1{0.000%{opacity:0;transform:scale(.3)}46.333%{opacity:0;transform:scale(.3)}48.833%{opacity:.9;transform:scale(1)}66.333%{opacity:0;transform:translate(0px,-6px) scale(2)}66.500%{opacity:0;transform:scale(.3)}100.000%{opacity:0;transform:scale(.3)}}
+.xlf-p1{transform-box:fill-box;transform-origin:center;opacity:0;animation:xlf-p1 6s ease-out infinite}
+@keyframes xlf-p2{0.000%{opacity:0;transform:scale(.3)}47.667%{opacity:0;transform:scale(.3)}50.167%{opacity:.9;transform:scale(1)}67.667%{opacity:0;transform:translate(7px,-6px) scale(2)}67.833%{opacity:0;transform:scale(.3)}100.000%{opacity:0;transform:scale(.3)}}
+.xlf-p2{transform-box:fill-box;transform-origin:center;opacity:0;animation:xlf-p2 6s ease-out infinite}
+@keyframes xlf-star{0.000%{opacity:0;transform:scale(.3)}65.833%{opacity:0;transform:scale(.3)}69.167%{opacity:1;transform:scale(1.3)}73.333%{opacity:1;transform:scale(1)}81.667%{opacity:0;transform:scale(.6)}100.000%{opacity:0;transform:scale(.6)}}
+.xlf-star{transform-box:fill-box;transform-origin:center;opacity:0;animation:xlf-star 6s ease-out infinite}
+.xlf-fly,.xlf-in,.xlf-flame{opacity:0}
+/* Router: a new model parachutes in, Echo slots it into the empty bay, and the router starts using it */
+@keyframes xnm-d0{0.000%{opacity:.22}0.000%{opacity:1}5.333%{opacity:.22}16.500%{opacity:1}21.833%{opacity:.22}54.500%{opacity:1}58.833%{opacity:.22}81.500%{opacity:1}85.833%{opacity:.22}100.000%{opacity:.22}}
+.xnm-d0{animation:xnm-d0 6s step-end infinite}
+@keyframes xnm-d1{0.000%{opacity:.22}5.500%{opacity:1}10.833%{opacity:.22}22.000%{opacity:1}27.333%{opacity:.22}63.500%{opacity:1}67.833%{opacity:.22}100.000%{opacity:.22}}
+.xnm-d1{animation:xnm-d1 6s step-end infinite}
+@keyframes xnm-d2{0.000%{opacity:.22}11.000%{opacity:1}16.333%{opacity:.22}27.500%{opacity:1}32.833%{opacity:.22}72.500%{opacity:1}76.833%{opacity:.22}100.000%{opacity:.22}}
+.xnm-d2{animation:xnm-d2 6s step-end infinite}
+@keyframes xnm-d3{0.000%{opacity:.22}50.000%{opacity:1}54.333%{opacity:.22}59.000%{opacity:1}63.333%{opacity:.22}68.000%{opacity:1}72.333%{opacity:.22}77.000%{opacity:1}81.333%{opacity:.22}86.000%{opacity:1}90.333%{opacity:.22}100.000%{opacity:.22}}
+.xnm-d3{animation:xnm-d3 6s step-end infinite}
+.xnm-d3{visibility:hidden;animation:xnm-d3 6s step-end infinite,xnm-vis 6s step-end infinite}
+@keyframes xnm-vis{0.000%{visibility:hidden}47.500%{visibility:visible}93.333%{visibility:hidden}100.000%{visibility:hidden}}
+@keyframes xnm-t0{0.000%{fill:#2c3e55}0.000%{fill:#4fd2ff}9.167%{fill:#2c3e55}30.000%{fill:#4fd2ff}39.167%{fill:#2c3e55}60.000%{fill:#4fd2ff}69.167%{fill:#2c3e55}90.000%{fill:#4fd2ff}99.167%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xnm-t0{fill:#2c3e55;animation:xnm-t0 6s step-end infinite}
+@keyframes xnm-t1{0.000%{fill:#2c3e55}10.000%{fill:#4fd2ff}19.167%{fill:#2c3e55}40.000%{fill:#4fd2ff}49.167%{fill:#2c3e55}70.000%{fill:#4fd2ff}79.167%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xnm-t1{fill:#2c3e55;animation:xnm-t1 6s step-end infinite}
+@keyframes xnm-t2{0.000%{fill:#2c3e55}20.000%{fill:#4fd2ff}29.167%{fill:#2c3e55}50.000%{fill:#4fd2ff}59.167%{fill:#2c3e55}80.000%{fill:#4fd2ff}89.167%{fill:#2c3e55}100.000%{fill:#2c3e55}}
+.xnm-t2{fill:#2c3e55;animation:xnm-t2 6s step-end infinite}
+@keyframes xnm-fall{0.000%{transform:translate(104px,-34px);opacity:0}15.000%{transform:translate(104px,-34px);opacity:0}16.667%{transform:translate(104px,-30px);opacity:1}20.707%{transform:translate(100px,-10px) rotate(8deg);opacity:1}24.815%{transform:translate(106px,14px) rotate(-8deg);opacity:1}29.016%{transform:translate(98px,38px) rotate(8deg);opacity:1}33.333%{transform:translate(88px,62px) rotate(8deg);opacity:1}33.667%{transform:translate(88px,62px);opacity:0}100.000%{transform:translate(88px,62px);opacity:0}}
+.xnm-fall{opacity:0;animation:xnm-fall 6s ease-in-out infinite}
+@keyframes xnm-held{0.000%{opacity:0}33.333%{opacity:0}33.500%{opacity:1}45.333%{opacity:1}45.500%{opacity:0}100.000%{opacity:0}}
+.xnm-held{opacity:0;animation:xnm-held 6s step-end infinite}
+@keyframes xnm-arm{0.000%{transform:rotate(0)}34.167%{transform:rotate(0)}44.167%{transform:rotate(25deg)}47.500%{transform:rotate(25deg)}55.000%{transform:rotate(0)}100.000%{transform:rotate(0)}}
+.echo-slotin .echo-fin-r,.echo-slotin .echo-hand-r{animation:xnm-arm 6s ease-in-out infinite}.echo-slotin .echo-fin-l,.echo-slotin .echo-hand-l{animation:echo-sway-l 3s ease-in-out infinite}
+@keyframes xnm-slot{0.000%{opacity:0}45.333%{opacity:0}45.500%{opacity:1}93.333%{opacity:1}97.500%{opacity:0}100.000%{opacity:0}}
+.xnm-slot{opacity:0;animation:xnm-slot 6s linear infinite}
+@keyframes xnm-ring{0.000%{opacity:0;transform:scale(.4)}45.333%{opacity:0;transform:scale(.4)}45.667%{opacity:1;transform:scale(.5)}55.000%{opacity:0;transform:scale(1.6)}100.000%{opacity:0;transform:scale(.4)}}
+.xnm-ring{transform-box:fill-box;transform-origin:center;opacity:0;animation:xnm-ring 6s ease-out infinite}
+@keyframes xnm-plus{0.000%{opacity:0;transform:translate(0,4px)}46.667%{opacity:0;transform:translate(0,4px)}50.000%{opacity:1;transform:translate(0,0)}65.000%{opacity:1;transform:translate(0,-3px)}71.667%{opacity:0;transform:translate(0,-6px)}100.000%{opacity:0;transform:translate(0,-6px)}}
+.xnm-plus{opacity:0;animation:xnm-plus 6s ease-out infinite}
+.echo-slotin .echo-all{animation:echo-bob 3s ease-in-out infinite}
 
 /* with Reduce motion on, the flips, pounces and leaps hold still; the props keep their gentle loops */
 @media (prefers-reduced-motion:reduce){
+  .xlf-rocket,.xlf-flame,.xlf-puff,.xlf-fly,.xlf-in,.xlf-held,.xlf-door,.xlf-star,.echo-launch .echo-fin-r,.echo-launch .echo-hand-r,.echo-launch .echo-fin-l,.echo-launch .echo-hand-l{animation:none}
+  .xnm-fall,.xnm-held,.xnm-slot,.xnm-ring,.xnm-plus,.echo-slotin .echo-fin-r,.echo-slotin .echo-hand-r{animation:none}
   .echo-bitflip .echo-all{animation:none;transform:translate(0,-10px)}
   .echo-pounce .echo-all,.echo-pounce .echo-shadow,.echo-payday .echo-all,.echo-payday .echo-shadow{animation:none}
   .echo-hurdle .echo-all{animation:none;transform:translate(-6px,0) scale(.84) rotate(6deg)}
@@ -3228,10 +3289,3 @@ html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 @media (max-width:760px) and (hover:none) and (pointer:coarse){.dock{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(12,26,43,.97)}}
 
 /* ---------------------------------------------------------------- Echo the router */
-.xrt-tip{fill:#2c3e55;animation:xrt-tip 2.4s steps(1,end) infinite}
-@keyframes xrt-tip{0%{fill:#4fd2ff}33.33%,100%{fill:#2c3e55}}
-.xrt-led{fill:#3fd6c8;animation:xrt-led 1.5s ease-in-out infinite}
-@keyframes xrt-led{0%,100%{opacity:1}50%{opacity:.25}}
-.xrt-ok{transform-box:fill-box;transform-origin:center;animation:xrt-ok 2.4s ease-in-out infinite}
-@keyframes xrt-ok{0%,62%,100%{transform:scale(1)}72%{transform:scale(1.28)}}
-@media (prefers-reduced-motion:reduce){.xrt-tip,.xrt-led,.xrt-ok{animation:none}}
