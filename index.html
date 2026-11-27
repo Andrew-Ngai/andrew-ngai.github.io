@@ -3086,25 +3086,31 @@ html.paused .sq-ring,html.paused .sq-flip.sq-da{animation:none}
 @keyframes sq-fade{from{opacity:0}to{opacity:1}}
 .sq-card.sq-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(calc(460*var(--u)),calc(100vw - calc(24*var(--u))));max-height:calc(100svh - calc(24*var(--u)));overflow:auto;animation:sq-in-m .35s var(--ease)}
 @keyframes sq-in-m{from{opacity:0;transform:translate(-50%,-47%)}to{opacity:1;transform:translate(-50%,-50%)}}
-.hero-copy{position:relative}
-.hero-q{position:relative;display:grid;gap:calc(6*var(--u));width:100%;max-width:calc(300*var(--u));box-sizing:border-box;margin:0;padding:calc(10*var(--u)) calc(12*var(--u)) calc(9*var(--u));text-align:left;font:inherit;color:inherit;cursor:pointer;background:rgba(6,19,33,.72);border:calc(1*var(--u)) dashed rgba(63,214,200,.35);backdrop-filter:blur(calc(4*var(--u)));-webkit-backdrop-filter:blur(calc(4*var(--u)));transition:border-color .25s,background .25s,transform .25s var(--ease)}
-.hero-q:hover,.hero-q:focus-visible{border-color:rgba(63,214,200,.8);background:rgba(10,30,48,.85);transform:translateY(calc(-2*var(--u)));outline:0}
-.hq-c{position:absolute;width:calc(9*var(--u));height:calc(9*var(--u));border:0 solid var(--amber);pointer-events:none}
-.hq-c1{top:calc(-1*var(--u));left:calc(-1*var(--u));border-width:calc(2*var(--u)) 0 0 calc(2*var(--u))}.hq-c2{top:calc(-1*var(--u));right:calc(-1*var(--u));border-width:calc(2*var(--u)) calc(2*var(--u)) 0 0}
-.hq-c3{bottom:calc(-1*var(--u));left:calc(-1*var(--u));border-width:0 0 calc(2*var(--u)) calc(2*var(--u))}.hq-c4{bottom:calc(-1*var(--u));right:calc(-1*var(--u));border-width:0 calc(2*var(--u)) calc(2*var(--u)) 0}
-.hq-top{display:flex;align-items:center;gap:calc(7*var(--u))}
-.hq-mark{width:calc(13*var(--u));height:calc(13*var(--u));flex:none;overflow:visible}
+.hero-q{justify-self:start;display:block;margin:calc(-6*var(--u)) 0 0;padding:calc(2*var(--u)) 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 calc(1*var(--u)) calc(14*var(--u)) rgba(7,16,29,.95),0 0 calc(2*var(--u)) rgba(7,16,29,.8)}
+.hq-line{font-family:var(--serif);font-style:italic;font-size:calc(23*var(--u));line-height:1.3;color:var(--paper)}
+.hq-z{position:relative;text-decoration:none}
+.hq-z::after{content:"";position:absolute;left:calc(-3*var(--u));right:calc(-3*var(--u));top:56%;height:calc(2*var(--u));background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
+.hq-p{display:inline-block;color:var(--amber);animation:hq-write 7s ease-in-out infinite}
+@keyframes hq-strike{0%,6%{transform:scaleX(0)}18%,90%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes hq-write{0%,18%{opacity:0;filter:blur(calc(3*var(--u)));transform:translateY(calc(4*var(--u)))}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(calc(3*var(--u)));transform:none}}
+.hq-end{white-space:nowrap}
+.hq-wafer{width:calc(40*var(--u));height:calc(40*var(--u));margin:calc(-10*var(--u)) 0 calc(-8*var(--u)) calc(12*var(--u));vertical-align:middle;overflow:visible;transform:rotate(-24deg) scale(1.14);transition:transform .35s var(--ease),filter .35s}
+.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.1;animation:sb-breathe 3.2s ease-in-out infinite}
+.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1}
+.hm-d{fill:var(--amber)}
+.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-40deg) scale(1.3);filter:drop-shadow(0 0 calc(5*var(--u)) rgba(63,214,200,.45))}
+.hero-q:hover .hq-z::after,.hero-q:focus-visible .hq-z::after,.hero-q:hover .hq-p,.hero-q:focus-visible .hq-p{animation:none}
+.hq-sr{position:absolute;width:calc(1*var(--u));height:calc(1*var(--u));overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-q:focus-visible{outline:calc(2*var(--u)) solid var(--amber);outline-offset:calc(4*var(--u))}
+.hq-mark{width:calc(14*var(--u));height:calc(14*var(--u));flex:none;overflow:visible}
 .hq-mark circle{fill:none;stroke:var(--amber);stroke-width:1.6;animation:sb-breathe 3.2s ease-in-out infinite}
 .hq-mark path{stroke:var(--amber);stroke-width:1.2;opacity:.7}
-.hq-k{font-family:var(--label);font-weight:800;font-size:calc(11*var(--u));letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
-.hq-q{font-family:var(--serif);font-style:italic;font-size:calc(13*var(--u));line-height:1.38;color:var(--paper)}
-.hq-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(10*var(--u));font-family:var(--label);font-size:calc(12*var(--u));letter-spacing:.04em}
-.hq-who{color:var(--dim);font-weight:600}
-.hq-open{display:inline-flex;align-items:center;gap:calc(5*var(--u));padding:calc(2*var(--u)) calc(9*var(--u));border:calc(1*var(--u)) solid rgba(63,214,200,.55);border-radius:calc(999*var(--u));color:var(--amber);font-weight:800;letter-spacing:.06em;transition:background .25s,color .25s}
-.hero-q:hover .hq-open,.hero-q:focus-visible .hq-open{background:var(--amber);color:#05201d}
-@media (min-width:1000px){.hero-q{position:absolute;right:var(--gutter);bottom:calc(44*var(--u));width:min(calc(268*var(--u)),23vw)}}
-@media (prefers-reduced-motion:reduce){.hq-mark circle,.sq-back,.sq-card.sq-modal{animation:none}.hero-q{transition:none}}
-html.paused .hq-mark circle{animation:none}
+.rules .rule-ps b{display:flex;align-items:center;gap:calc(9*var(--u));color:var(--amber)}
+.rules .rule-ps .hq-mark{width:calc(16*var(--u));height:calc(16*var(--u))}
+.rule-q{display:flex;align-items:center;gap:calc(6*var(--u));width:max-content;max-width:100%;min-height:calc(38*var(--u));margin-top:calc(10*var(--u));padding:0 calc(14*var(--u));border:calc(1*var(--u)) solid rgba(63,214,200,.6);border-radius:calc(999*var(--u));background:none;font-family:var(--label);font-weight:800;font-size:calc(15*var(--u));letter-spacing:.06em;color:var(--amber);cursor:pointer;transition:background .25s,color .25s}
+.rule-q:hover,.rule-q:focus-visible{background:var(--amber);color:#05201d;outline:0}
+@media (prefers-reduced-motion:reduce){.hq-mark circle,.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hm-d,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
+html.paused .hq-mark circle,html.paused .hm-ring,html.paused .hq-z::after,html.paused .hq-p{animation:none}
 html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 .dock{display:none}
 @media (max-width:760px){
@@ -5544,10 +5550,7 @@ html.paused .tf3-con.run .tf3-rows li,html.paused .tf3-con.run .tf3-s,html.pause
         <a class="btn-tour" href="#watch/field-trip"><span class="bt-p" aria-hidden="true"></span><span>Watch the tour</span><span class="bt-len">2:43</span></a>
       </div>
       <button type="button" class="hero-q" aria-haspopup="dialog" aria-expanded="false">
-        <span class="hq-c hq-c1"></span><span class="hq-c hq-c2"></span><span class="hq-c hq-c3"></span><span class="hq-c hq-c4"></span>
-        <span class="hq-top"><svg class="hq-mark" viewBox="-12 -12 24 24" aria-hidden="true"><circle r="6.5"/><path d="M-11 0H11M0 -11V11"/></svg><span class="hq-k">Always play for the positive sum</span></span>
-        <span class="hq-q">“In a high growth environment, you have positive sum economics, which means you have positive sum politics.”</span>
-        <span class="hq-foot"><span class="hq-who">Marc Andreessen</span><span class="hq-open">Read the quote <span aria-hidden="true">→</span></span></span>
+        <span class="hq-line">Always play for the <s class="hq-z" aria-hidden="true">zero</s> <span class="hq-end"><span class="hq-p">positive</span> sum.<svg class="hq-wafer" viewBox="-15 -15 30 30" aria-hidden="true"><circle class="hm-ring" r="14.2"/><path class="hm-disc" d="M-1.7 11.9A12 12 0 1 1 1.7 11.9A1.9 1.9 0 0 0 -1.7 11.9Z"/><rect class="hm-d" x="-8.6" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-8.6" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-8.6" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="2.2" width="2.8" height="2.8" rx=".5"/></svg></span></span><span class="hq-sr">Read Marc Andreessen’s quote</span>
       </button>
     </div>
     <div class="feat-wrap">
@@ -5659,6 +5662,7 @@ html.paused .tf3-con.run .tf3-rows li,html.paused .tf3-con.run .tf3-s,html.pause
             <li><b>Three slides, max.</b>If it doesn’t fit, I don’t understand it yet.</li>
             <li><b>Name the reference design.</b>Every thesis credits who I’m building on or arguing with, and links the receipts.</li>
             <li><b>Say how I’d be wrong.</b>A bet without a kill condition is just a mood.</li>
+            <li class="rule-ps"><b><svg class="hq-mark" viewBox="-12 -12 24 24" aria-hidden="true"><circle r="6.5"/><path d="M-11 0H11M0 -11V11"/></svg>Always play for the positive sum.</b>The way out of a fight over slices is a bigger pie.<button type="button" class="rule-q" aria-haspopup="dialog" aria-expanded="false">Read Marc Andreessen’s line <span aria-hidden="true">→</span></button></li>
           </ul>
         </aside>
         <div class="contact-io">
@@ -14164,7 +14168,7 @@ const RIM_QUOTE = {
   where: "on Uncommon Knowledge with Peter Robinson, January 2025",
   href: "https://www.hoover.org/plus/research/marc-andreessen-its-morning-again-america",
   mine: "The way out of a fight over slices is a bigger pie, and pies grow at the frontier. Every die on this wafer is a bet on one.",
-  creed: "And I think one of the most patriotic things a person can do for their country is fight for the positive sum, through innovation, for the greater good."
+  creed: "And I think one of the most patriotic things a person can do for their country is fight for the positive sum, through innovation, so the country grows its way out of the fights that divide it."
 };
 function buildRimQuote() {
   const svg = $("#wmap"), wm = $(".wafermap"), R = 11.63 * 24;
@@ -14216,7 +14220,7 @@ function buildRimQuote() {
     `<p class="sq-who"><b>${RIM_QUOTE.who}</b>, <a href="${RIM_QUOTE.href}" target="_blank" rel="noopener">${RIM_QUOTE.where}</a></p>` +
     `<div class="sq-mine"><p>${RIM_QUOTE.mine}</p><p class="sq-creed">${RIM_QUOTE.creed}</p><p class="sq-sig">Andrew</p></div>`;
   wm.appendChild(card);
-  const hq = $(".hero-q"), back = document.createElement("div");
+  const modals = [...document.querySelectorAll(".hero-q, .rule-q")], back = document.createElement("div");
   back.className = "sq-back";
   back.hidden = true;
   document.body.appendChild(back);
@@ -14236,7 +14240,7 @@ function buildRimQuote() {
       wm.classList.remove("sq-open");
     }
     card.hidden = !on;
-    [sq, hq].forEach(b => b && b.setAttribute("aria-expanded", String(on && b === opener)));
+    [sq, ...modals].forEach(b => b.setAttribute("aria-expanded", String(on && b === opener)));
     if (!on) return;
     $(".sq-x", card).focus({ preventScroll: true });
     if (opener !== sq) return;
@@ -14246,7 +14250,7 @@ function buildRimQuote() {
   const shut = () => { open(false); opener.focus({ preventScroll: true }); };
   sq.setAttribute("aria-expanded", "false");
   sq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== sq, sq); });
-  if (hq) hq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== hq, hq); });
+  modals.forEach(b => b.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== b, b); }));
   $(".sq-x", card).addEventListener("click", shut);
   back.addEventListener("click", shut);
   card.addEventListener("click", e => e.stopPropagation());

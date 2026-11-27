@@ -6025,7 +6025,7 @@ const RIM_QUOTE = {
   where: "on Uncommon Knowledge with Peter Robinson, January 2025",
   href: "https://www.hoover.org/plus/research/marc-andreessen-its-morning-again-america",
   mine: "The way out of a fight over slices is a bigger pie, and pies grow at the frontier. Every die on this wafer is a bet on one.",
-  creed: "And I think one of the most patriotic things a person can do for their country is fight for the positive sum, through innovation, for the greater good."
+  creed: "And I think one of the most patriotic things a person can do for their country is fight for the positive sum, through innovation, so the country grows its way out of the fights that divide it."
 };
 function buildRimQuote() {
   const svg = $("#wmap"), wm = $(".wafermap"), R = 11.63 * 24;
@@ -6081,9 +6081,9 @@ function buildRimQuote() {
     `<p class="sq-who"><b>${RIM_QUOTE.who}</b>, <a href="${RIM_QUOTE.href}" target="_blank" rel="noopener">${RIM_QUOTE.where}</a></p>` +
     `<div class="sq-mine"><p>${RIM_QUOTE.mine}</p><p class="sq-creed">${RIM_QUOTE.creed}</p><p class="sq-sig">Andrew</p></div>`;
   wm.appendChild(card);
-  // The same card opens two ways: from the rim it sits over the wafer and dims it; from the quote in the hero it opens
-  // in the middle of the screen over a dark backdrop
-  const hq = $(".hero-q"), back = document.createElement("div");
+  // The same card opens two ways: from the rim it sits over the wafer and dims it; from the motto in the hero or the
+  // fourth house rule it opens in the middle of the screen over a dark backdrop
+  const modals = [...document.querySelectorAll(".hero-q, .rule-q")], back = document.createElement("div");
   back.className = "sq-back";
   back.hidden = true;
   document.body.appendChild(back);
@@ -6103,7 +6103,7 @@ function buildRimQuote() {
       wm.classList.remove("sq-open");
     }
     card.hidden = !on;
-    [sq, hq].forEach(b => b && b.setAttribute("aria-expanded", String(on && b === opener)));
+    [sq, ...modals].forEach(b => b.setAttribute("aria-expanded", String(on && b === opener)));
     if (!on) return;
     $(".sq-x", card).focus({ preventScroll: true });
     if (opener !== sq) return;
@@ -6113,7 +6113,7 @@ function buildRimQuote() {
   const shut = () => { open(false); opener.focus({ preventScroll: true }); };
   sq.setAttribute("aria-expanded", "false");
   sq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== sq, sq); });
-  if (hq) hq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== hq, hq); });
+  modals.forEach(b => b.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== b, b); }));
   $(".sq-x", card).addEventListener("click", shut);
   back.addEventListener("click", shut);
   card.addEventListener("click", e => e.stopPropagation());

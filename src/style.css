@@ -3353,26 +3353,36 @@ html.paused .sq-ring,html.paused .sq-flip.sq-da{animation:none}
 @keyframes sq-fade{from{opacity:0}to{opacity:1}}
 .sq-card.sq-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(460px,calc(100vw - 24px));max-height:calc(100svh - 24px);overflow:auto;animation:sq-in-m .35s var(--ease)}
 @keyframes sq-in-m{from{opacity:0;transform:translate(-50%,-47%)}to{opacity:1;transform:translate(-50%,-50%)}}
-/* the quote in the hero: a small plaque framed like an island, clearly a button */
-.hero-copy{position:relative}
-.hero-q{position:relative;display:grid;gap:6px;width:100%;max-width:300px;box-sizing:border-box;margin:0;padding:10px 12px 9px;text-align:left;font:inherit;color:inherit;cursor:pointer;background:rgba(6,19,33,.72);border:1px dashed rgba(63,214,200,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:border-color .25s,background .25s,transform .25s var(--ease)}
-.hero-q:hover,.hero-q:focus-visible{border-color:rgba(63,214,200,.8);background:rgba(10,30,48,.85);transform:translateY(-2px);outline:0}
-.hq-c{position:absolute;width:9px;height:9px;border:0 solid var(--amber);pointer-events:none}
-.hq-c1{top:-1px;left:-1px;border-width:2px 0 0 2px}.hq-c2{top:-1px;right:-1px;border-width:2px 2px 0 0}
-.hq-c3{bottom:-1px;left:-1px;border-width:0 0 2px 2px}.hq-c4{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
-.hq-top{display:flex;align-items:center;gap:7px}
-.hq-mark{width:13px;height:13px;flex:none;overflow:visible}
+/* The motto under the hero buttons. "zero" is struck through and "positive" is written in beside it, held for a few
+   seconds, then wiped back so it can play again. Paused or reduced motion shows the finished line. */
+.hero-q{justify-self:start;display:block;margin:-6px 0 0;padding:2px 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 1px 14px rgba(7,16,29,.95),0 0 2px rgba(7,16,29,.8)}
+.hq-line{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.3;color:var(--paper)}
+.hq-z{position:relative;text-decoration:none}
+.hq-z::after{content:"";position:absolute;left:-3px;right:-3px;top:56%;height:2px;background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
+.hq-p{display:inline-block;color:var(--amber);animation:hq-write 7s ease-in-out infinite}
+@keyframes hq-strike{0%,6%{transform:scaleX(0)}18%,90%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes hq-write{0%,18%{opacity:0;filter:blur(3px);transform:translateY(4px)}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(3px);transform:none}}
+/* the mini wafer at the end of the line: tilted, every die lit teal, its ring breathing. Pointing at it lifts it with a soft glow */
+.hq-end{white-space:nowrap}
+.hq-wafer{width:40px;height:40px;margin:-10px 0 -8px 12px;vertical-align:middle;overflow:visible;transform:rotate(-24deg) scale(1.14);transition:transform .35s var(--ease),filter .35s}
+.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.1;animation:sb-breathe 3.2s ease-in-out infinite}
+.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1}
+.hm-d{fill:var(--amber)}
+.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-40deg) scale(1.3);filter:drop-shadow(0 0 5px rgba(63,214,200,.45))}
+/* pointing at the line shows it finished: struck through and written in */
+.hero-q:hover .hq-z::after,.hero-q:focus-visible .hq-z::after,.hero-q:hover .hq-p,.hero-q:focus-visible .hq-p{animation:none}
+.hq-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-q:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+.hq-mark{width:14px;height:14px;flex:none;overflow:visible}
 .hq-mark circle{fill:none;stroke:var(--amber);stroke-width:1.6;animation:sb-breathe 3.2s ease-in-out infinite}
 .hq-mark path{stroke:var(--amber);stroke-width:1.2;opacity:.7}
-.hq-k{font-family:var(--label);font-weight:800;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
-.hq-q{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.38;color:var(--paper)}
-.hq-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--label);font-size:12px;letter-spacing:.04em}
-.hq-who{color:var(--dim);font-weight:600}
-.hq-open{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border:1px solid rgba(63,214,200,.55);border-radius:999px;color:var(--amber);font-weight:800;letter-spacing:.06em;transition:background .25s,color .25s}
-.hero-q:hover .hq-open,.hero-q:focus-visible .hq-open{background:var(--amber);color:#05201d}
-@media (min-width:1000px){.hero-q{position:absolute;right:var(--gutter);bottom:44px;width:min(268px,23vw)}}
-@media (prefers-reduced-motion:reduce){.hq-mark circle,.sq-back,.sq-card.sq-modal{animation:none}.hero-q{transition:none}}
-html.paused .hq-mark circle{animation:none}
+/* the fourth house rule, which opens the same card */
+.rules .rule-ps b{display:flex;align-items:center;gap:9px;color:var(--amber)}
+.rules .rule-ps .hq-mark{width:16px;height:16px}
+.rule-q{display:flex;align-items:center;gap:6px;width:max-content;max-width:100%;min-height:38px;margin-top:10px;padding:0 14px;border:1px solid rgba(63,214,200,.6);border-radius:999px;background:none;font-family:var(--label);font-weight:800;font-size:15px;letter-spacing:.06em;color:var(--amber);cursor:pointer;transition:background .25s,color .25s}
+.rule-q:hover,.rule-q:focus-visible{background:var(--amber);color:#05201d;outline:0}
+@media (prefers-reduced-motion:reduce){.hq-mark circle,.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hm-d,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
+html.paused .hq-mark circle,html.paused .hm-ring,html.paused .hq-z::after,html.paused .hq-p{animation:none}
 html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 
 /* ---------------------------------------------------------------- a thumb dock on phones */
