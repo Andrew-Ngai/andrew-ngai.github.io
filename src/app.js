@@ -6255,6 +6255,21 @@ function buildRimQuote() {
     requestAnimationFrame(tick);
   };
   halt();
+  // Beside the theses list (wider than 900px) the card sits centred on the map, and if the window is short, or zoomed
+  // in, it shrinks just enough to show whole below the header. On a phone it opens from the top of the map as it is.
+  const side = matchMedia("(min-width: 901px)");
+  const fitRim = () => {
+    card.style.removeProperty("--u");
+    card.style.top = "";
+    if (!side.matches) return;
+    const nav = $("#nav"), navB = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0, pad = 16;
+    let h = card.offsetHeight;
+    const k = Math.max(.7, Math.min(1, (innerHeight - navB - pad * 2) / h));
+    if (k < 1) { card.style.setProperty("--u", `${k.toFixed(3)}px`); h = card.offsetHeight; }
+    const m = wm.getBoundingClientRect(), lo = navB + pad - m.top, hi = innerHeight - pad - h - m.top;
+    card.style.top = `${Math.round(Math.min(Math.max(m.height / 2 - h / 2, lo), Math.max(lo, hi)))}px`;
+  };
+  addEventListener("resize", () => { if (!card.hidden && opener === sq) fitRim(); });
   let opener = sq;
   // In the hero's pop-up on a wide screen the card turns landscape: the two wafers stack in a column on the left, joined
   // by an arrow, with the words beside them. Everywhere else they sit side by side above the words.
@@ -6288,6 +6303,8 @@ function buildRimQuote() {
     }
     card.hidden = !on;
     if (on) typeQuote(); else halt();
+    if (on && opener === sq) fitRim();
+    else if (on) { card.style.removeProperty("--u"); card.style.top = ""; }
     // the hero wafer sits still behind the pop-up's backdrop, which leaves the page free to type
     if (wafer) wafer.hold(on && opener !== sq);
     [sq, ...modals].forEach(b => b.setAttribute("aria-expanded", String(on && b === opener)));

@@ -14390,6 +14390,19 @@ function buildRimQuote() {
     requestAnimationFrame(tick);
   };
   halt();
+  const side = matchMedia("(min-width: 901px)");
+  const fitRim = () => {
+    card.style.removeProperty("--u");
+    card.style.top = "";
+    if (!side.matches) return;
+    const nav = $("#nav"), navB = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0, pad = 16;
+    let h = card.offsetHeight;
+    const k = Math.max(.7, Math.min(1, (innerHeight - navB - pad * 2) / h));
+    if (k < 1) { card.style.setProperty("--u", `${k.toFixed(3)}px`); h = card.offsetHeight; }
+    const m = wm.getBoundingClientRect(), lo = navB + pad - m.top, hi = innerHeight - pad - h - m.top;
+    card.style.top = `${Math.round(Math.min(Math.max(m.height / 2 - h / 2, lo), Math.max(lo, hi)))}px`;
+  };
+  addEventListener("resize", () => { if (!card.hidden && opener === sq) fitRim(); });
   let opener = sq;
   const wf = $(".sq-wafers", card), tall = matchMedia("(min-width: 760px)");
   const LAY = {
@@ -14421,6 +14434,8 @@ function buildRimQuote() {
     }
     card.hidden = !on;
     if (on) typeQuote(); else halt();
+    if (on && opener === sq) fitRim();
+    else if (on) { card.style.removeProperty("--u"); card.style.top = ""; }
     if (wafer) wafer.hold(on && opener !== sq);
     [sq, ...modals].forEach(b => b.setAttribute("aria-expanded", String(on && b === opener)));
     if (!on) return;
