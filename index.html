@@ -234,7 +234,8 @@ h2.big{font-family:var(--display);font-weight:800;font-size:clamp(calc(46*var(--
 #probe circle{fill:none;stroke:var(--amber);stroke-width:1.5}
 .readout{font-family:var(--label);font-size:calc(17*var(--u));line-height:1.35;color:var(--dim);min-height:4.2em;border-top:calc(1*var(--u)) solid var(--rule);padding-top:calc(12*var(--u));display:flex;gap:calc(16*var(--u));align-items:flex-start;justify-content:space-between}
 .readout b{color:var(--paper);font-weight:700}
-.map-echo{width:calc(92*var(--u));flex:0 0 auto;margin-top:calc(-56*var(--u))}
+.map-echo{width:calc(92*var(--u));flex:0 0 auto;margin-top:calc(-56*var(--u));transition:opacity .3s}
+.wafermap.sq-open ~ .readout .map-echo{opacity:0}
 .tlist{list-style:none;margin:0;padding:0;border-top:calc(1*var(--u)) solid var(--rule)}
 .tlist li{border-bottom:calc(1*var(--u)) solid var(--rule)}
 .t-item{display:grid;grid-template-columns:calc(96*var(--u)) minmax(0,1fr);gap:calc(6*var(--u)) calc(20*var(--u));padding:calc(24*var(--u)) 0 calc(26*var(--u));text-decoration:none;position:relative}
@@ -3042,6 +3043,7 @@ html.ps-open{overflow:hidden}
 .wafermap.sq-open #wmap{opacity:.25}
 .sq-card{position:absolute;left:50%;top:0;transform:translateX(-50%);z-index:6;width:min(calc(450*var(--u)),96%);box-sizing:border-box;padding:calc(18*var(--u)) calc(22*var(--u)) calc(20*var(--u));background:rgba(6,19,33,.97);border:calc(1*var(--u)) dashed rgba(63,214,200,.32);box-shadow:0 calc(24*var(--u)) calc(70*var(--u)) rgba(0,0,0,.55);animation:sq-in .35s var(--ease)}
 .sq-card[hidden]{display:none}
+.sq-card:not(.sq-modal){--u:1px}
 .sq-c{position:absolute;width:calc(14*var(--u));height:calc(14*var(--u));border:0 solid var(--amber);pointer-events:none}
 .sq-c1{top:calc(-1*var(--u));left:calc(-1*var(--u));border-width:calc(2*var(--u)) 0 0 calc(2*var(--u))}.sq-c2{top:calc(-1*var(--u));right:calc(-1*var(--u));border-width:calc(2*var(--u)) calc(2*var(--u)) 0 0}
 .sq-c3{bottom:calc(-1*var(--u));left:calc(-1*var(--u));border-width:0 0 calc(2*var(--u)) calc(2*var(--u))}.sq-c4{bottom:calc(-1*var(--u));right:calc(-1*var(--u));border-width:0 calc(2*var(--u)) calc(2*var(--u)) 0}
