@@ -5559,6 +5559,7 @@ function onScroll() {
   if (y < hh * 1.2) {
     if (!touch.matches) canvas.style.transform = `translate3d(0,${(y * 0.38).toFixed(1)}px,0)`;
     else if (canvas.style.transform) canvas.style.transform = "";
+    if (hqLayer) hqLayer.style.transform = canvas.style.transform;
     if (wafer) wafer.setScroll(Math.min(1, y / hh));
   }
   for (const el of depthEls) {
@@ -5782,6 +5783,93 @@ function make2D(cv, st) {
   };
 }
 
+/* ---------------------------------------------------------------- the motto, hung from the wafer's notch
+   On a wide screen the motto hangs from the hero wafer like a callout on an engineering drawing. A thin trace leaves
+   the notch, runs just outside the rim to the wafer's lowest point and drops to the line. Every frame it re-projects
+   the rim with the same tilt, yaw and spin the renderer just drew, so the callout rides along as the wafer turns,
+   leans toward the pointer and sinks with the scroll. Every few seconds a short pulse runs down the trace from the
+   notch to the line, like a signal on a wire. Narrower than 1000px the line sits under the buttons instead. */
+let hqLayer = null;
+function makeTag() {
+  const btn = $(".hero-q"), home = $(".hero-copy", heroEl);
+  if (!btn || !home) return null;
+  const layer = hqLayer = document.createElement("div");
+  layer.className = "hq-layer";
+  layer.innerHTML = `<svg class="hq-trace" aria-hidden="true"><path class="hq-tr"/><path class="hq-pl" pathLength="100"/><circle class="hq-nr" r="5.5"/><circle class="hq-nd" r="1.8"/></svg>`;
+  home.after(layer); // after the copy, so Tab reaches the buttons first
+  const svg = $("svg", layer), path = $(".hq-tr", layer), pulse = $(".hq-pl", layer), ring = $(".hq-nr", layer), dot = $(".hq-nd", layer);
+  const wide = matchMedia("(min-width: 1000px)"), N = 120, TAU = Math.PI * 2;
+  let on = false, L = null, bw = 0, minX = 0, zm = 1, dir = 0;
+  const place = () => {
+    if (wide.matches === on) return;
+    on = wide.matches;
+    heroEl.classList.toggle("hq-hung", on);
+    if (on) layer.appendChild(btn);
+    else { btn.style.transform = ""; $(".ctas", home).after(btn); }
+  };
+  // where a point on the wafer lands on screen, in the hero's CSS pixels, for whichever renderer is drawing
+  const proj = (kind, st, t, a, b, low) => {
+    const scroll = calm ? 0 : st.scroll, tilt = (1 - .7 * scroll) + st.mouse[1] * .14, yaw = -.38 + st.mouse[0] * .22;
+    if (kind === "gl") {
+      const sp = t * .03, cs = Math.cos(sp), sn = Math.sin(sp);
+      let x = a * cs - b * sn, y = a * sn + b * cs, z = low ? -.024 : 0;
+      const ct = Math.cos(-tilt), st2 = Math.sin(-tilt);
+      [y, z] = [y * ct - z * st2, y * st2 + z * ct];
+      const cy = Math.cos(yaw), sy = Math.sin(yaw);
+      [x, z] = [x * cy + z * sy, -x * sy + z * cy];
+      const k = 1.75 / (L.dist - z);
+      return [(x * k + L.center[0]) * L.h + L.w / 2, L.h / 2 - (y * k + L.center[1]) * L.h];
+    }
+    // the flat fallback draws an ellipse: spin, squash by the tilt, then lean by half the yaw
+    const sp = t * .03, cs = Math.cos(sp), sn = Math.sin(sp), sq = Math.max(.12, Math.cos(tilt)), f = yaw * .5;
+    const x = (a * cs - b * sn) * L.R, y = (a * sn + b * cs) * L.R * sq;
+    return [L.cx + x * Math.cos(f) - y * Math.sin(f), L.cy + (low ? L.R * .05 * Math.sin(tilt) : 0) + x * Math.sin(f) + y * Math.cos(f)];
+  };
+  return {
+    resize(w, h) {
+      place();
+      L = waferLayout(w, h);
+      zm = zoom();
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      if (!on) return;
+      bw = btn.offsetWidth;
+      const hl = heroEl.getBoundingClientRect().left;
+      // keep clear of the paragraph and the last button; the button row itself is as wide as the page
+      minX = Math.max(...[$(".lede", home), $(".ctas > :last-child", home)].map(e => e ? e.getBoundingClientRect().right - hl : 0)) + 28 * zm;
+    },
+    frame(t, st, kind) {
+      if (!on || !L) return;
+      // the notch sits at the bottom of the wafer in its own frame: (0, -1) for the shader, (0, 1) for the flat drawing
+      const nTh = kind === "gl" ? -Math.PI / 2 : Math.PI / 2, rr = 1 + 7 / L.R;
+      // find the rim's lowest point on screen. The samples hold still on screen while the wafer spins under them, and a
+      // parabola through the best three finds the point between samples, so the line glides instead of stepping.
+      const rimY = th => proj(kind, st, t, Math.cos(th) * rr, Math.sin(th) * rr, true)[1], sp = t * .03, step = TAU / N;
+      let bi = 0, by = -1e9;
+      for (let i = 0; i < N; i++) { const y = rimY(i * step - sp); if (y > by) { by = y; bi = i; } }
+      const ya = rimY((bi - 1) * step - sp), yb = rimY((bi + 1) * step - sp), den = ya - 2 * by + yb;
+      const lowTh = (bi + (den < 0 ? .5 * (ya - yb) / den : 0)) * step - sp;
+      // go the short way round the rim, but don't flip sides while the notch is passing over the far edge
+      let d = ((lowTh - nTh) % TAU + TAU * 1.5) % TAU - Math.PI;
+      if (dir && Math.sign(d) !== dir && Math.abs(d) > Math.PI - .4) d -= Math.sign(d) * TAU;
+      if (Math.abs(d) > .05) dir = Math.sign(d);
+      const steps = Math.max(2, Math.ceil(Math.abs(d) / .04)), pts = [];
+      const n0 = proj(kind, st, t, 0, kind === "gl" ? -1 : 1, false);
+      for (let i = 0; i <= steps; i++) {
+        const th = nTh + d * i / steps;
+        pts.push(proj(kind, st, t, Math.cos(th) * rr, Math.sin(th) * rr, true));
+      }
+      const [lx, ly] = pts[pts.length - 1], drop = 26 * zm;
+      const dd = `M${n0[0].toFixed(1)} ${n0[1].toFixed(1)}` + pts.map(([x, y]) => `L${x.toFixed(1)} ${y.toFixed(1)}`).join("") + `L${lx.toFixed(1)} ${(ly + drop).toFixed(1)}`;
+      path.setAttribute("d", dd);
+      pulse.setAttribute("d", dd);
+      ring.setAttribute("cx", n0[0].toFixed(1)); ring.setAttribute("cy", n0[1].toFixed(1));
+      dot.setAttribute("cx", n0[0].toFixed(1)); dot.setAttribute("cy", n0[1].toFixed(1));
+      const x = Math.min(Math.max(lx, minX + bw / 2), L.w - 24 * zm - bw / 2);
+      btn.style.transform = `translate(${(x - bw / 2).toFixed(1)}px,${(ly + drop + 2 * zm).toFixed(1)}px)`;
+    }
+  };
+}
+
 function initWafer() {
   const st = { mouse: [0, 0], target: [0, 0], scroll: 0, scrollTo: 0 };
   const t0 = performance.now();
@@ -5791,6 +5879,7 @@ function initWafer() {
   if (!r) r = make2D(fresh(), st);
   if (!r) { heroEl.classList.add("no-gl"); return null; }
   heroEl.dataset.renderer = r.kind;
+  const tag = makeTag();
   let running = false, raf = 0, visible = false, held = false, last = 0, frames = 0, slow = 0;
   const size = () => {
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
@@ -5798,12 +5887,15 @@ function initWafer() {
     const cap = r.kind === "gl" ? 1.6e6 : 4e6;
     if (w * h * s * s > cap) s = Math.sqrt(cap / (w * h));
     r.resize(w, h, s);
+    if (tag) tag.resize(w, h);
   };
   const frame = now => {
     st.mouse[0] += (st.target[0] - st.mouse[0]) * .05;
     st.mouse[1] += (st.target[1] - st.mouse[1]) * .05;
     st.scroll += (st.scrollTo - st.scroll) * .3;
-    r.draw((now - t0) / 1000);
+    const t = (now - t0) / 1000;
+    r.draw(t);
+    if (tag) tag.frame(t, st, r.kind);
   };
   const sync = () => {
     if (!r) return;
@@ -5839,6 +5931,7 @@ function initWafer() {
   if (r.kind === "gl") canvas.addEventListener("webglcontextlost", e => { e.preventDefault(); fallback(); });
   size();
   frame(performance.now());
+  if (tag && document.fonts) document.fonts.ready.then(() => { size(); frame(performance.now()); });
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(heroEl);
   return { setScroll(p) { st.scrollTo = p; if (!running) st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
 }
@@ -6076,18 +6169,33 @@ function buildRimQuote() {
   card.innerHTML = `<span class="sq-c sq-c1"></span><span class="sq-c sq-c2"></span><span class="sq-c sq-c3"></span><span class="sq-c sq-c4"></span>` +
     `<button type="button" class="sq-x" aria-label="Close">×</button>` +
     `<p class="sq-k">Etched on the rim</p>` +
-    `<svg class="sq-wafers" viewBox="0 0 340 146" aria-hidden="true"><g class="sq-zero"><circle class="sq-wf" cx="80" cy="58" r="33"/><circle class="sq-notch" cx="80" cy="91" r="3.2"/><rect class="sq-da" x="52.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:0" x="68.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:1" x="76.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:2" x="68.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:3" x="76.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:4" x="68.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:5" x="76.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:6" x="68.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:7" x="76.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:8" x="68.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:9" x="76.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:10" x="68.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:11" x="76.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:12" x="68.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:13" x="76.9" y="78.9" width="6.2" height="6.2" rx="1"/></g><g class="sq-pos"><circle class="sq-wf sq-grow" cx="258" cy="58" r="50"/><circle class="sq-notch" cx="258" cy="108" r="3.2"/><rect class="sq-dp" x="230.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:0" x="230.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:1" x="230.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:2" x="238.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:3" x="238.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:4" x="270.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:5" x="270.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:6" x="278.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:7" x="278.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:8" x="222.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:9" x="254.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:10" x="254.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:11" x="286.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:12" x="222.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:13" x="222.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:14" x="246.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:15" x="246.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:16" x="262.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:17" x="262.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:18" x="286.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:19" x="286.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:20" x="230.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:21" x="230.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:22" x="278.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:23" x="278.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:24" x="222.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:25" x="222.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:26" x="238.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:27" x="238.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:28" x="270.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:29" x="270.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:30" x="286.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:31" x="286.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:32" x="214.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:33" x="222.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:34" x="222.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:35" x="230.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:36" x="230.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:37" x="254.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:38" x="254.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:39" x="278.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:40" x="278.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:41" x="286.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:42" x="286.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:43" x="294.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:44" x="214.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:45" x="214.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:46" x="246.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:47" x="246.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:48" x="262.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:49" x="262.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:50" x="294.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:51" x="294.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:52" x="214.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:53" x="214.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:54" x="238.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:55" x="238.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:56" x="270.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:57" x="270.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:58" x="294.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:59" x="294.9" y="70.9" width="6.2" height="6.2" rx="1"/><circle class="sq-wf sq-wf-ghost" cx="258" cy="58" r="33"/></g><text class="sq-h" x="80" y="124" text-anchor="middle">Zero sum · same wafer</text><text x="80" y="140" text-anchor="middle">a die won is a die lost</text><text class="sq-h" x="258" y="124" text-anchor="middle">Positive sum · bigger wafer</text><text x="258" y="140" text-anchor="middle">more dies for everyone</text></svg>` +
+    `<svg class="sq-wafers" viewBox="0 0 340 146" aria-hidden="true"><g class="sq-zero"><circle class="sq-wf" cx="80" cy="58" r="33"/><circle class="sq-notch" cx="80" cy="91" r="3.2"/><rect class="sq-da" x="52.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:0" x="68.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:1" x="76.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:2" x="68.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:3" x="76.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:4" x="68.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:5" x="76.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:6" x="68.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:7" x="76.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:8" x="68.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:9" x="76.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:10" x="68.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:11" x="76.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:12" x="68.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:13" x="76.9" y="78.9" width="6.2" height="6.2" rx="1"/></g><g class="sq-pos"><circle class="sq-wf sq-grow" cx="258" cy="58" r="50"/><circle class="sq-notch" cx="258" cy="108" r="3.2"/><rect class="sq-dp" x="230.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:0" x="230.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:1" x="230.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:2" x="238.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:3" x="238.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:4" x="270.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:5" x="270.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:6" x="278.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:7" x="278.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:8" x="222.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:9" x="254.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:10" x="254.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:11" x="286.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:12" x="222.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:13" x="222.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:14" x="246.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:15" x="246.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:16" x="262.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:17" x="262.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:18" x="286.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:19" x="286.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:20" x="230.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:21" x="230.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:22" x="278.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:23" x="278.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:24" x="222.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:25" x="222.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:26" x="238.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:27" x="238.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:28" x="270.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:29" x="270.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:30" x="286.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:31" x="286.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:32" x="214.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:33" x="222.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:34" x="222.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:35" x="230.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:36" x="230.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:37" x="254.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:38" x="254.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:39" x="278.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:40" x="278.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:41" x="286.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:42" x="286.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:43" x="294.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:44" x="214.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:45" x="214.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:46" x="246.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:47" x="246.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:48" x="262.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:49" x="262.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:50" x="294.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:51" x="294.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:52" x="214.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:53" x="214.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:54" x="238.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:55" x="238.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:56" x="270.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:57" x="270.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:58" x="294.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:59" x="294.9" y="70.9" width="6.2" height="6.2" rx="1"/><circle class="sq-wf sq-wf-ghost" cx="258" cy="58" r="33"/></g><g class="sq-lz"><text class="sq-h" x="80" y="124" text-anchor="middle">Zero sum · same wafer</text><text x="80" y="140" text-anchor="middle">a die won is a die lost</text></g><g class="sq-lp"><text class="sq-h" x="258" y="124" text-anchor="middle">Positive sum · bigger wafer</text><text x="258" y="140" text-anchor="middle">more dies for everyone</text></g><path class="sq-arw"/><text class="sq-arw-t">innovate</text></svg>` +
     `<blockquote class="sq-q"><span class="sq-beam" aria-hidden="true"></span><p>“${RIM_QUOTE.q.join(" … ")}”</p></blockquote>` +
     `<p class="sq-who"><b>${RIM_QUOTE.who}</b>, <a href="${RIM_QUOTE.href}" target="_blank" rel="noopener">${RIM_QUOTE.where}</a></p>` +
     `<div class="sq-mine"><p>${RIM_QUOTE.mine}</p><p class="sq-creed">${RIM_QUOTE.creed}</p><p class="sq-sig">Andrew</p></div>`;
   wm.appendChild(card);
-  // The same card opens two ways: from the rim it sits over the wafer and dims it; from the motto in the hero or the
-  // fourth house rule it opens in the middle of the screen over a dark backdrop
-  const modals = [...document.querySelectorAll(".hero-q, .rule-q")], back = document.createElement("div");
+  // The same card opens two ways: from the rim it sits over the wafer and dims it; from the motto in the hero it opens
+  // in the middle of the screen over a dark backdrop
+  const modals = [...document.querySelectorAll(".hero-q")], back = document.createElement("div");
   back.className = "sq-back";
   back.hidden = true;
   document.body.appendChild(back);
   let opener = sq;
+  // In the hero's pop-up on a wide screen the card turns landscape: the two wafers stack in a column on the left, joined
+  // by an arrow, with the words beside them. Everywhere else they sit side by side above the words.
+  const wf = $(".sq-wafers", card), tall = matchMedia("(min-width: 760px)");
+  const LAY = {
+    row: { vb: "0 0 340 146", z: "", lz: "", p: "", lp: "", arw: "M121 58H195M189 53L195 58L189 63", t: [158, 50, "middle"] },
+    col: { vb: "0 0 200 300", z: "translate(20 -14)", lz: "translate(20 -20)", p: "translate(-158 152)", lp: "translate(-158 156)", arw: "M100 125V153M95 147L100 153L105 147", t: [109, 143, "start"] }
+  };
+  const lay = () => {
+    const L = card.classList.contains("sq-modal") && tall.matches ? LAY.col : LAY.row;
+    wf.setAttribute("viewBox", L.vb);
+    [["sq-zero", L.z], ["sq-lz", L.lz], ["sq-pos", L.p], ["sq-lp", L.lp]].forEach(([c, tr]) => $("." + c, wf).setAttribute("transform", tr));
+    $(".sq-arw", wf).setAttribute("d", L.arw);
+    const t = $(".sq-arw-t", wf);
+    t.setAttribute("x", L.t[0]); t.setAttribute("y", L.t[1]); t.setAttribute("text-anchor", L.t[2]);
+  };
   const open = (on, from = opener) => {
     if (on) {
       opener = from;
@@ -6095,6 +6203,7 @@ function buildRimQuote() {
       card.classList.toggle("sq-modal", modal);
       $(".sq-k", card).textContent = modal ? "Always play for the positive sum" : "Etched on the rim";
       card.setAttribute("aria-modal", String(modal));
+      lay();
       (modal ? document.body : wm).appendChild(card);
       back.hidden = !modal;
       wm.classList.toggle("sq-open", !modal);
@@ -6111,6 +6220,8 @@ function buildRimQuote() {
     if (r.top < top || r.bottom > vh) scrollBy({ top: r.top < top || r.height > vh - top ? r.top - top : r.bottom - vh + 16, behavior: calm ? "auto" : "smooth" });
   };
   const shut = () => { open(false); opener.focus({ preventScroll: true }); };
+  tall.addEventListener("change", () => { if (!card.hidden) lay(); });
+  lay();
   sq.setAttribute("aria-expanded", "false");
   sq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== sq, sq); });
   modals.forEach(b => b.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== b, b); }));

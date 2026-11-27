@@ -3048,11 +3048,13 @@ html.ps-open{overflow:hidden}
 @keyframes sq-in{from{opacity:0;transform:translate(-50%,calc(14*var(--u)))}to{opacity:1;transform:translate(-50%,0)}}
 .sq-x{position:absolute;top:calc(6*var(--u));right:calc(8*var(--u));width:calc(34*var(--u));height:calc(34*var(--u));padding:0;background:none;border:0;color:var(--dim);font-size:calc(24*var(--u));line-height:1;cursor:pointer}
 .sq-x:hover,.sq-x:focus-visible{color:var(--paper)}
-.sq-k{margin:0 0 calc(6*var(--u));font-family:var(--label);font-weight:800;font-size:calc(13*var(--u));letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.sq-k{margin:0 0 calc(6*var(--u));padding-right:calc(36*var(--u));font-family:var(--label);font-weight:800;font-size:calc(12*var(--u));letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
 .sq-wafers{display:block;width:100%;height:auto;margin:0 0 calc(12*var(--u))}
 .sq-wafers text{fill:var(--dim);font-family:var(--label);font-size:calc(12*var(--u));letter-spacing:.03em}
 .sq-wafers .sq-h{fill:var(--paper);font-weight:800;letter-spacing:.06em}
 .sq-wf{fill:rgba(212,227,240,.04);stroke:var(--faint);stroke-width:1}
+.sq-arw{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.sq-wafers .sq-arw-t{fill:var(--amber);font-weight:800;font-size:calc(11*var(--u));letter-spacing:.12em;text-transform:uppercase}
 .sq-wf-ghost{fill:none;stroke:var(--paper);stroke-width:1.2;stroke-dasharray:3 3;opacity:.55}
 .sq-notch{fill:rgba(6,19,33,1);stroke:var(--faint);stroke-width:1}
 .sq-da{fill:var(--coral);fill-opacity:.85}
@@ -3066,15 +3068,15 @@ html.ps-open{overflow:hidden}
 @keyframes sq-new{from{opacity:0}to{opacity:1}}
 .sq-pos .sq-notch{transform-box:view-box;transform-origin:calc(258*var(--u)) calc(58*var(--u));animation:sq-grow 1.1s .55s var(--ease) both}
 .sq-q{position:relative;margin:0 0 calc(10*var(--u));padding:0 0 0 calc(14*var(--u));border-left:calc(2*var(--u)) solid var(--amber)}
-.sq-q p{margin:0;font-family:var(--serif);font-size:clamp(calc(17*var(--u)),2.2vw,calc(20*var(--u)));line-height:1.45;color:var(--paper);animation:sq-etch 1.7s .35s linear both}
+.sq-q p{margin:0;font-family:var(--serif);font-size:calc(17*var(--u));line-height:1.45;color:var(--paper);animation:sq-etch 1.7s .35s linear both}
 @keyframes sq-etch{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .sq-beam{position:absolute;top:calc(-3*var(--u));bottom:calc(-3*var(--u));left:calc(14*var(--u));width:calc(2*var(--u));background:var(--amber-hi);box-shadow:0 0 calc(10*var(--u)) calc(2*var(--u)) rgba(63,214,200,.45);opacity:0;animation:sq-beam 1.7s .35s linear both;pointer-events:none}
 @keyframes sq-beam{0%{left:calc(14*var(--u));opacity:0}6%{opacity:1}92%{opacity:1}100%{left:calc(100% - calc(2*var(--u)));opacity:0}}
-.sq-who{margin:0;font-size:calc(14*var(--u));line-height:1.5;color:var(--dim)}
+.sq-who{margin:0;font-size:calc(13*var(--u));line-height:1.5;color:var(--dim)}
 .sq-who b{color:var(--paper);font-weight:600}
 .sq-who a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:calc(3*var(--u))}
 .sq-who a:hover{color:var(--paper)}
-.sq-mine{margin:calc(12*var(--u)) 0 0;padding-top:calc(12*var(--u));border-top:calc(1*var(--u)) dashed var(--rule);font-family:var(--serif);font-style:italic;font-size:calc(16*var(--u));line-height:1.5;color:var(--paper)}
+.sq-mine{margin:calc(12*var(--u)) 0 0;padding-top:calc(12*var(--u));border-top:calc(1*var(--u)) dashed var(--rule);font-family:var(--serif);font-style:italic;font-size:calc(15*var(--u));line-height:1.5;color:var(--paper)}
 .sq-mine p{margin:0}
 .sq-mine .sq-creed{margin-top:calc(8*var(--u))}
 .sq-mine .sq-sig{margin-top:calc(6*var(--u));text-align:right;font-family:var(--label);font-style:normal;font-weight:800;font-size:calc(13*var(--u));letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
@@ -3084,33 +3086,47 @@ html.paused .sq-ring,html.paused .sq-flip.sq-da{animation:none}
 .sq-back{position:fixed;inset:0;z-index:1000;background:rgba(3,9,18,.72);backdrop-filter:blur(calc(3*var(--u)));-webkit-backdrop-filter:blur(calc(3*var(--u)));animation:sq-fade .3s ease}
 .sq-back[hidden]{display:none}
 @keyframes sq-fade{from{opacity:0}to{opacity:1}}
-.sq-card.sq-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(calc(460*var(--u)),calc(100vw - calc(24*var(--u))));max-height:calc(100svh - calc(24*var(--u)));overflow:auto;animation:sq-in-m .35s var(--ease)}
+.sq-card.sq-modal{--u:clamp(1px,min(100vw / 960,100svh / 760),var(--u-max));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(calc(460*var(--u)),calc(100vw - calc(24*var(--u))));animation:sq-in-m .35s var(--ease)}
+@media (min-width:760px){
+  .sq-card.sq-modal{display:grid;grid-template-columns:calc(216*var(--u)) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;column-gap:calc(30*var(--u));width:min(calc(860*var(--u)),calc(100vw - calc(32*var(--u))));padding:calc(22*var(--u)) calc(30*var(--u)) calc(24*var(--u))}
+  .sq-modal .sq-k{grid-column:1 / -1;margin-bottom:calc(16*var(--u))}
+  .sq-modal .sq-wafers{grid-column:1;grid-row:2 / 5;align-self:center;box-sizing:border-box;margin:0;padding-right:calc(28*var(--u));border-right:calc(1*var(--u)) dashed var(--rule)}
+  .sq-modal .sq-q,.sq-modal .sq-who,.sq-modal .sq-mine{grid-column:2}
+  .sq-modal .sq-q p{font-size:calc(18*var(--u))}
+}
+@media (max-height:660px) and (max-width:759px),(max-height:380px){.sq-card.sq-modal{max-height:calc(100svh - calc(24*var(--u)));overflow-y:auto}}
 @keyframes sq-in-m{from{opacity:0;transform:translate(-50%,-47%)}to{opacity:1;transform:translate(-50%,-50%)}}
-.hero-q{justify-self:start;display:block;margin:calc(-6*var(--u)) 0 0;padding:calc(2*var(--u)) 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 calc(1*var(--u)) calc(14*var(--u)) rgba(7,16,29,.95),0 0 calc(2*var(--u)) rgba(7,16,29,.8)}
-.hq-line{font-family:var(--serif);font-style:italic;font-size:calc(23*var(--u));line-height:1.3;color:var(--paper)}
+.hero-q{justify-self:start;display:block;margin:calc(-4*var(--u)) 0 0;padding:calc(2*var(--u)) 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 calc(1*var(--u)) calc(12*var(--u)) rgba(7,16,29,.95)}
+.hq-line{font-family:var(--serif);font-style:italic;font-size:calc(16*var(--u));line-height:1.4;letter-spacing:.01em;color:var(--dim);transition:color .25s}
 .hq-z{position:relative;text-decoration:none}
-.hq-z::after{content:"";position:absolute;left:calc(-3*var(--u));right:calc(-3*var(--u));top:56%;height:calc(2*var(--u));background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
+.hq-z::after{content:"";position:absolute;left:calc(-2*var(--u));right:calc(-2*var(--u));top:56%;height:calc(1*var(--u));background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
 .hq-p{display:inline-block;color:var(--amber);animation:hq-write 7s ease-in-out infinite}
 @keyframes hq-strike{0%,6%{transform:scaleX(0)}18%,90%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes hq-write{0%,18%{opacity:0;filter:blur(calc(3*var(--u)));transform:translateY(calc(4*var(--u)))}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(calc(3*var(--u)));transform:none}}
+@keyframes hq-write{0%,18%{opacity:0;filter:blur(calc(2*var(--u)));transform:translateY(calc(3*var(--u)))}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(calc(2*var(--u)));transform:none}}
 .hq-end{white-space:nowrap}
-.hq-wafer{width:calc(40*var(--u));height:calc(40*var(--u));margin:calc(-10*var(--u)) 0 calc(-8*var(--u)) calc(12*var(--u));vertical-align:middle;overflow:visible;transform:rotate(-24deg) scale(1.14);transition:transform .35s var(--ease),filter .35s}
-.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.1;animation:sb-breathe 3.2s ease-in-out infinite}
-.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1}
+.hq-wafer{width:1em;height:1em;margin-left:.45em;vertical-align:-.14em;overflow:visible;transform:rotate(-24deg);transition:transform .35s var(--ease),filter .35s}
+.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.8;animation:sb-breathe 3.2s ease-in-out infinite}
+.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1.4}
 .hm-d{fill:var(--amber)}
-.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-40deg) scale(1.3);filter:drop-shadow(0 0 calc(5*var(--u)) rgba(63,214,200,.45))}
+.hero-q:hover .hq-line,.hero-q:focus-visible .hq-line{color:var(--paper)}
+.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-60deg);filter:drop-shadow(0 0 calc(3*var(--u)) rgba(63,214,200,.5))}
 .hero-q:hover .hq-z::after,.hero-q:focus-visible .hq-z::after,.hero-q:hover .hq-p,.hero-q:focus-visible .hq-p{animation:none}
+.hero-q:focus-visible{outline:calc(1*var(--u)) solid var(--amber);outline-offset:calc(4*var(--u))}
+.hq-layer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform}
+.hq-trace{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;display:none}
+.hq-hung .hq-trace{display:block}
+.hq-tr{fill:none;stroke:var(--amber);stroke-opacity:.4;stroke-width:1;stroke-linejoin:round;transition:stroke-opacity .25s}
+.hq-pl{fill:none;stroke:var(--amber-hi);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:4 110;stroke-dashoffset:4;animation:hq-pulse 4.6s 2.4s ease-in infinite}
+@keyframes hq-pulse{0%{stroke-dashoffset:4;opacity:0}6%{opacity:1}55%{stroke-dashoffset:-100;opacity:1}58%,100%{stroke-dashoffset:-100;opacity:0}}
+.hq-nr{fill:none;stroke:var(--amber);stroke-width:1.2;animation:sb-breathe 3.2s ease-in-out infinite}
+.hq-nd{fill:var(--amber)}
+.hq-hung .hero-q{position:absolute;left:0;top:0;margin:0;pointer-events:auto;white-space:nowrap}
+.hq-layer:has(.hero-q:hover) .hq-tr,.hq-layer:has(.hero-q:focus-visible) .hq-tr{stroke-opacity:1}
+.hq-hung .hq-layer{animation:hq-in 1s 1.1s both}
+@keyframes hq-in{from{opacity:0}to{opacity:1}}
 .hq-sr{position:absolute;width:calc(1*var(--u));height:calc(1*var(--u));overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.hero-q:focus-visible{outline:calc(2*var(--u)) solid var(--amber);outline-offset:calc(4*var(--u))}
-.hq-mark{width:calc(14*var(--u));height:calc(14*var(--u));flex:none;overflow:visible}
-.hq-mark circle{fill:none;stroke:var(--amber);stroke-width:1.6;animation:sb-breathe 3.2s ease-in-out infinite}
-.hq-mark path{stroke:var(--amber);stroke-width:1.2;opacity:.7}
-.rules .rule-ps b{display:flex;align-items:center;gap:calc(9*var(--u));color:var(--amber)}
-.rules .rule-ps .hq-mark{width:calc(16*var(--u));height:calc(16*var(--u))}
-.rule-q{display:flex;align-items:center;gap:calc(6*var(--u));width:max-content;max-width:100%;min-height:calc(38*var(--u));margin-top:calc(10*var(--u));padding:0 calc(14*var(--u));border:calc(1*var(--u)) solid rgba(63,214,200,.6);border-radius:calc(999*var(--u));background:none;font-family:var(--label);font-weight:800;font-size:calc(15*var(--u));letter-spacing:.06em;color:var(--amber);cursor:pointer;transition:background .25s,color .25s}
-.rule-q:hover,.rule-q:focus-visible{background:var(--amber);color:#05201d;outline:0}
-@media (prefers-reduced-motion:reduce){.hq-mark circle,.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hm-d,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
-html.paused .hq-mark circle,html.paused .hm-ring,html.paused .hq-z::after,html.paused .hq-p{animation:none}
+@media (prefers-reduced-motion:reduce){.hq-pl{display:none}.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hq-line,.hq-nr,.hq-hung .hq-layer,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
+html.paused .hq-pl{display:none}html.paused .hm-ring,html.paused .hq-nr,html.paused .hq-z::after,html.paused .hq-p{animation:none}
 html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 .dock{display:none}
 @media (max-width:760px){
@@ -5550,7 +5566,7 @@ html.paused .tf3-con.run .tf3-rows li,html.paused .tf3-con.run .tf3-s,html.pause
         <a class="btn-tour" href="#watch/field-trip"><span class="bt-p" aria-hidden="true"></span><span>Watch the tour</span><span class="bt-len">2:43</span></a>
       </div>
       <button type="button" class="hero-q" aria-haspopup="dialog" aria-expanded="false">
-        <span class="hq-line">Always play for the <s class="hq-z" aria-hidden="true">zero</s> <span class="hq-end"><span class="hq-p">positive</span> sum.<svg class="hq-wafer" viewBox="-15 -15 30 30" aria-hidden="true"><circle class="hm-ring" r="14.2"/><path class="hm-disc" d="M-1.7 11.9A12 12 0 1 1 1.7 11.9A1.9 1.9 0 0 0 -1.7 11.9Z"/><rect class="hm-d" x="-8.6" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-8.6" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-8.6" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-5.0" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="-1.4" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-8.6" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="2.2" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="2.2" y="5.8" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="-5.0" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="-1.4" width="2.8" height="2.8" rx=".5"/><rect class="hm-d" x="5.8" y="2.2" width="2.8" height="2.8" rx=".5"/></svg></span></span><span class="hq-sr">Read Marc Andreessen’s quote</span>
+        <span class="hq-line">Always play for the <s class="hq-z" aria-hidden="true">zero</s> <span class="hq-end"><span class="hq-p">positive</span> sum.<svg class="hq-wafer" viewBox="-15 -15 30 30" aria-hidden="true"><circle class="hm-ring" r="14"/><path class="hm-disc" d="M-1.8 12.2A12.3 12.3 0 1 1 1.8 12.2A2 2 0 0 0 -1.8 12.2Z"/><rect class="hm-d" x="-10.05" y="-1.65" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-5.85" y="-5.85" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-5.85" y="-1.65" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-5.85" y="2.55" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-1.65" y="-10.05" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-1.65" y="-5.85" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-1.65" y="-1.65" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-1.65" y="2.55" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="-1.65" y="6.75" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="2.55" y="-5.85" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="2.55" y="-1.65" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="2.55" y="2.55" width="3.3" height="3.3" rx=".5"/><rect class="hm-d" x="6.75" y="-1.65" width="3.3" height="3.3" rx=".5"/></svg></span></span><span class="hq-sr">Read Marc Andreessen’s quote</span>
       </button>
     </div>
     <div class="feat-wrap">
@@ -5662,7 +5678,6 @@ html.paused .tf3-con.run .tf3-rows li,html.paused .tf3-con.run .tf3-s,html.pause
             <li><b>Three slides, max.</b>If it doesn’t fit, I don’t understand it yet.</li>
             <li><b>Name the reference design.</b>Every thesis credits who I’m building on or arguing with, and links the receipts.</li>
             <li><b>Say how I’d be wrong.</b>A bet without a kill condition is just a mood.</li>
-            <li class="rule-ps"><b><svg class="hq-mark" viewBox="-12 -12 24 24" aria-hidden="true"><circle r="6.5"/><path d="M-11 0H11M0 -11V11"/></svg>Always play for the positive sum.</b>The way out of a fight over slices is a bigger pie.<button type="button" class="rule-q" aria-haspopup="dialog" aria-expanded="false">Read Marc Andreessen’s line <span aria-hidden="true">→</span></button></li>
           </ul>
         </aside>
         <div class="contact-io">
@@ -13731,6 +13746,7 @@ function onScroll() {
   if (y < hh * 1.2) {
     if (!touch.matches) canvas.style.transform = `translate3d(0,${(y * 0.38).toFixed(1)}px,0)`;
     else if (canvas.style.transform) canvas.style.transform = "";
+    if (hqLayer) hqLayer.style.transform = canvas.style.transform;
     if (wafer) wafer.setScroll(Math.min(1, y / hh));
   }
   for (const el of depthEls) {
@@ -13945,6 +13961,79 @@ function make2D(cv, st) {
     }
   };
 }
+let hqLayer = null;
+function makeTag() {
+  const btn = $(".hero-q"), home = $(".hero-copy", heroEl);
+  if (!btn || !home) return null;
+  const layer = hqLayer = document.createElement("div");
+  layer.className = "hq-layer";
+  layer.innerHTML = `<svg class="hq-trace" aria-hidden="true"><path class="hq-tr"/><path class="hq-pl" pathLength="100"/><circle class="hq-nr" r="5.5"/><circle class="hq-nd" r="1.8"/></svg>`;
+  home.after(layer); // after the copy, so Tab reaches the buttons first
+  const svg = $("svg", layer), path = $(".hq-tr", layer), pulse = $(".hq-pl", layer), ring = $(".hq-nr", layer), dot = $(".hq-nd", layer);
+  const wide = matchMedia("(min-width: 1000px)"), N = 120, TAU = Math.PI * 2;
+  let on = false, L = null, bw = 0, minX = 0, zm = 1, dir = 0;
+  const place = () => {
+    if (wide.matches === on) return;
+    on = wide.matches;
+    heroEl.classList.toggle("hq-hung", on);
+    if (on) layer.appendChild(btn);
+    else { btn.style.transform = ""; $(".ctas", home).after(btn); }
+  };
+  const proj = (kind, st, t, a, b, low) => {
+    const scroll = calm ? 0 : st.scroll, tilt = (1 - .7 * scroll) + st.mouse[1] * .14, yaw = -.38 + st.mouse[0] * .22;
+    if (kind === "gl") {
+      const sp = t * .03, cs = Math.cos(sp), sn = Math.sin(sp);
+      let x = a * cs - b * sn, y = a * sn + b * cs, z = low ? -.024 : 0;
+      const ct = Math.cos(-tilt), st2 = Math.sin(-tilt);
+      [y, z] = [y * ct - z * st2, y * st2 + z * ct];
+      const cy = Math.cos(yaw), sy = Math.sin(yaw);
+      [x, z] = [x * cy + z * sy, -x * sy + z * cy];
+      const k = 1.75 / (L.dist - z);
+      return [(x * k + L.center[0]) * L.h + L.w / 2, L.h / 2 - (y * k + L.center[1]) * L.h];
+    }
+    const sp = t * .03, cs = Math.cos(sp), sn = Math.sin(sp), sq = Math.max(.12, Math.cos(tilt)), f = yaw * .5;
+    const x = (a * cs - b * sn) * L.R, y = (a * sn + b * cs) * L.R * sq;
+    return [L.cx + x * Math.cos(f) - y * Math.sin(f), L.cy + (low ? L.R * .05 * Math.sin(tilt) : 0) + x * Math.sin(f) + y * Math.cos(f)];
+  };
+  return {
+    resize(w, h) {
+      place();
+      L = waferLayout(w, h);
+      zm = zoom();
+      svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      if (!on) return;
+      bw = btn.offsetWidth;
+      const hl = heroEl.getBoundingClientRect().left;
+      minX = Math.max(...[$(".lede", home), $(".ctas > :last-child", home)].map(e => e ? e.getBoundingClientRect().right - hl : 0)) + 28 * zm;
+    },
+    frame(t, st, kind) {
+      if (!on || !L) return;
+      const nTh = kind === "gl" ? -Math.PI / 2 : Math.PI / 2, rr = 1 + 7 / L.R;
+      const rimY = th => proj(kind, st, t, Math.cos(th) * rr, Math.sin(th) * rr, true)[1], sp = t * .03, step = TAU / N;
+      let bi = 0, by = -1e9;
+      for (let i = 0; i < N; i++) { const y = rimY(i * step - sp); if (y > by) { by = y; bi = i; } }
+      const ya = rimY((bi - 1) * step - sp), yb = rimY((bi + 1) * step - sp), den = ya - 2 * by + yb;
+      const lowTh = (bi + (den < 0 ? .5 * (ya - yb) / den : 0)) * step - sp;
+      let d = ((lowTh - nTh) % TAU + TAU * 1.5) % TAU - Math.PI;
+      if (dir && Math.sign(d) !== dir && Math.abs(d) > Math.PI - .4) d -= Math.sign(d) * TAU;
+      if (Math.abs(d) > .05) dir = Math.sign(d);
+      const steps = Math.max(2, Math.ceil(Math.abs(d) / .04)), pts = [];
+      const n0 = proj(kind, st, t, 0, kind === "gl" ? -1 : 1, false);
+      for (let i = 0; i <= steps; i++) {
+        const th = nTh + d * i / steps;
+        pts.push(proj(kind, st, t, Math.cos(th) * rr, Math.sin(th) * rr, true));
+      }
+      const [lx, ly] = pts[pts.length - 1], drop = 26 * zm;
+      const dd = `M${n0[0].toFixed(1)} ${n0[1].toFixed(1)}` + pts.map(([x, y]) => `L${x.toFixed(1)} ${y.toFixed(1)}`).join("") + `L${lx.toFixed(1)} ${(ly + drop).toFixed(1)}`;
+      path.setAttribute("d", dd);
+      pulse.setAttribute("d", dd);
+      ring.setAttribute("cx", n0[0].toFixed(1)); ring.setAttribute("cy", n0[1].toFixed(1));
+      dot.setAttribute("cx", n0[0].toFixed(1)); dot.setAttribute("cy", n0[1].toFixed(1));
+      const x = Math.min(Math.max(lx, minX + bw / 2), L.w - 24 * zm - bw / 2);
+      btn.style.transform = `translate(${(x - bw / 2).toFixed(1)}px,${(ly + drop + 2 * zm).toFixed(1)}px)`;
+    }
+  };
+}
 function initWafer() {
   const st = { mouse: [0, 0], target: [0, 0], scroll: 0, scrollTo: 0 };
   const t0 = performance.now();
@@ -13954,6 +14043,7 @@ function initWafer() {
   if (!r) r = make2D(fresh(), st);
   if (!r) { heroEl.classList.add("no-gl"); return null; }
   heroEl.dataset.renderer = r.kind;
+  const tag = makeTag();
   let running = false, raf = 0, visible = false, held = false, last = 0, frames = 0, slow = 0;
   const size = () => {
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
@@ -13961,12 +14051,15 @@ function initWafer() {
     const cap = r.kind === "gl" ? 1.6e6 : 4e6;
     if (w * h * s * s > cap) s = Math.sqrt(cap / (w * h));
     r.resize(w, h, s);
+    if (tag) tag.resize(w, h);
   };
   const frame = now => {
     st.mouse[0] += (st.target[0] - st.mouse[0]) * .05;
     st.mouse[1] += (st.target[1] - st.mouse[1]) * .05;
     st.scroll += (st.scrollTo - st.scroll) * .3;
-    r.draw((now - t0) / 1000);
+    const t = (now - t0) / 1000;
+    r.draw(t);
+    if (tag) tag.frame(t, st, r.kind);
   };
   const sync = () => {
     if (!r) return;
@@ -14002,6 +14095,7 @@ function initWafer() {
   if (r.kind === "gl") canvas.addEventListener("webglcontextlost", e => { e.preventDefault(); fallback(); });
   size();
   frame(performance.now());
+  if (tag && document.fonts) document.fonts.ready.then(() => { size(); frame(performance.now()); });
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; sync(); }).observe(heroEl);
   return { setScroll(p) { st.scrollTo = p; if (!running) st.scroll = p; }, hold(v) { held = v; sync(); }, sync };
 }
@@ -14215,16 +14309,29 @@ function buildRimQuote() {
   card.innerHTML = `<span class="sq-c sq-c1"></span><span class="sq-c sq-c2"></span><span class="sq-c sq-c3"></span><span class="sq-c sq-c4"></span>` +
     `<button type="button" class="sq-x" aria-label="Close">×</button>` +
     `<p class="sq-k">Etched on the rim</p>` +
-    `<svg class="sq-wafers" viewBox="0 0 340 146" aria-hidden="true"><g class="sq-zero"><circle class="sq-wf" cx="80" cy="58" r="33"/><circle class="sq-notch" cx="80" cy="91" r="3.2"/><rect class="sq-da" x="52.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:0" x="68.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:1" x="76.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:2" x="68.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:3" x="76.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:4" x="68.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:5" x="76.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:6" x="68.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:7" x="76.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:8" x="68.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:9" x="76.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:10" x="68.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:11" x="76.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:12" x="68.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:13" x="76.9" y="78.9" width="6.2" height="6.2" rx="1"/></g><g class="sq-pos"><circle class="sq-wf sq-grow" cx="258" cy="58" r="50"/><circle class="sq-notch" cx="258" cy="108" r="3.2"/><rect class="sq-dp" x="230.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:0" x="230.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:1" x="230.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:2" x="238.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:3" x="238.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:4" x="270.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:5" x="270.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:6" x="278.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:7" x="278.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:8" x="222.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:9" x="254.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:10" x="254.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:11" x="286.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:12" x="222.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:13" x="222.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:14" x="246.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:15" x="246.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:16" x="262.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:17" x="262.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:18" x="286.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:19" x="286.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:20" x="230.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:21" x="230.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:22" x="278.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:23" x="278.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:24" x="222.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:25" x="222.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:26" x="238.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:27" x="238.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:28" x="270.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:29" x="270.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:30" x="286.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:31" x="286.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:32" x="214.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:33" x="222.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:34" x="222.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:35" x="230.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:36" x="230.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:37" x="254.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:38" x="254.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:39" x="278.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:40" x="278.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:41" x="286.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:42" x="286.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:43" x="294.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:44" x="214.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:45" x="214.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:46" x="246.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:47" x="246.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:48" x="262.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:49" x="262.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:50" x="294.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:51" x="294.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:52" x="214.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:53" x="214.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:54" x="238.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:55" x="238.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:56" x="270.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:57" x="270.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:58" x="294.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:59" x="294.9" y="70.9" width="6.2" height="6.2" rx="1"/><circle class="sq-wf sq-wf-ghost" cx="258" cy="58" r="33"/></g><text class="sq-h" x="80" y="124" text-anchor="middle">Zero sum · same wafer</text><text x="80" y="140" text-anchor="middle">a die won is a die lost</text><text class="sq-h" x="258" y="124" text-anchor="middle">Positive sum · bigger wafer</text><text x="258" y="140" text-anchor="middle">more dies for everyone</text></svg>` +
+    `<svg class="sq-wafers" viewBox="0 0 340 146" aria-hidden="true"><g class="sq-zero"><circle class="sq-wf" cx="80" cy="58" r="33"/><circle class="sq-notch" cx="80" cy="91" r="3.2"/><rect class="sq-da" x="52.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:0" x="68.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:1" x="76.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:2" x="68.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:3" x="76.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:4" x="68.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:5" x="76.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:6" x="68.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:7" x="76.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:8" x="68.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:9" x="76.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:10" x="68.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:11" x="76.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:12" x="68.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:13" x="76.9" y="78.9" width="6.2" height="6.2" rx="1"/></g><g class="sq-pos"><circle class="sq-wf sq-grow" cx="258" cy="58" r="50"/><circle class="sq-notch" cx="258" cy="108" r="3.2"/><rect class="sq-dp" x="230.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:0" x="230.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:1" x="230.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:2" x="238.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:3" x="238.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:4" x="270.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:5" x="270.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:6" x="278.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:7" x="278.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:8" x="222.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:9" x="254.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:10" x="254.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:11" x="286.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:12" x="222.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:13" x="222.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:14" x="246.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:15" x="246.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:16" x="262.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:17" x="262.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:18" x="286.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:19" x="286.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:20" x="230.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:21" x="230.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:22" x="278.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:23" x="278.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:24" x="222.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:25" x="222.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:26" x="238.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:27" x="238.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:28" x="270.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:29" x="270.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:30" x="286.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:31" x="286.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:32" x="214.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:33" x="222.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:34" x="222.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:35" x="230.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:36" x="230.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:37" x="254.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:38" x="254.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:39" x="278.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:40" x="278.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:41" x="286.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:42" x="286.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:43" x="294.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:44" x="214.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:45" x="214.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:46" x="246.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:47" x="246.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:48" x="262.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:49" x="262.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:50" x="294.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:51" x="294.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:52" x="214.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:53" x="214.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:54" x="238.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:55" x="238.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:56" x="270.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:57" x="270.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:58" x="294.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:59" x="294.9" y="70.9" width="6.2" height="6.2" rx="1"/><circle class="sq-wf sq-wf-ghost" cx="258" cy="58" r="33"/></g><g class="sq-lz"><text class="sq-h" x="80" y="124" text-anchor="middle">Zero sum · same wafer</text><text x="80" y="140" text-anchor="middle">a die won is a die lost</text></g><g class="sq-lp"><text class="sq-h" x="258" y="124" text-anchor="middle">Positive sum · bigger wafer</text><text x="258" y="140" text-anchor="middle">more dies for everyone</text></g><path class="sq-arw"/><text class="sq-arw-t">innovate</text></svg>` +
     `<blockquote class="sq-q"><span class="sq-beam" aria-hidden="true"></span><p>“${RIM_QUOTE.q.join(" … ")}”</p></blockquote>` +
     `<p class="sq-who"><b>${RIM_QUOTE.who}</b>, <a href="${RIM_QUOTE.href}" target="_blank" rel="noopener">${RIM_QUOTE.where}</a></p>` +
     `<div class="sq-mine"><p>${RIM_QUOTE.mine}</p><p class="sq-creed">${RIM_QUOTE.creed}</p><p class="sq-sig">Andrew</p></div>`;
   wm.appendChild(card);
-  const modals = [...document.querySelectorAll(".hero-q, .rule-q")], back = document.createElement("div");
+  const modals = [...document.querySelectorAll(".hero-q")], back = document.createElement("div");
   back.className = "sq-back";
   back.hidden = true;
   document.body.appendChild(back);
   let opener = sq;
+  const wf = $(".sq-wafers", card), tall = matchMedia("(min-width: 760px)");
+  const LAY = {
+    row: { vb: "0 0 340 146", z: "", lz: "", p: "", lp: "", arw: "M121 58H195M189 53L195 58L189 63", t: [158, 50, "middle"] },
+    col: { vb: "0 0 200 300", z: "translate(20 -14)", lz: "translate(20 -20)", p: "translate(-158 152)", lp: "translate(-158 156)", arw: "M100 125V153M95 147L100 153L105 147", t: [109, 143, "start"] }
+  };
+  const lay = () => {
+    const L = card.classList.contains("sq-modal") && tall.matches ? LAY.col : LAY.row;
+    wf.setAttribute("viewBox", L.vb);
+    [["sq-zero", L.z], ["sq-lz", L.lz], ["sq-pos", L.p], ["sq-lp", L.lp]].forEach(([c, tr]) => $("." + c, wf).setAttribute("transform", tr));
+    $(".sq-arw", wf).setAttribute("d", L.arw);
+    const t = $(".sq-arw-t", wf);
+    t.setAttribute("x", L.t[0]); t.setAttribute("y", L.t[1]); t.setAttribute("text-anchor", L.t[2]);
+  };
   const open = (on, from = opener) => {
     if (on) {
       opener = from;
@@ -14232,6 +14339,7 @@ function buildRimQuote() {
       card.classList.toggle("sq-modal", modal);
       $(".sq-k", card).textContent = modal ? "Always play for the positive sum" : "Etched on the rim";
       card.setAttribute("aria-modal", String(modal));
+      lay();
       (modal ? document.body : wm).appendChild(card);
       back.hidden = !modal;
       wm.classList.toggle("sq-open", !modal);
@@ -14248,6 +14356,8 @@ function buildRimQuote() {
     if (r.top < top || r.bottom > vh) scrollBy({ top: r.top < top || r.height > vh - top ? r.top - top : r.bottom - vh + 16, behavior: calm ? "auto" : "smooth" });
   };
   const shut = () => { open(false); opener.focus({ preventScroll: true }); };
+  tall.addEventListener("change", () => { if (!card.hidden) lay(); });
+  lay();
   sq.setAttribute("aria-expanded", "false");
   sq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== sq, sq); });
   modals.forEach(b => b.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== b, b); }));

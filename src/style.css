@@ -3311,13 +3311,15 @@ html.ps-open{overflow:hidden}
 @keyframes sq-in{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
 .sq-x{position:absolute;top:6px;right:8px;width:34px;height:34px;padding:0;background:none;border:0;color:var(--dim);font-size:24px;line-height:1;cursor:pointer}
 .sq-x:hover,.sq-x:focus-visible{color:var(--paper)}
-.sq-k{margin:0 0 6px;font-family:var(--label);font-weight:800;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.sq-k{margin:0 0 6px;padding-right:36px;font-family:var(--label);font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
 /* two wafers: on the left one wafer split between two owners, dies changing hands along the seam; on the right the
    wafer grows and new dies appear around the edge, same die size */
 .sq-wafers{display:block;width:100%;height:auto;margin:0 0 12px}
 .sq-wafers text{fill:var(--dim);font-family:var(--label);font-size:12px;letter-spacing:.03em}
 .sq-wafers .sq-h{fill:var(--paper);font-weight:800;letter-spacing:.06em}
 .sq-wf{fill:rgba(212,227,240,.04);stroke:var(--faint);stroke-width:1}
+.sq-arw{fill:none;stroke:var(--amber);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.sq-wafers .sq-arw-t{fill:var(--amber);font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 .sq-wf-ghost{fill:none;stroke:var(--paper);stroke-width:1.2;stroke-dasharray:3 3;opacity:.55}
 .sq-notch{fill:rgba(6,19,33,1);stroke:var(--faint);stroke-width:1}
 .sq-da{fill:var(--coral);fill-opacity:.85}
@@ -3332,15 +3334,15 @@ html.ps-open{overflow:hidden}
 .sq-pos .sq-notch{transform-box:view-box;transform-origin:258px 58px;animation:sq-grow 1.1s .55s var(--ease) both}
 /* the quote is etched in: a scribing beam sweeps across and leaves the words behind it */
 .sq-q{position:relative;margin:0 0 10px;padding:0 0 0 14px;border-left:2px solid var(--amber)}
-.sq-q p{margin:0;font-family:var(--serif);font-size:clamp(17px,2.2vw,20px);line-height:1.45;color:var(--paper);animation:sq-etch 1.7s .35s linear both}
+.sq-q p{margin:0;font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--paper);animation:sq-etch 1.7s .35s linear both}
 @keyframes sq-etch{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 .sq-beam{position:absolute;top:-3px;bottom:-3px;left:14px;width:2px;background:var(--amber-hi);box-shadow:0 0 10px 2px rgba(63,214,200,.45);opacity:0;animation:sq-beam 1.7s .35s linear both;pointer-events:none}
 @keyframes sq-beam{0%{left:14px;opacity:0}6%{opacity:1}92%{opacity:1}100%{left:calc(100% - 2px);opacity:0}}
-.sq-who{margin:0;font-size:14px;line-height:1.5;color:var(--dim)}
+.sq-who{margin:0;font-size:13px;line-height:1.5;color:var(--dim)}
 .sq-who b{color:var(--paper);font-weight:600}
 .sq-who a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:3px}
 .sq-who a:hover{color:var(--paper)}
-.sq-mine{margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--rule);font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.5;color:var(--paper)}
+.sq-mine{margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--rule);font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.5;color:var(--paper)}
 .sq-mine p{margin:0}
 .sq-mine .sq-creed{margin-top:8px}
 .sq-mine .sq-sig{margin-top:6px;text-align:right;font-family:var(--label);font-style:normal;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
@@ -3351,38 +3353,55 @@ html.paused .sq-ring,html.paused .sq-flip.sq-da{animation:none}
 .sq-back{position:fixed;inset:0;z-index:1000;background:rgba(3,9,18,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:sq-fade .3s ease}
 .sq-back[hidden]{display:none}
 @keyframes sq-fade{from{opacity:0}to{opacity:1}}
-.sq-card.sq-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(460px,calc(100vw - 24px));max-height:calc(100svh - 24px);overflow:auto;animation:sq-in-m .35s var(--ease)}
+/* The pop-up scales with the window's height as well as its width, so it always fits on one screen */
+.sq-card.sq-modal{--u:clamp(1px,min(100vw / 960,100svh / 760),var(--u-max));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(460px,calc(100vw - 24px));animation:sq-in-m .35s var(--ease)}
+@media (min-width:760px){
+  .sq-card.sq-modal{display:grid;grid-template-columns:216px minmax(0,1fr);grid-template-rows:auto auto auto 1fr;column-gap:30px;width:min(860px,calc(100vw - 32px));padding:22px 30px 24px}
+  .sq-modal .sq-k{grid-column:1 / -1;margin-bottom:16px}
+  .sq-modal .sq-wafers{grid-column:1;grid-row:2 / 5;align-self:center;box-sizing:border-box;margin:0;padding-right:28px;border-right:1px dashed var(--rule)}
+  .sq-modal .sq-q,.sq-modal .sq-who,.sq-modal .sq-mine{grid-column:2}
+  .sq-modal .sq-q p{font-size:18px}
+}
+/* a phone held sideways, or a very short window: let the card scroll inside itself */
+@media (max-height:660px) and (max-width:759px),(max-height:380px){.sq-card.sq-modal{max-height:calc(100svh - 24px);overflow-y:auto}}
 @keyframes sq-in-m{from{opacity:0;transform:translate(-50%,-47%)}to{opacity:1;transform:translate(-50%,-50%)}}
-/* The motto under the hero buttons. "zero" is struck through and "positive" is written in beside it, held for a few
-   seconds, then wiped back so it can play again. Paused or reduced motion shows the finished line. */
-.hero-q{justify-self:start;display:block;margin:-6px 0 0;padding:2px 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 1px 14px rgba(7,16,29,.95),0 0 2px rgba(7,16,29,.8)}
-.hq-line{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.3;color:var(--paper)}
+/* The motto under the hero buttons, set small and quiet. "zero" is struck through and "positive" is written in beside
+   it, held for a few seconds, then wiped back so it can play again. Paused or reduced motion shows the finished line. */
+.hero-q{justify-self:start;display:block;margin:-4px 0 0;padding:2px 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-shadow:0 1px 12px rgba(7,16,29,.95)}
+.hq-line{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.4;letter-spacing:.01em;color:var(--dim);transition:color .25s}
 .hq-z{position:relative;text-decoration:none}
-.hq-z::after{content:"";position:absolute;left:-3px;right:-3px;top:56%;height:2px;background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
+.hq-z::after{content:"";position:absolute;left:-2px;right:-2px;top:56%;height:1px;background:currentColor;transform-origin:0 50%;animation:hq-strike 7s ease-in-out infinite}
 .hq-p{display:inline-block;color:var(--amber);animation:hq-write 7s ease-in-out infinite}
 @keyframes hq-strike{0%,6%{transform:scaleX(0)}18%,90%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes hq-write{0%,18%{opacity:0;filter:blur(3px);transform:translateY(4px)}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(3px);transform:none}}
-/* the mini wafer at the end of the line: tilted, every die lit teal, its ring breathing. Pointing at it lifts it with a soft glow */
+@keyframes hq-write{0%,18%{opacity:0;filter:blur(2px);transform:translateY(3px)}30%,84%{opacity:1;filter:none;transform:none}92%,100%{opacity:0;filter:blur(2px);transform:none}}
 .hq-end{white-space:nowrap}
-.hq-wafer{width:40px;height:40px;margin:-10px 0 -8px 12px;vertical-align:middle;overflow:visible;transform:rotate(-24deg) scale(1.14);transition:transform .35s var(--ease),filter .35s}
-.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.1;animation:sb-breathe 3.2s ease-in-out infinite}
-.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1}
+/* the mini wafer is exactly one em across, so it is never wider than the text is tall */
+.hq-wafer{width:1em;height:1em;margin-left:.45em;vertical-align:-.14em;overflow:visible;transform:rotate(-24deg);transition:transform .35s var(--ease),filter .35s}
+.hm-ring{fill:none;stroke:var(--amber);stroke-width:1.8;animation:sb-breathe 3.2s ease-in-out infinite}
+.hm-disc{fill:rgba(212,227,240,.06);stroke:var(--dim);stroke-width:1.4}
 .hm-d{fill:var(--amber)}
-.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-40deg) scale(1.3);filter:drop-shadow(0 0 5px rgba(63,214,200,.45))}
+.hero-q:hover .hq-line,.hero-q:focus-visible .hq-line{color:var(--paper)}
+.hero-q:hover .hq-wafer,.hero-q:focus-visible .hq-wafer{transform:rotate(-60deg);filter:drop-shadow(0 0 3px rgba(63,214,200,.5))}
 /* pointing at the line shows it finished: struck through and written in */
 .hero-q:hover .hq-z::after,.hero-q:focus-visible .hq-z::after,.hero-q:hover .hq-p,.hero-q:focus-visible .hq-p{animation:none}
+.hero-q:focus-visible{outline:1px solid var(--amber);outline-offset:4px}
+/* On a wide screen the motto hangs from the hero wafer's notch: a trace runs from the notch along the rim and drops to
+   the line, and the script moves both every frame (see makeTag). The layer shares the canvas's scroll shift. */
+.hq-layer{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;will-change:transform}
+.hq-trace{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;display:none}
+.hq-hung .hq-trace{display:block}
+.hq-tr{fill:none;stroke:var(--amber);stroke-opacity:.4;stroke-width:1;stroke-linejoin:round;transition:stroke-opacity .25s}
+.hq-pl{fill:none;stroke:var(--amber-hi);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:4 110;stroke-dashoffset:4;animation:hq-pulse 4.6s 2.4s ease-in infinite}
+@keyframes hq-pulse{0%{stroke-dashoffset:4;opacity:0}6%{opacity:1}55%{stroke-dashoffset:-100;opacity:1}58%,100%{stroke-dashoffset:-100;opacity:0}}
+.hq-nr{fill:none;stroke:var(--amber);stroke-width:1.2;animation:sb-breathe 3.2s ease-in-out infinite}
+.hq-nd{fill:var(--amber)}
+.hq-hung .hero-q{position:absolute;left:0;top:0;margin:0;pointer-events:auto;white-space:nowrap}
+.hq-layer:has(.hero-q:hover) .hq-tr,.hq-layer:has(.hero-q:focus-visible) .hq-tr{stroke-opacity:1}
+.hq-hung .hq-layer{animation:hq-in 1s 1.1s both}
+@keyframes hq-in{from{opacity:0}to{opacity:1}}
 .hq-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.hero-q:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
-.hq-mark{width:14px;height:14px;flex:none;overflow:visible}
-.hq-mark circle{fill:none;stroke:var(--amber);stroke-width:1.6;animation:sb-breathe 3.2s ease-in-out infinite}
-.hq-mark path{stroke:var(--amber);stroke-width:1.2;opacity:.7}
-/* the fourth house rule, which opens the same card */
-.rules .rule-ps b{display:flex;align-items:center;gap:9px;color:var(--amber)}
-.rules .rule-ps .hq-mark{width:16px;height:16px}
-.rule-q{display:flex;align-items:center;gap:6px;width:max-content;max-width:100%;min-height:38px;margin-top:10px;padding:0 14px;border:1px solid rgba(63,214,200,.6);border-radius:999px;background:none;font-family:var(--label);font-weight:800;font-size:15px;letter-spacing:.06em;color:var(--amber);cursor:pointer;transition:background .25s,color .25s}
-.rule-q:hover,.rule-q:focus-visible{background:var(--amber);color:#05201d;outline:0}
-@media (prefers-reduced-motion:reduce){.hq-mark circle,.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hm-d,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
-html.paused .hq-mark circle,html.paused .hm-ring,html.paused .hq-z::after,html.paused .hq-p{animation:none}
+@media (prefers-reduced-motion:reduce){.hq-pl{display:none}.hq-z::after,.hq-p,.hm-ring,.hq-wafer,.hq-line,.hq-nr,.hq-hung .hq-layer,.sq-back,.sq-card.sq-modal{animation:none;transition:none}}
+html.paused .hq-pl{display:none}html.paused .hm-ring,html.paused .hq-nr,html.paused .hq-z::after,html.paused .hq-p{animation:none}
 html.paused .wafermap.netlist .wires .net,html.paused .sb-knob{animation:none}
 
 /* ---------------------------------------------------------------- a thumb dock on phones */
