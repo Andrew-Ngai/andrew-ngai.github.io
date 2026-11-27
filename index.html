@@ -6926,7 +6926,7 @@ const ALL_THESES = [
     viz: "droids", echo: { pose: "slotin", acc: "slotin", name: "Router" }
   },
   {
-    id: "empire", die: [-8, 1], stance: "build",
+    id: "empire", die: [-8, 1], stance: "build", draft: true,
     layer: "F", tldr: ["Price wins a sale. Cost wins an empire.", "Same price, lower cost, bigger war chest. Britain borrowed at 3–4% while France paid 6%+, and outspent its richer rival. Google’s own chips cost an estimated 44% less to own than Nvidia’s, and Nvidia keeps about 75% of every sale as gross margin."],
     title: "Price wins a sale. Cost wins an empire.",
     h2: "Price wins a sale. | Cost wins an empire.",
@@ -6948,10 +6948,10 @@ const ALL_THESES = [
     viz: "empire", echo: { pose: "plant", acc: "empire", name: "Quartermaster" }
   }
 ];
-const THESES = ALL_THESES.filter(t => !t.probe);
+const THESES = ALL_THESES.filter(t => !t.probe && !t.draft);
 const PROBES = [
   { die: [-2, -8], layer: "E", title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
-  ...ALL_THESES.filter(t => t.probe).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
+  ...ALL_THESES.filter(t => t.probe && !t.draft).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
 ];
 const RECEIPTS = [
   { v: "17–150×", t: "The spread between making a million tokens and selling them. GPU-hours earn 20–30%.", id: "tokens", fresh: 1 },

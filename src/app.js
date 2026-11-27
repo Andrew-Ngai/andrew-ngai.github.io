@@ -1215,7 +1215,7 @@ const ALL_THESES = [
     viz: "droids", echo: { pose: "slotin", acc: "slotin", name: "Router" }
   },
   {
-    id: "empire", die: [-8, 1], stance: "build",
+    id: "empire", die: [-8, 1], stance: "build", draft: true,
     layer: "F", tldr: ["Price wins a sale. Cost wins an empire.", "Same price, lower cost, bigger war chest. Britain borrowed at 3–4% while France paid 6%+, and outspent its richer rival. Google’s own chips cost an estimated 44% less to own than Nvidia’s, and Nvidia keeps about 75% of every sale as gross margin."],
     title: "Price wins a sale. Cost wins an empire.",
     h2: "Price wins a sale. | Cost wins an empire.",
@@ -1239,12 +1239,13 @@ const ALL_THESES = [
 ];
 
 // A thesis marked probe: true is written in full but shows only as a probe die. Remove the flag and it publishes with everything above.
-const THESES = ALL_THESES.filter(t => !t.probe);
+// One marked draft: true is written in full but stays off the site entirely, not even as a probe die.
+const THESES = ALL_THESES.filter(t => !t.probe && !t.draft);
 
 const PROBES = [
   { die: [-2, -8], layer: "E", title: "Nuclear is the 2030s answer to a 2020s problem.", hook: "Restarts land this decade. Most new reactors land in the next one." },
   // held-back theses show a one-line teaser while in probe, not their full hook or notes
-  ...ALL_THESES.filter(t => t.probe).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
+  ...ALL_THESES.filter(t => t.probe && !t.draft).map(t => ({ ...t, hook: t.probeHook || t.hook, note: "" }))
 ];
 
 // featured theses in the hero: one number each, drawn as chips fresh off the line
