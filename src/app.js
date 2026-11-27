@@ -388,6 +388,20 @@ const SRC = {
   fyMkt: "https://factory.ai/news/claude-marketplace",
   fyTb1: "https://factory.ai/news/terminal-bench",
   fyTb21: "https://snorkel.ai/leaderboard/terminal-bench-2-1/",
+  mercorBot: "https://www.mercor.com/robotics/",
+  mercorD: "https://ventureburn.com/mercor-raises-750-million-series-d-to-train-ai/",
+  emBotha: "https://open.spotify.com/episode/1LlXptCugzoinfsyNaBzYu",
+  emBothaT: "https://ulisten.ai/channels/uncapped/sequoias-roelof-botha-on-decision-making-ai-and-the-next-tri_z8njhsYUNNk/transcript",
+  emF9: "https://spacedaily.com/?p=761742",
+  emStar: "https://londoneconomics.co.uk/blog/publication/crouching-rivals-not-so-hidden-dragon-spacex-and-the-future-of-launch-competition-part-1/",
+  emHfr: "https://www.h-france.net/vol4reviews/luckett.html",
+  emSyw: "https://en.wikipedia.org/wiki/Seventy_Years_War",
+  emKen: "https://en.wikipedia.org/wiki/Imperial_overstretch",
+  emNv: "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx",
+  emTpu: "https://newsletter.semianalysis.com/p/tpuv7-google-takes-a-swing-at-the",
+  emGm: "https://money.cnn.com/2004/04/01/technology/techinvestor/lamonica2/index.htm",
+  emGm2: "https://www.aljazeera.com/news/2005/4/1/gmail-space-doubled",
+  emGm3: "https://www.datamation.com/applications/google-gmail-success-spells-saas-superiority/",
 };
 
 const BINS = {
@@ -1019,6 +1033,7 @@ const ALL_THESES = [
   },
   {
     id: "physical", die: [8, 5], stance: "build",
+    updates: [{ on: "Nov 10, 2026", tag: "Mercor at $20B", why: "Mercor raised $750 million at a $20 billion valuation. Take 2 now names it: it pays experts to show AI models how their jobs are done, and pays businesses for wearable-camera video of their staff at work, which it licenses to AI and robotics companies.", was: "Originally written without Mercor." }],
     probeHook: "Robots have no internet to learn from. The first real business is filming one.",
     layer: "M", tldr: ["There’s no internet for hands. Physical AI has to film one.", "Robot models scale with physical data, and there’s none to scrape. Generalist: 270K → 500K hours, 64% → 99% success. Figure pays people to film their chores. The scoreboard: Waymo runs about one remote helper per 40 cars; humanoids are still at one per robot."],
     title: "There’s no internet for hands. Physical AI has to film one.",
@@ -1031,17 +1046,17 @@ const ALL_THESES = [
       <p>Now that data has a price. Figure’s Index app pays people to film their own everyday work: over 44,000 weekly users, more than 16 million videos and $15 million paid out so far. Figure says it will spend over $1 billion on data and compute in the next 12 months.</p>`,
     takes: [
       ["There’s no internet for hands.", "Meta trained Llama 3 on about 15 trillion tokens of text the internet had already written. Nobody ever filmed an internet’s worth of hands folding, wiping and fixing things. Generalist’s half a million hours is far bigger than any public robot dataset, and it’s still only about 57 years of one robot working nonstop. For robots, the scarce input isn’t chips or clever models. It’s recorded touch."],
-      ["Every early robot is a data rig with a job.", "In January, Musk admitted no Optimus was doing useful work at Tesla yet; the robots were there to learn. There are three ways to fill the gap. Teleoperation records the exact motions: 1X’s $20,000 NEO ships with an Expert Mode, where an operator in VR takes over chores it doesn’t know. Human video records the variety: Figure taught its robot to get around homes from human video alone, and Index takes in 30 minutes of video every second. Robot fleets record scale: Generalist was adding 10,000 hours a week. The winners will blend all three."],
+      ["Every early robot is a data rig with a job.", "In January, Musk admitted no Optimus was doing useful work at Tesla yet; the robots were there to learn. There are three ways to fill the gap. Teleoperation records the exact motions: 1X’s $20,000 NEO ships with an Expert Mode, where an operator in VR takes over chores it doesn’t know. Human video records the variety: Figure taught its robot to get around homes from human video alone, and Index takes in 30 minutes of video every second. Mercor, which pays more than 5 million experts to show AI models how their jobs are done, now films the work too: it pays businesses for wearable-camera video of their staff on shift and licenses the footage to AI and robotics companies. Robot fleets record scale: Generalist was adding 10,000 hours a week. The winners will blend all three."],
       ["The remote human is the scoreboard.", "Waymo started with a safety driver in every car. In 2026 it keeps about 70 remote assistance agents on duty for a fleet of about 3,000, roughly one helper for every 40 cars, and they advise stuck cars rather than drive them. Humanoids start back at one person per robot. Every hour a helper spends teaching is data, and every hour the robot doesn’t need one is margin. The business works when that ratio falls the way Waymo’s did."]
     ],
     bet: `Back the data engine. Tools that capture human hands cheaply, like wearable cameras, gloves and phone apps; teleoperation and remote-assistance platforms that turn every stuck robot into a training example; and robots placed in paid but forgiving jobs, where every working hour is also a data hour. Then watch the number nobody publishes yet: minutes of human help per robot per day. When it falls, the engine is working, and <a href="#robots">A humanoid is an EV with legs</a> is why the bodies will be cheap enough to run this way.`,
     wrong: "World models and simulation get good enough that real robot data stops mattering, or human video alone turns out to be enough. Then recorded robot hours stop being scarce, and the data moat drains.",
-    note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; the helper ratio is worked out from TechCrunch’s figures.",
-    receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA]],
+    note: "Not investment advice. Hours and success rates are Generalist’s; Index figures are Figure’s own; Mercor’s expert count is its own; the helper ratio is worked out from TechCrunch’s figures.",
+    receipts: [["Generalist: GEN-0 and scaling laws for robot data (Nov 2025)", SRC.gen0], ["Generalist: GEN-1 and half a million hours (Apr 2026)", SRC.gen1], ["The Robot Report: GEN-1 lifts success from 64% to 99%", SRC.gen1rr], ["Meta: Llama 3 pretrained on over 15T tokens", SRC.llama3], ["Figure: Introducing Index (Aug 2026)", SRC.figIndex], ["Figure: Project Go-Big, navigation from human video", SRC.goBig], ["1X: NEO and Scheduled Expert Mode", SRC.neoOrder], ["Electrek: Musk says no Optimus does useful work yet (Jan 2026)", SRC.muskUseful], ["Bloomberg: Waymo goes fully driverless in Phoenix (Oct 2020)", SRC.waymo2020], ["TechCrunch: about 70 remote assistance agents for about 3,000 cars", SRC.waymoRA], ["Mercor: host robotics data collection at your business", SRC.mercorBot], ["Ventureburn: Mercor raises $750 million at a $20 billion valuation (Nov 2026)", SRC.mercorD]],
     viz: "physical", echo: { pose: "mocap", acc: "mocap", name: "Mocap" }
   },
   {
-    id: "ledger", die: [1, 6], stance: "original",
+    id: "ledger", die: [1, 6], stance: "original", probe: true,
     probeHook: "The screens fell. The lock took off. The ledger is next.",
     layer: "A", tldr: ["SaaS that survives AI is a ledger or a lock.", "The screens fell and stayed down: HubSpot −33%, monday.com −36%. The locks took off: Okta +146%, CrowdStrike +120%, because every agent is a new key to guard. The ledger survived but isn’t paid yet: Salesforce +4%."],
     title: "SaaS that survives AI is a ledger or a lock.",
@@ -1198,6 +1213,28 @@ const ALL_THESES = [
     wrong: "By the end of 2027, Factory’s revenue is still under a tenth of Cognition’s, or most big companies have standardized on one lab’s own agent, like Claude Code or Codex, instead of a neutral layer.",
     receipts: [["SiliconANGLE, Cognition raises $2B at $48B (Sep 2026)", SRC.fyCogE], ["Unite.AI, Cognition passes a $1B run rate (Sep 2026)", SRC.fyCog1b], ["Reuters via The Star, Factory triples its valuation to $5B (Sep 2026)", SRC.fyFac5], ["Factory’s $5B announcement: Router, air-gapped deployments (Sep 2026)", SRC.fyFacPr], ["Factory, From coding agents to software factories", SRC.fyF2], ["Cognition, the agent-lab pitch (May 2026)", SRC.fyCogD], ["Sacra on Cognition: Devin Desktop, SWE models, pricing (2026)", SRC.fySacra], ["Crypto Briefing on Cognition’s run rate and cash burn (2026)", SRC.fyBurn], ["Orb Pricing Atlas, Factory’s plans (Nov 2026)", SRC.fyPrice], ["Factory Partner Network, $100M (Aug 2026)", SRC.fyFpn], ["Factory on Anthropic’s Claude Marketplace (Sep 2026)", SRC.fyMkt], ["Factory, Droid #1 on Terminal-Bench (Sep 2025)", SRC.fyTb1], ["Snorkel, Terminal-Bench 2.1 leaderboard", SRC.fyTb21]],
     viz: "droids", echo: { pose: "slotin", acc: "slotin", name: "Router" }
+  },
+  {
+    id: "empire", die: [-8, 1], stance: "build",
+    layer: "F", tldr: ["Price wins a sale. Cost wins an empire.", "Same price, lower cost, bigger war chest. Britain borrowed at 3–4% while France paid 6%+, and outspent its richer rival. Google’s own chips cost an estimated 44% less to own than Nvidia’s, and Nvidia keeps about 75% of every sale as gross margin."],
+    title: "Price wins a sale. Cost wins an empire.",
+    h2: "Price wins a sale. | Cost wins an empire.",
+    short: "Cost wins an empire",
+    hook: "Two companies can charge the same price. The one that costs less to run keeps more of every sale, and gets to spend it on the next border before anyone else can. Roelof Botha calls cost the secret of Silicon Valley. Empires knew it first.",
+    ref: { label: "Roelof Botha of Sequoia on Uncapped with Jack Altman, episode 28 (Oct 2025)", href: SRC.emBotha },
+    signal: `<p class="claim">Price isn’t an advantage. | Cost is.</p>
+      <p>That’s Roelof Botha, PayPal’s CFO before Sequoia, talking to Jack Altman in October 2025. He calls cost “the secret of Silicon Valley.” A company that makes the same thing for less can match a rival’s price and keep more, undercut it, or take share. It gets to choose how the game is played. Then he compared great companies to empires: “flexible borders and relentless ambition.”</p>
+      <p>Put the two together and you get the part I care about. At the same price, the cheaper producer has more left over every month to spend on the next border, and rivals rarely see which border until it moves.</p>`,
+    takes: [
+      ["The gap is a war chest.", "A rival can match your price by tomorrow morning. It can’t match your costs for years. Say two companies sell the same thing for $100, and one makes it for $90 while the other makes it for $60. The customer can’t tell them apart. One has $10 a sale left for what’s next; the other has $40, four times the war chest, every month, and the gap compounds. SpaceX lists a Falcon 9 launch at $74 million, and a reused one is estimated to cost it about $15 million. Starlink rides those rockets at roughly cost, a fraction of what its rivals pay to reach orbit. Nobody had a rocket company down as an internet provider."],
+      ["Empires ran on the same math.", "France had the much bigger tax base. Britain had the cheaper money. Through the 1700s the British government borrowed at 3% or 4% a year; the kings of France, who often reneged on their debts, had to pay 6% or more. So each pound of yearly tax could carry £25 to £33 of British war debt, but only about £17 of French. The two were at war or skirmishing in 49 of the 71 years from 1744 to 1815, and Britain kept outspending its richer rival, through France’s crushing defeat in the Seven Years’ War. The limit is just as old. Paul Kennedy called it imperial overstretch: commitments that outgrow the economy paying for them. Cheap costs buy flexible borders. They don’t make every border worth holding."],
+      ["In AI, the prices match. The costs don’t.", "Cognition and Factory sell coding agents on the same $20 and $200 plans, and Factory routes each task to the cheapest model that can do it, which it says cuts token spend by more than 60%. One level down, a lab that rents Nvidia’s chips pays Nvidia’s margin: 74.8% gross in the quarter to October. Google makes its own. SemiAnalysis estimates its TPUv7 servers cost Google about 44% less to own than Nvidia’s GB200s, and Google now sells them to others, with Anthropic taking up to a million. Google has run this play before. In 2004 Gmail gave every inbox a free gigabyte when Hotmail’s held 2 megabytes, because commodity storage at Google’s scale made it cheap; within a year Yahoo and Microsoft had raised their limits. A search company took email. Now it sells chips."]
+    ],
+    bet: `Back the cheapest producer, not the cheapest price. When AI prices converge, the winner is whoever keeps the most of each dollar and spends it on the next border first. At the model layer that’s Google, which doesn’t pay Nvidia’s margin; at the app layer it’s the routers, like Factory in <a href="#droids">The factory, not the engineer</a>. Labs that rent every chip at Nvidia’s prices have to choose between matching a price and opening a new front. The chip side of this is <a href="#asic">Discover, then mass-produce</a>.`,
+    wrong: "By the end of 2027, the lab with the highest cost per token is also the one gaining the most share, because outside money lets it out-spend rivals it can’t out-earn; or Google’s share of AI usage falls even though it matches its rivals’ prices.",
+    note: "Not investment advice.",
+    receipts: [["Uncapped #28, Roelof Botha from Sequoia (Oct 2025)", SRC.emBotha], ["Transcript of Uncapped #28: cost, price and empires, from 37:00", SRC.emBothaT], ["SpaceDaily on the Falcon 9 price and the cost of a reused launch (2026)", SRC.emF9], ["London Economics, SpaceX and the future of launch competition", SRC.emStar], ["H-France Review: British and French borrowing in the 1700s", SRC.emHfr], ["The Seventy Years War, 1744–1815", SRC.emSyw], ["Imperial overstretch, after Paul Kennedy’s The Rise and Fall of the Great Powers (1987)", SRC.emKen], ["Nvidia, results for the third quarter of fiscal 2027 (Nov 2026)", SRC.emNv], ["SemiAnalysis, TPUv7: Google Takes a Swing at the King (Nov 2025)", SRC.emTpu], ["CNN Money on Gmail’s launch (Apr 2004)", SRC.emGm], ["Al Jazeera, Gmail doubles its storage a year on (Apr 2005)", SRC.emGm2], ["Datamation on how Gmail could give storage away", SRC.emGm3], ["Factory’s $5B announcement: the Router (Sep 2026)", SRC.fyFacPr], ["Orb Pricing Atlas, Factory’s plans (Nov 2026)", SRC.fyPrice]],
+    viz: "empire", echo: { pose: "plant", acc: "empire", name: "Quartermaster" }
   }
 ];
 
@@ -1220,6 +1257,7 @@ const RECEIPTS = [
 
 // Marker doodles for the TL;DR whiteboard, one per thesis, each drawn in a 120 x 100 box.
 const DOODLES = {
+  empire: "<path d=\"M10 80 a18 5 0 1 0 36 0 a18 5 0 1 0 -36 0 M10 80 v-8 M46 80 v-8 M10 72 a18 5 0 1 0 36 0 a18 5 0 1 0 -36 0 M10 72 v-8 M46 72 v-8 M10 64 a18 5 0 1 0 36 0 a18 5 0 1 0 -36 0\" stroke=\"#1d8a5c\" stroke-width=\"2.6\" /><text x=\"28\" y=\"48\" fill=\"#1d8a5c\" font-size=\"20\" text-anchor=\"middle\">$</text><path d=\"M52 56 C60 42 70 38 78 40\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M72 34 L79 40 L71 45\" stroke=\"#26303a\" stroke-width=\"2.4\" /><path d=\"M74 84 Q92 66 114 84\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M94 74 V24\" stroke=\"#26303a\" stroke-width=\"2.8\" /><path d=\"M94 24 L116 31 L94 38 Z\" stroke=\"#d23c3c\" stroke-width=\"2.6\" /><text x=\"60\" y=\"100\" fill=\"#26303a\" font-size=\"15\" text-anchor=\"middle\">cost buys borders</text>",
   droids: "<path d=\"M8 78 V44 L26 54 V44 L44 54 V44 L62 54 V78 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M22 44 L18 30 M35 44 V28 M48 44 L52 30\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M15 28 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M32 26 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M49 28 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M56 80 H114\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M60 86 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M104 86 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0\" stroke=\"#26303a\" stroke-width=\"1.8\" /><path d=\"M72 66 h12 v14 h-12 Z M94 66 h12 v14 h-12 Z\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M94 56 l4 4 l9 -10\" stroke=\"#d23c3c\" stroke-width=\"2.6\" />",
   agent: "<path d=\"M18 40 C8 30 16 13 31 16 C35 5 52 5 56 13 C68 9 79 21 73 32 C81 41 72 55 59 51 H28 C17 53 12 46 18 40 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M45 12 V50 M30 28 Q37 25 36 34 M58 24 Q52 28 58 34\" stroke=\"#d23c3c\" stroke-width=\"2\" /><path d=\"M60 51 L80 70 L98 60\" stroke=\"#1f5fbf\" stroke-width=\"4.4\" /><path d=\"M98 60 L106 52 M98 60 L108 64\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M100 70 h16 l-2 18 h-12 Z\" stroke=\"#26303a\" stroke-width=\"2.6\" /><path d=\"M103 70 q5 -8 10 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"36\" y=\"76\" fill=\"#d23c3c\" font-size=\"17\" text-anchor=\"middle\">brain</text><text x=\"78\" y=\"96\" fill=\"#1f5fbf\" font-size=\"17\" text-anchor=\"middle\">body</text>",
   openclaw: "<path d=\"M20 70 C10 55 14 32 30 26 C40 22 46 32 40 40 C50 34 58 40 54 50 C48 62 36 74 20 70 Z\" stroke=\"#d23c3c\" stroke-width=\"3.2\" /><path d=\"M40 40 L30 50\" stroke=\"#d23c3c\" stroke-width=\"2.4\" /><path d=\"M72 22 L84 8 L96 22\" stroke=\"#1f5fbf\" stroke-width=\"2.4\" /><path d=\"M66 22 h38 v50 h-38 Z\" stroke=\"#1f5fbf\" stroke-width=\"3\" /><path d=\"M76 34 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0\" stroke=\"#26303a\" stroke-width=\"2.2\" /><path d=\"M74 54 H96 M74 62 H90\" stroke=\"#26303a\" stroke-width=\"2.2\" /><text x=\"85\" y=\"92\" fill=\"#1f5fbf\" font-size=\"18\" text-anchor=\"middle\">ID</text>",
@@ -1268,6 +1306,7 @@ const byId = Object.fromEntries(THESES.map(t => [t.id, t]));
 const WIRES = {
   terafab: ["memory", "backend", "moat", "asic"],
   droids: ["tokens", "saas", "agent", "openclaw"],
+  empire: ["droids", "asic", "tokens", "circular"],
   automate: ["fleet", "factory", "agent", "physical"],
   agent: ["openclaw", "saas", "memory", "automate", "paycheck"],
   weights: ["silicon", "race", "quantum"],
@@ -1676,6 +1715,17 @@ function echo({ pose = "idle", acc = null, label = "", bare = false } = {}) {
       `<g class="echo-hand-r"><g class="xnm-held"><rect x="83" y="66" width="7.9" height="13" rx="1" fill="#2c3e55" stroke="#9fb3c4" stroke-width=".6"/><rect x="83" y="66" width="7.9" height="3.6" rx="1" fill="#f4977a"/></g>${mitt(95.5, 81)}</g>`;
     accExtra = `<g class="xnm-fall"><rect x="-4" y="-6.5" width="7.9" height="13" rx="1" fill="#2c3e55" stroke="#9fb3c4" stroke-width=".6"/><rect x="-4" y="-6.5" width="7.9" height="3.6" rx="1" fill="#f4977a"/><path d="M-10 -14 L0 -8 L10 -14" stroke="#9fb3c4" stroke-width=".6" fill="none"/><path d="M-12 -14 Q0 -26 12 -14 Z" fill="#eef4f8" stroke="#9fb3c4" stroke-width=".6"/></g>` +
       `<text class="xnm-plus" x="104" y="44" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-size="11" font-weight="900" fill="#f4977a">+1</text>`;
+  } else if (acc === "empire") {
+    // Quartermaster: a laurel wreath and a banner; drops the margin from each sale into the war chest, and when it's full,
+    // the banner goes up on the next hill
+    accIn = `<path d="M15.5 22 C18 12 27 4 44 1" stroke="#2fa36a" stroke-width="1.3" fill="none"/><path d="M84.5 22 C82 12 73 4 56 1" stroke="#2fa36a" stroke-width="1.3" fill="none"/><ellipse cx="17" cy="19" rx="4.6" ry="1.9" transform="rotate(-96 17 19) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="17" cy="19" rx="4.6" ry="1.9" transform="rotate(-28 17 19) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="21" cy="12.5" rx="4.6" ry="1.9" transform="rotate(-82 21 12.5) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="21" cy="12.5" rx="4.6" ry="1.9" transform="rotate(-14 21 12.5) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="27" cy="7" rx="4.6" ry="1.9" transform="rotate(-66 27 7) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="27" cy="7" rx="4.6" ry="1.9" transform="rotate(2 27 7) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="34" cy="3.6" rx="4.6" ry="1.9" transform="rotate(-52 34 3.6) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="34" cy="3.6" rx="4.6" ry="1.9" transform="rotate(16 34 3.6) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="41.5" cy="2" rx="4.6" ry="1.9" transform="rotate(-40 41.5 2) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="41.5" cy="2" rx="4.6" ry="1.9" transform="rotate(28 41.5 2) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="83" cy="19" rx="4.6" ry="1.9" transform="rotate(28 83 19) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="83" cy="19" rx="4.6" ry="1.9" transform="rotate(96 83 19) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="79" cy="12.5" rx="4.6" ry="1.9" transform="rotate(14 79 12.5) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="79" cy="12.5" rx="4.6" ry="1.9" transform="rotate(82 79 12.5) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="73" cy="7" rx="4.6" ry="1.9" transform="rotate(-2 73 7) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="73" cy="7" rx="4.6" ry="1.9" transform="rotate(66 73 7) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="66" cy="3.6" rx="4.6" ry="1.9" transform="rotate(-16 66 3.6) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="66" cy="3.6" rx="4.6" ry="1.9" transform="rotate(52 66 3.6) translate(1.6 0)" fill="#3fc47f"/><ellipse cx="58.5" cy="2" rx="4.6" ry="1.9" transform="rotate(-28 58.5 2) translate(-1.6 0)" fill="#69e39a"/><ellipse cx="58.5" cy="2" rx="4.6" ry="1.9" transform="rotate(40 58.5 2) translate(1.6 0)" fill="#3fc47f"/>` +
+      `<g class="echo-hand-l">${mitt(4.5, 82, 20)}</g>` +
+      `<g class="echo-hand-r"><path d="M97 98 L104 14" stroke="#cfc6f5" stroke-width="2" stroke-linecap="round"/><circle cx="104.2" cy="12.6" r="2" fill="#69e39a"/>` +
+      `<g class="xem-flag"><path d="M104 16 Q110 13.5 116 16.5 V29 Q110 26 103 28.5 Z" fill="#69e39a" stroke="#2fa36a" stroke-width=".8"/><circle cx="109.6" cy="22.4" r="2.6" fill="none" stroke="#0f2a1f" stroke-width="1"/><path d="M109.6 20.6 V24.2" stroke="#0f2a1f" stroke-width=".9"/></g>${mitt(95.5, 81)}</g>`;
+    accExtra = `<path d="M-16 96 Q-3 85 10 96" fill="#2a2246" stroke="#69e39a" stroke-width="1"/><rect x="-15" y="96" width="24" height="13" rx="2" fill="#221b3a" stroke="#69e39a" stroke-width="1"/>` +
+      `<rect class="xem-lvl" x="-12.5" y="98.5" width="19" height="8" rx="1.2" fill="#69e39a"/><rect x="-5.2" y="100" width="4.4" height="4.6" rx=".8" fill="#cfc6f5"/>` +
+      [0, 1, 2].map(i => `<g class="xem-c xem-c${i}"><circle r="3.2" fill="#69e39a" stroke="#1d8a5c" stroke-width=".8"/><path d="M0 -1.6 V1.6" stroke="#0f2a1f" stroke-width=".8"/></g>`).join("") +
+      `<path class="xem-star" d="M110 2 C110.5 5.5 110.5 5.5 114 6 C110.5 6.5 110.5 6.5 110 10 C109.5 6.5 109.5 6.5 106 6 C109.5 5.5 109.5 5.5 110 2 Z" fill="#d4e3f0"/>`;
   } else if (acc === "clockmaker") {
     // Clockmaker: a jeweler's loupe over one eye; a pocket watch whose hand runs backward in one fin, an hourglass that keeps flipping in the other
     accIn = `<g transform="translate(70 30)"><circle r="9" fill="#a6e9ff" fill-opacity=".25" stroke="#c79a5b" stroke-width="2.6"/><circle r="5.6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1"/><path d="M8 -6 L18 -14" stroke="#c79a5b" stroke-width="2.2" stroke-linecap="round"/></g><path d="M14 4 Q50 -6 86 4" stroke="#2b2142" stroke-width="2" fill="none"/>` +
@@ -2904,6 +2954,260 @@ const VIZ = {
     </div>`;
   },
 
+  empire() {
+    // ---- frame 1: same price, different war chest. Each sale drops what's kept into a chest; every $40 buys a border
+    const F1 = `<svg viewBox="0 0 460 300" class="ep1" role="img" aria-label="Two companies sell the same thing for 100 dollars. One makes it for 90 and keeps 10 a sale; the other makes it for 60 and keeps 40. Each sale drops what's kept into a war chest, and every 40 dollars buys a new border. After eight sales the rival has claimed 2 new borders and the low-cost company 8.">
+        <text x="14" y="22" class="t-strong" font-size="15">Same price. Different war chest.</text>
+        <line x1="14" y1="138" x2="446" y2="138" stroke="var(--rule)" stroke-dasharray="3 5"/>
+        <text x="14" y="52" font-size="12" font-weight="800" style="fill:var(--coral);letter-spacing:.1em">RIVAL · MAKES IT FOR $90</text>
+        <text x="446" y="52" text-anchor="end" font-size="11" style="fill:var(--dim)">new borders</text>
+        <rect x="14" y="62" width="144.0" height="24" rx="3" fill="var(--rule)" fill-opacity=".55"/>
+        <rect x="158.0" y="62" width="16.0" height="24" rx="3" fill="var(--amber)" fill-opacity=".85"/>
+        <text x="22" y="78.5" font-size="12" style="fill:var(--paper)">cost $90</text>
+        <text x="14" y="104" font-size="12" style="fill:var(--dim)">Sells at <tspan style="fill:var(--paper)">$100</tspan>, keeps <tspan font-weight="800" style="fill:var(--amber)">$10</tspan></text>
+        <rect x="200" y="68" width="46" height="30" rx="3" fill="none" stroke="var(--dim)" stroke-width="1.4"/>
+        <path d="M198 68 Q223 54 248 68" fill="none" stroke="var(--dim)" stroke-width="1.4"/>
+        <rect class="epa-fa" x="203" y="71" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".55" style="transform:scaleY(0)"/>
+        <text x="223" y="111" text-anchor="middle" font-size="11" style="fill:var(--dim)">war chest</text>
+        <rect x="268" y="56" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="314" y="56" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="360" y="56" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="406" y="56" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="268" y="86" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="314" y="86" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="360" y="86" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="406" y="86" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <g class="epa-ta0"><rect x="268" y="56" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M285 75 V61" stroke="var(--paper)" stroke-width="1.4"/><path d="M285 61 L294 64 L285 67 Z" fill="var(--coral)"/></g>
+        <g class="epa-ta1"><rect x="314" y="56" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M331 75 V61" stroke="var(--paper)" stroke-width="1.4"/><path d="M331 61 L340 64 L331 67 Z" fill="var(--coral)"/></g>
+        <text class="epa-ea" x="446" y="126" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--coral)">2 new borders</text>
+        <g class="epa-ca" style="opacity:0"><circle r="4.6" fill="var(--amber)" stroke="#08211f" stroke-width=".8"/></g>
+        <text x="14" y="162" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">LOW-COST · MAKES IT FOR $60</text>
+        <text x="446" y="162" text-anchor="end" font-size="11" style="fill:var(--dim)">new borders</text>
+        <rect x="14" y="172" width="96.0" height="24" rx="3" fill="var(--rule)" fill-opacity=".55"/>
+        <rect x="110.0" y="172" width="64.0" height="24" rx="3" fill="var(--amber)" fill-opacity=".85"/>
+        <text x="22" y="188.5" font-size="12" style="fill:var(--paper)">cost $60</text>
+        <text x="142.0" y="188.5" text-anchor="middle" font-size="12" font-weight="800" style="fill:#08211f">$40</text>
+        <text x="14" y="214" font-size="12" style="fill:var(--dim)">Sells at <tspan style="fill:var(--paper)">$100</tspan>, keeps <tspan font-weight="800" style="fill:var(--amber)">$40</tspan></text>
+        <rect x="200" y="178" width="46" height="30" rx="3" fill="none" stroke="var(--dim)" stroke-width="1.4"/>
+        <path d="M198 178 Q223 164 248 178" fill="none" stroke="var(--dim)" stroke-width="1.4"/>
+        <rect class="epa-fb" x="203" y="181" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".55" style="transform:scaleY(0)"/>
+        <text x="223" y="221" text-anchor="middle" font-size="11" style="fill:var(--dim)">war chest</text>
+        <rect x="268" y="166" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="314" y="166" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="360" y="166" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="406" y="166" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="268" y="196" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="314" y="196" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="360" y="196" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <rect x="406" y="196" width="40" height="24" rx="2" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/>
+        <g class="epa-tb0"><rect x="268" y="166" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M285 185 V171" stroke="var(--paper)" stroke-width="1.4"/><path d="M285 171 L294 174 L285 177 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb1"><rect x="314" y="166" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M331 185 V171" stroke="var(--paper)" stroke-width="1.4"/><path d="M331 171 L340 174 L331 177 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb2"><rect x="360" y="166" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M377 185 V171" stroke="var(--paper)" stroke-width="1.4"/><path d="M377 171 L386 174 L377 177 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb3"><rect x="406" y="166" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M423 185 V171" stroke="var(--paper)" stroke-width="1.4"/><path d="M423 171 L432 174 L423 177 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb4"><rect x="268" y="196" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M285 215 V201" stroke="var(--paper)" stroke-width="1.4"/><path d="M285 201 L294 204 L285 207 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb5"><rect x="314" y="196" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M331 215 V201" stroke="var(--paper)" stroke-width="1.4"/><path d="M331 201 L340 204 L331 207 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb6"><rect x="360" y="196" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M377 215 V201" stroke="var(--paper)" stroke-width="1.4"/><path d="M377 201 L386 204 L377 207 Z" fill="var(--amber)"/></g>
+        <g class="epa-tb7"><rect x="406" y="196" width="40" height="24" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)"/><path d="M423 215 V201" stroke="var(--paper)" stroke-width="1.4"/><path d="M423 201 L432 204 L423 207 Z" fill="var(--amber)"/></g>
+        <text class="epa-eb" x="446" y="236" text-anchor="end" font-size="13" font-weight="800" style="fill:var(--amber)">8 new borders</text>
+        <g class="epa-cb" style="opacity:0"><circle r="8.5" fill="var(--amber)" stroke="#08211f" stroke-width=".8"/><text y="3.5" text-anchor="middle" font-size="10" font-weight="900" style="fill:#08211f">$</text></g>
+        <text x="14" y="272" font-size="11" style="fill:var(--dim)">Sales</text>
+        <circle cx="64" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s0" cx="64" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="86" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s1" cx="86" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="108" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s2" cx="108" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="130" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s3" cx="130" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="152" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s4" cx="152" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="174" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s5" cx="174" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="196" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s6" cx="196" cy="268" r="4.2" fill="var(--paper)"/>
+        <circle cx="218" cy="268" r="4.2" fill="none" stroke="var(--rule)" stroke-width="1.2"/><circle class="epa-s7" cx="218" cy="268" r="4.2" fill="var(--paper)"/>
+        <text x="446" y="272" text-anchor="end" font-size="11" style="fill:var(--dim)">$100 a sale · $40 a border</text>
+      </svg>`;
+
+    // ---- frame 2: one pound of tax, two navies. Cheaper money carries more war debt, and Britain outlasted a richer rival
+    const F2 = `<svg viewBox="0 0 460 300" class="ep2" role="img" aria-label="Britain borrowed at 3 to 4 percent a year and France at 6 percent or more. So one pound of yearly tax carried 25 to 33 pounds of British war debt but only about 17 of French, shown as about six British ships against three French. The two were at war or skirmishing in 49 of the 71 years from 1744 to 1815. France had the bigger tax base; Britain kept outspending it.">
+        <text x="14" y="22" class="t-strong" font-size="15">Same pound of tax. Cheaper money, bigger fleet.</text>
+        <line x1="230" y1="40" x2="230" y2="170" stroke="var(--rule)" stroke-dasharray="3 5"/>
+        <text x="14" y="52" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">BRITAIN · BORROWS AT 3–4%</text>
+        <g><circle cx="30" cy="84" r="15" fill="none" stroke="var(--paper)" stroke-width="1.4"/><text x="30" y="89" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--paper)">£1</text></g>
+        <text x="30" y="114" text-anchor="middle" font-size="10" style="fill:var(--dim)">tax a year</text>
+        <rect class="epb-b0" x="56" y="76" width="110.00000000000001" height="16" rx="2" fill="var(--amber)" fill-opacity=".8"/>
+        <rect class="epb-b0" x="166.0" y="76" width="35.2" height="16" rx="2" fill="var(--amber)" fill-opacity=".28" stroke="var(--amber)" stroke-dasharray="2 2"/>
+        <text x="56" y="110" font-size="12" style="fill:var(--paper)">carries £25–33 of war debt</text>
+        <g class="epb-s00"><path d="M18 152 H48 L43 160 H23 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M33 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M33 128 L33 149 L21 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M35 131 L35 149 L45 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M16 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s01"><path d="M53 152 H83 L78 160 H58 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M68 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M68 128 L68 149 L56 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M70 131 L70 149 L80 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M51 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s02"><path d="M88 152 H118 L113 160 H93 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M103 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M103 128 L103 149 L91 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M105 131 L105 149 L115 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M86 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s03"><path d="M123 152 H153 L148 160 H128 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M138 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M138 128 L138 149 L126 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M140 131 L140 149 L150 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M121 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s04"><path d="M158 152 H188 L183 160 H163 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M173 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M173 128 L173 149 L161 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M175 131 L175 149 L185 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M156 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s05" style="opacity:.45"><path d="M193 152 H223 L218 160 H198 Z" fill="var(--amber)" fill-opacity=".85"/><path d="M208 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M208 128 L208 149 L196 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M210 131 L210 149 L220 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M191 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <text x="244" y="52" font-size="12" font-weight="800" style="fill:var(--coral);letter-spacing:.1em">FRANCE · PAYS 6% OR MORE</text>
+        <g><circle cx="260" cy="84" r="15" fill="none" stroke="var(--paper)" stroke-width="1.4"/><text x="260" y="89" text-anchor="middle" font-size="13" font-weight="800" style="fill:var(--paper)">£1</text></g>
+        <text x="260" y="114" text-anchor="middle" font-size="10" style="fill:var(--dim)">tax a year</text>
+        <rect class="epb-b1" x="286" y="76" width="74.80000000000001" height="16" rx="2" fill="var(--coral)" fill-opacity=".8"/>
+        <text x="286" y="110" font-size="12" style="fill:var(--paper)">carries about £17</text>
+        <g class="epb-s10"><path d="M248 152 H278 L273 160 H253 Z" fill="var(--coral)" fill-opacity=".85"/><path d="M263 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M263 128 L263 149 L251 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M265 131 L265 149 L275 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M246 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s11"><path d="M283 152 H313 L308 160 H288 Z" fill="var(--coral)" fill-opacity=".85"/><path d="M298 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M298 128 L298 149 L286 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M300 131 L300 149 L310 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M281 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <g class="epb-s12"><path d="M318 152 H348 L343 160 H323 Z" fill="var(--coral)" fill-opacity=".85"/><path d="M333 152 V126" stroke="var(--paper)" stroke-width="1.3"/><path d="M333 128 L333 149 L321 149 Z" fill="var(--paper)" fill-opacity=".85"/><path d="M335 131 L335 149 L345 149 Z" fill="var(--paper)" fill-opacity=".6"/><path d="M316 164 q4 -3 8 0 t8 0 t8 0 t8 0" fill="none" stroke="var(--rule)" stroke-width="1.1"/></g>
+        <text x="230" y="186" text-anchor="middle" font-size="11" style="fill:var(--dim)">Each ship ≈ £5 of war debt that a pound of yearly tax can carry</text>
+        <text x="14" y="218" font-size="12" style="fill:var(--paper)">At war or skirmishing in <tspan font-weight="800" style="fill:var(--coral)">49 of 71 years</tspan>, 1744–1815</text>
+        <rect x="14" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y0" x="14" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="26" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y1" x="26" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="38" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y2" x="38" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="50" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y3" x="50" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="62" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y4" x="62" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="74" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y5" x="74" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="86" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y6" x="86" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="98" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y7" x="98" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="110" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y8" x="110" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="122" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y9" x="122" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="134" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y10" x="134" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="146" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y11" x="146" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="158" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y12" x="158" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="170" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y13" x="170" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="182" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y14" x="182" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="194" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y15" x="194" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="206" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y16" x="206" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="218" y="228" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y17" x="218" y="228" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="14" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y18" x="14" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="26" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y19" x="26" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="38" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y20" x="38" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="50" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y21" x="50" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="62" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y22" x="62" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="74" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y23" x="74" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="86" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y24" x="86" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="98" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y25" x="98" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="110" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y26" x="110" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="122" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y27" x="122" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="134" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y28" x="134" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="146" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y29" x="146" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="158" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y30" x="158" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="170" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y31" x="170" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="182" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y32" x="182" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="194" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y33" x="194" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="206" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y34" x="206" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="218" y="240" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y35" x="218" y="240" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="14" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y36" x="14" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="26" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y37" x="26" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="38" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y38" x="38" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="50" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y39" x="50" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="62" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y40" x="62" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="74" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y41" x="74" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="86" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y42" x="86" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="98" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y43" x="98" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="110" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y44" x="110" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="122" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y45" x="122" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="134" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y46" x="134" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="146" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y47" x="146" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="158" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect class="epb-y48" x="158" y="252" width="9" height="9" rx="1.5" fill="var(--coral)" fill-opacity=".8"/>
+        <rect x="170" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="182" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="194" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="206" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="218" y="252" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="14" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="26" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="38" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="50" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="62" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="74" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="86" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="98" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="110" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="122" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="134" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="146" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="158" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="170" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="182" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="194" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <rect x="206" y="264" width="9" height="9" rx="1.5" fill="none" stroke="var(--rule)"/>
+        <text x="252" y="240" font-size="12" style="fill:var(--paper)">France had the bigger tax base.</text>
+        <text class="epb-end" x="252" y="260" font-size="12" font-weight="800" style="fill:var(--amber)">Britain kept outspending it.</text>
+      </svg>`;
+
+    // ---- frame 3: same price, who pays Nvidia. Google's own chips leave 44 of every 100 over, and it spends them on borders
+    const F3 = `<svg viewBox="0 0 460 300" class="ep3" role="img" aria-label="A lab renting Nvidia GB200 servers has a cost to own of 100, priced to pay Nvidia's 74.8 percent gross margin. Google's own TPUv7 costs it about 56 by SemiAnalysis's estimate, leaving 44. Google spends it on new borders: search, Gmail in 2004 with a free gigabyte against Hotmail's 2 megabytes, and chips for other labs in 2025, with Anthropic taking up to a million TPUs. At the app layer, Factory charges the same 20 and 200 dollar plans but routes each task to the cheapest model, cutting token spend by more than 60 percent.">
+        <text x="14" y="22" class="t-strong" font-size="15">Same price. One of them doesn’t pay Nvidia.</text>
+        <line x1="226" y1="40" x2="226" y2="290" stroke="var(--rule)" stroke-dasharray="3 5"/>
+        <text x="14" y="52" font-size="12" font-weight="800" style="fill:var(--coral);letter-spacing:.1em">RENTS NVIDIA GB200</text>
+        <rect class="epc-b0" x="14" y="60" width="180" height="24" rx="3" fill="var(--coral)" fill-opacity=".28" stroke="var(--coral)"/>
+        <text x="22" y="76.5" font-size="12" style="fill:var(--paper)">cost to own <tspan font-weight="800">100</tspan></text>
+        <text x="14" y="102" font-size="11" style="fill:var(--coral)">pays Nvidia’s 74.8% margin</text>
+        <text x="14" y="134" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">GOOGLE’S OWN TPUv7</text>
+        <rect class="epc-b1" x="14" y="142" width="100.80000000000001" height="24" rx="3" fill="var(--amber)" fill-opacity=".8"/>
+        <text x="22" y="158.5" font-size="12" font-weight="800" style="fill:#08211f">56</text>
+        <rect class="epc-gap" x="114.80000000000001" y="142" width="79.19999999999999" height="24" rx="3" fill="var(--amber)" fill-opacity=".12" stroke="var(--amber)" stroke-dasharray="3 3"/>
+        <text x="154.4" y="158.5" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--amber)">44 left over</text>
+        <text x="14" y="184" font-size="11" style="fill:var(--dim)">SemiAnalysis, Google’s own cost</text>
+        <circle cx="38" cy="246" r="22" fill="none" stroke="var(--rule)" stroke-width="1.4"/>
+        <path class="epc-pie" d="M38 246 L38 224 A22 22 0 1 1 16.00 246.28 Z" fill="var(--coral)" fill-opacity=".7"/>
+        <text x="70" y="242" font-size="12" style="fill:var(--paper)">Nvidia keeps about <tspan font-weight="800" style="fill:var(--coral)">75¢</tspan></text>
+        <text x="70" y="258" font-size="12" style="fill:var(--paper)">of each $1 it sells</text>
+        <text x="240" y="52" font-size="12" font-weight="800" style="fill:var(--amber);letter-spacing:.1em">GOOGLE · NEW BORDERS</text>
+        <rect x="240" y="60" width="100" height="42" rx="3" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/><g><rect x="240" y="60" width="100" height="42" rx="3" fill="var(--amber)" fill-opacity=".2" stroke="var(--amber)"/><text x="250" y="79.0" font-size="13" font-weight="800" style="fill:var(--paper)">Search</text><text x="250" y="95.0" font-size="11" style="fill:var(--dim)">1998</text></g>
+        <rect x="346" y="60" width="100" height="42" rx="3" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/><g class="epc-t1"><rect x="346" y="60" width="100" height="42" rx="3" fill="var(--amber)" fill-opacity=".2" stroke="var(--amber)"/><text x="356" y="79.0" font-size="13" font-weight="800" style="fill:var(--paper)">Gmail · 2004</text><text x="356" y="95.0" font-size="11" style="fill:var(--dim)">1 GB vs 2 MB</text></g>
+        <rect x="240" y="110" width="206" height="52" rx="3" fill="none" stroke="var(--rule)" stroke-dasharray="2 3"/><g class="epc-t2"><rect x="240" y="110" width="206" height="52" rx="3" fill="var(--amber)" fill-opacity=".2" stroke="var(--amber)"/><text x="250" y="134.0" font-size="13" font-weight="800" style="fill:var(--paper)">Chips for others · 2025</text><text x="250" y="150.0" font-size="11" style="fill:var(--dim)">Anthropic: up to 1M TPUs</text></g>
+        <g class="epc-coin" style="opacity:0"><circle r="8" fill="var(--amber)" stroke="#08211f" stroke-width=".8"/><text y="3.5" text-anchor="middle" font-size="10" font-weight="900" style="fill:#08211f">$</text></g>
+        <g class="epc-next"><rect x="240" y="172" width="206" height="36" rx="3" fill="none" stroke="var(--amber)" stroke-dasharray="4 4"/><text x="343" y="195" text-anchor="middle" font-size="12" style="fill:var(--amber)">next border?</text></g>
+        <text x="240" y="232" font-size="12" style="fill:var(--paper)">At the app layer, the same</text>
+        <text x="240" y="248" font-size="12" style="fill:var(--paper)"><tspan font-weight="800">$20</tspan> and <tspan font-weight="800">$200</tspan> plans. Factory</text>
+        <text x="240" y="264" font-size="12" style="fill:var(--paper)">routes each task to the cheapest</text>
+        <text x="240" y="280" font-size="12" style="fill:var(--paper)">model: <tspan font-weight="800" style="fill:var(--amber)">60%+ less</tspan> on tokens.</text>
+      </svg>`;
+
+    return `<div class="viz" data-step="1">
+      <div class="frame f1">${F1}<p class="cap">Illustrative numbers: the same $100 price, costs of $90 and $60, and $40 for each new border.</p></div>
+      <div class="frame f2">${F2}<p class="cap">Borrowing rates from the H-France Review; years at war from 1744 to 1815. Squares count the war years; they aren’t a calendar.</p></div>
+      <div class="frame f3">${F3}<p class="cap">Cost to own from SemiAnalysis’s November 2025 model, from Google’s side. Nvidia’s margin from its quarter to October 2026. Gmail’s launch from CNN, April 2004.</p></div>
+    </div>`;
+  },
   race() {
     // ---- frame 1: an iceberg each. Above water the best models are nearly level; below water sit the inputs, area to scale
     const BERG = "M-56 0 L-78 24 L-92 68 L-74 116 L-34 150 L16 146 L64 118 L90 70 L78 24 L56 0 Z";
@@ -5711,6 +6015,113 @@ function buildLine() {
   buildLine.wake = wake;
 }
 
+/* ---------------------------------------------------------------- the quote scribed on the rim */
+// Right of the notch, opposite the wiring switch, the rim carries one more line of laser-etched text: where all of this
+// comes from. Clicking it opens the quote over the wafer, with the two pies it is about.
+const RIM_QUOTE = {
+  q: ["If you have zero sum economics with no growth, you have to have zero sum politics.", "In a high growth environment, you have positive sum economics, which means you have positive sum politics."],
+  who: "Marc Andreessen",
+  where: "on Uncommon Knowledge with Peter Robinson, January 2025",
+  href: "https://www.hoover.org/plus/research/marc-andreessen-its-morning-again-america",
+  mine: "The way out of a fight over slices is a bigger pie, and pies grow at the frontier. Every die on this wafer is a bet on one.",
+  creed: "And I think one of the most patriotic things a person can do for their country is fight for the positive sum, through innovation, for the greater good."
+};
+function buildRimQuote() {
+  const svg = $("#wmap"), wm = $(".wafermap"), R = 11.63 * 24;
+  if (!svg || !wm) return;
+  const sq = document.createElement("button");
+  sq.type = "button";
+  sq.className = "scribe sq";
+  sq.setAttribute("aria-haspopup", "dialog");
+  sq.setAttribute("aria-label", `Always play for the positive sum: open a quote from ${RIM_QUOTE.who}`);
+  const rad = a => a * Math.PI / 180, at = (r, a) => [r * Math.cos(rad(a)), r * Math.sin(rad(a))];
+  const arc = (r, a0, a1) => `M${at(r, a0).map(v => v.toFixed(1)).join(" ")}A${r} ${r} 0 0 0 ${at(r, a1).map(v => v.toFixed(1)).join(" ")}`;
+  const START = 84.5, LABEL = "ALWAYS PLAY FOR THE POSITIVE SUM";
+  sq.innerHTML = `<svg viewBox="-310 -310 620 620" aria-hidden="true"><path id="quoteArc" fill="none"/><path class="sb-hit"/>` +
+    `<g class="sq-mark"><circle class="sq-ring"/><path class="sq-cross"/></g>` +
+    `<text class="sb-t"><textPath href="#quoteArc">${LABEL}</textPath></text></svg>`;
+  wm.appendChild(sq);
+  const t = $(".sb-t", sq), mark = $(".sq-mark", sq), hit = $(".sb-hit", sq);
+  // the same size and seat as the wiring label: about 11px however small the wafer is drawn, just clear of the edge
+  let fs0 = 0;
+  const size = () => {
+    const k = svg.getBoundingClientRect().width / 620;
+    if (!k) return;
+    const fs = Math.max(13, 11 / k);
+    if (Math.abs(fs - fs0) < .05) return;
+    fs0 = fs;
+    t.setAttribute("font-size", fs.toFixed(1));
+    const RT = R + 8 + fs * .95, deg = len => len * 180 / Math.PI / RT;
+    // "ALWAYS PLAY FOR THE POSITIVE SUM" runs about 21 font sizes long with its letter-spacing
+    const aMark = START - deg(fs * .9), aText = aMark - deg(fs * 1.1), aEnd = aText - deg(fs * 22);
+    $("#quoteArc", sq).setAttribute("d", arc(RT, aText, aEnd - 2));
+    const [x, y] = at(RT - fs * .36, aMark), r = fs * .55;
+    mark.setAttribute("transform", `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    $(".sq-ring", sq).setAttribute("r", r.toFixed(1));
+    $(".sq-cross", sq).setAttribute("d", `M${-r * 1.6} 0H${r * 1.6}M0 ${-r * 1.6}V${r * 1.6}`);
+    hit.setAttribute("d", arc(RT - fs * .4, START, aEnd));
+    hit.style.strokeWidth = Math.max(30, fs * 2.6);
+  };
+  size();
+  if (document.fonts) document.fonts.ready.then(() => { fs0 = 0; size(); });
+  if (window.ResizeObserver) new ResizeObserver(size).observe(svg);
+
+  // the card: the two pies, the quote, where it was said, and why it's on this wafer
+  const card = document.createElement("div");
+  card.className = "sq-card";
+  card.hidden = true;
+  card.setAttribute("role", "dialog");
+  card.setAttribute("aria-label", `Quote from ${RIM_QUOTE.who}`);
+  card.innerHTML = `<span class="sq-c sq-c1"></span><span class="sq-c sq-c2"></span><span class="sq-c sq-c3"></span><span class="sq-c sq-c4"></span>` +
+    `<button type="button" class="sq-x" aria-label="Close">×</button>` +
+    `<p class="sq-k">Etched on the rim</p>` +
+    `<svg class="sq-wafers" viewBox="0 0 340 146" aria-hidden="true"><g class="sq-zero"><circle class="sq-wf" cx="80" cy="58" r="33"/><circle class="sq-notch" cx="80" cy="91" r="3.2"/><rect class="sq-da" x="52.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="52.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da" x="60.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="84.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="92.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db" x="100.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:0" x="68.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:1" x="76.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:2" x="68.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:3" x="76.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:4" x="68.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:5" x="76.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:6" x="68.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:7" x="76.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:8" x="68.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:9" x="76.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:10" x="68.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:11" x="76.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-da sq-flip" style="--k:12" x="68.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-db sq-flip" style="--k:13" x="76.9" y="78.9" width="6.2" height="6.2" rx="1"/></g><g class="sq-pos"><circle class="sq-wf sq-grow" cx="258" cy="58" r="50"/><circle class="sq-notch" cx="258" cy="108" r="3.2"/><rect class="sq-dp" x="230.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="230.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="238.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="246.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="254.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="262.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="270.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp" x="278.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:0" x="230.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:1" x="230.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:2" x="238.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:3" x="238.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:4" x="270.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:5" x="270.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:6" x="278.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:7" x="278.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:8" x="222.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:9" x="254.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:10" x="254.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:11" x="286.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:12" x="222.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:13" x="222.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:14" x="246.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:15" x="246.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:16" x="262.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:17" x="262.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:18" x="286.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:19" x="286.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:20" x="230.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:21" x="230.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:22" x="278.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:23" x="278.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:24" x="222.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:25" x="222.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:26" x="238.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:27" x="238.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:28" x="270.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:29" x="270.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:30" x="286.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:31" x="286.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:32" x="214.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:33" x="222.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:34" x="222.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:35" x="230.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:36" x="230.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:37" x="254.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:38" x="254.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:39" x="278.9" y="22.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:40" x="278.9" y="86.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:41" x="286.9" y="30.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:42" x="286.9" y="78.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:43" x="294.9" y="54.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:44" x="214.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:45" x="214.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:46" x="246.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:47" x="246.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:48" x="262.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:49" x="262.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:50" x="294.9" y="46.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:51" x="294.9" y="62.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:52" x="214.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:53" x="214.9" y="70.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:54" x="238.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:55" x="238.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:56" x="270.9" y="14.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:57" x="270.9" y="94.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:58" x="294.9" y="38.9" width="6.2" height="6.2" rx="1"/><rect class="sq-dp sq-new" style="--k:59" x="294.9" y="70.9" width="6.2" height="6.2" rx="1"/><circle class="sq-wf sq-wf-ghost" cx="258" cy="58" r="33"/></g><text class="sq-h" x="80" y="124" text-anchor="middle">Zero sum · same wafer</text><text x="80" y="140" text-anchor="middle">a die won is a die lost</text><text class="sq-h" x="258" y="124" text-anchor="middle">Positive sum · bigger wafer</text><text x="258" y="140" text-anchor="middle">more dies for everyone</text></svg>` +
+    `<blockquote class="sq-q"><span class="sq-beam" aria-hidden="true"></span><p>“${RIM_QUOTE.q.join(" … ")}”</p></blockquote>` +
+    `<p class="sq-who"><b>${RIM_QUOTE.who}</b>, <a href="${RIM_QUOTE.href}" target="_blank" rel="noopener">${RIM_QUOTE.where}</a></p>` +
+    `<div class="sq-mine"><p>${RIM_QUOTE.mine}</p><p class="sq-creed">${RIM_QUOTE.creed}</p><p class="sq-sig">Andrew</p></div>`;
+  wm.appendChild(card);
+  // The same card opens two ways: from the rim it sits over the wafer and dims it; from the quote in the hero it opens
+  // in the middle of the screen over a dark backdrop
+  const hq = $(".hero-q"), back = document.createElement("div");
+  back.className = "sq-back";
+  back.hidden = true;
+  document.body.appendChild(back);
+  let opener = sq;
+  const open = (on, from = opener) => {
+    if (on) {
+      opener = from;
+      const modal = from !== sq;
+      card.classList.toggle("sq-modal", modal);
+      $(".sq-k", card).textContent = modal ? "Always play for the positive sum" : "Etched on the rim";
+      card.setAttribute("aria-modal", String(modal));
+      (modal ? document.body : wm).appendChild(card);
+      back.hidden = !modal;
+      wm.classList.toggle("sq-open", !modal);
+    } else {
+      back.hidden = true;
+      wm.classList.remove("sq-open");
+    }
+    card.hidden = !on;
+    [sq, hq].forEach(b => b && b.setAttribute("aria-expanded", String(on && b === opener)));
+    if (!on) return;
+    $(".sq-x", card).focus({ preventScroll: true });
+    if (opener !== sq) return;
+    const r = card.getBoundingClientRect(), top = 84, vh = innerHeight;
+    if (r.top < top || r.bottom > vh) scrollBy({ top: r.top < top || r.height > vh - top ? r.top - top : r.bottom - vh + 16, behavior: calm ? "auto" : "smooth" });
+  };
+  const shut = () => { open(false); opener.focus({ preventScroll: true }); };
+  sq.setAttribute("aria-expanded", "false");
+  sq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== sq, sq); });
+  if (hq) hq.addEventListener("click", e => { e.stopPropagation(); open(card.hidden || opener !== hq, hq); });
+  $(".sq-x", card).addEventListener("click", shut);
+  back.addEventListener("click", shut);
+  card.addEventListener("click", e => e.stopPropagation());
+  document.addEventListener("click", () => { if (!card.hidden) open(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !card.hidden) shut(); });
+  hit.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") sq.classList.add("hov"); });
+  hit.addEventListener("pointerleave", () => sq.classList.remove("hov"));
+}
+
 /* ---------------------------------------------------------------- wiring on the wafer */
 // Off by default. The switch is scribed on the wafer's rim beside the notch, where a real wafer carries its laser-etched
 // ID. On, every connection between theses lays down as faint metal, and pointing at a die lights only its own traces.
@@ -5986,6 +6397,12 @@ interest rate, interest rates, rates, the fed, federal reserve, inflation, reces
 lawyer, lawyers, attorney, legal, law firm, lawsuit, lawsuits, sue, sued, court, courts, litigation, copyright, intellectual property > lawsuit, court, legal, copyright, regulation, seat, systems of record
 hiring, recruiting, resume, résumé, interview, hr > résumé, hiring, bias, intern, junior, seat
 productivity, efficiency, ai adoption, enterprise ai > productivity, seat, agent, automate, enterprise
+roelof botha, botha, sequoia, sequoia capital, jack altman, uncapped > Botha, Sequoia, Uncapped
+empire, empires, imperial, history, rome, roman, british empire, britain, france, napoleon, colonial > empire, Britain, France, overstretch, Kennedy, war
+cogs, cost of goods, cost advantage, low cost, low-cost, cheapest, unit economics > cost, gross margin, war chest, cheapest, TCO
+pricing, pricing power, price war, prices, undercut > pricing power, price war, war chest, cheapest
+gmail, email, e-mail, hotmail, inbox > Gmail, Hotmail, email
+mercor, brendan foody > Mercor, wearable-camera, Figure, Index
 `.trim().split("\n").map(line => {
   const [k, v] = line.split(">");
   return { keys: k.split(",").map(s => s.trim().toLowerCase()).filter(Boolean), terms: v.split(",").map(s => s.trim()).filter(Boolean) };
@@ -6020,14 +6437,15 @@ const ABOUT = {
   cuda: "CUDA, Nvidia, software moats, AMD, TPU, Google, Trainium, Amazon, Anthropic, OpenAI, Meta, switching costs, developers, Jensen Huang, AI coding, GPUs, competition",
   circular: "circular deals, vendor financing, AI bubble, Nvidia, OpenAI, Anthropic, Microsoft, Oracle, CoreWeave, AMD, telecom bubble, dot-com bubble, financing, debt, investing",
   robots: "robots, robotics, humanoid robots, Tesla, Optimus, Elon Musk, Unitree, China, Figure, electric vehicles, Waymo, self-driving cars, robotaxis, actuators, rare earth magnets, manufacturing, supply chain",
-  physical: "physical AI, robotics, robots, humanoids, robot data, teleoperation, Figure, Tesla, Optimus, Elon Musk, Waymo, self-driving, world models, training data, Meta, embodied AI",
+  physical: "physical AI, robotics, robots, humanoids, robot data, teleoperation, Figure, Tesla, Optimus, Elon Musk, Waymo, self-driving, world models, training data, Meta, embodied AI, Mercor, wearable cameras, egocentric video",
   ledger: "software, SaaS, cybersecurity, identity, CrowdStrike, Okta, Palo Alto Networks, Zscaler, CyberArk, ServiceNow, Salesforce, systems of record, AI agents, permissions, software stocks, Anthropic",
   asic: "ASICs, custom chips, TPU, Google, Trainium, Amazon, Meta, OpenAI, Broadcom, Marvell, Groq, Nvidia, inference, chips, semiconductors, chip design, energy efficiency, memory",
   bias: "AI bias, fairness, ethics, stereotypes, alignment, AI safety, prompting, Anthropic, OpenAI, language models, LLMs, research, chatbots",
   health: "healthcare, health, medicine, medical, biotech, biology, pharma, drug discovery, drugs, clinical trials, FDA, virtual cells, Arc Institute, Insilico, Isomorphic Labs, AlphaFold, Demis Hassabis, Google DeepMind, CRISPR, gene editing, rare diseases, hospitals, billing, insurance, Medicare, doctors, patients",
   aging: "aging, longevity, healthcare, health, medicine, biology, biotech, cells, rejuvenation, lifespan, disease, cancer, Sam Altman, OpenAI, Retro Biosciences, drug discovery",
   terafab: "Terafab, SpaceX, Tesla, Elon Musk, xAI, chip fabs, chip manufacturing, semiconductors, chips, Intel, TSMC, ASML, EUV, space, orbit, satellites, Starlink, Starship, Texas, memory, data centers in space",
-  droids: "AI coding, coding agents, software engineering, developer tools, Cognition, Devin, Windsurf, Factory, Claude Code, Codex, Cursor, Anthropic, OpenAI, enterprise software, startups, venture capital, valuations, tokens"
+  droids: "AI coding, coding agents, software engineering, developer tools, Cognition, Devin, Windsurf, Factory, Claude Code, Codex, Cursor, Anthropic, OpenAI, enterprise software, startups, venture capital, valuations, tokens",
+  empire: "cost, cost advantage, low cost, COGS, gross margin, margins, pricing, price, price war, unit economics, war chest, expansion, ambition, empires, history, Britain, France, war finance, borrowing, interest rates, overstretch, Roelof Botha, Sequoia, Jack Altman, venture capital, startups, SpaceX, Starlink, Google, Gmail, TPU, Nvidia, Anthropic, Factory, Cognition"
 };
 // the one probe that is only a title so far
 const ABOUT_PROBE = { "Nuclear is": "nuclear power, nuclear, energy, power, electricity, reactors, uranium, data center power, grid" };
@@ -6085,9 +6503,13 @@ function searchFor(q) {
   // a close spelling only counts for a word the site never uses: "nvdia" is a typo, "water" is not "wafer"
   if (!searchVocab) { searchVocab = new Set(); searchIndex.forEach(d => d.all.split(" ").forEach(w => searchVocab.add(stem(w)))); RELATED.forEach(g => g.keys.forEach(k => k.split(" ").forEach(w => searchVocab.add(stem(w))))); }
   const typo = st.map(s => s.length >= 5 && !searchVocab.has(s));
+  // a phrase that matches as a whole ("pricing power") speaks for its words, so "power" alone doesn't pull in the grid
+  const covered = new Set();
+  RELATED.forEach(g => g.keys.forEach(k => { if (!k.includes(" ")) return; const ks = k.split(" ").map(stem).join(" "); if (sq.includes(` ${k} `) || sst.includes(` ${ks} `)) ks.split(" ").forEach(w => covered.add(w)); }));
   RELATED.forEach((g, gi) => g.keys.forEach(k => {
     const ks = k.split(" ").map(stem).join(" ");
     let w = 0;
+    if (!k.includes(" ") && covered.has(ks)) return;
     if (sq.includes(` ${k} `) || sst.includes(` ${ks} `)) w = 1;
     else if (!k.includes(" ") && st.some((s, i) => typo[i] && near(s, ks, slack(ks)))) w = .7;
     if (w) g.terms.forEach((t, ti) => hit.set(t, Math.max(hit.get(t) || 0, w * (ti < 2 ? 1.4 : 1))));
@@ -6101,7 +6523,7 @@ function searchFor(q) {
     if (direct) f.forEach(([x, w], i) => { const n = toks.reduce((s, w2) => s + countStart(low[i], w2), 0); if (n) score += w * Math.min(n, 4); });
     // 2. what the thesis is about, even where it never says the word
     let rel = 0;
-    const aboutHits = ab.filter(a => a.n === qn || (qn.length >= 3 && ` ${a.n} `.includes(` ${qn} `)) || (a.n.length >= 4 && sq.includes(` ${a.n} `)) ||
+    const aboutHits = ab.filter(a => a.n === qn || (qn.length >= 3 && ` ${a.n} `.includes(` ${qn} `)) || (a.n.length >= 4 && sq.includes(` ${a.n} `) && !(a.w.length === 1 && covered.has(a.w[0]))) ||
       (toks.length === 1 && a.w.length === 1 && (a.w[0] === st[0] || (typo[0] && near(st[0], a.w[0], slack(a.w[0]))))) ||
       (toks.length > 1 && a.w.join(" ") === st.join(" ")));
     rel += Math.min(aboutHits.length, 2) * 10;
@@ -6118,7 +6540,7 @@ function searchFor(q) {
     gained.sort((a, b) => b[1] - a[1]);
     rel += gained.slice(0, 6).reduce((s, [, v]) => s + v, 0);
     // 4. a long query that only partly matches still counts its words
-    if (!direct && toks.length > 1) toks.forEach(w => { if (w.length >= 3) { let s = 0; f.forEach(([, fw], i) => { if (countIn(low[i], w)) s += fw; }); rel += s * .4; if (s) gained.unshift([w, s]); } });
+    if (!direct && toks.length > 1) toks.forEach(w => { if (w.length >= 3 && !covered.has(stem(w))) { let s = 0; f.forEach(([, fw], i) => { if (countIn(low[i], w)) s += fw; }); rel += s * .4; if (s) gained.unshift([w, s]); } });
     gained.forEach(([t]) => { if (why.length < 3 && !why.some(x => qnorm(x) === qnorm(t)) && !toks.includes(qnorm(t))) why.push(t); });
     if (!direct && rel < 6) return null;
     const kind = d.probe != null ? "probe" : direct ? "match" : "related";
@@ -6399,6 +6821,7 @@ renderHome();
 renderFilms();
 buildMap();
 buildWiring();
+buildRimQuote();
 buildSearch();
 buildProbeSearch();
 buildDock();
