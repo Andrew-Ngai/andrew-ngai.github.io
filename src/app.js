@@ -6187,38 +6187,69 @@ function buildRimQuote() {
   const HEAD = FULL.slice(0, cut), TAIL = FULL.slice(cut), DRAFTS = ["innovation", "progress"];
   qEl.innerHTML = `<span class="hq-sr">${FULL}</span><span class="sq-typed" aria-hidden="true"></span><span class="sq-caret" aria-hidden="true"></span><span class="sq-rest" aria-hidden="true"></span>`;
   const typed = $(".sq-typed", qEl), rest = $(".sq-rest", qEl);
-  const show = (a, b) => { typed.textContent = a; rest.textContent = b; };
-  let run = 0;
-  const halt = () => { run++; show(FULL, ""); qEl.className = "sq-done"; };
-  // Laid out as a timeline up front and played against the clock, so it takes the same six or so seconds on any
-  // machine: a slow frame skips letters instead of stretching the whole thing out.
+  let run = 0, shown = "";
+  // Put `text` on the typed line: keep the letters already there, give each new letter its own span so it inks in
+  // softly, and take letters off the end for a backspace. `after` is the invisible remainder that holds the layout.
+  const set = (text, after) => {
+    let n = 0;
+    while (n < shown.length && n < text.length && shown[n] === text[n]) n++;
+    for (let i = shown.length; i > n; i--) typed.lastChild.remove();
+    for (let i = n; i < text.length; i++) { const c = document.createElement("span"); c.textContent = text[i]; typed.appendChild(c); }
+    shown = text;
+    rest.textContent = after;
+  };
+  const halt = () => { run++; typed.textContent = FULL; shown = ""; rest.textContent = ""; qEl.className = "sq-done"; };
+  // Laid out as a timeline up front and played against the clock, so it takes the same ten or so seconds on any
+  // machine. The rhythm is a person's, not a machine's: every word gets its own pace, the hand lifts a little between
+  // words and longer at commas and full stops, and it sometimes hesitates before a long word. Each drafted word sits for
+  // a moment before it goes, and the backspace starts with two deliberate taps before the key repeats.
   const steps = [];
   {
-    let t = 380;
+    let t = 650;
     const at = (a, b, c = "sq-typing") => steps.push([t, a, b, c]);
-    const gap = ch => (ch === "." || ch === "…" ? 200 : ch === "," ? 80 : 0) + 10 + Math.random() * 14;
-    for (let i = 1; i <= HEAD.length; i++) { at(HEAD.slice(0, i), FULL.slice(i)); t += gap(HEAD[i - 1]); }
+    const rnd = (lo, hi) => lo + Math.random() * (hi - lo);
+    const write = (base, text, after, pace = 1) => {
+      let out = base, speed = rnd(.85, 1.2);
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        out += ch;
+        at(out, after(i + 1));
+        let d = (16 + rnd(0, 14)) * speed * pace;
+        if (ch === " ") {
+          speed = rnd(.8, 1.25);
+          d += rnd(20, 45);
+          if ((text.slice(i + 1).split(" ")[0] || "").length > 7 && Math.random() < .35) d += rnd(60, 120);
+        }
+        if (ch === ",") d += rnd(160, 220);
+        if (ch === ".") d += rnd(300, 380);
+        if (ch === "…") d += rnd(380, 480);
+        t += d;
+      }
+      return out;
+    };
+    const line = write("", HEAD, n => FULL.slice(n));
+    t += 250;
     for (const w of DRAFTS) {
-      for (let i = 1; i <= w.length; i++) { at(HEAD + w.slice(0, i), TAIL); t += 30; }
-      at(HEAD + w, TAIL, ""); t += 470;
-      for (let i = w.length - 1; i >= 0; i--) { at(HEAD + w.slice(0, i), TAIL); t += 26; }
-      t += 150;
+      write(line, w, () => TAIL, 1.3);
+      at(line + w, TAIL, ""); t += rnd(620, 720);
+      for (let i = w.length - 1, k = 0; i >= 0; i--, k++) { at(line + w.slice(0, i), TAIL); t += k < 2 ? 110 : 42; }
+      at(line, TAIL, ""); t += rnd(320, 400);
     }
-    for (let i = 1; i <= TAIL.length; i++) { at(HEAD + TAIL.slice(0, i), TAIL.slice(i)); t += 34; }
-    at(FULL, "", ""); t += 1800;
+    write(line, TAIL, n => TAIL.slice(n), 1.5);
+    at(FULL, "", ""); t += 2200;
     at(FULL, "", "sq-done");
   }
   const typeQuote = () => {
     const id = ++run, t0 = performance.now();
     if (calm || motionPaused) { halt(); return; }
-    show("", FULL);
+    typed.textContent = ""; shown = ""; rest.textContent = FULL;
     qEl.className = "sq-typing";
     let k = -1;
     const tick = now => {
       if (id !== run || card.hidden) return;
       let j = k;
       while (j + 1 < steps.length && steps[j + 1][0] <= now - t0) j++;
-      if (j !== k) { k = j; const [, a, b, c] = steps[j]; show(a, b); qEl.className = c; }
+      if (j !== k) { k = j; const [, a, b, c] = steps[j]; set(a, b); qEl.className = c; }
       if (k < steps.length - 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
