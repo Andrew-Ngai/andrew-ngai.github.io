@@ -3334,10 +3334,13 @@ html.ps-open{overflow:hidden}
 .sq-pos .sq-notch{transform-box:view-box;transform-origin:258px 58px;animation:sq-grow 1.1s .55s var(--ease) both}
 /* the quote is etched in: a scribing beam sweeps across and leaves the words behind it */
 .sq-q{position:relative;margin:0 0 10px;padding:0 0 0 14px;border-left:2px solid var(--amber)}
-.sq-q p{margin:0;font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--paper);animation:sq-etch 1.7s .35s linear both}
-@keyframes sq-etch{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-.sq-beam{position:absolute;top:-3px;bottom:-3px;left:14px;width:2px;background:var(--amber-hi);box-shadow:0 0 10px 2px rgba(63,214,200,.45);opacity:0;animation:sq-beam 1.7s .35s linear both;pointer-events:none}
-@keyframes sq-beam{0%{left:14px;opacity:0}6%{opacity:1}92%{opacity:1}100%{left:calc(100% - 2px);opacity:0}}
+.sq-q p{margin:0;font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--paper)}
+/* the typewriter: what's not typed yet holds its place invisibly; the caret blinks while it pauses to think */
+.sq-rest{color:transparent}
+.sq-caret{display:inline-block;width:2px;height:1.05em;margin:0 1px;vertical-align:-.17em;background:var(--amber);animation:sq-blink 1.05s steps(1) infinite;transition:opacity .6s}
+.sq-typing .sq-caret{animation:none}
+.sq-done .sq-caret{animation:none;opacity:0}
+@keyframes sq-blink{50%{opacity:0}}
 .sq-who{margin:0;font-size:13px;line-height:1.5;color:var(--dim)}
 .sq-who b{color:var(--paper);font-weight:600}
 .sq-who a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:3px}
@@ -3347,7 +3350,7 @@ html.ps-open{overflow:hidden}
 .sq-mine .sq-creed{margin-top:8px}
 .sq-mine .sq-sig{margin-top:6px;text-align:right;font-family:var(--label);font-style:normal;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
 .sq-mine .sq-sig::before{content:"— "}
-@media (prefers-reduced-motion:reduce){.sq-ring,.sq-flip.sq-da,.sq-grow,.sq-pos .sq-notch,.sq-card,.sq-q p{animation:none}.sq-new{animation:none;opacity:1}.sq-beam{display:none}}
+@media (prefers-reduced-motion:reduce){.sq-ring,.sq-flip.sq-da,.sq-grow,.sq-pos .sq-notch,.sq-card,.sq-caret{animation:none}.sq-new{animation:none;opacity:1}}
 html.paused .sq-ring,html.paused .sq-flip.sq-da{animation:none}
 /* opened from the hero, the card sits in the middle of the screen over a backdrop */
 .sq-back{position:fixed;inset:0;z-index:1000;background:rgba(3,9,18,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:sq-fade .3s ease}
